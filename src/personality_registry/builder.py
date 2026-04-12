@@ -143,6 +143,8 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "current_phase": "phase_3_downstream_consumer_integration",
             "canonical_domain": "instrument_centered_framework_registry",
             "internal_python_package": "personality_registry",
+            "github_url": "https://github.com/N0V3LT0K3NS/a_person_index",
+            "homepage_url": "https://a-person-index.netlify.app",
         },
         "product_layers": {
             "canonical_registry": {

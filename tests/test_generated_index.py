@@ -87,6 +87,8 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert any(item["id"] == "proto_paradox_finder" for item in export_payload["protocol_library"]["protocols"])
     assert manifest_payload["repository"]["name"] == "a-person-index"
     assert manifest_payload["repository"]["title"] == "A Person Index (API)"
+    assert manifest_payload["repository"]["github_url"] == "https://github.com/N0V3LT0K3NS/a_person_index"
+    assert manifest_payload["repository"]["homepage_url"] == "https://a-person-index.netlify.app"
     assert manifest_payload["repository"]["current_phase"] == "phase_3_downstream_consumer_integration"
     assert manifest_payload["downstream_contract"]["result_atom_schema_id"] == "ras_result_atom_v0_1"
     assert manifest_payload["consumer_model"]["lead_example_consumer"] == "GNOMY"

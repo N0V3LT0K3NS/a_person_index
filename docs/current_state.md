@@ -6,6 +6,8 @@ This document compresses what the repository currently is, what is complete, and
 
 The repo is now A Person Index: a working personhood-framework index plus a first house synthesis, technique, program, pack, and research substrate.
 
+Public landing page: [a-person-index.netlify.app](https://a-person-index.netlify.app)
+
 ## Current shipped scope
 
 As of the current branch state, the repo includes:

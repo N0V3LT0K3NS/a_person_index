@@ -2,6 +2,8 @@
 
 A Person Index (API) is a Git-native, agent-readable comparative substrate for personhood frameworks, house synthesis motifs, composable analysis techniques, index programs, runtime packs, and privacy-minimizing research intake.
 
+Live site: [a-person-index.netlify.app](https://a-person-index.netlify.app)
+
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
 1. Canonical registry
