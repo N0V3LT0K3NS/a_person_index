@@ -33,12 +33,18 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert index_payload["product_layers"]["house_synthesis"]["motif_count"] == len(
         export_payload["house_synthesis"]["motifs"]
     )
+    assert index_payload["product_layers"]["house_synthesis"]["interaction_hypothesis_count"] == len(
+        export_payload["house_synthesis"]["interaction_hypotheses"]
+    )
     assert index_payload["product_layers"]["protocol_library"]["protocol_count"] == len(
         export_payload["protocol_library"]["protocols"]
     )
     assert index_payload["product_layers"]["research_stream"]["contribution_model_count"] == len(
         export_payload["research_stream"]["contribution_models"]
     )
+    assert index_payload["product_layers"]["research_stream"]["result_atom_schema_id"] == export_payload[
+        "research_stream"
+    ]["result_atom_schema"]["id"]
 
     instrument_ids = {entry["id"] for entry in index_payload["instruments"]}
     assert {"instr_big_five", "instr_enneagram", "instr_mbti"}.issubset(instrument_ids)

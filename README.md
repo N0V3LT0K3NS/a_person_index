@@ -42,6 +42,7 @@ These layers should collaborate, but they should not be conflated.
 .
 ├── docs/
 ├── generated/
+├── interactions/
 ├── instruments/
 ├── mappings/
 ├── motifs/
@@ -71,9 +72,11 @@ Key conventions:
 - `notes.md` stores human-readable narrative context.
 - `motifs/registry.yaml` stores provisional house translation motifs.
 - `mappings/construct_to_motif.yaml` stores provisional construct-to-motif and instrument-to-motif mappings.
+- `interactions/registry.yaml` stores house interaction hypotheses across motifs and constructs.
 - `techniques/registry.yaml` stores reusable comparative methods.
 - `protocols/registry.yaml` stores downstream protocol specs such as `ILENS` and `Human Model Card`.
 - `research/contribution_models.yaml` stores privacy-minimizing contribution models for future research intake.
+- `research/result_atom_schema.yaml` stores the normalized downstream result-atom contract for runtime exchange.
 
 The active, fully populated corpus remains instrument-centered for now. The new top-level directories formalize the next architecture layer without forcing a premature package rename.
 
@@ -130,7 +133,9 @@ python3 scripts/query_registry.py show MBTI --section constructs
 python3 scripts/query_registry.py compare "Big Five" MBTI
 python3 scripts/query_registry.py trace MBTI
 python3 scripts/query_registry.py motifs --related-to MBTI
+python3 scripts/query_registry.py interactions --related-to MBTI
 python3 scripts/query_registry.py protocols ILENS
+python3 scripts/query_registry.py result-atom-schema
 python3 scripts/query_registry.py research-models
 python3 scripts/query_registry.py audit --needs-official-resource
 python3 scripts/query_registry.py audit --needs-multiple-claims
@@ -169,6 +174,8 @@ Validation enforces:
 - relationship type validity
 - instrument/version/construct consistency
 - motif and protocol cross-reference integrity
+- interaction hypothesis cross-reference integrity
+- result atom schema availability for downstream runtimes
 
 Broken references or missing required annotation dimensions fail validation.
 
@@ -215,8 +222,10 @@ The motif, protocol, and research registries are now available through dedicated
 
 - `python3 scripts/query_registry.py trace MBTI`
 - `python3 scripts/query_registry.py motifs --related-to MBTI`
+- `python3 scripts/query_registry.py interactions --related-to MBTI`
 - `python3 scripts/query_registry.py protocols ILENS`
 - `python3 scripts/query_registry.py techniques "Paradox Scan"`
+- `python3 scripts/query_registry.py result-atom-schema`
 - `python3 scripts/query_registry.py research-models`
 
 ## Deployment

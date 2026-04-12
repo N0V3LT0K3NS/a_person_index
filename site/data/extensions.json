@@ -398,6 +398,140 @@
       "notes": null
     }
   ],
+  "interaction_hypotheses": [
+    {
+      "id": "ihp_attachment_anxiety_words_affirmation",
+      "left_entity_type": "construct",
+      "left_entity_id": "con_attachment_styles_anxiety",
+      "right_entity_type": "construct",
+      "right_entity_id": "con_love_languages_words_of_affirmation",
+      "interaction_type": "reinforcing",
+      "confidence": "medium",
+      "status": "provisional",
+      "summary": "Attachment anxiety can make verbal reassurance feel unusually central and high-salience.",
+      "rationale": "This pairing often amplifies the felt importance of affirmation because anxiety around availability and security can heighten the value of explicit verbal reassurance.\n",
+      "protocol_relevance": [
+        "proto_ilens",
+        "proto_translation_memo"
+      ],
+      "conditions": [
+        "especially salient under uncertainty or relational ambiguity"
+      ],
+      "notes": null
+    },
+    {
+      "id": "ihp_attachment_avoidance_physical_touch",
+      "left_entity_type": "construct",
+      "left_entity_id": "con_attachment_styles_avoidance",
+      "right_entity_type": "construct",
+      "right_entity_id": "con_love_languages_physical_touch",
+      "interaction_type": "tension_producing",
+      "confidence": "medium",
+      "status": "provisional",
+      "summary": "Desire for touch and avoidance around dependence can produce mixed relational signals.",
+      "rationale": "Physical touch preference does not erase avoidance, but the combination can create push-pull dynamics where closeness is sought and defended against at the same time.\n",
+      "protocol_relevance": [
+        "proto_ilens",
+        "proto_human_model_card"
+      ],
+      "conditions": [
+        "especially visible in close relationships under stress"
+      ],
+      "notes": null
+    },
+    {
+      "id": "ihp_social_energy_attachment_regulation",
+      "left_entity_type": "motif",
+      "left_entity_id": "mtf_social_energy_orientation",
+      "right_entity_type": "motif",
+      "right_entity_id": "mtf_attachment_and_closeness_regulation",
+      "interaction_type": "orthogonal",
+      "confidence": "high",
+      "status": "active",
+      "summary": "Social energy orientation and attachment regulation often get conflated but do not describe the same layer.",
+      "rationale": "Extraversion or introversion-like patterns say little by themselves about anxiety, avoidance, or security in close attachment relationships.\n",
+      "protocol_relevance": [
+        "proto_translation_memo",
+        "proto_ilens"
+      ],
+      "conditions": [],
+      "notes": null
+    },
+    {
+      "id": "ihp_affective_reactivity_attachment_regulation",
+      "left_entity_type": "motif",
+      "left_entity_id": "mtf_affective_reactivity",
+      "right_entity_type": "motif",
+      "right_entity_id": "mtf_attachment_and_closeness_regulation",
+      "interaction_type": "reinforcing",
+      "confidence": "medium",
+      "status": "provisional",
+      "summary": "High emotional reactivity can intensify the lived impact of attachment insecurity.",
+      "rationale": "Reactivity does not equal attachment insecurity, but the two can amplify each other in situations involving uncertainty, threat, or perceived abandonment.\n",
+      "protocol_relevance": [
+        "proto_ilens",
+        "proto_human_model_card"
+      ],
+      "conditions": [
+        "especially visible during conflict or relational threat"
+      ],
+      "notes": null
+    },
+    {
+      "id": "ihp_identity_adhesion_symbolic_meaning",
+      "left_entity_type": "motif",
+      "left_entity_id": "mtf_identity_adhesion",
+      "right_entity_type": "motif",
+      "right_entity_id": "mtf_symbolic_meaning_load",
+      "interaction_type": "reinforcing",
+      "confidence": "high",
+      "status": "active",
+      "summary": "Symbolic meaning-heavy systems often become especially adhesive identity languages.",
+      "rationale": "When a framework carries cosmological, archetypal, or destiny-coded meaning, users are more likely to adopt it as a durable self-story rather than as a lightweight descriptive layer.\n",
+      "protocol_relevance": [
+        "proto_ilens",
+        "proto_translation_memo"
+      ],
+      "conditions": [],
+      "notes": null
+    },
+    {
+      "id": "ihp_execution_structure_closure",
+      "left_entity_type": "motif",
+      "left_entity_id": "mtf_execution_and_implementation_style",
+      "right_entity_type": "motif",
+      "right_entity_id": "mtf_structure_and_closure_preference",
+      "interaction_type": "reinforcing",
+      "confidence": "medium",
+      "status": "provisional",
+      "summary": "Strong execution-style patterns often become more legible when paired with structure and closure preferences.",
+      "rationale": "Action style and closure preference are not identical, but together they frequently explain whether someone initiates, organizes, and completes work in stable or improvisational ways.\n",
+      "protocol_relevance": [
+        "proto_ilens",
+        "proto_human_model_card"
+      ],
+      "conditions": [],
+      "notes": null
+    },
+    {
+      "id": "ihp_pattern_abstraction_structure_closure",
+      "left_entity_type": "motif",
+      "left_entity_id": "mtf_pattern_abstraction_preference",
+      "right_entity_type": "motif",
+      "right_entity_id": "mtf_structure_and_closure_preference",
+      "interaction_type": "context_dependent",
+      "confidence": "medium",
+      "status": "provisional",
+      "summary": "Abstraction preference and closure preference can align or diverge depending on the framework and context.",
+      "rationale": "Pattern-level thinking may coexist with either structured convergence or open-ended exploration, so this pairing should be interpreted as a tension map rather than a stable equivalence.\n",
+      "protocol_relevance": [
+        "proto_ilens",
+        "proto_translation_memo"
+      ],
+      "conditions": [],
+      "notes": null
+    }
+  ],
   "techniques": [
     {
       "id": "tech_cross_framework_translation",
@@ -769,5 +903,111 @@
       ],
       "notes": "Keeps downstream promptcraft and runtime behavior connected back to the repository without polluting canonical framework records.\n"
     }
-  ]
+  ],
+  "result_atom_schema": {
+    "id": "ras_result_atom_v0_1",
+    "name": "Result Atom Schema",
+    "status": "experimental",
+    "purpose": "Define the normalized unit a downstream runtime can send or reason over when it wants to work at the part-of-a-framework level instead of only whole-test labels.\n",
+    "summary": "A result atom is a compact unit of assessment output with source provenance, construct identity, output value, confidence, and optional motif trace data.\n",
+    "required_fields": [
+      {
+        "name": "framework_id",
+        "field_kind": "identifier",
+        "description": "Canonical framework or instrument ID in this registry.",
+        "examples": [
+          "instr_mbti",
+          "instr_big_five"
+        ]
+      },
+      {
+        "name": "construct_id",
+        "field_kind": "identifier",
+        "description": "Canonical construct ID when the source framework exposes construct-level output.",
+        "examples": [
+          "con_mbti_extraversion_introversion",
+          "con_big_five_openness"
+        ]
+      },
+      {
+        "name": "output_type",
+        "field_kind": "categorical",
+        "description": "Type of output emitted by the source framework for this atom.",
+        "examples": [
+          "type_assignment",
+          "continuous_score",
+          "ranked_preference"
+        ]
+      },
+      {
+        "name": "output_value",
+        "field_kind": "text",
+        "description": "The value, label, or normalized score emitted for this atom.",
+        "examples": [
+          "introversion",
+          "high",
+          "0.74"
+        ]
+      }
+    ],
+    "optional_fields": [
+      {
+        "name": "confidence",
+        "field_kind": "confidence",
+        "description": "Confidence the runtime assigns to this atom after normalization.",
+        "examples": [
+          "medium",
+          "high"
+        ]
+      },
+      {
+        "name": "source_quality",
+        "field_kind": "provenance",
+        "description": "Assessment-quality note such as official, self-reported, estimated, or inferred.",
+        "examples": [
+          "official_assessment",
+          "self_reported",
+          "inferred_from_conversation"
+        ]
+      },
+      {
+        "name": "timestamp",
+        "field_kind": "timestamp",
+        "description": "When the atom was measured, entered, or inferred.",
+        "examples": [
+          "2026-04-12"
+        ]
+      },
+      {
+        "name": "mapped_motif_ids",
+        "field_kind": "identifier",
+        "description": "House motif IDs linked by the current registry mapping layer.",
+        "examples": [
+          "mtf_social_energy_orientation",
+          "mtf_identity_adhesion"
+        ]
+      },
+      {
+        "name": "notes",
+        "field_kind": "text",
+        "description": "Minimal local note about ambiguity, context, or transformation.",
+        "examples": [
+          "user-supplied label translated into house scale"
+        ]
+      }
+    ],
+    "normalization_rules": [
+      "Keep source framework provenance even after motif mapping.",
+      "Prefer construct-level atoms over whole-type labels when possible.",
+      "Do not invent construct IDs that do not exist in the registry.",
+      "Preserve ambiguity rather than forcing a false clean translation.",
+      "Record source quality when the atom was inferred rather than directly assessed."
+    ],
+    "caveats": [
+      "Result atoms are for downstream synthesis and research, not canonical framework truth.",
+      "One atom should not be treated as a complete person-model.",
+      "Symbolic and psychometric atoms may coexist but should not be collapsed into one evidence bucket."
+    ],
+    "notes": "Downstream runtimes such as GNOMY should use this schema as a transport and reasoning contract when performing part-level synthesis.\n"
+  }
 }

@@ -23,9 +23,11 @@ FILE_NAMES = {
     "use_cases.yaml": "use_case.schema.yaml",
     "motifs/registry.yaml": "motif.schema.yaml",
     "mappings/construct_to_motif.yaml": "mapping.schema.yaml",
+    "interactions/registry.yaml": "interaction_hypothesis.schema.yaml",
     "techniques/registry.yaml": "technique.schema.yaml",
     "protocols/registry.yaml": "protocol.schema.yaml",
     "research/contribution_models.yaml": "contribution_model.schema.yaml",
+    "research/result_atom_schema.yaml": "result_atom_schema.schema.yaml",
 }
 
 

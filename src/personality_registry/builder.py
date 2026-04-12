@@ -135,6 +135,7 @@ def _nav_html(prefix: str, current: str) -> str:
         ("search.html", "search", "Search"),
         ("compare.html", "compare", "Compare"),
         ("motifs.html", "motifs", "Motifs"),
+        ("interactions.html", "interactions", "Interactions"),
         ("protocols.html", "protocols", "Protocols"),
         ("research.html", "research", "Research"),
         ("audit.html", "audit", "Audit"),
@@ -455,6 +456,7 @@ def build_outputs(root: Path) -> dict:
             "house_synthesis": {
                 "motif_count": len(extensions.motifs),
                 "mapping_count": len(extensions.mappings),
+                "interaction_hypothesis_count": len(extensions.interaction_hypotheses),
             },
             "protocol_library": {
                 "technique_count": len(extensions.techniques),
@@ -462,6 +464,7 @@ def build_outputs(root: Path) -> dict:
             },
             "research_stream": {
                 "contribution_model_count": len(extensions.contribution_models),
+                "result_atom_schema_id": extensions.result_atom_schema.id,
             },
         },
         "instruments": [
@@ -488,6 +491,9 @@ def build_outputs(root: Path) -> dict:
         "house_synthesis": {
             "motifs": [item.model_dump(mode="json") for item in extensions.motifs],
             "mappings": [item.model_dump(mode="json") for item in extensions.mappings],
+            "interaction_hypotheses": [
+                item.model_dump(mode="json") for item in extensions.interaction_hypotheses
+            ],
         },
         "protocol_library": {
             "techniques": [item.model_dump(mode="json") for item in extensions.techniques],
@@ -497,6 +503,7 @@ def build_outputs(root: Path) -> dict:
             "contribution_models": [
                 item.model_dump(mode="json") for item in extensions.contribution_models
             ],
+            "result_atom_schema": extensions.result_atom_schema.model_dump(mode="json"),
         },
     }
 
@@ -637,6 +644,27 @@ def _protocol_usage_by_technique(extensions: ExtensionRegistryData) -> dict[str,
     return usage
 
 
+def _extension_entity_label(
+    entity_type: str,
+    entity_id: str,
+    repository,
+    extensions: ExtensionRegistryData,
+) -> str:
+    if entity_type == "motif":
+        motif = next((item for item in extensions.motifs if item.id == entity_id), None)
+        if motif:
+            return motif.name
+        return entity_id
+    for bundle in repository.instruments.values():
+        if entity_type == "instrument" and bundle.instrument.id == entity_id:
+            return bundle.instrument.canonical_name
+        if entity_type == "construct":
+            for construct in bundle.constructs:
+                if construct.id == entity_id:
+                    return construct.name
+    return entity_id
+
+
 def _motifs_html(extensions: ExtensionRegistryData) -> str:
     mapping_counts = _mapping_counts_by_motif(extensions)
     cards = "\n".join(
@@ -769,10 +797,63 @@ def _research_html(extensions: ExtensionRegistryData) -> str:
       <section>
         <div class="card-grid">{cards}</div>
       </section>
+      <section>
+        <h2>Result Atom Schema</h2>
+        <div class="card-grid">
+          {_extension_card(
+              eyebrow="Schema",
+              title=extensions.result_atom_schema.name,
+              body=extensions.result_atom_schema.summary,
+              tags=[extensions.result_atom_schema.status, "required_fields=" + str(len(extensions.result_atom_schema.required_fields))],
+              anchor=extensions.result_atom_schema.id,
+              meta=extensions.result_atom_schema.purpose,
+          )}
+        </div>
+      </section>
       <section class="hero-panel">
         <p class="eyebrow">GNOMY</p>
         <h2>Expected exchange pattern</h2>
         <p class="page-lead">Downstream runtimes should send normalized result atoms, mapping votes, pairwise judgments, or distilled observations back into the research stream rather than raw user corpora.</p>
+      </section>
+    </main>
+  </body>
+</html>
+"""
+
+
+def _interactions_html(repository, extensions: ExtensionRegistryData) -> str:
+    cards = "\n".join(
+        _extension_card(
+            eyebrow="Interaction",
+            title=f"{_extension_entity_label(item.left_entity_type, item.left_entity_id, repository, extensions)} -> {_extension_entity_label(item.right_entity_type, item.right_entity_id, repository, extensions)}",
+            body=item.summary,
+            tags=[item.interaction_type, item.status, *item.protocol_relevance],
+            anchor=item.id,
+            meta=f"{item.left_entity_type}:{item.left_entity_id} <> {item.right_entity_type}:{item.right_entity_id}",
+        )
+        for item in sorted(extensions.interaction_hypotheses, key=lambda hypothesis: hypothesis.id)
+    )
+    return f"""<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Interaction Hypotheses</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      {_nav_html("", "interactions")}
+      <section class="hero-panel">
+        <p class="eyebrow">House Synthesis</p>
+        <h1>Interaction Hypotheses</h1>
+        <p class="page-lead">House hypotheses about where constructs and motifs reinforce, mask, compensate, or tension each other in downstream synthesis.</p>
+      </section>
+      <section class="stats">
+        <article class="stat-card"><strong>{len(extensions.interaction_hypotheses)}</strong> interaction hypotheses</article>
+        <article class="stat-card"><strong>{len({protocol_id for item in extensions.interaction_hypotheses for protocol_id in item.protocol_relevance})}</strong> linked protocols</article>
+      </section>
+      <section>
+        <div class="card-grid">{cards}</div>
       </section>
     </main>
   </body>
@@ -1038,11 +1119,15 @@ def build_docs(root: Path) -> None:
     extension_payload = {
         "motifs": [item.model_dump(mode="json") for item in extensions.motifs],
         "mappings": [item.model_dump(mode="json") for item in extensions.mappings],
+        "interaction_hypotheses": [
+            item.model_dump(mode="json") for item in extensions.interaction_hypotheses
+        ],
         "techniques": [item.model_dump(mode="json") for item in extensions.techniques],
         "protocols": [item.model_dump(mode="json") for item in extensions.protocols],
         "contribution_models": [
             item.model_dump(mode="json") for item in extensions.contribution_models
         ],
+        "result_atom_schema": extensions.result_atom_schema.model_dump(mode="json"),
     }
 
     style = """body { font-family: Georgia, serif; margin: 0; background:
@@ -1114,6 +1199,12 @@ section { margin-top: 32px; }
                 "Provisional translation motifs and construct mappings that let the repo compare frameworks without forcing false equivalence.",
             ),
             _layer_card(
+                "Interaction Hypotheses",
+                len(extensions.interaction_hypotheses),
+                "interaction hypotheses",
+                "House hypotheses about where constructs and motifs reinforce, tension, mask, or compensate for each other in downstream synthesis.",
+            ),
+            _layer_card(
                 "Protocol Library",
                 len(extensions.protocols),
                 "protocol specs",
@@ -1145,6 +1236,7 @@ section { margin-top: 32px; }
           <a class="action-link" href="search.html">Search the corpus</a>
           <a class="action-link" href="compare.html">Browse comparisons</a>
           <a class="action-link" href="motifs.html">Browse motifs</a>
+          <a class="action-link" href="interactions.html">Browse interactions</a>
           <a class="action-link" href="protocols.html">Browse protocols</a>
           <a class="action-link" href="audit.html">View audit</a>
         </div>
@@ -1172,6 +1264,9 @@ section { margin-top: 32px; }
     (site_root / "search.html").write_text(_search_html(), encoding="utf-8")
     (site_root / "compare.html").write_text(_compare_index_html(comparison_entries), encoding="utf-8")
     (site_root / "motifs.html").write_text(_motifs_html(extensions), encoding="utf-8")
+    (site_root / "interactions.html").write_text(
+        _interactions_html(repository, extensions), encoding="utf-8"
+    )
     (site_root / "protocols.html").write_text(_protocols_html(extensions), encoding="utf-8")
     (site_root / "research.html").write_text(_research_html(extensions), encoding="utf-8")
 

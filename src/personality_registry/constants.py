@@ -40,9 +40,11 @@ ENTITY_PREFIXES = {
     "use_case": "use_",
     "motif": "mtf_",
     "mapping": "map_",
+    "interaction_hypothesis": "ihp_",
     "technique": "tech_",
     "protocol": "proto_",
     "contribution_model": "rcm_",
+    "result_atom_schema": "ras_",
 }
 
 ENTITY_TYPES = {"instrument", "version", "construct"}

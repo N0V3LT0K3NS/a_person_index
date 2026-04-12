@@ -1,0 +1,96 @@
+$defs:
+  ResultAtomField:
+    additionalProperties: false
+    properties:
+      name:
+        title: Name
+        type: string
+      field_kind:
+        enum:
+        - identifier
+        - categorical
+        - numeric
+        - text
+        - timestamp
+        - confidence
+        - provenance
+        title: Field Kind
+        type: string
+      description:
+        title: Description
+        type: string
+      examples:
+        items:
+          type: string
+        title: Examples
+        type: array
+    required:
+    - name
+    - field_kind
+    - description
+    title: ResultAtomField
+    type: object
+  ResultAtomSchema:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      name:
+        title: Name
+        type: string
+      status:
+        enum:
+        - draft
+        - experimental
+        - active
+        title: Status
+        type: string
+      purpose:
+        title: Purpose
+        type: string
+      summary:
+        title: Summary
+        type: string
+      required_fields:
+        items:
+          $ref: '#/$defs/ResultAtomField'
+        title: Required Fields
+        type: array
+      optional_fields:
+        items:
+          $ref: '#/$defs/ResultAtomField'
+        title: Optional Fields
+        type: array
+      normalization_rules:
+        items:
+          type: string
+        title: Normalization Rules
+        type: array
+      caveats:
+        items:
+          type: string
+        title: Caveats
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - name
+    - status
+    - purpose
+    - summary
+    title: ResultAtomSchema
+    type: object
+additionalProperties: false
+properties:
+  result_atom_schema:
+    $ref: '#/$defs/ResultAtomSchema'
+required:
+- result_atom_schema
+title: ResultAtomSchemaDocument
+type: object

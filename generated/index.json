@@ -431,14 +431,16 @@
     },
     "house_synthesis": {
       "motif_count": 11,
-      "mapping_count": 16
+      "mapping_count": 16,
+      "interaction_hypothesis_count": 7
     },
     "protocol_library": {
       "technique_count": 6,
       "protocol_count": 3
     },
     "research_stream": {
-      "contribution_model_count": 5
+      "contribution_model_count": 5,
+      "result_atom_schema_id": "ras_result_atom_v0_1"
     }
   },
   "instruments": [

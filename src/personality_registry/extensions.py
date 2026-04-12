@@ -13,9 +13,11 @@ from personality_registry.models import StrictModel
 EXTENSION_FILE_MODELS = {
     "motifs/registry.yaml": "motifs",
     "mappings/construct_to_motif.yaml": "mappings",
+    "interactions/registry.yaml": "interaction_hypotheses",
     "techniques/registry.yaml": "techniques",
     "protocols/registry.yaml": "protocols",
     "research/contribution_models.yaml": "contribution_models",
+    "research/result_atom_schema.yaml": "result_atom_schema",
 }
 
 
@@ -64,6 +66,47 @@ class ConstructMapping(StrictModel):
 
 class ConstructMappingsDocument(StrictModel):
     mappings: list[ConstructMapping]
+
+
+class InteractionHypothesis(StrictModel):
+    id: str
+    left_entity_type: Literal["instrument", "construct", "motif"]
+    left_entity_id: str
+    right_entity_type: Literal["instrument", "construct", "motif"]
+    right_entity_id: str
+    interaction_type: Literal[
+        "reinforcing",
+        "compensatory",
+        "orthogonal",
+        "masking",
+        "tension_producing",
+        "context_dependent",
+    ]
+    confidence: Literal["low", "medium", "high"]
+    status: Literal["provisional", "active", "contested"]
+    summary: str
+    rationale: str
+    protocol_relevance: list[str] = Field(default_factory=list)
+    conditions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+    @field_validator("right_entity_id")
+    @classmethod
+    def validate_not_self_link(
+        cls,
+        value: str,
+        info,
+    ) -> str:
+        left_entity_id = info.data.get("left_entity_id")
+        left_entity_type = info.data.get("left_entity_type")
+        right_entity_type = info.data.get("right_entity_type")
+        if left_entity_id == value and left_entity_type == right_entity_type:
+            raise ValueError("Interaction hypothesis must connect two distinct entities.")
+        return value
+
+
+class InteractionHypothesesDocument(StrictModel):
+    interaction_hypotheses: list[InteractionHypothesis]
 
 
 class Technique(StrictModel):
@@ -115,12 +158,38 @@ class ContributionModelsDocument(StrictModel):
     contribution_models: list[ContributionModel]
 
 
+class ResultAtomField(StrictModel):
+    name: str
+    field_kind: Literal["identifier", "categorical", "numeric", "text", "timestamp", "confidence", "provenance"]
+    description: str
+    examples: list[str] = Field(default_factory=list)
+
+
+class ResultAtomSchema(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    purpose: str
+    summary: str
+    required_fields: list[ResultAtomField] = Field(default_factory=list)
+    optional_fields: list[ResultAtomField] = Field(default_factory=list)
+    normalization_rules: list[str] = Field(default_factory=list)
+    caveats: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class ResultAtomSchemaDocument(StrictModel):
+    result_atom_schema: ResultAtomSchema
+
+
 DOCUMENT_MODEL_BY_FILE = {
     "motifs/registry.yaml": MotifsDocument,
     "mappings/construct_to_motif.yaml": ConstructMappingsDocument,
+    "interactions/registry.yaml": InteractionHypothesesDocument,
     "techniques/registry.yaml": TechniquesDocument,
     "protocols/registry.yaml": ProtocolsDocument,
     "research/contribution_models.yaml": ContributionModelsDocument,
+    "research/result_atom_schema.yaml": ResultAtomSchemaDocument,
 }
 
 
@@ -128,9 +197,11 @@ DOCUMENT_MODEL_BY_FILE = {
 class ExtensionRegistryData:
     motifs: list[Motif]
     mappings: list[ConstructMapping]
+    interaction_hypotheses: list[InteractionHypothesis]
     techniques: list[Technique]
     protocols: list[Protocol]
     contribution_models: list[ContributionModel]
+    result_atom_schema: ResultAtomSchema
 
 
 @dataclass
@@ -172,16 +243,20 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
 
     motifs_doc = documents["motifs/registry.yaml"]
     mappings_doc = documents["mappings/construct_to_motif.yaml"]
+    interaction_hypotheses_doc = documents["interactions/registry.yaml"]
     techniques_doc = documents["techniques/registry.yaml"]
     protocols_doc = documents["protocols/registry.yaml"]
     contribution_models_doc = documents["research/contribution_models.yaml"]
+    result_atom_schema_doc = documents["research/result_atom_schema.yaml"]
 
     data = ExtensionRegistryData(
         motifs=motifs_doc.motifs,
         mappings=mappings_doc.mappings,
+        interaction_hypotheses=interaction_hypotheses_doc.interaction_hypotheses,
         techniques=techniques_doc.techniques,
         protocols=protocols_doc.protocols,
         contribution_models=contribution_models_doc.contribution_models,
+        result_atom_schema=result_atom_schema_doc.result_atom_schema,
     )
     return ExtensionLoadResult(data=data, errors=errors)
 

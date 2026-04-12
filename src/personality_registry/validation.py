@@ -271,9 +271,11 @@ def collect_validation_errors(root: Path) -> list[str]:
         extension_groups = {
             "motif": extensions.motifs,
             "mapping": extensions.mappings,
+            "interaction_hypothesis": extensions.interaction_hypotheses,
             "technique": extensions.techniques,
             "protocol": extensions.protocols,
             "contribution_model": extensions.contribution_models,
+            "result_atom_schema": [extensions.result_atom_schema],
         }
 
         for entity_type, items in extension_groups.items():
@@ -338,6 +340,34 @@ def collect_validation_errors(root: Path) -> list[str]:
                 if technique_id not in technique_ids:
                     errors.append(
                         f"protocols/registry.yaml: protocol '{protocol.id}' references missing technique '{technique_id}'"
+                    )
+
+        protocol_ids = {protocol.id for protocol in extensions.protocols}
+        for interaction in extensions.interaction_hypotheses:
+            for side, entity_type, entity_id in (
+                ("left", interaction.left_entity_type, interaction.left_entity_id),
+                ("right", interaction.right_entity_type, interaction.right_entity_id),
+            ):
+                if entity_type == "motif":
+                    if entity_id not in motif_ids:
+                        errors.append(
+                            f"interactions/registry.yaml: interaction '{interaction.id}' references missing {side} motif '{entity_id}'"
+                        )
+                else:
+                    entity = entities.get(entity_id)
+                    if entity is None:
+                        errors.append(
+                            f"interactions/registry.yaml: interaction '{interaction.id}' references missing {side} entity '{entity_id}'"
+                        )
+                    elif entity[0] != entity_type:
+                        errors.append(
+                            f"interactions/registry.yaml: interaction '{interaction.id}' {side} entity '{entity_id}' "
+                            f"is a {entity[0]}, not a {entity_type}"
+                        )
+            for protocol_id in interaction.protocol_relevance:
+                if protocol_id not in protocol_ids:
+                    errors.append(
+                        f"interactions/registry.yaml: interaction '{interaction.id}' references missing protocol '{protocol_id}'"
                     )
 
         for entity_id, locations in duplicate_tracker.items():

@@ -1,0 +1,80 @@
+result_atom_schema:
+  id: ras_result_atom_v0_1
+  name: Result Atom Schema
+  status: experimental
+  purpose: >
+    Define the normalized unit a downstream runtime can send or reason over when
+    it wants to work at the part-of-a-framework level instead of only whole-test labels.
+  summary: >
+    A result atom is a compact unit of assessment output with source provenance,
+    construct identity, output value, confidence, and optional motif trace data.
+  required_fields:
+    - name: framework_id
+      field_kind: identifier
+      description: Canonical framework or instrument ID in this registry.
+      examples:
+        - instr_mbti
+        - instr_big_five
+    - name: construct_id
+      field_kind: identifier
+      description: Canonical construct ID when the source framework exposes construct-level output.
+      examples:
+        - con_mbti_extraversion_introversion
+        - con_big_five_openness
+    - name: output_type
+      field_kind: categorical
+      description: Type of output emitted by the source framework for this atom.
+      examples:
+        - type_assignment
+        - continuous_score
+        - ranked_preference
+    - name: output_value
+      field_kind: text
+      description: The value, label, or normalized score emitted for this atom.
+      examples:
+        - introversion
+        - high
+        - "0.74"
+  optional_fields:
+    - name: confidence
+      field_kind: confidence
+      description: Confidence the runtime assigns to this atom after normalization.
+      examples:
+        - medium
+        - high
+    - name: source_quality
+      field_kind: provenance
+      description: Assessment-quality note such as official, self-reported, estimated, or inferred.
+      examples:
+        - official_assessment
+        - self_reported
+        - inferred_from_conversation
+    - name: timestamp
+      field_kind: timestamp
+      description: When the atom was measured, entered, or inferred.
+      examples:
+        - "2026-04-12"
+    - name: mapped_motif_ids
+      field_kind: identifier
+      description: House motif IDs linked by the current registry mapping layer.
+      examples:
+        - mtf_social_energy_orientation
+        - mtf_identity_adhesion
+    - name: notes
+      field_kind: text
+      description: Minimal local note about ambiguity, context, or transformation.
+      examples:
+        - user-supplied label translated into house scale
+  normalization_rules:
+    - Keep source framework provenance even after motif mapping.
+    - Prefer construct-level atoms over whole-type labels when possible.
+    - Do not invent construct IDs that do not exist in the registry.
+    - Preserve ambiguity rather than forcing a false clean translation.
+    - Record source quality when the atom was inferred rather than directly assessed.
+  caveats:
+    - Result atoms are for downstream synthesis and research, not canonical framework truth.
+    - One atom should not be treated as a complete person-model.
+    - Symbolic and psychometric atoms may coexist but should not be collapsed into one evidence bucket.
+  notes: >
+    Downstream runtimes such as GNOMY should use this schema as a transport and
+    reasoning contract when performing part-level synthesis.

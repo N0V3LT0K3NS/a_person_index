@@ -40,6 +40,17 @@ When a downstream runtime contributes back, prefer:
 
 These are easier to review, aggregate, and promote than raw personal corpora.
 
+## Result atom contract
+
+The preferred normalized exchange contract lives at `research/result_atom_schema.yaml`.
+
+Downstream runtimes should use it when they need to return construct-level or atom-level outputs without shipping full raw assessment exports. That keeps:
+
+- source framework provenance attached
+- construct identity explicit
+- downstream confidence visible
+- motif traces optional rather than forced
+
 ## What not to do
 
 - Do not place raw user chats in canonical framework records.

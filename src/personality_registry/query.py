@@ -225,6 +225,40 @@ def resolve_contribution_model(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.contribution_models, ref, ("name",))
 
 
+def resolve_interaction_hypothesis(extensions: ExtensionRegistryData, ref: str):
+    return _resolve_extension_item(extensions.interaction_hypotheses, ref, ("summary",))
+
+
+def _extended_entity_ref(
+    repository: RepositoryData,
+    extensions: ExtensionRegistryData,
+    entity_type: str,
+    entity_id: str,
+) -> dict[str, str]:
+    if entity_type == "motif":
+        motif = next((item for item in extensions.motifs if item.id == entity_id), None)
+        if motif is not None:
+            return {
+                "entity_type": "motif",
+                "entity_id": motif.id,
+                "label": motif.name,
+                "instrument_id": "",
+                "instrument_label": "",
+                "slug": "",
+            }
+    return _entity_catalog(repository).get(
+        entity_id,
+        {
+            "entity_type": entity_type,
+            "entity_id": entity_id,
+            "label": entity_id,
+            "instrument_id": "",
+            "instrument_label": "",
+            "slug": "",
+        },
+    )
+
+
 def _mapping_payload(
     mapping,
     motif_index: dict[str, Any],
@@ -501,6 +535,112 @@ def find_contribution_models(
 def contribution_model_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, Any]:
     item = resolve_contribution_model(extensions, ref)
     return {"contribution_model": item.model_dump(mode="json")}
+
+
+def result_atom_schema_record(extensions: ExtensionRegistryData) -> dict[str, Any]:
+    return {"result_atom_schema": extensions.result_atom_schema.model_dump(mode="json")}
+
+
+def _related_interaction_entity_ids(
+    repository: RepositoryData,
+    extensions: ExtensionRegistryData,
+    ref: str,
+) -> set[str]:
+    try:
+        motif = resolve_motif(extensions, ref)
+        return {motif.id}
+    except KeyError:
+        pass
+
+    entity = resolve_entity_reference(repository, ref)
+    related_ids = {entity["entity_id"]}
+    if entity["entity_type"] == "instrument":
+        bundle = resolve_instrument(repository, ref)
+        related_ids.update(construct.id for construct in bundle.constructs)
+    trace_payload = trace_entity_to_motifs(repository, extensions, ref)
+    related_ids.update(item["motif"]["id"] for item in trace_payload["motif_summary"])
+    return related_ids
+
+
+def _interaction_payload(
+    repository: RepositoryData,
+    extensions: ExtensionRegistryData,
+    interaction,
+) -> dict[str, Any]:
+    left = _extended_entity_ref(
+        repository,
+        extensions,
+        interaction.left_entity_type,
+        interaction.left_entity_id,
+    )
+    right = _extended_entity_ref(
+        repository,
+        extensions,
+        interaction.right_entity_type,
+        interaction.right_entity_id,
+    )
+    return {
+        "id": interaction.id,
+        "left": left,
+        "right": right,
+        "interaction_type": interaction.interaction_type,
+        "confidence": interaction.confidence,
+        "status": interaction.status,
+        "summary": interaction.summary,
+        "rationale": interaction.rationale,
+        "protocol_relevance": interaction.protocol_relevance,
+        "conditions": interaction.conditions,
+        "notes": interaction.notes,
+    }
+
+
+def find_interaction_hypotheses(
+    repository: RepositoryData,
+    extensions: ExtensionRegistryData,
+    *,
+    related_to: str | None = None,
+    interaction_type: str | None = None,
+    protocol: str | None = None,
+    text: str | None = None,
+) -> list[dict[str, Any]]:
+    related_ids: set[str] | None = None
+    if related_to:
+        related_ids = _related_interaction_entity_ids(repository, extensions, related_to)
+
+    results = []
+    for interaction in extensions.interaction_hypotheses:
+        if interaction_type and interaction.interaction_type != interaction_type:
+            continue
+        if protocol and protocol not in interaction.protocol_relevance:
+            continue
+        if related_ids is not None and not (
+            interaction.left_entity_id in related_ids or interaction.right_entity_id in related_ids
+        ):
+            continue
+        if text:
+            blob = "\n".join(
+                [
+                    interaction.id,
+                    interaction.summary,
+                    interaction.rationale,
+                    interaction.interaction_type,
+                    *interaction.protocol_relevance,
+                    *interaction.conditions,
+                ]
+            )
+            if _normalize(text) not in _normalize(blob):
+                continue
+        results.append(_interaction_payload(repository, extensions, interaction))
+    return sorted(results, key=lambda item: item["id"])
+
+
+def interaction_hypothesis_record(
+    repository: RepositoryData,
+    extensions: ExtensionRegistryData,
+    ref: str,
+) -> dict[str, Any]:
+    interaction = resolve_interaction_hypothesis(extensions, ref)
+    return {"interaction_hypothesis": _interaction_payload(repository, extensions, interaction)}
 
 
 def instrument_record(bundle: InstrumentBundle) -> dict:

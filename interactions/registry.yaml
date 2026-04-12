@@ -1,0 +1,122 @@
+interaction_hypotheses:
+  - id: ihp_attachment_anxiety_words_affirmation
+    left_entity_type: construct
+    left_entity_id: con_attachment_styles_anxiety
+    right_entity_type: construct
+    right_entity_id: con_love_languages_words_of_affirmation
+    interaction_type: reinforcing
+    confidence: medium
+    status: provisional
+    summary: Attachment anxiety can make verbal reassurance feel unusually central and high-salience.
+    rationale: >
+      This pairing often amplifies the felt importance of affirmation because
+      anxiety around availability and security can heighten the value of explicit
+      verbal reassurance.
+    protocol_relevance:
+      - proto_ilens
+      - proto_translation_memo
+    conditions:
+      - especially salient under uncertainty or relational ambiguity
+
+  - id: ihp_attachment_avoidance_physical_touch
+    left_entity_type: construct
+    left_entity_id: con_attachment_styles_avoidance
+    right_entity_type: construct
+    right_entity_id: con_love_languages_physical_touch
+    interaction_type: tension_producing
+    confidence: medium
+    status: provisional
+    summary: Desire for touch and avoidance around dependence can produce mixed relational signals.
+    rationale: >
+      Physical touch preference does not erase avoidance, but the combination can
+      create push-pull dynamics where closeness is sought and defended against at
+      the same time.
+    protocol_relevance:
+      - proto_ilens
+      - proto_human_model_card
+    conditions:
+      - especially visible in close relationships under stress
+
+  - id: ihp_social_energy_attachment_regulation
+    left_entity_type: motif
+    left_entity_id: mtf_social_energy_orientation
+    right_entity_type: motif
+    right_entity_id: mtf_attachment_and_closeness_regulation
+    interaction_type: orthogonal
+    confidence: high
+    status: active
+    summary: Social energy orientation and attachment regulation often get conflated but do not describe the same layer.
+    rationale: >
+      Extraversion or introversion-like patterns say little by themselves about
+      anxiety, avoidance, or security in close attachment relationships.
+    protocol_relevance:
+      - proto_translation_memo
+      - proto_ilens
+
+  - id: ihp_affective_reactivity_attachment_regulation
+    left_entity_type: motif
+    left_entity_id: mtf_affective_reactivity
+    right_entity_type: motif
+    right_entity_id: mtf_attachment_and_closeness_regulation
+    interaction_type: reinforcing
+    confidence: medium
+    status: provisional
+    summary: High emotional reactivity can intensify the lived impact of attachment insecurity.
+    rationale: >
+      Reactivity does not equal attachment insecurity, but the two can amplify each
+      other in situations involving uncertainty, threat, or perceived abandonment.
+    protocol_relevance:
+      - proto_ilens
+      - proto_human_model_card
+    conditions:
+      - especially visible during conflict or relational threat
+
+  - id: ihp_identity_adhesion_symbolic_meaning
+    left_entity_type: motif
+    left_entity_id: mtf_identity_adhesion
+    right_entity_type: motif
+    right_entity_id: mtf_symbolic_meaning_load
+    interaction_type: reinforcing
+    confidence: high
+    status: active
+    summary: Symbolic meaning-heavy systems often become especially adhesive identity languages.
+    rationale: >
+      When a framework carries cosmological, archetypal, or destiny-coded meaning,
+      users are more likely to adopt it as a durable self-story rather than as a
+      lightweight descriptive layer.
+    protocol_relevance:
+      - proto_ilens
+      - proto_translation_memo
+
+  - id: ihp_execution_structure_closure
+    left_entity_type: motif
+    left_entity_id: mtf_execution_and_implementation_style
+    right_entity_type: motif
+    right_entity_id: mtf_structure_and_closure_preference
+    interaction_type: reinforcing
+    confidence: medium
+    status: provisional
+    summary: Strong execution-style patterns often become more legible when paired with structure and closure preferences.
+    rationale: >
+      Action style and closure preference are not identical, but together they
+      frequently explain whether someone initiates, organizes, and completes work
+      in stable or improvisational ways.
+    protocol_relevance:
+      - proto_ilens
+      - proto_human_model_card
+
+  - id: ihp_pattern_abstraction_structure_closure
+    left_entity_type: motif
+    left_entity_id: mtf_pattern_abstraction_preference
+    right_entity_type: motif
+    right_entity_id: mtf_structure_and_closure_preference
+    interaction_type: context_dependent
+    confidence: medium
+    status: provisional
+    summary: Abstraction preference and closure preference can align or diverge depending on the framework and context.
+    rationale: >
+      Pattern-level thinking may coexist with either structured convergence or open-ended exploration,
+      so this pairing should be interpreted as a tension map rather than a stable equivalence.
+    protocol_relevance:
+      - proto_ilens
+      - proto_translation_memo

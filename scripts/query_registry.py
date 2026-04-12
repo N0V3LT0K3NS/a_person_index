@@ -12,15 +12,18 @@ from personality_registry.query import (
     contribution_model_record,
     dumps_json,
     find_contribution_models,
+    find_interaction_hypotheses,
     find_motifs,
     find_protocols,
     find_techniques,
+    interaction_hypothesis_record,
     load_extensions_for_query,
     load_repository_for_query,
     motif_record,
     protocol_record,
     query_results,
     resolve_instrument,
+    result_atom_schema_record,
     show_instrument,
     technique_record,
     trace_entity_to_motifs,
@@ -303,6 +306,63 @@ def _render_contribution_model_record_text(payload):
     return "\n".join(lines)
 
 
+def _render_interactions_text(results):
+    if not results:
+        return "No matching interaction hypotheses."
+    lines = []
+    for item in results:
+        lines.append(f"{item['id']}: {item['left']['label']} <> {item['right']['label']}")
+        lines.append(
+            f"  type={item['interaction_type']} status={item['status']} confidence={item['confidence']}"
+        )
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_interaction_record_text(payload):
+    item = payload["interaction_hypothesis"]
+    lines = [
+        f"{item['id']}",
+        f"left: {item['left']['label']} ({item['left']['entity_id']})",
+        f"right: {item['right']['label']} ({item['right']['entity_id']})",
+        f"type: {item['interaction_type']}",
+        f"status: {item['status']}",
+        f"confidence: {item['confidence']}",
+        item["summary"],
+        "",
+        "Protocol relevance:",
+    ]
+    if item["protocol_relevance"]:
+        for protocol_id in item["protocol_relevance"]:
+            lines.append(f"  - {protocol_id}")
+    else:
+        lines.append("  none")
+    if item["conditions"]:
+        lines.append("")
+        lines.append("Conditions:")
+        for condition in item["conditions"]:
+            lines.append(f"  - {condition}")
+    return "\n".join(lines)
+
+
+def _render_result_atom_schema_text(payload):
+    schema = payload["result_atom_schema"]
+    lines = [
+        f"{schema['name']} ({schema['id']})",
+        f"status: {schema['status']}",
+        schema["summary"],
+        "",
+        "Required fields:",
+    ]
+    for field in schema["required_fields"]:
+        lines.append(f"  - {field['name']} [{field['field_kind']}]")
+    lines.append("")
+    lines.append("Optional fields:")
+    for field in schema["optional_fields"]:
+        lines.append(f"  - {field['name']} [{field['field_kind']}]")
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Query the Personality Instrument Registry.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -411,6 +471,23 @@ def main() -> int:
     )
     research_parser.add_argument("--text", help="Substring search across contribution model fields.")
     research_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    interactions_parser = subparsers.add_parser(
+        "interactions", help="List or show house interaction hypotheses."
+    )
+    interactions_parser.add_argument(
+        "ref", nargs="?", help="Optional interaction hypothesis ID for a detailed record."
+    )
+    interactions_parser.add_argument("--related-to", help="Return interaction hypotheses related to an entity or motif.")
+    interactions_parser.add_argument("--type", help="Filter by interaction type.")
+    interactions_parser.add_argument("--protocol", help="Filter by protocol ID.")
+    interactions_parser.add_argument("--text", help="Substring search across interaction summaries and rationale.")
+    interactions_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    result_atom_parser = subparsers.add_parser(
+        "result-atom-schema", help="Show the downstream result atom contract."
+    )
+    result_atom_parser.add_argument("--format", choices=("text", "json"), default="text")
 
     args = parser.parse_args()
     repository = load_repository_for_query(root)
@@ -535,6 +612,36 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_contribution_models_text(payload))
+        return 0
+
+    if args.command == "interactions":
+        if args.ref:
+            payload = interaction_hypothesis_record(repository, extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_interaction_record_text(payload))
+            return 0
+        payload = find_interaction_hypotheses(
+            repository,
+            extensions,
+            related_to=args.related_to,
+            interaction_type=args.type,
+            protocol=args.protocol,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_interactions_text(payload))
+        return 0
+
+    if args.command == "result-atom-schema":
+        payload = result_atom_schema_record(extensions)
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_result_atom_schema_text(payload))
         return 0
 
     payload = compare_instruments(repository, args.left, args.right)

@@ -6,14 +6,17 @@ from personality_registry.query import (
     audit_repository,
     compare_instruments,
     find_contribution_models,
+    find_interaction_hypotheses,
     find_motifs,
     find_protocols,
     find_techniques,
     find_instruments,
+    interaction_hypothesis_record,
     instrument_record,
     motif_record,
     protocol_record,
     query_results,
+    result_atom_schema_record,
     resolve_instrument,
     show_instrument,
     trace_entity_to_motifs,
@@ -148,3 +151,37 @@ def test_extension_finders_return_expected_records(repo_root):
     assert "proto_ilens" in protocol_ids
     assert "tech_paradox_scan" in technique_ids
     assert "rcm_result_atom_bundle" in contribution_ids
+
+
+def test_find_interaction_hypotheses_related_to_attachment(repo_root):
+    repository = load_repository_strict(repo_root)
+    extensions = load_extensions_strict(repo_root)
+    payload = find_interaction_hypotheses(
+        repository,
+        extensions,
+        related_to="Attachment Style Frameworks",
+    )
+    interaction_ids = {item["id"] for item in payload}
+    assert "ihp_attachment_anxiety_words_affirmation" in interaction_ids
+    assert "ihp_social_energy_attachment_regulation" in interaction_ids
+
+
+def test_interaction_hypothesis_record_expands_entity_refs(repo_root):
+    repository = load_repository_strict(repo_root)
+    extensions = load_extensions_strict(repo_root)
+    payload = interaction_hypothesis_record(
+        repository,
+        extensions,
+        "ihp_identity_adhesion_symbolic_meaning",
+    )
+    interaction = payload["interaction_hypothesis"]
+    assert interaction["left"]["label"] == "Identity Adhesion"
+    assert interaction["right"]["label"] == "Symbolic Meaning Load"
+
+
+def test_result_atom_schema_record_is_available(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = result_atom_schema_record(extensions)
+    assert payload["result_atom_schema"]["id"] == "ras_result_atom_v0_1"
+    required_fields = {field["name"] for field in payload["result_atom_schema"]["required_fields"]}
+    assert {"framework_id", "construct_id", "output_type", "output_value"} <= required_fields

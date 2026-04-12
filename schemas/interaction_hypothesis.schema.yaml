@@ -1,0 +1,97 @@
+$defs:
+  InteractionHypothesis:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      left_entity_type:
+        enum:
+        - instrument
+        - construct
+        - motif
+        title: Left Entity Type
+        type: string
+      left_entity_id:
+        title: Left Entity Id
+        type: string
+      right_entity_type:
+        enum:
+        - instrument
+        - construct
+        - motif
+        title: Right Entity Type
+        type: string
+      right_entity_id:
+        title: Right Entity Id
+        type: string
+      interaction_type:
+        enum:
+        - reinforcing
+        - compensatory
+        - orthogonal
+        - masking
+        - tension_producing
+        - context_dependent
+        title: Interaction Type
+        type: string
+      confidence:
+        enum:
+        - low
+        - medium
+        - high
+        title: Confidence
+        type: string
+      status:
+        enum:
+        - provisional
+        - active
+        - contested
+        title: Status
+        type: string
+      summary:
+        title: Summary
+        type: string
+      rationale:
+        title: Rationale
+        type: string
+      protocol_relevance:
+        items:
+          type: string
+        title: Protocol Relevance
+        type: array
+      conditions:
+        items:
+          type: string
+        title: Conditions
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - left_entity_type
+    - left_entity_id
+    - right_entity_type
+    - right_entity_id
+    - interaction_type
+    - confidence
+    - status
+    - summary
+    - rationale
+    title: InteractionHypothesis
+    type: object
+additionalProperties: false
+properties:
+  interaction_hypotheses:
+    items:
+      $ref: '#/$defs/InteractionHypothesis'
+    title: Interaction Hypotheses
+    type: array
+required:
+- interaction_hypotheses
+title: InteractionHypothesesDocument
+type: object
