@@ -66,6 +66,39 @@ def _search_entry(bundle: InstrumentBundle) -> dict:
     }
 
 
+def _audit_entry(bundle: InstrumentBundle) -> dict:
+    officiality_counts: dict[str, int] = {}
+    for resource in bundle.resources:
+        officiality_counts[resource.officiality] = officiality_counts.get(resource.officiality, 0) + 1
+
+    counts = {
+        "versions": len(bundle.versions),
+        "constructs": len(bundle.constructs),
+        "claims": len(bundle.claims),
+        "resources": len(bundle.resources),
+        "annotations": len(bundle.annotations),
+        "inferences": len(bundle.inferences),
+        "crosswalks": len(bundle.crosswalks),
+        "risks": len(bundle.risks),
+        "use_cases": len(bundle.use_cases),
+    }
+
+    return {
+        "slug": bundle.slug,
+        "instrument_id": bundle.instrument.id,
+        "canonical_name": bundle.instrument.canonical_name,
+        "counts": counts,
+        "resource_officiality": dict(sorted(officiality_counts.items())),
+        "coverage": {
+            "has_crosswalks": counts["crosswalks"] > 0,
+            "has_multiple_resources": counts["resources"] > 1,
+            "has_official_or_semi_official_resource": any(
+                resource.officiality in {"official", "semi_official"} for resource in bundle.resources
+            ),
+        },
+    }
+
+
 def _docs_index_entry(bundle: InstrumentBundle) -> str:
     return (
         f"<li><a href=\"instruments/{escape(bundle.slug)}.html\">{escape(bundle.instrument.canonical_name)}</a> "
@@ -156,6 +189,22 @@ def build_outputs(root: Path) -> dict:
     search_payload = {
         "entries": [_search_entry(bundle) for _, bundle in sorted(repository.instruments.items())],
     }
+    audit_entries = [_audit_entry(bundle) for _, bundle in sorted(repository.instruments.items())]
+    audit_payload = {
+        "summary": {
+            "instrument_count": len(audit_entries),
+            "instruments_with_crosswalks": sum(1 for entry in audit_entries if entry["coverage"]["has_crosswalks"]),
+            "instruments_with_multiple_resources": sum(
+                1 for entry in audit_entries if entry["coverage"]["has_multiple_resources"]
+            ),
+            "instruments_with_official_or_semi_official_resource": sum(
+                1
+                for entry in audit_entries
+                if entry["coverage"]["has_official_or_semi_official_resource"]
+            ),
+        },
+        "instruments": audit_entries,
+    }
     export_payload = {
         "ontology": index_payload["ontology"],
         "instruments": bundle_payloads,
@@ -163,6 +212,7 @@ def build_outputs(root: Path) -> dict:
 
     (generated_root / "index.json").write_text(json.dumps(index_payload, indent=2), encoding="utf-8")
     (generated_root / "search.json").write_text(json.dumps(search_payload, indent=2), encoding="utf-8")
+    (generated_root / "audit.json").write_text(json.dumps(audit_payload, indent=2), encoding="utf-8")
     (generated_root / "registry.json").write_text(json.dumps(export_payload, indent=2), encoding="utf-8")
 
     for slug, payload in bundle_payloads.items():

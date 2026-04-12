@@ -1,0 +1,371 @@
+{
+  "summary": {
+    "instrument_count": 15,
+    "instruments_with_crosswalks": 2,
+    "instruments_with_multiple_resources": 3,
+    "instruments_with_official_or_semi_official_resource": 12
+  },
+  "instruments": [
+    {
+      "slug": "attachment-styles",
+      "instrument_id": "instr_attachment_styles",
+      "canonical_name": "Attachment Style Frameworks",
+      "counts": {
+        "versions": 1,
+        "constructs": 1,
+        "claims": 1,
+        "resources": 1,
+        "annotations": 24,
+        "inferences": 1,
+        "crosswalks": 0,
+        "risks": 1,
+        "use_cases": 1
+      },
+      "resource_officiality": {
+        "secondary": 1
+      },
+      "coverage": {
+        "has_crosswalks": false,
+        "has_multiple_resources": false,
+        "has_official_or_semi_official_resource": false
+      }
+    },
+    {
+      "slug": "big-five",
+      "instrument_id": "instr_big_five",
+      "canonical_name": "Big Five Personality Model",
+      "counts": {
+        "versions": 2,
+        "constructs": 5,
+        "claims": 3,
+        "resources": 3,
+        "annotations": 24,
+        "inferences": 2,
+        "crosswalks": 2,
+        "risks": 2,
+        "use_cases": 2
+      },
+      "resource_officiality": {
+        "official": 2,
+        "semi_official": 1
+      },
+      "coverage": {
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
+        "has_official_or_semi_official_resource": true
+      }
+    },
+    {
+      "slug": "cliftonstrengths",
+      "instrument_id": "instr_cliftonstrengths",
+      "canonical_name": "CliftonStrengths",
+      "counts": {
+        "versions": 1,
+        "constructs": 1,
+        "claims": 1,
+        "resources": 1,
+        "annotations": 24,
+        "inferences": 1,
+        "crosswalks": 0,
+        "risks": 1,
+        "use_cases": 1
+      },
+      "resource_officiality": {
+        "official": 1
+      },
+      "coverage": {
+        "has_crosswalks": false,
+        "has_multiple_resources": false,
+        "has_official_or_semi_official_resource": true
+      }
+    },
+    {
+      "slug": "cqs",
+      "instrument_id": "instr_cqs",
+      "canonical_name": "Cultural Intelligence Scale",
+      "counts": {
+        "versions": 1,
+        "constructs": 1,
+        "claims": 1,
+        "resources": 1,
+        "annotations": 24,
+        "inferences": 1,
+        "crosswalks": 0,
+        "risks": 1,
+        "use_cases": 1
+      },
+      "resource_officiality": {
+        "official": 1
+      },
+      "coverage": {
+        "has_crosswalks": false,
+        "has_multiple_resources": false,
+        "has_official_or_semi_official_resource": true
+      }
+    },
+    {
+      "slug": "culture-index",
+      "instrument_id": "instr_culture_index",
+      "canonical_name": "Culture Index",
+      "counts": {
+        "versions": 1,
+        "constructs": 1,
+        "claims": 1,
+        "resources": 1,
+        "annotations": 24,
+        "inferences": 1,
+        "crosswalks": 0,
+        "risks": 1,
+        "use_cases": 1
+      },
+      "resource_officiality": {
+        "official": 1
+      },
+      "coverage": {
+        "has_crosswalks": false,
+        "has_multiple_resources": false,
+        "has_official_or_semi_official_resource": true
+      }
+    },
+    {
+      "slug": "dark-triad",
+      "instrument_id": "instr_dark_triad",
+      "canonical_name": "Dark Triad",
+      "counts": {
+        "versions": 1,
+        "constructs": 1,
+        "claims": 1,
+        "resources": 1,
+        "annotations": 24,
+        "inferences": 1,
+        "crosswalks": 0,
+        "risks": 1,
+        "use_cases": 1
+      },
+      "resource_officiality": {
+        "secondary": 1
+      },
+      "coverage": {
+        "has_crosswalks": false,
+        "has_multiple_resources": false,
+        "has_official_or_semi_official_resource": false
+      }
+    },
+    {
+      "slug": "disc",
+      "instrument_id": "instr_disc",
+      "canonical_name": "DISC",
+      "counts": {
+        "versions": 1,
+        "constructs": 1,
+        "claims": 1,
+        "resources": 1,
+        "annotations": 24,
+        "inferences": 1,
+        "crosswalks": 0,
+        "risks": 1,
+        "use_cases": 1
+      },
+      "resource_officiality": {
+        "semi_official": 1
+      },
+      "coverage": {
+        "has_crosswalks": false,
+        "has_multiple_resources": false,
+        "has_official_or_semi_official_resource": true
+      }
+    },
+    {
+      "slug": "enneagram",
+      "instrument_id": "instr_enneagram",
+      "canonical_name": "Enneagram of Personality",
+      "counts": {
+        "versions": 1,
+        "constructs": 9,
+        "claims": 3,
+        "resources": 2,
+        "annotations": 24,
+        "inferences": 2,
+        "crosswalks": 0,
+        "risks": 2,
+        "use_cases": 2
+      },
+      "resource_officiality": {
+        "semi_official": 2
+      },
+      "coverage": {
+        "has_crosswalks": false,
+        "has_multiple_resources": true,
+        "has_official_or_semi_official_resource": true
+      }
+    },
+    {
+      "slug": "hexaco",
+      "instrument_id": "instr_hexaco",
+      "canonical_name": "HEXACO Personality Inventory",
+      "counts": {
+        "versions": 1,
+        "constructs": 1,
+        "claims": 1,
+        "resources": 1,
+        "annotations": 24,
+        "inferences": 1,
+        "crosswalks": 0,
+        "risks": 1,
+        "use_cases": 1
+      },
+      "resource_officiality": {
+        "official": 1
+      },
+      "coverage": {
+        "has_crosswalks": false,
+        "has_multiple_resources": false,
+        "has_official_or_semi_official_resource": true
+      }
+    },
+    {
+      "slug": "human-design",
+      "instrument_id": "instr_human_design",
+      "canonical_name": "Human Design",
+      "counts": {
+        "versions": 1,
+        "constructs": 1,
+        "claims": 1,
+        "resources": 1,
+        "annotations": 24,
+        "inferences": 1,
+        "crosswalks": 0,
+        "risks": 1,
+        "use_cases": 1
+      },
+      "resource_officiality": {
+        "official": 1
+      },
+      "coverage": {
+        "has_crosswalks": false,
+        "has_multiple_resources": false,
+        "has_official_or_semi_official_resource": true
+      }
+    },
+    {
+      "slug": "kolbe",
+      "instrument_id": "instr_kolbe",
+      "canonical_name": "Kolbe A Index",
+      "counts": {
+        "versions": 1,
+        "constructs": 1,
+        "claims": 1,
+        "resources": 1,
+        "annotations": 24,
+        "inferences": 1,
+        "crosswalks": 0,
+        "risks": 1,
+        "use_cases": 1
+      },
+      "resource_officiality": {
+        "official": 1
+      },
+      "coverage": {
+        "has_crosswalks": false,
+        "has_multiple_resources": false,
+        "has_official_or_semi_official_resource": true
+      }
+    },
+    {
+      "slug": "love-languages",
+      "instrument_id": "instr_love_languages",
+      "canonical_name": "The Five Love Languages",
+      "counts": {
+        "versions": 1,
+        "constructs": 1,
+        "claims": 1,
+        "resources": 1,
+        "annotations": 24,
+        "inferences": 1,
+        "crosswalks": 0,
+        "risks": 1,
+        "use_cases": 1
+      },
+      "resource_officiality": {
+        "official": 1
+      },
+      "coverage": {
+        "has_crosswalks": false,
+        "has_multiple_resources": false,
+        "has_official_or_semi_official_resource": true
+      }
+    },
+    {
+      "slug": "mbti",
+      "instrument_id": "instr_mbti",
+      "canonical_name": "Myers-Briggs Type Indicator",
+      "counts": {
+        "versions": 2,
+        "constructs": 4,
+        "claims": 4,
+        "resources": 2,
+        "annotations": 24,
+        "inferences": 2,
+        "crosswalks": 1,
+        "risks": 2,
+        "use_cases": 2
+      },
+      "resource_officiality": {
+        "official": 2
+      },
+      "coverage": {
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
+        "has_official_or_semi_official_resource": true
+      }
+    },
+    {
+      "slug": "natal-astrology",
+      "instrument_id": "instr_natal_astrology",
+      "canonical_name": "Natal Astrology",
+      "counts": {
+        "versions": 1,
+        "constructs": 1,
+        "claims": 1,
+        "resources": 1,
+        "annotations": 24,
+        "inferences": 1,
+        "crosswalks": 0,
+        "risks": 1,
+        "use_cases": 1
+      },
+      "resource_officiality": {
+        "secondary": 1
+      },
+      "coverage": {
+        "has_crosswalks": false,
+        "has_multiple_resources": false,
+        "has_official_or_semi_official_resource": false
+      }
+    },
+    {
+      "slug": "via-character-strengths",
+      "instrument_id": "instr_via_character_strengths",
+      "canonical_name": "VIA Character Strengths",
+      "counts": {
+        "versions": 1,
+        "constructs": 1,
+        "claims": 1,
+        "resources": 1,
+        "annotations": 24,
+        "inferences": 1,
+        "crosswalks": 0,
+        "risks": 1,
+        "use_cases": 1
+      },
+      "resource_officiality": {
+        "official": 1
+      },
+      "coverage": {
+        "has_crosswalks": false,
+        "has_multiple_resources": false,
+        "has_official_or_semi_official_resource": true
+      }
+    }
+  ]
+}

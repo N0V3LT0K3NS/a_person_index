@@ -140,6 +140,7 @@ Generated outputs are written to:
 
 - `generated/index.json`: aggregate registry summary
 - `generated/search.json`: search-oriented flattened records
+- `generated/audit.json`: curation-depth and coverage summary per instrument
 - `generated/instruments/*.json`: per-instrument exports
 - `generated/registry.json`: full export payload
 - `site/`: simple static HTML documentation
