@@ -5,8 +5,10 @@ from personality_registry.query import (
     audit_repository,
     compare_instruments,
     find_instruments,
+    instrument_record,
     query_results,
     resolve_instrument,
+    show_instrument,
 )
 
 
@@ -70,3 +72,17 @@ def test_audit_filter_surfaces_missing_official_resources(repo_root):
     payload = audit_repository(repository, needs_official_or_semi_official_resource=True)
     result_ids = {entry["instrument_id"] for entry in payload["instruments"]}
     assert {"instr_attachment_styles", "instr_dark_triad", "instr_natal_astrology"}.issubset(result_ids)
+
+
+def test_show_instrument_returns_full_record(repo_root):
+    repository = load_repository_strict(repo_root)
+    bundle = resolve_instrument(repository, "MBTI")
+    payload = show_instrument(repository, "MBTI")
+    assert payload["instrument"]["id"] == "instr_mbti"
+    assert payload["annotation_index"] == instrument_record(bundle)["annotation_index"]
+
+
+def test_show_instrument_section_returns_constructs(repo_root):
+    repository = load_repository_strict(repo_root)
+    payload = show_instrument(repository, "HEXACO", section="constructs")
+    assert len(payload) == 6

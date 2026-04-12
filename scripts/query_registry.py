@@ -12,6 +12,8 @@ from personality_registry.query import (
     dumps_json,
     load_repository_for_query,
     query_results,
+    resolve_instrument,
+    show_instrument,
 )
 
 
@@ -81,6 +83,62 @@ def _render_audit_text(payload):
     return "\n".join(lines)
 
 
+def _render_show_text(bundle, section, payload):
+    if section is None:
+        lines = [
+            f"{bundle.instrument.canonical_name} ({bundle.instrument.id})",
+            f"slug: {bundle.slug}",
+            bundle.instrument.short_description,
+            "",
+            "Section counts:",
+            f"  versions: {len(bundle.versions)}",
+            f"  constructs: {len(bundle.constructs)}",
+            f"  claims: {len(bundle.claims)}",
+            f"  resources: {len(bundle.resources)}",
+            f"  annotations: {len(bundle.annotations)}",
+            f"  inferences: {len(bundle.inferences)}",
+            f"  crosswalks: {len(bundle.crosswalks)}",
+            f"  risks: {len(bundle.risks)}",
+            f"  use_cases: {len(bundle.use_cases)}",
+        ]
+        return "\n".join(lines)
+
+    if section == "notes":
+        return str(payload)
+
+    if section == "instrument":
+        instrument = payload
+        lines = [
+            f"{instrument['canonical_name']} ({instrument['id']})",
+            f"status: {instrument['status']}",
+            f"family: {', '.join(instrument['family'])}",
+        ]
+        if instrument.get("aliases"):
+            lines.append(f"aliases: {', '.join(instrument['aliases'])}")
+        if instrument.get("creators"):
+            lines.append(f"creators: {', '.join(instrument['creators'])}")
+        return "\n".join(lines)
+
+    if section == "annotation_index":
+        lines = ["Annotation index:"]
+        for dimension, values in sorted(payload.items()):
+            lines.append(f"  {dimension}: {', '.join(values)}")
+        return "\n".join(lines)
+
+    if not isinstance(payload, list):
+        return dumps_json(payload)
+
+    if not payload:
+        return "No records."
+
+    lines = [f"{section}:"]
+    for item in payload:
+        label = item.get("id", "(no id)")
+        summary = item.get("name") or item.get("title") or item.get("claim_text") or item.get("text") or item.get("description") or item.get("use_context") or item.get("ontology_dimension") or ""
+        lines.append(f"  {label}: {summary}")
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Query the Personality Instrument Registry.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -101,6 +159,27 @@ def main() -> int:
     compare_parser.add_argument("left", help="Left instrument reference.")
     compare_parser.add_argument("right", help="Right instrument reference.")
     compare_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    show_parser = subparsers.add_parser("show", help="Show a full instrument record or one section.")
+    show_parser.add_argument("ref", help="Instrument ID, slug, canonical name, or alias.")
+    show_parser.add_argument(
+        "--section",
+        choices=(
+            "instrument",
+            "versions",
+            "constructs",
+            "claims",
+            "resources",
+            "annotations",
+            "annotation_index",
+            "inferences",
+            "crosswalks",
+            "risks",
+            "use_cases",
+            "notes",
+        ),
+    )
+    show_parser.add_argument("--format", choices=("text", "json"), default="text")
 
     audit_parser = subparsers.add_parser("audit", help="Inspect corpus coverage and curation gaps.")
     audit_parser.add_argument("--needs-crosswalks", action="store_true", help="Show only instruments missing crosswalks.")
@@ -151,6 +230,15 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_audit_text(payload))
+        return 0
+
+    if args.command == "show":
+        bundle = resolve_instrument(repository, args.ref)
+        payload = show_instrument(repository, args.ref, section=args.section)
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_show_text(bundle, args.section, payload))
         return 0
 
     payload = compare_instruments(repository, args.left, args.right)

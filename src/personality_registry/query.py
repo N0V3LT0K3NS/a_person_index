@@ -119,6 +119,34 @@ class QueryResult:
         }
 
 
+def instrument_record(bundle: InstrumentBundle) -> dict:
+    return {
+        "slug": bundle.slug,
+        "instrument": bundle.instrument.model_dump(mode="json"),
+        "versions": [item.model_dump(mode="json") for item in bundle.versions],
+        "constructs": [item.model_dump(mode="json") for item in bundle.constructs],
+        "claims": [item.model_dump(mode="json") for item in bundle.claims],
+        "resources": [item.model_dump(mode="json") for item in bundle.resources],
+        "annotations": [item.model_dump(mode="json") for item in bundle.annotations],
+        "annotation_index": _annotation_index(bundle),
+        "inferences": [item.model_dump(mode="json") for item in bundle.inferences],
+        "crosswalks": [item.model_dump(mode="json") for item in bundle.crosswalks],
+        "risks": [item.model_dump(mode="json") for item in bundle.risks],
+        "use_cases": [item.model_dump(mode="json") for item in bundle.use_cases],
+        "notes": bundle.notes,
+    }
+
+
+def show_instrument(repository: RepositoryData, ref: str, section: str | None = None) -> dict | list | str:
+    bundle = resolve_instrument(repository, ref)
+    record = instrument_record(bundle)
+    if section is None:
+        return record
+    if section not in record:
+        raise KeyError(f"Unsupported section '{section}'")
+    return record[section]
+
+
 def audit_repository(
     repository: RepositoryData,
     *,
