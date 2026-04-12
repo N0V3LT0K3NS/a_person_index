@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
 from html import escape
 from pathlib import Path
 
@@ -134,11 +133,8 @@ def build_outputs(root: Path) -> dict:
     instrument_output_root = generated_root / "instruments"
     instrument_output_root.mkdir(parents=True, exist_ok=True)
 
-    timestamp = datetime.now(timezone.utc).isoformat()
-
     bundle_payloads = {slug: _bundle_to_dict(bundle) for slug, bundle in repository.instruments.items()}
     index_payload = {
-        "generated_at": timestamp,
         "ontology": {
             "registry": repository.ontology_registry.model_dump(mode="json"),
             "dimensions": repository.ontology_dimensions.model_dump(mode="json"),
@@ -158,11 +154,9 @@ def build_outputs(root: Path) -> dict:
         ],
     }
     search_payload = {
-        "generated_at": timestamp,
         "entries": [_search_entry(bundle) for _, bundle in sorted(repository.instruments.items())],
     }
     export_payload = {
-        "generated_at": timestamp,
         "ontology": index_payload["ontology"],
         "instruments": bundle_payloads,
     }
