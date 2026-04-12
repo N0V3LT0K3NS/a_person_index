@@ -42,14 +42,42 @@ def _match_text(bundle: InstrumentBundle, query: str) -> bool:
     return _normalize(query) in _search_blob(bundle)
 
 
+def _entity_to_instrument_map(repository: RepositoryData) -> dict[str, str]:
+    mapping: dict[str, str] = {}
+    for bundle in repository.instruments.values():
+        mapping[bundle.instrument.id] = bundle.instrument.id
+        for version in bundle.versions:
+            mapping[version.id] = bundle.instrument.id
+        for construct in bundle.constructs:
+            mapping[construct.id] = bundle.instrument.id
+        for resource in bundle.resources:
+            mapping[resource.id] = bundle.instrument.id
+        for claim in bundle.claims:
+            mapping[claim.id] = bundle.instrument.id
+        for annotation in bundle.annotations:
+            mapping[annotation.id] = bundle.instrument.id
+        for inference in bundle.inferences:
+            mapping[inference.id] = bundle.instrument.id
+        for crosswalk in bundle.crosswalks:
+            mapping[crosswalk.id] = bundle.instrument.id
+        for risk in bundle.risks:
+            mapping[risk.id] = bundle.instrument.id
+        for use_case in bundle.use_cases:
+            mapping[use_case.id] = bundle.instrument.id
+    return mapping
+
+
 def _relationship_bundle_ids(repository: RepositoryData, ref_id: str) -> set[str]:
     related: set[str] = set()
+    entity_to_instrument = _entity_to_instrument_map(repository)
     for bundle in repository.instruments.values():
         for crosswalk in bundle.crosswalks:
-            if crosswalk.source_entity_id == ref_id and crosswalk.target_entity_type == "instrument":
-                related.add(crosswalk.target_entity_id)
-            if crosswalk.target_entity_id == ref_id and crosswalk.source_entity_type == "instrument":
-                related.add(crosswalk.source_entity_id)
+            source_instrument_id = entity_to_instrument.get(crosswalk.source_entity_id)
+            target_instrument_id = entity_to_instrument.get(crosswalk.target_entity_id)
+            if source_instrument_id == ref_id and target_instrument_id and target_instrument_id != ref_id:
+                related.add(target_instrument_id)
+            if target_instrument_id == ref_id and source_instrument_id and source_instrument_id != ref_id:
+                related.add(source_instrument_id)
     return related
 
 
@@ -166,6 +194,7 @@ def query_results(repository: RepositoryData, **kwargs) -> list[QueryResult]:
 def compare_instruments(repository: RepositoryData, left: str, right: str) -> dict:
     left_bundle = resolve_instrument(repository, left)
     right_bundle = resolve_instrument(repository, right)
+    entity_to_instrument = _entity_to_instrument_map(repository)
 
     left_annotations = _annotation_index(left_bundle)
     right_annotations = _annotation_index(right_bundle)
@@ -180,8 +209,12 @@ def compare_instruments(repository: RepositoryData, left: str, right: str) -> di
     crosswalks: list[dict] = []
     for bundle in repository.instruments.values():
         for crosswalk in bundle.crosswalks:
-            ids = {crosswalk.source_entity_id, crosswalk.target_entity_id}
-            if left_bundle.instrument.id in ids and right_bundle.instrument.id in ids:
+            source_instrument_id = entity_to_instrument.get(crosswalk.source_entity_id)
+            target_instrument_id = entity_to_instrument.get(crosswalk.target_entity_id)
+            if {
+                source_instrument_id,
+                target_instrument_id,
+            } == {left_bundle.instrument.id, right_bundle.instrument.id}:
                 crosswalks.append(crosswalk.model_dump(mode="json"))
 
     return {
