@@ -3,12 +3,13 @@ resources:
   instrument_id: instr_attachment_styles
   version_id: ver_attachment_styles_general
   resource_type: overview
-  title: Attachment Style Frameworks overview source
-  url: https://example.org/attachment-styles
-  author: null
+  title: Adult Attachment Theory and Research
+  url: https://labs.psychology.illinois.edu/~rcfraley/attachment.htm
+  author: R. Chris Fraley
   publication_date: null
-  publisher: null
+  publisher: University of Illinois Urbana-Champaign
   language: en
   access_status: public
   officiality: secondary
-  notes: Starter source placeholder. Replace with a canonical source.
+  notes: Research overview summarizing Bowlby, Ainsworth, Hazan and Shaver, and dimensional
+    adult attachment work.

@@ -3,12 +3,13 @@ resources:
   instrument_id: instr_hexaco
   version_id: ver_hexaco_general
   resource_type: overview
-  title: HEXACO Personality Inventory overview source
-  url: https://example.org/hexaco
-  author: null
+  title: The HEXACO Personality Inventory-Revised
+  url: https://hexaco.org/hexaco-inventory
+  author: Kibeom Lee and Michael C. Ashton
   publication_date: null
-  publisher: null
+  publisher: HEXACO.org
   language: en
   access_status: public
-  officiality: secondary
-  notes: Starter source placeholder. Replace with a canonical source.
+  officiality: official
+  notes: Official instrument page describing the HEXACO-PI-R and its 60-, 100-, and
+    200-item self-report and observer versions.

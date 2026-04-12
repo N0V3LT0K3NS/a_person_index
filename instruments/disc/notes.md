@@ -1,15 +1,22 @@
 # DISC
 
 ## What it is
-A workplace-friendly behavioral style framework organized around four broad interaction styles.
+A behavioral style family organized around four broad style labels: Dominance, Influence, Steadiness, and Conscientiousness.
 
 ## Why it matters
-This is a starter registry entry for DISC. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.
+DISC matters because it remains one of the most portable workplace personality languages. It is easy to teach, easy to remember, and widely used in training and team settings, even though the broader DISC ecosystem is fragmented across implementations.
 
 ## What it is good for
-- placeholder registry coverage
-- incremental source collection
-- ontology refinement
+- communication shorthand
+- workplace training
+- team discussion
+- lightweight behavioral style reflection
+
+## What it is weaker at
+- deep motive language
+- construct precision across vendors
+- high-stakes personnel decisions
+- whole-person modeling
 
 ## Common misuse
-- treating a starter entry as fully researched
+Using DISC profiles as rigid boxes for hiring, role assignment, or simplified judgments about capability.

@@ -10,12 +10,15 @@ instrument:
   short_description: A trait personality framework extending five-factor trait models
     with an additional Honesty-Humility domain.
   creators:
-  - unknown
-  publisher_or_owner: unknown
+  - Kibeom Lee
+  - Michael C. Ashton
+  publisher_or_owner: hexaco_org
   original_release_year: null
-  official_websites: []
-  licensing_model: mixed
+  official_websites:
+  - https://hexaco.org/
+  licensing_model: free_for_nonprofit_academic_research_and_permissioned_other_use
   primary_domain: personality_framework
   country_or_origin_context:
-  - mixed
-  notes: Starter registry entry for HEXACO Personality Inventory.
+  - canada
+  notes: This entry centers the HEXACO inventory family as a six-factor lexical trait
+    framework.

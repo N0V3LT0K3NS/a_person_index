@@ -3,8 +3,9 @@ claims:
   instrument_id: instr_attachment_styles
   version_id: ver_attachment_styles_general
   claim_type: overview_claim
-  claim_text: Attachment frameworks claim to describe recurring relational patterns
-    that shape closeness, safety, and regulation.
+  claim_text: Attachment frameworks claim that recurring differences in security,
+    anxiety, and avoidance shape how people seek closeness, regulate distress, and
+    navigate intimate relationships.
   source_resource_ids:
   - res_attachment_styles_overview
   quotation_status: paraphrase

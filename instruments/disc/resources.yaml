@@ -3,12 +3,13 @@ resources:
   instrument_id: instr_disc
   version_id: ver_disc_general
   resource_type: overview
-  title: DISC overview source
-  url: https://example.org/disc
+  title: About Everything DiSC
+  url: https://www.everythingdisc.com/EverythingDiSC/media/SiteFiles/Assets/History/Everything-DiSC-resources-aboutdisc.pdf
   author: null
   publication_date: null
-  publisher: null
+  publisher: Everything DiSC / John Wiley & Sons
   language: en
   access_status: public
-  officiality: secondary
-  notes: Starter source placeholder. Replace with a canonical source.
+  officiality: semi_official
+  notes: Modern commercial overview of the DiSC model and its four-style behavioral
+    framing within the Everything DiSC product family.

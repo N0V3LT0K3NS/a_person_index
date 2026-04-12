@@ -13,17 +13,19 @@
     ],
     "short_description": "A family of relational frameworks describing recurring patterns of security, anxiety, avoidance, and closeness regulation.",
     "creators": [
-      "unknown"
+      "John Bowlby",
+      "Mary Ainsworth",
+      "multiple_contributors"
     ],
-    "publisher_or_owner": "unknown",
+    "publisher_or_owner": "none_decentralized",
     "original_release_year": null,
     "official_websites": [],
-    "licensing_model": "mixed",
+    "licensing_model": "mixed_academic_and_popular",
     "primary_domain": "personality_framework",
     "country_or_origin_context": [
       "mixed"
     ],
-    "notes": "Starter registry entry for Attachment Style Frameworks."
+    "notes": "This record covers the broader family of adult attachment-style frameworks rather than a single questionnaire."
   },
   "versions": [
     {
@@ -72,7 +74,7 @@
       "instrument_id": "instr_attachment_styles",
       "version_id": "ver_attachment_styles_general",
       "claim_type": "overview_claim",
-      "claim_text": "Attachment frameworks claim to describe recurring relational patterns that shape closeness, safety, and regulation.",
+      "claim_text": "Attachment frameworks claim that recurring differences in security, anxiety, and avoidance shape how people seek closeness, regulate distress, and navigate intimate relationships.",
       "source_resource_ids": [
         "res_attachment_styles_overview"
       ],
@@ -85,15 +87,15 @@
       "instrument_id": "instr_attachment_styles",
       "version_id": "ver_attachment_styles_general",
       "resource_type": "overview",
-      "title": "Attachment Style Frameworks overview source",
-      "url": "https://example.org/attachment-styles",
-      "author": null,
+      "title": "Adult Attachment Theory and Research",
+      "url": "https://labs.psychology.illinois.edu/~rcfraley/attachment.htm",
+      "author": "R. Chris Fraley",
       "publication_date": null,
-      "publisher": null,
+      "publisher": "University of Illinois Urbana-Champaign",
       "language": "en",
       "access_status": "public",
       "officiality": "secondary",
-      "notes": "Starter source placeholder. Replace with a canonical source."
+      "notes": "Research overview summarizing Bowlby, Ainsworth, Hazan and Shaver, and dimensional adult attachment work."
     }
   ],
   "annotations": [
@@ -576,12 +578,12 @@
   },
   "inferences": [
     {
-      "id": "inf_attachment_styles_starter",
+      "id": "inf_attachment_styles_relational_layer",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_attachment_styles",
-      "inference_type": "starter_position",
-      "text": "Attachment language is highly useful for relationship interpretation but often overgeneralized beyond the contexts that activate it.",
-      "confidence": "medium",
+      "inference_type": "comparative_strength",
+      "text": "Attachment language is unusually useful when the question is relational security, dependency, or closeness regulation, but it is frequently overextended into a total personality label.",
+      "confidence": "high",
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
@@ -608,5 +610,5 @@
       "cautions": "Preserve context and developmental nuance when using attachment labels."
     }
   ],
-  "notes": "# Attachment Style Frameworks\n\n## What it is\nA family of relational frameworks describing recurring patterns of security, anxiety, avoidance, and closeness regulation.\n\n## Why it matters\nThis is a starter registry entry for Attachment Style Frameworks. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+  "notes": "# Attachment Style Frameworks\n\n## What it is\nA family of relational frameworks describing recurring patterns of security, anxiety, avoidance, and closeness regulation.\n\n## Why it matters\nAttachment frameworks matter because they capture a relational layer that broad trait models often blur: how people seek safety, proximity, reassurance, and distance in emotionally important relationships.\n\n## What it is good for\n- relational patterning\n- therapy and coaching conversation\n- understanding anxiety and avoidance dynamics\n- contextual self-reflection in close relationships\n\n## What it is weaker at\n- whole-person personality modeling\n- context-free labeling\n- clean single-test standardization across the family\n- explaining symbolic or motivational identity systems\n\n## Common misuse\nTreating an attachment style as a permanent identity instead of a relational pattern that can vary by context, relationship, and development.\n"
 }

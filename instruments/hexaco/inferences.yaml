@@ -1,11 +1,12 @@
 inferences:
-- id: inf_hexaco_starter
+- id: inf_hexaco_honesty_humility_anchor
   target_entity_type: instrument
   target_entity_id: instr_hexaco
-  inference_type: starter_position
-  text: HEXACO is especially valuable where honesty-humility and cross-cultural lexical
-    grounding matter.
-  confidence: medium
+  inference_type: synthesis_position
+  text: HEXACO is especially valuable when the registry needs a trait anchor close
+    to Big Five but with a clearer Honesty-Humility dimension and stronger cross-cultural
+    lexical grounding.
+  confidence: high
   linked_entities: []
   author: house
   timestamp: '2026-04-11'

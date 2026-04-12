@@ -11,12 +11,14 @@ instrument:
   short_description: A workplace-friendly behavioral style framework organized around
     four broad interaction styles.
   creators:
-  - unknown
-  publisher_or_owner: unknown
-  original_release_year: null
+  - William Moulton Marston
+  - multiple_commercial_publishers
+  publisher_or_owner: multiple_commercial_publishers
+  original_release_year: 1928
   official_websites: []
-  licensing_model: mixed
+  licensing_model: mixed_commercial_ecosystem
   primary_domain: personality_framework
   country_or_origin_context:
-  - mixed
-  notes: Starter registry entry for DISC.
+  - united_states
+  notes: This entry refers to the broader DISC family rather than a single publisher-specific
+    implementation.

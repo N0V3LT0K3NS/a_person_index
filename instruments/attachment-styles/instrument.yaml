@@ -10,12 +10,15 @@ instrument:
   short_description: A family of relational frameworks describing recurring patterns
     of security, anxiety, avoidance, and closeness regulation.
   creators:
-  - unknown
-  publisher_or_owner: unknown
+  - John Bowlby
+  - Mary Ainsworth
+  - multiple_contributors
+  publisher_or_owner: none_decentralized
   original_release_year: null
   official_websites: []
-  licensing_model: mixed
+  licensing_model: mixed_academic_and_popular
   primary_domain: personality_framework
   country_or_origin_context:
   - mixed
-  notes: Starter registry entry for Attachment Style Frameworks.
+  notes: This record covers the broader family of adult attachment-style frameworks
+    rather than a single questionnaire.

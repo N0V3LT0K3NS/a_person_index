@@ -3,8 +3,8 @@ claims:
   instrument_id: instr_disc
   version_id: ver_disc_general
   claim_type: overview_claim
-  claim_text: DISC claims to describe observable workplace and interaction styles
-    through four broad categories or factors.
+  claim_text: DISC claims to describe observable behavior through four broad styles
+    commonly labeled Dominance, Influence, Steadiness, and Conscientiousness.
   source_resource_ids:
   - res_disc_overview
   quotation_status: paraphrase

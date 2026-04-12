@@ -3,8 +3,9 @@ claims:
   instrument_id: instr_hexaco
   version_id: ver_hexaco_general
   claim_type: overview_claim
-  claim_text: HEXACO claims to measure six broad personality dimensions with stronger
-    cross-cultural lexical grounding for the six-factor structure.
+  claim_text: HEXACO claims to measure six broad personality dimensions, including
+    Honesty-Humility, using a cross-culturally derived lexical model of personality
+    structure.
   source_resource_ids:
   - res_hexaco_overview
   quotation_status: paraphrase

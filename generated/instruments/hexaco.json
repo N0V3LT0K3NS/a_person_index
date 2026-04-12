@@ -13,17 +13,20 @@
     ],
     "short_description": "A trait personality framework extending five-factor trait models with an additional Honesty-Humility domain.",
     "creators": [
-      "unknown"
+      "Kibeom Lee",
+      "Michael C. Ashton"
     ],
-    "publisher_or_owner": "unknown",
+    "publisher_or_owner": "hexaco_org",
     "original_release_year": null,
-    "official_websites": [],
-    "licensing_model": "mixed",
+    "official_websites": [
+      "https://hexaco.org/"
+    ],
+    "licensing_model": "free_for_nonprofit_academic_research_and_permissioned_other_use",
     "primary_domain": "personality_framework",
     "country_or_origin_context": [
-      "mixed"
+      "canada"
     ],
-    "notes": "Starter registry entry for HEXACO Personality Inventory."
+    "notes": "This entry centers the HEXACO inventory family as a six-factor lexical trait framework."
   },
   "versions": [
     {
@@ -72,7 +75,7 @@
       "instrument_id": "instr_hexaco",
       "version_id": "ver_hexaco_general",
       "claim_type": "overview_claim",
-      "claim_text": "HEXACO claims to measure six broad personality dimensions with stronger cross-cultural lexical grounding for the six-factor structure.",
+      "claim_text": "HEXACO claims to measure six broad personality dimensions, including Honesty-Humility, using a cross-culturally derived lexical model of personality structure.",
       "source_resource_ids": [
         "res_hexaco_overview"
       ],
@@ -85,15 +88,15 @@
       "instrument_id": "instr_hexaco",
       "version_id": "ver_hexaco_general",
       "resource_type": "overview",
-      "title": "HEXACO Personality Inventory overview source",
-      "url": "https://example.org/hexaco",
-      "author": null,
+      "title": "The HEXACO Personality Inventory-Revised",
+      "url": "https://hexaco.org/hexaco-inventory",
+      "author": "Kibeom Lee and Michael C. Ashton",
       "publication_date": null,
-      "publisher": null,
+      "publisher": "HEXACO.org",
       "language": "en",
       "access_status": "public",
-      "officiality": "secondary",
-      "notes": "Starter source placeholder. Replace with a canonical source."
+      "officiality": "official",
+      "notes": "Official instrument page describing the HEXACO-PI-R and its 60-, 100-, and 200-item self-report and observer versions."
     }
   ],
   "annotations": [
@@ -564,12 +567,12 @@
   },
   "inferences": [
     {
-      "id": "inf_hexaco_starter",
+      "id": "inf_hexaco_honesty_humility_anchor",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_hexaco",
-      "inference_type": "starter_position",
-      "text": "HEXACO is especially valuable where honesty-humility and cross-cultural lexical grounding matter.",
-      "confidence": "medium",
+      "inference_type": "synthesis_position",
+      "text": "HEXACO is especially valuable when the registry needs a trait anchor close to Big Five but with a clearer Honesty-Humility dimension and stronger cross-cultural lexical grounding.",
+      "confidence": "high",
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
@@ -596,5 +599,5 @@
       "cautions": "Useful as broad descriptive scaffolding, not as a complete model of motive or meaning."
     }
   ],
-  "notes": "# HEXACO Personality Inventory\n\n## What it is\nA trait personality framework extending five-factor trait models with an additional Honesty-Humility domain.\n\n## Why it matters\nThis is a starter registry entry for HEXACO Personality Inventory. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+  "notes": "# HEXACO Personality Inventory\n\n## What it is\nA six-factor trait personality framework that extends Big Five-like models with the additional domain of Honesty-Humility.\n\n## Why it matters\nHEXACO matters because it preserves the practical value of broad trait description while making room for a dimension that often matters in moral, interpersonal, and prosocial interpretation. It is one of the strongest neighboring anchor systems to Big Five in the registry.\n\n## What it is good for\n- broad trait description\n- research comparison to Big Five\n- honesty-humility analysis\n- synthesis anchoring\n\n## What it is weaker at\n- motive language\n- symbolic identity language\n- deep developmental narrative\n- context-rich relational interpretation\n\n## Common misuse\nTreating six-factor trait outputs as a full account of character, ethics, or relational behavior.\n"
 }

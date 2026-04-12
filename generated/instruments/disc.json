@@ -14,17 +14,18 @@
     ],
     "short_description": "A workplace-friendly behavioral style framework organized around four broad interaction styles.",
     "creators": [
-      "unknown"
+      "William Moulton Marston",
+      "multiple_commercial_publishers"
     ],
-    "publisher_or_owner": "unknown",
-    "original_release_year": null,
+    "publisher_or_owner": "multiple_commercial_publishers",
+    "original_release_year": 1928,
     "official_websites": [],
-    "licensing_model": "mixed",
+    "licensing_model": "mixed_commercial_ecosystem",
     "primary_domain": "personality_framework",
     "country_or_origin_context": [
-      "mixed"
+      "united_states"
     ],
-    "notes": "Starter registry entry for DISC."
+    "notes": "This entry refers to the broader DISC family rather than a single publisher-specific implementation."
   },
   "versions": [
     {
@@ -73,7 +74,7 @@
       "instrument_id": "instr_disc",
       "version_id": "ver_disc_general",
       "claim_type": "overview_claim",
-      "claim_text": "DISC claims to describe observable workplace and interaction styles through four broad categories or factors.",
+      "claim_text": "DISC claims to describe observable behavior through four broad styles commonly labeled Dominance, Influence, Steadiness, and Conscientiousness.",
       "source_resource_ids": [
         "res_disc_overview"
       ],
@@ -86,15 +87,15 @@
       "instrument_id": "instr_disc",
       "version_id": "ver_disc_general",
       "resource_type": "overview",
-      "title": "DISC overview source",
-      "url": "https://example.org/disc",
+      "title": "About Everything DiSC",
+      "url": "https://www.everythingdisc.com/EverythingDiSC/media/SiteFiles/Assets/History/Everything-DiSC-resources-aboutdisc.pdf",
       "author": null,
       "publication_date": null,
-      "publisher": null,
+      "publisher": "Everything DiSC / John Wiley & Sons",
       "language": "en",
       "access_status": "public",
-      "officiality": "secondary",
-      "notes": "Starter source placeholder. Replace with a canonical source."
+      "officiality": "semi_official",
+      "notes": "Modern commercial overview of the DiSC model and its four-style behavioral framing within the Everything DiSC product family."
     }
   ],
   "annotations": [
@@ -567,12 +568,12 @@
   },
   "inferences": [
     {
-      "id": "inf_disc_starter",
+      "id": "inf_disc_workplace_shorthand",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_disc",
-      "inference_type": "starter_position",
-      "text": "DISC is pragmatically sticky in organizations because it is easy to explain, administer, and discuss.",
-      "confidence": "medium",
+      "inference_type": "practical_value",
+      "text": "DISC stays sticky in organizations because it offers a low-friction language for interpersonal style, even though the broader DISC ecosystem varies substantially in psychometric rigor and implementation.",
+      "confidence": "high",
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
@@ -599,5 +600,5 @@
       "cautions": "Useful for team language, weak for total personality explanation."
     }
   ],
-  "notes": "# DISC\n\n## What it is\nA workplace-friendly behavioral style framework organized around four broad interaction styles.\n\n## Why it matters\nThis is a starter registry entry for DISC. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+  "notes": "# DISC\n\n## What it is\nA behavioral style family organized around four broad style labels: Dominance, Influence, Steadiness, and Conscientiousness.\n\n## Why it matters\nDISC matters because it remains one of the most portable workplace personality languages. It is easy to teach, easy to remember, and widely used in training and team settings, even though the broader DISC ecosystem is fragmented across implementations.\n\n## What it is good for\n- communication shorthand\n- workplace training\n- team discussion\n- lightweight behavioral style reflection\n\n## What it is weaker at\n- deep motive language\n- construct precision across vendors\n- high-stakes personnel decisions\n- whole-person modeling\n\n## Common misuse\nUsing DISC profiles as rigid boxes for hiring, role assignment, or simplified judgments about capability.\n"
 }

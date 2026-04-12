@@ -1,11 +1,12 @@
 inferences:
-- id: inf_disc_starter
+- id: inf_disc_workplace_shorthand
   target_entity_type: instrument
   target_entity_id: instr_disc
-  inference_type: starter_position
-  text: DISC is pragmatically sticky in organizations because it is easy to explain,
-    administer, and discuss.
-  confidence: medium
+  inference_type: practical_value
+  text: DISC stays sticky in organizations because it offers a low-friction language
+    for interpersonal style, even though the broader DISC ecosystem varies substantially
+    in psychometric rigor and implementation.
+  confidence: high
   linked_entities: []
   author: house
   timestamp: '2026-04-11'

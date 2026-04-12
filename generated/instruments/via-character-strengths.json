@@ -15,17 +15,21 @@
     ],
     "short_description": "A strengths framework organizing character strengths into a virtue-based taxonomy with questionnaire-driven profiles.",
     "creators": [
-      "unknown"
+      "Christopher Peterson",
+      "Martin E. P. Seligman",
+      "multiple_contributors"
     ],
-    "publisher_or_owner": "unknown",
+    "publisher_or_owner": "via_institute_on_character",
     "original_release_year": null,
-    "official_websites": [],
-    "licensing_model": "mixed",
+    "official_websites": [
+      "https://www.viacharacter.org/"
+    ],
+    "licensing_model": "mixed_public_and_paid_reports",
     "primary_domain": "personality_framework",
     "country_or_origin_context": [
-      "mixed"
+      "united_states"
     ],
-    "notes": "Starter registry entry for VIA Character Strengths."
+    "notes": "This entry centers the VIA classification and survey family as a strengths-oriented moral character framework."
   },
   "versions": [
     {
@@ -74,7 +78,7 @@
       "instrument_id": "instr_via_character_strengths",
       "version_id": "ver_via_character_strengths_general",
       "claim_type": "overview_claim",
-      "claim_text": "VIA claims to identify and rank character strengths relevant to flourishing and development.",
+      "claim_text": "VIA claims to classify 24 character strengths under six broad virtues and to measure those strengths through the VIA Survey.",
       "source_resource_ids": [
         "res_via_character_strengths_overview"
       ],
@@ -86,16 +90,16 @@
       "id": "res_via_character_strengths_overview",
       "instrument_id": "instr_via_character_strengths",
       "version_id": "ver_via_character_strengths_general",
-      "resource_type": "overview",
-      "title": "VIA Character Strengths overview source",
-      "url": "https://example.org/via-character-strengths",
+      "resource_type": "classification",
+      "title": "VIA Classification of Character Strengths",
+      "url": "https://www.viacharacter.org/resources/activities/via-classification-of-character-strengths",
       "author": null,
       "publication_date": null,
-      "publisher": null,
+      "publisher": "VIA Institute on Character",
       "language": "en",
       "access_status": "public",
-      "officiality": "secondary",
-      "notes": "Starter source placeholder. Replace with a canonical source."
+      "officiality": "official",
+      "notes": "Official VIA page describing the 24 character strengths, six virtue categories, and the role of the VIA Survey."
     }
   ],
   "annotations": [
@@ -566,12 +570,12 @@
   },
   "inferences": [
     {
-      "id": "inf_via_character_strengths_starter",
+      "id": "inf_via_character_strengths_strengths_layer",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_via_character_strengths",
-      "inference_type": "starter_position",
-      "text": "VIA matters because it combines positive psychology language with a relatively structured strengths taxonomy.",
-      "confidence": "medium",
+      "inference_type": "synthesis_position",
+      "text": "VIA is a strong positive-psychology layer for strengths-oriented description, especially when the corpus needs a moral-character and flourishing vocabulary rather than only trait or workplace language.",
+      "confidence": "high",
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
@@ -598,5 +602,5 @@
       "cautions": "Treat strengths as developmental tendencies rather than moral badges."
     }
   ],
-  "notes": "# VIA Character Strengths\n\n## What it is\nA strengths framework organizing character strengths into a virtue-based taxonomy with questionnaire-driven profiles.\n\n## Why it matters\nThis is a starter registry entry for VIA Character Strengths. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+  "notes": "# VIA Character Strengths\n\n## What it is\nA strengths framework that organizes 24 character strengths under six virtue categories and measures them through the VIA Survey.\n\n## Why it matters\nVIA matters because it gives the registry a structured positive-personality and moral-character layer. It is one of the clearest alternatives to deficit-heavy or identity-heavy systems when the goal is strengths description and development.\n\n## What it is good for\n- strengths identification\n- coaching and education\n- positive psychology research\n- developmental reflection\n\n## What it is weaker at\n- dark-side behavior\n- motive conflict\n- whole-person relational dynamics\n- symbolic identity language\n\n## Common misuse\nTreating ranked strengths as moral rankings of the person rather than as tendencies that can be cultivated, overused, or context-dependent.\n"
 }

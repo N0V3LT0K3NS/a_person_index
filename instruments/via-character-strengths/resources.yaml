@@ -2,13 +2,14 @@ resources:
 - id: res_via_character_strengths_overview
   instrument_id: instr_via_character_strengths
   version_id: ver_via_character_strengths_general
-  resource_type: overview
-  title: VIA Character Strengths overview source
-  url: https://example.org/via-character-strengths
+  resource_type: classification
+  title: VIA Classification of Character Strengths
+  url: https://www.viacharacter.org/resources/activities/via-classification-of-character-strengths
   author: null
   publication_date: null
-  publisher: null
+  publisher: VIA Institute on Character
   language: en
   access_status: public
-  officiality: secondary
-  notes: Starter source placeholder. Replace with a canonical source.
+  officiality: official
+  notes: Official VIA page describing the 24 character strengths, six virtue categories,
+    and the role of the VIA Survey.

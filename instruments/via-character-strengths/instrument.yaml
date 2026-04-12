@@ -12,12 +12,16 @@ instrument:
   short_description: A strengths framework organizing character strengths into a virtue-based
     taxonomy with questionnaire-driven profiles.
   creators:
-  - unknown
-  publisher_or_owner: unknown
+  - Christopher Peterson
+  - Martin E. P. Seligman
+  - multiple_contributors
+  publisher_or_owner: via_institute_on_character
   original_release_year: null
-  official_websites: []
-  licensing_model: mixed
+  official_websites:
+  - https://www.viacharacter.org/
+  licensing_model: mixed_public_and_paid_reports
   primary_domain: personality_framework
   country_or_origin_context:
-  - mixed
-  notes: Starter registry entry for VIA Character Strengths.
+  - united_states
+  notes: This entry centers the VIA classification and survey family as a strengths-oriented
+    moral character framework.

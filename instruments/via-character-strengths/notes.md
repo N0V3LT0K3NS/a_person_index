@@ -1,15 +1,22 @@
 # VIA Character Strengths
 
 ## What it is
-A strengths framework organizing character strengths into a virtue-based taxonomy with questionnaire-driven profiles.
+A strengths framework that organizes 24 character strengths under six virtue categories and measures them through the VIA Survey.
 
 ## Why it matters
-This is a starter registry entry for VIA Character Strengths. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.
+VIA matters because it gives the registry a structured positive-personality and moral-character layer. It is one of the clearest alternatives to deficit-heavy or identity-heavy systems when the goal is strengths description and development.
 
 ## What it is good for
-- placeholder registry coverage
-- incremental source collection
-- ontology refinement
+- strengths identification
+- coaching and education
+- positive psychology research
+- developmental reflection
+
+## What it is weaker at
+- dark-side behavior
+- motive conflict
+- whole-person relational dynamics
+- symbolic identity language
 
 ## Common misuse
-- treating a starter entry as fully researched
+Treating ranked strengths as moral rankings of the person rather than as tendencies that can be cultivated, overused, or context-dependent.

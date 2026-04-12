@@ -559,8 +559,16 @@ def placeholder_bundle(
     resource_type: str = "overview",
     resource_title: str | None = None,
     resource_url: str | None = None,
+    resource_author: str | None = None,
+    resource_publication_date: str | None = None,
+    resource_publisher: str | None = None,
+    resource_language: str = "en",
+    resource_access_status: str = "public",
     resource_officiality: str = "secondary",
     resource_notes: str | None = "Starter source placeholder. Replace with a canonical source.",
+    inference_id_suffix: str = "starter",
+    inference_type: str = "starter_position",
+    inference_confidence: str = "medium",
     inference_text: str | None = None,
     risk_type: str = "overinterpretation",
     risk_severity: str = "medium",
@@ -571,6 +579,7 @@ def placeholder_bundle(
     suitability_level: str = "medium",
     cautions: str = "Use as a descriptive aid, not a total account of the person.",
     notes: str | None = None,
+    instrument_notes: str | None = None,
     instrument_id: str | None = None,
 ) -> dict[str, Any]:
     base = _snake_slug(slug)
@@ -579,7 +588,7 @@ def placeholder_bundle(
     construct_id = f"con_{base}_core"
     resource_id = f"res_{base}_overview"
     claim_id = f"clm_{base}_overview"
-    inference_id = f"inf_{base}_starter"
+    inference_id = f"inf_{base}_{inference_id_suffix}"
     risk_id = f"rsk_{base}_{risk_type}"
     use_case_id = f"use_{base}_{use_context}"
 
@@ -663,7 +672,7 @@ This is a starter registry entry for {canonical_name}. It is structurally valid 
                 "licensing_model": licensing_model,
                 "primary_domain": primary_domain,
                 "country_or_origin_context": country_or_origin_context or ["mixed"],
-                "notes": f"Starter registry entry for {canonical_name}.",
+                "notes": instrument_notes or f"Starter registry entry for {canonical_name}.",
             }
         },
         "versions.yaml": {
@@ -722,11 +731,11 @@ This is a starter registry entry for {canonical_name}. It is structurally valid 
                     "resource_type": resource_type,
                     "title": resource_title or f"{canonical_name} overview source",
                     "url": resource_url or f"https://example.org/{slug}",
-                    "author": None,
-                    "publication_date": None,
-                    "publisher": None,
-                    "language": "en",
-                    "access_status": "public",
+                    "author": resource_author,
+                    "publication_date": resource_publication_date,
+                    "publisher": resource_publisher,
+                    "language": resource_language,
+                    "access_status": resource_access_status,
                     "officiality": resource_officiality,
                     "notes": resource_notes,
                 }
@@ -739,13 +748,13 @@ This is a starter registry entry for {canonical_name}. It is structurally valid 
                     "id": inference_id,
                     "target_entity_type": "instrument",
                     "target_entity_id": instrument_id,
-                    "inference_type": "starter_position",
+                    "inference_type": inference_type,
                     "text": inference_text
                     or (
                         f"{canonical_name} is included as a starter entry to preserve coverage across the instrument "
                         "landscape while deeper source curation is still underway."
                     ),
-                    "confidence": "medium",
+                    "confidence": inference_confidence,
                     "linked_entities": [],
                     "author": "house",
                     "timestamp": "2026-04-11",
@@ -2078,6 +2087,11 @@ PLACEHOLDER_SPECS = [
         "canonical_name": "DISC",
         "short_names": ["DISC"],
         "short_description": "A workplace-friendly behavioral style framework organized around four broad interaction styles.",
+        "creators": ["William Moulton Marston", "multiple_commercial_publishers"],
+        "publisher_or_owner": "multiple_commercial_publishers",
+        "original_release_year": 1928,
+        "licensing_model": "mixed_commercial_ecosystem",
+        "country_or_origin_context": ["united_states"],
         "families": ["behavioral_interactional", "leadership_workplace"],
         "primary_measurement_target": ["behavioral_style", "interpersonal_style", "work_style"],
         "representational_form": ["profile_vector", "categorical_typology"],
@@ -2104,10 +2118,56 @@ PLACEHOLDER_SPECS = [
         "overlap_mode": ["workplace_family_resemblance"],
         "construct_name": "DISC style profile",
         "construct_definition": "Composite profile across dominance, influence, steadiness, and conscientiousness style dimensions.",
-        "claim_text": "DISC claims to describe observable workplace and interaction styles through four broad categories or factors.",
-        "inference_text": "DISC is pragmatically sticky in organizations because it is easy to explain, administer, and discuss.",
+        "claim_text": (
+            "DISC claims to describe observable behavior through four broad styles commonly labeled "
+            "Dominance, Influence, Steadiness, and Conscientiousness."
+        ),
+        "resource_title": "About Everything DiSC",
+        "resource_url": (
+            "https://www.everythingdisc.com/EverythingDiSC/media/SiteFiles/Assets/History/"
+            "Everything-DiSC-resources-aboutdisc.pdf"
+        ),
+        "resource_publisher": "Everything DiSC / John Wiley & Sons",
+        "resource_officiality": "semi_official",
+        "resource_notes": (
+            "Modern commercial overview of the DiSC model and its four-style behavioral framing within the "
+            "Everything DiSC product family."
+        ),
+        "inference_id_suffix": "workplace_shorthand",
+        "inference_type": "practical_value",
+        "inference_confidence": "high",
+        "inference_text": (
+            "DISC stays sticky in organizations because it offers a low-friction language for interpersonal style, "
+            "even though the broader DISC ecosystem varies substantially in psychometric rigor and implementation."
+        ),
         "risk_description": "DISC profiles are easy to overuse as simplified workplace identity boxes.",
         "cautions": "Useful for team language, weak for total personality explanation.",
+        "instrument_notes": (
+            "This entry refers to the broader DISC family rather than a single publisher-specific implementation."
+        ),
+        "notes": """# DISC
+
+## What it is
+A behavioral style family organized around four broad style labels: Dominance, Influence, Steadiness, and Conscientiousness.
+
+## Why it matters
+DISC matters because it remains one of the most portable workplace personality languages. It is easy to teach, easy to remember, and widely used in training and team settings, even though the broader DISC ecosystem is fragmented across implementations.
+
+## What it is good for
+- communication shorthand
+- workplace training
+- team discussion
+- lightweight behavioral style reflection
+
+## What it is weaker at
+- deep motive language
+- construct precision across vendors
+- high-stakes personnel decisions
+- whole-person modeling
+
+## Common misuse
+Using DISC profiles as rigid boxes for hiring, role assignment, or simplified judgments about capability.
+""",
     },
     {
         "slug": "kolbe",
@@ -2404,6 +2464,10 @@ PLACEHOLDER_SPECS = [
         "canonical_name": "Attachment Style Frameworks",
         "short_names": ["Attachment Styles"],
         "short_description": "A family of relational frameworks describing recurring patterns of security, anxiety, avoidance, and closeness regulation.",
+        "creators": ["John Bowlby", "Mary Ainsworth", "multiple_contributors"],
+        "publisher_or_owner": "none_decentralized",
+        "licensing_model": "mixed_academic_and_popular",
+        "country_or_origin_context": ["mixed"],
         "families": ["attachment_relational"],
         "primary_measurement_target": ["attachment_patterns", "relational_needs", "interpersonal_style"],
         "representational_form": ["categorical_typology", "hybrid_dimensional_typological", "narrative_description"],
@@ -2430,16 +2494,64 @@ PLACEHOLDER_SPECS = [
         "overlap_mode": ["complementary_layers", "shared_identity_space"],
         "construct_name": "Attachment pattern",
         "construct_definition": "A pattern of closeness regulation, security, anxiety, and avoidance in relational contexts.",
-        "claim_text": "Attachment frameworks claim to describe recurring relational patterns that shape closeness, safety, and regulation.",
-        "inference_text": "Attachment language is highly useful for relationship interpretation but often overgeneralized beyond the contexts that activate it.",
+        "claim_text": (
+            "Attachment frameworks claim that recurring differences in security, anxiety, and avoidance shape how "
+            "people seek closeness, regulate distress, and navigate intimate relationships."
+        ),
+        "resource_title": "Adult Attachment Theory and Research",
+        "resource_url": "https://labs.psychology.illinois.edu/~rcfraley/attachment.htm",
+        "resource_author": "R. Chris Fraley",
+        "resource_publisher": "University of Illinois Urbana-Champaign",
+        "resource_officiality": "secondary",
+        "resource_notes": (
+            "Research overview summarizing Bowlby, Ainsworth, Hazan and Shaver, and dimensional adult attachment work."
+        ),
+        "inference_id_suffix": "relational_layer",
+        "inference_type": "comparative_strength",
+        "inference_confidence": "high",
+        "inference_text": (
+            "Attachment language is unusually useful when the question is relational security, dependency, or "
+            "closeness regulation, but it is frequently overextended into a total personality label."
+        ),
         "risk_description": "People may adopt an attachment label as a total identity instead of a relational pattern under specific conditions.",
         "cautions": "Preserve context and developmental nuance when using attachment labels.",
+        "instrument_notes": (
+            "This record covers the broader family of adult attachment-style frameworks rather than a single questionnaire."
+        ),
+        "notes": """# Attachment Style Frameworks
+
+## What it is
+A family of relational frameworks describing recurring patterns of security, anxiety, avoidance, and closeness regulation.
+
+## Why it matters
+Attachment frameworks matter because they capture a relational layer that broad trait models often blur: how people seek safety, proximity, reassurance, and distance in emotionally important relationships.
+
+## What it is good for
+- relational patterning
+- therapy and coaching conversation
+- understanding anxiety and avoidance dynamics
+- contextual self-reflection in close relationships
+
+## What it is weaker at
+- whole-person personality modeling
+- context-free labeling
+- clean single-test standardization across the family
+- explaining symbolic or motivational identity systems
+
+## Common misuse
+Treating an attachment style as a permanent identity instead of a relational pattern that can vary by context, relationship, and development.
+""",
     },
     {
         "slug": "via-character-strengths",
         "canonical_name": "VIA Character Strengths",
         "short_names": ["VIA Character Strengths", "VIA"],
         "short_description": "A strengths framework organizing character strengths into a virtue-based taxonomy with questionnaire-driven profiles.",
+        "creators": ["Christopher Peterson", "Martin E. P. Seligman", "multiple_contributors"],
+        "publisher_or_owner": "via_institute_on_character",
+        "official_websites": ["https://www.viacharacter.org/"],
+        "licensing_model": "mixed_public_and_paid_reports",
+        "country_or_origin_context": ["united_states"],
         "families": ["strengths_talent", "values_moral_orientation"],
         "primary_measurement_target": ["moral_character", "strengths_talents"],
         "representational_form": ["rank_order_strengths", "profile_vector"],
@@ -2466,16 +2578,64 @@ PLACEHOLDER_SPECS = [
         "overlap_mode": ["complementary_layers"],
         "construct_name": "Character strengths profile",
         "construct_definition": "A ranked profile of character strengths organized within a virtue taxonomy.",
-        "claim_text": "VIA claims to identify and rank character strengths relevant to flourishing and development.",
-        "inference_text": "VIA matters because it combines positive psychology language with a relatively structured strengths taxonomy.",
+        "claim_text": (
+            "VIA claims to classify 24 character strengths under six broad virtues and to measure those strengths "
+            "through the VIA Survey."
+        ),
+        "resource_type": "classification",
+        "resource_title": "VIA Classification of Character Strengths",
+        "resource_url": "https://www.viacharacter.org/resources/activities/via-classification-of-character-strengths",
+        "resource_publisher": "VIA Institute on Character",
+        "resource_officiality": "official",
+        "resource_notes": (
+            "Official VIA page describing the 24 character strengths, six virtue categories, and the role of the VIA Survey."
+        ),
+        "inference_id_suffix": "strengths_layer",
+        "inference_type": "synthesis_position",
+        "inference_confidence": "high",
+        "inference_text": (
+            "VIA is a strong positive-psychology layer for strengths-oriented description, especially when the corpus "
+            "needs a moral-character and flourishing vocabulary rather than only trait or workplace language."
+        ),
         "risk_description": "Strengths rankings can be taken as moral verdicts or fixed rankings of worth.",
         "cautions": "Treat strengths as developmental tendencies rather than moral badges.",
+        "instrument_notes": (
+            "This entry centers the VIA classification and survey family as a strengths-oriented moral character framework."
+        ),
+        "notes": """# VIA Character Strengths
+
+## What it is
+A strengths framework that organizes 24 character strengths under six virtue categories and measures them through the VIA Survey.
+
+## Why it matters
+VIA matters because it gives the registry a structured positive-personality and moral-character layer. It is one of the clearest alternatives to deficit-heavy or identity-heavy systems when the goal is strengths description and development.
+
+## What it is good for
+- strengths identification
+- coaching and education
+- positive psychology research
+- developmental reflection
+
+## What it is weaker at
+- dark-side behavior
+- motive conflict
+- whole-person relational dynamics
+- symbolic identity language
+
+## Common misuse
+Treating ranked strengths as moral rankings of the person rather than as tendencies that can be cultivated, overused, or context-dependent.
+""",
     },
     {
         "slug": "hexaco",
         "canonical_name": "HEXACO Personality Inventory",
         "short_names": ["HEXACO"],
         "short_description": "A trait personality framework extending five-factor trait models with an additional Honesty-Humility domain.",
+        "creators": ["Kibeom Lee", "Michael C. Ashton"],
+        "publisher_or_owner": "hexaco_org",
+        "official_websites": ["https://hexaco.org/"],
+        "licensing_model": "free_for_nonprofit_academic_research_and_permissioned_other_use",
+        "country_or_origin_context": ["canada"],
         "families": ["trait_personality"],
         "primary_measurement_target": ["stable_traits", "interpersonal_style", "affect_emotion", "moral_character"],
         "representational_form": ["continuous_dimensional", "hierarchical_model"],
@@ -2502,10 +2662,53 @@ PLACEHOLDER_SPECS = [
         "overlap_mode": ["partial_construct_overlap", "complementary_layers"],
         "construct_name": "HEXACO trait profile",
         "construct_definition": "A dimensional profile across six broad personality factors including Honesty-Humility.",
-        "claim_text": "HEXACO claims to measure six broad personality dimensions with stronger cross-cultural lexical grounding for the six-factor structure.",
-        "inference_text": "HEXACO is especially valuable where honesty-humility and cross-cultural lexical grounding matter.",
+        "claim_text": (
+            "HEXACO claims to measure six broad personality dimensions, including Honesty-Humility, using a "
+            "cross-culturally derived lexical model of personality structure."
+        ),
+        "resource_title": "The HEXACO Personality Inventory-Revised",
+        "resource_url": "https://hexaco.org/hexaco-inventory",
+        "resource_author": "Kibeom Lee and Michael C. Ashton",
+        "resource_publisher": "HEXACO.org",
+        "resource_officiality": "official",
+        "resource_notes": (
+            "Official instrument page describing the HEXACO-PI-R and its 60-, 100-, and 200-item self-report and observer versions."
+        ),
+        "inference_id_suffix": "honesty_humility_anchor",
+        "inference_type": "synthesis_position",
+        "inference_confidence": "high",
+        "inference_text": (
+            "HEXACO is especially valuable when the registry needs a trait anchor close to Big Five but with a clearer "
+            "Honesty-Humility dimension and stronger cross-cultural lexical grounding."
+        ),
         "risk_description": "Like other trait models, HEXACO can be overread as a total explanation of the person.",
         "cautions": "Useful as broad descriptive scaffolding, not as a complete model of motive or meaning.",
+        "instrument_notes": (
+            "This entry centers the HEXACO inventory family as a six-factor lexical trait framework."
+        ),
+        "notes": """# HEXACO Personality Inventory
+
+## What it is
+A six-factor trait personality framework that extends Big Five-like models with the additional domain of Honesty-Humility.
+
+## Why it matters
+HEXACO matters because it preserves the practical value of broad trait description while making room for a dimension that often matters in moral, interpersonal, and prosocial interpretation. It is one of the strongest neighboring anchor systems to Big Five in the registry.
+
+## What it is good for
+- broad trait description
+- research comparison to Big Five
+- honesty-humility analysis
+- synthesis anchoring
+
+## What it is weaker at
+- motive language
+- symbolic identity language
+- deep developmental narrative
+- context-rich relational interpretation
+
+## Common misuse
+Treating six-factor trait outputs as a full account of character, ethics, or relational behavior.
+""",
     },
 ]
 
