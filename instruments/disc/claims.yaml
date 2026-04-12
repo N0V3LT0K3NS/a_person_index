@@ -8,3 +8,23 @@ claims:
   source_resource_ids:
   - res_disc_overview
   quotation_status: paraphrase
+- instrument_id: instr_disc
+  version_id: ver_disc_general
+  source_resource_ids:
+  - res_disc_what_is_disc
+  quotation_status: paraphrase
+  id: clm_disc_style_patterns
+  claim_type: construct_claim
+  claim_text: Contemporary DiSC materials frame behavior as patterned combinations
+    of Dominance, Influence, Steadiness, and Conscientiousness rather than as rigid
+    one-box types.
+- instrument_id: instr_disc
+  version_id: ver_disc_general
+  source_resource_ids:
+  - res_disc_overview
+  - res_disc_what_is_disc
+  quotation_status: paraphrase
+  id: clm_disc_workplace_application
+  claim_type: usage_claim
+  claim_text: Everything DiSC positions the model as a tool for communication, teamwork,
+    conflict discussion, and other workplace interaction workflows.

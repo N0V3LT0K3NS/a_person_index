@@ -159,6 +159,28 @@
         "res_cqs_overview"
       ],
       "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_cqs_predictive_validity",
+      "instrument_id": "instr_cqs",
+      "version_id": "ver_cqs_general",
+      "claim_type": "usage_claim",
+      "claim_text": "CQ materials present cultural intelligence as a measurable capability linked to effectiveness in culturally diverse work, leadership, and collaboration contexts.",
+      "source_resource_ids": [
+        "res_cqs_overview"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_cqs_developmental_reporting",
+      "instrument_id": "instr_cqs",
+      "version_id": "ver_cqs_general",
+      "claim_type": "implementation_claim",
+      "claim_text": "The CQ Pro assessment is positioned as both a benchmark and a developmental report for improving how a person functions in cross-cultural situations.",
+      "source_resource_ids": [
+        "res_cqs_cq_pro_assessment"
+      ],
+      "quotation_status": "paraphrase"
     }
   ],
   "resources": [
@@ -668,6 +690,19 @@
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_cqs_behavior_gap_limit",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_cqs",
+      "inference_type": "practical_limit",
+      "text": "CQS is valuable because it names a context-specific capability layer, but self-report cultural adaptability can diverge sharply from observed intercultural behavior under stress or ambiguity.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_big_five"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
     }
   ],
   "crosswalks": [
@@ -692,6 +727,14 @@
       "severity": "medium",
       "description": "Self-report scores can be mistaken for demonstrated intercultural skill.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    },
+    {
+      "id": "rsk_cqs_self_report_inflation",
+      "instrument_id": "instr_cqs",
+      "risk_type": "self_report_distortion",
+      "severity": "medium",
+      "description": "Respondents can overestimate intercultural skill, especially when social desirability and global-minded self-image are in play.",
+      "mitigation": "Pair CQS with observed behavior, multisource feedback, or performance evidence in diverse contexts."
     }
   ],
   "use_cases": [
@@ -702,6 +745,14 @@
       "utility_type": "self_understanding",
       "suitability_level": "medium",
       "cautions": "Use alongside behavioral evidence when possible."
+    },
+    {
+      "id": "use_cqs_coaching",
+      "instrument_id": "instr_cqs",
+      "use_context": "coaching",
+      "utility_type": "developmental_reflection",
+      "suitability_level": "high",
+      "cautions": "Best used with concrete cultural scenarios and feedback loops rather than abstract self-ratings alone."
     }
   ],
   "notes": "# Cultural Intelligence Scale\n\n## What it is\nAn intercultural capability instrument organized around four factors: Drive, Knowledge, Strategy, and Action.\n\n## Why it matters\nCQS matters because it gives the registry a context-specific capability layer rather than another broad personality taxonomy. It is especially valuable when the question is whether someone can interpret and adapt across cultural settings.\n\n## What it is good for\n- intercultural training\n- research on cross-cultural effectiveness\n- global leadership development\n- reflection on cultural adaptability\n\n## What it is weaker at\n- whole-person personality description\n- symbolic or identity language\n- trait anchoring outside intercultural contexts\n- direct motive or attachment interpretation\n\n## Common misuse\nTreating self-report CQ as proof of real-world intercultural competence without behavioral evidence or situational context.\n"

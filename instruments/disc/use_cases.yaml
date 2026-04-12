@@ -5,3 +5,10 @@ use_cases:
   utility_type: self_understanding
   suitability_level: medium
   cautions: Useful for team language, weak for total personality explanation.
+- instrument_id: instr_disc
+  id: use_disc_team_design
+  use_context: team_design
+  utility_type: communication_adaptation
+  suitability_level: high
+  cautions: Most useful for team communication norms, not for assigning fixed identities
+    or career ceilings.

@@ -5,3 +5,11 @@ risks:
   severity: medium
   description: Self-report scores can be mistaken for demonstrated intercultural skill.
   mitigation: Treat the framework as one layer among several and preserve uncertainty.
+- instrument_id: instr_cqs
+  id: rsk_cqs_self_report_inflation
+  risk_type: self_report_distortion
+  severity: medium
+  description: Respondents can overestimate intercultural skill, especially when social
+    desirability and global-minded self-image are in play.
+  mitigation: Pair CQS with observed behavior, multisource feedback, or performance
+    evidence in diverse contexts.

@@ -155,6 +155,29 @@
         "res_disc_overview"
       ],
       "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_disc_style_patterns",
+      "instrument_id": "instr_disc",
+      "version_id": "ver_disc_general",
+      "claim_type": "construct_claim",
+      "claim_text": "Contemporary DiSC materials frame behavior as patterned combinations of Dominance, Influence, Steadiness, and Conscientiousness rather than as rigid one-box types.",
+      "source_resource_ids": [
+        "res_disc_what_is_disc"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_disc_workplace_application",
+      "instrument_id": "instr_disc",
+      "version_id": "ver_disc_general",
+      "claim_type": "usage_claim",
+      "claim_text": "Everything DiSC positions the model as a tool for communication, teamwork, conflict discussion, and other workplace interaction workflows.",
+      "source_resource_ids": [
+        "res_disc_overview",
+        "res_disc_what_is_disc"
+      ],
+      "quotation_status": "paraphrase"
     }
   ],
   "resources": [
@@ -668,6 +691,20 @@
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_disc_conversation_starter_limit",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "inference_type": "practical_limit",
+      "text": "DISC is strongest as a lightweight conversation starter about interaction style and weakest when it is stretched into motive analysis, deep personality theory, or selection logic.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_culture_index",
+        "instr_mbti"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
     }
   ],
   "crosswalks": [
@@ -740,6 +777,14 @@
       "severity": "medium",
       "description": "DISC profiles are easy to overuse as simplified workplace identity boxes.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    },
+    {
+      "id": "rsk_disc_workplace_misuse",
+      "instrument_id": "instr_disc",
+      "risk_type": "workplace_misuse",
+      "severity": "medium",
+      "description": "DISC labels are often reified into stable workplace identities or used to justify simplistic assumptions about collaboration, conflict, or role fit.",
+      "mitigation": "Use DiSC for communication prompts and avoid treating profile language as a full employment decision rule."
     }
   ],
   "use_cases": [
@@ -750,6 +795,14 @@
       "utility_type": "self_understanding",
       "suitability_level": "medium",
       "cautions": "Useful for team language, weak for total personality explanation."
+    },
+    {
+      "id": "use_disc_team_design",
+      "instrument_id": "instr_disc",
+      "use_context": "team_design",
+      "utility_type": "communication_adaptation",
+      "suitability_level": "high",
+      "cautions": "Most useful for team communication norms, not for assigning fixed identities or career ceilings."
     }
   ],
   "notes": "# DISC\n\n## What it is\nA behavioral style family organized around four broad style labels: Dominance, Influence, Steadiness, and Conscientiousness.\n\n## Why it matters\nDISC matters because it remains one of the most portable workplace personality languages. It is easy to teach, easy to remember, and widely used in training and team settings, even though the broader DISC ecosystem is fragmented across implementations.\n\n## What it is good for\n- communication shorthand\n- workplace training\n- team discussion\n- lightweight behavioral style reflection\n\n## What it is weaker at\n- deep motive language\n- construct precision across vendors\n- high-stakes personnel decisions\n- whole-person modeling\n\n## Common misuse\nUsing DISC profiles as rigid boxes for hiring, role assignment, or simplified judgments about capability.\n"

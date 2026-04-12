@@ -10,3 +10,15 @@ inferences:
   linked_entities: []
   author: house
   timestamp: '2026-04-11'
+- target_entity_type: instrument
+  target_entity_id: instr_cqs
+  linked_entities:
+  - instr_big_five
+  author: house
+  timestamp: '2026-04-11'
+  id: inf_cqs_behavior_gap_limit
+  inference_type: practical_limit
+  text: CQS is valuable because it names a context-specific capability layer, but
+    self-report cultural adaptability can diverge sharply from observed intercultural
+    behavior under stress or ambiguity.
+  confidence: high

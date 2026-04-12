@@ -10,3 +10,16 @@ inferences:
   linked_entities: []
   author: house
   timestamp: '2026-04-11'
+- target_entity_type: instrument
+  target_entity_id: instr_disc
+  linked_entities:
+  - instr_culture_index
+  - instr_mbti
+  author: house
+  timestamp: '2026-04-11'
+  id: inf_disc_conversation_starter_limit
+  inference_type: practical_limit
+  text: DISC is strongest as a lightweight conversation starter about interaction
+    style and weakest when it is stretched into motive analysis, deep personality
+    theory, or selection logic.
+  confidence: high

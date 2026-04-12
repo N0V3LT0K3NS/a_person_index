@@ -10,3 +10,16 @@ inferences:
   linked_entities: []
   author: house
   timestamp: '2026-04-11'
+- target_entity_type: instrument
+  target_entity_id: instr_culture_index
+  linked_entities:
+  - instr_disc
+  - instr_cliftonstrengths
+  author: house
+  timestamp: '2026-04-11'
+  id: inf_culture_index_opacity_limit
+  inference_type: practical_limit
+  text: Culture Index is explicitly optimized for managerial action, but the proprietary
+    and high-stakes nature of its deployment makes opacity a bigger practical problem
+    than in lower-stakes self-reflection tools.
+  confidence: high

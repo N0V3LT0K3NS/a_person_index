@@ -10,3 +10,16 @@ inferences:
   linked_entities: []
   author: house
   timestamp: '2026-04-11'
+- target_entity_type: instrument
+  target_entity_id: instr_hexaco
+  linked_entities:
+  - instr_big_five
+  - instr_enneagram
+  author: house
+  timestamp: '2026-04-11'
+  id: inf_hexaco_narrative_limit
+  inference_type: practical_limit
+  text: HEXACO is one of the strongest trait anchors in the registry, but like other
+    lexical trait models it is not optimized to name motive, defense, or narrative
+    identity in thick terms.
+  confidence: high

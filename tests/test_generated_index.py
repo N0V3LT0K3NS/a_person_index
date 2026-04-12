@@ -26,10 +26,10 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert len(search_payload["entries"]) == len(export_payload["instruments"])
     assert audit_payload["summary"]["instrument_count"] == len(export_payload["instruments"])
     assert audit_payload["summary"]["instruments_with_multiple_constructs"] == len(export_payload["instruments"])
-    assert audit_payload["summary"]["instruments_with_multiple_claims"] >= 7
-    assert audit_payload["summary"]["instruments_with_multiple_inferences"] >= 7
-    assert audit_payload["summary"]["instruments_with_multiple_risks"] >= 7
-    assert audit_payload["summary"]["instruments_with_multiple_use_cases"] >= 7
+    assert audit_payload["summary"]["instruments_with_multiple_claims"] >= 11
+    assert audit_payload["summary"]["instruments_with_multiple_inferences"] >= 11
+    assert audit_payload["summary"]["instruments_with_multiple_risks"] >= 11
+    assert audit_payload["summary"]["instruments_with_multiple_use_cases"] >= 11
 
     instrument_ids = {entry["id"] for entry in index_payload["instruments"]}
     assert {"instr_big_five", "instr_enneagram", "instr_mbti"}.issubset(instrument_ids)

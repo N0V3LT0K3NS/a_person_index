@@ -206,6 +206,28 @@
         "res_hexaco_overview"
       ],
       "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_hexaco_form_variants",
+      "instrument_id": "instr_hexaco",
+      "version_id": "ver_hexaco_general",
+      "claim_type": "implementation_claim",
+      "claim_text": "The HEXACO-PI-R is available in multiple questionnaire lengths and in both self-report and observer-report forms.",
+      "source_resource_ids": [
+        "res_hexaco_overview"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_hexaco_facet_structure",
+      "instrument_id": "instr_hexaco",
+      "version_id": "ver_hexaco_general",
+      "claim_type": "construct_claim",
+      "claim_text": "HEXACO materials describe each of the six broad dimensions through a facet structure rather than only top-level trait scores.",
+      "source_resource_ids": [
+        "res_hexaco_scale_descriptions"
+      ],
+      "quotation_status": "paraphrase"
     }
   ],
   "resources": [
@@ -717,6 +739,20 @@
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_hexaco_narrative_limit",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "inference_type": "practical_limit",
+      "text": "HEXACO is one of the strongest trait anchors in the registry, but like other lexical trait models it is not optimized to name motive, defense, or narrative identity in thick terms.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_big_five",
+        "instr_enneagram"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
     }
   ],
   "crosswalks": [
@@ -813,6 +849,14 @@
       "severity": "medium",
       "description": "Like other trait models, HEXACO can be overread as a total explanation of the person.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    },
+    {
+      "id": "rsk_hexaco_self_report_distortion",
+      "instrument_id": "instr_hexaco",
+      "risk_type": "self_report_distortion",
+      "severity": "medium",
+      "description": "HEXACO self-report results can still be shifted by impression management, self-deception, and situational answering.",
+      "mitigation": "Use observer reports, repeated administrations, or external behavioral evidence when the stakes are high."
     }
   ],
   "use_cases": [
@@ -823,6 +867,14 @@
       "utility_type": "self_understanding",
       "suitability_level": "medium",
       "cautions": "Useful as broad descriptive scaffolding, not as a complete model of motive or meaning."
+    },
+    {
+      "id": "use_hexaco_research",
+      "instrument_id": "instr_hexaco",
+      "use_context": "research",
+      "utility_type": "comparative_trait_analysis",
+      "suitability_level": "high",
+      "cautions": "Particularly strong for trait comparison and research synthesis, but still incomplete as a stand-alone person model."
     }
   ],
   "notes": "# HEXACO Personality Inventory\n\n## What it is\nA six-factor trait personality framework that extends Big Five-like models with the additional domain of Honesty-Humility.\n\n## Why it matters\nHEXACO matters because it preserves the practical value of broad trait description while making room for a dimension that often matters in moral, interpersonal, and prosocial interpretation. It is one of the strongest neighboring anchor systems to Big Five in the registry.\n\n## What it is good for\n- broad trait description\n- research comparison to Big Five\n- honesty-humility analysis\n- synthesis anchoring\n\n## What it is weaker at\n- motive language\n- symbolic identity language\n- deep developmental narrative\n- context-rich relational interpretation\n\n## Common misuse\nTreating six-factor trait outputs as a full account of character, ethics, or relational behavior.\n"

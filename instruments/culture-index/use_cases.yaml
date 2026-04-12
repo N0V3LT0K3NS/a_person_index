@@ -6,3 +6,10 @@ use_cases:
   suitability_level: medium
   cautions: Treat as a managerial heuristic with guardrails, not as an objective basis
     for high-stakes employment decisions.
+- instrument_id: instr_culture_index
+  id: use_culture_index_team_design
+  use_context: team_design
+  utility_type: communication_adaptation
+  suitability_level: medium
+  cautions: Useful as a team heuristic only if the organization preserves uncertainty
+    and avoids role essentialism.

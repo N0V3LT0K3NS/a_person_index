@@ -6,3 +6,10 @@ use_cases:
   suitability_level: medium
   cautions: Useful as broad descriptive scaffolding, not as a complete model of motive
     or meaning.
+- instrument_id: instr_hexaco
+  id: use_hexaco_research
+  use_context: research
+  utility_type: comparative_trait_analysis
+  suitability_level: high
+  cautions: Particularly strong for trait comparison and research synthesis, but still
+    incomplete as a stand-alone person model.

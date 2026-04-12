@@ -233,6 +233,28 @@
         "res_culture_index_overview"
       ],
       "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_culture_index_free_choice_method",
+      "instrument_id": "instr_culture_index",
+      "version_id": "ver_culture_index_general",
+      "claim_type": "implementation_claim",
+      "claim_text": "Culture Index materials describe the assessment as using a fast adjective-based, free-choice format to infer stable work-related behavioral tendencies.",
+      "source_resource_ids": [
+        "res_culture_index_overview"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_culture_index_role_fit_usage",
+      "instrument_id": "instr_culture_index",
+      "version_id": "ver_culture_index_general",
+      "claim_type": "usage_claim",
+      "claim_text": "Culture Index positions its flagship C-Analyst output for role fit, management, and hiring-related decision support inside organizations.",
+      "source_resource_ids": [
+        "res_culture_index_c_analyst"
+      ],
+      "quotation_status": "paraphrase"
     }
   ],
   "resources": [
@@ -736,6 +758,20 @@
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_culture_index_opacity_limit",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_culture_index",
+      "inference_type": "practical_limit",
+      "text": "Culture Index is explicitly optimized for managerial action, but the proprietary and high-stakes nature of its deployment makes opacity a bigger practical problem than in lower-stakes self-reflection tools.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_disc",
+        "instr_cliftonstrengths"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
     }
   ],
   "crosswalks": [
@@ -760,6 +796,14 @@
       "severity": "medium",
       "description": "Using proprietary workplace outputs for hiring, filtering, or succession decisions can amplify false precision, bias, and overconfidence.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    },
+    {
+      "id": "rsk_culture_index_black_box_hiring",
+      "instrument_id": "instr_culture_index",
+      "risk_type": "workplace_misuse",
+      "severity": "high",
+      "description": "When proprietary profile outputs are treated as objective hiring truth, they can harden bias and false precision inside employment decisions.",
+      "mitigation": "Keep Culture Index subordinate to structured interviews, job-relevant evidence, and explicit adverse-impact review."
     }
   ],
   "use_cases": [
@@ -770,6 +814,14 @@
       "utility_type": "self_understanding",
       "suitability_level": "medium",
       "cautions": "Treat as a managerial heuristic with guardrails, not as an objective basis for high-stakes employment decisions."
+    },
+    {
+      "id": "use_culture_index_team_design",
+      "instrument_id": "instr_culture_index",
+      "use_context": "team_design",
+      "utility_type": "communication_adaptation",
+      "suitability_level": "medium",
+      "cautions": "Useful as a team heuristic only if the organization preserves uncertainty and avoids role essentialism."
     }
   ],
   "notes": "# Culture Index\n\n## What it is\nA proprietary workplace assessment system that uses a brief survey to model work-related traits for hiring, management, and organizational decision-making.\n\n## Why it matters\nCulture Index matters because it sits at the high-stakes end of the workplace-assessment spectrum. It is designed less for personal reflection than for operational decisions about fit, performance, and team design.\n\n## What it is good for\n- managerial discussion of work-style patterns\n- team planning language\n- organizational role-fit conversations\n- studying proprietary workplace assessment culture\n\n## What it is weaker at\n- transparent psychometric scrutiny\n- whole-person description\n- reflective self-understanding\n- safe use in consequential employment decisions\n\n## Common misuse\nTreating a proprietary work-traits profile as objective truth in hiring or succession decisions without strong validity scrutiny and human oversight.\n"

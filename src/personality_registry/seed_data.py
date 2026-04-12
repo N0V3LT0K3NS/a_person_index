@@ -3506,6 +3506,26 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
     },
     "cqs": {
         "include_primary_construct": False,
+        "extra_claims": [
+            {
+                "id": "clm_cqs_predictive_validity",
+                "claim_type": "usage_claim",
+                "claim_text": (
+                    "CQ materials present cultural intelligence as a measurable capability linked to effectiveness in "
+                    "culturally diverse work, leadership, and collaboration contexts."
+                ),
+                "source_resource_ids": ["res_cqs_overview"],
+            },
+            {
+                "id": "clm_cqs_developmental_reporting",
+                "claim_type": "implementation_claim",
+                "claim_text": (
+                    "The CQ Pro assessment is positioned as both a benchmark and a developmental report for improving "
+                    "how a person functions in cross-cultural situations."
+                ),
+                "source_resource_ids": ["res_cqs_cq_pro_assessment"],
+            },
+        ],
         "extra_constructs": [
             {
                 "id": "con_cqs_drive",
@@ -3540,6 +3560,18 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "scoring_type": "continuous",
             },
         ],
+        "extra_inferences": [
+            {
+                "id": "inf_cqs_behavior_gap_limit",
+                "inference_type": "practical_limit",
+                "text": (
+                    "CQS is valuable because it names a context-specific capability layer, but self-report cultural "
+                    "adaptability can diverge sharply from observed intercultural behavior under stress or ambiguity."
+                ),
+                "confidence": "high",
+                "linked_entities": ["instr_big_five"],
+            }
+        ],
         "extra_resources": [
             {
                 "id": "res_cqs_cq_pro_assessment",
@@ -3549,6 +3581,27 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "publisher": "Cultural Intelligence Center",
                 "officiality": "official",
                 "notes": "Official product page describing the CQ Pro assessment and its use in development and benchmarking.",
+            }
+        ],
+        "extra_risks": [
+            {
+                "id": "rsk_cqs_self_report_inflation",
+                "risk_type": "self_report_distortion",
+                "severity": "medium",
+                "description": (
+                    "Respondents can overestimate intercultural skill, especially when social desirability and global-minded "
+                    "self-image are in play."
+                ),
+                "mitigation": "Pair CQS with observed behavior, multisource feedback, or performance evidence in diverse contexts.",
+            }
+        ],
+        "extra_use_cases": [
+            {
+                "id": "use_cqs_coaching",
+                "use_context": "coaching",
+                "utility_type": "developmental_reflection",
+                "suitability_level": "high",
+                "cautions": "Best used with concrete cultural scenarios and feedback loops rather than abstract self-ratings alone.",
             }
         ],
         "crosswalks": [
@@ -3571,6 +3624,26 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
     },
     "culture-index": {
         "include_primary_construct": False,
+        "extra_claims": [
+            {
+                "id": "clm_culture_index_free_choice_method",
+                "claim_type": "implementation_claim",
+                "claim_text": (
+                    "Culture Index materials describe the assessment as using a fast adjective-based, free-choice format "
+                    "to infer stable work-related behavioral tendencies."
+                ),
+                "source_resource_ids": ["res_culture_index_overview"],
+            },
+            {
+                "id": "clm_culture_index_role_fit_usage",
+                "claim_type": "usage_claim",
+                "claim_text": (
+                    "Culture Index positions its flagship C-Analyst output for role fit, management, and hiring-related "
+                    "decision support inside organizations."
+                ),
+                "source_resource_ids": ["res_culture_index_c_analyst"],
+            },
+        ],
         "extra_constructs": [
             {
                 "id": "con_culture_index_autonomy",
@@ -3629,6 +3702,18 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "scoring_type": "continuous",
             },
         ],
+        "extra_inferences": [
+            {
+                "id": "inf_culture_index_opacity_limit",
+                "inference_type": "practical_limit",
+                "text": (
+                    "Culture Index is explicitly optimized for managerial action, but the proprietary and high-stakes nature "
+                    "of its deployment makes opacity a bigger practical problem than in lower-stakes self-reflection tools."
+                ),
+                "confidence": "high",
+                "linked_entities": ["instr_disc", "instr_cliftonstrengths"],
+            }
+        ],
         "extra_resources": [
             {
                 "id": "res_culture_index_c_analyst",
@@ -3638,6 +3723,27 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "publisher": "Culture Index, LLC",
                 "officiality": "official",
                 "notes": "Official product page describing the flagship Culture Index assessment and its role in talent and fit decisions.",
+            }
+        ],
+        "extra_risks": [
+            {
+                "id": "rsk_culture_index_black_box_hiring",
+                "risk_type": "workplace_misuse",
+                "severity": "high",
+                "description": (
+                    "When proprietary profile outputs are treated as objective hiring truth, they can harden bias and "
+                    "false precision inside employment decisions."
+                ),
+                "mitigation": "Keep Culture Index subordinate to structured interviews, job-relevant evidence, and explicit adverse-impact review.",
+            }
+        ],
+        "extra_use_cases": [
+            {
+                "id": "use_culture_index_team_design",
+                "use_context": "team_design",
+                "utility_type": "communication_adaptation",
+                "suitability_level": "medium",
+                "cautions": "Useful as a team heuristic only if the organization preserves uncertainty and avoids role essentialism.",
             }
         ],
         "crosswalks": [
@@ -3817,6 +3923,26 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
     },
     "disc": {
         "include_primary_construct": False,
+        "extra_claims": [
+            {
+                "id": "clm_disc_style_patterns",
+                "claim_type": "construct_claim",
+                "claim_text": (
+                    "Contemporary DiSC materials frame behavior as patterned combinations of Dominance, Influence, "
+                    "Steadiness, and Conscientiousness rather than as rigid one-box types."
+                ),
+                "source_resource_ids": ["res_disc_what_is_disc"],
+            },
+            {
+                "id": "clm_disc_workplace_application",
+                "claim_type": "usage_claim",
+                "claim_text": (
+                    "Everything DiSC positions the model as a tool for communication, teamwork, conflict discussion, "
+                    "and other workplace interaction workflows."
+                ),
+                "source_resource_ids": ["res_disc_overview", "res_disc_what_is_disc"],
+            },
+        ],
         "extra_constructs": [
             {
                 "id": "con_disc_dominance",
@@ -3851,6 +3977,18 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "scoring_type": "continuous",
             },
         ],
+        "extra_inferences": [
+            {
+                "id": "inf_disc_conversation_starter_limit",
+                "inference_type": "practical_limit",
+                "text": (
+                    "DISC is strongest as a lightweight conversation starter about interaction style and weakest when it "
+                    "is stretched into motive analysis, deep personality theory, or selection logic."
+                ),
+                "confidence": "high",
+                "linked_entities": ["instr_culture_index", "instr_mbti"],
+            }
+        ],
         "extra_resources": [
             {
                 "id": "res_disc_what_is_disc",
@@ -3860,6 +3998,27 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "publisher": "Everything DiSC / John Wiley & Sons",
                 "officiality": "semi_official",
                 "notes": "Commercial overview page describing the DiSC model and common workplace uses.",
+            }
+        ],
+        "extra_risks": [
+            {
+                "id": "rsk_disc_workplace_misuse",
+                "risk_type": "workplace_misuse",
+                "severity": "medium",
+                "description": (
+                    "DISC labels are often reified into stable workplace identities or used to justify simplistic assumptions "
+                    "about collaboration, conflict, or role fit."
+                ),
+                "mitigation": "Use DiSC for communication prompts and avoid treating profile language as a full employment decision rule.",
+            }
+        ],
+        "extra_use_cases": [
+            {
+                "id": "use_disc_team_design",
+                "use_context": "team_design",
+                "utility_type": "communication_adaptation",
+                "suitability_level": "high",
+                "cautions": "Most useful for team communication norms, not for assigning fixed identities or career ceilings.",
             }
         ],
         "crosswalks": [
@@ -3939,6 +4098,24 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
     },
     "hexaco": {
         "include_primary_construct": False,
+        "extra_claims": [
+            {
+                "id": "clm_hexaco_form_variants",
+                "claim_type": "implementation_claim",
+                "claim_text": (
+                    "The HEXACO-PI-R is available in multiple questionnaire lengths and in both self-report and observer-report forms."
+                ),
+                "source_resource_ids": ["res_hexaco_overview"],
+            },
+            {
+                "id": "clm_hexaco_facet_structure",
+                "claim_type": "construct_claim",
+                "claim_text": (
+                    "HEXACO materials describe each of the six broad dimensions through a facet structure rather than only top-level trait scores."
+                ),
+                "source_resource_ids": ["res_hexaco_scale_descriptions"],
+            },
+        ],
         "extra_constructs": [
             {
                 "id": "con_hexaco_honesty_humility",
@@ -3989,6 +4166,18 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "scoring_type": "continuous",
             },
         ],
+        "extra_inferences": [
+            {
+                "id": "inf_hexaco_narrative_limit",
+                "inference_type": "practical_limit",
+                "text": (
+                    "HEXACO is one of the strongest trait anchors in the registry, but like other lexical trait models it is "
+                    "not optimized to name motive, defense, or narrative identity in thick terms."
+                ),
+                "confidence": "high",
+                "linked_entities": ["instr_big_five", "instr_enneagram"],
+            }
+        ],
         "extra_resources": [
             {
                 "id": "res_hexaco_scale_descriptions",
@@ -3998,6 +4187,26 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "publisher": "HEXACO",
                 "officiality": "official",
                 "notes": "Official descriptions of the six HEXACO dimensions and their facet structure.",
+            }
+        ],
+        "extra_risks": [
+            {
+                "id": "rsk_hexaco_self_report_distortion",
+                "risk_type": "self_report_distortion",
+                "severity": "medium",
+                "description": (
+                    "HEXACO self-report results can still be shifted by impression management, self-deception, and situational answering."
+                ),
+                "mitigation": "Use observer reports, repeated administrations, or external behavioral evidence when the stakes are high.",
+            }
+        ],
+        "extra_use_cases": [
+            {
+                "id": "use_hexaco_research",
+                "use_context": "research",
+                "utility_type": "comparative_trait_analysis",
+                "suitability_level": "high",
+                "cautions": "Particularly strong for trait comparison and research synthesis, but still incomplete as a stand-alone person model.",
             }
         ],
         "crosswalks": [

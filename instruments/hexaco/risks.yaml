@@ -6,3 +6,11 @@ risks:
   description: Like other trait models, HEXACO can be overread as a total explanation
     of the person.
   mitigation: Treat the framework as one layer among several and preserve uncertainty.
+- instrument_id: instr_hexaco
+  id: rsk_hexaco_self_report_distortion
+  risk_type: self_report_distortion
+  severity: medium
+  description: HEXACO self-report results can still be shifted by impression management,
+    self-deception, and situational answering.
+  mitigation: Use observer reports, repeated administrations, or external behavioral
+    evidence when the stakes are high.

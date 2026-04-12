@@ -9,3 +9,21 @@ claims:
   source_resource_ids:
   - res_hexaco_overview
   quotation_status: paraphrase
+- instrument_id: instr_hexaco
+  version_id: ver_hexaco_general
+  source_resource_ids:
+  - res_hexaco_overview
+  quotation_status: paraphrase
+  id: clm_hexaco_form_variants
+  claim_type: implementation_claim
+  claim_text: The HEXACO-PI-R is available in multiple questionnaire lengths and in
+    both self-report and observer-report forms.
+- instrument_id: instr_hexaco
+  version_id: ver_hexaco_general
+  source_resource_ids:
+  - res_hexaco_scale_descriptions
+  quotation_status: paraphrase
+  id: clm_hexaco_facet_structure
+  claim_type: construct_claim
+  claim_text: HEXACO materials describe each of the six broad dimensions through a
+    facet structure rather than only top-level trait scores.

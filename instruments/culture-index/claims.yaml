@@ -9,3 +9,21 @@ claims:
   source_resource_ids:
   - res_culture_index_overview
   quotation_status: paraphrase
+- instrument_id: instr_culture_index
+  version_id: ver_culture_index_general
+  source_resource_ids:
+  - res_culture_index_overview
+  quotation_status: paraphrase
+  id: clm_culture_index_free_choice_method
+  claim_type: implementation_claim
+  claim_text: Culture Index materials describe the assessment as using a fast adjective-based,
+    free-choice format to infer stable work-related behavioral tendencies.
+- instrument_id: instr_culture_index
+  version_id: ver_culture_index_general
+  source_resource_ids:
+  - res_culture_index_c_analyst
+  quotation_status: paraphrase
+  id: clm_culture_index_role_fit_usage
+  claim_type: usage_claim
+  claim_text: Culture Index positions its flagship C-Analyst output for role fit,
+    management, and hiring-related decision support inside organizations.

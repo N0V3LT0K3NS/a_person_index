@@ -9,3 +9,22 @@ claims:
   source_resource_ids:
   - res_cqs_overview
   quotation_status: paraphrase
+- instrument_id: instr_cqs
+  version_id: ver_cqs_general
+  source_resource_ids:
+  - res_cqs_overview
+  quotation_status: paraphrase
+  id: clm_cqs_predictive_validity
+  claim_type: usage_claim
+  claim_text: CQ materials present cultural intelligence as a measurable capability
+    linked to effectiveness in culturally diverse work, leadership, and collaboration
+    contexts.
+- instrument_id: instr_cqs
+  version_id: ver_cqs_general
+  source_resource_ids:
+  - res_cqs_cq_pro_assessment
+  quotation_status: paraphrase
+  id: clm_cqs_developmental_reporting
+  claim_type: implementation_claim
+  claim_text: The CQ Pro assessment is positioned as both a benchmark and a developmental
+    report for improving how a person functions in cross-cultural situations.
