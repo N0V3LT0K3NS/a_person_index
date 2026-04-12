@@ -10,3 +10,14 @@ inferences:
   linked_entities: []
   author: house
   timestamp: '2026-04-11'
+- target_entity_type: instrument
+  target_entity_id: instr_natal_astrology
+  linked_entities:
+  - instr_human_design
+  author: house
+  timestamp: '2026-04-11'
+  id: inf_natal_astrology_empirical_limit
+  inference_type: practical_limit
+  text: Natal astrology is a powerful symbolic and narrative language, but it should
+    be treated as interpretive meaning-making rather than evidence-based measurement.
+  confidence: high

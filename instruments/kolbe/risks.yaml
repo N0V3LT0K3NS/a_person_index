@@ -7,3 +7,11 @@ risks:
     and role-fit claims, especially when stable action style is treated as a total
     capacity measure.
   mitigation: Treat the framework as one layer among several and preserve uncertainty.
+- instrument_id: instr_kolbe
+  id: rsk_kolbe_role_essentialism
+  risk_type: workplace_misuse
+  severity: medium
+  description: Stable action-style language can be overextended into claims about
+    who should or should not hold a role, especially in hiring or job-fit settings.
+  mitigation: Treat Kolbe as workflow insight, not as a comprehensive talent or hiring
+    screen.

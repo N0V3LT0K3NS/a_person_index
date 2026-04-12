@@ -10,3 +10,16 @@ inferences:
   linked_entities: []
   author: house
   timestamp: '2026-04-11'
+- target_entity_type: instrument
+  target_entity_id: instr_human_design
+  linked_entities:
+  - instr_natal_astrology
+  - instr_enneagram
+  author: house
+  timestamp: '2026-04-11'
+  id: inf_human_design_practitioner_burden
+  inference_type: practical_limit
+  text: 'Human Design carries a very high practitioner and community burden: meaning
+    is often stabilized by teachers, lineages, and ongoing interpretation rather than
+    by a transparent measurement model.'
+  confidence: high

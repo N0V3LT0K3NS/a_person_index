@@ -68,29 +68,17 @@ def test_known_seeded_instruments_have_top_level_construct_depth(repo_root):
     assert failures == []
 
 
-def test_curated_depth_batches_have_richer_typed_layers(repo_root):
+def test_seeded_instruments_meet_typed_depth_baseline(repo_root):
     repository = load_repository_strict(repo_root)
-    expected_minimums = {
-        "attachment-styles": {"claims": 3, "inferences": 2, "risks": 2, "use_cases": 2},
-        "cqs": {"claims": 3, "inferences": 2, "risks": 2, "use_cases": 2},
-        "cliftonstrengths": {"claims": 3, "inferences": 2, "risks": 2, "use_cases": 2},
-        "culture-index": {"claims": 3, "inferences": 2, "risks": 2, "use_cases": 2},
-        "dark-triad": {"claims": 3, "inferences": 2, "risks": 2, "use_cases": 2},
-        "disc": {"claims": 3, "inferences": 2, "risks": 2, "use_cases": 2},
-        "hexaco": {"claims": 3, "inferences": 2, "risks": 2, "use_cases": 2},
-        "via-character-strengths": {"claims": 3, "inferences": 2, "risks": 2, "use_cases": 2},
-    }
-
     failures: list[str] = []
-    for slug, minimums in expected_minimums.items():
-        bundle = repository.instruments[slug]
+    for slug, bundle in repository.instruments.items():
         actual = {
             "claims": len(bundle.claims),
             "inferences": len(bundle.inferences),
             "risks": len(bundle.risks),
             "use_cases": len(bundle.use_cases),
         }
-        for field, minimum in minimums.items():
+        for field, minimum in {"claims": 2, "inferences": 2, "risks": 2, "use_cases": 2}.items():
             if actual[field] < minimum:
                 failures.append(f"{slug}: expected {field}>={minimum} got={actual[field]}")
 

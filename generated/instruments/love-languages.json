@@ -181,6 +181,28 @@
         "res_love_languages_overview"
       ],
       "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_love_languages_five_categories",
+      "instrument_id": "instr_love_languages",
+      "version_id": "ver_love_languages_general",
+      "claim_type": "construct_claim",
+      "claim_text": "Official Love Languages materials organize preferred expressions of care into five categories: Words of Affirmation, Quality Time, Receiving Gifts, Acts of Service, and Physical Touch.",
+      "source_resource_ids": [
+        "res_love_languages_overview"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_love_languages_relational_application",
+      "instrument_id": "instr_love_languages",
+      "version_id": "ver_love_languages_general",
+      "claim_type": "usage_claim",
+      "claim_text": "The Love Languages ecosystem positions the framework as a practical relationship tool for improving understanding and communication in romantic and family settings.",
+      "source_resource_ids": [
+        "res_love_languages_home"
+      ],
+      "quotation_status": "paraphrase"
     }
   ],
   "resources": [
@@ -694,6 +716,19 @@
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_love_languages_low_resolution_limit",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "inference_type": "practical_limit",
+      "text": "Love Languages endures because it is low-friction and easy to use, but that same simplicity leaves it too low-resolution to capture attachment dynamics, power, conflict, or developmental history.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_attachment_styles"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
     }
   ],
   "crosswalks": [
@@ -718,6 +753,14 @@
       "severity": "medium",
       "description": "Low-resolution categories can flatten complex relational dynamics into a single favorite language.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    },
+    {
+      "id": "rsk_love_languages_relational_reductionism",
+      "instrument_id": "instr_love_languages",
+      "risk_type": "overinterpretation",
+      "severity": "medium",
+      "description": "Relationship problems can be reduced to a single favorite language, obscuring conflict style, attachment, resentment, or structural issues.",
+      "mitigation": "Use the framework as a conversation opener and pair it with richer models of relationship dynamics."
     }
   ],
   "use_cases": [
@@ -728,6 +771,14 @@
       "utility_type": "self_understanding",
       "suitability_level": "medium",
       "cautions": "Useful as a conversation opener, not as a full relationship model."
+    },
+    {
+      "id": "use_love_languages_relationship_support",
+      "instrument_id": "instr_love_languages",
+      "use_context": "relationship_support",
+      "utility_type": "communication_adaptation",
+      "suitability_level": "medium",
+      "cautions": "Helpful for naming preference mismatches, but too thin to stand alone as a relationship theory."
     }
   ],
   "notes": "# The Five Love Languages\n\n## What it is\nA five-category relational preference framework describing preferred ways of expressing and receiving affection.\n\n## Why it matters\nLove Languages matters because it is one of the most culturally sticky low-complexity relationship vocabularies in circulation. It is weak psychometrically but powerful as a conversational shorthand.\n\n## What it is good for\n- relationship conversations\n- low-friction self-reflection\n- identifying preferred expressions of care\n- lightweight communication repair\n\n## What it is weaker at\n- psychometric rigor\n- attachment and trauma dynamics\n- whole-person relational modeling\n- context sensitivity and change over time\n\n## Common misuse\nReducing complex relational conflict to one fixed love language or treating the framework as a full theory of intimacy.\n"

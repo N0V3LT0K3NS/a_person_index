@@ -65,10 +65,10 @@ def test_audit_summary_reflects_seed_coverage(repo_root):
     assert payload["summary"]["instruments_with_crosswalks"] == 15
     assert payload["summary"]["instruments_with_multiple_resources"] == 15
     assert payload["summary"]["instruments_with_multiple_constructs"] == 15
-    assert payload["summary"]["instruments_with_multiple_claims"] >= 11
-    assert payload["summary"]["instruments_with_multiple_inferences"] >= 11
-    assert payload["summary"]["instruments_with_multiple_risks"] >= 11
-    assert payload["summary"]["instruments_with_multiple_use_cases"] >= 11
+    assert payload["summary"]["instruments_with_multiple_claims"] == 15
+    assert payload["summary"]["instruments_with_multiple_inferences"] == 15
+    assert payload["summary"]["instruments_with_multiple_risks"] == 15
+    assert payload["summary"]["instruments_with_multiple_use_cases"] == 15
 
 
 def test_audit_filter_surfaces_missing_official_resources(repo_root):
@@ -81,10 +81,7 @@ def test_audit_filter_surfaces_missing_official_resources(repo_root):
 def test_audit_filter_surfaces_thin_claim_layers(repo_root):
     repository = load_repository_strict(repo_root)
     payload = audit_repository(repository, needs_multiple_claims=True)
-    result_ids = {entry["instrument_id"] for entry in payload["instruments"]}
-    assert "instr_attachment_styles" not in result_ids
-    assert "instr_cliftonstrengths" not in result_ids
-    assert {"instr_human_design", "instr_kolbe", "instr_love_languages"}.issubset(result_ids)
+    assert payload["instruments"] == []
 
 
 def test_show_instrument_returns_full_record(repo_root):

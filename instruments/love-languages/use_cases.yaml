@@ -5,3 +5,10 @@ use_cases:
   utility_type: self_understanding
   suitability_level: medium
   cautions: Useful as a conversation opener, not as a full relationship model.
+- instrument_id: instr_love_languages
+  id: use_love_languages_relationship_support
+  use_context: relationship_support
+  utility_type: communication_adaptation
+  suitability_level: medium
+  cautions: Helpful for naming preference mismatches, but too thin to stand alone
+    as a relationship theory.

@@ -6,3 +6,11 @@ risks:
   description: Low-resolution categories can flatten complex relational dynamics into
     a single favorite language.
   mitigation: Treat the framework as one layer among several and preserve uncertainty.
+- instrument_id: instr_love_languages
+  id: rsk_love_languages_relational_reductionism
+  risk_type: overinterpretation
+  severity: medium
+  description: Relationship problems can be reduced to a single favorite language,
+    obscuring conflict style, attachment, resentment, or structural issues.
+  mitigation: Use the framework as a conversation opener and pair it with richer models
+    of relationship dynamics.

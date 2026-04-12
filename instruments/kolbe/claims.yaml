@@ -9,3 +9,21 @@ claims:
   source_resource_ids:
   - res_kolbe_overview
   quotation_status: paraphrase
+- instrument_id: instr_kolbe
+  version_id: ver_kolbe_general
+  source_resource_ids:
+  - res_kolbe_overview
+  quotation_status: paraphrase
+  id: clm_kolbe_action_modes
+  claim_type: construct_claim
+  claim_text: 'Kolbe materials describe conative action through four Action Modes:
+    Fact Finder, Follow Thru, Quick Start, and Implementor.'
+- instrument_id: instr_kolbe
+  version_id: ver_kolbe_general
+  source_resource_ids:
+  - res_kolbe_retest_reliability
+  quotation_status: paraphrase
+  id: clm_kolbe_retest_stability
+  claim_type: evidence_claim
+  claim_text: Kolbe publishes test-retest evidence in support of the claim that Action
+    Mode patterns are relatively stable over time.

@@ -9,3 +9,21 @@ claims:
   source_resource_ids:
   - res_natal_astrology_overview
   quotation_status: paraphrase
+- instrument_id: instr_natal_astrology
+  version_id: ver_natal_astrology_general
+  source_resource_ids:
+  - res_natal_astrology_astrowiki
+  quotation_status: paraphrase
+  id: clm_natal_astrology_chart_components
+  claim_type: construct_claim
+  claim_text: Natal astrology interprets personality and life themes through the combined
+    symbolism of planets, signs, houses, and aspects within a birth chart.
+- instrument_id: instr_natal_astrology
+  version_id: ver_natal_astrology_general
+  source_resource_ids:
+  - res_natal_astrology_overview
+  quotation_status: paraphrase
+  id: clm_natal_astrology_birth_data_requirement
+  claim_type: implementation_claim
+  claim_text: Birth-chart tools position exact birth date, time, and location as the
+    required inputs for generating a natal chart.

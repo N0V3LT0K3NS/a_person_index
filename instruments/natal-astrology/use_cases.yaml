@@ -5,3 +5,10 @@ use_cases:
   utility_type: self_understanding
   suitability_level: medium
   cautions: Keep empirical, symbolic, and interpretive layers clearly separated.
+- instrument_id: instr_natal_astrology
+  id: use_natal_astrology_coaching
+  use_context: coaching
+  utility_type: symbolic_reflection
+  suitability_level: medium
+  cautions: Useful for symbolic reflection only when the interpretive nature of the
+    system stays explicit.

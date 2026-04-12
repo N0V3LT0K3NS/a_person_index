@@ -8,3 +8,21 @@ claims:
   source_resource_ids:
   - res_human_design_overview
   quotation_status: paraphrase
+- instrument_id: instr_human_design
+  version_id: ver_human_design_general
+  source_resource_ids:
+  - res_human_design_overview
+  quotation_status: paraphrase
+  id: clm_human_design_lineage_synthesis
+  claim_type: theoretical_claim
+  claim_text: Human Design presents itself as a synthesis of multiple esoteric and
+    scientific lineages rather than as a standard psychometric personality inventory.
+- instrument_id: instr_human_design
+  version_id: ver_human_design_general
+  source_resource_ids:
+  - res_human_design_chart
+  quotation_status: paraphrase
+  id: clm_human_design_chart_outputs
+  claim_type: implementation_claim
+  claim_text: Official chart-generation materials position birth data as sufficient
+    to generate a BodyGraph with typed outputs such as Type, Authority, and Profile.

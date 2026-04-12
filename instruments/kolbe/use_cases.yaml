@@ -6,3 +6,10 @@ use_cases:
   suitability_level: medium
   cautions: Useful for workflow and task-fit discussion, weak as a total person model
     or unilateral hiring screen.
+- instrument_id: instr_kolbe
+  id: use_kolbe_team_design
+  use_context: team_design
+  utility_type: workflow_design
+  suitability_level: high
+  cautions: Useful for execution and handoff design, but weak when converted into
+    fixed judgments about total capability.

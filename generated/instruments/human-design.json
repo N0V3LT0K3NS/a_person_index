@@ -157,6 +157,28 @@
         "res_human_design_overview"
       ],
       "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_human_design_lineage_synthesis",
+      "instrument_id": "instr_human_design",
+      "version_id": "ver_human_design_general",
+      "claim_type": "theoretical_claim",
+      "claim_text": "Human Design presents itself as a synthesis of multiple esoteric and scientific lineages rather than as a standard psychometric personality inventory.",
+      "source_resource_ids": [
+        "res_human_design_overview"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_human_design_chart_outputs",
+      "instrument_id": "instr_human_design",
+      "version_id": "ver_human_design_general",
+      "claim_type": "implementation_claim",
+      "claim_text": "Official chart-generation materials position birth data as sufficient to generate a BodyGraph with typed outputs such as Type, Authority, and Profile.",
+      "source_resource_ids": [
+        "res_human_design_chart"
+      ],
+      "quotation_status": "paraphrase"
     }
   ],
   "resources": [
@@ -682,6 +704,20 @@
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_human_design_practitioner_burden",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "inference_type": "practical_limit",
+      "text": "Human Design carries a very high practitioner and community burden: meaning is often stabilized by teachers, lineages, and ongoing interpretation rather than by a transparent measurement model.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_natal_astrology",
+        "instr_enneagram"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
     }
   ],
   "crosswalks": [
@@ -706,6 +742,14 @@
       "severity": "medium",
       "description": "Because the system presents itself as a precise bodygraph-based blueprint, users can externalize agency to chart mechanics, teachings, or practitioners.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    },
+    {
+      "id": "rsk_human_design_identity_capture",
+      "instrument_id": "instr_human_design",
+      "risk_type": "identity_capture",
+      "severity": "high",
+      "description": "Because Human Design offers a thick cosmology and precise chart language, users can fuse strongly with type, authority, or profile labels and externalize agency to the system.",
+      "mitigation": "Use Human Design as symbolic reflection only if the user preserves agency, context, and the right to disagree with the chart."
     }
   ],
   "use_cases": [
@@ -716,6 +760,14 @@
       "utility_type": "self_understanding",
       "suitability_level": "medium",
       "cautions": "Treat as symbolic meaning language and community practice, not as empirical person measurement."
+    },
+    {
+      "id": "use_human_design_coaching",
+      "instrument_id": "instr_human_design",
+      "use_context": "coaching",
+      "utility_type": "symbolic_reflection",
+      "suitability_level": "medium",
+      "cautions": "Useful only when the symbolic frame is explicit and not confused with empirical measurement or fate."
     }
   ],
   "notes": "# Human Design\n\n## What it is\nA birth-data-driven symbolic system that produces a BodyGraph and associated teachings about type, authority, definition, and differentiated life mechanics.\n\n## Why it matters\nHuman Design matters because it is one of the most elaborate contemporary identity systems operating in online, coaching, and spiritual spaces. It is structurally rich, culturally sticky, and interpretively heavy.\n\n## What it is good for\n- symbolic self-reflection\n- identity and decision language\n- community belonging\n- comparative study of modern spiritual person-models\n\n## What it is weaker at\n- empirical validation\n- low-burden interpretation\n- clean construct comparability\n- maintaining distance between symbolic map and lived agency\n\n## Common misuse\nTreating the chart as a literal blueprint that overrides context, development, uncertainty, or practical judgment.\n"

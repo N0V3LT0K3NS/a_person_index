@@ -10,3 +10,15 @@ inferences:
   linked_entities: []
   author: house
   timestamp: '2026-04-11'
+- target_entity_type: instrument
+  target_entity_id: instr_love_languages
+  linked_entities:
+  - instr_attachment_styles
+  author: house
+  timestamp: '2026-04-11'
+  id: inf_love_languages_low_resolution_limit
+  inference_type: practical_limit
+  text: Love Languages endures because it is low-friction and easy to use, but that
+    same simplicity leaves it too low-resolution to capture attachment dynamics, power,
+    conflict, or developmental history.
+  confidence: high

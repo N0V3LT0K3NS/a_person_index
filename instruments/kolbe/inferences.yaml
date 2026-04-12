@@ -10,3 +10,16 @@ inferences:
   linked_entities: []
   author: house
   timestamp: '2026-04-11'
+- target_entity_type: instrument
+  target_entity_id: instr_kolbe
+  linked_entities:
+  - instr_cliftonstrengths
+  - instr_big_five
+  author: house
+  timestamp: '2026-04-11'
+  id: inf_kolbe_conative_limit
+  inference_type: practical_limit
+  text: Kolbe is best read as a narrow conative execution layer. It can clarify how
+    someone tackles work, but it says relatively little about motive, values, or broader
+    personality structure.
+  confidence: high

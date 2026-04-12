@@ -156,6 +156,28 @@
         "res_kolbe_overview"
       ],
       "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_kolbe_action_modes",
+      "instrument_id": "instr_kolbe",
+      "version_id": "ver_kolbe_general",
+      "claim_type": "construct_claim",
+      "claim_text": "Kolbe materials describe conative action through four Action Modes: Fact Finder, Follow Thru, Quick Start, and Implementor.",
+      "source_resource_ids": [
+        "res_kolbe_overview"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_kolbe_retest_stability",
+      "instrument_id": "instr_kolbe",
+      "version_id": "ver_kolbe_general",
+      "claim_type": "evidence_claim",
+      "claim_text": "Kolbe publishes test-retest evidence in support of the claim that Action Mode patterns are relatively stable over time.",
+      "source_resource_ids": [
+        "res_kolbe_retest_reliability"
+      ],
+      "quotation_status": "paraphrase"
     }
   ],
   "resources": [
@@ -659,6 +681,20 @@
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_kolbe_conative_limit",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "inference_type": "practical_limit",
+      "text": "Kolbe is best read as a narrow conative execution layer. It can clarify how someone tackles work, but it says relatively little about motive, values, or broader personality structure.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_cliftonstrengths",
+        "instr_big_five"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
     }
   ],
   "crosswalks": [
@@ -683,6 +719,14 @@
       "severity": "medium",
       "description": "Its language of instinctive strengths can slide into essentialist hiring and role-fit claims, especially when stable action style is treated as a total capacity measure.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    },
+    {
+      "id": "rsk_kolbe_role_essentialism",
+      "instrument_id": "instr_kolbe",
+      "risk_type": "workplace_misuse",
+      "severity": "medium",
+      "description": "Stable action-style language can be overextended into claims about who should or should not hold a role, especially in hiring or job-fit settings.",
+      "mitigation": "Treat Kolbe as workflow insight, not as a comprehensive talent or hiring screen."
     }
   ],
   "use_cases": [
@@ -693,6 +737,14 @@
       "utility_type": "self_understanding",
       "suitability_level": "medium",
       "cautions": "Useful for workflow and task-fit discussion, weak as a total person model or unilateral hiring screen."
+    },
+    {
+      "id": "use_kolbe_team_design",
+      "instrument_id": "instr_kolbe",
+      "use_context": "team_design",
+      "utility_type": "workflow_design",
+      "suitability_level": "high",
+      "cautions": "Useful for execution and handoff design, but weak when converted into fixed judgments about total capability."
     }
   ],
   "notes": "# Kolbe A Index\n\n## What it is\nA proprietary conative assessment that describes instinctive ways of taking action through a four-number Method of Operation profile.\n\n## Why it matters\nKolbe matters because it occupies a distinct niche in the registry: it is neither a classic trait model nor a symbolic typology, but a branded action-style system focused on how people execute when they are free to be themselves.\n\n## What it is good for\n- workflow discussion\n- team collaboration language\n- coaching around task approach\n- distinguishing action style from personality identity\n\n## What it is weaker at\n- whole-person description\n- public psychometric transparency\n- motive and identity language\n- high-stakes selection decisions\n\n## Common misuse\nTreating a stable action-style profile as a definitive verdict on role fit, capability, or long-term hiring potential.\n"

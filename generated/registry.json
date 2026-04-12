@@ -7944,6 +7944,28 @@
             "res_human_design_overview"
           ],
           "quotation_status": "paraphrase"
+        },
+        {
+          "id": "clm_human_design_lineage_synthesis",
+          "instrument_id": "instr_human_design",
+          "version_id": "ver_human_design_general",
+          "claim_type": "theoretical_claim",
+          "claim_text": "Human Design presents itself as a synthesis of multiple esoteric and scientific lineages rather than as a standard psychometric personality inventory.",
+          "source_resource_ids": [
+            "res_human_design_overview"
+          ],
+          "quotation_status": "paraphrase"
+        },
+        {
+          "id": "clm_human_design_chart_outputs",
+          "instrument_id": "instr_human_design",
+          "version_id": "ver_human_design_general",
+          "claim_type": "implementation_claim",
+          "claim_text": "Official chart-generation materials position birth data as sufficient to generate a BodyGraph with typed outputs such as Type, Authority, and Profile.",
+          "source_resource_ids": [
+            "res_human_design_chart"
+          ],
+          "quotation_status": "paraphrase"
         }
       ],
       "resources": [
@@ -8469,6 +8491,20 @@
           "linked_entities": [],
           "author": "house",
           "timestamp": "2026-04-11"
+        },
+        {
+          "id": "inf_human_design_practitioner_burden",
+          "target_entity_type": "instrument",
+          "target_entity_id": "instr_human_design",
+          "inference_type": "practical_limit",
+          "text": "Human Design carries a very high practitioner and community burden: meaning is often stabilized by teachers, lineages, and ongoing interpretation rather than by a transparent measurement model.",
+          "confidence": "high",
+          "linked_entities": [
+            "instr_natal_astrology",
+            "instr_enneagram"
+          ],
+          "author": "house",
+          "timestamp": "2026-04-11"
         }
       ],
       "crosswalks": [
@@ -8493,6 +8529,14 @@
           "severity": "medium",
           "description": "Because the system presents itself as a precise bodygraph-based blueprint, users can externalize agency to chart mechanics, teachings, or practitioners.",
           "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+        },
+        {
+          "id": "rsk_human_design_identity_capture",
+          "instrument_id": "instr_human_design",
+          "risk_type": "identity_capture",
+          "severity": "high",
+          "description": "Because Human Design offers a thick cosmology and precise chart language, users can fuse strongly with type, authority, or profile labels and externalize agency to the system.",
+          "mitigation": "Use Human Design as symbolic reflection only if the user preserves agency, context, and the right to disagree with the chart."
         }
       ],
       "use_cases": [
@@ -8503,6 +8547,14 @@
           "utility_type": "self_understanding",
           "suitability_level": "medium",
           "cautions": "Treat as symbolic meaning language and community practice, not as empirical person measurement."
+        },
+        {
+          "id": "use_human_design_coaching",
+          "instrument_id": "instr_human_design",
+          "use_context": "coaching",
+          "utility_type": "symbolic_reflection",
+          "suitability_level": "medium",
+          "cautions": "Useful only when the symbolic frame is explicit and not confused with empirical measurement or fate."
         }
       ],
       "notes": "# Human Design\n\n## What it is\nA birth-data-driven symbolic system that produces a BodyGraph and associated teachings about type, authority, definition, and differentiated life mechanics.\n\n## Why it matters\nHuman Design matters because it is one of the most elaborate contemporary identity systems operating in online, coaching, and spiritual spaces. It is structurally rich, culturally sticky, and interpretively heavy.\n\n## What it is good for\n- symbolic self-reflection\n- identity and decision language\n- community belonging\n- comparative study of modern spiritual person-models\n\n## What it is weaker at\n- empirical validation\n- low-burden interpretation\n- clean construct comparability\n- maintaining distance between symbolic map and lived agency\n\n## Common misuse\nTreating the chart as a literal blueprint that overrides context, development, uncertainty, or practical judgment.\n"
@@ -8663,6 +8715,28 @@
           "claim_text": "Kolbe claims the Kolbe A Index measures the instinctive ways a person takes action when striving, producing a four-number Method of Operation profile across four Action Modes.",
           "source_resource_ids": [
             "res_kolbe_overview"
+          ],
+          "quotation_status": "paraphrase"
+        },
+        {
+          "id": "clm_kolbe_action_modes",
+          "instrument_id": "instr_kolbe",
+          "version_id": "ver_kolbe_general",
+          "claim_type": "construct_claim",
+          "claim_text": "Kolbe materials describe conative action through four Action Modes: Fact Finder, Follow Thru, Quick Start, and Implementor.",
+          "source_resource_ids": [
+            "res_kolbe_overview"
+          ],
+          "quotation_status": "paraphrase"
+        },
+        {
+          "id": "clm_kolbe_retest_stability",
+          "instrument_id": "instr_kolbe",
+          "version_id": "ver_kolbe_general",
+          "claim_type": "evidence_claim",
+          "claim_text": "Kolbe publishes test-retest evidence in support of the claim that Action Mode patterns are relatively stable over time.",
+          "source_resource_ids": [
+            "res_kolbe_retest_reliability"
           ],
           "quotation_status": "paraphrase"
         }
@@ -9168,6 +9242,20 @@
           "linked_entities": [],
           "author": "house",
           "timestamp": "2026-04-11"
+        },
+        {
+          "id": "inf_kolbe_conative_limit",
+          "target_entity_type": "instrument",
+          "target_entity_id": "instr_kolbe",
+          "inference_type": "practical_limit",
+          "text": "Kolbe is best read as a narrow conative execution layer. It can clarify how someone tackles work, but it says relatively little about motive, values, or broader personality structure.",
+          "confidence": "high",
+          "linked_entities": [
+            "instr_cliftonstrengths",
+            "instr_big_five"
+          ],
+          "author": "house",
+          "timestamp": "2026-04-11"
         }
       ],
       "crosswalks": [
@@ -9192,6 +9280,14 @@
           "severity": "medium",
           "description": "Its language of instinctive strengths can slide into essentialist hiring and role-fit claims, especially when stable action style is treated as a total capacity measure.",
           "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+        },
+        {
+          "id": "rsk_kolbe_role_essentialism",
+          "instrument_id": "instr_kolbe",
+          "risk_type": "workplace_misuse",
+          "severity": "medium",
+          "description": "Stable action-style language can be overextended into claims about who should or should not hold a role, especially in hiring or job-fit settings.",
+          "mitigation": "Treat Kolbe as workflow insight, not as a comprehensive talent or hiring screen."
         }
       ],
       "use_cases": [
@@ -9202,6 +9298,14 @@
           "utility_type": "self_understanding",
           "suitability_level": "medium",
           "cautions": "Useful for workflow and task-fit discussion, weak as a total person model or unilateral hiring screen."
+        },
+        {
+          "id": "use_kolbe_team_design",
+          "instrument_id": "instr_kolbe",
+          "use_context": "team_design",
+          "utility_type": "workflow_design",
+          "suitability_level": "high",
+          "cautions": "Useful for execution and handoff design, but weak when converted into fixed judgments about total capability."
         }
       ],
       "notes": "# Kolbe A Index\n\n## What it is\nA proprietary conative assessment that describes instinctive ways of taking action through a four-number Method of Operation profile.\n\n## Why it matters\nKolbe matters because it occupies a distinct niche in the registry: it is neither a classic trait model nor a symbolic typology, but a branded action-style system focused on how people execute when they are free to be themselves.\n\n## What it is good for\n- workflow discussion\n- team collaboration language\n- coaching around task approach\n- distinguishing action style from personality identity\n\n## What it is weaker at\n- whole-person description\n- public psychometric transparency\n- motive and identity language\n- high-stakes selection decisions\n\n## Common misuse\nTreating a stable action-style profile as a definitive verdict on role fit, capability, or long-term hiring potential.\n"
@@ -9387,6 +9491,28 @@
           "claim_text": "The Five Love Languages claims that people tend to give and receive love through five primary channels and that relationship quality improves when partners learn each other\u2019s preferred channels.",
           "source_resource_ids": [
             "res_love_languages_overview"
+          ],
+          "quotation_status": "paraphrase"
+        },
+        {
+          "id": "clm_love_languages_five_categories",
+          "instrument_id": "instr_love_languages",
+          "version_id": "ver_love_languages_general",
+          "claim_type": "construct_claim",
+          "claim_text": "Official Love Languages materials organize preferred expressions of care into five categories: Words of Affirmation, Quality Time, Receiving Gifts, Acts of Service, and Physical Touch.",
+          "source_resource_ids": [
+            "res_love_languages_overview"
+          ],
+          "quotation_status": "paraphrase"
+        },
+        {
+          "id": "clm_love_languages_relational_application",
+          "instrument_id": "instr_love_languages",
+          "version_id": "ver_love_languages_general",
+          "claim_type": "usage_claim",
+          "claim_text": "The Love Languages ecosystem positions the framework as a practical relationship tool for improving understanding and communication in romantic and family settings.",
+          "source_resource_ids": [
+            "res_love_languages_home"
           ],
           "quotation_status": "paraphrase"
         }
@@ -9902,6 +10028,19 @@
           "linked_entities": [],
           "author": "house",
           "timestamp": "2026-04-11"
+        },
+        {
+          "id": "inf_love_languages_low_resolution_limit",
+          "target_entity_type": "instrument",
+          "target_entity_id": "instr_love_languages",
+          "inference_type": "practical_limit",
+          "text": "Love Languages endures because it is low-friction and easy to use, but that same simplicity leaves it too low-resolution to capture attachment dynamics, power, conflict, or developmental history.",
+          "confidence": "high",
+          "linked_entities": [
+            "instr_attachment_styles"
+          ],
+          "author": "house",
+          "timestamp": "2026-04-11"
         }
       ],
       "crosswalks": [
@@ -9926,6 +10065,14 @@
           "severity": "medium",
           "description": "Low-resolution categories can flatten complex relational dynamics into a single favorite language.",
           "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+        },
+        {
+          "id": "rsk_love_languages_relational_reductionism",
+          "instrument_id": "instr_love_languages",
+          "risk_type": "overinterpretation",
+          "severity": "medium",
+          "description": "Relationship problems can be reduced to a single favorite language, obscuring conflict style, attachment, resentment, or structural issues.",
+          "mitigation": "Use the framework as a conversation opener and pair it with richer models of relationship dynamics."
         }
       ],
       "use_cases": [
@@ -9936,6 +10083,14 @@
           "utility_type": "self_understanding",
           "suitability_level": "medium",
           "cautions": "Useful as a conversation opener, not as a full relationship model."
+        },
+        {
+          "id": "use_love_languages_relationship_support",
+          "instrument_id": "instr_love_languages",
+          "use_context": "relationship_support",
+          "utility_type": "communication_adaptation",
+          "suitability_level": "medium",
+          "cautions": "Helpful for naming preference mismatches, but too thin to stand alone as a relationship theory."
         }
       ],
       "notes": "# The Five Love Languages\n\n## What it is\nA five-category relational preference framework describing preferred ways of expressing and receiving affection.\n\n## Why it matters\nLove Languages matters because it is one of the most culturally sticky low-complexity relationship vocabularies in circulation. It is weak psychometrically but powerful as a conversational shorthand.\n\n## What it is good for\n- relationship conversations\n- low-friction self-reflection\n- identifying preferred expressions of care\n- lightweight communication repair\n\n## What it is weaker at\n- psychometric rigor\n- attachment and trauma dynamics\n- whole-person relational modeling\n- context sensitivity and change over time\n\n## Common misuse\nReducing complex relational conflict to one fixed love language or treating the framework as a full theory of intimacy.\n"
@@ -10912,6 +11067,28 @@
             "res_natal_astrology_overview"
           ],
           "quotation_status": "paraphrase"
+        },
+        {
+          "id": "clm_natal_astrology_chart_components",
+          "instrument_id": "instr_natal_astrology",
+          "version_id": "ver_natal_astrology_general",
+          "claim_type": "construct_claim",
+          "claim_text": "Natal astrology interprets personality and life themes through the combined symbolism of planets, signs, houses, and aspects within a birth chart.",
+          "source_resource_ids": [
+            "res_natal_astrology_astrowiki"
+          ],
+          "quotation_status": "paraphrase"
+        },
+        {
+          "id": "clm_natal_astrology_birth_data_requirement",
+          "instrument_id": "instr_natal_astrology",
+          "version_id": "ver_natal_astrology_general",
+          "claim_type": "implementation_claim",
+          "claim_text": "Birth-chart tools position exact birth date, time, and location as the required inputs for generating a natal chart.",
+          "source_resource_ids": [
+            "res_natal_astrology_overview"
+          ],
+          "quotation_status": "paraphrase"
         }
       ],
       "resources": [
@@ -11431,6 +11608,19 @@
           "linked_entities": [],
           "author": "house",
           "timestamp": "2026-04-11"
+        },
+        {
+          "id": "inf_natal_astrology_empirical_limit",
+          "target_entity_type": "instrument",
+          "target_entity_id": "instr_natal_astrology",
+          "inference_type": "practical_limit",
+          "text": "Natal astrology is a powerful symbolic and narrative language, but it should be treated as interpretive meaning-making rather than evidence-based measurement.",
+          "confidence": "high",
+          "linked_entities": [
+            "instr_human_design"
+          ],
+          "author": "house",
+          "timestamp": "2026-04-11"
         }
       ],
       "crosswalks": [
@@ -11455,6 +11645,14 @@
           "severity": "medium",
           "description": "Charts can be treated as destiny or diagnostic truth, inviting determinism, projection, and practitioner overreach.",
           "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+        },
+        {
+          "id": "rsk_natal_astrology_identity_capture",
+          "instrument_id": "instr_natal_astrology",
+          "risk_type": "identity_capture",
+          "severity": "high",
+          "description": "People can fuse with chart descriptions and use astrology as a durable explanatory frame that crowds out context, agency, and developmental change.",
+          "mitigation": "Keep astrology in the symbolic lane and avoid treating chart interpretation as total identity truth."
         }
       ],
       "use_cases": [
@@ -11465,6 +11663,14 @@
           "utility_type": "self_understanding",
           "suitability_level": "medium",
           "cautions": "Keep empirical, symbolic, and interpretive layers clearly separated."
+        },
+        {
+          "id": "use_natal_astrology_coaching",
+          "instrument_id": "instr_natal_astrology",
+          "use_context": "coaching",
+          "utility_type": "symbolic_reflection",
+          "suitability_level": "medium",
+          "cautions": "Useful for symbolic reflection only when the interpretive nature of the system stays explicit."
         }
       ],
       "notes": "# Natal Astrology\n\n## What it is\nA symbolic birth-chart system that maps planets, signs, houses, and aspects at the moment of birth to interpret personality and life themes.\n\n## Why it matters\nNatal astrology matters because it remains one of the oldest and most persistent symbolic languages for personhood, identity, timing, and meaning. Its cultural reach is far larger than its empirical standing.\n\n## What it is good for\n- symbolic self-reflection\n- narrative meaning-making\n- archetypal language\n- studying identity systems with strong cultural persistence\n\n## What it is weaker at\n- empirical measurement\n- inter-rater consistency across practitioners\n- construct commensurability with psychometric systems\n- resisting destiny narratives\n\n## Common misuse\nTreating the birth chart as objective diagnosis or fate rather than an interpretive symbolic framework.\n"

@@ -4315,6 +4315,26 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
     },
     "human-design": {
         "include_primary_construct": False,
+        "extra_claims": [
+            {
+                "id": "clm_human_design_lineage_synthesis",
+                "claim_type": "theoretical_claim",
+                "claim_text": (
+                    "Human Design presents itself as a synthesis of multiple esoteric and scientific lineages rather "
+                    "than as a standard psychometric personality inventory."
+                ),
+                "source_resource_ids": ["res_human_design_overview"],
+            },
+            {
+                "id": "clm_human_design_chart_outputs",
+                "claim_type": "implementation_claim",
+                "claim_text": (
+                    "Official chart-generation materials position birth data as sufficient to generate a BodyGraph with "
+                    "typed outputs such as Type, Authority, and Profile."
+                ),
+                "source_resource_ids": ["res_human_design_chart"],
+            },
+        ],
         "extra_constructs": [
             {
                 "id": "con_human_design_generator",
@@ -4349,6 +4369,18 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "scoring_type": "type_assignment",
             },
         ],
+        "extra_inferences": [
+            {
+                "id": "inf_human_design_practitioner_burden",
+                "inference_type": "practical_limit",
+                "text": (
+                    "Human Design carries a very high practitioner and community burden: meaning is often stabilized by "
+                    "teachers, lineages, and ongoing interpretation rather than by a transparent measurement model."
+                ),
+                "confidence": "high",
+                "linked_entities": ["instr_natal_astrology", "instr_enneagram"],
+            }
+        ],
         "extra_resources": [
             {
                 "id": "res_human_design_chart",
@@ -4358,6 +4390,27 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "publisher": "Jovian Archive",
                 "officiality": "official",
                 "notes": "Official chart generator entry point used to produce a Human Design BodyGraph from birth data.",
+            }
+        ],
+        "extra_risks": [
+            {
+                "id": "rsk_human_design_identity_capture",
+                "risk_type": "identity_capture",
+                "severity": "high",
+                "description": (
+                    "Because Human Design offers a thick cosmology and precise chart language, users can fuse strongly "
+                    "with type, authority, or profile labels and externalize agency to the system."
+                ),
+                "mitigation": "Use Human Design as symbolic reflection only if the user preserves agency, context, and the right to disagree with the chart.",
+            }
+        ],
+        "extra_use_cases": [
+            {
+                "id": "use_human_design_coaching",
+                "use_context": "coaching",
+                "utility_type": "symbolic_reflection",
+                "suitability_level": "medium",
+                "cautions": "Useful only when the symbolic frame is explicit and not confused with empirical measurement or fate.",
             }
         ],
         "crosswalks": [
@@ -4380,6 +4433,25 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
     },
     "kolbe": {
         "include_primary_construct": False,
+        "extra_claims": [
+            {
+                "id": "clm_kolbe_action_modes",
+                "claim_type": "construct_claim",
+                "claim_text": (
+                    "Kolbe materials describe conative action through four Action Modes: Fact Finder, Follow Thru, "
+                    "Quick Start, and Implementor."
+                ),
+                "source_resource_ids": ["res_kolbe_overview"],
+            },
+            {
+                "id": "clm_kolbe_retest_stability",
+                "claim_type": "evidence_claim",
+                "claim_text": (
+                    "Kolbe publishes test-retest evidence in support of the claim that Action Mode patterns are relatively stable over time."
+                ),
+                "source_resource_ids": ["res_kolbe_retest_reliability"],
+            },
+        ],
         "extra_constructs": [
             {
                 "id": "con_kolbe_fact_finder",
@@ -4414,6 +4486,18 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "scoring_type": "continuous",
             },
         ],
+        "extra_inferences": [
+            {
+                "id": "inf_kolbe_conative_limit",
+                "inference_type": "practical_limit",
+                "text": (
+                    "Kolbe is best read as a narrow conative execution layer. It can clarify how someone tackles work, "
+                    "but it says relatively little about motive, values, or broader personality structure."
+                ),
+                "confidence": "high",
+                "linked_entities": ["instr_cliftonstrengths", "instr_big_five"],
+            }
+        ],
         "extra_resources": [
             {
                 "id": "res_kolbe_retest_reliability",
@@ -4423,6 +4507,27 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "publisher": "Kolbe Corp",
                 "officiality": "official",
                 "notes": "Official technical report focused on Kolbe A Index test-retest stability across Action Modes.",
+            }
+        ],
+        "extra_risks": [
+            {
+                "id": "rsk_kolbe_role_essentialism",
+                "risk_type": "workplace_misuse",
+                "severity": "medium",
+                "description": (
+                    "Stable action-style language can be overextended into claims about who should or should not hold a role, "
+                    "especially in hiring or job-fit settings."
+                ),
+                "mitigation": "Treat Kolbe as workflow insight, not as a comprehensive talent or hiring screen.",
+            }
+        ],
+        "extra_use_cases": [
+            {
+                "id": "use_kolbe_team_design",
+                "use_context": "team_design",
+                "utility_type": "workflow_design",
+                "suitability_level": "high",
+                "cautions": "Useful for execution and handoff design, but weak when converted into fixed judgments about total capability.",
             }
         ],
         "crosswalks": [
@@ -4445,6 +4550,26 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
     },
     "love-languages": {
         "include_primary_construct": False,
+        "extra_claims": [
+            {
+                "id": "clm_love_languages_five_categories",
+                "claim_type": "construct_claim",
+                "claim_text": (
+                    "Official Love Languages materials organize preferred expressions of care into five categories: Words of "
+                    "Affirmation, Quality Time, Receiving Gifts, Acts of Service, and Physical Touch."
+                ),
+                "source_resource_ids": ["res_love_languages_overview"],
+            },
+            {
+                "id": "clm_love_languages_relational_application",
+                "claim_type": "usage_claim",
+                "claim_text": (
+                    "The Love Languages ecosystem positions the framework as a practical relationship tool for improving "
+                    "understanding and communication in romantic and family settings."
+                ),
+                "source_resource_ids": ["res_love_languages_home"],
+            },
+        ],
         "extra_constructs": [
             {
                 "id": "con_love_languages_words_of_affirmation",
@@ -4487,6 +4612,18 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "scoring_type": "type_assignment",
             },
         ],
+        "extra_inferences": [
+            {
+                "id": "inf_love_languages_low_resolution_limit",
+                "inference_type": "practical_limit",
+                "text": (
+                    "Love Languages endures because it is low-friction and easy to use, but that same simplicity leaves it "
+                    "too low-resolution to capture attachment dynamics, power, conflict, or developmental history."
+                ),
+                "confidence": "high",
+                "linked_entities": ["instr_attachment_styles"],
+            }
+        ],
         "extra_resources": [
             {
                 "id": "res_love_languages_home",
@@ -4496,6 +4633,26 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "publisher": "Love Language Brand",
                 "officiality": "official",
                 "notes": "Official home page for the Five Love Languages brand ecosystem and associated materials.",
+            }
+        ],
+        "extra_risks": [
+            {
+                "id": "rsk_love_languages_relational_reductionism",
+                "risk_type": "overinterpretation",
+                "severity": "medium",
+                "description": (
+                    "Relationship problems can be reduced to a single favorite language, obscuring conflict style, attachment, resentment, or structural issues."
+                ),
+                "mitigation": "Use the framework as a conversation opener and pair it with richer models of relationship dynamics.",
+            }
+        ],
+        "extra_use_cases": [
+            {
+                "id": "use_love_languages_relationship_support",
+                "use_context": "relationship_support",
+                "utility_type": "communication_adaptation",
+                "suitability_level": "medium",
+                "cautions": "Helpful for naming preference mismatches, but too thin to stand alone as a relationship theory.",
             }
         ],
         "crosswalks": [
@@ -4518,6 +4675,25 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
     },
     "natal-astrology": {
         "include_primary_construct": False,
+        "extra_claims": [
+            {
+                "id": "clm_natal_astrology_chart_components",
+                "claim_type": "construct_claim",
+                "claim_text": (
+                    "Natal astrology interprets personality and life themes through the combined symbolism of planets, "
+                    "signs, houses, and aspects within a birth chart."
+                ),
+                "source_resource_ids": ["res_natal_astrology_astrowiki"],
+            },
+            {
+                "id": "clm_natal_astrology_birth_data_requirement",
+                "claim_type": "implementation_claim",
+                "claim_text": (
+                    "Birth-chart tools position exact birth date, time, and location as the required inputs for generating a natal chart."
+                ),
+                "source_resource_ids": ["res_natal_astrology_overview"],
+            },
+        ],
         "extra_constructs": [
             {
                 "id": "con_natal_astrology_planets",
@@ -4552,6 +4728,17 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "scoring_type": "chart_interpretation",
             },
         ],
+        "extra_inferences": [
+            {
+                "id": "inf_natal_astrology_empirical_limit",
+                "inference_type": "practical_limit",
+                "text": (
+                    "Natal astrology is a powerful symbolic and narrative language, but it should be treated as interpretive meaning-making rather than evidence-based measurement."
+                ),
+                "confidence": "high",
+                "linked_entities": ["instr_human_design"],
+            }
+        ],
         "extra_resources": [
             {
                 "id": "res_natal_astrology_astrowiki",
@@ -4561,6 +4748,26 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "publisher": "Astrodienst AstroWiki",
                 "officiality": "secondary",
                 "notes": "Reference page explaining the birth chart as the core interpretive object in natal astrology.",
+            }
+        ],
+        "extra_risks": [
+            {
+                "id": "rsk_natal_astrology_identity_capture",
+                "risk_type": "identity_capture",
+                "severity": "high",
+                "description": (
+                    "People can fuse with chart descriptions and use astrology as a durable explanatory frame that crowds out context, agency, and developmental change."
+                ),
+                "mitigation": "Keep astrology in the symbolic lane and avoid treating chart interpretation as total identity truth.",
+            }
+        ],
+        "extra_use_cases": [
+            {
+                "id": "use_natal_astrology_coaching",
+                "use_context": "coaching",
+                "utility_type": "symbolic_reflection",
+                "suitability_level": "medium",
+                "cautions": "Useful for symbolic reflection only when the interpretive nature of the system stays explicit.",
             }
         ],
         "crosswalks": [

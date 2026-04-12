@@ -6,3 +6,12 @@ risks:
   description: Because the system presents itself as a precise bodygraph-based blueprint,
     users can externalize agency to chart mechanics, teachings, or practitioners.
   mitigation: Treat the framework as one layer among several and preserve uncertainty.
+- instrument_id: instr_human_design
+  id: rsk_human_design_identity_capture
+  risk_type: identity_capture
+  severity: high
+  description: Because Human Design offers a thick cosmology and precise chart language,
+    users can fuse strongly with type, authority, or profile labels and externalize
+    agency to the system.
+  mitigation: Use Human Design as symbolic reflection only if the user preserves agency,
+    context, and the right to disagree with the chart.

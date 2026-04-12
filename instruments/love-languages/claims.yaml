@@ -9,3 +9,23 @@ claims:
   source_resource_ids:
   - res_love_languages_overview
   quotation_status: paraphrase
+- instrument_id: instr_love_languages
+  version_id: ver_love_languages_general
+  source_resource_ids:
+  - res_love_languages_overview
+  quotation_status: paraphrase
+  id: clm_love_languages_five_categories
+  claim_type: construct_claim
+  claim_text: 'Official Love Languages materials organize preferred expressions of
+    care into five categories: Words of Affirmation, Quality Time, Receiving Gifts,
+    Acts of Service, and Physical Touch.'
+- instrument_id: instr_love_languages
+  version_id: ver_love_languages_general
+  source_resource_ids:
+  - res_love_languages_home
+  quotation_status: paraphrase
+  id: clm_love_languages_relational_application
+  claim_type: usage_claim
+  claim_text: The Love Languages ecosystem positions the framework as a practical
+    relationship tool for improving understanding and communication in romantic and
+    family settings.

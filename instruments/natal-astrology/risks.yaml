@@ -6,3 +6,11 @@ risks:
   description: Charts can be treated as destiny or diagnostic truth, inviting determinism,
     projection, and practitioner overreach.
   mitigation: Treat the framework as one layer among several and preserve uncertainty.
+- instrument_id: instr_natal_astrology
+  id: rsk_natal_astrology_identity_capture
+  risk_type: identity_capture
+  severity: high
+  description: People can fuse with chart descriptions and use astrology as a durable
+    explanatory frame that crowds out context, agency, and developmental change.
+  mitigation: Keep astrology in the symbolic lane and avoid treating chart interpretation
+    as total identity truth.
