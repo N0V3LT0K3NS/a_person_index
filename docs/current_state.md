@@ -16,6 +16,7 @@ As of the current branch state, the repo includes:
 - 7 interaction hypotheses
 - 6 reusable techniques
 - 3 protocol specs
+- 4 curated protocol packs
 - 5 research contribution models
 - 1 result atom schema
 
@@ -40,6 +41,7 @@ As of the current branch state, the repo includes:
 - Techniques are first-class records rather than scattered prompt fragments
 - Protocols such as `ILENS`, `Human Model Card`, and `Translation Memo` are explicitly modeled as consumers of the registry
 - Protocol packs are now a callable runtime bundle shape rather than an implicit orchestration task left to downstream agents
+- Curated protocol packs now have a source catalog, generated artifacts, and stable discovery surfaces for downstream agents
 
 ### Research stream
 
@@ -58,7 +60,7 @@ As of the current branch state, the repo includes:
 ## What this repo is not yet
 
 - Not yet a generalized top-level `framework` registry beyond the current instrument-centered canonical corpus
-- Not yet a full API or MCP server
+- Not yet a full HTTP API
 - Not yet a person-level inference engine
 - Not yet a research-promotion engine that automatically turns contributions into house mappings or interaction hypotheses
 - Not yet merged to `main`
@@ -69,14 +71,14 @@ Right now the repo is most useful as:
 
 1. a canonical registry of personhood systems
 2. a comparative translation substrate
-3. a protocol/spec library for downstream runtimes
+3. a protocol/spec and curated-pack library for downstream runtimes
 4. a research intake contract for privacy-minimizing return traffic
 
 ## Immediate next work
 
 The next highest-value tranche is:
 
-1. add protocol-pack and agent-entrypoint surfaces
-2. formalize research promotion from contribution -> reviewed pattern -> house synthesis
-3. deepen motif mappings and interaction hypotheses across the strongest framework seams
-4. keep improving repo onboarding and public presentation until the repo itself is self-explanatory
+1. formalize research promotion from contribution -> reviewed pattern -> house synthesis
+2. deepen motif mappings and interaction hypotheses across the strongest framework seams
+3. keep improving repo onboarding and public presentation until the repo itself is self-explanatory
+4. merge the widened repo identity and new surfaces into `main`

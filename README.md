@@ -22,7 +22,8 @@ If you are arriving fresh, read these in order:
 5. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
 6. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
 7. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-8. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+8. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+9. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 Those files together explain what the repo is, what layer you are editing, how downstream systems should use it, and what is next.
 
@@ -63,6 +64,7 @@ These layers should collaborate, but they should not be conflated.
 ├── motifs/
 ├── ontology/
 ├── protocols/
+├── protocol_packs/
 ├── research/
 ├── schemas/
 ├── scripts/
@@ -90,6 +92,7 @@ Key conventions:
 - `interactions/registry.yaml` stores house interaction hypotheses across motifs and constructs.
 - `techniques/registry.yaml` stores reusable comparative methods.
 - `protocols/registry.yaml` stores downstream protocol specs such as `ILENS` and `Human Model Card`.
+- `protocol_packs/catalog.yaml` stores curated, stable protocol-pack scopes for repeated downstream use.
 - `research/contribution_models.yaml` stores privacy-minimizing contribution models for future research intake.
 - `research/result_atom_schema.yaml` stores the normalized downstream result-atom contract for runtime exchange.
 
@@ -151,6 +154,8 @@ python3 scripts/query_registry.py trace MBTI
 python3 scripts/query_registry.py motifs --related-to MBTI
 python3 scripts/query_registry.py interactions --related-to MBTI
 python3 scripts/query_registry.py protocols ILENS
+python3 scripts/query_registry.py protocol-packs --featured
+python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack
 python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram
 python3 scripts/query_registry.py protocol-pack-grammar
 python3 scripts/query_registry.py result-atom-schema
@@ -227,6 +232,8 @@ Generated outputs are written to:
 - `generated/index.json`: aggregate registry summary plus product-layer counts
 - `generated/instruments/*.json`: per-instrument exports
 - `generated/manifest.json`: machine-readable onboarding and service-primitives manifest for agents
+- `generated/protocol_packs/index.json`: curated protocol-pack catalog for stable downstream retrieval
+- `generated/protocol_packs/*.json`: generated curated protocol-pack artifacts
 - `generated/protocol_pack_grammar.json`: machine-readable grammar for building and validating future protocol packs
 - `generated/registry.json`: full export payload, including house synthesis, protocol, and research registries
 - `mcp-server/`: read-only Node MCP adapter over the Python query surface
@@ -252,6 +259,8 @@ The motif, protocol, and research registries are now available through dedicated
 - `python3 scripts/query_registry.py motifs --related-to MBTI`
 - `python3 scripts/query_registry.py interactions --related-to MBTI`
 - `python3 scripts/query_registry.py protocols ILENS`
+- `python3 scripts/query_registry.py protocol-packs --featured`
+- `python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack`
 - `python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram`
 - `python3 scripts/query_registry.py protocol-pack-grammar`
 - `python3 scripts/query_registry.py techniques "Paradox Scan"`
@@ -262,6 +271,7 @@ The repo also now exposes a read-only MCP interface for agent-native use:
 
 - `npm run mcp:serve`
 - [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
+- [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
 
 ## Deployment
 

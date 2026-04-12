@@ -36,15 +36,15 @@ Delivered so far:
 - technique registry
 - protocol registry
 - protocol-pack query surface and grammar
+- curated protocol-pack catalog and generated pack artifacts
 - read-only MCP adapter over the Python query surface
 - research contribution models
 - result atom schema
-- motif, protocol, interaction, and research query surfaces
+- motif, protocol, interaction, research, and curated-pack query surfaces
+- stronger repo-level onboarding, manifesting, and agent-arrival docs
 
 Still to do in this phase:
-- protocol-pack outputs for downstream agents
 - richer mapping density across more framework seams
-- stronger repo-level onboarding and agent manifest surfaces
 - cleaner merge of the widened repo identity into `main`
 
 ## Phase 3: Research Promotion and Evidence Flow
@@ -69,8 +69,8 @@ Goal:
 
 Target deliverables:
 - stable agent manifest
-- protocol-pack endpoints or equivalent generated artifacts
-- lightweight API or MCP surface
+- richer protocol-pack catalogs and downstream service bundles
+- lightweight API or richer MCP surface
 - improved machine-readable service contracts
 
 ## Phase 5: Comparative Depth and Empirical Refinement

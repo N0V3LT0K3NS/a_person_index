@@ -11,7 +11,8 @@ If you are arriving cold, start here in this order:
 5. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
 6. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
 7. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-8. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+8. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+9. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 ## What this repo is
 
@@ -40,6 +41,7 @@ Canonical sources:
 - [interactions/registry.yaml](/Users/noveltokens/a_person_index/interactions/registry.yaml)
 - [techniques/registry.yaml](/Users/noveltokens/a_person_index/techniques/registry.yaml)
 - [protocols/registry.yaml](/Users/noveltokens/a_person_index/protocols/registry.yaml)
+- [protocol_packs/catalog.yaml](/Users/noveltokens/a_person_index/protocol_packs/catalog.yaml)
 - [research/contribution_models.yaml](/Users/noveltokens/a_person_index/research/contribution_models.yaml)
 - [research/result_atom_schema.yaml](/Users/noveltokens/a_person_index/research/result_atom_schema.yaml)
 
@@ -79,6 +81,8 @@ python3 scripts/query_registry.py trace MBTI
 python3 scripts/query_registry.py motifs --related-to MBTI
 python3 scripts/query_registry.py interactions --related-to "Attachment Style Frameworks"
 python3 scripts/query_registry.py protocols ILENS
+python3 scripts/query_registry.py protocol-packs --featured
+python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack
 python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram
 python3 scripts/query_registry.py protocol-pack-grammar
 python3 scripts/query_registry.py techniques "Paradox Scan"

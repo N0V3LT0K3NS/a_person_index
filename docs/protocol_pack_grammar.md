@@ -143,6 +143,10 @@ The canonical machine-readable grammar is also emitted to:
 - [generated/protocol_pack_grammar.json](/Users/noveltokens/a_person_index/generated/protocol_pack_grammar.json)
 - [site/data/protocol_pack_grammar.json](/Users/noveltokens/a_person_index/site/data/protocol_pack_grammar.json)
 
+For curated pack lifecycle, maintenance, and source catalog rules, also see:
+
+- [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+
 ## Example commands
 
 ```bash

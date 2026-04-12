@@ -1,0 +1,391 @@
+{
+  "catalog_entry": {
+    "id": "ppk_translation_symbolic_stack",
+    "protocol_id": "proto_translation_memo",
+    "status": "experimental",
+    "title": "Symbolic Stack Translation Pack",
+    "summary": "A translation pack for Human Design and natal astrology that foregrounds symbolic meaning load, identity adhesion, and non-equivalence rather than empirical flattening.\n",
+    "intended_consumers": [
+      "GNOMY",
+      "curation agents"
+    ],
+    "target_framework_ids": [
+      "instr_human_design",
+      "instr_natal_astrology"
+    ],
+    "target_construct_ids": [],
+    "featured": false,
+    "notes": "This pack is especially useful for symbolic systems that are culturally sticky and interpretively thick but not psychometric in the usual sense.\n",
+    "protocol_name": "Translation Memo",
+    "target_labels": [
+      "Human Design",
+      "Natal Astrology"
+    ]
+  },
+  "protocol_pack": {
+    "pack": {
+      "id": "pack_proto_translation_memo__instr_human_design__instr_natal_astrology",
+      "grammar_id": "protocol_pack_grammar_v0_1",
+      "protocol_id": "proto_translation_memo",
+      "protocol_name": "Translation Memo",
+      "target_count": 2,
+      "target_framework_ids": [
+        "instr_human_design",
+        "instr_natal_astrology"
+      ],
+      "target_construct_ids": [],
+      "target_labels": [
+        "Human Design",
+        "Natal Astrology"
+      ]
+    },
+    "protocol": {
+      "id": "proto_translation_memo",
+      "name": "Translation Memo",
+      "status": "active",
+      "purpose": "Generate an evidence-aware memo about overlap, divergence, and incommensurability between selected frameworks or constructs.\n",
+      "summary": "A compact comparative protocol for agents that need to explain how two or more systems connect without forcing a single unified language.\n",
+      "downstream_consumers": [
+        "GNOMY",
+        "curation agents",
+        "compare workflows"
+      ],
+      "required_inputs": [
+        "instrument records",
+        "crosswalks",
+        "construct mappings"
+      ],
+      "optional_inputs": [
+        "research observations",
+        "mapping votes"
+      ],
+      "technique_ids": [
+        "tech_cross_framework_translation",
+        "tech_symbolic_vs_empirical_bracketing"
+      ],
+      "primary_outputs": [
+        "overlap memo",
+        "mismatch warnings",
+        "suggested follow-up mappings"
+      ],
+      "notes": "Translation memos are useful baseline artifacts for both curation and downstream synthesis.\n"
+    },
+    "techniques": [
+      {
+        "id": "tech_cross_framework_translation",
+        "name": "Cross-Framework Translation",
+        "purpose": "Translate constructs across systems without forcing false equivalence.",
+        "summary": "Compare constructs through shared motifs, relationship semantics, and epistemic bracketing rather than by naive one-to-one conversion.\n",
+        "input_types": [
+          "instrument records",
+          "crosswalks",
+          "construct mappings",
+          "ontology annotations"
+        ],
+        "output_types": [
+          "translation memo",
+          "comparison notes",
+          "candidate tensions"
+        ],
+        "steps": [
+          "Identify source and target layers of personhood.",
+          "Compare through shared motifs before direct translation.",
+          "Mark overlap as strong, partial, inverse, symbolic, or incommensurable."
+        ],
+        "cautions": [
+          "Do not flatten symbolic and psychometric systems into one evidence bucket.",
+          "Preserve asymmetry when one framework is broader or socially different than the other."
+        ],
+        "notes": null
+      },
+      {
+        "id": "tech_symbolic_vs_empirical_bracketing",
+        "name": "Symbolic vs Empirical Bracketing",
+        "purpose": "Use symbolic systems without pretending they carry the same evidence type as psychometrics.",
+        "summary": "Distinguish descriptive usefulness, symbolic resonance, and empirical status so that heterogeneous frameworks can coexist in one map.\n",
+        "input_types": [
+          "ontology annotations",
+          "evidence profile",
+          "cultural role notes"
+        ],
+        "output_types": [
+          "bracketing notes",
+          "evidence caveats",
+          "protocol constraints"
+        ],
+        "steps": [
+          "State the framework's epistemic basis.",
+          "State its social or symbolic usefulness separately.",
+          "Preserve both without collapsing either into the other."
+        ],
+        "cautions": [
+          "Inclusion in the map does not imply equal evidence."
+        ],
+        "notes": null
+      }
+    ],
+    "targets": [
+      {
+        "entity_type": "instrument",
+        "entity_id": "instr_human_design",
+        "label": "Human Design",
+        "instrument_id": "instr_human_design",
+        "instrument_label": "Human Design",
+        "slug": "human-design"
+      },
+      {
+        "entity_type": "instrument",
+        "entity_id": "instr_natal_astrology",
+        "label": "Natal Astrology",
+        "instrument_id": "instr_natal_astrology",
+        "instrument_label": "Natal Astrology",
+        "slug": "natal-astrology"
+      }
+    ],
+    "canonical_records": [
+      {
+        "instrument_id": "instr_human_design",
+        "canonical_name": "Human Design",
+        "slug": "human-design",
+        "family": [
+          "symbolic_archetypal_spiritual",
+          "identity_self_concept",
+          "worldview_meaning_making"
+        ],
+        "short_description": "A symbolic system combining astrology, I Ching, chakras, Kabbalah, and other traditions into a bodygraph-based self-description framework."
+      },
+      {
+        "instrument_id": "instr_natal_astrology",
+        "canonical_name": "Natal Astrology",
+        "slug": "natal-astrology",
+        "family": [
+          "symbolic_archetypal_spiritual",
+          "worldview_meaning_making",
+          "identity_self_concept"
+        ],
+        "short_description": "A symbolic charting system that interprets birth time and place through zodiacal and planetary symbolism."
+      }
+    ],
+    "motif_summary": [
+      {
+        "motif": {
+          "id": "mtf_symbolic_meaning_load",
+          "name": "Symbolic Meaning Load",
+          "status": "provisional",
+          "motif_kind": "social_function",
+          "summary": "Degree to which a framework functions as symbolic, cosmological, or mythic meaning language.",
+          "description": "A motif for frameworks that do more than describe behavior and instead carry archetypal, spiritual, symbolic, or cosmological interpretive weight.\n",
+          "tags": [
+            "symbolic",
+            "mythology",
+            "worldview"
+          ],
+          "related_dimensions": [
+            "worldview_load",
+            "cultural_symbolic_role"
+          ]
+        },
+        "mapping_count": 2,
+        "source_labels": [
+          "Human Design",
+          "Natal Astrology"
+        ],
+        "relationship_types": [
+          "direct_signal"
+        ]
+      }
+    ],
+    "relevant_mappings": [
+      {
+        "id": "map_human_design_symbolic_meaning",
+        "source_entity_type": "instrument",
+        "source_entity_id": "instr_human_design",
+        "source_label": "Human Design",
+        "source_instrument_id": "instr_human_design",
+        "source_instrument_label": "Human Design",
+        "target_entity_id": "mtf_symbolic_meaning_load",
+        "target_label": "Symbolic Meaning Load",
+        "relationship_type": "direct_signal",
+        "relationship_strength": "high",
+        "confidence": "high",
+        "status": "provisional",
+        "rationale": "Human Design functions not only as a descriptive system but as a symbolic and cosmological language with heavy narrative meaning load.\n",
+        "notes": null
+      },
+      {
+        "id": "map_natal_astrology_symbolic_meaning",
+        "source_entity_type": "instrument",
+        "source_entity_id": "instr_natal_astrology",
+        "source_label": "Natal Astrology",
+        "source_instrument_id": "instr_natal_astrology",
+        "source_instrument_label": "Natal Astrology",
+        "target_entity_id": "mtf_symbolic_meaning_load",
+        "target_label": "Symbolic Meaning Load",
+        "relationship_type": "direct_signal",
+        "relationship_strength": "high",
+        "confidence": "high",
+        "status": "provisional",
+        "rationale": "Natal astrology is a strong house example of symbolic, mythic, and cosmological meaning language rather than only behavioral measurement.\n",
+        "notes": null
+      }
+    ],
+    "interaction_hypotheses": [
+      {
+        "id": "ihp_identity_adhesion_symbolic_meaning",
+        "left": {
+          "entity_type": "motif",
+          "entity_id": "mtf_identity_adhesion",
+          "label": "Identity Adhesion",
+          "instrument_id": "",
+          "instrument_label": "",
+          "slug": ""
+        },
+        "right": {
+          "entity_type": "motif",
+          "entity_id": "mtf_symbolic_meaning_load",
+          "label": "Symbolic Meaning Load",
+          "instrument_id": "",
+          "instrument_label": "",
+          "slug": ""
+        },
+        "interaction_type": "reinforcing",
+        "confidence": "high",
+        "status": "active",
+        "summary": "Symbolic meaning-heavy systems often become especially adhesive identity languages.",
+        "rationale": "When a framework carries cosmological, archetypal, or destiny-coded meaning, users are more likely to adopt it as a durable self-story rather than as a lightweight descriptive layer.\n",
+        "protocol_relevance": [
+          "proto_ilens",
+          "proto_translation_memo"
+        ],
+        "conditions": [],
+        "notes": null
+      }
+    ],
+    "input_contract": {
+      "required_inputs": [
+        "instrument records",
+        "crosswalks",
+        "construct mappings"
+      ],
+      "optional_inputs": [
+        "research observations",
+        "mapping votes"
+      ]
+    },
+    "execution_order": [
+      "Resolve canonical framework records for the current target scope.",
+      "Trace target frameworks or constructs through the motif layer.",
+      "Expand interaction hypotheses relevant to the scoped targets and selected protocol.",
+      "Load the protocol's technique bundle and preserve cautions.",
+      "Bracket symbolic versus empirical status before claiming overlap.",
+      "Explain overlap, divergence, and incommensurability directly.",
+      "Emit mismatch warnings and suggested follow-up mappings.",
+      "Return structured feedback through the preferred research contribution models."
+    ],
+    "output_contract": {
+      "primary_outputs": [
+        "overlap memo",
+        "mismatch warnings",
+        "suggested follow-up mappings"
+      ]
+    },
+    "return_contract": {
+      "preferred_contribution_model_ids": [
+        "rcm_mapping_vote",
+        "rcm_pairwise_relation_judgment",
+        "rcm_distilled_observation",
+        "rcm_protocol_feedback"
+      ],
+      "contribution_models": [
+        {
+          "id": "rcm_mapping_vote",
+          "name": "Mapping Vote",
+          "purpose": "Collect lightweight feedback on whether a proposed mapping fits lived experience.",
+          "privacy_posture": "No raw narrative required; contribution should stay at the judgment layer by default.",
+          "required_fields": [
+            "mapping_id",
+            "vote",
+            "confidence"
+          ],
+          "optional_fields": [
+            "source_framework_context",
+            "brief rationale"
+          ],
+          "promotion_path": [
+            "anecdotal",
+            "aggregated",
+            "reviewed",
+            "promoted_to_house_inference"
+          ],
+          "notes": "Best default research input when the goal is to refine construct-to-motif mappings without collecting sensitive life detail.\n"
+        },
+        {
+          "id": "rcm_pairwise_relation_judgment",
+          "name": "Pairwise Relation Judgment",
+          "purpose": "Capture whether two result atoms feel reinforcing, contradictory, orthogonal, or context-dependent.",
+          "privacy_posture": "Structured labels first; free text only if strictly necessary.",
+          "required_fields": [
+            "left_atom",
+            "right_atom",
+            "relation_label"
+          ],
+          "optional_fields": [
+            "context_note",
+            "confidence"
+          ],
+          "promotion_path": [
+            "anecdotal",
+            "aggregated",
+            "reviewed",
+            "interaction_hypothesis"
+          ],
+          "notes": "Useful for discovering stable tension and reinforcement patterns across systems.\n"
+        },
+        {
+          "id": "rcm_distilled_observation",
+          "name": "Distilled Observation",
+          "purpose": "Record short anonymized insights about how mappings, tensions, or combinations behave in practice.",
+          "privacy_posture": "Distilled and anonymized by default; no raw transcripts in the canonical stream.",
+          "required_fields": [
+            "observation_text",
+            "linked_entities"
+          ],
+          "optional_fields": [
+            "context_window",
+            "confidence",
+            "outcome_note"
+          ],
+          "promotion_path": [
+            "anecdotal",
+            "clustered_pattern",
+            "reviewed",
+            "house_inference"
+          ],
+          "notes": "Useful for preserving real-world synthesis insight without over-collecting sensitive detail.\n"
+        },
+        {
+          "id": "rcm_protocol_feedback",
+          "name": "Protocol Feedback",
+          "purpose": "Capture whether a downstream protocol produced useful, misleading, or incomplete synthesis.",
+          "privacy_posture": "Evaluate the protocol output rather than the person's raw life material.",
+          "required_fields": [
+            "protocol_id",
+            "usefulness_rating",
+            "failure_or_success_note"
+          ],
+          "optional_fields": [
+            "missing_input_types",
+            "suggested_revision"
+          ],
+          "promotion_path": [
+            "feedback_log",
+            "reviewed",
+            "protocol_revision"
+          ],
+          "notes": "Keeps downstream promptcraft and runtime behavior connected back to the repository without polluting canonical framework records.\n"
+        }
+      ],
+      "result_atom_schema": null
+    }
+  }
+}

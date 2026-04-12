@@ -7,7 +7,12 @@ from pathlib import Path
 from personality_registry.audit import audit_summary, bundle_audit_entry
 from personality_registry.extensions import ExtensionRegistryData, load_extensions_strict
 from personality_registry.loader import InstrumentBundle, load_repository_strict
-from personality_registry.query import compare_instruments, protocol_pack_grammar
+from personality_registry.query import (
+    compare_instruments,
+    curated_protocol_pack_record,
+    find_protocol_packs,
+    protocol_pack_grammar,
+)
 from personality_registry.validation import validate_repository
 
 
@@ -123,6 +128,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "protocol_library": {
                 "technique_count": len(extensions.techniques),
                 "protocol_count": len(extensions.protocols),
+                "protocol_pack_count": len(extensions.protocol_packs),
             },
             "research_stream": {
                 "contribution_model_count": len(extensions.contribution_models),
@@ -137,6 +143,8 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "docs/architecture.md",
             "docs/gnomy_integration.md",
             "docs/mcp.md",
+            "docs/protocol_pack_grammar.md",
+            "docs/protocol_packs.md",
         ],
         "canonical_sources": {
             "instrument_root": "instruments/",
@@ -147,6 +155,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "interactions/",
                 "techniques/",
                 "protocols/",
+                "protocol_packs/",
                 "research/",
             ],
         },
@@ -154,6 +163,8 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "json_root": "generated/",
             "site_root": "site/",
             "protocol_pack_grammar_path": "generated/protocol_pack_grammar.json",
+            "protocol_pack_catalog_path": "generated/protocol_packs/index.json",
+            "protocol_pack_root": "generated/protocol_packs/",
             "do_not_edit_directly": [
                 "generated/",
                 "site/",
@@ -195,6 +206,16 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "id": "fetch_protocol_spec",
                 "command": "python3 scripts/query_registry.py protocols ILENS",
                 "purpose": "Return protocol specs and required techniques.",
+            },
+            {
+                "id": "list_protocol_packs",
+                "command": "python3 scripts/query_registry.py protocol-packs --featured",
+                "purpose": "List curated protocol packs intended for stable downstream use.",
+            },
+            {
+                "id": "fetch_curated_protocol_pack",
+                "command": "python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack",
+                "purpose": "Return a curated protocol-pack catalog entry plus its generated runtime bundle.",
             },
             {
                 "id": "fetch_protocol_pack",
@@ -240,6 +261,8 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                     "list_related_motifs",
                     "list_interaction_hypotheses",
                     "fetch_protocol_spec",
+                    "list_protocol_packs",
+                    "fetch_curated_protocol_pack",
                     "fetch_protocol_pack",
                     "fetch_protocol_pack_grammar",
                     "fetch_result_atom_schema",
@@ -249,6 +272,8 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                     "registry://manifest",
                     "registry://current-state",
                     "registry://roadmap",
+                    "registry://protocol-packs",
+                    "registry://protocol-pack/{pack_id}",
                     "registry://protocol-pack-grammar",
                     "registry://instrument/{slug}",
                 ],
@@ -278,6 +303,14 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "id": "protocol_pack_grammar_v0_1",
             "json_path": "generated/protocol_pack_grammar.json",
             "doc_path": "docs/protocol_pack_grammar.md",
+        },
+        "protocol_pack_catalog": {
+            "source_path": "protocol_packs/catalog.yaml",
+            "json_path": "generated/protocol_packs/index.json",
+            "count": len(extensions.protocol_packs),
+            "featured_ids": [
+                item.id for item in extensions.protocol_packs if item.featured
+            ],
         },
     }
 
@@ -317,6 +350,7 @@ def _nav_html(prefix: str, current: str) -> str:
         ("motifs.html", "motifs", "Motifs"),
         ("interactions.html", "interactions", "Interactions"),
         ("protocols.html", "protocols", "Protocols"),
+        ("protocol-packs.html", "protocol-packs", "Packs"),
         ("research.html", "research", "Research"),
         ("audit.html", "audit", "Audit"),
     ]
@@ -620,7 +654,19 @@ def build_outputs(root: Path) -> dict:
     extensions = load_extensions_strict(root)
     generated_root = root / "generated"
     instrument_output_root = generated_root / "instruments"
+    protocol_pack_output_root = generated_root / "protocol_packs"
     instrument_output_root.mkdir(parents=True, exist_ok=True)
+    protocol_pack_output_root.mkdir(parents=True, exist_ok=True)
+    for stale_path in protocol_pack_output_root.glob("*.json"):
+        stale_path.unlink()
+
+    protocol_pack_payloads = {
+        item.id: curated_protocol_pack_record(repository, extensions, item.id)
+        for item in extensions.protocol_packs
+    }
+    protocol_pack_index_payload = {
+        "protocol_packs": find_protocol_packs(repository, extensions),
+    }
 
     bundle_payloads = {slug: _bundle_to_dict(bundle) for slug, bundle in repository.instruments.items()}
     index_payload = {
@@ -641,6 +687,7 @@ def build_outputs(root: Path) -> dict:
             "protocol_library": {
                 "technique_count": len(extensions.techniques),
                 "protocol_count": len(extensions.protocols),
+                "protocol_pack_count": len(extensions.protocol_packs),
             },
             "research_stream": {
                 "contribution_model_count": len(extensions.contribution_models),
@@ -678,6 +725,7 @@ def build_outputs(root: Path) -> dict:
         "protocol_library": {
             "techniques": [item.model_dump(mode="json") for item in extensions.techniques],
             "protocols": [item.model_dump(mode="json") for item in extensions.protocols],
+            "protocol_packs": [item.model_dump(mode="json") for item in extensions.protocol_packs],
         },
         "research_stream": {
             "contribution_models": [
@@ -694,6 +742,10 @@ def build_outputs(root: Path) -> dict:
     (generated_root / "audit.json").write_text(json.dumps(audit_payload, indent=2), encoding="utf-8")
     (generated_root / "registry.json").write_text(json.dumps(export_payload, indent=2), encoding="utf-8")
     (generated_root / "manifest.json").write_text(json.dumps(manifest_payload, indent=2), encoding="utf-8")
+    (protocol_pack_output_root / "index.json").write_text(
+        json.dumps(protocol_pack_index_payload, indent=2),
+        encoding="utf-8",
+    )
     (generated_root / "protocol_pack_grammar.json").write_text(
         json.dumps(protocol_pack_grammar_payload, indent=2),
         encoding="utf-8",
@@ -702,6 +754,12 @@ def build_outputs(root: Path) -> dict:
     for slug, payload in bundle_payloads.items():
         (instrument_output_root / f"{slug}.json").write_text(
             json.dumps(payload, indent=2), encoding="utf-8"
+        )
+
+    for pack_id, payload in protocol_pack_payloads.items():
+        (protocol_pack_output_root / f"{pack_id}.json").write_text(
+            json.dumps(payload, indent=2),
+            encoding="utf-8",
         )
 
     return export_payload
@@ -943,6 +1001,58 @@ def _protocols_html(extensions: ExtensionRegistryData) -> str:
       <section>
         <h2>Techniques</h2>
         <div class="card-grid">{technique_cards}</div>
+      </section>
+      <section class="hero-panel">
+        <p class="eyebrow">Curated Runtime Bundles</p>
+        <h2>Protocol packs</h2>
+        <p class="page-lead">Use curated packs when a downstream task should start from a stable, reviewed bundle rather than assembling scope ad hoc.</p>
+        <div class="action-row">
+          <a class="action-link" href="protocol-packs.html">Browse curated packs</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+"""
+
+
+def _protocol_packs_html(repository, extensions: ExtensionRegistryData) -> str:
+    cards = "\n".join(
+        _extension_card(
+            eyebrow="Protocol Pack",
+            title=item["title"],
+            body=f"{item['summary']} Targets: {', '.join(item['target_labels'])}.",
+            tags=[
+                item["status"],
+                item["protocol_name"],
+                *item["intended_consumers"][:2],
+            ],
+            anchor=item["id"],
+            meta=f"{item['target_count']} targets | {'featured' if item['featured'] else 'curated'}",
+        )
+        for item in find_protocol_packs(repository, extensions)
+    )
+    return f"""<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Curated Protocol Packs</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      {_nav_html("", "protocol-packs")}
+      <section class="hero-panel">
+        <p class="eyebrow">Protocol Packs</p>
+        <h1>Curated Protocol Packs</h1>
+        <p class="page-lead">Stable, reviewed runtime bundles generated from cataloged scopes, protocol specs, technique bundles, motif traces, mappings, and interaction hypotheses.</p>
+      </section>
+      <section class="stats">
+        <article class="stat-card"><strong>{len(extensions.protocol_packs)}</strong> curated packs</article>
+        <article class="stat-card"><strong>{len([item for item in extensions.protocol_packs if item.featured])}</strong> featured packs</article>
+      </section>
+      <section>
+        <div class="card-grid">{cards}</div>
       </section>
     </main>
   </body>
@@ -1279,9 +1389,13 @@ def build_docs(root: Path) -> None:
     site_data_root = site_root / "data"
     site_instruments_root = site_root / "instruments"
     site_comparisons_root = site_root / "comparisons"
+    site_protocol_packs_root = site_data_root / "protocol_packs"
     site_data_root.mkdir(parents=True, exist_ok=True)
     site_instruments_root.mkdir(parents=True, exist_ok=True)
     site_comparisons_root.mkdir(parents=True, exist_ok=True)
+    site_protocol_packs_root.mkdir(parents=True, exist_ok=True)
+    for stale_path in site_protocol_packs_root.glob("*.json"):
+        stale_path.unlink()
     audit_entries = [bundle_audit_entry(bundle) for _, bundle in sorted(repository.instruments.items())]
     audit_snapshot = audit_summary(audit_entries)
     audit_by_slug = {entry["slug"]: entry for entry in audit_entries}
@@ -1305,6 +1419,13 @@ def build_docs(root: Path) -> None:
     }
     manifest_payload = _manifest_payload(repository, extensions)
     protocol_pack_grammar_payload = protocol_pack_grammar()
+    protocol_pack_index_payload = {
+        "protocol_packs": find_protocol_packs(repository, extensions),
+    }
+    protocol_pack_payloads = {
+        item.id: curated_protocol_pack_record(repository, extensions, item.id)
+        for item in extensions.protocol_packs
+    }
     extension_payload = {
         "motifs": [item.model_dump(mode="json") for item in extensions.motifs],
         "mappings": [item.model_dump(mode="json") for item in extensions.mappings],
@@ -1313,6 +1434,7 @@ def build_docs(root: Path) -> None:
         ],
         "techniques": [item.model_dump(mode="json") for item in extensions.techniques],
         "protocols": [item.model_dump(mode="json") for item in extensions.protocols],
+        "protocol_packs": [item.model_dump(mode="json") for item in extensions.protocol_packs],
         "contribution_models": [
             item.model_dump(mode="json") for item in extensions.contribution_models
         ],
@@ -1369,10 +1491,19 @@ section { margin-top: 32px; }
     (site_data_root / "comparisons.json").write_text(json.dumps(comparison_payload, indent=2), encoding="utf-8")
     (site_data_root / "extensions.json").write_text(json.dumps(extension_payload, indent=2), encoding="utf-8")
     (site_data_root / "manifest.json").write_text(json.dumps(manifest_payload, indent=2), encoding="utf-8")
+    (site_protocol_packs_root / "index.json").write_text(
+        json.dumps(protocol_pack_index_payload, indent=2),
+        encoding="utf-8",
+    )
     (site_data_root / "protocol_pack_grammar.json").write_text(
         json.dumps(protocol_pack_grammar_payload, indent=2),
         encoding="utf-8",
     )
+    for pack_id, payload in protocol_pack_payloads.items():
+        (site_protocol_packs_root / f"{pack_id}.json").write_text(
+            json.dumps(payload, indent=2),
+            encoding="utf-8",
+        )
 
     index_items = "\n".join(
         _docs_index_entry(bundle, audit_by_slug[bundle.slug])
@@ -1432,6 +1563,7 @@ section { margin-top: 32px; }
           <a class="action-link" href="motifs.html">Browse motifs</a>
           <a class="action-link" href="interactions.html">Browse interactions</a>
           <a class="action-link" href="protocols.html">Browse protocols</a>
+          <a class="action-link" href="protocol-packs.html">Browse curated packs</a>
           <a class="action-link" href="audit.html">View audit</a>
         </div>
       </section>
@@ -1462,6 +1594,9 @@ section { margin-top: 32px; }
         _interactions_html(repository, extensions), encoding="utf-8"
     )
     (site_root / "protocols.html").write_text(_protocols_html(extensions), encoding="utf-8")
+    (site_root / "protocol-packs.html").write_text(
+        _protocol_packs_html(repository, extensions), encoding="utf-8"
+    )
     (site_root / "research.html").write_text(_research_html(extensions), encoding="utf-8")
 
     for slug, bundle in repository.instruments.items():

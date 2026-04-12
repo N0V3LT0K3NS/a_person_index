@@ -13,6 +13,10 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     audit_path = repo_root / "generated" / "audit.json"
     manifest_path = repo_root / "generated" / "manifest.json"
     protocol_pack_grammar_path = repo_root / "generated" / "protocol_pack_grammar.json"
+    protocol_pack_index_path = repo_root / "generated" / "protocol_packs" / "index.json"
+    curated_protocol_pack_path = (
+        repo_root / "generated" / "protocol_packs" / "ppk_ilens_core_trait_motive_stack.json"
+    )
     registry_path = repo_root / "generated" / "registry.json"
 
     assert index_path.exists()
@@ -20,6 +24,8 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert audit_path.exists()
     assert manifest_path.exists()
     assert protocol_pack_grammar_path.exists()
+    assert protocol_pack_index_path.exists()
+    assert curated_protocol_pack_path.exists()
     assert registry_path.exists()
 
     index_payload = json.loads(index_path.read_text(encoding="utf-8"))
@@ -27,6 +33,7 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     audit_payload = json.loads(audit_path.read_text(encoding="utf-8"))
     manifest_payload = json.loads(manifest_path.read_text(encoding="utf-8"))
     protocol_pack_grammar_payload = json.loads(protocol_pack_grammar_path.read_text(encoding="utf-8"))
+    protocol_pack_index_payload = json.loads(protocol_pack_index_path.read_text(encoding="utf-8"))
 
     assert len(index_payload["instruments"]) == len(export_payload["instruments"])
     assert len(search_payload["entries"]) == len(export_payload["instruments"])
@@ -44,6 +51,9 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     )
     assert index_payload["product_layers"]["protocol_library"]["protocol_count"] == len(
         export_payload["protocol_library"]["protocols"]
+    )
+    assert index_payload["product_layers"]["protocol_library"]["protocol_pack_count"] == len(
+        export_payload["protocol_library"]["protocol_packs"]
     )
     assert index_payload["product_layers"]["research_stream"]["contribution_model_count"] == len(
         export_payload["research_stream"]["contribution_models"]
@@ -69,7 +79,13 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert manifest_payload["repository"]["name"] == "personality-instrument-registry"
     assert manifest_payload["downstream_contract"]["result_atom_schema_id"] == "ras_result_atom_v0_1"
     assert manifest_payload["service_primitives"]
+    assert any(item["id"] == "list_protocol_packs" for item in manifest_payload["service_primitives"])
+    assert any(item["id"] == "fetch_curated_protocol_pack" for item in manifest_payload["service_primitives"])
     assert any(item["id"] == "fetch_protocol_pack" for item in manifest_payload["service_primitives"])
     assert manifest_payload["interfaces"]["mcp"]["status"] == "active_read_only"
+    assert "list_protocol_packs" in manifest_payload["interfaces"]["mcp"]["tool_ids"]
+    assert "fetch_curated_protocol_pack" in manifest_payload["interfaces"]["mcp"]["tool_ids"]
     assert "fetch_protocol_pack" in manifest_payload["interfaces"]["mcp"]["tool_ids"]
+    assert protocol_pack_index_payload["protocol_packs"]
+    assert protocol_pack_index_payload["protocol_packs"][0]["id"].startswith("ppk_")
     assert protocol_pack_grammar_payload["id"] == "protocol_pack_grammar_v0_1"

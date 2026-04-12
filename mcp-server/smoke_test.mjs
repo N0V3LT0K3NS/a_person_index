@@ -32,10 +32,18 @@ const tools = await client.listTools();
 if (!tools.tools.some((tool) => tool.name === "fetch_protocol_pack")) {
   throw new Error("Expected fetch_protocol_pack tool in MCP surface.");
 }
+if (!tools.tools.some((tool) => tool.name === "fetch_curated_protocol_pack")) {
+  throw new Error("Expected fetch_curated_protocol_pack tool in MCP surface.");
+}
 
 const manifest = await client.readResource({ uri: "registry://manifest" });
 if (!manifest.contents?.[0]?.text?.includes("personality-instrument-registry")) {
   throw new Error("Expected registry manifest content.");
+}
+
+const curatedPackIndex = await client.readResource({ uri: "registry://protocol-packs" });
+if (!curatedPackIndex.contents?.[0]?.text?.includes("ppk_ilens_core_trait_motive_stack")) {
+  throw new Error("Expected protocol-pack catalog content.");
 }
 
 const prompt = await client.getPrompt({ name: "registry-arrival" });
@@ -58,6 +66,23 @@ if (protocolPack.isError) {
 const structured = protocolPack.structuredContent;
 if (!structured?.pack || structured.pack.protocol_id !== "proto_ilens") {
   throw new Error("Expected ILENS protocol pack response.");
+}
+
+const curatedProtocolPack = await client.callTool({
+  name: "fetch_curated_protocol_pack",
+  arguments: {
+    ref: "ppk_ilens_core_trait_motive_stack",
+  },
+});
+
+if (curatedProtocolPack.isError) {
+  throw new Error(
+    `Curated protocol pack tool returned error: ${curatedProtocolPack.content?.[0]?.text ?? "unknown error"}`,
+  );
+}
+
+if (curatedProtocolPack.structuredContent?.catalog_entry?.id !== "ppk_ilens_core_trait_motive_stack") {
+  throw new Error("Expected curated protocol pack catalog entry.");
 }
 
 await transport.close();

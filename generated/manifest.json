@@ -17,7 +17,8 @@
     },
     "protocol_library": {
       "technique_count": 6,
-      "protocol_count": 3
+      "protocol_count": 3,
+      "protocol_pack_count": 4
     },
     "research_stream": {
       "contribution_model_count": 5,
@@ -31,7 +32,9 @@
     "docs/roadmap.md",
     "docs/architecture.md",
     "docs/gnomy_integration.md",
-    "docs/mcp.md"
+    "docs/mcp.md",
+    "docs/protocol_pack_grammar.md",
+    "docs/protocol_packs.md"
   ],
   "canonical_sources": {
     "instrument_root": "instruments/",
@@ -42,6 +45,7 @@
       "interactions/",
       "techniques/",
       "protocols/",
+      "protocol_packs/",
       "research/"
     ]
   },
@@ -49,6 +53,8 @@
     "json_root": "generated/",
     "site_root": "site/",
     "protocol_pack_grammar_path": "generated/protocol_pack_grammar.json",
+    "protocol_pack_catalog_path": "generated/protocol_packs/index.json",
+    "protocol_pack_root": "generated/protocol_packs/",
     "do_not_edit_directly": [
       "generated/",
       "site/",
@@ -90,6 +96,16 @@
       "id": "fetch_protocol_spec",
       "command": "python3 scripts/query_registry.py protocols ILENS",
       "purpose": "Return protocol specs and required techniques."
+    },
+    {
+      "id": "list_protocol_packs",
+      "command": "python3 scripts/query_registry.py protocol-packs --featured",
+      "purpose": "List curated protocol packs intended for stable downstream use."
+    },
+    {
+      "id": "fetch_curated_protocol_pack",
+      "command": "python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack",
+      "purpose": "Return a curated protocol-pack catalog entry plus its generated runtime bundle."
     },
     {
       "id": "fetch_protocol_pack",
@@ -135,6 +151,8 @@
         "list_related_motifs",
         "list_interaction_hypotheses",
         "fetch_protocol_spec",
+        "list_protocol_packs",
+        "fetch_curated_protocol_pack",
         "fetch_protocol_pack",
         "fetch_protocol_pack_grammar",
         "fetch_result_atom_schema",
@@ -144,6 +162,8 @@
         "registry://manifest",
         "registry://current-state",
         "registry://roadmap",
+        "registry://protocol-packs",
+        "registry://protocol-pack/{pack_id}",
         "registry://protocol-pack-grammar",
         "registry://instrument/{slug}"
       ],
@@ -173,5 +193,14 @@
     "id": "protocol_pack_grammar_v0_1",
     "json_path": "generated/protocol_pack_grammar.json",
     "doc_path": "docs/protocol_pack_grammar.md"
+  },
+  "protocol_pack_catalog": {
+    "source_path": "protocol_packs/catalog.yaml",
+    "json_path": "generated/protocol_packs/index.json",
+    "count": 4,
+    "featured_ids": [
+      "ppk_ilens_core_trait_motive_stack",
+      "ppk_translation_attachment_and_care"
+    ]
   }
 }

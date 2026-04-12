@@ -274,6 +274,7 @@ def collect_validation_errors(root: Path) -> list[str]:
             "interaction_hypothesis": extensions.interaction_hypotheses,
             "technique": extensions.techniques,
             "protocol": extensions.protocols,
+            "protocol_pack": extensions.protocol_packs,
             "contribution_model": extensions.contribution_models,
             "result_atom_schema": [extensions.result_atom_schema],
         }
@@ -343,6 +344,37 @@ def collect_validation_errors(root: Path) -> list[str]:
                     )
 
         protocol_ids = {protocol.id for protocol in extensions.protocols}
+        for protocol_pack in extensions.protocol_packs:
+            if protocol_pack.protocol_id not in protocol_ids:
+                errors.append(
+                    f"protocol_packs/catalog.yaml: protocol pack '{protocol_pack.id}' references missing protocol "
+                    f"'{protocol_pack.protocol_id}'"
+                )
+            for framework_id in protocol_pack.target_framework_ids:
+                framework_entity = entities.get(framework_id)
+                if framework_entity is None:
+                    errors.append(
+                        f"protocol_packs/catalog.yaml: protocol pack '{protocol_pack.id}' references missing framework "
+                        f"'{framework_id}'"
+                    )
+                elif framework_entity[0] != "instrument":
+                    errors.append(
+                        f"protocol_packs/catalog.yaml: protocol pack '{protocol_pack.id}' framework target "
+                        f"'{framework_id}' is a {framework_entity[0]}, not an instrument"
+                    )
+            for construct_id in protocol_pack.target_construct_ids:
+                construct_entity = entities.get(construct_id)
+                if construct_entity is None:
+                    errors.append(
+                        f"protocol_packs/catalog.yaml: protocol pack '{protocol_pack.id}' references missing construct "
+                        f"'{construct_id}'"
+                    )
+                elif construct_entity[0] != "construct":
+                    errors.append(
+                        f"protocol_packs/catalog.yaml: protocol pack '{protocol_pack.id}' construct target "
+                        f"'{construct_id}' is a {construct_entity[0]}, not a construct"
+                    )
+
         for interaction in extensions.interaction_hypotheses:
             for side, entity_type, entity_id in (
                 ("left", interaction.left_entity_type, interaction.left_entity_id),

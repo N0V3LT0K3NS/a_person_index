@@ -8,9 +8,11 @@ from personality_registry.query import (
     find_contribution_models,
     find_interaction_hypotheses,
     find_motifs,
+    find_protocol_packs,
     find_protocols,
     find_techniques,
     find_instruments,
+    curated_protocol_pack_record,
     interaction_hypothesis_record,
     instrument_record,
     motif_record,
@@ -205,6 +207,30 @@ def test_protocol_pack_expands_scope_for_ilens(repo_root):
     assert payload["interaction_hypotheses"]
     assert payload["return_contract"]["preferred_contribution_model_ids"]
     assert payload["return_contract"]["result_atom_schema"]["id"] == "ras_result_atom_v0_1"
+
+
+def test_find_protocol_packs_surfaces_featured_catalog_entries(repo_root):
+    repository = load_repository_strict(repo_root)
+    extensions = load_extensions_strict(repo_root)
+    payload = find_protocol_packs(repository, extensions, featured_only=True)
+    pack_ids = {item["id"] for item in payload}
+    assert "ppk_ilens_core_trait_motive_stack" in pack_ids
+    assert "ppk_translation_attachment_and_care" in pack_ids
+
+
+def test_curated_protocol_pack_record_expands_catalog_entry(repo_root):
+    repository = load_repository_strict(repo_root)
+    extensions = load_extensions_strict(repo_root)
+    payload = curated_protocol_pack_record(
+        repository,
+        extensions,
+        "ppk_ilens_core_trait_motive_stack",
+    )
+    assert payload["catalog_entry"]["protocol_id"] == "proto_ilens"
+    assert payload["protocol_pack"]["pack"]["protocol_id"] == "proto_ilens"
+    assert {"instr_big_five", "instr_mbti", "instr_enneagram"} <= set(
+        payload["protocol_pack"]["pack"]["target_framework_ids"]
+    )
 
 
 def test_protocol_pack_grammar_has_required_sections():

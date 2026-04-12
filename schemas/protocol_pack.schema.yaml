@@ -1,0 +1,67 @@
+$defs:
+  ProtocolPackSpec:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      protocol_id:
+        title: Protocol Id
+        type: string
+      status:
+        enum:
+        - draft
+        - experimental
+        - active
+        title: Status
+        type: string
+      title:
+        title: Title
+        type: string
+      summary:
+        title: Summary
+        type: string
+      intended_consumers:
+        items:
+          type: string
+        title: Intended Consumers
+        type: array
+      target_framework_ids:
+        items:
+          type: string
+        title: Target Framework Ids
+        type: array
+      target_construct_ids:
+        items:
+          type: string
+        title: Target Construct Ids
+        type: array
+      featured:
+        default: false
+        title: Featured
+        type: boolean
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - protocol_id
+    - status
+    - title
+    - summary
+    title: ProtocolPackSpec
+    type: object
+additionalProperties: false
+properties:
+  protocol_packs:
+    items:
+      $ref: '#/$defs/ProtocolPackSpec'
+    title: Protocol Packs
+    type: array
+required:
+- protocol_packs
+title: ProtocolPacksDocument
+type: object

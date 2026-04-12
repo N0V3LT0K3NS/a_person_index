@@ -43,6 +43,7 @@ ENTITY_PREFIXES = {
     "interaction_hypothesis": "ihp_",
     "technique": "tech_",
     "protocol": "proto_",
+    "protocol_pack": "ppk_",
     "contribution_model": "rcm_",
     "result_atom_schema": "ras_",
 }

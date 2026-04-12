@@ -13319,6 +13319,83 @@
         ],
         "notes": "Translation memos are useful baseline artifacts for both curation and downstream synthesis.\n"
       }
+    ],
+    "protocol_packs": [
+      {
+        "id": "ppk_ilens_core_trait_motive_stack",
+        "protocol_id": "proto_ilens",
+        "status": "active",
+        "title": "ILENS Core Trait-Motive Stack",
+        "summary": "A baseline ILENS bundle spanning Big Five, MBTI, and Enneagram to support multi-layer synthesis across trait scaffold, cognitive-style language, and motive or identity patterning.\n",
+        "intended_consumers": [
+          "GNOMY",
+          "synthesis agents"
+        ],
+        "target_framework_ids": [
+          "instr_big_five",
+          "instr_mbti",
+          "instr_enneagram"
+        ],
+        "target_construct_ids": [],
+        "featured": true,
+        "notes": "This is the strongest general-purpose starting pack for downstream synthesis because it covers stable trait, style language, and identity or motive-heavy framing in one bundle.\n"
+      },
+      {
+        "id": "ppk_translation_attachment_and_care",
+        "protocol_id": "proto_translation_memo",
+        "status": "active",
+        "title": "Attachment and Care Translation Pack",
+        "summary": "A translation pack for relating attachment-style outputs to relational care signaling through Love Languages without claiming one-to-one equivalence.\n",
+        "intended_consumers": [
+          "GNOMY",
+          "curation agents"
+        ],
+        "target_framework_ids": [
+          "instr_attachment_styles",
+          "instr_love_languages"
+        ],
+        "target_construct_ids": [],
+        "featured": true,
+        "notes": "This pack is useful for relational translation and for checking where care-signaling language and attachment regulation get conflated.\n"
+      },
+      {
+        "id": "ppk_translation_symbolic_stack",
+        "protocol_id": "proto_translation_memo",
+        "status": "experimental",
+        "title": "Symbolic Stack Translation Pack",
+        "summary": "A translation pack for Human Design and natal astrology that foregrounds symbolic meaning load, identity adhesion, and non-equivalence rather than empirical flattening.\n",
+        "intended_consumers": [
+          "GNOMY",
+          "curation agents"
+        ],
+        "target_framework_ids": [
+          "instr_human_design",
+          "instr_natal_astrology"
+        ],
+        "target_construct_ids": [],
+        "featured": false,
+        "notes": "This pack is especially useful for symbolic systems that are culturally sticky and interpretively thick but not psychometric in the usual sense.\n"
+      },
+      {
+        "id": "ppk_human_model_card_personality_baseline",
+        "protocol_id": "proto_human_model_card",
+        "status": "experimental",
+        "title": "Human Model Card Personality Baseline",
+        "summary": "A baseline pack for Human Model Card workflows when the available person evidence includes Big Five, MBTI, and Enneagram material as structured inputs rather than raw narrative alone.\n",
+        "intended_consumers": [
+          "GNOMY",
+          "analyst agents",
+          "research artifacts"
+        ],
+        "target_framework_ids": [
+          "instr_big_five",
+          "instr_mbti",
+          "instr_enneagram"
+        ],
+        "target_construct_ids": [],
+        "featured": false,
+        "notes": "This pack does not replace the need for broader behavioral corpus evidence, but it gives downstream agents a consistent baseline bundle for model-card synthesis work.\n"
+      }
     ]
   },
   "research_stream": {

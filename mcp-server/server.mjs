@@ -158,6 +158,42 @@ async function buildServer() {
   );
 
   server.registerResource(
+    "protocol-packs",
+    "registry://protocol-packs",
+    {
+      title: "Protocol Pack Catalog",
+      description: "Curated protocol-pack catalog and summary index.",
+      mimeType: "application/json",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("generated/protocol_packs/index.json"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "protocol-pack",
+    new ResourceTemplate("registry://protocol-pack/{pack_id}", { list: undefined }),
+    {
+      title: "Curated Protocol Pack",
+      description: "Generated curated protocol-pack artifact by pack ID.",
+      mimeType: "application/json",
+    },
+    async (uri, { pack_id }) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText(`generated/protocol_packs/${pack_id}.json`),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
     "protocol-pack-grammar",
     "registry://protocol-pack-grammar",
     {
@@ -361,6 +397,52 @@ async function buildServer() {
     async ({ ref }) => {
       try {
         return jsonResult(await runRegistryQuery(["protocols", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_protocol_packs",
+    {
+      title: "List Protocol Packs",
+      description: "Return curated protocol-pack catalog entries with optional filters.",
+      inputSchema: {
+        text: z.string().optional(),
+        consumer: z.string().optional(),
+        protocol: z.string().optional(),
+        status: z.enum(["draft", "experimental", "active"]).optional(),
+        featured: z.boolean().optional(),
+      },
+    },
+    async ({ text, consumer, protocol, status, featured }) => {
+      try {
+        const args = ["protocol-packs"];
+        if (text) args.push("--text", text);
+        if (consumer) args.push("--consumer", consumer);
+        if (protocol) args.push("--protocol", protocol);
+        if (status) args.push("--status", status);
+        if (featured) args.push("--featured");
+        return jsonResult(await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_curated_protocol_pack",
+    {
+      title: "Fetch Curated Protocol Pack",
+      description: "Return a curated protocol-pack catalog entry plus its generated runtime bundle.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["protocol-packs", ref], pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }

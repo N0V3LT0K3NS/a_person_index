@@ -16,6 +16,7 @@ EXTENSION_FILE_MODELS = {
     "interactions/registry.yaml": "interaction_hypotheses",
     "techniques/registry.yaml": "techniques",
     "protocols/registry.yaml": "protocols",
+    "protocol_packs/catalog.yaml": "protocol_packs",
     "research/contribution_models.yaml": "contribution_models",
     "research/result_atom_schema.yaml": "result_atom_schema",
 }
@@ -143,6 +144,35 @@ class ProtocolsDocument(StrictModel):
     protocols: list[Protocol]
 
 
+class ProtocolPackSpec(StrictModel):
+    id: str
+    protocol_id: str
+    status: Literal["draft", "experimental", "active"]
+    title: str
+    summary: str
+    intended_consumers: list[str] = Field(default_factory=list)
+    target_framework_ids: list[str] = Field(default_factory=list)
+    target_construct_ids: list[str] = Field(default_factory=list)
+    featured: bool = False
+    notes: Optional[str] = None
+
+    @field_validator("target_construct_ids")
+    @classmethod
+    def validate_scoped_targets(
+        cls,
+        value: list[str],
+        info,
+    ) -> list[str]:
+        framework_ids = info.data.get("target_framework_ids", [])
+        if not framework_ids and not value:
+            raise ValueError("Protocol pack spec must target at least one framework or construct.")
+        return value
+
+
+class ProtocolPacksDocument(StrictModel):
+    protocol_packs: list[ProtocolPackSpec]
+
+
 class ContributionModel(StrictModel):
     id: str
     name: str
@@ -188,6 +218,7 @@ DOCUMENT_MODEL_BY_FILE = {
     "interactions/registry.yaml": InteractionHypothesesDocument,
     "techniques/registry.yaml": TechniquesDocument,
     "protocols/registry.yaml": ProtocolsDocument,
+    "protocol_packs/catalog.yaml": ProtocolPacksDocument,
     "research/contribution_models.yaml": ContributionModelsDocument,
     "research/result_atom_schema.yaml": ResultAtomSchemaDocument,
 }
@@ -200,6 +231,7 @@ class ExtensionRegistryData:
     interaction_hypotheses: list[InteractionHypothesis]
     techniques: list[Technique]
     protocols: list[Protocol]
+    protocol_packs: list[ProtocolPackSpec]
     contribution_models: list[ContributionModel]
     result_atom_schema: ResultAtomSchema
 
@@ -246,6 +278,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
     interaction_hypotheses_doc = documents["interactions/registry.yaml"]
     techniques_doc = documents["techniques/registry.yaml"]
     protocols_doc = documents["protocols/registry.yaml"]
+    protocol_packs_doc = documents["protocol_packs/catalog.yaml"]
     contribution_models_doc = documents["research/contribution_models.yaml"]
     result_atom_schema_doc = documents["research/result_atom_schema.yaml"]
 
@@ -255,6 +288,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
         interaction_hypotheses=interaction_hypotheses_doc.interaction_hypotheses,
         techniques=techniques_doc.techniques,
         protocols=protocols_doc.protocols,
+        protocol_packs=protocol_packs_doc.protocol_packs,
         contribution_models=contribution_models_doc.contribution_models,
         result_atom_schema=result_atom_schema_doc.result_atom_schema,
     )

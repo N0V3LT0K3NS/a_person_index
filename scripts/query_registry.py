@@ -10,10 +10,12 @@ from personality_registry.query import (
     audit_repository,
     compare_instruments,
     contribution_model_record,
+    curated_protocol_pack_record,
     dumps_json,
     find_contribution_models,
     find_interaction_hypotheses,
     find_motifs,
+    find_protocol_packs,
     find_protocols,
     find_techniques,
     interaction_hypothesis_record,
@@ -299,6 +301,36 @@ def _render_protocol_pack_text(payload):
     return "\n".join(lines)
 
 
+def _render_protocol_packs_text(results):
+    if not results:
+        return "No matching curated protocol packs."
+    lines = []
+    for item in results:
+        lines.append(f"{item['title']} ({item['id']})")
+        lines.append(
+            "  "
+            f"protocol={item['protocol_name']} status={item['status']} featured={'yes' if item['featured'] else 'no'}"
+        )
+        lines.append(f"  targets: {', '.join(item['target_labels'])}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_curated_protocol_pack_record_text(payload):
+    catalog_entry = payload["catalog_entry"]
+    lines = [
+        f"{catalog_entry['title']} ({catalog_entry['id']})",
+        f"protocol: {catalog_entry['protocol_name']} ({catalog_entry['protocol_id']})",
+        f"status: {catalog_entry['status']}",
+        f"featured: {'yes' if catalog_entry['featured'] else 'no'}",
+        f"targets: {', '.join(catalog_entry['target_labels'])}",
+        catalog_entry["summary"],
+        "",
+        _render_protocol_pack_text(payload["protocol_pack"]),
+    ]
+    return "\n".join(lines)
+
+
 def _render_protocol_pack_grammar_text(payload):
     lines = [
         f"{payload['id']}",
@@ -540,6 +572,30 @@ def main() -> int:
     )
     protocol_pack_grammar_parser.add_argument("--format", choices=("text", "json"), default="text")
 
+    protocol_packs_parser = subparsers.add_parser(
+        "protocol-packs",
+        help="List or show curated protocol-pack catalog entries and their generated bundles.",
+    )
+    protocol_packs_parser.add_argument(
+        "ref",
+        nargs="?",
+        help="Optional curated protocol-pack ID or title for a detailed record.",
+    )
+    protocol_packs_parser.add_argument("--text", help="Substring search across protocol-pack fields.")
+    protocol_packs_parser.add_argument("--consumer", help="Filter curated protocol packs by intended consumer.")
+    protocol_packs_parser.add_argument("--protocol", help="Filter curated protocol packs by protocol ID or name.")
+    protocol_packs_parser.add_argument(
+        "--status",
+        choices=("draft", "experimental", "active"),
+        help="Filter curated protocol packs by status.",
+    )
+    protocol_packs_parser.add_argument(
+        "--featured",
+        action="store_true",
+        help="Return only featured curated protocol packs.",
+    )
+    protocol_packs_parser.add_argument("--format", choices=("text", "json"), default="text")
+
     techniques_parser = subparsers.add_parser("techniques", help="List or show technique records.")
     techniques_parser.add_argument("ref", nargs="?", help="Optional technique ID or name for a detailed record.")
     techniques_parser.add_argument("--text", help="Substring search across technique fields.")
@@ -686,6 +742,29 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_protocol_pack_grammar_text(payload))
+        return 0
+
+    if args.command == "protocol-packs":
+        if args.ref:
+            payload = curated_protocol_pack_record(repository, extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_curated_protocol_pack_record_text(payload))
+            return 0
+        payload = find_protocol_packs(
+            repository,
+            extensions,
+            text=args.text,
+            consumer=args.consumer,
+            protocol=args.protocol,
+            status=args.status,
+            featured_only=args.featured,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_protocol_packs_text(payload))
         return 0
 
     if args.command == "techniques":

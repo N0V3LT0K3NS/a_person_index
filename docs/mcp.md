@@ -42,6 +42,8 @@ npm run mcp:smoke
 - `registry://manifest`
 - `registry://current-state`
 - `registry://roadmap`
+- `registry://protocol-packs`
+- `registry://protocol-pack/{pack_id}`
 - `registry://protocol-pack-grammar`
 - `registry://instrument/{slug}`
 
@@ -53,6 +55,8 @@ npm run mcp:smoke
 - `list_related_motifs`
 - `list_interaction_hypotheses`
 - `fetch_protocol_spec`
+- `list_protocol_packs`
+- `fetch_curated_protocol_pack`
 - `fetch_protocol_pack`
 - `fetch_protocol_pack_grammar`
 - `fetch_result_atom_schema`

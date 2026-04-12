@@ -217,6 +217,10 @@ def resolve_protocol(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.protocols, ref, ("name",))
 
 
+def resolve_protocol_pack_spec(extensions: ExtensionRegistryData, ref: str):
+    return _resolve_extension_item(extensions.protocol_packs, ref, ("title",))
+
+
 def resolve_technique(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.techniques, ref, ("name",))
 
@@ -481,6 +485,80 @@ def protocol_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, An
             if technique_id in techniques_by_id
         ],
     }
+
+
+def _protocol_pack_target_labels(
+    repository: RepositoryData,
+    framework_ids: Iterable[str],
+    construct_ids: Iterable[str],
+) -> list[str]:
+    labels: list[str] = []
+    for framework_id in framework_ids:
+        labels.append(resolve_instrument(repository, framework_id).instrument.canonical_name)
+    for construct_id in construct_ids:
+        _, construct = resolve_construct(repository, construct_id)
+        labels.append(construct.name)
+    return labels
+
+
+def find_protocol_packs(
+    repository: RepositoryData,
+    extensions: ExtensionRegistryData,
+    *,
+    text: str | None = None,
+    consumer: str | None = None,
+    protocol: str | None = None,
+    status: str | None = None,
+    featured_only: bool = False,
+) -> list[dict[str, Any]]:
+    protocol_names = {item.id: item.name for item in extensions.protocols}
+    protocol_id_filter = resolve_protocol(extensions, protocol).id if protocol else None
+    results: list[dict[str, Any]] = []
+    for item in extensions.protocol_packs:
+        if consumer and consumer not in item.intended_consumers:
+            continue
+        if protocol_id_filter and item.protocol_id != protocol_id_filter:
+            continue
+        if status and item.status != status:
+            continue
+        if featured_only and not item.featured:
+            continue
+        target_labels = _protocol_pack_target_labels(
+            repository,
+            item.target_framework_ids,
+            item.target_construct_ids,
+        )
+        if text:
+            blob = "\n".join(
+                [
+                    item.id,
+                    item.title,
+                    item.summary,
+                    item.protocol_id,
+                    protocol_names.get(item.protocol_id, ""),
+                    *item.intended_consumers,
+                    *item.target_framework_ids,
+                    *item.target_construct_ids,
+                    *target_labels,
+                ]
+            )
+            if _normalize(text) not in _normalize(blob):
+                continue
+        results.append(
+            {
+                **item.model_dump(mode="json"),
+                "protocol_name": protocol_names.get(item.protocol_id, item.protocol_id),
+                "target_count": len(item.target_framework_ids) + len(item.target_construct_ids),
+                "target_labels": target_labels,
+            }
+        )
+    return sorted(
+        results,
+        key=lambda item: (
+            0 if item["featured"] else 1,
+            item["title"].lower(),
+        ),
+    )
 
 
 def protocol_pack_grammar() -> dict[str, Any]:
@@ -811,6 +889,33 @@ def protocol_pack(
                 extensions.result_atom_schema.model_dump(mode="json") if result_atom_relevant else None
             ),
         },
+    }
+
+
+def curated_protocol_pack_record(
+    repository: RepositoryData,
+    extensions: ExtensionRegistryData,
+    ref: str,
+) -> dict[str, Any]:
+    spec = resolve_protocol_pack_spec(extensions, ref)
+    payload = protocol_pack(
+        repository,
+        extensions,
+        spec.protocol_id,
+        framework_refs=spec.target_framework_ids,
+        construct_refs=spec.target_construct_ids,
+    )
+    return {
+        "catalog_entry": {
+            **spec.model_dump(mode="json"),
+            "protocol_name": resolve_protocol(extensions, spec.protocol_id).name,
+            "target_labels": _protocol_pack_target_labels(
+                repository,
+                spec.target_framework_ids,
+                spec.target_construct_ids,
+            ),
+        },
+        "protocol_pack": payload,
     }
 
 

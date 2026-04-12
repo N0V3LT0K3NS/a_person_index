@@ -11,14 +11,17 @@ def test_extension_registries_load_and_cross_reference(repo_root):
     assert len(extensions.interaction_hypotheses) >= 5
     assert len(extensions.techniques) >= 5
     assert len(extensions.protocols) >= 3
+    assert len(extensions.protocol_packs) >= 4
     assert len(extensions.contribution_models) >= 4
 
     motif_ids = {motif.id for motif in extensions.motifs}
     technique_ids = {technique.id for technique in extensions.techniques}
     protocol_ids = {protocol.id for protocol in extensions.protocols}
+    protocol_pack_ids = {protocol_pack.id for protocol_pack in extensions.protocol_packs}
 
     assert "mtf_social_energy_orientation" in motif_ids
     assert "tech_paradox_scan" in technique_ids
+    assert "ppk_ilens_core_trait_motive_stack" in protocol_pack_ids
     assert extensions.result_atom_schema.id == "ras_result_atom_v0_1"
 
     for mapping in extensions.mappings:
@@ -26,6 +29,9 @@ def test_extension_registries_load_and_cross_reference(repo_root):
 
     for protocol in extensions.protocols:
         assert set(protocol.technique_ids).issubset(technique_ids)
+
+    for protocol_pack in extensions.protocol_packs:
+        assert protocol_pack.protocol_id in protocol_ids
 
     for interaction in extensions.interaction_hypotheses:
         assert set(interaction.protocol_relevance).issubset(protocol_ids)

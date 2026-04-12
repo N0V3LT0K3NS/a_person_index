@@ -14,12 +14,14 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     motifs_path = repo_root / "site" / "motifs.html"
     interactions_path = repo_root / "site" / "interactions.html"
     protocols_path = repo_root / "site" / "protocols.html"
+    protocol_packs_path = repo_root / "site" / "protocol-packs.html"
     research_path = repo_root / "site" / "research.html"
     search_data_path = repo_root / "site" / "data" / "search.json"
     comparisons_data_path = repo_root / "site" / "data" / "comparisons.json"
     extensions_data_path = repo_root / "site" / "data" / "extensions.json"
     manifest_data_path = repo_root / "site" / "data" / "manifest.json"
     protocol_pack_grammar_data_path = repo_root / "site" / "data" / "protocol_pack_grammar.json"
+    protocol_pack_index_data_path = repo_root / "site" / "data" / "protocol_packs" / "index.json"
     instrument_path = repo_root / "site" / "instruments" / "enneagram.html"
     hexaco_path = repo_root / "site" / "instruments" / "hexaco.html"
     compare_path = repo_root / "site" / "comparisons" / "big-five--mbti.html"
@@ -31,12 +33,14 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     assert motifs_path.exists()
     assert interactions_path.exists()
     assert protocols_path.exists()
+    assert protocol_packs_path.exists()
     assert research_path.exists()
     assert search_data_path.exists()
     assert comparisons_data_path.exists()
     assert extensions_data_path.exists()
     assert manifest_data_path.exists()
     assert protocol_pack_grammar_data_path.exists()
+    assert protocol_pack_index_data_path.exists()
     assert instrument_path.exists()
     assert hexaco_path.exists()
     assert compare_path.exists()
@@ -48,6 +52,7 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     motifs_html = motifs_path.read_text(encoding="utf-8")
     interactions_html = interactions_path.read_text(encoding="utf-8")
     protocols_html = protocols_path.read_text(encoding="utf-8")
+    protocol_packs_html = protocol_packs_path.read_text(encoding="utf-8")
     research_html = research_path.read_text(encoding="utf-8")
     instrument_html = instrument_path.read_text(encoding="utf-8")
     hexaco_html = hexaco_path.read_text(encoding="utf-8")
@@ -67,6 +72,8 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     assert "House Motifs" in motifs_html
     assert "Interaction Hypotheses" in interactions_html
     assert "Protocol Library" in protocols_html
+    assert "Curated Protocol Packs" in protocol_packs_html
+    assert "Stable, reviewed runtime bundles" in protocol_packs_html
     assert "Research Contribution Models" in research_html
     assert "Result Atom Schema" in research_html
     assert "Resources" in instrument_html
