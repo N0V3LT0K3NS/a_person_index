@@ -684,7 +684,7 @@ This is a starter registry entry for {canonical_name}. It is structurally valid 
                     "release_date": None,
                     "retired_date": None,
                     "current": True,
-                    "change_summary": "Generic umbrella record for the initial registry scaffold.",
+                    "change_summary": "Canonical general record for this instrument in the registry.",
                     "scoring_changes": None,
                     "construct_changes": None,
                     "norming_changes": None,

@@ -43,6 +43,26 @@ Key conventions:
 - `use_cases.yaml` stores practical fit and utility.
 - `notes.md` stores human-readable narrative context.
 
+## Seed corpus
+
+The repository currently ships with 15 source-backed seed instruments spanning psychometric, workplace, relational, and symbolic systems:
+
+- Big Five / OCEAN
+- MBTI
+- Enneagram
+- DISC
+- Kolbe
+- CliftonStrengths
+- Love Languages
+- Dark Triad
+- CQS
+- Culture Index
+- Human Design
+- Natal Astrology
+- Attachment Style Frameworks
+- VIA Character Strengths
+- HEXACO
+
 ## What This Is Not
 
 - Not a quiz product
