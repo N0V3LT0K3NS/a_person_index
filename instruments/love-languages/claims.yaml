@@ -3,8 +3,9 @@ claims:
   instrument_id: instr_love_languages
   version_id: ver_love_languages_general
   claim_type: overview_claim
-  claim_text: Love Languages claims that people have preferred channels for expressing
-    and receiving affection.
+  claim_text: "The Five Love Languages claims that people tend to give and receive\
+    \ love through five primary channels and that relationship quality improves when\
+    \ partners learn each other\u2019s preferred channels."
   source_resource_ids:
   - res_love_languages_overview
   quotation_status: paraphrase

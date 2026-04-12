@@ -3,12 +3,13 @@ resources:
   instrument_id: instr_love_languages
   version_id: ver_love_languages_general
   resource_type: overview
-  title: The Five Love Languages overview source
-  url: https://example.org/love-languages
+  title: What Are The 5 Love Languages?
+  url: https://5lovelanguages.com/learn
   author: null
   publication_date: null
-  publisher: null
+  publisher: Love Language Brand
   language: en
   access_status: public
-  officiality: secondary
-  notes: Starter source placeholder. Replace with a canonical source.
+  officiality: official
+  notes: Official explainer page describing the five love languages as different ways
+    people give and receive love.

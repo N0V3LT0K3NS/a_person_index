@@ -3,12 +3,13 @@ resources:
   instrument_id: instr_dark_triad
   version_id: ver_dark_triad_general
   resource_type: overview
-  title: Dark Triad overview source
-  url: https://example.org/dark-triad
-  author: null
+  title: 'The Dark Triad of personality: Narcissism, Machiavellianism, and psychopathy'
+  url: https://www2.psych.ubc.ca/~dpaulhus/research/DARK_TRAITS/ARTICLES/JRP%20Paulhus%20%26%20Williams.2002.pdf
+  author: Delroy L. Paulhus and Kevin M. Williams
   publication_date: null
-  publisher: null
+  publisher: Journal of Research in Personality
   language: en
   access_status: public
   officiality: secondary
-  notes: Starter source placeholder. Replace with a canonical source.
+  notes: Seminal paper introducing the Dark Triad as overlapping but distinct subclinical
+    constructs.

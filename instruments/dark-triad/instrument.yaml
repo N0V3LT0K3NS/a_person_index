@@ -11,12 +11,14 @@ instrument:
   short_description: A cluster of socially aversive personality constructs commonly
     organized around narcissism, Machiavellianism, and psychopathy.
   creators:
-  - unknown
-  publisher_or_owner: unknown
-  original_release_year: null
+  - Delroy L. Paulhus
+  - Kevin M. Williams
+  publisher_or_owner: none_decentralized
+  original_release_year: 2002
   official_websites: []
-  licensing_model: mixed
+  licensing_model: mixed_academic_and_derivative_measures
   primary_domain: personality_framework
   country_or_origin_context:
-  - mixed
-  notes: Starter registry entry for Dark Triad.
+  - canada
+  notes: This entry centers the Dark Triad as a construct family introduced in subclinical
+    personality research.

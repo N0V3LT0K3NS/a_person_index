@@ -2211,6 +2211,12 @@ Using DISC profiles as rigid boxes for hiring, role assignment, or simplified ju
         "short_names": ["CliftonStrengths", "StrengthsFinder"],
         "aliases": ["StrengthsFinder"],
         "short_description": "A strengths and talent language that ranks recurring patterns of thought, feeling, and behavior into named themes.",
+        "creators": ["Don Clifton", "Gallup"],
+        "publisher_or_owner": "gallup",
+        "official_websites": ["https://www.gallup.com/cliftonstrengths/"],
+        "original_release_year": 1999,
+        "licensing_model": "proprietary",
+        "country_or_origin_context": ["united_states"],
         "families": ["strengths_talent", "leadership_workplace"],
         "primary_measurement_target": ["strengths_talents", "work_style", "interpersonal_style"],
         "representational_form": ["rank_order_strengths", "profile_vector", "narrative_description"],
@@ -2237,16 +2243,63 @@ Using DISC profiles as rigid boxes for hiring, role assignment, or simplified ju
         "overlap_mode": ["workplace_family_resemblance"],
         "construct_name": "Talent theme profile",
         "construct_definition": "Rank-ordered strengths themes intended to highlight recurring talent patterns.",
-        "claim_text": "CliftonStrengths claims to identify recurring talent patterns that can be productively developed into strengths.",
-        "inference_text": "The framework is valuable as a strengths-first coaching language even when it is less useful for comprehensive person modeling.",
+        "claim_text": (
+            "CliftonStrengths claims to identify and describe unique patterns of thought, feeling, and behavior "
+            "through 34 research-validated talent themes."
+        ),
+        "resource_title": "What is the CliftonStrengths assessment?",
+        "resource_url": "https://support.gallup.com/hc/en-us/articles/44814767818643-What-is-the-CliftonStrengths-assessment",
+        "resource_publisher": "Gallup",
+        "resource_officiality": "official",
+        "resource_notes": (
+            "Official Gallup overview describing CliftonStrengths as an online talent assessment grounded in 34 talent themes."
+        ),
+        "inference_id_suffix": "strengths_language",
+        "inference_type": "practical_value",
+        "inference_confidence": "high",
+        "inference_text": (
+            "CliftonStrengths is especially useful as a workplace and coaching language for talent development, but it is "
+            "less suitable as a comprehensive ontology of personhood or as a selection instrument."
+        ),
         "risk_description": "Users may confuse branded strengths language with total capability or role fit.",
         "cautions": "Strong for strengths framing, weak as a total ontology of personhood.",
+        "instrument_notes": (
+            "This entry centers the Gallup CliftonStrengths family as a branded strengths-and-talent assessment ecosystem."
+        ),
+        "notes": """# CliftonStrengths
+
+## What it is
+A Gallup strengths assessment that ranks 34 talent themes based on recurring patterns of thought, feeling, and behavior.
+
+## Why it matters
+CliftonStrengths matters because it is one of the most culturally sticky strengths vocabularies in workplaces and coaching. It functions less as a whole-person theory than as a branded language for talent development and self-description.
+
+## What it is good for
+- strengths language
+- coaching and team development
+- role reflection
+- talent-focused development planning
+
+## What it is weaker at
+- psychometric transparency outside Gallup
+- dark-side behavior
+- motive and defense language
+- non-work identity layers
+
+## Common misuse
+Treating top themes as fixed role entitlements or using them as hiring filters instead of development prompts.
+""",
     },
     {
         "slug": "love-languages",
         "canonical_name": "The Five Love Languages",
         "short_names": ["Love Languages"],
         "short_description": "A relational preference framework describing preferred modes of expressing and receiving affection.",
+        "creators": ["Gary Chapman"],
+        "publisher_or_owner": "love_language_brand",
+        "official_websites": ["https://5lovelanguages.com/"],
+        "licensing_model": "proprietary_brand_ecosystem",
+        "country_or_origin_context": ["united_states"],
         "families": ["attachment_relational", "identity_self_concept"],
         "primary_measurement_target": ["relational_needs", "communication_preferences", "interpersonal_style"],
         "representational_form": ["categorical_typology", "profile_vector", "narrative_description"],
@@ -2273,16 +2326,63 @@ Using DISC profiles as rigid boxes for hiring, role assignment, or simplified ju
         "overlap_mode": ["shared_identity_space"],
         "construct_name": "Preferred affection channel",
         "construct_definition": "A preferred mode of giving or receiving affection, such as words, time, gifts, service, or touch.",
-        "claim_text": "Love Languages claims that people have preferred channels for expressing and receiving affection.",
-        "inference_text": "Its value is mostly conversational and relational rather than psychometric.",
+        "claim_text": (
+            "The Five Love Languages claims that people tend to give and receive love through five primary channels "
+            "and that relationship quality improves when partners learn each other’s preferred channels."
+        ),
+        "resource_title": "What Are The 5 Love Languages?",
+        "resource_url": "https://5lovelanguages.com/learn",
+        "resource_publisher": "Love Language Brand",
+        "resource_officiality": "official",
+        "resource_notes": (
+            "Official explainer page describing the five love languages as different ways people give and receive love."
+        ),
+        "inference_id_suffix": "relationship_shorthand",
+        "inference_type": "practical_value",
+        "inference_confidence": "high",
+        "inference_text": (
+            "Its value is mostly conversational and relational rather than psychometric: Love Languages persists because "
+            "it gives people a low-complexity way to talk about care, preference, and disappointment."
+        ),
         "risk_description": "Low-resolution categories can flatten complex relational dynamics into a single favorite language.",
         "cautions": "Useful as a conversation opener, not as a full relationship model.",
+        "instrument_notes": (
+            "This entry centers the branded Five Love Languages framework as a relational preference language."
+        ),
+        "notes": """# The Five Love Languages
+
+## What it is
+A five-category relational preference framework describing preferred ways of expressing and receiving affection.
+
+## Why it matters
+Love Languages matters because it is one of the most culturally sticky low-complexity relationship vocabularies in circulation. It is weak psychometrically but powerful as a conversational shorthand.
+
+## What it is good for
+- relationship conversations
+- low-friction self-reflection
+- identifying preferred expressions of care
+- lightweight communication repair
+
+## What it is weaker at
+- psychometric rigor
+- attachment and trauma dynamics
+- whole-person relational modeling
+- context sensitivity and change over time
+
+## Common misuse
+Reducing complex relational conflict to one fixed love language or treating the framework as a full theory of intimacy.
+""",
     },
     {
         "slug": "dark-triad",
         "canonical_name": "Dark Triad",
         "short_names": ["Dark Triad"],
         "short_description": "A cluster of socially aversive personality constructs commonly organized around narcissism, Machiavellianism, and psychopathy.",
+        "creators": ["Delroy L. Paulhus", "Kevin M. Williams"],
+        "publisher_or_owner": "none_decentralized",
+        "original_release_year": 2002,
+        "licensing_model": "mixed_academic_and_derivative_measures",
+        "country_or_origin_context": ["canada"],
         "families": ["trait_personality", "clinical_symptom_pathology"],
         "primary_measurement_target": ["dark_personality_features", "interpersonal_style"],
         "representational_form": ["continuous_dimensional", "profile_vector"],
@@ -2309,16 +2409,64 @@ Using DISC profiles as rigid boxes for hiring, role assignment, or simplified ju
         "overlap_mode": ["partial_construct_overlap"],
         "construct_name": "Dark trait profile",
         "construct_definition": "A profile across dark personality features such as narcissism, Machiavellianism, and psychopathy.",
-        "claim_text": "Dark Triad instruments claim to measure a cluster of socially aversive personality features.",
-        "inference_text": "The framework is analytically useful but especially vulnerable to moral overreading and stigmatizing simplification.",
+        "claim_text": (
+            "Dark Triad frameworks claim to measure three overlapping but distinct socially aversive personality "
+            "constructs: narcissism, Machiavellianism, and psychopathy."
+        ),
+        "resource_title": "The Dark Triad of personality: Narcissism, Machiavellianism, and psychopathy",
+        "resource_url": "https://www2.psych.ubc.ca/~dpaulhus/research/DARK_TRAITS/ARTICLES/JRP%20Paulhus%20%26%20Williams.2002.pdf",
+        "resource_author": "Delroy L. Paulhus and Kevin M. Williams",
+        "resource_publisher": "Journal of Research in Personality",
+        "resource_officiality": "secondary",
+        "resource_notes": (
+            "Seminal paper introducing the Dark Triad as overlapping but distinct subclinical constructs."
+        ),
+        "inference_id_suffix": "aversive_trait_cluster",
+        "inference_type": "synthesis_position",
+        "inference_confidence": "high",
+        "inference_text": (
+            "The Dark Triad is useful when the registry needs a compact aversive-traits layer, but it should be handled "
+            "as a narrow construct cluster rather than a total account of personality or morality."
+        ),
         "risk_description": "Scores can be moralized or used as total character judgments.",
         "cautions": "Treat as a narrow construct cluster, not a whole-person verdict.",
+        "instrument_notes": (
+            "This entry centers the Dark Triad as a construct family introduced in subclinical personality research."
+        ),
+        "notes": """# Dark Triad
+
+## What it is
+A construct cluster organized around narcissism, Machiavellianism, and psychopathy as overlapping but distinct socially aversive traits.
+
+## Why it matters
+Dark Triad matters because it captures a narrow but important slice of personality variation that broad positive or neutral trait models often understate: manipulativeness, grandiosity, callousness, and exploitative style.
+
+## What it is good for
+- research on aversive traits
+- comparison to agreeableness and honesty-humility layers
+- narrow interpersonal risk profiling
+
+## What it is weaker at
+- whole-person modeling
+- developmental nuance
+- context-rich interpretation
+- non-pathologizing everyday self-understanding
+
+## Common misuse
+Using dark-trait shorthand as a moral diagnosis or total character verdict.
+""",
     },
     {
         "slug": "cqs",
         "canonical_name": "Cultural Intelligence Scale",
         "short_names": ["CQS", "Cultural Intelligence Scale"],
         "short_description": "An intercultural capability instrument describing how effectively a person can function across cultural contexts.",
+        "creators": ["Soon Ang", "Linn Van Dyne", "Christopher Koh", "K. Yee Ng"],
+        "publisher_or_owner": "cultural_intelligence_center",
+        "official_websites": ["https://culturalq.com/"],
+        "original_release_year": 2007,
+        "licensing_model": "mixed_commercial_and_research",
+        "country_or_origin_context": ["mixed"],
         "families": ["cultural_intercultural"],
         "primary_measurement_target": ["cultural_adaptation", "behavioral_style"],
         "representational_form": ["continuous_dimensional", "profile_vector"],
@@ -2345,10 +2493,53 @@ Using DISC profiles as rigid boxes for hiring, role assignment, or simplified ju
         "overlap_mode": ["complementary_layers"],
         "construct_name": "Cultural intelligence profile",
         "construct_definition": "A profile across cultural metacognitive, cognitive, motivational, and behavioral capabilities.",
-        "claim_text": "CQS claims to measure capabilities relevant to functioning effectively across cultural contexts.",
-        "inference_text": "CQS matters because it measures a contextual competence layer that many personality systems ignore.",
+        "claim_text": (
+            "The Cultural Intelligence Scale claims to measure four capabilities relevant to functioning effectively "
+            "across culturally diverse contexts: Drive, Knowledge, Strategy, and Action."
+        ),
+        "resource_type": "research_overview",
+        "resource_title": "Cultural Intelligence (CQ): A Research Overview",
+        "resource_url": "https://culturalq.com/wp-content/uploads/2024/03/CQ_Research_Summary_v.2.0.pdf",
+        "resource_publisher": "Cultural Intelligence Center",
+        "resource_officiality": "official",
+        "resource_notes": (
+            "Official CQ research summary describing the four-factor model, CQS development, and validity evidence."
+        ),
+        "inference_id_suffix": "contextual_capability_layer",
+        "inference_type": "synthesis_position",
+        "inference_confidence": "high",
+        "inference_text": (
+            "CQS matters because it captures an intercultural capability layer that most personality systems ignore: "
+            "how people make sense of and adapt in culturally diverse situations."
+        ),
         "risk_description": "Self-report scores can be mistaken for demonstrated intercultural skill.",
         "cautions": "Use alongside behavioral evidence when possible.",
+        "instrument_notes": (
+            "This entry centers the four-factor Cultural Intelligence Scale as a theory-backed intercultural capability measure."
+        ),
+        "notes": """# Cultural Intelligence Scale
+
+## What it is
+An intercultural capability instrument organized around four factors: Drive, Knowledge, Strategy, and Action.
+
+## Why it matters
+CQS matters because it gives the registry a context-specific capability layer rather than another broad personality taxonomy. It is especially valuable when the question is whether someone can interpret and adapt across cultural settings.
+
+## What it is good for
+- intercultural training
+- research on cross-cultural effectiveness
+- global leadership development
+- reflection on cultural adaptability
+
+## What it is weaker at
+- whole-person personality description
+- symbolic or identity language
+- trait anchoring outside intercultural contexts
+- direct motive or attachment interpretation
+
+## Common misuse
+Treating self-report CQ as proof of real-world intercultural competence without behavioral evidence or situational context.
+""",
     },
     {
         "slug": "culture-index",

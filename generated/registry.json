@@ -1908,17 +1908,20 @@
         ],
         "short_description": "A strengths and talent language that ranks recurring patterns of thought, feeling, and behavior into named themes.",
         "creators": [
-          "unknown"
+          "Don Clifton",
+          "Gallup"
         ],
-        "publisher_or_owner": "unknown",
-        "original_release_year": null,
-        "official_websites": [],
-        "licensing_model": "mixed",
+        "publisher_or_owner": "gallup",
+        "original_release_year": 1999,
+        "official_websites": [
+          "https://www.gallup.com/cliftonstrengths/"
+        ],
+        "licensing_model": "proprietary",
         "primary_domain": "personality_framework",
         "country_or_origin_context": [
-          "mixed"
+          "united_states"
         ],
-        "notes": "Starter registry entry for CliftonStrengths."
+        "notes": "This entry centers the Gallup CliftonStrengths family as a branded strengths-and-talent assessment ecosystem."
       },
       "versions": [
         {
@@ -1967,7 +1970,7 @@
           "instrument_id": "instr_cliftonstrengths",
           "version_id": "ver_cliftonstrengths_general",
           "claim_type": "overview_claim",
-          "claim_text": "CliftonStrengths claims to identify recurring talent patterns that can be productively developed into strengths.",
+          "claim_text": "CliftonStrengths claims to identify and describe unique patterns of thought, feeling, and behavior through 34 research-validated talent themes.",
           "source_resource_ids": [
             "res_cliftonstrengths_overview"
           ],
@@ -1980,15 +1983,15 @@
           "instrument_id": "instr_cliftonstrengths",
           "version_id": "ver_cliftonstrengths_general",
           "resource_type": "overview",
-          "title": "CliftonStrengths overview source",
-          "url": "https://example.org/cliftonstrengths",
+          "title": "What is the CliftonStrengths assessment?",
+          "url": "https://support.gallup.com/hc/en-us/articles/44814767818643-What-is-the-CliftonStrengths-assessment",
           "author": null,
           "publication_date": null,
-          "publisher": null,
+          "publisher": "Gallup",
           "language": "en",
           "access_status": "public",
-          "officiality": "secondary",
-          "notes": "Starter source placeholder. Replace with a canonical source."
+          "officiality": "official",
+          "notes": "Official Gallup overview describing CliftonStrengths as an online talent assessment grounded in 34 talent themes."
         }
       ],
       "annotations": [
@@ -2465,12 +2468,12 @@
       },
       "inferences": [
         {
-          "id": "inf_cliftonstrengths_starter",
+          "id": "inf_cliftonstrengths_strengths_language",
           "target_entity_type": "instrument",
           "target_entity_id": "instr_cliftonstrengths",
-          "inference_type": "starter_position",
-          "text": "The framework is valuable as a strengths-first coaching language even when it is less useful for comprehensive person modeling.",
-          "confidence": "medium",
+          "inference_type": "practical_value",
+          "text": "CliftonStrengths is especially useful as a workplace and coaching language for talent development, but it is less suitable as a comprehensive ontology of personhood or as a selection instrument.",
+          "confidence": "high",
           "linked_entities": [],
           "author": "house",
           "timestamp": "2026-04-11"
@@ -2497,7 +2500,7 @@
           "cautions": "Strong for strengths framing, weak as a total ontology of personhood."
         }
       ],
-      "notes": "# CliftonStrengths\n\n## What it is\nA strengths and talent language that ranks recurring patterns of thought, feeling, and behavior into named themes.\n\n## Why it matters\nThis is a starter registry entry for CliftonStrengths. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+      "notes": "# CliftonStrengths\n\n## What it is\nA Gallup strengths assessment that ranks 34 talent themes based on recurring patterns of thought, feeling, and behavior.\n\n## Why it matters\nCliftonStrengths matters because it is one of the most culturally sticky strengths vocabularies in workplaces and coaching. It functions less as a whole-person theory than as a branded language for talent development and self-description.\n\n## What it is good for\n- strengths language\n- coaching and team development\n- role reflection\n- talent-focused development planning\n\n## What it is weaker at\n- psychometric transparency outside Gallup\n- dark-side behavior\n- motive and defense language\n- non-work identity layers\n\n## Common misuse\nTreating top themes as fixed role entitlements or using them as hiring filters instead of development prompts.\n"
     },
     "cqs": {
       "slug": "cqs",
@@ -2515,17 +2518,22 @@
         ],
         "short_description": "An intercultural capability instrument describing how effectively a person can function across cultural contexts.",
         "creators": [
-          "unknown"
+          "Soon Ang",
+          "Linn Van Dyne",
+          "Christopher Koh",
+          "K. Yee Ng"
         ],
-        "publisher_or_owner": "unknown",
-        "original_release_year": null,
-        "official_websites": [],
-        "licensing_model": "mixed",
+        "publisher_or_owner": "cultural_intelligence_center",
+        "original_release_year": 2007,
+        "official_websites": [
+          "https://culturalq.com/"
+        ],
+        "licensing_model": "mixed_commercial_and_research",
         "primary_domain": "personality_framework",
         "country_or_origin_context": [
           "mixed"
         ],
-        "notes": "Starter registry entry for Cultural Intelligence Scale."
+        "notes": "This entry centers the four-factor Cultural Intelligence Scale as a theory-backed intercultural capability measure."
       },
       "versions": [
         {
@@ -2574,7 +2582,7 @@
           "instrument_id": "instr_cqs",
           "version_id": "ver_cqs_general",
           "claim_type": "overview_claim",
-          "claim_text": "CQS claims to measure capabilities relevant to functioning effectively across cultural contexts.",
+          "claim_text": "The Cultural Intelligence Scale claims to measure four capabilities relevant to functioning effectively across culturally diverse contexts: Drive, Knowledge, Strategy, and Action.",
           "source_resource_ids": [
             "res_cqs_overview"
           ],
@@ -2586,16 +2594,16 @@
           "id": "res_cqs_overview",
           "instrument_id": "instr_cqs",
           "version_id": "ver_cqs_general",
-          "resource_type": "overview",
-          "title": "Cultural Intelligence Scale overview source",
-          "url": "https://example.org/cqs",
+          "resource_type": "research_overview",
+          "title": "Cultural Intelligence (CQ): A Research Overview",
+          "url": "https://culturalq.com/wp-content/uploads/2024/03/CQ_Research_Summary_v.2.0.pdf",
           "author": null,
           "publication_date": null,
-          "publisher": null,
+          "publisher": "Cultural Intelligence Center",
           "language": "en",
           "access_status": "public",
-          "officiality": "secondary",
-          "notes": "Starter source placeholder. Replace with a canonical source."
+          "officiality": "official",
+          "notes": "Official CQ research summary describing the four-factor model, CQS development, and validity evidence."
         }
       ],
       "annotations": [
@@ -3064,12 +3072,12 @@
       },
       "inferences": [
         {
-          "id": "inf_cqs_starter",
+          "id": "inf_cqs_contextual_capability_layer",
           "target_entity_type": "instrument",
           "target_entity_id": "instr_cqs",
-          "inference_type": "starter_position",
-          "text": "CQS matters because it measures a contextual competence layer that many personality systems ignore.",
-          "confidence": "medium",
+          "inference_type": "synthesis_position",
+          "text": "CQS matters because it captures an intercultural capability layer that most personality systems ignore: how people make sense of and adapt in culturally diverse situations.",
+          "confidence": "high",
           "linked_entities": [],
           "author": "house",
           "timestamp": "2026-04-11"
@@ -3096,7 +3104,7 @@
           "cautions": "Use alongside behavioral evidence when possible."
         }
       ],
-      "notes": "# Cultural Intelligence Scale\n\n## What it is\nAn intercultural capability instrument describing how effectively a person can function across cultural contexts.\n\n## Why it matters\nThis is a starter registry entry for Cultural Intelligence Scale. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+      "notes": "# Cultural Intelligence Scale\n\n## What it is\nAn intercultural capability instrument organized around four factors: Drive, Knowledge, Strategy, and Action.\n\n## Why it matters\nCQS matters because it gives the registry a context-specific capability layer rather than another broad personality taxonomy. It is especially valuable when the question is whether someone can interpret and adapt across cultural settings.\n\n## What it is good for\n- intercultural training\n- research on cross-cultural effectiveness\n- global leadership development\n- reflection on cultural adaptability\n\n## What it is weaker at\n- whole-person personality description\n- symbolic or identity language\n- trait anchoring outside intercultural contexts\n- direct motive or attachment interpretation\n\n## Common misuse\nTreating self-report CQ as proof of real-world intercultural competence without behavioral evidence or situational context.\n"
     },
     "culture-index": {
       "slug": "culture-index",
@@ -3707,17 +3715,18 @@
         ],
         "short_description": "A cluster of socially aversive personality constructs commonly organized around narcissism, Machiavellianism, and psychopathy.",
         "creators": [
-          "unknown"
+          "Delroy L. Paulhus",
+          "Kevin M. Williams"
         ],
-        "publisher_or_owner": "unknown",
-        "original_release_year": null,
+        "publisher_or_owner": "none_decentralized",
+        "original_release_year": 2002,
         "official_websites": [],
-        "licensing_model": "mixed",
+        "licensing_model": "mixed_academic_and_derivative_measures",
         "primary_domain": "personality_framework",
         "country_or_origin_context": [
-          "mixed"
+          "canada"
         ],
-        "notes": "Starter registry entry for Dark Triad."
+        "notes": "This entry centers the Dark Triad as a construct family introduced in subclinical personality research."
       },
       "versions": [
         {
@@ -3766,7 +3775,7 @@
           "instrument_id": "instr_dark_triad",
           "version_id": "ver_dark_triad_general",
           "claim_type": "overview_claim",
-          "claim_text": "Dark Triad instruments claim to measure a cluster of socially aversive personality features.",
+          "claim_text": "Dark Triad frameworks claim to measure three overlapping but distinct socially aversive personality constructs: narcissism, Machiavellianism, and psychopathy.",
           "source_resource_ids": [
             "res_dark_triad_overview"
           ],
@@ -3779,15 +3788,15 @@
           "instrument_id": "instr_dark_triad",
           "version_id": "ver_dark_triad_general",
           "resource_type": "overview",
-          "title": "Dark Triad overview source",
-          "url": "https://example.org/dark-triad",
-          "author": null,
+          "title": "The Dark Triad of personality: Narcissism, Machiavellianism, and psychopathy",
+          "url": "https://www2.psych.ubc.ca/~dpaulhus/research/DARK_TRAITS/ARTICLES/JRP%20Paulhus%20%26%20Williams.2002.pdf",
+          "author": "Delroy L. Paulhus and Kevin M. Williams",
           "publication_date": null,
-          "publisher": null,
+          "publisher": "Journal of Research in Personality",
           "language": "en",
           "access_status": "public",
           "officiality": "secondary",
-          "notes": "Starter source placeholder. Replace with a canonical source."
+          "notes": "Seminal paper introducing the Dark Triad as overlapping but distinct subclinical constructs."
         }
       ],
       "annotations": [
@@ -4246,12 +4255,12 @@
       },
       "inferences": [
         {
-          "id": "inf_dark_triad_starter",
+          "id": "inf_dark_triad_aversive_trait_cluster",
           "target_entity_type": "instrument",
           "target_entity_id": "instr_dark_triad",
-          "inference_type": "starter_position",
-          "text": "The framework is analytically useful but especially vulnerable to moral overreading and stigmatizing simplification.",
-          "confidence": "medium",
+          "inference_type": "synthesis_position",
+          "text": "The Dark Triad is useful when the registry needs a compact aversive-traits layer, but it should be handled as a narrow construct cluster rather than a total account of personality or morality.",
+          "confidence": "high",
           "linked_entities": [],
           "author": "house",
           "timestamp": "2026-04-11"
@@ -4278,7 +4287,7 @@
           "cautions": "Treat as a narrow construct cluster, not a whole-person verdict."
         }
       ],
-      "notes": "# Dark Triad\n\n## What it is\nA cluster of socially aversive personality constructs commonly organized around narcissism, Machiavellianism, and psychopathy.\n\n## Why it matters\nThis is a starter registry entry for Dark Triad. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+      "notes": "# Dark Triad\n\n## What it is\nA construct cluster organized around narcissism, Machiavellianism, and psychopathy as overlapping but distinct socially aversive traits.\n\n## Why it matters\nDark Triad matters because it captures a narrow but important slice of personality variation that broad positive or neutral trait models often understate: manipulativeness, grandiosity, callousness, and exploitative style.\n\n## What it is good for\n- research on aversive traits\n- comparison to agreeableness and honesty-humility layers\n- narrow interpersonal risk profiling\n\n## What it is weaker at\n- whole-person modeling\n- developmental nuance\n- context-rich interpretation\n- non-pathologizing everyday self-understanding\n\n## Common misuse\nUsing dark-trait shorthand as a moral diagnosis or total character verdict.\n"
     },
     "disc": {
       "slug": "disc",
@@ -7626,17 +7635,19 @@
         ],
         "short_description": "A relational preference framework describing preferred modes of expressing and receiving affection.",
         "creators": [
-          "unknown"
+          "Gary Chapman"
         ],
-        "publisher_or_owner": "unknown",
+        "publisher_or_owner": "love_language_brand",
         "original_release_year": null,
-        "official_websites": [],
-        "licensing_model": "mixed",
+        "official_websites": [
+          "https://5lovelanguages.com/"
+        ],
+        "licensing_model": "proprietary_brand_ecosystem",
         "primary_domain": "personality_framework",
         "country_or_origin_context": [
-          "mixed"
+          "united_states"
         ],
-        "notes": "Starter registry entry for The Five Love Languages."
+        "notes": "This entry centers the branded Five Love Languages framework as a relational preference language."
       },
       "versions": [
         {
@@ -7685,7 +7696,7 @@
           "instrument_id": "instr_love_languages",
           "version_id": "ver_love_languages_general",
           "claim_type": "overview_claim",
-          "claim_text": "Love Languages claims that people have preferred channels for expressing and receiving affection.",
+          "claim_text": "The Five Love Languages claims that people tend to give and receive love through five primary channels and that relationship quality improves when partners learn each other\u2019s preferred channels.",
           "source_resource_ids": [
             "res_love_languages_overview"
           ],
@@ -7698,15 +7709,15 @@
           "instrument_id": "instr_love_languages",
           "version_id": "ver_love_languages_general",
           "resource_type": "overview",
-          "title": "The Five Love Languages overview source",
-          "url": "https://example.org/love-languages",
+          "title": "What Are The 5 Love Languages?",
+          "url": "https://5lovelanguages.com/learn",
           "author": null,
           "publication_date": null,
-          "publisher": null,
+          "publisher": "Love Language Brand",
           "language": "en",
           "access_status": "public",
-          "officiality": "secondary",
-          "notes": "Starter source placeholder. Replace with a canonical source."
+          "officiality": "official",
+          "notes": "Official explainer page describing the five love languages as different ways people give and receive love."
         }
       ],
       "annotations": [
@@ -8179,12 +8190,12 @@
       },
       "inferences": [
         {
-          "id": "inf_love_languages_starter",
+          "id": "inf_love_languages_relationship_shorthand",
           "target_entity_type": "instrument",
           "target_entity_id": "instr_love_languages",
-          "inference_type": "starter_position",
-          "text": "Its value is mostly conversational and relational rather than psychometric.",
-          "confidence": "medium",
+          "inference_type": "practical_value",
+          "text": "Its value is mostly conversational and relational rather than psychometric: Love Languages persists because it gives people a low-complexity way to talk about care, preference, and disappointment.",
+          "confidence": "high",
           "linked_entities": [],
           "author": "house",
           "timestamp": "2026-04-11"
@@ -8211,7 +8222,7 @@
           "cautions": "Useful as a conversation opener, not as a full relationship model."
         }
       ],
-      "notes": "# The Five Love Languages\n\n## What it is\nA relational preference framework describing preferred modes of expressing and receiving affection.\n\n## Why it matters\nThis is a starter registry entry for The Five Love Languages. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+      "notes": "# The Five Love Languages\n\n## What it is\nA five-category relational preference framework describing preferred ways of expressing and receiving affection.\n\n## Why it matters\nLove Languages matters because it is one of the most culturally sticky low-complexity relationship vocabularies in circulation. It is weak psychometrically but powerful as a conversational shorthand.\n\n## What it is good for\n- relationship conversations\n- low-friction self-reflection\n- identifying preferred expressions of care\n- lightweight communication repair\n\n## What it is weaker at\n- psychometric rigor\n- attachment and trauma dynamics\n- whole-person relational modeling\n- context sensitivity and change over time\n\n## Common misuse\nReducing complex relational conflict to one fixed love language or treating the framework as a full theory of intimacy.\n"
     },
     "mbti": {
       "slug": "mbti",

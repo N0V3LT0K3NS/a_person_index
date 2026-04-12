@@ -14,17 +14,18 @@
     ],
     "short_description": "A cluster of socially aversive personality constructs commonly organized around narcissism, Machiavellianism, and psychopathy.",
     "creators": [
-      "unknown"
+      "Delroy L. Paulhus",
+      "Kevin M. Williams"
     ],
-    "publisher_or_owner": "unknown",
-    "original_release_year": null,
+    "publisher_or_owner": "none_decentralized",
+    "original_release_year": 2002,
     "official_websites": [],
-    "licensing_model": "mixed",
+    "licensing_model": "mixed_academic_and_derivative_measures",
     "primary_domain": "personality_framework",
     "country_or_origin_context": [
-      "mixed"
+      "canada"
     ],
-    "notes": "Starter registry entry for Dark Triad."
+    "notes": "This entry centers the Dark Triad as a construct family introduced in subclinical personality research."
   },
   "versions": [
     {
@@ -73,7 +74,7 @@
       "instrument_id": "instr_dark_triad",
       "version_id": "ver_dark_triad_general",
       "claim_type": "overview_claim",
-      "claim_text": "Dark Triad instruments claim to measure a cluster of socially aversive personality features.",
+      "claim_text": "Dark Triad frameworks claim to measure three overlapping but distinct socially aversive personality constructs: narcissism, Machiavellianism, and psychopathy.",
       "source_resource_ids": [
         "res_dark_triad_overview"
       ],
@@ -86,15 +87,15 @@
       "instrument_id": "instr_dark_triad",
       "version_id": "ver_dark_triad_general",
       "resource_type": "overview",
-      "title": "Dark Triad overview source",
-      "url": "https://example.org/dark-triad",
-      "author": null,
+      "title": "The Dark Triad of personality: Narcissism, Machiavellianism, and psychopathy",
+      "url": "https://www2.psych.ubc.ca/~dpaulhus/research/DARK_TRAITS/ARTICLES/JRP%20Paulhus%20%26%20Williams.2002.pdf",
+      "author": "Delroy L. Paulhus and Kevin M. Williams",
       "publication_date": null,
-      "publisher": null,
+      "publisher": "Journal of Research in Personality",
       "language": "en",
       "access_status": "public",
       "officiality": "secondary",
-      "notes": "Starter source placeholder. Replace with a canonical source."
+      "notes": "Seminal paper introducing the Dark Triad as overlapping but distinct subclinical constructs."
     }
   ],
   "annotations": [
@@ -553,12 +554,12 @@
   },
   "inferences": [
     {
-      "id": "inf_dark_triad_starter",
+      "id": "inf_dark_triad_aversive_trait_cluster",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_dark_triad",
-      "inference_type": "starter_position",
-      "text": "The framework is analytically useful but especially vulnerable to moral overreading and stigmatizing simplification.",
-      "confidence": "medium",
+      "inference_type": "synthesis_position",
+      "text": "The Dark Triad is useful when the registry needs a compact aversive-traits layer, but it should be handled as a narrow construct cluster rather than a total account of personality or morality.",
+      "confidence": "high",
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
@@ -585,5 +586,5 @@
       "cautions": "Treat as a narrow construct cluster, not a whole-person verdict."
     }
   ],
-  "notes": "# Dark Triad\n\n## What it is\nA cluster of socially aversive personality constructs commonly organized around narcissism, Machiavellianism, and psychopathy.\n\n## Why it matters\nThis is a starter registry entry for Dark Triad. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+  "notes": "# Dark Triad\n\n## What it is\nA construct cluster organized around narcissism, Machiavellianism, and psychopathy as overlapping but distinct socially aversive traits.\n\n## Why it matters\nDark Triad matters because it captures a narrow but important slice of personality variation that broad positive or neutral trait models often understate: manipulativeness, grandiosity, callousness, and exploitative style.\n\n## What it is good for\n- research on aversive traits\n- comparison to agreeableness and honesty-humility layers\n- narrow interpersonal risk profiling\n\n## What it is weaker at\n- whole-person modeling\n- developmental nuance\n- context-rich interpretation\n- non-pathologizing everyday self-understanding\n\n## Common misuse\nUsing dark-trait shorthand as a moral diagnosis or total character verdict.\n"
 }

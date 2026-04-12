@@ -3,8 +3,8 @@ claims:
   instrument_id: instr_dark_triad
   version_id: ver_dark_triad_general
   claim_type: overview_claim
-  claim_text: Dark Triad instruments claim to measure a cluster of socially aversive
-    personality features.
+  claim_text: 'Dark Triad frameworks claim to measure three overlapping but distinct
+    socially aversive personality constructs: narcissism, Machiavellianism, and psychopathy.'
   source_resource_ids:
   - res_dark_triad_overview
   quotation_status: paraphrase

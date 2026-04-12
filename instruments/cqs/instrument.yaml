@@ -11,12 +11,17 @@ instrument:
   short_description: An intercultural capability instrument describing how effectively
     a person can function across cultural contexts.
   creators:
-  - unknown
-  publisher_or_owner: unknown
-  original_release_year: null
-  official_websites: []
-  licensing_model: mixed
+  - Soon Ang
+  - Linn Van Dyne
+  - Christopher Koh
+  - K. Yee Ng
+  publisher_or_owner: cultural_intelligence_center
+  original_release_year: 2007
+  official_websites:
+  - https://culturalq.com/
+  licensing_model: mixed_commercial_and_research
   primary_domain: personality_framework
   country_or_origin_context:
   - mixed
-  notes: Starter registry entry for Cultural Intelligence Scale.
+  notes: This entry centers the four-factor Cultural Intelligence Scale as a theory-backed
+    intercultural capability measure.

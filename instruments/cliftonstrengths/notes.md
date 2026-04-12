@@ -1,15 +1,22 @@
 # CliftonStrengths
 
 ## What it is
-A strengths and talent language that ranks recurring patterns of thought, feeling, and behavior into named themes.
+A Gallup strengths assessment that ranks 34 talent themes based on recurring patterns of thought, feeling, and behavior.
 
 ## Why it matters
-This is a starter registry entry for CliftonStrengths. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.
+CliftonStrengths matters because it is one of the most culturally sticky strengths vocabularies in workplaces and coaching. It functions less as a whole-person theory than as a branded language for talent development and self-description.
 
 ## What it is good for
-- placeholder registry coverage
-- incremental source collection
-- ontology refinement
+- strengths language
+- coaching and team development
+- role reflection
+- talent-focused development planning
+
+## What it is weaker at
+- psychometric transparency outside Gallup
+- dark-side behavior
+- motive and defense language
+- non-work identity layers
 
 ## Common misuse
-- treating a starter entry as fully researched
+Treating top themes as fixed role entitlements or using them as hiring filters instead of development prompts.

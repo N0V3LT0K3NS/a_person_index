@@ -1,11 +1,12 @@
 inferences:
-- id: inf_cqs_starter
+- id: inf_cqs_contextual_capability_layer
   target_entity_type: instrument
   target_entity_id: instr_cqs
-  inference_type: starter_position
-  text: CQS matters because it measures a contextual competence layer that many personality
-    systems ignore.
-  confidence: medium
+  inference_type: synthesis_position
+  text: 'CQS matters because it captures an intercultural capability layer that most
+    personality systems ignore: how people make sense of and adapt in culturally diverse
+    situations.'
+  confidence: high
   linked_entities: []
   author: house
   timestamp: '2026-04-11'

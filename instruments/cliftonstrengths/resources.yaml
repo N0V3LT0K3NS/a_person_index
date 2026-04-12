@@ -3,12 +3,13 @@ resources:
   instrument_id: instr_cliftonstrengths
   version_id: ver_cliftonstrengths_general
   resource_type: overview
-  title: CliftonStrengths overview source
-  url: https://example.org/cliftonstrengths
+  title: What is the CliftonStrengths assessment?
+  url: https://support.gallup.com/hc/en-us/articles/44814767818643-What-is-the-CliftonStrengths-assessment
   author: null
   publication_date: null
-  publisher: null
+  publisher: Gallup
   language: en
   access_status: public
-  officiality: secondary
-  notes: Starter source placeholder. Replace with a canonical source.
+  officiality: official
+  notes: Official Gallup overview describing CliftonStrengths as an online talent
+    assessment grounded in 34 talent themes.

@@ -13,12 +13,15 @@ instrument:
   short_description: A strengths and talent language that ranks recurring patterns
     of thought, feeling, and behavior into named themes.
   creators:
-  - unknown
-  publisher_or_owner: unknown
-  original_release_year: null
-  official_websites: []
-  licensing_model: mixed
+  - Don Clifton
+  - Gallup
+  publisher_or_owner: gallup
+  original_release_year: 1999
+  official_websites:
+  - https://www.gallup.com/cliftonstrengths/
+  licensing_model: proprietary
   primary_domain: personality_framework
   country_or_origin_context:
-  - mixed
-  notes: Starter registry entry for CliftonStrengths.
+  - united_states
+  notes: This entry centers the Gallup CliftonStrengths family as a branded strengths-and-talent
+    assessment ecosystem.

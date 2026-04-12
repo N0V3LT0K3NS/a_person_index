@@ -14,17 +14,19 @@
     ],
     "short_description": "A relational preference framework describing preferred modes of expressing and receiving affection.",
     "creators": [
-      "unknown"
+      "Gary Chapman"
     ],
-    "publisher_or_owner": "unknown",
+    "publisher_or_owner": "love_language_brand",
     "original_release_year": null,
-    "official_websites": [],
-    "licensing_model": "mixed",
+    "official_websites": [
+      "https://5lovelanguages.com/"
+    ],
+    "licensing_model": "proprietary_brand_ecosystem",
     "primary_domain": "personality_framework",
     "country_or_origin_context": [
-      "mixed"
+      "united_states"
     ],
-    "notes": "Starter registry entry for The Five Love Languages."
+    "notes": "This entry centers the branded Five Love Languages framework as a relational preference language."
   },
   "versions": [
     {
@@ -73,7 +75,7 @@
       "instrument_id": "instr_love_languages",
       "version_id": "ver_love_languages_general",
       "claim_type": "overview_claim",
-      "claim_text": "Love Languages claims that people have preferred channels for expressing and receiving affection.",
+      "claim_text": "The Five Love Languages claims that people tend to give and receive love through five primary channels and that relationship quality improves when partners learn each other\u2019s preferred channels.",
       "source_resource_ids": [
         "res_love_languages_overview"
       ],
@@ -86,15 +88,15 @@
       "instrument_id": "instr_love_languages",
       "version_id": "ver_love_languages_general",
       "resource_type": "overview",
-      "title": "The Five Love Languages overview source",
-      "url": "https://example.org/love-languages",
+      "title": "What Are The 5 Love Languages?",
+      "url": "https://5lovelanguages.com/learn",
       "author": null,
       "publication_date": null,
-      "publisher": null,
+      "publisher": "Love Language Brand",
       "language": "en",
       "access_status": "public",
-      "officiality": "secondary",
-      "notes": "Starter source placeholder. Replace with a canonical source."
+      "officiality": "official",
+      "notes": "Official explainer page describing the five love languages as different ways people give and receive love."
     }
   ],
   "annotations": [
@@ -567,12 +569,12 @@
   },
   "inferences": [
     {
-      "id": "inf_love_languages_starter",
+      "id": "inf_love_languages_relationship_shorthand",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_love_languages",
-      "inference_type": "starter_position",
-      "text": "Its value is mostly conversational and relational rather than psychometric.",
-      "confidence": "medium",
+      "inference_type": "practical_value",
+      "text": "Its value is mostly conversational and relational rather than psychometric: Love Languages persists because it gives people a low-complexity way to talk about care, preference, and disappointment.",
+      "confidence": "high",
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
@@ -599,5 +601,5 @@
       "cautions": "Useful as a conversation opener, not as a full relationship model."
     }
   ],
-  "notes": "# The Five Love Languages\n\n## What it is\nA relational preference framework describing preferred modes of expressing and receiving affection.\n\n## Why it matters\nThis is a starter registry entry for The Five Love Languages. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+  "notes": "# The Five Love Languages\n\n## What it is\nA five-category relational preference framework describing preferred ways of expressing and receiving affection.\n\n## Why it matters\nLove Languages matters because it is one of the most culturally sticky low-complexity relationship vocabularies in circulation. It is weak psychometrically but powerful as a conversational shorthand.\n\n## What it is good for\n- relationship conversations\n- low-friction self-reflection\n- identifying preferred expressions of care\n- lightweight communication repair\n\n## What it is weaker at\n- psychometric rigor\n- attachment and trauma dynamics\n- whole-person relational modeling\n- context sensitivity and change over time\n\n## Common misuse\nReducing complex relational conflict to one fixed love language or treating the framework as a full theory of intimacy.\n"
 }

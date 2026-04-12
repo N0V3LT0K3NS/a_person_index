@@ -14,17 +14,22 @@
     ],
     "short_description": "An intercultural capability instrument describing how effectively a person can function across cultural contexts.",
     "creators": [
-      "unknown"
+      "Soon Ang",
+      "Linn Van Dyne",
+      "Christopher Koh",
+      "K. Yee Ng"
     ],
-    "publisher_or_owner": "unknown",
-    "original_release_year": null,
-    "official_websites": [],
-    "licensing_model": "mixed",
+    "publisher_or_owner": "cultural_intelligence_center",
+    "original_release_year": 2007,
+    "official_websites": [
+      "https://culturalq.com/"
+    ],
+    "licensing_model": "mixed_commercial_and_research",
     "primary_domain": "personality_framework",
     "country_or_origin_context": [
       "mixed"
     ],
-    "notes": "Starter registry entry for Cultural Intelligence Scale."
+    "notes": "This entry centers the four-factor Cultural Intelligence Scale as a theory-backed intercultural capability measure."
   },
   "versions": [
     {
@@ -73,7 +78,7 @@
       "instrument_id": "instr_cqs",
       "version_id": "ver_cqs_general",
       "claim_type": "overview_claim",
-      "claim_text": "CQS claims to measure capabilities relevant to functioning effectively across cultural contexts.",
+      "claim_text": "The Cultural Intelligence Scale claims to measure four capabilities relevant to functioning effectively across culturally diverse contexts: Drive, Knowledge, Strategy, and Action.",
       "source_resource_ids": [
         "res_cqs_overview"
       ],
@@ -85,16 +90,16 @@
       "id": "res_cqs_overview",
       "instrument_id": "instr_cqs",
       "version_id": "ver_cqs_general",
-      "resource_type": "overview",
-      "title": "Cultural Intelligence Scale overview source",
-      "url": "https://example.org/cqs",
+      "resource_type": "research_overview",
+      "title": "Cultural Intelligence (CQ): A Research Overview",
+      "url": "https://culturalq.com/wp-content/uploads/2024/03/CQ_Research_Summary_v.2.0.pdf",
       "author": null,
       "publication_date": null,
-      "publisher": null,
+      "publisher": "Cultural Intelligence Center",
       "language": "en",
       "access_status": "public",
-      "officiality": "secondary",
-      "notes": "Starter source placeholder. Replace with a canonical source."
+      "officiality": "official",
+      "notes": "Official CQ research summary describing the four-factor model, CQS development, and validity evidence."
     }
   ],
   "annotations": [
@@ -563,12 +568,12 @@
   },
   "inferences": [
     {
-      "id": "inf_cqs_starter",
+      "id": "inf_cqs_contextual_capability_layer",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_cqs",
-      "inference_type": "starter_position",
-      "text": "CQS matters because it measures a contextual competence layer that many personality systems ignore.",
-      "confidence": "medium",
+      "inference_type": "synthesis_position",
+      "text": "CQS matters because it captures an intercultural capability layer that most personality systems ignore: how people make sense of and adapt in culturally diverse situations.",
+      "confidence": "high",
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
@@ -595,5 +600,5 @@
       "cautions": "Use alongside behavioral evidence when possible."
     }
   ],
-  "notes": "# Cultural Intelligence Scale\n\n## What it is\nAn intercultural capability instrument describing how effectively a person can function across cultural contexts.\n\n## Why it matters\nThis is a starter registry entry for Cultural Intelligence Scale. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+  "notes": "# Cultural Intelligence Scale\n\n## What it is\nAn intercultural capability instrument organized around four factors: Drive, Knowledge, Strategy, and Action.\n\n## Why it matters\nCQS matters because it gives the registry a context-specific capability layer rather than another broad personality taxonomy. It is especially valuable when the question is whether someone can interpret and adapt across cultural settings.\n\n## What it is good for\n- intercultural training\n- research on cross-cultural effectiveness\n- global leadership development\n- reflection on cultural adaptability\n\n## What it is weaker at\n- whole-person personality description\n- symbolic or identity language\n- trait anchoring outside intercultural contexts\n- direct motive or attachment interpretation\n\n## Common misuse\nTreating self-report CQ as proof of real-world intercultural competence without behavioral evidence or situational context.\n"
 }

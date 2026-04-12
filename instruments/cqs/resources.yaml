@@ -2,13 +2,14 @@ resources:
 - id: res_cqs_overview
   instrument_id: instr_cqs
   version_id: ver_cqs_general
-  resource_type: overview
-  title: Cultural Intelligence Scale overview source
-  url: https://example.org/cqs
+  resource_type: research_overview
+  title: 'Cultural Intelligence (CQ): A Research Overview'
+  url: https://culturalq.com/wp-content/uploads/2024/03/CQ_Research_Summary_v.2.0.pdf
   author: null
   publication_date: null
-  publisher: null
+  publisher: Cultural Intelligence Center
   language: en
   access_status: public
-  officiality: secondary
-  notes: Starter source placeholder. Replace with a canonical source.
+  officiality: official
+  notes: Official CQ research summary describing the four-factor model, CQS development,
+    and validity evidence.

@@ -11,12 +11,14 @@ instrument:
   short_description: A relational preference framework describing preferred modes
     of expressing and receiving affection.
   creators:
-  - unknown
-  publisher_or_owner: unknown
+  - Gary Chapman
+  publisher_or_owner: love_language_brand
   original_release_year: null
-  official_websites: []
-  licensing_model: mixed
+  official_websites:
+  - https://5lovelanguages.com/
+  licensing_model: proprietary_brand_ecosystem
   primary_domain: personality_framework
   country_or_origin_context:
-  - mixed
-  notes: Starter registry entry for The Five Love Languages.
+  - united_states
+  notes: This entry centers the branded Five Love Languages framework as a relational
+    preference language.
