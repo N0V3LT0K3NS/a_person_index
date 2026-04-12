@@ -128,6 +128,10 @@ python3 scripts/generate_docs.py
 python3 scripts/query_registry.py find --family trait_personality
 python3 scripts/query_registry.py show MBTI --section constructs
 python3 scripts/query_registry.py compare "Big Five" MBTI
+python3 scripts/query_registry.py trace MBTI
+python3 scripts/query_registry.py motifs --related-to MBTI
+python3 scripts/query_registry.py protocols ILENS
+python3 scripts/query_registry.py research-models
 python3 scripts/query_registry.py audit --needs-official-resource
 python3 scripts/query_registry.py audit --needs-multiple-claims
 python3 -m pytest
@@ -177,6 +181,7 @@ Minimum required annotation dimensions are documented in:
 - [docs/annotation_guide.md](/Users/noveltokens/a_person_index/docs/annotation_guide.md)
 - [docs/editorial_style_guide.md](/Users/noveltokens/a_person_index/docs/editorial_style_guide.md)
 - [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
+- [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
 - [docs/research_contribution_guide.md](/Users/noveltokens/a_person_index/docs/research_contribution_guide.md)
 - [src/personality_registry/constants.py](/Users/noveltokens/a_person_index/src/personality_registry/constants.py)
 
@@ -206,7 +211,13 @@ The generated static site now exposes the same corpus through:
 - `site/compare.html`: generated comparison index
 - `site/comparisons/*.html`: pairwise comparison pages derived from recorded crosswalks
 
-The motif, protocol, and research registries are currently exported in generated JSON and documented in repo docs; richer query surfaces for them are phase-2 work.
+The motif, protocol, and research registries are now available through dedicated CLI surfaces and dedicated site pages:
+
+- `python3 scripts/query_registry.py trace MBTI`
+- `python3 scripts/query_registry.py motifs --related-to MBTI`
+- `python3 scripts/query_registry.py protocols ILENS`
+- `python3 scripts/query_registry.py techniques "Paradox Scan"`
+- `python3 scripts/query_registry.py research-models`
 
 ## Deployment
 

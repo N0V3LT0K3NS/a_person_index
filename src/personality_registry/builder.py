@@ -5,7 +5,7 @@ from html import escape
 from pathlib import Path
 
 from personality_registry.audit import audit_summary, bundle_audit_entry
-from personality_registry.extensions import load_extensions_strict
+from personality_registry.extensions import ExtensionRegistryData, load_extensions_strict
 from personality_registry.loader import InstrumentBundle, load_repository_strict
 from personality_registry.query import compare_instruments
 from personality_registry.validation import validate_repository
@@ -102,11 +102,41 @@ def _layer_card(title: str, count: int, noun: str, description: str) -> str:
 """
 
 
+def _extension_card(
+    *,
+    eyebrow: str,
+    title: str,
+    body: str,
+    tags: list[str] | None = None,
+    anchor: str | None = None,
+    meta: str | None = None,
+) -> str:
+    anchor_attr = f' id="{escape(anchor)}"' if anchor else ""
+    meta_html = f'<p class="muted">{escape(meta)}</p>' if meta else ""
+    tag_html = ""
+    if tags:
+        tag_html = '<div class="tag-row">' + "".join(
+            f'<span class="tag">{escape(tag)}</span>' for tag in tags
+        ) + "</div>"
+    return f"""
+<article class="instrument-card extension-card"{anchor_attr}>
+  <p class="eyebrow">{escape(eyebrow)}</p>
+  <h2>{escape(title)}</h2>
+  {meta_html}
+  <p>{escape(body)}</p>
+  {tag_html}
+</article>
+"""
+
+
 def _nav_html(prefix: str, current: str) -> str:
     links = [
         ("index.html", "registry", "Registry"),
         ("search.html", "search", "Search"),
         ("compare.html", "compare", "Compare"),
+        ("motifs.html", "motifs", "Motifs"),
+        ("protocols.html", "protocols", "Protocols"),
+        ("research.html", "research", "Research"),
         ("audit.html", "audit", "Audit"),
     ]
     items = []
@@ -592,6 +622,164 @@ def _comparison_card(entry: dict) -> str:
 """
 
 
+def _mapping_counts_by_motif(extensions: ExtensionRegistryData) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for mapping in extensions.mappings:
+        counts[mapping.target_entity_id] = counts.get(mapping.target_entity_id, 0) + 1
+    return counts
+
+
+def _protocol_usage_by_technique(extensions: ExtensionRegistryData) -> dict[str, int]:
+    usage: dict[str, int] = {}
+    for protocol in extensions.protocols:
+        for technique_id in protocol.technique_ids:
+            usage[technique_id] = usage.get(technique_id, 0) + 1
+    return usage
+
+
+def _motifs_html(extensions: ExtensionRegistryData) -> str:
+    mapping_counts = _mapping_counts_by_motif(extensions)
+    cards = "\n".join(
+        _extension_card(
+            eyebrow="Motif",
+            title=motif.name,
+            body=motif.summary,
+            tags=[motif.motif_kind, motif.status, *motif.tags],
+            anchor=motif.id,
+            meta=f"{mapping_counts.get(motif.id, 0)} mappings | {len(motif.related_dimensions)} linked dimensions",
+        )
+        for motif in sorted(extensions.motifs, key=lambda item: item.name.lower())
+    )
+    return f"""<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>House Motifs</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      {_nav_html("", "motifs")}
+      <section class="hero-panel">
+        <p class="eyebrow">House Synthesis</p>
+        <h1>House Motifs</h1>
+        <p class="page-lead">Provisional translation handles for mapping recurring circuitry across personhood frameworks without forcing false equivalence.</p>
+      </section>
+      <section class="stats">
+        <article class="stat-card"><strong>{len(extensions.motifs)}</strong> motifs</article>
+        <article class="stat-card"><strong>{len(extensions.mappings)}</strong> mappings</article>
+      </section>
+      <section>
+        <div class="card-grid">{cards}</div>
+      </section>
+    </main>
+  </body>
+</html>
+"""
+
+
+def _protocols_html(extensions: ExtensionRegistryData) -> str:
+    technique_usage = _protocol_usage_by_technique(extensions)
+    protocol_cards = "\n".join(
+        _extension_card(
+            eyebrow="Protocol",
+            title=protocol.name,
+            body=protocol.summary,
+            tags=[protocol.status, *protocol.downstream_consumers],
+            anchor=protocol.id,
+            meta=f"{len(protocol.technique_ids)} techniques | {len(protocol.required_inputs)} required inputs",
+        )
+        for protocol in sorted(extensions.protocols, key=lambda item: item.name.lower())
+    )
+    technique_cards = "\n".join(
+        _extension_card(
+            eyebrow="Technique",
+            title=technique.name,
+            body=technique.summary,
+            tags=technique.input_types[:3],
+            anchor=technique.id,
+            meta=f"used by {technique_usage.get(technique.id, 0)} protocols",
+        )
+        for technique in sorted(extensions.techniques, key=lambda item: item.name.lower())
+    )
+    return f"""<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Protocol Library</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      {_nav_html("", "protocols")}
+      <section class="hero-panel">
+        <p class="eyebrow">Protocol Layer</p>
+        <h1>Protocol Library</h1>
+        <p class="page-lead">Downstream protocol specs and reusable techniques for systems like ILENS, Human Model Card, and other synthesis workflows.</p>
+      </section>
+      <section class="stats">
+        <article class="stat-card"><strong>{len(extensions.protocols)}</strong> protocols</article>
+        <article class="stat-card"><strong>{len(extensions.techniques)}</strong> techniques</article>
+      </section>
+      <section>
+        <h2>Protocols</h2>
+        <div class="card-grid">{protocol_cards}</div>
+      </section>
+      <section>
+        <h2>Techniques</h2>
+        <div class="card-grid">{technique_cards}</div>
+      </section>
+    </main>
+  </body>
+</html>
+"""
+
+
+def _research_html(extensions: ExtensionRegistryData) -> str:
+    cards = "\n".join(
+        _extension_card(
+            eyebrow="Contribution Model",
+            title=item.name,
+            body=item.purpose,
+            tags=item.promotion_path,
+            anchor=item.id,
+            meta=item.privacy_posture,
+        )
+        for item in sorted(extensions.contribution_models, key=lambda model: model.name.lower())
+    )
+    return f"""<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Research Contribution Models</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      {_nav_html("", "research")}
+      <section class="hero-panel">
+        <p class="eyebrow">Research Stream</p>
+        <h1>Research Contribution Models</h1>
+        <p class="page-lead">Structured, privacy-minimizing intake models for mapping feedback, result atoms, distilled observations, and protocol revision signals.</p>
+      </section>
+      <section class="stats">
+        <article class="stat-card"><strong>{len(extensions.contribution_models)}</strong> contribution models</article>
+        <article class="stat-card"><strong>4</strong> promotion stages</article>
+      </section>
+      <section>
+        <div class="card-grid">{cards}</div>
+      </section>
+      <section class="hero-panel">
+        <p class="eyebrow">GNOMY</p>
+        <h2>Expected exchange pattern</h2>
+        <p class="page-lead">Downstream runtimes should send normalized result atoms, mapping votes, pairwise judgments, or distilled observations back into the research stream rather than raw user corpora.</p>
+      </section>
+    </main>
+  </body>
+</html>
+"""
+
+
 def _linked_entity(entity_id: str, refs: dict[str, dict[str, str]]) -> str:
     ref = refs.get(entity_id)
     if ref is None:
@@ -648,7 +836,7 @@ def _comparison_html(entry: dict, entity_refs: dict[str, dict[str, str]]) -> str
       <section class="hero-panel">
         <p class="eyebrow">Comparison</p>
         <h1>{escape(left['canonical_name'])} vs {escape(right['canonical_name'])}</h1>
-        <p class="page-lead">Shared ontology values and recorded crosswalks across the two instrument records.</p>
+        <p class="page-lead">Shared ontology values and recorded crosswalks across the two canonical instrument records.</p>
         <div class="action-row">
           <a class="action-link" href="../compare.html">All comparisons</a>
           <a class="action-link" href="../instruments/{escape(entry['left']['slug'])}.html">{escape(left['canonical_name'])}</a>
@@ -698,7 +886,7 @@ def _search_html() -> str:
       <section class="hero-panel">
         <p class="eyebrow">Registry Search</p>
         <h1>Find instruments by name, alias, ontology, or notes</h1>
-        <p class="page-lead">Client-side search across the shipped static corpus. Results are backed by data published with the site.</p>
+        <p class="page-lead">Client-side search across the current canonical corpus. Motifs, protocols, and research models have dedicated pages and CLI surfaces.</p>
       </section>
       <section class="search-shell">
         <div class="search-controls">
@@ -801,7 +989,7 @@ def _compare_index_html(comparison_entries: list[dict]) -> str:
       <section class="hero-panel">
         <p class="eyebrow">Comparison Index</p>
         <h1>Recorded instrument comparisons</h1>
-        <p class="page-lead">Static comparison pages generated from crosswalks and shared ontology values across the registry.</p>
+        <p class="page-lead">Static comparison pages generated from crosswalks and shared ontology values across the canonical framework corpus.</p>
       </section>
       <section class="stats">
         <article class="stat-card"><strong>{len(comparison_entries)}</strong> comparison pages</article>
@@ -847,6 +1035,15 @@ def build_docs(root: Path) -> None:
             for entry in comparison_entries
         ]
     }
+    extension_payload = {
+        "motifs": [item.model_dump(mode="json") for item in extensions.motifs],
+        "mappings": [item.model_dump(mode="json") for item in extensions.mappings],
+        "techniques": [item.model_dump(mode="json") for item in extensions.techniques],
+        "protocols": [item.model_dump(mode="json") for item in extensions.protocols],
+        "contribution_models": [
+            item.model_dump(mode="json") for item in extensions.contribution_models
+        ],
+    }
 
     style = """body { font-family: Georgia, serif; margin: 0; background:
 radial-gradient(circle at top, rgba(255, 244, 218, 0.8), transparent 38%),
@@ -886,6 +1083,7 @@ section { margin-top: 32px; }
 .search-results { margin-top: 20px; }
 .layer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 .layer-card strong { font-size: 1.2rem; }
+.extension-card h2 { font-size: 1.15rem; }
 @media (max-width: 720px) { main { padding: 22px 16px 72px; } .hero-panel { padding: 20px 18px; } }
 """
     (site_root / "style.css").write_text(style, encoding="utf-8")
@@ -895,6 +1093,7 @@ section { margin-top: 32px; }
         encoding="utf-8",
     )
     (site_data_root / "comparisons.json").write_text(json.dumps(comparison_payload, indent=2), encoding="utf-8")
+    (site_data_root / "extensions.json").write_text(json.dumps(extension_payload, indent=2), encoding="utf-8")
 
     index_items = "\n".join(
         _docs_index_entry(bundle, audit_by_slug[bundle.slug])
@@ -945,6 +1144,8 @@ section { margin-top: 32px; }
         <div class="action-row">
           <a class="action-link" href="search.html">Search the corpus</a>
           <a class="action-link" href="compare.html">Browse comparisons</a>
+          <a class="action-link" href="motifs.html">Browse motifs</a>
+          <a class="action-link" href="protocols.html">Browse protocols</a>
           <a class="action-link" href="audit.html">View audit</a>
         </div>
       </section>
@@ -970,6 +1171,9 @@ section { margin-top: 32px; }
     (site_root / "audit.html").write_text(_audit_html(audit_entries, audit_snapshot), encoding="utf-8")
     (site_root / "search.html").write_text(_search_html(), encoding="utf-8")
     (site_root / "compare.html").write_text(_compare_index_html(comparison_entries), encoding="utf-8")
+    (site_root / "motifs.html").write_text(_motifs_html(extensions), encoding="utf-8")
+    (site_root / "protocols.html").write_text(_protocols_html(extensions), encoding="utf-8")
+    (site_root / "research.html").write_text(_research_html(extensions), encoding="utf-8")
 
     for slug, bundle in repository.instruments.items():
         (site_instruments_root / f"{slug}.html").write_text(

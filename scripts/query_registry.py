@@ -9,11 +9,21 @@ root = bootstrap()
 from personality_registry.query import (
     audit_repository,
     compare_instruments,
+    contribution_model_record,
     dumps_json,
+    find_contribution_models,
+    find_motifs,
+    find_protocols,
+    find_techniques,
+    load_extensions_for_query,
     load_repository_for_query,
+    motif_record,
+    protocol_record,
     query_results,
     resolve_instrument,
     show_instrument,
+    technique_record,
+    trace_entity_to_motifs,
 )
 
 
@@ -146,6 +156,153 @@ def _render_show_text(bundle, section, payload):
     return "\n".join(lines)
 
 
+def _render_motifs_text(results):
+    if not results:
+        return "No matching motifs."
+    lines = []
+    for result in results:
+        lines.append(f"{result['name']} ({result['id']})")
+        lines.append(
+            f"  kind={result['motif_kind']} status={result['status']} mappings={result['mapping_count']}"
+        )
+        if result.get("tags"):
+            lines.append(f"  tags: {', '.join(result['tags'])}")
+        lines.append(f"  {result['summary']}")
+    return "\n".join(lines)
+
+
+def _render_motif_record_text(payload):
+    motif = payload["motif"]
+    lines = [
+        f"{motif['name']} ({motif['id']})",
+        f"kind: {motif['motif_kind']}",
+        f"status: {motif['status']}",
+        f"mappings: {payload['mapping_count']}",
+        motif["summary"],
+        "",
+        "Linked mappings:",
+    ]
+    if payload["linked_mappings"]:
+        for item in payload["linked_mappings"]:
+            lines.append(
+                f"  {item['source_label']} -> {item['target_label']} [{item['relationship_type']} / {item['relationship_strength']}]"
+            )
+    else:
+        lines.append("  none")
+    return "\n".join(lines)
+
+
+def _render_trace_text(payload):
+    entity = payload["entity"]
+    lines = [
+        f"{entity['label']} ({entity['entity_id']})",
+        f"type: {entity['entity_type']}",
+        f"instrument: {entity['instrument_label']}",
+        "",
+        "Motif summary:",
+    ]
+    if payload["motif_summary"]:
+        for item in payload["motif_summary"]:
+            motif = item["motif"]
+            lines.append(
+                f"  {motif['name']} ({motif['id']}): mappings={item['mapping_count']} via {', '.join(item['source_labels'])}"
+            )
+    else:
+        lines.append("  none")
+    if payload["construct_mappings"]:
+        lines.append("")
+        lines.append("Construct mappings:")
+        for entry in payload["construct_mappings"]:
+            lines.append(f"  {entry['construct']['label']} ({entry['construct']['entity_id']})")
+            for mapping in entry["mappings"]:
+                lines.append(
+                    f"    -> {mapping['target_label']} [{mapping['relationship_type']} / {mapping['relationship_strength']}]"
+                )
+    return "\n".join(lines)
+
+
+def _render_protocols_text(results):
+    if not results:
+        return "No matching protocols."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(
+            f"  status={item['status']} consumers={', '.join(item['downstream_consumers']) or 'none'}"
+        )
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_protocol_record_text(payload):
+    protocol = payload["protocol"]
+    lines = [
+        f"{protocol['name']} ({protocol['id']})",
+        f"status: {protocol['status']}",
+        f"consumers: {', '.join(protocol['downstream_consumers']) or 'none'}",
+        protocol["summary"],
+        "",
+        "Required inputs:",
+    ]
+    for item in protocol["required_inputs"]:
+        lines.append(f"  - {item}")
+    lines.append("")
+    lines.append("Techniques:")
+    for technique in payload["techniques"]:
+        lines.append(f"  {technique['name']} ({technique['id']})")
+    return "\n".join(lines)
+
+
+def _render_techniques_text(results):
+    if not results:
+        return "No matching techniques."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_technique_record_text(payload):
+    technique = payload["technique"]
+    lines = [
+        f"{technique['name']} ({technique['id']})",
+        technique["summary"],
+        "",
+        "Used by protocols:",
+    ]
+    if payload["used_by_protocol_ids"]:
+        for protocol_id in payload["used_by_protocol_ids"]:
+            lines.append(f"  - {protocol_id}")
+    else:
+        lines.append("  none")
+    return "\n".join(lines)
+
+
+def _render_contribution_models_text(results):
+    if not results:
+        return "No matching contribution models."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  {item['purpose']}")
+    return "\n".join(lines)
+
+
+def _render_contribution_model_record_text(payload):
+    model = payload["contribution_model"]
+    lines = [
+        f"{model['name']} ({model['id']})",
+        model["purpose"],
+        f"privacy: {model['privacy_posture']}",
+        "",
+        "Promotion path:",
+    ]
+    for item in model["promotion_path"]:
+        lines.append(f"  - {item}")
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Query the Personality Instrument Registry.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -222,8 +379,42 @@ def main() -> int:
     )
     audit_parser.add_argument("--format", choices=("text", "json"), default="text")
 
+    motifs_parser = subparsers.add_parser("motifs", help="List or show house motifs.")
+    motifs_parser.add_argument("ref", nargs="?", help="Optional motif ID or name for a detailed record.")
+    motifs_parser.add_argument("--text", help="Substring search across motif IDs, names, summaries, and tags.")
+    motifs_parser.add_argument("--tag", help="Filter motifs by tag.")
+    motifs_parser.add_argument("--related-to", help="Return motifs linked to an instrument or construct.")
+    motifs_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    trace_parser = subparsers.add_parser(
+        "trace", help="Trace an instrument or construct through the house motif layer."
+    )
+    trace_parser.add_argument("ref", help="Instrument or construct reference.")
+    trace_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    protocols_parser = subparsers.add_parser("protocols", help="List or show protocol specs.")
+    protocols_parser.add_argument("ref", nargs="?", help="Optional protocol ID or name for a detailed record.")
+    protocols_parser.add_argument("--text", help="Substring search across protocol fields.")
+    protocols_parser.add_argument("--consumer", help="Filter protocols by downstream consumer label.")
+    protocols_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    techniques_parser = subparsers.add_parser("techniques", help="List or show technique records.")
+    techniques_parser.add_argument("ref", nargs="?", help="Optional technique ID or name for a detailed record.")
+    techniques_parser.add_argument("--text", help="Substring search across technique fields.")
+    techniques_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    research_parser = subparsers.add_parser(
+        "research-models", help="List or show research contribution model records."
+    )
+    research_parser.add_argument(
+        "ref", nargs="?", help="Optional contribution model ID or name for a detailed record."
+    )
+    research_parser.add_argument("--text", help="Substring search across contribution model fields.")
+    research_parser.add_argument("--format", choices=("text", "json"), default="text")
+
     args = parser.parse_args()
     repository = load_repository_for_query(root)
+    extensions = load_extensions_for_query(root)
 
     if args.command == "find":
         annotation_filters = {}
@@ -270,6 +461,80 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_show_text(bundle, args.section, payload))
+        return 0
+
+    if args.command == "motifs":
+        if args.ref:
+            payload = motif_record(repository, extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_motif_record_text(payload))
+            return 0
+        payload = find_motifs(
+            repository,
+            extensions,
+            text=args.text,
+            tag=args.tag,
+            related_to=args.related_to,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_motifs_text(payload))
+        return 0
+
+    if args.command == "trace":
+        payload = trace_entity_to_motifs(repository, extensions, args.ref)
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_trace_text(payload))
+        return 0
+
+    if args.command == "protocols":
+        if args.ref:
+            payload = protocol_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_protocol_record_text(payload))
+            return 0
+        payload = find_protocols(extensions, text=args.text, consumer=args.consumer)
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_protocols_text(payload))
+        return 0
+
+    if args.command == "techniques":
+        if args.ref:
+            payload = technique_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_technique_record_text(payload))
+            return 0
+        payload = find_techniques(extensions, text=args.text)
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_techniques_text(payload))
+        return 0
+
+    if args.command == "research-models":
+        if args.ref:
+            payload = contribution_model_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_contribution_model_record_text(payload))
+            return 0
+        payload = find_contribution_models(extensions, text=args.text)
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_contribution_models_text(payload))
         return 0
 
     payload = compare_instruments(repository, args.left, args.right)

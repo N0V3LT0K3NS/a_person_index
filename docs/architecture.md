@@ -55,6 +55,18 @@ This repo should serve GNOMY by supplying:
 
 GNOMY, in turn, can send back normalized and privacy-minimizing research contributions rather than raw personal corpora.
 
+## Service primitives
+
+The near-term callable surface for downstream agents should center on a few durable primitives:
+
+- find canonical framework records
+- compare framework records
+- trace an instrument or construct to house motifs
+- fetch protocol specs and their required techniques
+- fetch research contribution models for safe return traffic
+
+These are intentionally smaller than full person-level synthesis. They make the repo useful to runtimes like GNOMY without moving person-level inference into this codebase.
+
 ## Relationship to ILENS
 
 `ILENS` is a protocol, not the ontology itself.

@@ -36,4 +36,5 @@ section { margin-top: 32px; }
 .search-results { margin-top: 20px; }
 .layer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 .layer-card strong { font-size: 1.2rem; }
+.extension-card h2 { font-size: 1.15rem; }
 @media (max-width: 720px) { main { padding: 22px 16px 72px; } .hero-panel { padding: 20px 18px; } }

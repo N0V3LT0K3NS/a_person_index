@@ -1,0 +1,773 @@
+{
+  "motifs": [
+    {
+      "id": "mtf_social_energy_orientation",
+      "name": "Social Energy Orientation",
+      "status": "provisional",
+      "motif_kind": "translation_axis",
+      "summary": "How a framework encodes social activation, outward engagement, and inward recharge.",
+      "description": "A house translation axis for frameworks that speak about extraversion, introversion, social charge, or preferred outward intensity without assuming they all mean the same thing.\n",
+      "tags": [
+        "sociality",
+        "energy",
+        "interaction"
+      ],
+      "related_dimensions": [
+        "primary_measurement_target",
+        "representational_form"
+      ]
+    },
+    {
+      "id": "mtf_exploratory_openness",
+      "name": "Exploratory Openness",
+      "status": "provisional",
+      "motif_kind": "translation_axis",
+      "summary": "Appetite for novelty, imagination, curiosity, and experiential exploration.",
+      "description": "A recurring motif across trait, style, and symbolic systems that captures interest in novelty, complexity, imagination, and expansion beyond routine.\n",
+      "tags": [
+        "novelty",
+        "exploration",
+        "imagination"
+      ],
+      "related_dimensions": [
+        "primary_measurement_target",
+        "temporal_stance"
+      ]
+    },
+    {
+      "id": "mtf_pattern_abstraction_preference",
+      "name": "Pattern Abstraction Preference",
+      "status": "provisional",
+      "motif_kind": "translation_axis",
+      "summary": "Preference for pattern-level abstraction versus concrete detail.",
+      "description": "A motif for systems that distinguish concrete sensing, intuitive patterning, symbolic interpretation, or abstraction-heavy sense making.\n",
+      "tags": [
+        "cognition",
+        "abstraction",
+        "patterning"
+      ],
+      "related_dimensions": [
+        "person_ontology",
+        "worldview_load"
+      ]
+    },
+    {
+      "id": "mtf_structure_and_closure_preference",
+      "name": "Structure and Closure Preference",
+      "status": "provisional",
+      "motif_kind": "translation_axis",
+      "summary": "Preference for closure, planning, and constraint versus openness and flexibility.",
+      "description": "A house bridge for constructs that describe orderliness, planning, decisiveness, structure seeking, or resistance to imposed closure.\n",
+      "tags": [
+        "planning",
+        "order",
+        "closure"
+      ],
+      "related_dimensions": [
+        "scoring_logic",
+        "context_sensitivity"
+      ]
+    },
+    {
+      "id": "mtf_attachment_and_closeness_regulation",
+      "name": "Attachment and Closeness Regulation",
+      "status": "provisional",
+      "motif_kind": "circuit_motif",
+      "summary": "How a framework encodes safety, proximity, dependence, and distance in close relationships.",
+      "description": "A relationship-layer motif for security, anxiety, avoidance, availability, reassurance seeking, and closeness management.\n",
+      "tags": [
+        "attachment",
+        "intimacy",
+        "regulation"
+      ],
+      "related_dimensions": [
+        "primary_measurement_target",
+        "deployment_context"
+      ]
+    },
+    {
+      "id": "mtf_relational_care_signaling",
+      "name": "Relational Care Signaling",
+      "status": "provisional",
+      "motif_kind": "social_function",
+      "summary": "Preferred channels for expressing and receiving care, validation, and recognition.",
+      "description": "A motif for frameworks that describe how care becomes legible, especially in relational preference systems and practical communication grammars.\n",
+      "tags": [
+        "relationships",
+        "care",
+        "validation"
+      ],
+      "related_dimensions": [
+        "utility_profile",
+        "deployment_context"
+      ]
+    },
+    {
+      "id": "mtf_affective_reactivity",
+      "name": "Affective Reactivity",
+      "status": "provisional",
+      "motif_kind": "circuit_motif",
+      "summary": "Sensitivity to stress, threat, volatility, and emotional perturbation.",
+      "description": "A recurrent motif spanning trait, attachment, shadow, and stress-oriented systems that speak to reactivity, anxiety, emotional load, or instability.\n",
+      "tags": [
+        "emotion",
+        "stress",
+        "reactivity"
+      ],
+      "related_dimensions": [
+        "temporal_stance",
+        "distortion_risk"
+      ]
+    },
+    {
+      "id": "mtf_prosociality_and_exploitiveness",
+      "name": "Prosociality and Exploitiveness",
+      "status": "provisional",
+      "motif_kind": "circuit_motif",
+      "summary": "Orientation toward fairness, reciprocity, care, manipulation, or extraction.",
+      "description": "A house motif for comparing prosocial, cooperative, and exploitative tendencies across trait, shadow, moral, and strengths-oriented systems.\n",
+      "tags": [
+        "ethics",
+        "cooperation",
+        "shadow"
+      ],
+      "related_dimensions": [
+        "evidence_profile",
+        "distortion_risk"
+      ]
+    },
+    {
+      "id": "mtf_execution_and_implementation_style",
+      "name": "Execution and Implementation Style",
+      "status": "provisional",
+      "motif_kind": "translation_axis",
+      "summary": "How a framework encodes initiation, follow-through, improvisation, and practical doing.",
+      "description": "A practical action-style motif for conative, workplace, and operational frameworks that describe how work is initiated, structured, and completed.\n",
+      "tags": [
+        "action",
+        "work",
+        "conation"
+      ],
+      "related_dimensions": [
+        "utility_profile",
+        "deployment_context"
+      ]
+    },
+    {
+      "id": "mtf_symbolic_meaning_load",
+      "name": "Symbolic Meaning Load",
+      "status": "provisional",
+      "motif_kind": "social_function",
+      "summary": "Degree to which a framework functions as symbolic, cosmological, or mythic meaning language.",
+      "description": "A motif for frameworks that do more than describe behavior and instead carry archetypal, spiritual, symbolic, or cosmological interpretive weight.\n",
+      "tags": [
+        "symbolic",
+        "mythology",
+        "worldview"
+      ],
+      "related_dimensions": [
+        "worldview_load",
+        "cultural_symbolic_role"
+      ]
+    },
+    {
+      "id": "mtf_identity_adhesion",
+      "name": "Identity Adhesion",
+      "status": "provisional",
+      "motif_kind": "social_function",
+      "summary": "Likelihood that outputs become fused with stable self-story or social identity.",
+      "description": "A house motif for comparing how strongly frameworks become identity languages rather than only descriptive or operational tools.\n",
+      "tags": [
+        "identity",
+        "self-concept",
+        "labeling"
+      ],
+      "related_dimensions": [
+        "identity_adhesion_risk",
+        "cultural_symbolic_role"
+      ]
+    }
+  ],
+  "mappings": [
+    {
+      "id": "map_big_five_extraversion_social_energy",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_big_five_extraversion",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_social_energy_orientation",
+      "relationship_type": "direct_signal",
+      "relationship_strength": "high",
+      "confidence": "high",
+      "status": "provisional",
+      "rationale": "Big Five extraversion is one of the clearest direct encodings of outward social activation and engagement in the current corpus.\n",
+      "notes": null
+    },
+    {
+      "id": "map_mbti_ei_social_energy",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_mbti_extraversion_introversion",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_social_energy_orientation",
+      "relationship_type": "partial_signal",
+      "relationship_strength": "medium",
+      "confidence": "medium",
+      "status": "provisional",
+      "rationale": "MBTI E/I clearly touches social-energy orientation, but it does so in preference language rather than a trait-intensity frame.\n",
+      "notes": null
+    },
+    {
+      "id": "map_big_five_openness_exploratory_openness",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_big_five_openness",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_exploratory_openness",
+      "relationship_type": "direct_signal",
+      "relationship_strength": "high",
+      "confidence": "high",
+      "status": "provisional",
+      "rationale": "Openness to Experience is one of the strongest direct house anchors for novelty, imagination, and exploratory appetite.\n",
+      "notes": null
+    },
+    {
+      "id": "map_mbti_sn_pattern_abstraction",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_mbti_sensing_intuition",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_pattern_abstraction_preference",
+      "relationship_type": "partial_signal",
+      "relationship_strength": "high",
+      "confidence": "medium",
+      "status": "provisional",
+      "rationale": "Sensing versus intuition is not equivalent to general openness, but it is a strong preference-language signal for concrete detail versus pattern abstraction.\n",
+      "notes": null
+    },
+    {
+      "id": "map_mbti_jp_structure_closure",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_mbti_judging_perceiving",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_structure_and_closure_preference",
+      "relationship_type": "partial_signal",
+      "relationship_strength": "medium",
+      "confidence": "medium",
+      "status": "provisional",
+      "rationale": "Judging versus perceiving is one of the cleaner typology-language handles for closure, planning, structure, and openness to emergent process.\n",
+      "notes": null
+    },
+    {
+      "id": "map_attachment_anxiety_closeness_regulation",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_attachment_styles_anxiety",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_attachment_and_closeness_regulation",
+      "relationship_type": "direct_signal",
+      "relationship_strength": "high",
+      "confidence": "high",
+      "status": "provisional",
+      "rationale": "Attachment anxiety directly names sensitivity to rejection, abandonment, and reassurance needs in close relationships.\n",
+      "notes": null
+    },
+    {
+      "id": "map_attachment_avoidance_closeness_regulation",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_attachment_styles_avoidance",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_attachment_and_closeness_regulation",
+      "relationship_type": "direct_signal",
+      "relationship_strength": "high",
+      "confidence": "high",
+      "status": "provisional",
+      "rationale": "Attachment avoidance directly names distance regulation, intimacy discomfort, and reluctance toward dependence.\n",
+      "notes": null
+    },
+    {
+      "id": "map_love_languages_words_affirmation_care_signaling",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_love_languages_words_of_affirmation",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_relational_care_signaling",
+      "relationship_type": "symbolic_analogue",
+      "relationship_strength": "medium",
+      "confidence": "medium",
+      "status": "provisional",
+      "rationale": "Words of Affirmation is not a whole attachment construct, but it is a clear signal about how care and validation become legible.\n",
+      "notes": null
+    },
+    {
+      "id": "map_love_languages_quality_time_care_signaling",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_love_languages_quality_time",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_relational_care_signaling",
+      "relationship_type": "symbolic_analogue",
+      "relationship_strength": "medium",
+      "confidence": "medium",
+      "status": "provisional",
+      "rationale": "Quality Time expresses relational care through presence and attention rather than through trait or motive description.\n",
+      "notes": null
+    },
+    {
+      "id": "map_big_five_neuroticism_affective_reactivity",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_big_five_neuroticism",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_affective_reactivity",
+      "relationship_type": "direct_signal",
+      "relationship_strength": "high",
+      "confidence": "high",
+      "status": "provisional",
+      "rationale": "Neuroticism is one of the strongest direct trait-language anchors for stress sensitivity and negative affect reactivity.\n",
+      "notes": null
+    },
+    {
+      "id": "map_hexaco_honesty_humility_prosociality",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_hexaco_honesty_humility",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_prosociality_and_exploitiveness",
+      "relationship_type": "inverse_signal",
+      "relationship_strength": "high",
+      "confidence": "high",
+      "status": "provisional",
+      "rationale": "High Honesty-Humility is best read as a strong inverse signal against entitlement, manipulation, and exploitative orientation.\n",
+      "notes": null
+    },
+    {
+      "id": "map_kolbe_execution_style",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_kolbe",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_execution_and_implementation_style",
+      "relationship_type": "direct_signal",
+      "relationship_strength": "high",
+      "confidence": "high",
+      "status": "provisional",
+      "rationale": "Kolbe is one of the clearest execution-style and conation systems in the current registry, even when specific construct crosswalks remain sparse.\n",
+      "notes": null
+    },
+    {
+      "id": "map_human_design_symbolic_meaning",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_human_design",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_symbolic_meaning_load",
+      "relationship_type": "direct_signal",
+      "relationship_strength": "high",
+      "confidence": "high",
+      "status": "provisional",
+      "rationale": "Human Design functions not only as a descriptive system but as a symbolic and cosmological language with heavy narrative meaning load.\n",
+      "notes": null
+    },
+    {
+      "id": "map_natal_astrology_symbolic_meaning",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_natal_astrology",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_symbolic_meaning_load",
+      "relationship_type": "direct_signal",
+      "relationship_strength": "high",
+      "confidence": "high",
+      "status": "provisional",
+      "rationale": "Natal astrology is a strong house example of symbolic, mythic, and cosmological meaning language rather than only behavioral measurement.\n",
+      "notes": null
+    },
+    {
+      "id": "map_enneagram_identity_adhesion",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_enneagram",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_identity_adhesion",
+      "relationship_type": "direct_signal",
+      "relationship_strength": "high",
+      "confidence": "high",
+      "status": "provisional",
+      "rationale": "The Enneagram frequently functions as durable self-story and community identity, not only as a descriptive typology.\n",
+      "notes": null
+    },
+    {
+      "id": "map_mbti_identity_adhesion",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_mbti",
+      "target_entity_type": "motif",
+      "target_entity_id": "mtf_identity_adhesion",
+      "relationship_type": "direct_signal",
+      "relationship_strength": "high",
+      "confidence": "medium",
+      "status": "provisional",
+      "rationale": "MBTI functions widely as a social identity and shorthand self-description language even when used outside formal assessment contexts.\n",
+      "notes": null
+    }
+  ],
+  "techniques": [
+    {
+      "id": "tech_cross_framework_translation",
+      "name": "Cross-Framework Translation",
+      "purpose": "Translate constructs across systems without forcing false equivalence.",
+      "summary": "Compare constructs through shared motifs, relationship semantics, and epistemic bracketing rather than by naive one-to-one conversion.\n",
+      "input_types": [
+        "instrument records",
+        "crosswalks",
+        "construct mappings",
+        "ontology annotations"
+      ],
+      "output_types": [
+        "translation memo",
+        "comparison notes",
+        "candidate tensions"
+      ],
+      "steps": [
+        "Identify source and target layers of personhood.",
+        "Compare through shared motifs before direct translation.",
+        "Mark overlap as strong, partial, inverse, symbolic, or incommensurable."
+      ],
+      "cautions": [
+        "Do not flatten symbolic and psychometric systems into one evidence bucket.",
+        "Preserve asymmetry when one framework is broader or socially different than the other."
+      ],
+      "notes": null
+    },
+    {
+      "id": "tech_paradox_scan",
+      "name": "Paradox Scan",
+      "purpose": "Surface load-bearing contradictions rather than averaging them away.",
+      "summary": "Detect tensions across frameworks, constructs, and observations that may indicate adaptation, context splits, or multi-layer organization.\n",
+      "input_types": [
+        "result atoms",
+        "construct mappings",
+        "comparison outputs"
+      ],
+      "output_types": [
+        "paradox candidates",
+        "unresolved tensions",
+        "synthesis notes"
+      ],
+      "steps": [
+        "List apparently conflicting signals.",
+        "Check whether the signals operate on different layers.",
+        "Preserve contradiction when it remains explanatorily useful."
+      ],
+      "cautions": [
+        "Contradiction is not automatically error.",
+        "Do not turn every mismatch into pathology."
+      ],
+      "notes": null
+    },
+    {
+      "id": "tech_contradiction_preservation",
+      "name": "Contradiction Preservation",
+      "purpose": "Keep the system from over-compressing a person or a framework into false coherence.",
+      "summary": "Treat unresolved conflict, multiplicity, and context-dependence as data instead of noise to be smoothed out.\n",
+      "input_types": [
+        "source claims",
+        "house inferences",
+        "downstream results"
+      ],
+      "output_types": [
+        "preserved tension notes",
+        "caveats",
+        "competing hypotheses"
+      ],
+      "steps": [
+        "Track incompatible but supported readings.",
+        "Label scope, context, and confidence.",
+        "Delay forced synthesis until one reading clearly dominates."
+      ],
+      "cautions": [
+        "Avoid rhetorical neatness when the material is genuinely split."
+      ],
+      "notes": null
+    },
+    {
+      "id": "tech_stable_vs_adaptive_split",
+      "name": "Stable vs Adaptive Split",
+      "purpose": "Separate baseline pattern from adaptation, coping, or context-driven behavior.",
+      "summary": "Distinguish persistent structure from role performance, learned compensation, stress modes, or situational masking.\n",
+      "input_types": [
+        "longitudinal observations",
+        "repeated assessments",
+        "comparative synthesis notes"
+      ],
+      "output_types": [
+        "baseline hypotheses",
+        "adaptive overlays",
+        "context conditions"
+      ],
+      "steps": [
+        "Identify recurring signals across time.",
+        "Flag signals that only appear under specific conditions.",
+        "Keep baseline and adaptive explanations side by side."
+      ],
+      "cautions": [
+        "Do not claim essence when the evidence is situational."
+      ],
+      "notes": null
+    },
+    {
+      "id": "tech_symbolic_vs_empirical_bracketing",
+      "name": "Symbolic vs Empirical Bracketing",
+      "purpose": "Use symbolic systems without pretending they carry the same evidence type as psychometrics.",
+      "summary": "Distinguish descriptive usefulness, symbolic resonance, and empirical status so that heterogeneous frameworks can coexist in one map.\n",
+      "input_types": [
+        "ontology annotations",
+        "evidence profile",
+        "cultural role notes"
+      ],
+      "output_types": [
+        "bracketing notes",
+        "evidence caveats",
+        "protocol constraints"
+      ],
+      "steps": [
+        "State the framework's epistemic basis.",
+        "State its social or symbolic usefulness separately.",
+        "Preserve both without collapsing either into the other."
+      ],
+      "cautions": [
+        "Inclusion in the map does not imply equal evidence."
+      ],
+      "notes": null
+    },
+    {
+      "id": "tech_result_atom_decomposition",
+      "name": "Result Atom Decomposition",
+      "purpose": "Break whole-test outputs into smaller reasoning units that can be recombined across systems.",
+      "summary": "Normalize a result into source framework, construct, output type, value, confidence, and mapped motifs so agents can reason across parts rather than only whole labels.\n",
+      "input_types": [
+        "assessment outputs",
+        "construct mappings",
+        "source metadata"
+      ],
+      "output_types": [
+        "result atoms",
+        "motif traces",
+        "interaction hypotheses"
+      ],
+      "steps": [
+        "Extract construct-level outputs.",
+        "Attach evidence and confidence.",
+        "Map to house motifs without deleting source provenance."
+      ],
+      "cautions": [
+        "Do not infer person-level truth from one atom in isolation."
+      ],
+      "notes": null
+    }
+  ],
+  "protocols": [
+    {
+      "id": "proto_ilens",
+      "name": "ILENS",
+      "status": "experimental",
+      "purpose": "Integrate multiple personality, symbolic, behavioral, and relational systems into a layered synthesis useful for learning, emotional navigation, and adaptive interaction.\n",
+      "summary": "ILENS is a downstream synthesis protocol that treats frameworks as partial languages of personhood, preserves contradiction, and derives higher-order working parameters without collapsing everything into one test.\n",
+      "downstream_consumers": [
+        "GNOMY",
+        "synthesis agents"
+      ],
+      "required_inputs": [
+        "instrument records",
+        "ontology annotations",
+        "crosswalks",
+        "construct mappings",
+        "motifs"
+      ],
+      "optional_inputs": [
+        "result atoms",
+        "behavioral observations",
+        "longitudinal feedback",
+        "symbolic self-descriptions"
+      ],
+      "technique_ids": [
+        "tech_cross_framework_translation",
+        "tech_paradox_scan",
+        "tech_contradiction_preservation",
+        "tech_stable_vs_adaptive_split",
+        "tech_result_atom_decomposition",
+        "tech_symbolic_vs_empirical_bracketing"
+      ],
+      "primary_outputs": [
+        "synthesized person-model parameters",
+        "learning guidance",
+        "communication guidance",
+        "interaction caveats"
+      ],
+      "notes": "ILENS is no longer treated as the ontology itself. It is an opinionated consumer of the registry, house synthesis layer, and protocol library.\n"
+    },
+    {
+      "id": "proto_human_model_card",
+      "name": "Human Model Card",
+      "status": "experimental",
+      "purpose": "Produce a formal, evidence-stratified report that models a person as an evolving cognitive-behavioral system rather than as a flattering type label.\n",
+      "summary": "A report protocol that uses model-card language to organize personhood evidence, contradictions, deployment conditions, and failure modes.\n",
+      "downstream_consumers": [
+        "GNOMY",
+        "analyst agents",
+        "research artifacts"
+      ],
+      "required_inputs": [
+        "behavioral corpus or comparable evidence bundle",
+        "protocol-safe provenance statement",
+        "registry records for any referenced frameworks"
+      ],
+      "optional_inputs": [
+        "result atoms",
+        "comparative memos",
+        "longitudinal traces"
+      ],
+      "technique_ids": [
+        "tech_paradox_scan",
+        "tech_contradiction_preservation",
+        "tech_stable_vs_adaptive_split"
+      ],
+      "primary_outputs": [
+        "human model card artifact",
+        "deployment guidance",
+        "caveats and known unknowns"
+      ],
+      "notes": "This protocol belongs to the applied synthesis layer. It should not be mistaken for canonical framework data.\n"
+    },
+    {
+      "id": "proto_translation_memo",
+      "name": "Translation Memo",
+      "status": "active",
+      "purpose": "Generate an evidence-aware memo about overlap, divergence, and incommensurability between selected frameworks or constructs.\n",
+      "summary": "A compact comparative protocol for agents that need to explain how two or more systems connect without forcing a single unified language.\n",
+      "downstream_consumers": [
+        "GNOMY",
+        "curation agents",
+        "compare workflows"
+      ],
+      "required_inputs": [
+        "instrument records",
+        "crosswalks",
+        "construct mappings"
+      ],
+      "optional_inputs": [
+        "research observations",
+        "mapping votes"
+      ],
+      "technique_ids": [
+        "tech_cross_framework_translation",
+        "tech_symbolic_vs_empirical_bracketing"
+      ],
+      "primary_outputs": [
+        "overlap memo",
+        "mismatch warnings",
+        "suggested follow-up mappings"
+      ],
+      "notes": "Translation memos are useful baseline artifacts for both curation and downstream synthesis.\n"
+    }
+  ],
+  "contribution_models": [
+    {
+      "id": "rcm_mapping_vote",
+      "name": "Mapping Vote",
+      "purpose": "Collect lightweight feedback on whether a proposed mapping fits lived experience.",
+      "privacy_posture": "No raw narrative required; contribution should stay at the judgment layer by default.",
+      "required_fields": [
+        "mapping_id",
+        "vote",
+        "confidence"
+      ],
+      "optional_fields": [
+        "source_framework_context",
+        "brief rationale"
+      ],
+      "promotion_path": [
+        "anecdotal",
+        "aggregated",
+        "reviewed",
+        "promoted_to_house_inference"
+      ],
+      "notes": "Best default research input when the goal is to refine construct-to-motif mappings without collecting sensitive life detail.\n"
+    },
+    {
+      "id": "rcm_pairwise_relation_judgment",
+      "name": "Pairwise Relation Judgment",
+      "purpose": "Capture whether two result atoms feel reinforcing, contradictory, orthogonal, or context-dependent.",
+      "privacy_posture": "Structured labels first; free text only if strictly necessary.",
+      "required_fields": [
+        "left_atom",
+        "right_atom",
+        "relation_label"
+      ],
+      "optional_fields": [
+        "context_note",
+        "confidence"
+      ],
+      "promotion_path": [
+        "anecdotal",
+        "aggregated",
+        "reviewed",
+        "interaction_hypothesis"
+      ],
+      "notes": "Useful for discovering stable tension and reinforcement patterns across systems.\n"
+    },
+    {
+      "id": "rcm_result_atom_bundle",
+      "name": "Result Atom Bundle",
+      "purpose": "Accept normalized assessment outputs without requiring the user's full raw narrative.",
+      "privacy_posture": "Prefer normalized, minimally identifying records over raw chats, diaries, or uploads.",
+      "required_fields": [
+        "framework_id",
+        "construct_id",
+        "output_type",
+        "output_value"
+      ],
+      "optional_fields": [
+        "confidence",
+        "timestamp",
+        "source_quality"
+      ],
+      "promotion_path": [
+        "normalized_input",
+        "aggregated",
+        "comparative_analysis"
+      ],
+      "notes": "Designed for agent-to-agent exchange where GNOMY or another runtime needs a compact, protocol-safe representation of user results.\n"
+    },
+    {
+      "id": "rcm_distilled_observation",
+      "name": "Distilled Observation",
+      "purpose": "Record short anonymized insights about how mappings, tensions, or combinations behave in practice.",
+      "privacy_posture": "Distilled and anonymized by default; no raw transcripts in the canonical stream.",
+      "required_fields": [
+        "observation_text",
+        "linked_entities"
+      ],
+      "optional_fields": [
+        "context_window",
+        "confidence",
+        "outcome_note"
+      ],
+      "promotion_path": [
+        "anecdotal",
+        "clustered_pattern",
+        "reviewed",
+        "house_inference"
+      ],
+      "notes": "Useful for preserving real-world synthesis insight without over-collecting sensitive detail.\n"
+    },
+    {
+      "id": "rcm_protocol_feedback",
+      "name": "Protocol Feedback",
+      "purpose": "Capture whether a downstream protocol produced useful, misleading, or incomplete synthesis.",
+      "privacy_posture": "Evaluate the protocol output rather than the person's raw life material.",
+      "required_fields": [
+        "protocol_id",
+        "usefulness_rating",
+        "failure_or_success_note"
+      ],
+      "optional_fields": [
+        "missing_input_types",
+        "suggested_revision"
+      ],
+      "promotion_path": [
+        "feedback_log",
+        "reviewed",
+        "protocol_revision"
+      ],
+      "notes": "Keeps downstream promptcraft and runtime behavior connected back to the repository without polluting canonical framework records.\n"
+    }
+  ]
+}

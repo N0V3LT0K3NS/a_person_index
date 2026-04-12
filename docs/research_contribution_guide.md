@@ -28,6 +28,18 @@ Research evidence should move through stages before it affects house synthesis:
 3. reviewed
 4. promoted to house inference, interaction hypothesis, or protocol revision
 
+## Preferred GNOMY return payloads
+
+When a downstream runtime contributes back, prefer:
+
+- normalized result atom bundles
+- mapping votes
+- pairwise relation judgments
+- distilled observations
+- protocol feedback
+
+These are easier to review, aggregate, and promote than raw personal corpora.
+
 ## What not to do
 
 - Do not place raw user chats in canonical framework records.
