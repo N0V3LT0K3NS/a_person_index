@@ -11,6 +11,19 @@ The repository began as an instrument registry in milestone 1. It now explicitly
 
 Canonical source data still lives in structured YAML files, is validated with typed Python models, and is exported into generated JSON and browsable docs.
 
+## Start Here
+
+If you are arriving fresh, read these in order:
+
+1. [AGENTS.md](/Users/noveltokens/a_person_index/AGENTS.md)
+2. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
+3. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
+4. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
+5. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+6. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+
+Those files together explain what the repo is, what layer you are editing, how downstream systems should use it, and what is next.
+
 ## Three-layer model
 
 Each instrument is represented in three distinct layers:
@@ -185,7 +198,10 @@ The ontology is versioned in `ontology/registry.yaml`. Dimensions and enum-backe
 
 Minimum required annotation dimensions are documented in:
 
+- [AGENTS.md](/Users/noveltokens/a_person_index/AGENTS.md)
 - [docs/annotation_guide.md](/Users/noveltokens/a_person_index/docs/annotation_guide.md)
+- [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
+- [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
 - [docs/editorial_style_guide.md](/Users/noveltokens/a_person_index/docs/editorial_style_guide.md)
 - [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
 - [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
@@ -201,6 +217,7 @@ Generated outputs are written to:
 - `generated/audit.json`: curation-depth and coverage summary per instrument
 - `generated/index.json`: aggregate registry summary plus product-layer counts
 - `generated/instruments/*.json`: per-instrument exports
+- `generated/manifest.json`: machine-readable onboarding and service-primitives manifest for agents
 - `generated/registry.json`: full export payload, including house synthesis, protocol, and research registries
 - `site/`: self-contained static documentation site, including browse, audit, search, and comparison pages
 - `site/data/*.json`: deployed data payloads used by the static site at runtime
@@ -258,6 +275,7 @@ The repository is designed for agent-assisted authoring:
 - validate locally
 - regenerate machine-readable exports
 - keep provenance and version history in Git
+- use [AGENTS.md](/Users/noveltokens/a_person_index/AGENTS.md) and [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json) as the default arrival surface
 
 When adding or editing content:
 

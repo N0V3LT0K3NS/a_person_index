@@ -33,11 +33,17 @@ Phase 2 adds:
 
 - `motifs/`
 - `mappings/`
+- `interactions/`
 - `techniques/`
 - `protocols/`
 - `research/`
 
 These directories formalize the larger architecture without breaking the current milestone-1 corpus.
+
+Companion docs:
+
+- [current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
+- [roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
 
 ## Relationship to GNOMY
 

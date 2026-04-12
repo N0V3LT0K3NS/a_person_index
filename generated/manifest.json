@@ -1,0 +1,118 @@
+{
+  "repository": {
+    "name": "personality-instrument-registry",
+    "version": "0.1.0",
+    "status": "active",
+    "current_phase": "phase_2_house_synthesis_and_protocol_substrate",
+    "canonical_domain": "instrument_centered_framework_registry"
+  },
+  "product_layers": {
+    "canonical_registry": {
+      "instrument_count": 15
+    },
+    "house_synthesis": {
+      "motif_count": 11,
+      "mapping_count": 16,
+      "interaction_hypothesis_count": 7
+    },
+    "protocol_library": {
+      "technique_count": 6,
+      "protocol_count": 3
+    },
+    "research_stream": {
+      "contribution_model_count": 5,
+      "result_atom_schema_id": "ras_result_atom_v0_1"
+    }
+  },
+  "start_here": [
+    "AGENTS.md",
+    "README.md",
+    "docs/current_state.md",
+    "docs/roadmap.md",
+    "docs/architecture.md",
+    "docs/gnomy_integration.md"
+  ],
+  "canonical_sources": {
+    "instrument_root": "instruments/",
+    "ontology_root": "ontology/",
+    "extension_roots": [
+      "motifs/",
+      "mappings/",
+      "interactions/",
+      "techniques/",
+      "protocols/",
+      "research/"
+    ]
+  },
+  "generated_outputs": {
+    "json_root": "generated/",
+    "site_root": "site/",
+    "do_not_edit_directly": [
+      "generated/",
+      "site/",
+      "schemas/"
+    ],
+    "regenerate_with": [
+      "python3 scripts/export_schemas.py",
+      "python3 scripts/build_index.py",
+      "python3 scripts/generate_docs.py"
+    ]
+  },
+  "service_primitives": [
+    {
+      "id": "find_framework_records",
+      "command": "python3 scripts/query_registry.py find --ref \"Big Five\"",
+      "purpose": "Resolve canonical framework records by ID, name, alias, or filters."
+    },
+    {
+      "id": "compare_frameworks",
+      "command": "python3 scripts/query_registry.py compare MBTI Enneagram",
+      "purpose": "Compare two canonical framework records and surface shared ontology plus crosswalks."
+    },
+    {
+      "id": "trace_to_motifs",
+      "command": "python3 scripts/query_registry.py trace MBTI",
+      "purpose": "Trace an instrument or construct through the house motif layer."
+    },
+    {
+      "id": "list_related_motifs",
+      "command": "python3 scripts/query_registry.py motifs --related-to MBTI",
+      "purpose": "Return house motifs linked to a framework or construct."
+    },
+    {
+      "id": "list_interaction_hypotheses",
+      "command": "python3 scripts/query_registry.py interactions --related-to \"Attachment Style Frameworks\"",
+      "purpose": "Return house interaction hypotheses linked to motifs, constructs, or frameworks."
+    },
+    {
+      "id": "fetch_protocol_spec",
+      "command": "python3 scripts/query_registry.py protocols ILENS",
+      "purpose": "Return protocol specs and required techniques."
+    },
+    {
+      "id": "fetch_result_atom_schema",
+      "command": "python3 scripts/query_registry.py result-atom-schema",
+      "purpose": "Return the normalized downstream result-atom contract."
+    },
+    {
+      "id": "fetch_research_models",
+      "command": "python3 scripts/query_registry.py research-models",
+      "purpose": "Return allowed research contribution models for safe return traffic."
+    }
+  ],
+  "downstream_contract": {
+    "intended_consumers": [
+      "GNOMY",
+      "synthesis agents",
+      "curation agents"
+    ],
+    "preferred_return_models": [
+      "rcm_mapping_vote",
+      "rcm_pairwise_relation_judgment",
+      "rcm_result_atom_bundle",
+      "rcm_distilled_observation",
+      "rcm_protocol_feedback"
+    ],
+    "result_atom_schema_id": "ras_result_atom_v0_1"
+  }
+}

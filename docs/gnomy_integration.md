@@ -2,6 +2,11 @@
 
 `GNOMY` should treat this repository as a knowledge and protocol substrate, not as a place to recreate local inference logic from scratch.
 
+Arrival references:
+
+- [AGENTS.md](/Users/noveltokens/a_person_index/AGENTS.md)
+- [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+
 ## What GNOMY should read from this repo
 
 - canonical framework records

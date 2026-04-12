@@ -102,6 +102,127 @@ def _layer_card(title: str, count: int, noun: str, description: str) -> str:
 """
 
 
+def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
+    return {
+        "repository": {
+            "name": "personality-instrument-registry",
+            "version": "0.1.0",
+            "status": "active",
+            "current_phase": "phase_2_house_synthesis_and_protocol_substrate",
+            "canonical_domain": "instrument_centered_framework_registry",
+        },
+        "product_layers": {
+            "canonical_registry": {
+                "instrument_count": len(repository.instruments),
+            },
+            "house_synthesis": {
+                "motif_count": len(extensions.motifs),
+                "mapping_count": len(extensions.mappings),
+                "interaction_hypothesis_count": len(extensions.interaction_hypotheses),
+            },
+            "protocol_library": {
+                "technique_count": len(extensions.techniques),
+                "protocol_count": len(extensions.protocols),
+            },
+            "research_stream": {
+                "contribution_model_count": len(extensions.contribution_models),
+                "result_atom_schema_id": extensions.result_atom_schema.id,
+            },
+        },
+        "start_here": [
+            "AGENTS.md",
+            "README.md",
+            "docs/current_state.md",
+            "docs/roadmap.md",
+            "docs/architecture.md",
+            "docs/gnomy_integration.md",
+        ],
+        "canonical_sources": {
+            "instrument_root": "instruments/",
+            "ontology_root": "ontology/",
+            "extension_roots": [
+                "motifs/",
+                "mappings/",
+                "interactions/",
+                "techniques/",
+                "protocols/",
+                "research/",
+            ],
+        },
+        "generated_outputs": {
+            "json_root": "generated/",
+            "site_root": "site/",
+            "do_not_edit_directly": [
+                "generated/",
+                "site/",
+                "schemas/",
+            ],
+            "regenerate_with": [
+                "python3 scripts/export_schemas.py",
+                "python3 scripts/build_index.py",
+                "python3 scripts/generate_docs.py",
+            ],
+        },
+        "service_primitives": [
+            {
+                "id": "find_framework_records",
+                "command": "python3 scripts/query_registry.py find --ref \"Big Five\"",
+                "purpose": "Resolve canonical framework records by ID, name, alias, or filters.",
+            },
+            {
+                "id": "compare_frameworks",
+                "command": "python3 scripts/query_registry.py compare MBTI Enneagram",
+                "purpose": "Compare two canonical framework records and surface shared ontology plus crosswalks.",
+            },
+            {
+                "id": "trace_to_motifs",
+                "command": "python3 scripts/query_registry.py trace MBTI",
+                "purpose": "Trace an instrument or construct through the house motif layer.",
+            },
+            {
+                "id": "list_related_motifs",
+                "command": "python3 scripts/query_registry.py motifs --related-to MBTI",
+                "purpose": "Return house motifs linked to a framework or construct.",
+            },
+            {
+                "id": "list_interaction_hypotheses",
+                "command": "python3 scripts/query_registry.py interactions --related-to \"Attachment Style Frameworks\"",
+                "purpose": "Return house interaction hypotheses linked to motifs, constructs, or frameworks.",
+            },
+            {
+                "id": "fetch_protocol_spec",
+                "command": "python3 scripts/query_registry.py protocols ILENS",
+                "purpose": "Return protocol specs and required techniques.",
+            },
+            {
+                "id": "fetch_result_atom_schema",
+                "command": "python3 scripts/query_registry.py result-atom-schema",
+                "purpose": "Return the normalized downstream result-atom contract.",
+            },
+            {
+                "id": "fetch_research_models",
+                "command": "python3 scripts/query_registry.py research-models",
+                "purpose": "Return allowed research contribution models for safe return traffic.",
+            },
+        ],
+        "downstream_contract": {
+            "intended_consumers": [
+                "GNOMY",
+                "synthesis agents",
+                "curation agents",
+            ],
+            "preferred_return_models": [
+                "rcm_mapping_vote",
+                "rcm_pairwise_relation_judgment",
+                "rcm_result_atom_bundle",
+                "rcm_distilled_observation",
+                "rcm_protocol_feedback",
+            ],
+            "result_atom_schema_id": extensions.result_atom_schema.id,
+        },
+    }
+
+
 def _extension_card(
     *,
     eyebrow: str,
@@ -506,11 +627,13 @@ def build_outputs(root: Path) -> dict:
             "result_atom_schema": extensions.result_atom_schema.model_dump(mode="json"),
         },
     }
+    manifest_payload = _manifest_payload(repository, extensions)
 
     (generated_root / "index.json").write_text(json.dumps(index_payload, indent=2), encoding="utf-8")
     (generated_root / "search.json").write_text(json.dumps(search_payload, indent=2), encoding="utf-8")
     (generated_root / "audit.json").write_text(json.dumps(audit_payload, indent=2), encoding="utf-8")
     (generated_root / "registry.json").write_text(json.dumps(export_payload, indent=2), encoding="utf-8")
+    (generated_root / "manifest.json").write_text(json.dumps(manifest_payload, indent=2), encoding="utf-8")
 
     for slug, payload in bundle_payloads.items():
         (instrument_output_root / f"{slug}.json").write_text(
@@ -1116,6 +1239,7 @@ def build_docs(root: Path) -> None:
             for entry in comparison_entries
         ]
     }
+    manifest_payload = _manifest_payload(repository, extensions)
     extension_payload = {
         "motifs": [item.model_dump(mode="json") for item in extensions.motifs],
         "mappings": [item.model_dump(mode="json") for item in extensions.mappings],
@@ -1179,6 +1303,7 @@ section { margin-top: 32px; }
     )
     (site_data_root / "comparisons.json").write_text(json.dumps(comparison_payload, indent=2), encoding="utf-8")
     (site_data_root / "extensions.json").write_text(json.dumps(extension_payload, indent=2), encoding="utf-8")
+    (site_data_root / "manifest.json").write_text(json.dumps(manifest_payload, indent=2), encoding="utf-8")
 
     index_items = "\n".join(
         _docs_index_entry(bundle, audit_by_slug[bundle.slug])
