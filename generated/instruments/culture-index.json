@@ -47,18 +47,169 @@
   ],
   "constructs": [
     {
-      "id": "con_culture_index_core",
+      "id": "con_culture_index_autonomy",
       "instrument_id": "instr_culture_index",
       "version_ids": [
         "ver_culture_index_general"
       ],
-      "name": "Predictive workplace profile",
-      "short_name": "Predictive workplace profile",
+      "name": "Autonomy",
+      "short_name": "Autonomy",
       "construct_kind": [
-        "dimension"
+        "trait",
+        "work_trait"
       ],
-      "official_definition": "A proprietary profile intended to support workplace fit and role-related discussion.",
-      "scoring_type": "variant_dependent",
+      "official_definition": "Assertive independence and willingness to initiate or direct activity without needing heavy external structure.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_culture_index_social_ability",
+      "instrument_id": "instr_culture_index",
+      "version_ids": [
+        "ver_culture_index_general"
+      ],
+      "name": "Social Ability",
+      "short_name": "Social Ability",
+      "construct_kind": [
+        "trait",
+        "work_trait"
+      ],
+      "official_definition": "Comfort with social interaction, networking, persuasion, and interpersonal contact.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_culture_index_patience",
+      "instrument_id": "instr_culture_index",
+      "version_ids": [
+        "ver_culture_index_general"
+      ],
+      "name": "Patience",
+      "short_name": "Patience",
+      "construct_kind": [
+        "trait",
+        "work_trait"
+      ],
+      "official_definition": "Preference for steadiness, consistency, and tolerating slower or more repetitive work rhythms.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_culture_index_conformity",
+      "instrument_id": "instr_culture_index",
+      "version_ids": [
+        "ver_culture_index_general"
+      ],
+      "name": "Conformity",
+      "short_name": "Conformity",
+      "construct_kind": [
+        "trait",
+        "work_trait"
+      ],
+      "official_definition": "Orientation toward structure, rules, precision, and disciplined adherence to standards.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_culture_index_energy_units",
+      "instrument_id": "instr_culture_index",
+      "version_ids": [
+        "ver_culture_index_general"
+      ],
+      "name": "Energy Units",
+      "short_name": "Energy Units",
+      "construct_kind": [
+        "trait",
+        "work_trait"
+      ],
+      "official_definition": "General energy level and stamina available for sustained work output.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_culture_index_logic",
+      "instrument_id": "instr_culture_index",
+      "version_ids": [
+        "ver_culture_index_general"
+      ],
+      "name": "Logic",
+      "short_name": "Logic",
+      "construct_kind": [
+        "trait",
+        "work_trait"
+      ],
+      "official_definition": "Preference for analytical reasoning, problem solving, and evidence-based judgment.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_culture_index_ingenuity",
+      "instrument_id": "instr_culture_index",
+      "version_ids": [
+        "ver_culture_index_general"
+      ],
+      "name": "Ingenuity",
+      "short_name": "Ingenuity",
+      "construct_kind": [
+        "trait",
+        "work_trait"
+      ],
+      "official_definition": "Tendency toward inventiveness, originality, and generating new approaches or solutions.",
+      "scoring_type": "continuous",
       "polarity": {
         "low_label": null,
         "high_label": null

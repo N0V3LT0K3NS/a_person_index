@@ -45,18 +45,119 @@
   ],
   "constructs": [
     {
-      "id": "con_love_languages_core",
+      "id": "con_love_languages_words_of_affirmation",
       "instrument_id": "instr_love_languages",
       "version_ids": [
         "ver_love_languages_general"
       ],
-      "name": "Preferred affection channel",
-      "short_name": "Preferred affection channel",
+      "name": "Words of Affirmation",
+      "short_name": "Words of Affirmation",
       "construct_kind": [
-        "dimension"
+        "type",
+        "preference"
       ],
-      "official_definition": "A preferred mode of giving or receiving affection, such as words, time, gifts, service, or touch.",
-      "scoring_type": "variant_dependent",
+      "official_definition": "Valuing verbal expressions of appreciation, encouragement, and affection.",
+      "scoring_type": "type_assignment",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_love_languages_quality_time",
+      "instrument_id": "instr_love_languages",
+      "version_ids": [
+        "ver_love_languages_general"
+      ],
+      "name": "Quality Time",
+      "short_name": "Quality Time",
+      "construct_kind": [
+        "type",
+        "preference"
+      ],
+      "official_definition": "Valuing focused presence, shared attention, and undistracted time together.",
+      "scoring_type": "type_assignment",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_love_languages_receiving_gifts",
+      "instrument_id": "instr_love_languages",
+      "version_ids": [
+        "ver_love_languages_general"
+      ],
+      "name": "Receiving Gifts",
+      "short_name": "Receiving Gifts",
+      "construct_kind": [
+        "type",
+        "preference"
+      ],
+      "official_definition": "Valuing tangible symbols of care, thoughtfulness, and remembrance.",
+      "scoring_type": "type_assignment",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_love_languages_acts_of_service",
+      "instrument_id": "instr_love_languages",
+      "version_ids": [
+        "ver_love_languages_general"
+      ],
+      "name": "Acts of Service",
+      "short_name": "Acts of Service",
+      "construct_kind": [
+        "type",
+        "preference"
+      ],
+      "official_definition": "Valuing helpful actions that reduce burden or demonstrate care through effort.",
+      "scoring_type": "type_assignment",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_love_languages_physical_touch",
+      "instrument_id": "instr_love_languages",
+      "version_ids": [
+        "ver_love_languages_general"
+      ],
+      "name": "Physical Touch",
+      "short_name": "Physical Touch",
+      "construct_kind": [
+        "type",
+        "preference"
+      ],
+      "official_definition": "Valuing affectionate physical contact as a primary signal of closeness and care.",
+      "scoring_type": "type_assignment",
       "polarity": {
         "low_label": null,
         "high_label": null

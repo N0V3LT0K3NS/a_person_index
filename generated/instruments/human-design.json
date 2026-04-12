@@ -46,18 +46,94 @@
   ],
   "constructs": [
     {
-      "id": "con_human_design_core",
+      "id": "con_human_design_generator",
       "instrument_id": "instr_human_design",
       "version_ids": [
         "ver_human_design_general"
       ],
-      "name": "Bodygraph profile",
-      "short_name": "Bodygraph profile",
+      "name": "Generator",
+      "short_name": "Generator",
       "construct_kind": [
-        "dimension"
+        "type",
+        "aura_type"
       ],
-      "official_definition": "A chart-based symbolic profile derived from birth data and interpreted through Human Design rules.",
-      "scoring_type": "variant_dependent",
+      "official_definition": "A sacral energy type whose strategy is to respond and who carries the dominant life-force energy in the system.",
+      "scoring_type": "type_assignment",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_human_design_manifestor",
+      "instrument_id": "instr_human_design",
+      "version_ids": [
+        "ver_human_design_general"
+      ],
+      "name": "Manifestor",
+      "short_name": "Manifestor",
+      "construct_kind": [
+        "type",
+        "aura_type"
+      ],
+      "official_definition": "An initiating type whose strategy is to inform before acting and whose aura is described as closed and repelling.",
+      "scoring_type": "type_assignment",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_human_design_projector",
+      "instrument_id": "instr_human_design",
+      "version_ids": [
+        "ver_human_design_general"
+      ],
+      "name": "Projector",
+      "short_name": "Projector",
+      "construct_kind": [
+        "type",
+        "aura_type"
+      ],
+      "official_definition": "A non-sacral guiding type whose strategy is to wait for recognition and invitation.",
+      "scoring_type": "type_assignment",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_human_design_reflector",
+      "instrument_id": "instr_human_design",
+      "version_ids": [
+        "ver_human_design_general"
+      ],
+      "name": "Reflector",
+      "short_name": "Reflector",
+      "construct_kind": [
+        "type",
+        "aura_type"
+      ],
+      "official_definition": "A rare type with no fixed centers whose strategy is to wait through a lunar cycle before major decisions.",
+      "scoring_type": "type_assignment",
       "polarity": {
         "low_label": null,
         "high_label": null

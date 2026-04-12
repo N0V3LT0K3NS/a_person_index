@@ -1,15 +1,12 @@
 constructs:
-- id: con_cliftonstrengths_core
-  instrument_id: instr_cliftonstrengths
+- instrument_id: instr_cliftonstrengths
   version_ids:
   - ver_cliftonstrengths_general
-  name: Talent theme profile
-  short_name: Talent theme profile
+  short_name: Executing
   construct_kind:
-  - dimension
-  official_definition: Rank-ordered strengths themes intended to highlight recurring
-    talent patterns.
-  scoring_type: variant_dependent
+  - domain
+  - strengths_domain
+  scoring_type: rank_order_grouping
   polarity:
     low_label: null
     high_label: null
@@ -18,3 +15,67 @@ constructs:
     min: null
     max: null
   parent_construct_id: null
+  id: con_cliftonstrengths_executing
+  name: Executing
+  official_definition: Themes that help a person turn ideas into action and reliably
+    get work done.
+- instrument_id: instr_cliftonstrengths
+  version_ids:
+  - ver_cliftonstrengths_general
+  short_name: Influencing
+  construct_kind:
+  - domain
+  - strengths_domain
+  scoring_type: rank_order_grouping
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_cliftonstrengths_influencing
+  name: Influencing
+  official_definition: Themes that help a person take charge, speak up, and move others
+    to action.
+- instrument_id: instr_cliftonstrengths
+  version_ids:
+  - ver_cliftonstrengths_general
+  short_name: Relationship Building
+  construct_kind:
+  - domain
+  - strengths_domain
+  scoring_type: rank_order_grouping
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_cliftonstrengths_relationship_building
+  name: Relationship Building
+  official_definition: Themes that help a person build trust, cohesion, and connection
+    with others.
+- instrument_id: instr_cliftonstrengths
+  version_ids:
+  - ver_cliftonstrengths_general
+  short_name: Strategic Thinking
+  construct_kind:
+  - domain
+  - strengths_domain
+  scoring_type: rank_order_grouping
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_cliftonstrengths_strategic_thinking
+  name: Strategic Thinking
+  official_definition: Themes that help a person absorb information, analyze situations,
+    and envision possibilities.

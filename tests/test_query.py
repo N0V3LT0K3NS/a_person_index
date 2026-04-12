@@ -50,6 +50,7 @@ def test_audit_summary_reflects_seed_coverage(repo_root):
     assert payload["summary"]["instrument_count"] == 15
     assert payload["summary"]["instruments_with_crosswalks"] == 15
     assert payload["summary"]["instruments_with_multiple_resources"] == 15
+    assert payload["summary"]["instruments_with_multiple_constructs"] == 15
 
 
 def test_audit_filter_surfaces_missing_official_resources(repo_root):

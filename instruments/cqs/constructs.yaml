@@ -1,15 +1,12 @@
 constructs:
-- id: con_cqs_core
-  instrument_id: instr_cqs
+- instrument_id: instr_cqs
   version_ids:
   - ver_cqs_general
-  name: Cultural intelligence profile
-  short_name: Cultural intelligence profile
+  short_name: Drive
   construct_kind:
   - dimension
-  official_definition: A profile across cultural metacognitive, cognitive, motivational,
-    and behavioral capabilities.
-  scoring_type: variant_dependent
+  - capability
+  scoring_type: continuous
   polarity:
     low_label: null
     high_label: null
@@ -18,3 +15,67 @@ constructs:
     min: null
     max: null
   parent_construct_id: null
+  id: con_cqs_drive
+  name: CQ Drive
+  official_definition: Motivation, interest, and confidence for functioning effectively
+    in culturally diverse settings.
+- instrument_id: instr_cqs
+  version_ids:
+  - ver_cqs_general
+  short_name: Knowledge
+  construct_kind:
+  - dimension
+  - capability
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_cqs_knowledge
+  name: CQ Knowledge
+  official_definition: Understanding of cultural similarities, differences, and norms
+    that shape social interaction.
+- instrument_id: instr_cqs
+  version_ids:
+  - ver_cqs_general
+  short_name: Strategy
+  construct_kind:
+  - dimension
+  - capability
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_cqs_strategy
+  name: CQ Strategy
+  official_definition: Metacognitive capacity to plan for, interpret, and revise understanding
+    in cross-cultural situations.
+- instrument_id: instr_cqs
+  version_ids:
+  - ver_cqs_general
+  short_name: Action
+  construct_kind:
+  - dimension
+  - capability
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_cqs_action
+  name: CQ Action
+  official_definition: Ability to adapt verbal and nonverbal behavior across culturally
+    diverse contexts.

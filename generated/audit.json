@@ -3,6 +3,7 @@
     "instrument_count": 15,
     "instruments_with_crosswalks": 15,
     "instruments_with_multiple_resources": 15,
+    "instruments_with_multiple_constructs": 15,
     "instruments_with_official_or_semi_official_resource": 12
   },
   "instruments": [
@@ -12,7 +13,7 @@
       "canonical_name": "Attachment Style Frameworks",
       "counts": {
         "versions": 1,
-        "constructs": 1,
+        "constructs": 2,
         "claims": 1,
         "resources": 2,
         "annotations": 24,
@@ -27,6 +28,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": false
       }
     },
@@ -52,6 +54,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -61,7 +64,7 @@
       "canonical_name": "CliftonStrengths",
       "counts": {
         "versions": 1,
-        "constructs": 1,
+        "constructs": 4,
         "claims": 1,
         "resources": 2,
         "annotations": 24,
@@ -76,6 +79,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -85,7 +89,7 @@
       "canonical_name": "Cultural Intelligence Scale",
       "counts": {
         "versions": 1,
-        "constructs": 1,
+        "constructs": 4,
         "claims": 1,
         "resources": 2,
         "annotations": 24,
@@ -100,6 +104,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -109,7 +114,7 @@
       "canonical_name": "Culture Index",
       "counts": {
         "versions": 1,
-        "constructs": 1,
+        "constructs": 7,
         "claims": 1,
         "resources": 2,
         "annotations": 24,
@@ -124,6 +129,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -133,7 +139,7 @@
       "canonical_name": "Dark Triad",
       "counts": {
         "versions": 1,
-        "constructs": 1,
+        "constructs": 3,
         "claims": 1,
         "resources": 2,
         "annotations": 24,
@@ -148,6 +154,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": false
       }
     },
@@ -157,7 +164,7 @@
       "canonical_name": "DISC",
       "counts": {
         "versions": 1,
-        "constructs": 1,
+        "constructs": 4,
         "claims": 1,
         "resources": 2,
         "annotations": 24,
@@ -172,6 +179,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -196,6 +204,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -205,7 +214,7 @@
       "canonical_name": "HEXACO Personality Inventory",
       "counts": {
         "versions": 1,
-        "constructs": 1,
+        "constructs": 6,
         "claims": 1,
         "resources": 2,
         "annotations": 24,
@@ -220,6 +229,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -229,7 +239,7 @@
       "canonical_name": "Human Design",
       "counts": {
         "versions": 1,
-        "constructs": 1,
+        "constructs": 4,
         "claims": 1,
         "resources": 2,
         "annotations": 24,
@@ -244,6 +254,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -253,7 +264,7 @@
       "canonical_name": "Kolbe A Index",
       "counts": {
         "versions": 1,
-        "constructs": 1,
+        "constructs": 4,
         "claims": 1,
         "resources": 2,
         "annotations": 24,
@@ -268,6 +279,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -277,7 +289,7 @@
       "canonical_name": "The Five Love Languages",
       "counts": {
         "versions": 1,
-        "constructs": 1,
+        "constructs": 5,
         "claims": 1,
         "resources": 2,
         "annotations": 24,
@@ -292,6 +304,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -316,6 +329,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -325,7 +339,7 @@
       "canonical_name": "Natal Astrology",
       "counts": {
         "versions": 1,
-        "constructs": 1,
+        "constructs": 4,
         "claims": 1,
         "resources": 2,
         "annotations": 24,
@@ -340,6 +354,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": false
       }
     },
@@ -349,7 +364,7 @@
       "canonical_name": "VIA Character Strengths",
       "counts": {
         "versions": 1,
-        "constructs": 1,
+        "constructs": 6,
         "claims": 1,
         "resources": 2,
         "annotations": 24,
@@ -364,6 +379,7 @@
       "coverage": {
         "has_crosswalks": true,
         "has_multiple_resources": true,
+        "has_multiple_constructs": true,
         "has_official_or_semi_official_resource": true
       }
     }

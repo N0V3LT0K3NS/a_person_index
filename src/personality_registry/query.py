@@ -140,6 +140,7 @@ def audit_repository(
         coverage = {
             "has_crosswalks": counts["crosswalks"] > 0,
             "has_multiple_resources": counts["resources"] > 1,
+            "has_multiple_constructs": counts["constructs"] > 1,
             "has_official_or_semi_official_resource": any(
                 resource.officiality in {"official", "semi_official"} for resource in bundle.resources
             ),
@@ -169,6 +170,9 @@ def audit_repository(
             "instruments_with_crosswalks": sum(1 for bundle in repository.instruments.values() if bundle.crosswalks),
             "instruments_with_multiple_resources": sum(
                 1 for bundle in repository.instruments.values() if len(bundle.resources) > 1
+            ),
+            "instruments_with_multiple_constructs": sum(
+                1 for bundle in repository.instruments.values() if len(bundle.constructs) > 1
             ),
             "instruments_with_official_or_semi_official_resource": sum(
                 1

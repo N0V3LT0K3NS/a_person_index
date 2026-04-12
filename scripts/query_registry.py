@@ -62,6 +62,7 @@ def _render_audit_text(payload):
         f"  instruments: {payload['summary']['instrument_count']}",
         f"  with crosswalks: {payload['summary']['instruments_with_crosswalks']}",
         f"  with 2+ resources: {payload['summary']['instruments_with_multiple_resources']}",
+        f"  with 2+ constructs: {payload['summary']['instruments_with_multiple_constructs']}",
         (
             "  with official/semi-official resource: "
             f"{payload['summary']['instruments_with_official_or_semi_official_resource']}"

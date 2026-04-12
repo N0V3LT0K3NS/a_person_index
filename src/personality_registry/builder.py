@@ -92,6 +92,7 @@ def _audit_entry(bundle: InstrumentBundle) -> dict:
         "coverage": {
             "has_crosswalks": counts["crosswalks"] > 0,
             "has_multiple_resources": counts["resources"] > 1,
+            "has_multiple_constructs": counts["constructs"] > 1,
             "has_official_or_semi_official_resource": any(
                 resource.officiality in {"official", "semi_official"} for resource in bundle.resources
             ),
@@ -119,8 +120,8 @@ def _docs_index_entry(bundle: InstrumentBundle, audit_entry: dict) -> str:
     family_tags = "".join(f"<span class=\"tag\">{escape(value)}</span>" for value in bundle.instrument.family)
     coverage_bits = [
         f"{audit_entry['counts']['resources']} resources",
-        f"{audit_entry['counts']['crosswalks']} crosswalks",
         f"{audit_entry['counts']['constructs']} constructs",
+        f"{audit_entry['counts']['crosswalks']} crosswalks",
     ]
     return f"""
 <article class="instrument-card">
@@ -331,8 +332,8 @@ def _audit_html(audit_entries: list[dict]) -> str:
             "<tr>"
             f"<td><a href=\"instruments/{escape(entry['slug'])}.html\">{escape(entry['canonical_name'])}</a></td>"
             f"<td>{entry['counts']['resources']}</td>"
-            f"<td>{entry['counts']['crosswalks']}</td>"
             f"<td>{entry['counts']['constructs']}</td>"
+            f"<td>{entry['counts']['crosswalks']}</td>"
             f"<td>{'yes' if entry['coverage']['has_official_or_semi_official_resource'] else 'no'}</td>"
             "</tr>"
         )
@@ -353,8 +354,8 @@ def _audit_html(audit_entries: list[dict]) -> str:
           <tr>
             <th>Instrument</th>
             <th>Resources</th>
-            <th>Crosswalks</th>
             <th>Constructs</th>
+            <th>Crosswalks</th>
             <th>Official / Semi</th>
           </tr>
         </thead>
@@ -406,6 +407,9 @@ def build_outputs(root: Path) -> dict:
             "instruments_with_multiple_resources": sum(
                 1 for entry in audit_entries if entry["coverage"]["has_multiple_resources"]
             ),
+            "instruments_with_multiple_constructs": sum(
+                1 for entry in audit_entries if entry["coverage"]["has_multiple_constructs"]
+            ),
             "instruments_with_official_or_semi_official_resource": sum(
                 1
                 for entry in audit_entries
@@ -442,6 +446,7 @@ def build_docs(root: Path) -> None:
         "instrument_count": len(audit_entries),
         "with_crosswalks": sum(1 for entry in audit_entries if entry["coverage"]["has_crosswalks"]),
         "with_multiple_resources": sum(1 for entry in audit_entries if entry["coverage"]["has_multiple_resources"]),
+        "with_multiple_constructs": sum(1 for entry in audit_entries if entry["coverage"]["has_multiple_constructs"]),
     }
     audit_by_slug = {entry["slug"]: entry for entry in audit_entries}
     slug_by_instrument_id = {
@@ -492,6 +497,7 @@ section { margin-top: 32px; }
       <section class="stats">
         <article class="stat-card"><strong>{audit_summary['instrument_count']}</strong> seeded instruments</article>
         <article class="stat-card"><strong>{audit_summary['with_multiple_resources']}</strong> with 2+ resources</article>
+        <article class="stat-card"><strong>{audit_summary['with_multiple_constructs']}</strong> with 2+ constructs</article>
         <article class="stat-card"><strong>{audit_summary['with_crosswalks']}</strong> with outgoing crosswalks</article>
       </section>
       <section>

@@ -49,18 +49,94 @@
   ],
   "constructs": [
     {
-      "id": "con_cliftonstrengths_core",
+      "id": "con_cliftonstrengths_executing",
       "instrument_id": "instr_cliftonstrengths",
       "version_ids": [
         "ver_cliftonstrengths_general"
       ],
-      "name": "Talent theme profile",
-      "short_name": "Talent theme profile",
+      "name": "Executing",
+      "short_name": "Executing",
       "construct_kind": [
-        "dimension"
+        "domain",
+        "strengths_domain"
       ],
-      "official_definition": "Rank-ordered strengths themes intended to highlight recurring talent patterns.",
-      "scoring_type": "variant_dependent",
+      "official_definition": "Themes that help a person turn ideas into action and reliably get work done.",
+      "scoring_type": "rank_order_grouping",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_cliftonstrengths_influencing",
+      "instrument_id": "instr_cliftonstrengths",
+      "version_ids": [
+        "ver_cliftonstrengths_general"
+      ],
+      "name": "Influencing",
+      "short_name": "Influencing",
+      "construct_kind": [
+        "domain",
+        "strengths_domain"
+      ],
+      "official_definition": "Themes that help a person take charge, speak up, and move others to action.",
+      "scoring_type": "rank_order_grouping",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_cliftonstrengths_relationship_building",
+      "instrument_id": "instr_cliftonstrengths",
+      "version_ids": [
+        "ver_cliftonstrengths_general"
+      ],
+      "name": "Relationship Building",
+      "short_name": "Relationship Building",
+      "construct_kind": [
+        "domain",
+        "strengths_domain"
+      ],
+      "official_definition": "Themes that help a person build trust, cohesion, and connection with others.",
+      "scoring_type": "rank_order_grouping",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_cliftonstrengths_strategic_thinking",
+      "instrument_id": "instr_cliftonstrengths",
+      "version_ids": [
+        "ver_cliftonstrengths_general"
+      ],
+      "name": "Strategic Thinking",
+      "short_name": "Strategic Thinking",
+      "construct_kind": [
+        "domain",
+        "strengths_domain"
+      ],
+      "official_definition": "Themes that help a person absorb information, analyze situations, and envision possibilities.",
+      "scoring_type": "rank_order_grouping",
       "polarity": {
         "low_label": null,
         "high_label": null

@@ -1,15 +1,12 @@
 constructs:
-- id: con_attachment_styles_core
-  instrument_id: instr_attachment_styles
+- instrument_id: instr_attachment_styles
   version_ids:
   - ver_attachment_styles_general
-  name: Attachment pattern
-  short_name: Attachment pattern
+  short_name: Anxiety
   construct_kind:
   - dimension
-  official_definition: A pattern of closeness regulation, security, anxiety, and avoidance
-    in relational contexts.
-  scoring_type: variant_dependent
+  - attachment_dimension
+  scoring_type: continuous
   polarity:
     low_label: null
     high_label: null
@@ -18,3 +15,27 @@ constructs:
     min: null
     max: null
   parent_construct_id: null
+  id: con_attachment_styles_anxiety
+  name: Attachment Anxiety
+  official_definition: Sensitivity to rejection, abandonment, and uncertainty about
+    the availability of close others.
+- instrument_id: instr_attachment_styles
+  version_ids:
+  - ver_attachment_styles_general
+  short_name: Avoidance
+  construct_kind:
+  - dimension
+  - attachment_dimension
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_attachment_styles_avoidance
+  name: Attachment Avoidance
+  official_definition: Discomfort with dependence, emotional intimacy, and closeness
+    in attachment relationships.

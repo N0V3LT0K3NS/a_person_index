@@ -63,7 +63,7 @@ The repository currently ships with 15 source-backed seed instruments spanning p
 - VIA Character Strengths
 - HEXACO
 
-Each seed instrument is expected to carry at least two resources and at least one outgoing crosswalk so the starter corpus remains comparative, not just descriptive.
+Each seed instrument is expected to carry at least two resources and at least one outgoing crosswalk. Systems with stable major outputs should also carry multiple top-level constructs so the starter corpus remains comparative, not just descriptive.
 
 ## What This Is Not
 

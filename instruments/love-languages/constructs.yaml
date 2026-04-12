@@ -1,15 +1,12 @@
 constructs:
-- id: con_love_languages_core
-  instrument_id: instr_love_languages
+- instrument_id: instr_love_languages
   version_ids:
   - ver_love_languages_general
-  name: Preferred affection channel
-  short_name: Preferred affection channel
+  short_name: Words of Affirmation
   construct_kind:
-  - dimension
-  official_definition: A preferred mode of giving or receiving affection, such as
-    words, time, gifts, service, or touch.
-  scoring_type: variant_dependent
+  - type
+  - preference
+  scoring_type: type_assignment
   polarity:
     low_label: null
     high_label: null
@@ -18,3 +15,86 @@ constructs:
     min: null
     max: null
   parent_construct_id: null
+  id: con_love_languages_words_of_affirmation
+  name: Words of Affirmation
+  official_definition: Valuing verbal expressions of appreciation, encouragement,
+    and affection.
+- instrument_id: instr_love_languages
+  version_ids:
+  - ver_love_languages_general
+  short_name: Quality Time
+  construct_kind:
+  - type
+  - preference
+  scoring_type: type_assignment
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_love_languages_quality_time
+  name: Quality Time
+  official_definition: Valuing focused presence, shared attention, and undistracted
+    time together.
+- instrument_id: instr_love_languages
+  version_ids:
+  - ver_love_languages_general
+  short_name: Receiving Gifts
+  construct_kind:
+  - type
+  - preference
+  scoring_type: type_assignment
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_love_languages_receiving_gifts
+  name: Receiving Gifts
+  official_definition: Valuing tangible symbols of care, thoughtfulness, and remembrance.
+- instrument_id: instr_love_languages
+  version_ids:
+  - ver_love_languages_general
+  short_name: Acts of Service
+  construct_kind:
+  - type
+  - preference
+  scoring_type: type_assignment
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_love_languages_acts_of_service
+  name: Acts of Service
+  official_definition: Valuing helpful actions that reduce burden or demonstrate care
+    through effort.
+- instrument_id: instr_love_languages
+  version_ids:
+  - ver_love_languages_general
+  short_name: Physical Touch
+  construct_kind:
+  - type
+  - preference
+  scoring_type: type_assignment
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_love_languages_physical_touch
+  name: Physical Touch
+  official_definition: Valuing affectionate physical contact as a primary signal of
+    closeness and care.

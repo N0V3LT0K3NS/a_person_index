@@ -44,18 +44,94 @@
   ],
   "constructs": [
     {
-      "id": "con_disc_core",
+      "id": "con_disc_dominance",
       "instrument_id": "instr_disc",
       "version_ids": [
         "ver_disc_general"
       ],
-      "name": "DISC style profile",
-      "short_name": "DISC style profile",
+      "name": "Dominance",
+      "short_name": "D",
       "construct_kind": [
-        "dimension"
+        "dimension",
+        "style"
       ],
-      "official_definition": "Composite profile across dominance, influence, steadiness, and conscientiousness style dimensions.",
-      "scoring_type": "variant_dependent",
+      "official_definition": "Direct, forceful, and results-focused behavioral style oriented toward challenge and control.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_disc_influence",
+      "instrument_id": "instr_disc",
+      "version_ids": [
+        "ver_disc_general"
+      ],
+      "name": "Influence",
+      "short_name": "I",
+      "construct_kind": [
+        "dimension",
+        "style"
+      ],
+      "official_definition": "Outgoing, persuasive, and socially expressive behavioral style oriented toward enthusiasm and interaction.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_disc_steadiness",
+      "instrument_id": "instr_disc",
+      "version_ids": [
+        "ver_disc_general"
+      ],
+      "name": "Steadiness",
+      "short_name": "S",
+      "construct_kind": [
+        "dimension",
+        "style"
+      ],
+      "official_definition": "Patient, accommodating, and cooperative behavioral style oriented toward consistency and support.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_disc_conscientiousness",
+      "instrument_id": "instr_disc",
+      "version_ids": [
+        "ver_disc_general"
+      ],
+      "name": "Conscientiousness",
+      "short_name": "C",
+      "construct_kind": [
+        "dimension",
+        "style"
+      ],
+      "official_definition": "Careful, systematic, and quality-focused behavioral style oriented toward standards and accuracy.",
+      "scoring_type": "continuous",
       "polarity": {
         "low_label": null,
         "high_label": null

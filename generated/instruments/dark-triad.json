@@ -44,18 +44,69 @@
   ],
   "constructs": [
     {
-      "id": "con_dark_triad_core",
+      "id": "con_dark_triad_narcissism",
       "instrument_id": "instr_dark_triad",
       "version_ids": [
         "ver_dark_triad_general"
       ],
-      "name": "Dark trait profile",
-      "short_name": "Dark trait profile",
+      "name": "Narcissism",
+      "short_name": "Narcissism",
       "construct_kind": [
-        "dimension"
+        "trait",
+        "dark_trait"
       ],
-      "official_definition": "A profile across dark personality features such as narcissism, Machiavellianism, and psychopathy.",
-      "scoring_type": "variant_dependent",
+      "official_definition": "Grandiose self-focus, entitlement, and desire for admiration or status.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_dark_triad_machiavellianism",
+      "instrument_id": "instr_dark_triad",
+      "version_ids": [
+        "ver_dark_triad_general"
+      ],
+      "name": "Machiavellianism",
+      "short_name": "Machiavellianism",
+      "construct_kind": [
+        "trait",
+        "dark_trait"
+      ],
+      "official_definition": "Strategic manipulation, cynical social calculation, and willingness to use others instrumentally.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_dark_triad_psychopathy",
+      "instrument_id": "instr_dark_triad",
+      "version_ids": [
+        "ver_dark_triad_general"
+      ],
+      "name": "Psychopathy",
+      "short_name": "Psychopathy",
+      "construct_kind": [
+        "trait",
+        "dark_trait"
+      ],
+      "official_definition": "Callousness, impulsivity, low empathy, and diminished concern for harm to others.",
+      "scoring_type": "continuous",
       "polarity": {
         "low_label": null,
         "high_label": null

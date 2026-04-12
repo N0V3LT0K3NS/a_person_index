@@ -25,6 +25,7 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert len(index_payload["instruments"]) == len(export_payload["instruments"])
     assert len(search_payload["entries"]) == len(export_payload["instruments"])
     assert audit_payload["summary"]["instrument_count"] == len(export_payload["instruments"])
+    assert audit_payload["summary"]["instruments_with_multiple_constructs"] == len(export_payload["instruments"])
 
     instrument_ids = {entry["id"] for entry in index_payload["instruments"]}
     assert {"instr_big_five", "instr_enneagram", "instr_mbti"}.issubset(instrument_ids)

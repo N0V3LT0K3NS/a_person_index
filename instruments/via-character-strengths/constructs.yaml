@@ -1,15 +1,12 @@
 constructs:
-- id: con_via_character_strengths_core
-  instrument_id: instr_via_character_strengths
+- instrument_id: instr_via_character_strengths
   version_ids:
   - ver_via_character_strengths_general
-  name: Character strengths profile
-  short_name: Character strengths profile
+  short_name: Wisdom
   construct_kind:
+  - virtue_domain
   - dimension
-  official_definition: A ranked profile of character strengths organized within a
-    virtue taxonomy.
-  scoring_type: variant_dependent
+  scoring_type: rank_order_grouping
   polarity:
     low_label: null
     high_label: null
@@ -18,3 +15,107 @@ constructs:
     min: null
     max: null
   parent_construct_id: null
+  id: con_via_wisdom
+  name: Wisdom
+  official_definition: Virtue domain covering strengths involved in acquiring and
+    using knowledge well.
+- instrument_id: instr_via_character_strengths
+  version_ids:
+  - ver_via_character_strengths_general
+  short_name: Courage
+  construct_kind:
+  - virtue_domain
+  - dimension
+  scoring_type: rank_order_grouping
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_via_courage
+  name: Courage
+  official_definition: Virtue domain covering strengths involved in will, perseverance,
+    and action despite difficulty.
+- instrument_id: instr_via_character_strengths
+  version_ids:
+  - ver_via_character_strengths_general
+  short_name: Humanity
+  construct_kind:
+  - virtue_domain
+  - dimension
+  scoring_type: rank_order_grouping
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_via_humanity
+  name: Humanity
+  official_definition: Virtue domain covering strengths of care, love, and interpersonal
+    warmth.
+- instrument_id: instr_via_character_strengths
+  version_ids:
+  - ver_via_character_strengths_general
+  short_name: Justice
+  construct_kind:
+  - virtue_domain
+  - dimension
+  scoring_type: rank_order_grouping
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_via_justice
+  name: Justice
+  official_definition: Virtue domain covering strengths that support fairness, citizenship,
+    and leadership in collective life.
+- instrument_id: instr_via_character_strengths
+  version_ids:
+  - ver_via_character_strengths_general
+  short_name: Temperance
+  construct_kind:
+  - virtue_domain
+  - dimension
+  scoring_type: rank_order_grouping
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_via_temperance
+  name: Temperance
+  official_definition: Virtue domain covering strengths that regulate excess and support
+    balance or restraint.
+- instrument_id: instr_via_character_strengths
+  version_ids:
+  - ver_via_character_strengths_general
+  short_name: Transcendence
+  construct_kind:
+  - virtue_domain
+  - dimension
+  scoring_type: rank_order_grouping
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_via_transcendence
+  name: Transcendence
+  official_definition: Virtue domain covering strengths that connect a person to meaning,
+    awe, hope, and appreciation.

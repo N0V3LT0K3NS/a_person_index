@@ -48,18 +48,144 @@
   ],
   "constructs": [
     {
-      "id": "con_via_character_strengths_core",
+      "id": "con_via_wisdom",
       "instrument_id": "instr_via_character_strengths",
       "version_ids": [
         "ver_via_character_strengths_general"
       ],
-      "name": "Character strengths profile",
-      "short_name": "Character strengths profile",
+      "name": "Wisdom",
+      "short_name": "Wisdom",
       "construct_kind": [
+        "virtue_domain",
         "dimension"
       ],
-      "official_definition": "A ranked profile of character strengths organized within a virtue taxonomy.",
-      "scoring_type": "variant_dependent",
+      "official_definition": "Virtue domain covering strengths involved in acquiring and using knowledge well.",
+      "scoring_type": "rank_order_grouping",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_via_courage",
+      "instrument_id": "instr_via_character_strengths",
+      "version_ids": [
+        "ver_via_character_strengths_general"
+      ],
+      "name": "Courage",
+      "short_name": "Courage",
+      "construct_kind": [
+        "virtue_domain",
+        "dimension"
+      ],
+      "official_definition": "Virtue domain covering strengths involved in will, perseverance, and action despite difficulty.",
+      "scoring_type": "rank_order_grouping",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_via_humanity",
+      "instrument_id": "instr_via_character_strengths",
+      "version_ids": [
+        "ver_via_character_strengths_general"
+      ],
+      "name": "Humanity",
+      "short_name": "Humanity",
+      "construct_kind": [
+        "virtue_domain",
+        "dimension"
+      ],
+      "official_definition": "Virtue domain covering strengths of care, love, and interpersonal warmth.",
+      "scoring_type": "rank_order_grouping",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_via_justice",
+      "instrument_id": "instr_via_character_strengths",
+      "version_ids": [
+        "ver_via_character_strengths_general"
+      ],
+      "name": "Justice",
+      "short_name": "Justice",
+      "construct_kind": [
+        "virtue_domain",
+        "dimension"
+      ],
+      "official_definition": "Virtue domain covering strengths that support fairness, citizenship, and leadership in collective life.",
+      "scoring_type": "rank_order_grouping",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_via_temperance",
+      "instrument_id": "instr_via_character_strengths",
+      "version_ids": [
+        "ver_via_character_strengths_general"
+      ],
+      "name": "Temperance",
+      "short_name": "Temperance",
+      "construct_kind": [
+        "virtue_domain",
+        "dimension"
+      ],
+      "official_definition": "Virtue domain covering strengths that regulate excess and support balance or restraint.",
+      "scoring_type": "rank_order_grouping",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_via_transcendence",
+      "instrument_id": "instr_via_character_strengths",
+      "version_ids": [
+        "ver_via_character_strengths_general"
+      ],
+      "name": "Transcendence",
+      "short_name": "Transcendence",
+      "construct_kind": [
+        "virtue_domain",
+        "dimension"
+      ],
+      "official_definition": "Virtue domain covering strengths that connect a person to meaning, awe, hope, and appreciation.",
+      "scoring_type": "rank_order_grouping",
       "polarity": {
         "low_label": null,
         "high_label": null

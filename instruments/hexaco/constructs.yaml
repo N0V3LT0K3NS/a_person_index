@@ -1,15 +1,12 @@
 constructs:
-- id: con_hexaco_core
-  instrument_id: instr_hexaco
+- instrument_id: instr_hexaco
   version_ids:
   - ver_hexaco_general
-  name: HEXACO trait profile
-  short_name: HEXACO trait profile
+  short_name: Honesty-Humility
   construct_kind:
+  - trait
   - dimension
-  official_definition: A dimensional profile across six broad personality factors
-    including Honesty-Humility.
-  scoring_type: variant_dependent
+  scoring_type: continuous
   polarity:
     low_label: null
     high_label: null
@@ -18,3 +15,104 @@ constructs:
     min: null
     max: null
   parent_construct_id: null
+  id: con_hexaco_honesty_humility
+  name: Honesty-Humility
+  official_definition: Sincerity, fairness, modesty, and lack of entitlement or exploitation.
+- instrument_id: instr_hexaco
+  version_ids:
+  - ver_hexaco_general
+  short_name: Emotionality
+  construct_kind:
+  - trait
+  - dimension
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_hexaco_emotionality
+  name: Emotionality
+  official_definition: Fearfulness, anxiety, dependence, and emotional sensitivity.
+- instrument_id: instr_hexaco
+  version_ids:
+  - ver_hexaco_general
+  short_name: Extraversion
+  construct_kind:
+  - trait
+  - dimension
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_hexaco_extraversion
+  name: Extraversion
+  official_definition: Social self-confidence, sociability, liveliness, and positive
+    engagement with others.
+- instrument_id: instr_hexaco
+  version_ids:
+  - ver_hexaco_general
+  short_name: Agreeableness
+  construct_kind:
+  - trait
+  - dimension
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_hexaco_agreeableness
+  name: Agreeableness
+  official_definition: Forgiveness, gentleness, flexibility, and tolerance in interpersonal
+    conflict.
+- instrument_id: instr_hexaco
+  version_ids:
+  - ver_hexaco_general
+  short_name: Conscientiousness
+  construct_kind:
+  - trait
+  - dimension
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_hexaco_conscientiousness
+  name: Conscientiousness
+  official_definition: Organization, diligence, prudence, and disciplined goal-directedness.
+- instrument_id: instr_hexaco
+  version_ids:
+  - ver_hexaco_general
+  short_name: Openness
+  construct_kind:
+  - trait
+  - dimension
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_hexaco_openness
+  name: Openness to Experience
+  official_definition: Curiosity, aesthetic appreciation, creativity, and receptivity
+    to novel ideas or experiences.

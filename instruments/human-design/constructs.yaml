@@ -1,15 +1,12 @@
 constructs:
-- id: con_human_design_core
-  instrument_id: instr_human_design
+- instrument_id: instr_human_design
   version_ids:
   - ver_human_design_general
-  name: Bodygraph profile
-  short_name: Bodygraph profile
+  short_name: Generator
   construct_kind:
-  - dimension
-  official_definition: A chart-based symbolic profile derived from birth data and
-    interpreted through Human Design rules.
-  scoring_type: variant_dependent
+  - type
+  - aura_type
+  scoring_type: type_assignment
   polarity:
     low_label: null
     high_label: null
@@ -18,3 +15,67 @@ constructs:
     min: null
     max: null
   parent_construct_id: null
+  id: con_human_design_generator
+  name: Generator
+  official_definition: A sacral energy type whose strategy is to respond and who carries
+    the dominant life-force energy in the system.
+- instrument_id: instr_human_design
+  version_ids:
+  - ver_human_design_general
+  short_name: Manifestor
+  construct_kind:
+  - type
+  - aura_type
+  scoring_type: type_assignment
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_human_design_manifestor
+  name: Manifestor
+  official_definition: An initiating type whose strategy is to inform before acting
+    and whose aura is described as closed and repelling.
+- instrument_id: instr_human_design
+  version_ids:
+  - ver_human_design_general
+  short_name: Projector
+  construct_kind:
+  - type
+  - aura_type
+  scoring_type: type_assignment
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_human_design_projector
+  name: Projector
+  official_definition: A non-sacral guiding type whose strategy is to wait for recognition
+    and invitation.
+- instrument_id: instr_human_design
+  version_ids:
+  - ver_human_design_general
+  short_name: Reflector
+  construct_kind:
+  - type
+  - aura_type
+  scoring_type: type_assignment
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_human_design_reflector
+  name: Reflector
+  official_definition: A rare type with no fixed centers whose strategy is to wait
+    through a lunar cycle before major decisions.

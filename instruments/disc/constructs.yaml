@@ -1,15 +1,12 @@
 constructs:
-- id: con_disc_core
-  instrument_id: instr_disc
+- instrument_id: instr_disc
   version_ids:
   - ver_disc_general
-  name: DISC style profile
-  short_name: DISC style profile
+  short_name: D
   construct_kind:
   - dimension
-  official_definition: Composite profile across dominance, influence, steadiness,
-    and conscientiousness style dimensions.
-  scoring_type: variant_dependent
+  - style
+  scoring_type: continuous
   polarity:
     low_label: null
     high_label: null
@@ -18,3 +15,67 @@ constructs:
     min: null
     max: null
   parent_construct_id: null
+  id: con_disc_dominance
+  name: Dominance
+  official_definition: Direct, forceful, and results-focused behavioral style oriented
+    toward challenge and control.
+- instrument_id: instr_disc
+  version_ids:
+  - ver_disc_general
+  short_name: I
+  construct_kind:
+  - dimension
+  - style
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_disc_influence
+  name: Influence
+  official_definition: Outgoing, persuasive, and socially expressive behavioral style
+    oriented toward enthusiasm and interaction.
+- instrument_id: instr_disc
+  version_ids:
+  - ver_disc_general
+  short_name: S
+  construct_kind:
+  - dimension
+  - style
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_disc_steadiness
+  name: Steadiness
+  official_definition: Patient, accommodating, and cooperative behavioral style oriented
+    toward consistency and support.
+- instrument_id: instr_disc
+  version_ids:
+  - ver_disc_general
+  short_name: C
+  construct_kind:
+  - dimension
+  - style
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_disc_conscientiousness
+  name: Conscientiousness
+  official_definition: Careful, systematic, and quality-focused behavioral style oriented
+    toward standards and accuracy.

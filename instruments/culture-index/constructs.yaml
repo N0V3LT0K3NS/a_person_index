@@ -1,15 +1,12 @@
 constructs:
-- id: con_culture_index_core
-  instrument_id: instr_culture_index
+- instrument_id: instr_culture_index
   version_ids:
   - ver_culture_index_general
-  name: Predictive workplace profile
-  short_name: Predictive workplace profile
+  short_name: Autonomy
   construct_kind:
-  - dimension
-  official_definition: A proprietary profile intended to support workplace fit and
-    role-related discussion.
-  scoring_type: variant_dependent
+  - trait
+  - work_trait
+  scoring_type: continuous
   polarity:
     low_label: null
     high_label: null
@@ -18,3 +15,127 @@ constructs:
     min: null
     max: null
   parent_construct_id: null
+  id: con_culture_index_autonomy
+  name: Autonomy
+  official_definition: Assertive independence and willingness to initiate or direct
+    activity without needing heavy external structure.
+- instrument_id: instr_culture_index
+  version_ids:
+  - ver_culture_index_general
+  short_name: Social Ability
+  construct_kind:
+  - trait
+  - work_trait
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_culture_index_social_ability
+  name: Social Ability
+  official_definition: Comfort with social interaction, networking, persuasion, and
+    interpersonal contact.
+- instrument_id: instr_culture_index
+  version_ids:
+  - ver_culture_index_general
+  short_name: Patience
+  construct_kind:
+  - trait
+  - work_trait
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_culture_index_patience
+  name: Patience
+  official_definition: Preference for steadiness, consistency, and tolerating slower
+    or more repetitive work rhythms.
+- instrument_id: instr_culture_index
+  version_ids:
+  - ver_culture_index_general
+  short_name: Conformity
+  construct_kind:
+  - trait
+  - work_trait
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_culture_index_conformity
+  name: Conformity
+  official_definition: Orientation toward structure, rules, precision, and disciplined
+    adherence to standards.
+- instrument_id: instr_culture_index
+  version_ids:
+  - ver_culture_index_general
+  short_name: Energy Units
+  construct_kind:
+  - trait
+  - work_trait
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_culture_index_energy_units
+  name: Energy Units
+  official_definition: General energy level and stamina available for sustained work
+    output.
+- instrument_id: instr_culture_index
+  version_ids:
+  - ver_culture_index_general
+  short_name: Logic
+  construct_kind:
+  - trait
+  - work_trait
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_culture_index_logic
+  name: Logic
+  official_definition: Preference for analytical reasoning, problem solving, and evidence-based
+    judgment.
+- instrument_id: instr_culture_index
+  version_ids:
+  - ver_culture_index_general
+  short_name: Ingenuity
+  construct_kind:
+  - trait
+  - work_trait
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_culture_index_ingenuity
+  name: Ingenuity
+  official_definition: Tendency toward inventiveness, originality, and generating
+    new approaches or solutions.

@@ -555,6 +555,8 @@ def placeholder_bundle(
     construct_kind: list[str] | None = None,
     construct_definition: str = "",
     scoring_type: str = "variant_dependent",
+    include_primary_construct: bool = True,
+    extra_constructs: list[dict[str, Any]] | None = None,
     claim_text: str = "",
     resource_type: str = "overview",
     resource_title: str | None = None,
@@ -685,6 +687,38 @@ This is a starter registry entry for {canonical_name}. It is structurally valid 
             }
         )
 
+    constructs: list[dict[str, Any]] = []
+    if include_primary_construct:
+        constructs.append(
+            {
+                "id": construct_id,
+                "instrument_id": instrument_id,
+                "version_ids": [version_id],
+                "name": construct_name,
+                "short_name": construct_short_name or construct_name,
+                "construct_kind": construct_kind or ["dimension"],
+                "official_definition": construct_definition,
+                "scoring_type": scoring_type,
+                "polarity": {"low_label": None, "high_label": None},
+                "value_range": {"type": "variant_dependent", "min": None, "max": None},
+                "parent_construct_id": None,
+            }
+        )
+    for extra_construct in extra_constructs or []:
+        constructs.append(
+            {
+                "instrument_id": instrument_id,
+                "version_ids": [version_id],
+                "short_name": None,
+                "construct_kind": ["dimension"],
+                "scoring_type": scoring_type,
+                "polarity": {"low_label": None, "high_label": None},
+                "value_range": {"type": "variant_dependent", "min": None, "max": None},
+                "parent_construct_id": None,
+                **extra_construct,
+            }
+        )
+
     return {
         "instrument.yaml": {
             "instrument": {
@@ -722,23 +756,7 @@ This is a starter registry entry for {canonical_name}. It is structurally valid 
                 }
             ]
         },
-        "constructs.yaml": {
-            "constructs": [
-                {
-                    "id": construct_id,
-                    "instrument_id": instrument_id,
-                    "version_ids": [version_id],
-                    "name": construct_name,
-                    "short_name": construct_short_name or construct_name,
-                    "construct_kind": construct_kind or ["dimension"],
-                    "official_definition": construct_definition,
-                    "scoring_type": scoring_type,
-                    "polarity": {"low_label": None, "high_label": None},
-                    "value_range": {"type": "variant_dependent", "min": None, "max": None},
-                    "parent_construct_id": None,
-                }
-            ]
-        },
+        "constructs.yaml": {"constructs": constructs},
         "claims.yaml": {
             "claims": [
                 {
@@ -3148,6 +3166,25 @@ Treating six-factor trait outputs as a full account of character, ethics, or rel
 
 PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
     "attachment-styles": {
+        "include_primary_construct": False,
+        "extra_constructs": [
+            {
+                "id": "con_attachment_styles_anxiety",
+                "name": "Attachment Anxiety",
+                "short_name": "Anxiety",
+                "construct_kind": ["dimension", "attachment_dimension"],
+                "official_definition": "Sensitivity to rejection, abandonment, and uncertainty about the availability of close others.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_attachment_styles_avoidance",
+                "name": "Attachment Avoidance",
+                "short_name": "Avoidance",
+                "construct_kind": ["dimension", "attachment_dimension"],
+                "official_definition": "Discomfort with dependence, emotional intimacy, and closeness in attachment relationships.",
+                "scoring_type": "continuous",
+            },
+        ],
         "extra_resources": [
             {
                 "id": "res_attachment_styles_ecrr",
@@ -3179,6 +3216,41 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
         ],
     },
     "cliftonstrengths": {
+        "include_primary_construct": False,
+        "extra_constructs": [
+            {
+                "id": "con_cliftonstrengths_executing",
+                "name": "Executing",
+                "short_name": "Executing",
+                "construct_kind": ["domain", "strengths_domain"],
+                "official_definition": "Themes that help a person turn ideas into action and reliably get work done.",
+                "scoring_type": "rank_order_grouping",
+            },
+            {
+                "id": "con_cliftonstrengths_influencing",
+                "name": "Influencing",
+                "short_name": "Influencing",
+                "construct_kind": ["domain", "strengths_domain"],
+                "official_definition": "Themes that help a person take charge, speak up, and move others to action.",
+                "scoring_type": "rank_order_grouping",
+            },
+            {
+                "id": "con_cliftonstrengths_relationship_building",
+                "name": "Relationship Building",
+                "short_name": "Relationship Building",
+                "construct_kind": ["domain", "strengths_domain"],
+                "official_definition": "Themes that help a person build trust, cohesion, and connection with others.",
+                "scoring_type": "rank_order_grouping",
+            },
+            {
+                "id": "con_cliftonstrengths_strategic_thinking",
+                "name": "Strategic Thinking",
+                "short_name": "Strategic Thinking",
+                "construct_kind": ["domain", "strengths_domain"],
+                "official_definition": "Themes that help a person absorb information, analyze situations, and envision possibilities.",
+                "scoring_type": "rank_order_grouping",
+            },
+        ],
         "extra_resources": [
             {
                 "id": "res_cliftonstrengths_how_it_works",
@@ -3209,6 +3281,41 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
         ],
     },
     "cqs": {
+        "include_primary_construct": False,
+        "extra_constructs": [
+            {
+                "id": "con_cqs_drive",
+                "name": "CQ Drive",
+                "short_name": "Drive",
+                "construct_kind": ["dimension", "capability"],
+                "official_definition": "Motivation, interest, and confidence for functioning effectively in culturally diverse settings.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_cqs_knowledge",
+                "name": "CQ Knowledge",
+                "short_name": "Knowledge",
+                "construct_kind": ["dimension", "capability"],
+                "official_definition": "Understanding of cultural similarities, differences, and norms that shape social interaction.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_cqs_strategy",
+                "name": "CQ Strategy",
+                "short_name": "Strategy",
+                "construct_kind": ["dimension", "capability"],
+                "official_definition": "Metacognitive capacity to plan for, interpret, and revise understanding in cross-cultural situations.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_cqs_action",
+                "name": "CQ Action",
+                "short_name": "Action",
+                "construct_kind": ["dimension", "capability"],
+                "official_definition": "Ability to adapt verbal and nonverbal behavior across culturally diverse contexts.",
+                "scoring_type": "continuous",
+            },
+        ],
         "extra_resources": [
             {
                 "id": "res_cqs_cq_pro_assessment",
@@ -3239,6 +3346,65 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
         ],
     },
     "culture-index": {
+        "include_primary_construct": False,
+        "extra_constructs": [
+            {
+                "id": "con_culture_index_autonomy",
+                "name": "Autonomy",
+                "short_name": "Autonomy",
+                "construct_kind": ["trait", "work_trait"],
+                "official_definition": "Assertive independence and willingness to initiate or direct activity without needing heavy external structure.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_culture_index_social_ability",
+                "name": "Social Ability",
+                "short_name": "Social Ability",
+                "construct_kind": ["trait", "work_trait"],
+                "official_definition": "Comfort with social interaction, networking, persuasion, and interpersonal contact.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_culture_index_patience",
+                "name": "Patience",
+                "short_name": "Patience",
+                "construct_kind": ["trait", "work_trait"],
+                "official_definition": "Preference for steadiness, consistency, and tolerating slower or more repetitive work rhythms.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_culture_index_conformity",
+                "name": "Conformity",
+                "short_name": "Conformity",
+                "construct_kind": ["trait", "work_trait"],
+                "official_definition": "Orientation toward structure, rules, precision, and disciplined adherence to standards.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_culture_index_energy_units",
+                "name": "Energy Units",
+                "short_name": "Energy Units",
+                "construct_kind": ["trait", "work_trait"],
+                "official_definition": "General energy level and stamina available for sustained work output.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_culture_index_logic",
+                "name": "Logic",
+                "short_name": "Logic",
+                "construct_kind": ["trait", "work_trait"],
+                "official_definition": "Preference for analytical reasoning, problem solving, and evidence-based judgment.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_culture_index_ingenuity",
+                "name": "Ingenuity",
+                "short_name": "Ingenuity",
+                "construct_kind": ["trait", "work_trait"],
+                "official_definition": "Tendency toward inventiveness, originality, and generating new approaches or solutions.",
+                "scoring_type": "continuous",
+            },
+        ],
         "extra_resources": [
             {
                 "id": "res_culture_index_c_analyst",
@@ -3269,6 +3435,33 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
         ],
     },
     "dark-triad": {
+        "include_primary_construct": False,
+        "extra_constructs": [
+            {
+                "id": "con_dark_triad_narcissism",
+                "name": "Narcissism",
+                "short_name": "Narcissism",
+                "construct_kind": ["trait", "dark_trait"],
+                "official_definition": "Grandiose self-focus, entitlement, and desire for admiration or status.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_dark_triad_machiavellianism",
+                "name": "Machiavellianism",
+                "short_name": "Machiavellianism",
+                "construct_kind": ["trait", "dark_trait"],
+                "official_definition": "Strategic manipulation, cynical social calculation, and willingness to use others instrumentally.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_dark_triad_psychopathy",
+                "name": "Psychopathy",
+                "short_name": "Psychopathy",
+                "construct_kind": ["trait", "dark_trait"],
+                "official_definition": "Callousness, impulsivity, low empathy, and diminished concern for harm to others.",
+                "scoring_type": "continuous",
+            },
+        ],
         "extra_resources": [
             {
                 "id": "res_dark_triad_review",
@@ -3299,6 +3492,41 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
         ],
     },
     "disc": {
+        "include_primary_construct": False,
+        "extra_constructs": [
+            {
+                "id": "con_disc_dominance",
+                "name": "Dominance",
+                "short_name": "D",
+                "construct_kind": ["dimension", "style"],
+                "official_definition": "Direct, forceful, and results-focused behavioral style oriented toward challenge and control.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_disc_influence",
+                "name": "Influence",
+                "short_name": "I",
+                "construct_kind": ["dimension", "style"],
+                "official_definition": "Outgoing, persuasive, and socially expressive behavioral style oriented toward enthusiasm and interaction.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_disc_steadiness",
+                "name": "Steadiness",
+                "short_name": "S",
+                "construct_kind": ["dimension", "style"],
+                "official_definition": "Patient, accommodating, and cooperative behavioral style oriented toward consistency and support.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_disc_conscientiousness",
+                "name": "Conscientiousness",
+                "short_name": "C",
+                "construct_kind": ["dimension", "style"],
+                "official_definition": "Careful, systematic, and quality-focused behavioral style oriented toward standards and accuracy.",
+                "scoring_type": "continuous",
+            },
+        ],
         "extra_resources": [
             {
                 "id": "res_disc_what_is_disc",
@@ -3329,6 +3557,57 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
         ],
     },
     "hexaco": {
+        "include_primary_construct": False,
+        "extra_constructs": [
+            {
+                "id": "con_hexaco_honesty_humility",
+                "name": "Honesty-Humility",
+                "short_name": "Honesty-Humility",
+                "construct_kind": ["trait", "dimension"],
+                "official_definition": "Sincerity, fairness, modesty, and lack of entitlement or exploitation.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_hexaco_emotionality",
+                "name": "Emotionality",
+                "short_name": "Emotionality",
+                "construct_kind": ["trait", "dimension"],
+                "official_definition": "Fearfulness, anxiety, dependence, and emotional sensitivity.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_hexaco_extraversion",
+                "name": "Extraversion",
+                "short_name": "Extraversion",
+                "construct_kind": ["trait", "dimension"],
+                "official_definition": "Social self-confidence, sociability, liveliness, and positive engagement with others.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_hexaco_agreeableness",
+                "name": "Agreeableness",
+                "short_name": "Agreeableness",
+                "construct_kind": ["trait", "dimension"],
+                "official_definition": "Forgiveness, gentleness, flexibility, and tolerance in interpersonal conflict.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_hexaco_conscientiousness",
+                "name": "Conscientiousness",
+                "short_name": "Conscientiousness",
+                "construct_kind": ["trait", "dimension"],
+                "official_definition": "Organization, diligence, prudence, and disciplined goal-directedness.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_hexaco_openness",
+                "name": "Openness to Experience",
+                "short_name": "Openness",
+                "construct_kind": ["trait", "dimension"],
+                "official_definition": "Curiosity, aesthetic appreciation, creativity, and receptivity to novel ideas or experiences.",
+                "scoring_type": "continuous",
+            },
+        ],
         "extra_resources": [
             {
                 "id": "res_hexaco_scale_descriptions",
@@ -3359,6 +3638,41 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
         ],
     },
     "human-design": {
+        "include_primary_construct": False,
+        "extra_constructs": [
+            {
+                "id": "con_human_design_generator",
+                "name": "Generator",
+                "short_name": "Generator",
+                "construct_kind": ["type", "aura_type"],
+                "official_definition": "A sacral energy type whose strategy is to respond and who carries the dominant life-force energy in the system.",
+                "scoring_type": "type_assignment",
+            },
+            {
+                "id": "con_human_design_manifestor",
+                "name": "Manifestor",
+                "short_name": "Manifestor",
+                "construct_kind": ["type", "aura_type"],
+                "official_definition": "An initiating type whose strategy is to inform before acting and whose aura is described as closed and repelling.",
+                "scoring_type": "type_assignment",
+            },
+            {
+                "id": "con_human_design_projector",
+                "name": "Projector",
+                "short_name": "Projector",
+                "construct_kind": ["type", "aura_type"],
+                "official_definition": "A non-sacral guiding type whose strategy is to wait for recognition and invitation.",
+                "scoring_type": "type_assignment",
+            },
+            {
+                "id": "con_human_design_reflector",
+                "name": "Reflector",
+                "short_name": "Reflector",
+                "construct_kind": ["type", "aura_type"],
+                "official_definition": "A rare type with no fixed centers whose strategy is to wait through a lunar cycle before major decisions.",
+                "scoring_type": "type_assignment",
+            },
+        ],
         "extra_resources": [
             {
                 "id": "res_human_design_chart",
@@ -3389,6 +3703,41 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
         ],
     },
     "kolbe": {
+        "include_primary_construct": False,
+        "extra_constructs": [
+            {
+                "id": "con_kolbe_fact_finder",
+                "name": "Fact Finder",
+                "short_name": "Fact Finder",
+                "construct_kind": ["action_mode", "dimension"],
+                "official_definition": "Instinctive approach to probing, researching, and specifying details before acting.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_kolbe_follow_thru",
+                "name": "Follow Thru",
+                "short_name": "Follow Thru",
+                "construct_kind": ["action_mode", "dimension"],
+                "official_definition": "Instinctive approach to organizing, sequencing, and structuring work through systems and process.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_kolbe_quick_start",
+                "name": "Quick Start",
+                "short_name": "Quick Start",
+                "construct_kind": ["action_mode", "dimension"],
+                "official_definition": "Instinctive approach to dealing with risk, improvisation, and experimentation under uncertainty.",
+                "scoring_type": "continuous",
+            },
+            {
+                "id": "con_kolbe_implementor",
+                "name": "Implementor",
+                "short_name": "Implementor",
+                "construct_kind": ["action_mode", "dimension"],
+                "official_definition": "Instinctive approach to handling space, tangibles, and hands-on physical implementation.",
+                "scoring_type": "continuous",
+            },
+        ],
         "extra_resources": [
             {
                 "id": "res_kolbe_retest_reliability",
@@ -3419,6 +3768,49 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
         ],
     },
     "love-languages": {
+        "include_primary_construct": False,
+        "extra_constructs": [
+            {
+                "id": "con_love_languages_words_of_affirmation",
+                "name": "Words of Affirmation",
+                "short_name": "Words of Affirmation",
+                "construct_kind": ["type", "preference"],
+                "official_definition": "Valuing verbal expressions of appreciation, encouragement, and affection.",
+                "scoring_type": "type_assignment",
+            },
+            {
+                "id": "con_love_languages_quality_time",
+                "name": "Quality Time",
+                "short_name": "Quality Time",
+                "construct_kind": ["type", "preference"],
+                "official_definition": "Valuing focused presence, shared attention, and undistracted time together.",
+                "scoring_type": "type_assignment",
+            },
+            {
+                "id": "con_love_languages_receiving_gifts",
+                "name": "Receiving Gifts",
+                "short_name": "Receiving Gifts",
+                "construct_kind": ["type", "preference"],
+                "official_definition": "Valuing tangible symbols of care, thoughtfulness, and remembrance.",
+                "scoring_type": "type_assignment",
+            },
+            {
+                "id": "con_love_languages_acts_of_service",
+                "name": "Acts of Service",
+                "short_name": "Acts of Service",
+                "construct_kind": ["type", "preference"],
+                "official_definition": "Valuing helpful actions that reduce burden or demonstrate care through effort.",
+                "scoring_type": "type_assignment",
+            },
+            {
+                "id": "con_love_languages_physical_touch",
+                "name": "Physical Touch",
+                "short_name": "Physical Touch",
+                "construct_kind": ["type", "preference"],
+                "official_definition": "Valuing affectionate physical contact as a primary signal of closeness and care.",
+                "scoring_type": "type_assignment",
+            },
+        ],
         "extra_resources": [
             {
                 "id": "res_love_languages_home",
@@ -3449,6 +3841,41 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
         ],
     },
     "natal-astrology": {
+        "include_primary_construct": False,
+        "extra_constructs": [
+            {
+                "id": "con_natal_astrology_planets",
+                "name": "Planets",
+                "short_name": "Planets",
+                "construct_kind": ["chart_component"],
+                "official_definition": "Planetary placements representing distinct functions, drives, or principles within the natal chart.",
+                "scoring_type": "chart_interpretation",
+            },
+            {
+                "id": "con_natal_astrology_signs",
+                "name": "Signs",
+                "short_name": "Signs",
+                "construct_kind": ["chart_component"],
+                "official_definition": "Zodiac signs that color how planets and angles are expressed in the chart.",
+                "scoring_type": "chart_interpretation",
+            },
+            {
+                "id": "con_natal_astrology_houses",
+                "name": "Houses",
+                "short_name": "Houses",
+                "construct_kind": ["chart_component"],
+                "official_definition": "Twelve chart sectors describing life areas in which planetary and zodiacal themes are expressed.",
+                "scoring_type": "chart_interpretation",
+            },
+            {
+                "id": "con_natal_astrology_aspects",
+                "name": "Aspects",
+                "short_name": "Aspects",
+                "construct_kind": ["chart_component"],
+                "official_definition": "Angular relationships between planets that describe how chart components interact with one another.",
+                "scoring_type": "chart_interpretation",
+            },
+        ],
         "extra_resources": [
             {
                 "id": "res_natal_astrology_astrowiki",
@@ -3479,6 +3906,57 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
         ],
     },
     "via-character-strengths": {
+        "include_primary_construct": False,
+        "extra_constructs": [
+            {
+                "id": "con_via_wisdom",
+                "name": "Wisdom",
+                "short_name": "Wisdom",
+                "construct_kind": ["virtue_domain", "dimension"],
+                "official_definition": "Virtue domain covering strengths involved in acquiring and using knowledge well.",
+                "scoring_type": "rank_order_grouping",
+            },
+            {
+                "id": "con_via_courage",
+                "name": "Courage",
+                "short_name": "Courage",
+                "construct_kind": ["virtue_domain", "dimension"],
+                "official_definition": "Virtue domain covering strengths involved in will, perseverance, and action despite difficulty.",
+                "scoring_type": "rank_order_grouping",
+            },
+            {
+                "id": "con_via_humanity",
+                "name": "Humanity",
+                "short_name": "Humanity",
+                "construct_kind": ["virtue_domain", "dimension"],
+                "official_definition": "Virtue domain covering strengths of care, love, and interpersonal warmth.",
+                "scoring_type": "rank_order_grouping",
+            },
+            {
+                "id": "con_via_justice",
+                "name": "Justice",
+                "short_name": "Justice",
+                "construct_kind": ["virtue_domain", "dimension"],
+                "official_definition": "Virtue domain covering strengths that support fairness, citizenship, and leadership in collective life.",
+                "scoring_type": "rank_order_grouping",
+            },
+            {
+                "id": "con_via_temperance",
+                "name": "Temperance",
+                "short_name": "Temperance",
+                "construct_kind": ["virtue_domain", "dimension"],
+                "official_definition": "Virtue domain covering strengths that regulate excess and support balance or restraint.",
+                "scoring_type": "rank_order_grouping",
+            },
+            {
+                "id": "con_via_transcendence",
+                "name": "Transcendence",
+                "short_name": "Transcendence",
+                "construct_kind": ["virtue_domain", "dimension"],
+                "official_definition": "Virtue domain covering strengths that connect a person to meaning, awe, hope, and appreciation.",
+                "scoring_type": "rank_order_grouping",
+            },
+        ],
         "extra_resources": [
             {
                 "id": "res_via_character_strengths_character_strengths_page",

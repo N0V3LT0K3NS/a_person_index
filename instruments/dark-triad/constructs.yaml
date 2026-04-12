@@ -1,15 +1,12 @@
 constructs:
-- id: con_dark_triad_core
-  instrument_id: instr_dark_triad
+- instrument_id: instr_dark_triad
   version_ids:
   - ver_dark_triad_general
-  name: Dark trait profile
-  short_name: Dark trait profile
+  short_name: Narcissism
   construct_kind:
-  - dimension
-  official_definition: A profile across dark personality features such as narcissism,
-    Machiavellianism, and psychopathy.
-  scoring_type: variant_dependent
+  - trait
+  - dark_trait
+  scoring_type: continuous
   polarity:
     low_label: null
     high_label: null
@@ -18,3 +15,47 @@ constructs:
     min: null
     max: null
   parent_construct_id: null
+  id: con_dark_triad_narcissism
+  name: Narcissism
+  official_definition: Grandiose self-focus, entitlement, and desire for admiration
+    or status.
+- instrument_id: instr_dark_triad
+  version_ids:
+  - ver_dark_triad_general
+  short_name: Machiavellianism
+  construct_kind:
+  - trait
+  - dark_trait
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_dark_triad_machiavellianism
+  name: Machiavellianism
+  official_definition: Strategic manipulation, cynical social calculation, and willingness
+    to use others instrumentally.
+- instrument_id: instr_dark_triad
+  version_ids:
+  - ver_dark_triad_general
+  short_name: Psychopathy
+  construct_kind:
+  - trait
+  - dark_trait
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_dark_triad_psychopathy
+  name: Psychopathy
+  official_definition: Callousness, impulsivity, low empathy, and diminished concern
+    for harm to others.

@@ -48,18 +48,94 @@
   ],
   "constructs": [
     {
-      "id": "con_cqs_core",
+      "id": "con_cqs_drive",
       "instrument_id": "instr_cqs",
       "version_ids": [
         "ver_cqs_general"
       ],
-      "name": "Cultural intelligence profile",
-      "short_name": "Cultural intelligence profile",
+      "name": "CQ Drive",
+      "short_name": "Drive",
       "construct_kind": [
-        "dimension"
+        "dimension",
+        "capability"
       ],
-      "official_definition": "A profile across cultural metacognitive, cognitive, motivational, and behavioral capabilities.",
-      "scoring_type": "variant_dependent",
+      "official_definition": "Motivation, interest, and confidence for functioning effectively in culturally diverse settings.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_cqs_knowledge",
+      "instrument_id": "instr_cqs",
+      "version_ids": [
+        "ver_cqs_general"
+      ],
+      "name": "CQ Knowledge",
+      "short_name": "Knowledge",
+      "construct_kind": [
+        "dimension",
+        "capability"
+      ],
+      "official_definition": "Understanding of cultural similarities, differences, and norms that shape social interaction.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_cqs_strategy",
+      "instrument_id": "instr_cqs",
+      "version_ids": [
+        "ver_cqs_general"
+      ],
+      "name": "CQ Strategy",
+      "short_name": "Strategy",
+      "construct_kind": [
+        "dimension",
+        "capability"
+      ],
+      "official_definition": "Metacognitive capacity to plan for, interpret, and revise understanding in cross-cultural situations.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_cqs_action",
+      "instrument_id": "instr_cqs",
+      "version_ids": [
+        "ver_cqs_general"
+      ],
+      "name": "CQ Action",
+      "short_name": "Action",
+      "construct_kind": [
+        "dimension",
+        "capability"
+      ],
+      "official_definition": "Ability to adapt verbal and nonverbal behavior across culturally diverse contexts.",
+      "scoring_type": "continuous",
       "polarity": {
         "low_label": null,
         "high_label": null

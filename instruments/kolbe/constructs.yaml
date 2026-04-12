@@ -1,15 +1,12 @@
 constructs:
-- id: con_kolbe_core
-  instrument_id: instr_kolbe
+- instrument_id: instr_kolbe
   version_ids:
   - ver_kolbe_general
-  name: MO profile
-  short_name: MO profile
+  short_name: Fact Finder
   construct_kind:
+  - action_mode
   - dimension
-  official_definition: A four-number Method of Operation profile summarizing instinctive
-    action across Fact Finder, Follow Thru, Quick Start, and Implementor.
-  scoring_type: variant_dependent
+  scoring_type: continuous
   polarity:
     low_label: null
     high_label: null
@@ -18,3 +15,67 @@ constructs:
     min: null
     max: null
   parent_construct_id: null
+  id: con_kolbe_fact_finder
+  name: Fact Finder
+  official_definition: Instinctive approach to probing, researching, and specifying
+    details before acting.
+- instrument_id: instr_kolbe
+  version_ids:
+  - ver_kolbe_general
+  short_name: Follow Thru
+  construct_kind:
+  - action_mode
+  - dimension
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_kolbe_follow_thru
+  name: Follow Thru
+  official_definition: Instinctive approach to organizing, sequencing, and structuring
+    work through systems and process.
+- instrument_id: instr_kolbe
+  version_ids:
+  - ver_kolbe_general
+  short_name: Quick Start
+  construct_kind:
+  - action_mode
+  - dimension
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_kolbe_quick_start
+  name: Quick Start
+  official_definition: Instinctive approach to dealing with risk, improvisation, and
+    experimentation under uncertainty.
+- instrument_id: instr_kolbe
+  version_ids:
+  - ver_kolbe_general
+  short_name: Implementor
+  construct_kind:
+  - action_mode
+  - dimension
+  scoring_type: continuous
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+  id: con_kolbe_implementor
+  name: Implementor
+  official_definition: Instinctive approach to handling space, tangibles, and hands-on
+    physical implementation.

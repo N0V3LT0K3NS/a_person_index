@@ -47,18 +47,90 @@
   ],
   "constructs": [
     {
-      "id": "con_natal_astrology_core",
+      "id": "con_natal_astrology_planets",
       "instrument_id": "instr_natal_astrology",
       "version_ids": [
         "ver_natal_astrology_general"
       ],
-      "name": "Natal chart profile",
-      "short_name": "Natal chart profile",
+      "name": "Planets",
+      "short_name": "Planets",
       "construct_kind": [
-        "dimension"
+        "chart_component"
       ],
-      "official_definition": "A symbolic birth chart interpreted through astrological houses, planets, and signs.",
-      "scoring_type": "variant_dependent",
+      "official_definition": "Planetary placements representing distinct functions, drives, or principles within the natal chart.",
+      "scoring_type": "chart_interpretation",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_natal_astrology_signs",
+      "instrument_id": "instr_natal_astrology",
+      "version_ids": [
+        "ver_natal_astrology_general"
+      ],
+      "name": "Signs",
+      "short_name": "Signs",
+      "construct_kind": [
+        "chart_component"
+      ],
+      "official_definition": "Zodiac signs that color how planets and angles are expressed in the chart.",
+      "scoring_type": "chart_interpretation",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_natal_astrology_houses",
+      "instrument_id": "instr_natal_astrology",
+      "version_ids": [
+        "ver_natal_astrology_general"
+      ],
+      "name": "Houses",
+      "short_name": "Houses",
+      "construct_kind": [
+        "chart_component"
+      ],
+      "official_definition": "Twelve chart sectors describing life areas in which planetary and zodiacal themes are expressed.",
+      "scoring_type": "chart_interpretation",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_natal_astrology_aspects",
+      "instrument_id": "instr_natal_astrology",
+      "version_ids": [
+        "ver_natal_astrology_general"
+      ],
+      "name": "Aspects",
+      "short_name": "Aspects",
+      "construct_kind": [
+        "chart_component"
+      ],
+      "official_definition": "Angular relationships between planets that describe how chart components interact with one another.",
+      "scoring_type": "chart_interpretation",
       "polarity": {
         "low_label": null,
         "high_label": null

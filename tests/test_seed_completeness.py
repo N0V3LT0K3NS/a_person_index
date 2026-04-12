@@ -40,3 +40,29 @@ def test_seeded_instruments_meet_resource_and_crosswalk_baseline(repo_root):
             )
 
     assert thin_instruments == []
+
+
+def test_known_seeded_instruments_have_top_level_construct_depth(repo_root):
+    repository = load_repository_strict(repo_root)
+    expected_min_constructs = {
+        "attachment-styles": 2,
+        "cliftonstrengths": 4,
+        "cqs": 4,
+        "culture-index": 7,
+        "dark-triad": 3,
+        "disc": 4,
+        "hexaco": 6,
+        "human-design": 4,
+        "kolbe": 4,
+        "love-languages": 5,
+        "natal-astrology": 4,
+        "via-character-strengths": 6,
+    }
+
+    failures: list[str] = []
+    for slug, minimum in expected_min_constructs.items():
+        bundle = repository.instruments[slug]
+        if len(bundle.constructs) < minimum:
+            failures.append(f"{slug}: expected>={minimum} got={len(bundle.constructs)}")
+
+    assert failures == []
