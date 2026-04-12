@@ -451,16 +451,16 @@
       ]
     },
     {
-      "id": "ann_dark_triad_synthesis_value_for_ilens",
+      "id": "ann_dark_triad_synthesis_value",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_dark_triad",
-      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_dimension": "synthesis_value",
       "ontology_values": [
         "medium"
       ],
       "annotation_status": "inferred",
       "confidence": "medium",
-      "rationale": "House annotation for Dark Triad on the ontology dimension 'synthesis_value_for_ilens'.",
+      "rationale": "House annotation for Dark Triad on the ontology dimension 'synthesis_value'.",
       "evidence_links": [
         "res_dark_triad_overview"
       ]
@@ -617,7 +617,7 @@
     "worldview_load": [
       "low"
     ],
-    "synthesis_value_for_ilens": [
+    "synthesis_value": [
       "medium"
     ],
     "evidence_profile": [

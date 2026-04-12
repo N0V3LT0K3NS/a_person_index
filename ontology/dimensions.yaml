@@ -87,10 +87,10 @@ dimensions:
   cardinality: many
   description: Social and symbolic role beyond measurement.
   enum_file: enums/cultural_symbolic_role.yaml
-- id: synthesis_value_for_ilens
+- id: synthesis_value
   cardinality: one
-  description: Estimated usefulness as an ILENS input layer.
-  enum_file: enums/synthesis_value_for_ilens.yaml
+  description: Estimated usefulness as an input layer for downstream synthesis protocols.
+  enum_file: enums/synthesis_value.yaml
 - id: overlap_mode
   cardinality: many
   description: Typical overlap pattern with other instruments.

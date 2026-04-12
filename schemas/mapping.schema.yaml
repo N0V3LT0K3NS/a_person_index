@@ -1,0 +1,91 @@
+$defs:
+  ConstructMapping:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      source_entity_type:
+        enum:
+        - instrument
+        - construct
+        - motif
+        title: Source Entity Type
+        type: string
+      source_entity_id:
+        title: Source Entity Id
+        type: string
+      target_entity_type:
+        enum:
+        - instrument
+        - construct
+        - motif
+        title: Target Entity Type
+        type: string
+      target_entity_id:
+        title: Target Entity Id
+        type: string
+      relationship_type:
+        enum:
+        - direct_signal
+        - partial_signal
+        - inverse_signal
+        - symbolic_analogue
+        - different_layer
+        - incommensurable
+        title: Relationship Type
+        type: string
+      relationship_strength:
+        enum:
+        - low
+        - medium
+        - high
+        title: Relationship Strength
+        type: string
+      confidence:
+        enum:
+        - low
+        - medium
+        - high
+        title: Confidence
+        type: string
+      status:
+        enum:
+        - provisional
+        - active
+        - contested
+        title: Status
+        type: string
+      rationale:
+        title: Rationale
+        type: string
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - source_entity_type
+    - source_entity_id
+    - target_entity_type
+    - target_entity_id
+    - relationship_type
+    - relationship_strength
+    - confidence
+    - status
+    - rationale
+    title: ConstructMapping
+    type: object
+additionalProperties: false
+properties:
+  mappings:
+    items:
+      $ref: '#/$defs/ConstructMapping'
+    title: Mappings
+    type: array
+required:
+- mappings
+title: ConstructMappingsDocument
+type: object

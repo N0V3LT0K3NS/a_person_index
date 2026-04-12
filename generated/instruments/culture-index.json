@@ -555,16 +555,16 @@
       ]
     },
     {
-      "id": "ann_culture_index_synthesis_value_for_ilens",
+      "id": "ann_culture_index_synthesis_value",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_culture_index",
-      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_dimension": "synthesis_value",
       "ontology_values": [
         "low"
       ],
       "annotation_status": "inferred",
       "confidence": "medium",
-      "rationale": "House annotation for Culture Index on the ontology dimension 'synthesis_value_for_ilens'.",
+      "rationale": "House annotation for Culture Index on the ontology dimension 'synthesis_value'.",
       "evidence_links": [
         "res_culture_index_overview"
       ]
@@ -723,7 +723,7 @@
     "worldview_load": [
       "medium"
     ],
-    "synthesis_value_for_ilens": [
+    "synthesis_value": [
       "low"
     ],
     "evidence_profile": [

@@ -160,10 +160,10 @@ ONTOLOGY_DIMENSIONS = {
             "enum_file": "enums/cultural_symbolic_role.yaml",
         },
         {
-            "id": "synthesis_value_for_ilens",
+            "id": "synthesis_value",
             "cardinality": "one",
-            "description": "Estimated usefulness as an ILENS input layer.",
-            "enum_file": "enums/synthesis_value_for_ilens.yaml",
+            "description": "Estimated usefulness as an input layer for downstream synthesis protocols.",
+            "enum_file": "enums/synthesis_value.yaml",
         },
         {
             "id": "overlap_mode",
@@ -386,7 +386,7 @@ ONTOLOGY_ENUMS = {
         "pop_psychology_meme",
         "community_belonging_language",
     ],
-    "synthesis_value_for_ilens": ["low", "medium", "high", "very_high"],
+    "synthesis_value": ["low", "medium", "high", "very_high"],
     "overlap_mode": [
         "partial_construct_overlap",
         "shared_identity_space",
@@ -490,7 +490,7 @@ def default_placeholder_bundle(
         utility_profile=["self_understanding"],
         identity_adhesion_risk="medium",
         worldview_load="medium",
-        synthesis_value_for_ilens="medium",
+        synthesis_value="medium",
         evidence_profile=["mixed_evidence"],
         target_population=["general_adult_population"],
         norming_status="unknown",
@@ -534,7 +534,7 @@ def placeholder_bundle(
     utility_profile: list[str],
     identity_adhesion_risk: str,
     worldview_load: str,
-    synthesis_value_for_ilens: str,
+    synthesis_value: str,
     evidence_profile: list[str] | None = None,
     target_population: list[str] | None = None,
     norming_status: str | None = None,
@@ -618,7 +618,7 @@ def placeholder_bundle(
         "utility_profile": utility_profile,
         "identity_adhesion_risk": [identity_adhesion_risk],
         "worldview_load": [worldview_load],
-        "synthesis_value_for_ilens": [synthesis_value_for_ilens],
+        "synthesis_value": [synthesis_value],
     }
     if evidence_profile:
         values_by_dimension["evidence_profile"] = evidence_profile
@@ -1131,7 +1131,7 @@ BIG_FIVE_BUNDLE = {
                 "actionability_type": ["descriptive_reflection", "communication_adjustment"],
                 "worldview_load": ["very_low"],
                 "cultural_symbolic_role": ["research_anchor", "professional_shorthand"],
-                "synthesis_value_for_ilens": ["very_high"],
+                "synthesis_value": ["very_high"],
                 "overlap_mode": ["partial_construct_overlap", "complementary_layers"],
             },
             status_by_dimension={
@@ -1159,7 +1159,7 @@ BIG_FIVE_BUNDLE = {
                 "utility_profile": "high",
                 "identity_adhesion_risk": "medium",
                 "worldview_load": "high",
-                "synthesis_value_for_ilens": "high",
+                "synthesis_value": "high",
                 "overlap_mode": "medium",
             },
             rationale_by_dimension={
@@ -1196,7 +1196,7 @@ BIG_FIVE_BUNDLE = {
                     "The Big Five is less identity-sticky than more typological or symbolic systems."
                 ),
                 "worldview_load": "It carries relatively little metaphysical or worldview baggage.",
-                "synthesis_value_for_ilens": (
+                "synthesis_value": (
                     "Big Five is an unusually strong baseline anchor for synthesis because it offers stable broad scaffolding."
                 ),
                 "overlap_mode": (
@@ -1633,7 +1633,7 @@ ENNEAGRAM_BUNDLE = {
                     "community_belonging_language",
                     "internet_identity_language",
                 ],
-                "synthesis_value_for_ilens": ["high"],
+                "synthesis_value": ["high"],
                 "overlap_mode": ["shared_identity_space", "complementary_layers"],
             },
             confidence_by_dimension={
@@ -1656,7 +1656,7 @@ ENNEAGRAM_BUNDLE = {
                 "norming_status": "medium",
                 "identity_adhesion_risk": "high",
                 "worldview_load": "high",
-                "synthesis_value_for_ilens": "medium",
+                "synthesis_value": "medium",
                 "overlap_mode": "medium",
             },
             rationale_by_dimension={
@@ -1675,7 +1675,7 @@ ENNEAGRAM_BUNDLE = {
                 "epistemic_basis": (
                     "The Enneagram draws from mixed lineages and interpretive traditions and remains empirically contested."
                 ),
-                "synthesis_value_for_ilens": (
+                "synthesis_value": (
                     "The Enneagram is useful when motive, defense, and identity language matter, but it should not be treated as a psychometric anchor."
                 ),
             },
@@ -2025,7 +2025,7 @@ MBTI_BUNDLE = {
                     "pop_psychology_meme",
                     "professional_shorthand",
                 ],
-                "synthesis_value_for_ilens": ["medium"],
+                "synthesis_value": ["medium"],
                 "overlap_mode": ["often_misread_as_equivalent", "partial_construct_overlap"],
             },
             confidence_by_dimension={
@@ -2196,7 +2196,7 @@ PLACEHOLDER_SPECS = [
         "utility_profile": ["communication_adaptation", "team_alignment"],
         "identity_adhesion_risk": "medium",
         "worldview_load": "low",
-        "synthesis_value_for_ilens": "medium",
+        "synthesis_value": "medium",
         "evidence_profile": ["mixed_evidence", "proprietary_or_limited_transparency"],
         "target_population": ["workplace_teams", "leaders_managers"],
         "norming_status": "variant_dependent",
@@ -2284,7 +2284,7 @@ Using DISC profiles as rigid boxes for hiring, role assignment, or simplified ju
         "utility_profile": ["team_alignment", "communication_adaptation"],
         "identity_adhesion_risk": "medium",
         "worldview_load": "low",
-        "synthesis_value_for_ilens": "medium",
+        "synthesis_value": "medium",
         "evidence_profile": ["proprietary_or_limited_transparency", "mixed_evidence"],
         "target_population": ["workplace_teams", "leaders_managers"],
         "norming_status": "variant_dependent",
@@ -2376,7 +2376,7 @@ Treating a stable action-style profile as a definitive verdict on role fit, capa
         "utility_profile": ["strengths_identification", "team_alignment", "coaching_language"],
         "identity_adhesion_risk": "medium",
         "worldview_load": "medium",
-        "synthesis_value_for_ilens": "medium",
+        "synthesis_value": "medium",
         "evidence_profile": ["mixed_evidence", "proprietary_or_limited_transparency"],
         "target_population": ["workplace_teams", "leaders_managers", "general_adult_population"],
         "norming_status": "variant_dependent",
@@ -2459,7 +2459,7 @@ Treating top themes as fixed role entitlements or using them as hiring filters i
         "utility_profile": ["relational_patterning", "communication_adaptation"],
         "identity_adhesion_risk": "medium",
         "worldview_load": "low",
-        "synthesis_value_for_ilens": "low",
+        "synthesis_value": "low",
         "evidence_profile": ["mostly_anecdotal_or_practitioner_based", "contested_validity"],
         "target_population": ["couples_families", "general_adult_population"],
         "norming_status": "not_normed",
@@ -2542,7 +2542,7 @@ Reducing complex relational conflict to one fixed love language or treating the 
         "utility_profile": ["research_baseline"],
         "identity_adhesion_risk": "medium",
         "worldview_load": "low",
-        "synthesis_value_for_ilens": "medium",
+        "synthesis_value": "medium",
         "evidence_profile": ["extensive_peer_review", "mixed_evidence"],
         "target_population": ["general_adult_population"],
         "norming_status": "variant_dependent",
@@ -2626,7 +2626,7 @@ Using dark-trait shorthand as a moral diagnosis or total character verdict.
         "utility_profile": ["cultural_navigation", "developmental_reflection"],
         "identity_adhesion_risk": "low",
         "worldview_load": "low",
-        "synthesis_value_for_ilens": "medium",
+        "synthesis_value": "medium",
         "evidence_profile": ["extensive_peer_review", "cross_cultural_support"],
         "target_population": ["multicultural_professionals", "students", "general_adult_population"],
         "norming_status": "well_normed",
@@ -2711,7 +2711,7 @@ Treating self-report CQ as proof of real-world intercultural competence without 
         "utility_profile": ["selection_screening", "team_alignment"],
         "identity_adhesion_risk": "medium",
         "worldview_load": "medium",
-        "synthesis_value_for_ilens": "low",
+        "synthesis_value": "low",
         "evidence_profile": ["proprietary_or_limited_transparency"],
         "target_population": ["workplace_teams", "leaders_managers"],
         "norming_status": "variant_dependent",
@@ -2800,7 +2800,7 @@ Treating a proprietary work-traits profile as objective truth in hiring or succe
         "utility_profile": ["symbolic_reflection", "coaching_language"],
         "identity_adhesion_risk": "very_high",
         "worldview_load": "very_high",
-        "synthesis_value_for_ilens": "low",
+        "synthesis_value": "low",
         "evidence_profile": ["mostly_anecdotal_or_practitioner_based"],
         "target_population": ["spiritual_seekers", "internet_communities"],
         "norming_status": "not_normed",
@@ -2890,7 +2890,7 @@ Treating the chart as a literal blueprint that overrides context, development, u
         "utility_profile": ["symbolic_reflection", "coaching_language"],
         "identity_adhesion_risk": "very_high",
         "worldview_load": "very_high",
-        "synthesis_value_for_ilens": "low",
+        "synthesis_value": "low",
         "evidence_profile": ["mostly_anecdotal_or_practitioner_based"],
         "target_population": ["spiritual_seekers", "internet_communities"],
         "norming_status": "not_normed",
@@ -2975,7 +2975,7 @@ Treating the birth chart as objective diagnosis or fate rather than an interpret
         "utility_profile": ["relational_patterning", "developmental_reflection", "self_understanding"],
         "identity_adhesion_risk": "high",
         "worldview_load": "low",
-        "synthesis_value_for_ilens": "high",
+        "synthesis_value": "high",
         "evidence_profile": ["extensive_peer_review", "mixed_evidence"],
         "target_population": ["general_adult_population", "couples_families", "clinical_populations"],
         "norming_status": "variant_dependent",
@@ -3059,7 +3059,7 @@ Treating an attachment style as a permanent identity instead of a relational pat
         "utility_profile": ["strengths_identification", "developmental_reflection"],
         "identity_adhesion_risk": "medium",
         "worldview_load": "medium",
-        "synthesis_value_for_ilens": "medium",
+        "synthesis_value": "medium",
         "evidence_profile": ["extensive_peer_review", "normative_data_available"],
         "target_population": ["general_adult_population", "students"],
         "norming_status": "well_normed",
@@ -3143,7 +3143,7 @@ Treating ranked strengths as moral rankings of the person rather than as tendenc
         "utility_profile": ["research_baseline", "self_understanding"],
         "identity_adhesion_risk": "low",
         "worldview_load": "very_low",
-        "synthesis_value_for_ilens": "high",
+        "synthesis_value": "high",
         "evidence_profile": ["extensive_peer_review", "cross_cultural_support", "normative_data_available"],
         "target_population": ["general_adult_population"],
         "norming_status": "well_normed",

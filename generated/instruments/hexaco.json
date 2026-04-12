@@ -531,16 +531,16 @@
       ]
     },
     {
-      "id": "ann_hexaco_synthesis_value_for_ilens",
+      "id": "ann_hexaco_synthesis_value",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_hexaco",
-      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_dimension": "synthesis_value",
       "ontology_values": [
         "high"
       ],
       "annotation_status": "inferred",
       "confidence": "medium",
-      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'synthesis_value_for_ilens'.",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'synthesis_value'.",
       "evidence_links": [
         "res_hexaco_overview"
       ]
@@ -703,7 +703,7 @@
     "worldview_load": [
       "very_low"
     ],
-    "synthesis_value_for_ilens": [
+    "synthesis_value": [
       "high"
     ],
     "evidence_profile": [

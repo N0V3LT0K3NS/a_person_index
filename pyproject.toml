@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "personality-instrument-registry"
 version = "0.1.0"
-description = "Git-native structured corpus for personality and typology instruments."
+description = "Git-native knowledge substrate for personhood frameworks, synthesis motifs, and protocol specs."
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [

@@ -433,16 +433,16 @@
       ]
     },
     {
-      "id": "ann_attachment_styles_synthesis_value_for_ilens",
+      "id": "ann_attachment_styles_synthesis_value",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_attachment_styles",
-      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_dimension": "synthesis_value",
       "ontology_values": [
         "high"
       ],
       "annotation_status": "inferred",
       "confidence": "medium",
-      "rationale": "House annotation for Attachment Style Frameworks on the ontology dimension 'synthesis_value_for_ilens'.",
+      "rationale": "House annotation for Attachment Style Frameworks on the ontology dimension 'synthesis_value'.",
       "evidence_links": [
         "res_attachment_styles_overview"
       ]
@@ -611,7 +611,7 @@
     "worldview_load": [
       "low"
     ],
-    "synthesis_value_for_ilens": [
+    "synthesis_value": [
       "high"
     ],
     "evidence_profile": [

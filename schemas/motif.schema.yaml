@@ -1,0 +1,60 @@
+$defs:
+  Motif:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      name:
+        title: Name
+        type: string
+      status:
+        enum:
+        - provisional
+        - active
+        - experimental
+        title: Status
+        type: string
+      motif_kind:
+        enum:
+        - translation_axis
+        - circuit_motif
+        - social_function
+        title: Motif Kind
+        type: string
+      summary:
+        title: Summary
+        type: string
+      description:
+        title: Description
+        type: string
+      tags:
+        items:
+          type: string
+        title: Tags
+        type: array
+      related_dimensions:
+        items:
+          type: string
+        title: Related Dimensions
+        type: array
+    required:
+    - id
+    - name
+    - status
+    - motif_kind
+    - summary
+    - description
+    title: Motif
+    type: object
+additionalProperties: false
+properties:
+  motifs:
+    items:
+      $ref: '#/$defs/Motif'
+    title: Motifs
+    type: array
+required:
+- motifs
+title: MotifsDocument
+type: object

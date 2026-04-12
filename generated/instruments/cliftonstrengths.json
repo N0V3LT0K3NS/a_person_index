@@ -486,16 +486,16 @@
       ]
     },
     {
-      "id": "ann_cliftonstrengths_synthesis_value_for_ilens",
+      "id": "ann_cliftonstrengths_synthesis_value",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_cliftonstrengths",
-      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_dimension": "synthesis_value",
       "ontology_values": [
         "medium"
       ],
       "annotation_status": "inferred",
       "confidence": "medium",
-      "rationale": "House annotation for CliftonStrengths on the ontology dimension 'synthesis_value_for_ilens'.",
+      "rationale": "House annotation for CliftonStrengths on the ontology dimension 'synthesis_value'.",
       "evidence_links": [
         "res_cliftonstrengths_overview"
       ]
@@ -661,7 +661,7 @@
     "worldview_load": [
       "medium"
     ],
-    "synthesis_value_for_ilens": [
+    "synthesis_value": [
       "medium"
     ],
     "evidence_profile": [

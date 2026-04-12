@@ -1,0 +1,55 @@
+$defs:
+  ContributionModel:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      name:
+        title: Name
+        type: string
+      purpose:
+        title: Purpose
+        type: string
+      privacy_posture:
+        title: Privacy Posture
+        type: string
+      required_fields:
+        items:
+          type: string
+        title: Required Fields
+        type: array
+      optional_fields:
+        items:
+          type: string
+        title: Optional Fields
+        type: array
+      promotion_path:
+        items:
+          type: string
+        title: Promotion Path
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - name
+    - purpose
+    - privacy_posture
+    title: ContributionModel
+    type: object
+additionalProperties: false
+properties:
+  contribution_models:
+    items:
+      $ref: '#/$defs/ContributionModel'
+    title: Contribution Models
+    type: array
+required:
+- contribution_models
+title: ContributionModelsDocument
+type: object

@@ -1,0 +1,60 @@
+$defs:
+  Technique:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      name:
+        title: Name
+        type: string
+      purpose:
+        title: Purpose
+        type: string
+      summary:
+        title: Summary
+        type: string
+      input_types:
+        items:
+          type: string
+        title: Input Types
+        type: array
+      output_types:
+        items:
+          type: string
+        title: Output Types
+        type: array
+      steps:
+        items:
+          type: string
+        title: Steps
+        type: array
+      cautions:
+        items:
+          type: string
+        title: Cautions
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - name
+    - purpose
+    - summary
+    title: Technique
+    type: object
+additionalProperties: false
+properties:
+  techniques:
+    items:
+      $ref: '#/$defs/Technique'
+    title: Techniques
+    type: array
+required:
+- techniques
+title: TechniquesDocument
+type: object

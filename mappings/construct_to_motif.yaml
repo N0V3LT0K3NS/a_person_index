@@ -1,0 +1,208 @@
+mappings:
+  - id: map_big_five_extraversion_social_energy
+    source_entity_type: construct
+    source_entity_id: con_big_five_extraversion
+    target_entity_type: motif
+    target_entity_id: mtf_social_energy_orientation
+    relationship_type: direct_signal
+    relationship_strength: high
+    confidence: high
+    status: provisional
+    rationale: >
+      Big Five extraversion is one of the clearest direct encodings of outward
+      social activation and engagement in the current corpus.
+
+  - id: map_mbti_ei_social_energy
+    source_entity_type: construct
+    source_entity_id: con_mbti_extraversion_introversion
+    target_entity_type: motif
+    target_entity_id: mtf_social_energy_orientation
+    relationship_type: partial_signal
+    relationship_strength: medium
+    confidence: medium
+    status: provisional
+    rationale: >
+      MBTI E/I clearly touches social-energy orientation, but it does so in
+      preference language rather than a trait-intensity frame.
+
+  - id: map_big_five_openness_exploratory_openness
+    source_entity_type: construct
+    source_entity_id: con_big_five_openness
+    target_entity_type: motif
+    target_entity_id: mtf_exploratory_openness
+    relationship_type: direct_signal
+    relationship_strength: high
+    confidence: high
+    status: provisional
+    rationale: >
+      Openness to Experience is one of the strongest direct house anchors for
+      novelty, imagination, and exploratory appetite.
+
+  - id: map_mbti_sn_pattern_abstraction
+    source_entity_type: construct
+    source_entity_id: con_mbti_sensing_intuition
+    target_entity_type: motif
+    target_entity_id: mtf_pattern_abstraction_preference
+    relationship_type: partial_signal
+    relationship_strength: high
+    confidence: medium
+    status: provisional
+    rationale: >
+      Sensing versus intuition is not equivalent to general openness, but it is
+      a strong preference-language signal for concrete detail versus pattern abstraction.
+
+  - id: map_mbti_jp_structure_closure
+    source_entity_type: construct
+    source_entity_id: con_mbti_judging_perceiving
+    target_entity_type: motif
+    target_entity_id: mtf_structure_and_closure_preference
+    relationship_type: partial_signal
+    relationship_strength: medium
+    confidence: medium
+    status: provisional
+    rationale: >
+      Judging versus perceiving is one of the cleaner typology-language handles
+      for closure, planning, structure, and openness to emergent process.
+
+  - id: map_attachment_anxiety_closeness_regulation
+    source_entity_type: construct
+    source_entity_id: con_attachment_styles_anxiety
+    target_entity_type: motif
+    target_entity_id: mtf_attachment_and_closeness_regulation
+    relationship_type: direct_signal
+    relationship_strength: high
+    confidence: high
+    status: provisional
+    rationale: >
+      Attachment anxiety directly names sensitivity to rejection, abandonment,
+      and reassurance needs in close relationships.
+
+  - id: map_attachment_avoidance_closeness_regulation
+    source_entity_type: construct
+    source_entity_id: con_attachment_styles_avoidance
+    target_entity_type: motif
+    target_entity_id: mtf_attachment_and_closeness_regulation
+    relationship_type: direct_signal
+    relationship_strength: high
+    confidence: high
+    status: provisional
+    rationale: >
+      Attachment avoidance directly names distance regulation, intimacy discomfort,
+      and reluctance toward dependence.
+
+  - id: map_love_languages_words_affirmation_care_signaling
+    source_entity_type: construct
+    source_entity_id: con_love_languages_words_of_affirmation
+    target_entity_type: motif
+    target_entity_id: mtf_relational_care_signaling
+    relationship_type: symbolic_analogue
+    relationship_strength: medium
+    confidence: medium
+    status: provisional
+    rationale: >
+      Words of Affirmation is not a whole attachment construct, but it is a
+      clear signal about how care and validation become legible.
+
+  - id: map_love_languages_quality_time_care_signaling
+    source_entity_type: construct
+    source_entity_id: con_love_languages_quality_time
+    target_entity_type: motif
+    target_entity_id: mtf_relational_care_signaling
+    relationship_type: symbolic_analogue
+    relationship_strength: medium
+    confidence: medium
+    status: provisional
+    rationale: >
+      Quality Time expresses relational care through presence and attention
+      rather than through trait or motive description.
+
+  - id: map_big_five_neuroticism_affective_reactivity
+    source_entity_type: construct
+    source_entity_id: con_big_five_neuroticism
+    target_entity_type: motif
+    target_entity_id: mtf_affective_reactivity
+    relationship_type: direct_signal
+    relationship_strength: high
+    confidence: high
+    status: provisional
+    rationale: >
+      Neuroticism is one of the strongest direct trait-language anchors for
+      stress sensitivity and negative affect reactivity.
+
+  - id: map_hexaco_honesty_humility_prosociality
+    source_entity_type: construct
+    source_entity_id: con_hexaco_honesty_humility
+    target_entity_type: motif
+    target_entity_id: mtf_prosociality_and_exploitiveness
+    relationship_type: inverse_signal
+    relationship_strength: high
+    confidence: high
+    status: provisional
+    rationale: >
+      High Honesty-Humility is best read as a strong inverse signal against
+      entitlement, manipulation, and exploitative orientation.
+
+  - id: map_kolbe_execution_style
+    source_entity_type: instrument
+    source_entity_id: instr_kolbe
+    target_entity_type: motif
+    target_entity_id: mtf_execution_and_implementation_style
+    relationship_type: direct_signal
+    relationship_strength: high
+    confidence: high
+    status: provisional
+    rationale: >
+      Kolbe is one of the clearest execution-style and conation systems in the
+      current registry, even when specific construct crosswalks remain sparse.
+
+  - id: map_human_design_symbolic_meaning
+    source_entity_type: instrument
+    source_entity_id: instr_human_design
+    target_entity_type: motif
+    target_entity_id: mtf_symbolic_meaning_load
+    relationship_type: direct_signal
+    relationship_strength: high
+    confidence: high
+    status: provisional
+    rationale: >
+      Human Design functions not only as a descriptive system but as a symbolic
+      and cosmological language with heavy narrative meaning load.
+
+  - id: map_natal_astrology_symbolic_meaning
+    source_entity_type: instrument
+    source_entity_id: instr_natal_astrology
+    target_entity_type: motif
+    target_entity_id: mtf_symbolic_meaning_load
+    relationship_type: direct_signal
+    relationship_strength: high
+    confidence: high
+    status: provisional
+    rationale: >
+      Natal astrology is a strong house example of symbolic, mythic, and
+      cosmological meaning language rather than only behavioral measurement.
+
+  - id: map_enneagram_identity_adhesion
+    source_entity_type: instrument
+    source_entity_id: instr_enneagram
+    target_entity_type: motif
+    target_entity_id: mtf_identity_adhesion
+    relationship_type: direct_signal
+    relationship_strength: high
+    confidence: high
+    status: provisional
+    rationale: >
+      The Enneagram frequently functions as durable self-story and community identity,
+      not only as a descriptive typology.
+
+  - id: map_mbti_identity_adhesion
+    source_entity_type: instrument
+    source_entity_id: instr_mbti
+    target_entity_type: motif
+    target_entity_id: mtf_identity_adhesion
+    relationship_type: direct_signal
+    relationship_strength: high
+    confidence: medium
+    status: provisional
+    rationale: >
+      MBTI functions widely as a social identity and shorthand self-description
+      language even when used outside formal assessment contexts.

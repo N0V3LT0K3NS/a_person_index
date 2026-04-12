@@ -482,16 +482,16 @@
       ]
     },
     {
-      "id": "ann_cqs_synthesis_value_for_ilens",
+      "id": "ann_cqs_synthesis_value",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_cqs",
-      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_dimension": "synthesis_value",
       "ontology_values": [
         "medium"
       ],
       "annotation_status": "inferred",
       "confidence": "medium",
-      "rationale": "House annotation for Cultural Intelligence Scale on the ontology dimension 'synthesis_value_for_ilens'.",
+      "rationale": "House annotation for Cultural Intelligence Scale on the ontology dimension 'synthesis_value'.",
       "evidence_links": [
         "res_cqs_overview"
       ]
@@ -653,7 +653,7 @@
     "worldview_load": [
       "low"
     ],
-    "synthesis_value_for_ilens": [
+    "synthesis_value": [
       "medium"
     ],
     "evidence_profile": [

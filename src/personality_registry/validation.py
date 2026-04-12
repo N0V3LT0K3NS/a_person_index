@@ -11,6 +11,7 @@ from personality_registry.constants import (
     ENTITY_TYPES,
     REQUIRED_ANNOTATION_DIMENSIONS,
 )
+from personality_registry.extensions import load_extensions
 from personality_registry.loader import RepositoryData, load_repository
 
 ID_PATTERN = re.compile(r"^[a-z0-9]+(?:_[a-z0-9]+)*$")
@@ -54,6 +55,10 @@ def collect_validation_errors(root: Path) -> list[str]:
     repository = result.repository
     if repository is None:
         return sorted(set(errors))
+
+    extension_result = load_extensions(root)
+    errors.extend(extension_result.errors)
+    extensions = extension_result.data
 
     entities = _collect_entities(repository)
     duplicate_tracker: dict[str, list[str]] = {}
@@ -257,6 +262,87 @@ def collect_validation_errors(root: Path) -> list[str]:
     for entity_id, locations in duplicate_tracker.items():
         if len(locations) > 1:
             errors.append(f"duplicate ID '{entity_id}' appears in {', '.join(sorted(locations))}")
+
+    if extensions is not None:
+        motif_ids = {motif.id for motif in extensions.motifs}
+        technique_ids = {technique.id for technique in extensions.techniques}
+        dimension_ids = {dimension.id for dimension in repository.ontology_dimensions.dimensions}
+
+        extension_groups = {
+            "motif": extensions.motifs,
+            "mapping": extensions.mappings,
+            "technique": extensions.techniques,
+            "protocol": extensions.protocols,
+            "contribution_model": extensions.contribution_models,
+        }
+
+        for entity_type, items in extension_groups.items():
+            expected_prefix = ENTITY_PREFIXES[entity_type]
+            for item in items:
+                entity_id = item.id
+                duplicate_tracker.setdefault(entity_id, []).append(f"extensions:{entity_type}")
+                if not ID_PATTERN.match(entity_id):
+                    errors.append(f"extensions/{entity_type}: invalid ID format '{entity_id}'")
+                if not entity_id.startswith(expected_prefix):
+                    errors.append(
+                        f"extensions/{entity_type}: ID '{entity_id}' must start with prefix '{expected_prefix}'"
+                    )
+
+        for motif in extensions.motifs:
+            for dimension in motif.related_dimensions:
+                if dimension not in dimension_ids:
+                    errors.append(
+                        f"motifs/registry.yaml: motif '{motif.id}' references unknown ontology dimension '{dimension}'"
+                    )
+
+        for mapping in extensions.mappings:
+            source_type = mapping.source_entity_type
+            target_type = mapping.target_entity_type
+
+            if source_type == "motif":
+                if mapping.source_entity_id not in motif_ids:
+                    errors.append(
+                        f"mappings/construct_to_motif.yaml: mapping '{mapping.id}' references missing source motif '{mapping.source_entity_id}'"
+                    )
+            else:
+                source_entity = entities.get(mapping.source_entity_id)
+                if source_entity is None:
+                    errors.append(
+                        f"mappings/construct_to_motif.yaml: mapping '{mapping.id}' references missing source '{mapping.source_entity_id}'"
+                    )
+                elif source_entity[0] != source_type:
+                    errors.append(
+                        f"mappings/construct_to_motif.yaml: mapping '{mapping.id}' source '{mapping.source_entity_id}' "
+                        f"is a {source_entity[0]}, not a {source_type}"
+                    )
+
+            if target_type == "motif":
+                if mapping.target_entity_id not in motif_ids:
+                    errors.append(
+                        f"mappings/construct_to_motif.yaml: mapping '{mapping.id}' references missing target motif '{mapping.target_entity_id}'"
+                    )
+            else:
+                target_entity = entities.get(mapping.target_entity_id)
+                if target_entity is None:
+                    errors.append(
+                        f"mappings/construct_to_motif.yaml: mapping '{mapping.id}' references missing target '{mapping.target_entity_id}'"
+                    )
+                elif target_entity[0] != target_type:
+                    errors.append(
+                        f"mappings/construct_to_motif.yaml: mapping '{mapping.id}' target '{mapping.target_entity_id}' "
+                        f"is a {target_entity[0]}, not a {target_type}"
+                    )
+
+        for protocol in extensions.protocols:
+            for technique_id in protocol.technique_ids:
+                if technique_id not in technique_ids:
+                    errors.append(
+                        f"protocols/registry.yaml: protocol '{protocol.id}' references missing technique '{technique_id}'"
+                    )
+
+        for entity_id, locations in duplicate_tracker.items():
+            if len(locations) > 1:
+                errors.append(f"duplicate ID '{entity_id}' appears in {', '.join(sorted(locations))}")
 
     return sorted(set(errors))
 

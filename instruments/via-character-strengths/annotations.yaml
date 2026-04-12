@@ -215,16 +215,16 @@ annotations:
     'worldview_load'.
   evidence_links:
   - res_via_character_strengths_overview
-- id: ann_via_character_strengths_synthesis_value_for_ilens
+- id: ann_via_character_strengths_synthesis_value
   target_entity_type: instrument
   target_entity_id: instr_via_character_strengths
-  ontology_dimension: synthesis_value_for_ilens
+  ontology_dimension: synthesis_value
   ontology_values:
   - medium
   annotation_status: inferred
   confidence: medium
   rationale: House annotation for VIA Character Strengths on the ontology dimension
-    'synthesis_value_for_ilens'.
+    'synthesis_value'.
   evidence_links:
   - res_via_character_strengths_overview
 - id: ann_via_character_strengths_evidence_profile

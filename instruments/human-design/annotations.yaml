@@ -204,15 +204,15 @@ annotations:
   rationale: House annotation for Human Design on the ontology dimension 'worldview_load'.
   evidence_links:
   - res_human_design_overview
-- id: ann_human_design_synthesis_value_for_ilens
+- id: ann_human_design_synthesis_value
   target_entity_type: instrument
   target_entity_id: instr_human_design
-  ontology_dimension: synthesis_value_for_ilens
+  ontology_dimension: synthesis_value
   ontology_values:
   - low
   annotation_status: inferred
   confidence: medium
-  rationale: House annotation for Human Design on the ontology dimension 'synthesis_value_for_ilens'.
+  rationale: House annotation for Human Design on the ontology dimension 'synthesis_value'.
   evidence_links:
   - res_human_design_overview
 - id: ann_human_design_evidence_profile

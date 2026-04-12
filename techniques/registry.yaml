@@ -1,0 +1,130 @@
+techniques:
+  - id: tech_cross_framework_translation
+    name: Cross-Framework Translation
+    purpose: Translate constructs across systems without forcing false equivalence.
+    summary: >
+      Compare constructs through shared motifs, relationship semantics, and
+      epistemic bracketing rather than by naive one-to-one conversion.
+    input_types:
+      - instrument records
+      - crosswalks
+      - construct mappings
+      - ontology annotations
+    output_types:
+      - translation memo
+      - comparison notes
+      - candidate tensions
+    steps:
+      - Identify source and target layers of personhood.
+      - Compare through shared motifs before direct translation.
+      - Mark overlap as strong, partial, inverse, symbolic, or incommensurable.
+    cautions:
+      - Do not flatten symbolic and psychometric systems into one evidence bucket.
+      - Preserve asymmetry when one framework is broader or socially different than the other.
+
+  - id: tech_paradox_scan
+    name: Paradox Scan
+    purpose: Surface load-bearing contradictions rather than averaging them away.
+    summary: >
+      Detect tensions across frameworks, constructs, and observations that may
+      indicate adaptation, context splits, or multi-layer organization.
+    input_types:
+      - result atoms
+      - construct mappings
+      - comparison outputs
+    output_types:
+      - paradox candidates
+      - unresolved tensions
+      - synthesis notes
+    steps:
+      - List apparently conflicting signals.
+      - Check whether the signals operate on different layers.
+      - Preserve contradiction when it remains explanatorily useful.
+    cautions:
+      - Contradiction is not automatically error.
+      - Do not turn every mismatch into pathology.
+
+  - id: tech_contradiction_preservation
+    name: Contradiction Preservation
+    purpose: Keep the system from over-compressing a person or a framework into false coherence.
+    summary: >
+      Treat unresolved conflict, multiplicity, and context-dependence as data
+      instead of noise to be smoothed out.
+    input_types:
+      - source claims
+      - house inferences
+      - downstream results
+    output_types:
+      - preserved tension notes
+      - caveats
+      - competing hypotheses
+    steps:
+      - Track incompatible but supported readings.
+      - Label scope, context, and confidence.
+      - Delay forced synthesis until one reading clearly dominates.
+    cautions:
+      - Avoid rhetorical neatness when the material is genuinely split.
+
+  - id: tech_stable_vs_adaptive_split
+    name: Stable vs Adaptive Split
+    purpose: Separate baseline pattern from adaptation, coping, or context-driven behavior.
+    summary: >
+      Distinguish persistent structure from role performance, learned compensation,
+      stress modes, or situational masking.
+    input_types:
+      - longitudinal observations
+      - repeated assessments
+      - comparative synthesis notes
+    output_types:
+      - baseline hypotheses
+      - adaptive overlays
+      - context conditions
+    steps:
+      - Identify recurring signals across time.
+      - Flag signals that only appear under specific conditions.
+      - Keep baseline and adaptive explanations side by side.
+    cautions:
+      - Do not claim essence when the evidence is situational.
+
+  - id: tech_symbolic_vs_empirical_bracketing
+    name: Symbolic vs Empirical Bracketing
+    purpose: Use symbolic systems without pretending they carry the same evidence type as psychometrics.
+    summary: >
+      Distinguish descriptive usefulness, symbolic resonance, and empirical status
+      so that heterogeneous frameworks can coexist in one map.
+    input_types:
+      - ontology annotations
+      - evidence profile
+      - cultural role notes
+    output_types:
+      - bracketing notes
+      - evidence caveats
+      - protocol constraints
+    steps:
+      - State the framework's epistemic basis.
+      - State its social or symbolic usefulness separately.
+      - Preserve both without collapsing either into the other.
+    cautions:
+      - Inclusion in the map does not imply equal evidence.
+
+  - id: tech_result_atom_decomposition
+    name: Result Atom Decomposition
+    purpose: Break whole-test outputs into smaller reasoning units that can be recombined across systems.
+    summary: >
+      Normalize a result into source framework, construct, output type, value,
+      confidence, and mapped motifs so agents can reason across parts rather than
+      only whole labels.
+    input_types:
+      - assessment outputs
+      - construct mappings
+      - source metadata
+    output_types:
+      - result atoms
+      - motif traces
+      - interaction hypotheses
+    steps:
+      - Extract construct-level outputs.
+      - Attach evidence and confidence.
+      - Map to house motifs without deleting source provenance.
+    cautions:
+      - Do not infer person-level truth from one atom in isolation.

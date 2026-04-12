@@ -1,0 +1,62 @@
+# Architecture
+
+This repository is no longer only an instrument catalog.
+
+It now has four distinct product layers:
+
+1. Canonical registry
+   Structured records for instruments and adjacent personhood frameworks in their own terms.
+
+2. House synthesis substrate
+   Motifs and mappings that let the repo compare frameworks through a shared interlingua without pretending they are identical.
+
+3. Technique and protocol library
+   Reusable comparative methods and downstream synthesis protocols such as `ILENS` and `Human Model Card`.
+
+4. Research stream
+   Privacy-minimizing contribution models for collecting mapping feedback, pairwise judgments, result-atom bundles, and distilled observations.
+
+## Why this split matters
+
+The registry, synthesis layer, protocols, and research stream should not collapse into one bucket.
+
+- Canonical framework data should remain attributable and stable.
+- House motifs and mappings should remain clearly marked as provisional or inferred.
+- Protocols should be treated as consumers of the map, not as the map itself.
+- Research contributions should be staged before they become house inference.
+
+## Current phase boundary
+
+The active, fully validated domain remains the instrument corpus.
+
+Phase 2 adds:
+
+- `motifs/`
+- `mappings/`
+- `techniques/`
+- `protocols/`
+- `research/`
+
+These directories formalize the larger architecture without breaking the current milestone-1 corpus.
+
+## Relationship to GNOMY
+
+`GNOMY` is a downstream runtime and user-facing inference layer.
+
+This repo should serve GNOMY by supplying:
+
+- canonical framework records
+- ontology annotations
+- crosswalks
+- motifs and construct mappings
+- reusable techniques
+- protocol specs
+- research-backed caveats
+
+GNOMY, in turn, can send back normalized and privacy-minimizing research contributions rather than raw personal corpora.
+
+## Relationship to ILENS
+
+`ILENS` is a protocol, not the ontology itself.
+
+The ontology should stay broad enough to support ILENS, Human Model Card workflows, translation memos, paradox scans, and future downstream protocols that are not yet designed.

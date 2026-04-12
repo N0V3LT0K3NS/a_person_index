@@ -5,6 +5,7 @@ from html import escape
 from pathlib import Path
 
 from personality_registry.audit import audit_summary, bundle_audit_entry
+from personality_registry.extensions import load_extensions_strict
 from personality_registry.loader import InstrumentBundle, load_repository_strict
 from personality_registry.query import compare_instruments
 from personality_registry.validation import validate_repository
@@ -88,6 +89,17 @@ def _render_list(items: list[str]) -> str:
     if not items:
         return "<p class=\"empty\">None recorded.</p>"
     return "<ul class=\"item-list\">" + "".join(f"<li>{item}</li>" for item in items) + "</ul>"
+
+
+def _layer_card(title: str, count: int, noun: str, description: str) -> str:
+    return f"""
+<article class="instrument-card layer-card">
+  <p class="eyebrow">Layer</p>
+  <h2>{escape(title)}</h2>
+  <p class="coverage-line"><strong>{count}</strong> {escape(noun)}</p>
+  <p>{escape(description)}</p>
+</article>
+"""
 
 
 def _nav_html(prefix: str, current: str) -> str:
@@ -394,6 +406,7 @@ def _audit_html(audit_entries: list[dict], summary: dict) -> str:
 def build_outputs(root: Path) -> dict:
     validate_repository(root)
     repository = load_repository_strict(root)
+    extensions = load_extensions_strict(root)
     generated_root = root / "generated"
     instrument_output_root = generated_root / "instruments"
     instrument_output_root.mkdir(parents=True, exist_ok=True)
@@ -404,6 +417,22 @@ def build_outputs(root: Path) -> dict:
             "registry": repository.ontology_registry.model_dump(mode="json"),
             "dimensions": repository.ontology_dimensions.model_dump(mode="json"),
             "enums": repository.ontology_enums,
+        },
+        "product_layers": {
+            "canonical_registry": {
+                "instrument_count": len(repository.instruments),
+            },
+            "house_synthesis": {
+                "motif_count": len(extensions.motifs),
+                "mapping_count": len(extensions.mappings),
+            },
+            "protocol_library": {
+                "technique_count": len(extensions.techniques),
+                "protocol_count": len(extensions.protocols),
+            },
+            "research_stream": {
+                "contribution_model_count": len(extensions.contribution_models),
+            },
         },
         "instruments": [
             {
@@ -426,6 +455,19 @@ def build_outputs(root: Path) -> dict:
     export_payload = {
         "ontology": index_payload["ontology"],
         "instruments": bundle_payloads,
+        "house_synthesis": {
+            "motifs": [item.model_dump(mode="json") for item in extensions.motifs],
+            "mappings": [item.model_dump(mode="json") for item in extensions.mappings],
+        },
+        "protocol_library": {
+            "techniques": [item.model_dump(mode="json") for item in extensions.techniques],
+            "protocols": [item.model_dump(mode="json") for item in extensions.protocols],
+        },
+        "research_stream": {
+            "contribution_models": [
+                item.model_dump(mode="json") for item in extensions.contribution_models
+            ],
+        },
     }
 
     (generated_root / "index.json").write_text(json.dumps(index_payload, indent=2), encoding="utf-8")
@@ -776,6 +818,7 @@ def _compare_index_html(comparison_entries: list[dict]) -> str:
 
 def build_docs(root: Path) -> None:
     repository = load_repository_strict(root)
+    extensions = load_extensions_strict(root)
     site_root = root / "site"
     site_data_root = site_root / "data"
     site_instruments_root = site_root / "instruments"
@@ -841,6 +884,8 @@ section { margin-top: 32px; }
 .search-controls label { display: grid; gap: 8px; font-weight: 600; color: #4f3a27; }
 .search-controls input, .search-controls select { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid #cfb693; background: #fffdf9; font: inherit; }
 .search-results { margin-top: 20px; }
+.layer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.layer-card strong { font-size: 1.2rem; }
 @media (max-width: 720px) { main { padding: 22px 16px 72px; } .hero-panel { padding: 20px 18px; } }
 """
     (site_root / "style.css").write_text(style, encoding="utf-8")
@@ -855,6 +900,34 @@ section { margin-top: 32px; }
         _docs_index_entry(bundle, audit_by_slug[bundle.slug])
         for _, bundle in sorted(repository.instruments.items())
     )
+    layer_cards = "\n".join(
+        [
+            _layer_card(
+                "Canonical Registry",
+                audit_snapshot["instrument_count"],
+                "framework records",
+                "Versioned source claims, ontology annotations, inferences, crosswalks, risks, and use cases for the current instrument-centered corpus.",
+            ),
+            _layer_card(
+                "House Synthesis",
+                len(extensions.motifs),
+                "motifs",
+                "Provisional translation motifs and construct mappings that let the repo compare frameworks without forcing false equivalence.",
+            ),
+            _layer_card(
+                "Protocol Library",
+                len(extensions.protocols),
+                "protocol specs",
+                "Named downstream protocols such as ILENS and Human Model Card, composed from reusable comparative techniques.",
+            ),
+            _layer_card(
+                "Research Stream",
+                len(extensions.contribution_models),
+                "contribution models",
+                "Privacy-minimizing intake models for mapping votes, result-atom bundles, and distilled observations from downstream systems.",
+            ),
+        ]
+    )
     index_html = f"""<!doctype html>
 <html lang="en">
   <head>
@@ -868,7 +941,7 @@ section { margin-top: 32px; }
       <section class="hero-panel">
         <p class="eyebrow">Registry</p>
         <h1>Personality Instrument Registry</h1>
-        <p class="page-lead">Versioned corpus for personality and typology systems, with source claims, ontology labels, and house comparison kept separate.</p>
+        <p class="page-lead">Current canonical slice of a broader personhood framework registry, house synthesis substrate, protocol library, and research stream.</p>
         <div class="action-row">
           <a class="action-link" href="search.html">Search the corpus</a>
           <a class="action-link" href="compare.html">Browse comparisons</a>
@@ -880,6 +953,10 @@ section { margin-top: 32px; }
         <article class="stat-card"><strong>{audit_snapshot['instruments_with_multiple_resources']}</strong> with 2+ resources</article>
         <article class="stat-card"><strong>{audit_snapshot['instruments_with_multiple_constructs']}</strong> with 2+ constructs</article>
         <article class="stat-card"><strong>{audit_snapshot['instruments_with_crosswalks']}</strong> with outgoing crosswalks</article>
+      </section>
+      <section>
+        <h2>Product Layers</h2>
+        <div class="layer-grid">{layer_cards}</div>
       </section>
       <section>
         <h2>Instrument Index</h2>

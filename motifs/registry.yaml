@@ -1,0 +1,177 @@
+motifs:
+  - id: mtf_social_energy_orientation
+    name: Social Energy Orientation
+    status: provisional
+    motif_kind: translation_axis
+    summary: How a framework encodes social activation, outward engagement, and inward recharge.
+    description: >
+      A house translation axis for frameworks that speak about extraversion,
+      introversion, social charge, or preferred outward intensity without
+      assuming they all mean the same thing.
+    tags:
+      - sociality
+      - energy
+      - interaction
+    related_dimensions:
+      - primary_measurement_target
+      - representational_form
+
+  - id: mtf_exploratory_openness
+    name: Exploratory Openness
+    status: provisional
+    motif_kind: translation_axis
+    summary: Appetite for novelty, imagination, curiosity, and experiential exploration.
+    description: >
+      A recurring motif across trait, style, and symbolic systems that captures
+      interest in novelty, complexity, imagination, and expansion beyond routine.
+    tags:
+      - novelty
+      - exploration
+      - imagination
+    related_dimensions:
+      - primary_measurement_target
+      - temporal_stance
+
+  - id: mtf_pattern_abstraction_preference
+    name: Pattern Abstraction Preference
+    status: provisional
+    motif_kind: translation_axis
+    summary: Preference for pattern-level abstraction versus concrete detail.
+    description: >
+      A motif for systems that distinguish concrete sensing, intuitive patterning,
+      symbolic interpretation, or abstraction-heavy sense making.
+    tags:
+      - cognition
+      - abstraction
+      - patterning
+    related_dimensions:
+      - person_ontology
+      - worldview_load
+
+  - id: mtf_structure_and_closure_preference
+    name: Structure and Closure Preference
+    status: provisional
+    motif_kind: translation_axis
+    summary: Preference for closure, planning, and constraint versus openness and flexibility.
+    description: >
+      A house bridge for constructs that describe orderliness, planning,
+      decisiveness, structure seeking, or resistance to imposed closure.
+    tags:
+      - planning
+      - order
+      - closure
+    related_dimensions:
+      - scoring_logic
+      - context_sensitivity
+
+  - id: mtf_attachment_and_closeness_regulation
+    name: Attachment and Closeness Regulation
+    status: provisional
+    motif_kind: circuit_motif
+    summary: How a framework encodes safety, proximity, dependence, and distance in close relationships.
+    description: >
+      A relationship-layer motif for security, anxiety, avoidance, availability,
+      reassurance seeking, and closeness management.
+    tags:
+      - attachment
+      - intimacy
+      - regulation
+    related_dimensions:
+      - primary_measurement_target
+      - deployment_context
+
+  - id: mtf_relational_care_signaling
+    name: Relational Care Signaling
+    status: provisional
+    motif_kind: social_function
+    summary: Preferred channels for expressing and receiving care, validation, and recognition.
+    description: >
+      A motif for frameworks that describe how care becomes legible, especially in
+      relational preference systems and practical communication grammars.
+    tags:
+      - relationships
+      - care
+      - validation
+    related_dimensions:
+      - utility_profile
+      - deployment_context
+
+  - id: mtf_affective_reactivity
+    name: Affective Reactivity
+    status: provisional
+    motif_kind: circuit_motif
+    summary: Sensitivity to stress, threat, volatility, and emotional perturbation.
+    description: >
+      A recurrent motif spanning trait, attachment, shadow, and stress-oriented
+      systems that speak to reactivity, anxiety, emotional load, or instability.
+    tags:
+      - emotion
+      - stress
+      - reactivity
+    related_dimensions:
+      - temporal_stance
+      - distortion_risk
+
+  - id: mtf_prosociality_and_exploitiveness
+    name: Prosociality and Exploitiveness
+    status: provisional
+    motif_kind: circuit_motif
+    summary: Orientation toward fairness, reciprocity, care, manipulation, or extraction.
+    description: >
+      A house motif for comparing prosocial, cooperative, and exploitative
+      tendencies across trait, shadow, moral, and strengths-oriented systems.
+    tags:
+      - ethics
+      - cooperation
+      - shadow
+    related_dimensions:
+      - evidence_profile
+      - distortion_risk
+
+  - id: mtf_execution_and_implementation_style
+    name: Execution and Implementation Style
+    status: provisional
+    motif_kind: translation_axis
+    summary: How a framework encodes initiation, follow-through, improvisation, and practical doing.
+    description: >
+      A practical action-style motif for conative, workplace, and operational
+      frameworks that describe how work is initiated, structured, and completed.
+    tags:
+      - action
+      - work
+      - conation
+    related_dimensions:
+      - utility_profile
+      - deployment_context
+
+  - id: mtf_symbolic_meaning_load
+    name: Symbolic Meaning Load
+    status: provisional
+    motif_kind: social_function
+    summary: Degree to which a framework functions as symbolic, cosmological, or mythic meaning language.
+    description: >
+      A motif for frameworks that do more than describe behavior and instead carry
+      archetypal, spiritual, symbolic, or cosmological interpretive weight.
+    tags:
+      - symbolic
+      - mythology
+      - worldview
+    related_dimensions:
+      - worldview_load
+      - cultural_symbolic_role
+
+  - id: mtf_identity_adhesion
+    name: Identity Adhesion
+    status: provisional
+    motif_kind: social_function
+    summary: Likelihood that outputs become fused with stable self-story or social identity.
+    description: >
+      A house motif for comparing how strongly frameworks become identity
+      languages rather than only descriptive or operational tools.
+    tags:
+      - identity
+      - self-concept
+      - labeling
+    related_dimensions:
+      - identity_adhesion_risk
+      - cultural_symbolic_role

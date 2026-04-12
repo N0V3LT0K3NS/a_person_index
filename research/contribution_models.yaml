@@ -1,0 +1,98 @@
+contribution_models:
+  - id: rcm_mapping_vote
+    name: Mapping Vote
+    purpose: Collect lightweight feedback on whether a proposed mapping fits lived experience.
+    privacy_posture: No raw narrative required; contribution should stay at the judgment layer by default.
+    required_fields:
+      - mapping_id
+      - vote
+      - confidence
+    optional_fields:
+      - source_framework_context
+      - brief rationale
+    promotion_path:
+      - anecdotal
+      - aggregated
+      - reviewed
+      - promoted_to_house_inference
+    notes: >
+      Best default research input when the goal is to refine construct-to-motif mappings
+      without collecting sensitive life detail.
+
+  - id: rcm_pairwise_relation_judgment
+    name: Pairwise Relation Judgment
+    purpose: Capture whether two result atoms feel reinforcing, contradictory, orthogonal, or context-dependent.
+    privacy_posture: Structured labels first; free text only if strictly necessary.
+    required_fields:
+      - left_atom
+      - right_atom
+      - relation_label
+    optional_fields:
+      - context_note
+      - confidence
+    promotion_path:
+      - anecdotal
+      - aggregated
+      - reviewed
+      - interaction_hypothesis
+    notes: >
+      Useful for discovering stable tension and reinforcement patterns across systems.
+
+  - id: rcm_result_atom_bundle
+    name: Result Atom Bundle
+    purpose: Accept normalized assessment outputs without requiring the user's full raw narrative.
+    privacy_posture: Prefer normalized, minimally identifying records over raw chats, diaries, or uploads.
+    required_fields:
+      - framework_id
+      - construct_id
+      - output_type
+      - output_value
+    optional_fields:
+      - confidence
+      - timestamp
+      - source_quality
+    promotion_path:
+      - normalized_input
+      - aggregated
+      - comparative_analysis
+    notes: >
+      Designed for agent-to-agent exchange where GNOMY or another runtime needs a compact,
+      protocol-safe representation of user results.
+
+  - id: rcm_distilled_observation
+    name: Distilled Observation
+    purpose: Record short anonymized insights about how mappings, tensions, or combinations behave in practice.
+    privacy_posture: Distilled and anonymized by default; no raw transcripts in the canonical stream.
+    required_fields:
+      - observation_text
+      - linked_entities
+    optional_fields:
+      - context_window
+      - confidence
+      - outcome_note
+    promotion_path:
+      - anecdotal
+      - clustered_pattern
+      - reviewed
+      - house_inference
+    notes: >
+      Useful for preserving real-world synthesis insight without over-collecting sensitive detail.
+
+  - id: rcm_protocol_feedback
+    name: Protocol Feedback
+    purpose: Capture whether a downstream protocol produced useful, misleading, or incomplete synthesis.
+    privacy_posture: Evaluate the protocol output rather than the person's raw life material.
+    required_fields:
+      - protocol_id
+      - usefulness_rating
+      - failure_or_success_note
+    optional_fields:
+      - missing_input_types
+      - suggested_revision
+    promotion_path:
+      - feedback_log
+      - reviewed
+      - protocol_revision
+    notes: >
+      Keeps downstream promptcraft and runtime behavior connected back to the repository
+      without polluting canonical framework records.

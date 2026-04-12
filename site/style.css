@@ -34,4 +34,6 @@ section { margin-top: 32px; }
 .search-controls label { display: grid; gap: 8px; font-weight: 600; color: #4f3a27; }
 .search-controls input, .search-controls select { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid #cfb693; background: #fffdf9; font: inherit; }
 .search-results { margin-top: 20px; }
+.layer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.layer-card strong { font-size: 1.2rem; }
 @media (max-width: 720px) { main { padding: 22px 16px 72px; } .hero-panel { padding: 20px 18px; } }

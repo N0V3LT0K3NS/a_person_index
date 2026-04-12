@@ -298,10 +298,10 @@ annotations:
     'cultural_symbolic_role'.
   evidence_links:
   - res_enneagram_overview
-- id: ann_enneagram_synthesis_value_for_ilens
+- id: ann_enneagram_synthesis_value
   target_entity_type: instrument
   target_entity_id: instr_enneagram
-  ontology_dimension: synthesis_value_for_ilens
+  ontology_dimension: synthesis_value
   ontology_values:
   - high
   annotation_status: inferred

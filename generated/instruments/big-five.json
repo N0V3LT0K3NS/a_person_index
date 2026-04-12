@@ -627,10 +627,10 @@
       ]
     },
     {
-      "id": "ann_big_five_synthesis_value_for_ilens",
+      "id": "ann_big_five_synthesis_value",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_big_five",
-      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_dimension": "synthesis_value",
       "ontology_values": [
         "very_high"
       ],
@@ -746,7 +746,7 @@
       "professional_shorthand",
       "research_anchor"
     ],
-    "synthesis_value_for_ilens": [
+    "synthesis_value": [
       "very_high"
     ],
     "overlap_mode": [

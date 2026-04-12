@@ -38,6 +38,11 @@ ENTITY_PREFIXES = {
     "crosswalk": "xwk_",
     "risk": "rsk_",
     "use_case": "use_",
+    "motif": "mtf_",
+    "mapping": "map_",
+    "technique": "tech_",
+    "protocol": "proto_",
+    "contribution_model": "rcm_",
 }
 
 ENTITY_TYPES = {"instrument", "version", "construct"}
@@ -67,7 +72,7 @@ REQUIRED_ANNOTATION_DIMENSIONS = (
     "utility_profile",
     "identity_adhesion_risk",
     "worldview_load",
-    "synthesis_value_for_ilens",
+    "synthesis_value",
 )
 
 CROSSWALK_RELATIONSHIP_TYPES = {

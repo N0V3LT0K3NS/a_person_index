@@ -30,6 +30,15 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert audit_payload["summary"]["instruments_with_multiple_inferences"] == len(export_payload["instruments"])
     assert audit_payload["summary"]["instruments_with_multiple_risks"] == len(export_payload["instruments"])
     assert audit_payload["summary"]["instruments_with_multiple_use_cases"] == len(export_payload["instruments"])
+    assert index_payload["product_layers"]["house_synthesis"]["motif_count"] == len(
+        export_payload["house_synthesis"]["motifs"]
+    )
+    assert index_payload["product_layers"]["protocol_library"]["protocol_count"] == len(
+        export_payload["protocol_library"]["protocols"]
+    )
+    assert index_payload["product_layers"]["research_stream"]["contribution_model_count"] == len(
+        export_payload["research_stream"]["contribution_models"]
+    )
 
     instrument_ids = {entry["id"] for entry in index_payload["instruments"]}
     assert {"instr_big_five", "instr_enneagram", "instr_mbti"}.issubset(instrument_ids)
@@ -44,3 +53,4 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert attachment_entry["coverage"]["has_multiple_inferences"]
     assert attachment_entry["coverage"]["has_multiple_risks"]
     assert attachment_entry["coverage"]["has_multiple_use_cases"]
+    assert export_payload["protocol_library"]["protocols"][0]["id"].startswith("proto_")

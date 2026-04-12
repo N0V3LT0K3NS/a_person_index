@@ -706,10 +706,10 @@
       ]
     },
     {
-      "id": "ann_enneagram_synthesis_value_for_ilens",
+      "id": "ann_enneagram_synthesis_value",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_enneagram",
-      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_dimension": "synthesis_value",
       "ontology_values": [
         "high"
       ],
@@ -839,7 +839,7 @@
       "community_belonging_language",
       "internet_identity_language"
     ],
-    "synthesis_value_for_ilens": [
+    "synthesis_value": [
       "high"
     ],
     "overlap_mode": [

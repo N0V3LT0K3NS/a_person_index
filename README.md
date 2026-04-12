@@ -1,8 +1,15 @@
 # Personality Instrument Registry
 
-Personality Instrument Registry is a Git-native, agent-readable knowledge base for personality tests, typology systems, psychometric instruments, symbolic self-description systems, and adjacent person-labeling frameworks.
+Personality Instrument Registry is the current canonical slice of a broader Git-native, agent-readable registry for personhood frameworks, house synthesis motifs, reusable comparative techniques, downstream protocols, and privacy-minimizing research intake.
 
-The repository is the product in milestone 1. Canonical source data lives in structured YAML files, is validated with typed Python models, and is exported into generated JSON and simple browsable docs.
+The repository began as an instrument registry in milestone 1. It now explicitly carries four product layers:
+
+1. Canonical registry
+2. House synthesis substrate
+3. Technique and protocol library
+4. Research stream
+
+Canonical source data still lives in structured YAML files, is validated with typed Python models, and is exported into generated JSON and browsable docs.
 
 ## Three-layer model
 
@@ -14,6 +21,21 @@ Each instrument is represented in three distinct layers:
 
 Do not collapse these layers into one blended narrative.
 
+## Product layers
+
+This repo now distinguishes between:
+
+1. Canonical registry
+   Source-faithful records for instruments and adjacent personhood frameworks.
+2. House synthesis substrate
+   Motifs and mappings used as a translation interlingua across frameworks.
+3. Technique and protocol library
+   Reusable comparative methods plus downstream protocol specs such as `ILENS`.
+4. Research stream
+   Contribution models for mapping votes, result-atom bundles, and distilled observations.
+
+These layers should collaborate, but they should not be conflated.
+
 ## Repository shape
 
 ```text
@@ -21,10 +43,15 @@ Do not collapse these layers into one blended narrative.
 ├── docs/
 ├── generated/
 ├── instruments/
+├── mappings/
+├── motifs/
 ├── ontology/
+├── protocols/
+├── research/
 ├── schemas/
 ├── scripts/
 ├── site/
+├── techniques/
 ├── src/personality_registry/
 └── tests/
 ```
@@ -42,6 +69,13 @@ Key conventions:
 - `risks.yaml` stores misuse or distortion hazards.
 - `use_cases.yaml` stores practical fit and utility.
 - `notes.md` stores human-readable narrative context.
+- `motifs/registry.yaml` stores provisional house translation motifs.
+- `mappings/construct_to_motif.yaml` stores provisional construct-to-motif and instrument-to-motif mappings.
+- `techniques/registry.yaml` stores reusable comparative methods.
+- `protocols/registry.yaml` stores downstream protocol specs such as `ILENS` and `Human Model Card`.
+- `research/contribution_models.yaml` stores privacy-minimizing contribution models for future research intake.
+
+The active, fully populated corpus remains instrument-centered for now. The new top-level directories formalize the next architecture layer without forcing a premature package rename.
 
 ## Seed corpus
 
@@ -71,6 +105,8 @@ Each seed instrument is expected to carry at least two resources and at least on
 - Not a scoring engine
 - Not a consumer-facing "find your type" app
 - Not a database-first system in milestone 1
+- Not a claim that all frameworks share the same evidence type
+- Not a reason to mix raw user material into canonical framework records
 
 ## Setup
 
@@ -118,6 +154,7 @@ Then:
 Validation enforces:
 
 - required files per instrument
+- required extension registry files
 - valid YAML and typed schema conformance
 - globally unique IDs
 - ID prefix and snake_case linting
@@ -127,6 +164,7 @@ Validation enforces:
 - cross-reference integrity
 - relationship type validity
 - instrument/version/construct consistency
+- motif and protocol cross-reference integrity
 
 Broken references or missing required annotation dimensions fail validation.
 
@@ -138,6 +176,8 @@ Minimum required annotation dimensions are documented in:
 
 - [docs/annotation_guide.md](/Users/noveltokens/a_person_index/docs/annotation_guide.md)
 - [docs/editorial_style_guide.md](/Users/noveltokens/a_person_index/docs/editorial_style_guide.md)
+- [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
+- [docs/research_contribution_guide.md](/Users/noveltokens/a_person_index/docs/research_contribution_guide.md)
 - [src/personality_registry/constants.py](/Users/noveltokens/a_person_index/src/personality_registry/constants.py)
 
 ## Generated outputs
@@ -147,8 +187,9 @@ Generated outputs are written to:
 - `generated/index.json`: aggregate registry summary
 - `generated/search.json`: search-oriented flattened records
 - `generated/audit.json`: curation-depth and coverage summary per instrument
+- `generated/index.json`: aggregate registry summary plus product-layer counts
 - `generated/instruments/*.json`: per-instrument exports
-- `generated/registry.json`: full export payload
+- `generated/registry.json`: full export payload, including house synthesis, protocol, and research registries
 - `site/`: self-contained static documentation site, including browse, audit, search, and comparison pages
 - `site/data/*.json`: deployed data payloads used by the static site at runtime
 
@@ -156,7 +197,7 @@ Generated files are deterministic and can be rebuilt locally.
 
 ## Retrieval workflows
 
-The repository includes a query CLI for exact lookup, filter retrieval, text search, relationship lookup, and side-by-side comparison.
+The repository includes a query CLI for exact lookup, filter retrieval, text search, relationship lookup, and side-by-side comparison over the canonical instrument corpus.
 
 The generated static site now exposes the same corpus through:
 
@@ -164,6 +205,8 @@ The generated static site now exposes the same corpus through:
 - `site/search.html`: client-side search over shipped registry data
 - `site/compare.html`: generated comparison index
 - `site/comparisons/*.html`: pairwise comparison pages derived from recorded crosswalks
+
+The motif, protocol, and research registries are currently exported in generated JSON and documented in repo docs; richer query surfaces for them are phase-2 work.
 
 ## Deployment
 
@@ -196,4 +239,24 @@ The repository is designed for agent-assisted authoring:
 - regenerate machine-readable exports
 - keep provenance and version history in Git
 
-When adding or editing content, keep source claims, ontology annotations, and house inferences clearly separated.
+When adding or editing content:
+
+- keep source claims, ontology annotations, and house inferences clearly separated
+- treat motifs and mappings as house synthesis, not source truth
+- treat protocols as downstream consumers of the map, not the map itself
+- treat research contributions as staged evidence, not immediate canonical fact
+
+## Downstream role
+
+This repo is meant to serve downstream runtimes such as `GNOMY`.
+
+It should eventually provide:
+
+- canonical framework records
+- crosswalks and construct mappings
+- house motifs
+- reusable comparative techniques
+- protocol specs
+- research-backed caveats and refinements
+
+`ILENS` now lives conceptually in the protocol layer, not as the ontology itself.

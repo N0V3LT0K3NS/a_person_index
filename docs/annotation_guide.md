@@ -44,7 +44,7 @@ Every instrument must have instrument-level annotations for:
 - `utility_profile`
 - `identity_adhesion_risk`
 - `worldview_load`
-- `synthesis_value_for_ilens`
+- `synthesis_value`
 
 ## Authoring guidance
 
@@ -53,3 +53,4 @@ Every instrument must have instrument-level annotations for:
 - Use `contested` when multiple reasonable readings remain active.
 - Do not use annotations to restate claims that belong in `claims.yaml`.
 - Do not use inferences to hide required annotations.
+- Treat protocol-specific judgments, such as ILENS fit, as downstream protocol concerns unless they belong in the generalized `synthesis_value` dimension.

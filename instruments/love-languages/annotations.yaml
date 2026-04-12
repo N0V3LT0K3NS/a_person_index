@@ -216,16 +216,16 @@ annotations:
     'worldview_load'.
   evidence_links:
   - res_love_languages_overview
-- id: ann_love_languages_synthesis_value_for_ilens
+- id: ann_love_languages_synthesis_value
   target_entity_type: instrument
   target_entity_id: instr_love_languages
-  ontology_dimension: synthesis_value_for_ilens
+  ontology_dimension: synthesis_value
   ontology_values:
   - low
   annotation_status: inferred
   confidence: medium
   rationale: House annotation for The Five Love Languages on the ontology dimension
-    'synthesis_value_for_ilens'.
+    'synthesis_value'.
   evidence_links:
   - res_love_languages_overview
 - id: ann_love_languages_evidence_profile

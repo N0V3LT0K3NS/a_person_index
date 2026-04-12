@@ -151,10 +151,10 @@
           "enum_file": "enums/cultural_symbolic_role.yaml"
         },
         {
-          "id": "synthesis_value_for_ilens",
+          "id": "synthesis_value",
           "cardinality": "one",
-          "description": "Estimated usefulness as an ILENS input layer.",
-          "enum_file": "enums/synthesis_value_for_ilens.yaml"
+          "description": "Estimated usefulness as an input layer for downstream synthesis protocols.",
+          "enum_file": "enums/synthesis_value.yaml"
         },
         {
           "id": "overlap_mode",
@@ -409,7 +409,7 @@
         "pop_psychology_meme",
         "community_belonging_language"
       ],
-      "synthesis_value_for_ilens": [
+      "synthesis_value": [
         "low",
         "medium",
         "high",
@@ -423,6 +423,22 @@
         "weak_direct_mapping",
         "workplace_family_resemblance"
       ]
+    }
+  },
+  "product_layers": {
+    "canonical_registry": {
+      "instrument_count": 15
+    },
+    "house_synthesis": {
+      "motif_count": 11,
+      "mapping_count": 16
+    },
+    "protocol_library": {
+      "technique_count": 6,
+      "protocol_count": 3
+    },
+    "research_stream": {
+      "contribution_model_count": 5
     }
   },
   "instruments": [
@@ -504,7 +520,7 @@
         "worldview_load": [
           "low"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "high"
         ],
         "evidence_profile": [
@@ -636,7 +652,7 @@
           "professional_shorthand",
           "research_anchor"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "very_high"
         ],
         "overlap_mode": [
@@ -725,7 +741,7 @@
         "worldview_load": [
           "medium"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "medium"
         ],
         "evidence_profile": [
@@ -827,7 +843,7 @@
         "worldview_load": [
           "low"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "medium"
         ],
         "evidence_profile": [
@@ -927,7 +943,7 @@
         "worldview_load": [
           "medium"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "low"
         ],
         "evidence_profile": [
@@ -1024,7 +1040,7 @@
         "worldview_load": [
           "low"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "medium"
         ],
         "evidence_profile": [
@@ -1124,7 +1140,7 @@
         "worldview_load": [
           "low"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "medium"
         ],
         "evidence_profile": [
@@ -1269,7 +1285,7 @@
           "community_belonging_language",
           "internet_identity_language"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "high"
         ],
         "overlap_mode": [
@@ -1353,7 +1369,7 @@
         "worldview_load": [
           "very_low"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "high"
         ],
         "evidence_profile": [
@@ -1462,7 +1478,7 @@
         "worldview_load": [
           "very_high"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "low"
         ],
         "evidence_profile": [
@@ -1561,7 +1577,7 @@
         "worldview_load": [
           "low"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "medium"
         ],
         "evidence_profile": [
@@ -1664,7 +1680,7 @@
         "worldview_load": [
           "low"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "low"
         ],
         "evidence_profile": [
@@ -1800,7 +1816,7 @@
           "professional_shorthand",
           "workplace_identity_language"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "medium"
         ],
         "overlap_mode": [
@@ -1893,7 +1909,7 @@
         "worldview_load": [
           "very_high"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "low"
         ],
         "evidence_profile": [
@@ -1996,7 +2012,7 @@
         "worldview_load": [
           "medium"
         ],
-        "synthesis_value_for_ilens": [
+        "synthesis_value": [
           "medium"
         ],
         "evidence_profile": [

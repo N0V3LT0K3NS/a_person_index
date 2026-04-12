@@ -602,16 +602,16 @@
       ]
     },
     {
-      "id": "ann_mbti_synthesis_value_for_ilens",
+      "id": "ann_mbti_synthesis_value",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_mbti",
-      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_dimension": "synthesis_value",
       "ontology_values": [
         "medium"
       ],
       "annotation_status": "inferred",
       "confidence": "medium",
-      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'synthesis_value_for_ilens'.",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'synthesis_value'.",
       "evidence_links": [
         "res_mbti_overview"
       ]
@@ -728,7 +728,7 @@
       "professional_shorthand",
       "workplace_identity_language"
     ],
-    "synthesis_value_for_ilens": [
+    "synthesis_value": [
       "medium"
     ],
     "overlap_mode": [
