@@ -136,6 +136,7 @@ The ontology is versioned in `ontology/registry.yaml`. Dimensions and enum-backe
 Minimum required annotation dimensions are documented in:
 
 - [docs/annotation_guide.md](/Users/noveltokens/a_person_index/docs/annotation_guide.md)
+- [docs/editorial_style_guide.md](/Users/noveltokens/a_person_index/docs/editorial_style_guide.md)
 - [src/personality_registry/constants.py](/Users/noveltokens/a_person_index/src/personality_registry/constants.py)
 
 ## Generated outputs

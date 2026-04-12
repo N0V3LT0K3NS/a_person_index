@@ -8,6 +8,12 @@ from personality_registry.loader import InstrumentBundle, load_repository_strict
 from personality_registry.validation import validate_repository
 
 
+def _count_label(count: int, singular: str, plural: str | None = None) -> str:
+    plural = plural or f"{singular}s"
+    word = singular if count == 1 else plural
+    return f"{count} {word}"
+
+
 def _bundle_to_dict(bundle: InstrumentBundle) -> dict:
     annotation_map: dict[str, list[str]] = {}
     for annotation in bundle.annotations:
@@ -119,9 +125,9 @@ def _render_list(items: list[str]) -> str:
 def _docs_index_entry(bundle: InstrumentBundle, audit_entry: dict) -> str:
     family_tags = "".join(f"<span class=\"tag\">{escape(value)}</span>" for value in bundle.instrument.family)
     coverage_bits = [
-        f"{audit_entry['counts']['resources']} resources",
-        f"{audit_entry['counts']['constructs']} constructs",
-        f"{audit_entry['counts']['crosswalks']} crosswalks",
+        _count_label(audit_entry["counts"]["resources"], "resource"),
+        _count_label(audit_entry["counts"]["constructs"], "construct"),
+        _count_label(audit_entry["counts"]["crosswalks"], "crosswalk"),
     ]
     return f"""
 <article class="instrument-card">
