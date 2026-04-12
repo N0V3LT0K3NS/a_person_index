@@ -6,7 +6,13 @@ from _bootstrap import bootstrap
 
 root = bootstrap()
 
-from personality_registry.query import compare_instruments, dumps_json, load_repository_for_query, query_results
+from personality_registry.query import (
+    audit_repository,
+    compare_instruments,
+    dumps_json,
+    load_repository_for_query,
+    query_results,
+)
 
 
 def _render_find_text(results):
@@ -50,6 +56,30 @@ def _render_compare_text(payload):
     return "\n".join(lines)
 
 
+def _render_audit_text(payload):
+    lines = [
+        "Coverage summary:",
+        f"  instruments: {payload['summary']['instrument_count']}",
+        f"  with crosswalks: {payload['summary']['instruments_with_crosswalks']}",
+        f"  with 2+ resources: {payload['summary']['instruments_with_multiple_resources']}",
+        (
+            "  with official/semi-official resource: "
+            f"{payload['summary']['instruments_with_official_or_semi_official_resource']}"
+        ),
+    ]
+    if payload["instruments"]:
+        lines.append("")
+        lines.append("Filtered instruments:")
+        for entry in payload["instruments"]:
+            lines.append(f"  {entry['canonical_name']} ({entry['instrument_id']})")
+            lines.append(
+                "    "
+                f"resources={entry['counts']['resources']} crosswalks={entry['counts']['crosswalks']} "
+                f"officiality={entry['resource_officiality']}"
+            )
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Query the Personality Instrument Registry.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -70,6 +100,20 @@ def main() -> int:
     compare_parser.add_argument("left", help="Left instrument reference.")
     compare_parser.add_argument("right", help="Right instrument reference.")
     compare_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    audit_parser = subparsers.add_parser("audit", help="Inspect corpus coverage and curation gaps.")
+    audit_parser.add_argument("--needs-crosswalks", action="store_true", help="Show only instruments missing crosswalks.")
+    audit_parser.add_argument(
+        "--needs-multiple-resources",
+        action="store_true",
+        help="Show only instruments with fewer than two resources.",
+    )
+    audit_parser.add_argument(
+        "--needs-official-resource",
+        action="store_true",
+        help="Show only instruments missing an official or semi-official resource.",
+    )
+    audit_parser.add_argument("--format", choices=("text", "json"), default="text")
 
     args = parser.parse_args()
     repository = load_repository_for_query(root)
@@ -93,6 +137,19 @@ def main() -> int:
             print(dumps_json([result.to_dict() for result in results]))
         else:
             print(_render_find_text(results))
+        return 0
+
+    if args.command == "audit":
+        payload = audit_repository(
+            repository,
+            needs_crosswalks=args.needs_crosswalks,
+            needs_multiple_resources=args.needs_multiple_resources,
+            needs_official_or_semi_official_resource=args.needs_official_resource,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_audit_text(payload))
         return 0
 
     payload = compare_instruments(repository, args.left, args.right)

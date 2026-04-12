@@ -1,7 +1,13 @@
 from __future__ import annotations
 
 from personality_registry.loader import load_repository_strict
-from personality_registry.query import compare_instruments, find_instruments, query_results, resolve_instrument
+from personality_registry.query import (
+    audit_repository,
+    compare_instruments,
+    find_instruments,
+    query_results,
+    resolve_instrument,
+)
 
 
 def test_resolve_instrument_by_alias(repo_root):
@@ -36,3 +42,18 @@ def test_compare_includes_construct_crosswalks(repo_root):
     repository = load_repository_strict(repo_root)
     payload = compare_instruments(repository, "Big Five", "MBTI")
     assert payload["crosswalks"]
+
+
+def test_audit_summary_reflects_seed_coverage(repo_root):
+    repository = load_repository_strict(repo_root)
+    payload = audit_repository(repository)
+    assert payload["summary"]["instrument_count"] == 15
+    assert payload["summary"]["instruments_with_crosswalks"] == 15
+    assert payload["summary"]["instruments_with_multiple_resources"] == 15
+
+
+def test_audit_filter_surfaces_missing_official_resources(repo_root):
+    repository = load_repository_strict(repo_root)
+    payload = audit_repository(repository, needs_official_or_semi_official_resource=True)
+    result_ids = {entry["instrument_id"] for entry in payload["instruments"]}
+    assert {"instr_attachment_styles", "instr_dark_triad", "instr_natal_astrology"}.issubset(result_ids)

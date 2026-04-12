@@ -119,6 +119,67 @@ class QueryResult:
         }
 
 
+def audit_repository(
+    repository: RepositoryData,
+    *,
+    needs_crosswalks: bool = False,
+    needs_multiple_resources: bool = False,
+    needs_official_or_semi_official_resource: bool = False,
+) -> dict:
+    entries: list[dict] = []
+    for bundle in sorted(repository.instruments.values(), key=lambda item: item.instrument.canonical_name.lower()):
+        officiality_counts: dict[str, int] = {}
+        for resource in bundle.resources:
+            officiality_counts[resource.officiality] = officiality_counts.get(resource.officiality, 0) + 1
+
+        counts = {
+            "resources": len(bundle.resources),
+            "crosswalks": len(bundle.crosswalks),
+            "constructs": len(bundle.constructs),
+        }
+        coverage = {
+            "has_crosswalks": counts["crosswalks"] > 0,
+            "has_multiple_resources": counts["resources"] > 1,
+            "has_official_or_semi_official_resource": any(
+                resource.officiality in {"official", "semi_official"} for resource in bundle.resources
+            ),
+        }
+
+        if needs_crosswalks and coverage["has_crosswalks"]:
+            continue
+        if needs_multiple_resources and coverage["has_multiple_resources"]:
+            continue
+        if needs_official_or_semi_official_resource and coverage["has_official_or_semi_official_resource"]:
+            continue
+
+        entries.append(
+            {
+                "slug": bundle.slug,
+                "instrument_id": bundle.instrument.id,
+                "canonical_name": bundle.instrument.canonical_name,
+                "counts": counts,
+                "resource_officiality": dict(sorted(officiality_counts.items())),
+                "coverage": coverage,
+            }
+        )
+
+    return {
+        "summary": {
+            "instrument_count": len(repository.instruments),
+            "instruments_with_crosswalks": sum(1 for bundle in repository.instruments.values() if bundle.crosswalks),
+            "instruments_with_multiple_resources": sum(
+                1 for bundle in repository.instruments.values() if len(bundle.resources) > 1
+            ),
+            "instruments_with_official_or_semi_official_resource": sum(
+                1
+                for bundle in repository.instruments.values()
+                if any(resource.officiality in {"official", "semi_official"} for resource in bundle.resources)
+            ),
+        },
+        "instruments": entries,
+    }
+
+
 def find_instruments(
     repository: RepositoryData,
     *,
