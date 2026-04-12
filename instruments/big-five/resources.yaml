@@ -1,27 +1,43 @@
 resources:
+- id: res_big_five_reference
+  instrument_id: instr_big_five
+  version_id: ver_big_five_general
+  resource_type: citation_guide
+  title: Citing IPIP Scales in Scientific Publications
+  url: https://www.ipip.ori.org/newCitation.htm
+  author: Lewis R. Goldberg
+  publication_date: null
+  publisher: Oregon Research Institute
+  language: en
+  access_status: public
+  officiality: official
+  notes: Official IPIP citation guidance page linking the public-domain item pool
+    to Goldberg (1992) and Goldberg et al. (2006).
 - id: res_big_five_summary_source
   instrument_id: instr_big_five
   version_id: ver_big_five_general
-  resource_type: overview
-  title: Big Five overview source
-  url: https://example.org/big-five-overview
-  author: example_author
+  resource_type: scoring_key
+  title: Big-Five Factor Markers
+  url: https://ipip.ori.org/newBigFive5broadKey.htm
+  author: Lewis R. Goldberg
   publication_date: null
-  publisher: example_publisher
-  language: en
-  access_status: public
-  officiality: secondary
-  notes: Placeholder seed source. Replace with a canonical Big Five reference.
-- id: res_big_five_ipip
-  instrument_id: instr_big_five
-  version_id: ver_big_five_ipip_50
-  resource_type: questionnaire_site
-  title: IPIP Big Five questionnaire
-  url: https://example.org/ipip-big-five
-  author: null
-  publication_date: null
-  publisher: null
+  publisher: Oregon Research Institute
   language: en
   access_status: public
   officiality: semi_official
-  notes: Placeholder IPIP variant source. Replace with a specific implementation source.
+  notes: IPIP page for the 50-item and 100-item Big-Five factor marker representations
+    used as a public-domain implementation of broad Big Five domains.
+- id: res_big_five_ipip
+  instrument_id: instr_big_five
+  version_id: ver_big_five_ipip_50
+  resource_type: questionnaire_repository
+  title: International Personality Item Pool
+  url: https://ipip.ori.org/index.htm
+  author: Lewis R. Goldberg
+  publication_date: null
+  publisher: Oregon Research Institute
+  language: en
+  access_status: public
+  officiality: official
+  notes: Official IPIP site describing the public-domain item pool and open-use terms
+    for personality scales.

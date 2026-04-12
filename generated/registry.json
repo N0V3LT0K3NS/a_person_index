@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-11T22:37:03.893032+00:00",
+  "generated_at": "2026-04-12T00:28:29.272908+00:00",
   "ontology": {
     "registry": {
       "ontology": {
@@ -1270,34 +1270,49 @@
       ],
       "resources": [
         {
+          "id": "res_big_five_reference",
+          "instrument_id": "instr_big_five",
+          "version_id": "ver_big_five_general",
+          "resource_type": "citation_guide",
+          "title": "Citing IPIP Scales in Scientific Publications",
+          "url": "https://www.ipip.ori.org/newCitation.htm",
+          "author": "Lewis R. Goldberg",
+          "publication_date": null,
+          "publisher": "Oregon Research Institute",
+          "language": "en",
+          "access_status": "public",
+          "officiality": "official",
+          "notes": "Official IPIP citation guidance page linking the public-domain item pool to Goldberg (1992) and Goldberg et al. (2006)."
+        },
+        {
           "id": "res_big_five_summary_source",
           "instrument_id": "instr_big_five",
           "version_id": "ver_big_five_general",
-          "resource_type": "overview",
-          "title": "Big Five overview source",
-          "url": "https://example.org/big-five-overview",
-          "author": "example_author",
+          "resource_type": "scoring_key",
+          "title": "Big-Five Factor Markers",
+          "url": "https://ipip.ori.org/newBigFive5broadKey.htm",
+          "author": "Lewis R. Goldberg",
           "publication_date": null,
-          "publisher": "example_publisher",
+          "publisher": "Oregon Research Institute",
           "language": "en",
           "access_status": "public",
-          "officiality": "secondary",
-          "notes": "Placeholder seed source. Replace with a canonical Big Five reference."
+          "officiality": "semi_official",
+          "notes": "IPIP page for the 50-item and 100-item Big-Five factor marker representations used as a public-domain implementation of broad Big Five domains."
         },
         {
           "id": "res_big_five_ipip",
           "instrument_id": "instr_big_five",
           "version_id": "ver_big_five_ipip_50",
-          "resource_type": "questionnaire_site",
-          "title": "IPIP Big Five questionnaire",
-          "url": "https://example.org/ipip-big-five",
-          "author": null,
+          "resource_type": "questionnaire_repository",
+          "title": "International Personality Item Pool",
+          "url": "https://ipip.ori.org/index.htm",
+          "author": "Lewis R. Goldberg",
           "publication_date": null,
-          "publisher": null,
+          "publisher": "Oregon Research Institute",
           "language": "en",
           "access_status": "public",
-          "officiality": "semi_official",
-          "notes": "Placeholder IPIP variant source. Replace with a specific implementation source."
+          "officiality": "official",
+          "notes": "Official IPIP site describing the public-domain item pool and open-use terms for personality scales."
         }
       ],
       "annotations": [
@@ -1313,7 +1328,7 @@
           "confidence": "high",
           "rationale": "The Big Five is explicitly a trait personality framework.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1331,7 +1346,7 @@
           "confidence": "high",
           "rationale": "The model is trait-centered, but trait domains also bear on emotionality, interpersonal style, and work-related behavior.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1347,7 +1362,7 @@
           "confidence": "medium",
           "rationale": "Most Big Five implementations are continuous dimensional models and many also organize facets beneath broader domains.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1362,7 +1377,7 @@
           "confidence": "high",
           "rationale": "The framework is designed to describe comparatively stable trait patterns.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1377,7 +1392,7 @@
           "confidence": "high",
           "rationale": "The model treats the person primarily as a profile of broad dispositional traits.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1393,7 +1408,7 @@
           "confidence": "high",
           "rationale": "Big Five instruments commonly use self-report and sometimes observer report.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1409,7 +1424,7 @@
           "confidence": "high",
           "rationale": "Questionnaire responses typically become continuous factor or scale scores.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1424,7 +1439,7 @@
           "confidence": "high",
           "rationale": "Relative to many adjacent systems, the Big Five has a strong psychometric validation base.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1441,7 +1456,7 @@
           "confidence": "high",
           "rationale": "House annotation for Big Five Personality Model on the ontology dimension 'evidence_profile'.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1456,7 +1471,7 @@
           "confidence": "high",
           "rationale": "Interpretation is comparatively direct because the output model is trait-based.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1471,7 +1486,7 @@
           "confidence": "medium",
           "rationale": "The framework is broad at the top level but often enriched by facet-level resolution.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1486,7 +1501,7 @@
           "confidence": "medium",
           "rationale": "The model aims for cross-situational traits, but expression still varies with role and context.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1503,7 +1518,7 @@
           "confidence": "medium",
           "rationale": "Trait stability is primary, but developmental and situational changes are still relevant.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1520,7 +1535,7 @@
           "confidence": "high",
           "rationale": "Self-report bias and overreading broad traits are persistent hazards in practical use.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1539,7 +1554,7 @@
           "confidence": "high",
           "rationale": "The Big Five is used across research, coaching, workplace, and self-reflection contexts.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1556,7 +1571,7 @@
           "confidence": "high",
           "rationale": "Its strongest uses are baseline trait description, comparison, and synthesis anchoring.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1572,7 +1587,7 @@
           "confidence": "medium",
           "rationale": "House annotation for Big Five Personality Model on the ontology dimension 'target_population'.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1587,7 +1602,7 @@
           "confidence": "medium",
           "rationale": "House annotation for Big Five Personality Model on the ontology dimension 'norming_status'.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1602,7 +1617,7 @@
           "confidence": "medium",
           "rationale": "The Big Five is less identity-sticky than more typological or symbolic systems.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1618,7 +1633,7 @@
           "confidence": "medium",
           "rationale": "House annotation for Big Five Personality Model on the ontology dimension 'actionability_type'.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1633,7 +1648,7 @@
           "confidence": "high",
           "rationale": "It carries relatively little metaphysical or worldview baggage.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1649,7 +1664,7 @@
           "confidence": "medium",
           "rationale": "House annotation for Big Five Personality Model on the ontology dimension 'cultural_symbolic_role'.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1664,7 +1679,7 @@
           "confidence": "high",
           "rationale": "Big Five is an unusually strong baseline anchor for synthesis because it offers stable broad scaffolding.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         },
         {
@@ -1680,7 +1695,7 @@
           "confidence": "medium",
           "rationale": "Overlap with other systems is often partial or complementary rather than directly translatable.",
           "evidence_links": [
-            "res_big_five_summary_source"
+            "res_big_five_reference"
           ]
         }
       ],
@@ -5181,31 +5196,31 @@
           "id": "res_enneagram_overview",
           "instrument_id": "instr_enneagram",
           "version_id": "ver_enneagram_general",
-          "resource_type": "overview",
-          "title": "Enneagram overview source",
-          "url": "https://example.org/enneagram-overview",
+          "resource_type": "type_descriptions",
+          "title": "The Nine Enneagram Type Descriptions",
+          "url": "https://www.enneagraminstitute.com/type-descriptions/",
           "author": null,
           "publication_date": null,
-          "publisher": null,
+          "publisher": "The Enneagram Institute",
           "language": "en",
           "access_status": "public",
-          "officiality": "secondary",
-          "notes": "Placeholder overview source. Replace with a more specific lineage-aware reference set."
+          "officiality": "semi_official",
+          "notes": "Lineage-specific Enneagram Institute overview page summarizing the nine type descriptions."
         },
         {
           "id": "res_enneagram_riso_hudson",
           "instrument_id": "instr_enneagram",
           "version_id": "ver_enneagram_general",
-          "resource_type": "book",
-          "title": "Representative Enneagram book source",
-          "url": "https://example.org/enneagram-book",
-          "author": "example_author",
+          "resource_type": "overview",
+          "title": "How the Enneagram System Works",
+          "url": "https://www.enneagraminstitute.com/how-the-enneagram-system-works/",
+          "author": null,
           "publication_date": null,
-          "publisher": "example_publisher",
+          "publisher": "The Enneagram Institute",
           "language": "en",
           "access_status": "public",
-          "officiality": "secondary",
-          "notes": "Placeholder source standing in for a more specific Enneagram text."
+          "officiality": "semi_official",
+          "notes": "Lineage-specific overview covering nine basic types, wings, developmental levels, and growth/stress directions."
         }
       ],
       "annotations": [
@@ -8392,6 +8407,17 @@
             "res_mbti_manual"
           ],
           "quotation_status": "paraphrase"
+        },
+        {
+          "id": "clm_mbti_not_for_hiring",
+          "instrument_id": "instr_mbti",
+          "version_id": "ver_mbti_general",
+          "claim_type": "usage_claim",
+          "claim_text": "The MBTI assessment is not intended for selection or hiring decisions.",
+          "source_resource_ids": [
+            "res_mbti_manual"
+          ],
+          "quotation_status": "paraphrase"
         }
       ],
       "resources": [
@@ -8400,30 +8426,30 @@
           "instrument_id": "instr_mbti",
           "version_id": "ver_mbti_general",
           "resource_type": "overview",
-          "title": "MBTI overview source",
-          "url": "https://example.org/mbti-overview",
+          "title": "MBTI Assessment - Myers-Briggs Type Indicator Tool",
+          "url": "https://www.themyersbriggs.com/en-US/Products-and-Services/Myers-Briggs",
           "author": null,
           "publication_date": null,
-          "publisher": null,
+          "publisher": "The Myers-Briggs Company",
           "language": "en",
           "access_status": "public",
-          "officiality": "secondary",
-          "notes": "Placeholder MBTI overview source. Replace with current official and critical references."
+          "officiality": "official",
+          "notes": "Official product overview page for the Myers-Briggs Type Indicator assessment."
         },
         {
           "id": "res_mbti_manual",
           "instrument_id": "instr_mbti",
-          "version_id": "ver_mbti_step_i",
-          "resource_type": "manual",
-          "title": "Representative MBTI manual source",
-          "url": "https://example.org/mbti-manual",
-          "author": "example_author",
-          "publication_date": null,
-          "publisher": "example_publisher",
+          "version_id": "ver_mbti_general",
+          "resource_type": "faq",
+          "title": "MBTI Facts",
+          "url": "https://www.themyersbriggs.com/en-US/Support/MBTI-Facts",
+          "author": null,
+          "publication_date": "2020-04-24",
+          "publisher": "The Myers-Briggs Company",
           "language": "en",
-          "access_status": "restricted",
-          "officiality": "semi_official",
-          "notes": "Placeholder manual source."
+          "access_status": "public",
+          "officiality": "official",
+          "notes": "Official FAQ page covering MBTI history, intended uses, and explicit guidance against hiring use."
         }
       ],
       "annotations": [

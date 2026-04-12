@@ -9,7 +9,7 @@ annotations:
   confidence: high
   rationale: The Big Five is explicitly a trait personality framework.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_primary_measurement_target
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -24,7 +24,7 @@ annotations:
   rationale: The model is trait-centered, but trait domains also bear on emotionality,
     interpersonal style, and work-related behavior.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_representational_form
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -37,7 +37,7 @@ annotations:
   rationale: Most Big Five implementations are continuous dimensional models and many
     also organize facets beneath broader domains.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_temporal_stance
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -48,7 +48,7 @@ annotations:
   confidence: high
   rationale: The framework is designed to describe comparatively stable trait patterns.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_person_ontology
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -60,7 +60,7 @@ annotations:
   rationale: The model treats the person primarily as a profile of broad dispositional
     traits.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_administration_mode
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -73,7 +73,7 @@ annotations:
   rationale: Big Five instruments commonly use self-report and sometimes observer
     report.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_scoring_logic
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -85,7 +85,7 @@ annotations:
   confidence: high
   rationale: Questionnaire responses typically become continuous factor or scale scores.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_epistemic_basis
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -97,7 +97,7 @@ annotations:
   rationale: Relative to many adjacent systems, the Big Five has a strong psychometric
     validation base.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_evidence_profile
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -111,7 +111,7 @@ annotations:
   rationale: House annotation for Big Five Personality Model on the ontology dimension
     'evidence_profile'.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_interpretive_burden
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -122,7 +122,7 @@ annotations:
   confidence: high
   rationale: Interpretation is comparatively direct because the output model is trait-based.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_granularity
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -134,7 +134,7 @@ annotations:
   rationale: The framework is broad at the top level but often enriched by facet-level
     resolution.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_context_sensitivity
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -146,7 +146,7 @@ annotations:
   rationale: The model aims for cross-situational traits, but expression still varies
     with role and context.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_change_model
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -160,7 +160,7 @@ annotations:
   rationale: Trait stability is primary, but developmental and situational changes
     are still relevant.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_distortion_risk
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -174,7 +174,7 @@ annotations:
   rationale: Self-report bias and overreading broad traits are persistent hazards
     in practical use.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_deployment_context
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -190,7 +190,7 @@ annotations:
   rationale: The Big Five is used across research, coaching, workplace, and self-reflection
     contexts.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_utility_profile
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -204,7 +204,7 @@ annotations:
   rationale: Its strongest uses are baseline trait description, comparison, and synthesis
     anchoring.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_target_population
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -217,7 +217,7 @@ annotations:
   rationale: House annotation for Big Five Personality Model on the ontology dimension
     'target_population'.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_norming_status
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -229,7 +229,7 @@ annotations:
   rationale: House annotation for Big Five Personality Model on the ontology dimension
     'norming_status'.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_identity_adhesion_risk
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -241,7 +241,7 @@ annotations:
   rationale: The Big Five is less identity-sticky than more typological or symbolic
     systems.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_actionability_type
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -254,7 +254,7 @@ annotations:
   rationale: House annotation for Big Five Personality Model on the ontology dimension
     'actionability_type'.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_worldview_load
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -265,7 +265,7 @@ annotations:
   confidence: high
   rationale: It carries relatively little metaphysical or worldview baggage.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_cultural_symbolic_role
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -278,7 +278,7 @@ annotations:
   rationale: House annotation for Big Five Personality Model on the ontology dimension
     'cultural_symbolic_role'.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_synthesis_value_for_ilens
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -290,7 +290,7 @@ annotations:
   rationale: Big Five is an unusually strong baseline anchor for synthesis because
     it offers stable broad scaffolding.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference
 - id: ann_big_five_overlap_mode
   target_entity_type: instrument
   target_entity_id: instr_big_five
@@ -303,4 +303,4 @@ annotations:
   rationale: Overlap with other systems is often partial or complementary rather than
     directly translatable.
   evidence_links:
-  - res_big_five_summary_source
+  - res_big_five_reference

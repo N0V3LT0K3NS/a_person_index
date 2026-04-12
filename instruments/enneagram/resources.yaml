@@ -2,27 +2,28 @@ resources:
 - id: res_enneagram_overview
   instrument_id: instr_enneagram
   version_id: ver_enneagram_general
-  resource_type: overview
-  title: Enneagram overview source
-  url: https://example.org/enneagram-overview
+  resource_type: type_descriptions
+  title: The Nine Enneagram Type Descriptions
+  url: https://www.enneagraminstitute.com/type-descriptions/
   author: null
   publication_date: null
-  publisher: null
+  publisher: The Enneagram Institute
   language: en
   access_status: public
-  officiality: secondary
-  notes: Placeholder overview source. Replace with a more specific lineage-aware reference
-    set.
+  officiality: semi_official
+  notes: Lineage-specific Enneagram Institute overview page summarizing the nine type
+    descriptions.
 - id: res_enneagram_riso_hudson
   instrument_id: instr_enneagram
   version_id: ver_enneagram_general
-  resource_type: book
-  title: Representative Enneagram book source
-  url: https://example.org/enneagram-book
-  author: example_author
+  resource_type: overview
+  title: How the Enneagram System Works
+  url: https://www.enneagraminstitute.com/how-the-enneagram-system-works/
+  author: null
   publication_date: null
-  publisher: example_publisher
+  publisher: The Enneagram Institute
   language: en
   access_status: public
-  officiality: secondary
-  notes: Placeholder source standing in for a more specific Enneagram text.
+  officiality: semi_official
+  notes: Lineage-specific overview covering nine basic types, wings, developmental
+    levels, and growth/stress directions.

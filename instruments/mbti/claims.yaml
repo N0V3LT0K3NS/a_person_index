@@ -26,3 +26,11 @@ claims:
   source_resource_ids:
   - res_mbti_manual
   quotation_status: paraphrase
+- id: clm_mbti_not_for_hiring
+  instrument_id: instr_mbti
+  version_id: ver_mbti_general
+  claim_type: usage_claim
+  claim_text: The MBTI assessment is not intended for selection or hiring decisions.
+  source_resource_ids:
+  - res_mbti_manual
+  quotation_status: paraphrase

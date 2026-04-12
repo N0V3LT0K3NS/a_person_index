@@ -3,26 +3,26 @@ resources:
   instrument_id: instr_mbti
   version_id: ver_mbti_general
   resource_type: overview
-  title: MBTI overview source
-  url: https://example.org/mbti-overview
+  title: MBTI Assessment - Myers-Briggs Type Indicator Tool
+  url: https://www.themyersbriggs.com/en-US/Products-and-Services/Myers-Briggs
   author: null
   publication_date: null
-  publisher: null
+  publisher: The Myers-Briggs Company
   language: en
   access_status: public
-  officiality: secondary
-  notes: Placeholder MBTI overview source. Replace with current official and critical
-    references.
+  officiality: official
+  notes: Official product overview page for the Myers-Briggs Type Indicator assessment.
 - id: res_mbti_manual
   instrument_id: instr_mbti
-  version_id: ver_mbti_step_i
-  resource_type: manual
-  title: Representative MBTI manual source
-  url: https://example.org/mbti-manual
-  author: example_author
-  publication_date: null
-  publisher: example_publisher
+  version_id: ver_mbti_general
+  resource_type: faq
+  title: MBTI Facts
+  url: https://www.themyersbriggs.com/en-US/Support/MBTI-Facts
+  author: null
+  publication_date: '2020-04-24'
+  publisher: The Myers-Briggs Company
   language: en
-  access_status: restricted
-  officiality: semi_official
-  notes: Placeholder manual source.
+  access_status: public
+  officiality: official
+  notes: Official FAQ page covering MBTI history, intended uses, and explicit guidance
+    against hiring use.
