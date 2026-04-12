@@ -6,6 +6,7 @@ Arrival references:
 
 - [AGENTS.md](/Users/noveltokens/a_person_index/AGENTS.md)
 - [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+- [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
 - [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
 
 ## What GNOMY should read from this repo
@@ -35,13 +36,14 @@ python3 scripts/query_registry.py protocol-pack-grammar
 python3 scripts/query_registry.py techniques "Paradox Scan"
 python3 scripts/query_registry.py result-atom-schema
 python3 scripts/query_registry.py research-models
+npm run mcp:serve
 ```
 
 ## Intended exchange pattern
 
 GNOMY should generally:
 
-1. fetch canonical records and motif traces from this repo
+1. connect to the MCP server or fall back to the local CLI
 2. fetch a protocol pack when a downstream task already has a known protocol and target scope
 3. normalize local outputs into the result atom schema when working below the whole-test level
 4. perform downstream person-level synthesis locally

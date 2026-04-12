@@ -36,6 +36,7 @@ Delivered so far:
 - technique registry
 - protocol registry
 - protocol-pack query surface and grammar
+- read-only MCP adapter over the Python query surface
 - research contribution models
 - result atom schema
 - motif, protocol, interaction, and research query surfaces

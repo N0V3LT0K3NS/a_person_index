@@ -20,8 +20,9 @@ If you are arriving fresh, read these in order:
 3. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
 4. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
 5. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
-6. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-7. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+6. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
+7. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+8. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 Those files together explain what the repo is, what layer you are editing, how downstream systems should use it, and what is next.
 
@@ -130,6 +131,7 @@ Each seed instrument is expected to carry at least two resources and at least on
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install -e '.[dev]'
+npm install
 ```
 
 ## Common commands
@@ -153,6 +155,8 @@ python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framewo
 python3 scripts/query_registry.py protocol-pack-grammar
 python3 scripts/query_registry.py result-atom-schema
 python3 scripts/query_registry.py research-models
+npm run mcp:serve
+npm run mcp:smoke
 python3 scripts/query_registry.py audit --needs-official-resource
 python3 scripts/query_registry.py audit --needs-multiple-claims
 python3 -m pytest
@@ -208,6 +212,7 @@ Minimum required annotation dimensions are documented in:
 - [docs/editorial_style_guide.md](/Users/noveltokens/a_person_index/docs/editorial_style_guide.md)
 - [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
 - [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+- [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
 - [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
 - [docs/research_contribution_guide.md](/Users/noveltokens/a_person_index/docs/research_contribution_guide.md)
 - [src/personality_registry/constants.py](/Users/noveltokens/a_person_index/src/personality_registry/constants.py)
@@ -224,6 +229,7 @@ Generated outputs are written to:
 - `generated/manifest.json`: machine-readable onboarding and service-primitives manifest for agents
 - `generated/protocol_pack_grammar.json`: machine-readable grammar for building and validating future protocol packs
 - `generated/registry.json`: full export payload, including house synthesis, protocol, and research registries
+- `mcp-server/`: read-only Node MCP adapter over the Python query surface
 - `site/`: self-contained static documentation site, including browse, audit, search, and comparison pages
 - `site/data/*.json`: deployed data payloads used by the static site at runtime
 
@@ -251,6 +257,11 @@ The motif, protocol, and research registries are now available through dedicated
 - `python3 scripts/query_registry.py techniques "Paradox Scan"`
 - `python3 scripts/query_registry.py result-atom-schema`
 - `python3 scripts/query_registry.py research-models`
+
+The repo also now exposes a read-only MCP interface for agent-native use:
+
+- `npm run mcp:serve`
+- [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
 
 ## Deployment
 

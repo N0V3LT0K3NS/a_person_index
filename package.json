@@ -11,6 +11,12 @@
     "scaffold": "python3 scripts/scaffold_instrument.py",
     "query": "python3 scripts/query_registry.py",
     "seed": "python3 scripts/seed_registry.py",
-    "test": "python3 -m pytest"
+    "test": "python3 -m pytest",
+    "mcp:serve": "node mcp-server/server.mjs",
+    "mcp:smoke": "node mcp-server/smoke_test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.3.6"
   }
 }

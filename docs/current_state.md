@@ -49,6 +49,7 @@ As of the current branch state, the repo includes:
 ### Operational layer
 
 - CLI query surface
+- read-only MCP adapter
 - Deterministic generated outputs
 - Static documentation site
 - CI workflow

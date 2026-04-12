@@ -70,4 +70,6 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert manifest_payload["downstream_contract"]["result_atom_schema_id"] == "ras_result_atom_v0_1"
     assert manifest_payload["service_primitives"]
     assert any(item["id"] == "fetch_protocol_pack" for item in manifest_payload["service_primitives"])
+    assert manifest_payload["interfaces"]["mcp"]["status"] == "active_read_only"
+    assert "fetch_protocol_pack" in manifest_payload["interfaces"]["mcp"]["tool_ids"]
     assert protocol_pack_grammar_payload["id"] == "protocol_pack_grammar_v0_1"

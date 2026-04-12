@@ -30,7 +30,8 @@
     "docs/current_state.md",
     "docs/roadmap.md",
     "docs/architecture.md",
-    "docs/gnomy_integration.md"
+    "docs/gnomy_integration.md",
+    "docs/mcp.md"
   ],
   "canonical_sources": {
     "instrument_root": "instruments/",
@@ -111,6 +112,48 @@
       "purpose": "Return allowed research contribution models for safe return traffic."
     }
   ],
+  "interfaces": {
+    "cli": {
+      "entrypoint": "scripts/query_registry.py",
+      "maintainer_commands": [
+        "python3 scripts/validate.py",
+        "python3 scripts/build_index.py",
+        "python3 scripts/generate_docs.py"
+      ]
+    },
+    "mcp": {
+      "status": "active_read_only",
+      "transport": "stdio",
+      "entrypoint": "npm run mcp:serve",
+      "implementation": "mcp-server/server.mjs",
+      "smoke_test": "npm run mcp:smoke",
+      "backend": "Python query CLI delegation",
+      "tool_ids": [
+        "find_framework_records",
+        "compare_frameworks",
+        "trace_to_motifs",
+        "list_related_motifs",
+        "list_interaction_hypotheses",
+        "fetch_protocol_spec",
+        "fetch_protocol_pack",
+        "fetch_protocol_pack_grammar",
+        "fetch_result_atom_schema",
+        "fetch_research_models"
+      ],
+      "resource_uris": [
+        "registry://manifest",
+        "registry://current-state",
+        "registry://roadmap",
+        "registry://protocol-pack-grammar",
+        "registry://instrument/{slug}"
+      ],
+      "prompt_ids": [
+        "registry-arrival",
+        "protocol-pack-authoring"
+      ],
+      "doc_path": "docs/mcp.md"
+    }
+  },
   "downstream_contract": {
     "intended_consumers": [
       "GNOMY",

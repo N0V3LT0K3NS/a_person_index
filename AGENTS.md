@@ -9,8 +9,9 @@ If you are arriving cold, start here in this order:
 3. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
 4. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
 5. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
-6. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-7. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+6. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
+7. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+8. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 ## What this repo is
 
@@ -84,6 +85,7 @@ python3 scripts/query_registry.py techniques "Paradox Scan"
 python3 scripts/query_registry.py result-atom-schema
 python3 scripts/query_registry.py research-models
 python3 scripts/query_registry.py audit --needs-official-resource
+npm run mcp:serve
 ```
 
 ## Downstream role
