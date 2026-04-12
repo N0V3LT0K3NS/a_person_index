@@ -9,6 +9,7 @@
     "docs": "python3 scripts/generate_docs.py",
     "schemas": "python3 scripts/export_schemas.py",
     "scaffold": "python3 scripts/scaffold_instrument.py",
+    "query": "python3 scripts/query_registry.py",
     "seed": "python3 scripts/seed_registry.py",
     "test": "python3 -m pytest"
   }

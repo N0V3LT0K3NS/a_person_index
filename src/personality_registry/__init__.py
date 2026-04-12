@@ -5,6 +5,7 @@ __all__ = [
     "constants",
     "loader",
     "models",
+    "query",
     "scaffolding",
     "seed_data",
     "validation",

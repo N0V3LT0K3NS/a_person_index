@@ -67,6 +67,8 @@ python3 scripts/lint_ids.py
 python3 scripts/build_index.py
 python3 scripts/export_json.py
 python3 scripts/generate_docs.py
+python3 scripts/query_registry.py find --family trait_personality
+python3 scripts/query_registry.py compare "Big Five" MBTI
 python3 -m pytest
 ```
 
@@ -123,6 +125,20 @@ Generated outputs are written to:
 - `site/`: simple static HTML documentation
 
 Generated files are deterministic and can be rebuilt locally.
+
+## Retrieval workflows
+
+The repository includes a query CLI for exact lookup, filter retrieval, text search, relationship lookup, and side-by-side comparison.
+
+Examples:
+
+```bash
+python3 scripts/query_registry.py find --ref "Big Five"
+python3 scripts/query_registry.py find --family typology --filter worldview_load=high
+python3 scripts/query_registry.py find --text "identity narrative"
+python3 scripts/query_registry.py find --related-to MBTI
+python3 scripts/query_registry.py compare MBTI Enneagram
+```
 
 ## Agent workflow
 
