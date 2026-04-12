@@ -423,7 +423,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "Integrate GNOMY and other consumers against the current substrate.",
             "Deepen motif mappings and interaction hypotheses where runtime use reveals gaps.",
             "Add research audit and candidate-review surfaces on top of the promotion registry.",
-            "Merge the widened repo identity and current surfaces into main.",
+            "Broaden the canonical model only where real consumer pressure proves the current instrument-first shape too narrow.",
         ],
         "protocol_pack_grammar": {
             "id": "protocol_pack_grammar_v0_1",

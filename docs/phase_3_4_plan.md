@@ -21,7 +21,7 @@ Goal:
 - expand protocol packs where repeated use reveals real demand
 - fill motif and interaction gaps exposed during runtime usage
 - tighten manifest and onboarding around consumer integration
-- merge the widened repo identity into `main`
+- sharpen the public docs and site so consumers understand the substrate on arrival
 
 ### GNOMY work
 

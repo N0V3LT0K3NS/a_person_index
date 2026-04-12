@@ -57,7 +57,7 @@ Target deliverables:
 - successful `GNOMY` use of index programs, program packs, result atoms, motifs, and interaction hypotheses
 - contract hardening based on real runtime pressure
 - richer protocol-pack coverage where repeated use justifies it
-- cleaner merge of the widened repo identity into `main`
+- cleaner consumer-facing documentation and site surfaces
 
 ## Phase 4: Research Ops And Evidence Review
 

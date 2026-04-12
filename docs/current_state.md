@@ -70,7 +70,6 @@ As of the current branch state, the repo includes:
 - Not yet a full HTTP API
 - Not yet a person-level inference engine
 - Not yet a full research operations pipeline with storage, aggregation, review queues, and promotion logs
-- Not yet merged to `main`
 
 ## Highest-value current use
 
@@ -88,4 +87,4 @@ The next highest-value tranche is:
 1. integrate `GNOMY` and other consumers against the current substrate and stabilize the contract
 2. deepen motif mappings and interaction hypotheses across the strongest framework seams exposed by use
 3. add research audit and candidate-review surfaces on top of the promotion registry
-4. merge the widened repo identity and new surfaces into `main`
+4. broaden the canonical model only where real consumer pressure proves the current instrument-first shape too narrow
