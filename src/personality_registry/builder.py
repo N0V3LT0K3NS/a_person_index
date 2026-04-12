@@ -199,23 +199,27 @@ def _inference_lines(bundle: InstrumentBundle) -> list[str]:
     ]
 
 
-def _construct_lines(bundle: InstrumentBundle) -> list[str]:
-    lines: list[str] = []
+def _render_construct_list(bundle: InstrumentBundle) -> str:
+    if not bundle.constructs:
+        return "<p class=\"empty\">None recorded.</p>"
+    items: list[str] = []
     for construct in bundle.constructs:
-        line = f"<strong>{escape(construct.name)}</strong>"
+        line = f"<li id=\"{escape(construct.id)}\"><strong>{escape(construct.name)}</strong>"
         if construct.official_definition:
             line += f"<br />{escape(construct.official_definition)}"
-        lines.append(line)
-    return lines
+        line += "</li>"
+        items.append(line)
+    return "<ul class=\"item-list\">" + "".join(items) + "</ul>"
 
 
-def _crosswalk_lines(bundle: InstrumentBundle, slug_by_instrument_id: dict[str, str]) -> list[str]:
+def _crosswalk_lines(bundle: InstrumentBundle, entity_refs: dict[str, dict[str, str]]) -> list[str]:
     lines: list[str] = []
     for crosswalk in bundle.crosswalks:
-        target_label = escape(crosswalk.target_entity_id)
-        if crosswalk.target_entity_type == "instrument" and crosswalk.target_entity_id in slug_by_instrument_id:
-            slug = slug_by_instrument_id[crosswalk.target_entity_id]
-            target_label = f'<a href="{escape(slug)}.html">{target_label}</a>'
+        target_ref = entity_refs.get(crosswalk.target_entity_id)
+        if target_ref is None:
+            target_label = escape(crosswalk.target_entity_id)
+        else:
+            target_label = f'<a href="{escape(target_ref["href"])}">{escape(target_ref["label"])}</a>'
         lines.append(
             (
                 f"{target_label} <span class=\"muted\">[{escape(crosswalk.relationship_type)} / "
@@ -252,14 +256,14 @@ def _use_case_lines(bundle: InstrumentBundle) -> list[str]:
     return lines
 
 
-def _bundle_html(bundle: InstrumentBundle, slug_by_instrument_id: dict[str, str]) -> str:
+def _bundle_html(bundle: InstrumentBundle, entity_refs: dict[str, dict[str, str]]) -> str:
     metadata = _render_list(_metadata_lines(bundle))
-    constructs = _render_list(_construct_lines(bundle))
+    constructs = _render_construct_list(bundle)
     claims = _render_list(_claim_lines(bundle))
     resources = _render_list(_resource_lines(bundle))
     annotations = _render_list(_annotation_lines(bundle))
     inferences = _render_list(_inference_lines(bundle))
-    crosswalks = _render_list(_crosswalk_lines(bundle, slug_by_instrument_id))
+    crosswalks = _render_list(_crosswalk_lines(bundle, entity_refs))
     risks = _render_list(_risk_lines(bundle))
     use_cases = _render_list(_use_case_lines(bundle))
 
@@ -449,9 +453,22 @@ def build_docs(root: Path) -> None:
         "with_multiple_constructs": sum(1 for entry in audit_entries if entry["coverage"]["has_multiple_constructs"]),
     }
     audit_by_slug = {entry["slug"]: entry for entry in audit_entries}
-    slug_by_instrument_id = {
-        bundle.instrument.id: bundle.slug for _, bundle in sorted(repository.instruments.items())
-    }
+    entity_refs: dict[str, dict[str, str]] = {}
+    for _, bundle in sorted(repository.instruments.items()):
+        entity_refs[bundle.instrument.id] = {
+            "label": bundle.instrument.canonical_name,
+            "href": f"{bundle.slug}.html",
+        }
+        for version in bundle.versions:
+            entity_refs[version.id] = {
+                "label": version.version_label,
+                "href": f"{bundle.slug}.html",
+            }
+        for construct in bundle.constructs:
+            entity_refs[construct.id] = {
+                "label": construct.name,
+                "href": f"{bundle.slug}.html#{construct.id}",
+            }
 
     style = """body { font-family: Georgia, serif; margin: 0; background: linear-gradient(180deg, #f7f1e8 0%, #efe5d6 100%); color: #1c1a16; }
 main { max-width: 1040px; margin: 0 auto; padding: 48px 24px 80px; }
@@ -513,6 +530,6 @@ section { margin-top: 32px; }
 
     for slug, bundle in repository.instruments.items():
         (site_instruments_root / f"{slug}.html").write_text(
-            _bundle_html(bundle, slug_by_instrument_id),
+            _bundle_html(bundle, entity_refs),
             encoding="utf-8",
         )
