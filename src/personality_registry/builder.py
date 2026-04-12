@@ -99,27 +99,168 @@ def _audit_entry(bundle: InstrumentBundle) -> dict:
     }
 
 
-def _docs_index_entry(bundle: InstrumentBundle) -> str:
+def _render_tag_list(values: list[str]) -> str:
+    if not values:
+        return "<p class=\"empty\">None recorded.</p>"
     return (
-        f"<li><a href=\"instruments/{escape(bundle.slug)}.html\">{escape(bundle.instrument.canonical_name)}</a> "
-        f"({escape(bundle.instrument.id)})</li>"
+        "<div class=\"tag-row\">"
+        + "".join(f"<span class=\"tag\">{escape(value)}</span>" for value in values)
+        + "</div>"
     )
 
 
-def _bundle_html(bundle: InstrumentBundle) -> str:
-    def render_items(items: list[str]) -> str:
-        if not items:
-            return "<p>None recorded.</p>"
-        return "<ul>" + "".join(f"<li>{escape(item)}</li>" for item in items) + "</ul>"
+def _render_list(items: list[str]) -> str:
+    if not items:
+        return "<p class=\"empty\">None recorded.</p>"
+    return "<ul class=\"item-list\">" + "".join(f"<li>{item}</li>" for item in items) + "</ul>"
 
-    annotation_lines = [
-        f"{annotation.ontology_dimension}: {', '.join(annotation.ontology_values)}"
+
+def _docs_index_entry(bundle: InstrumentBundle, audit_entry: dict) -> str:
+    family_tags = "".join(f"<span class=\"tag\">{escape(value)}</span>" for value in bundle.instrument.family)
+    coverage_bits = [
+        f"{audit_entry['counts']['resources']} resources",
+        f"{audit_entry['counts']['crosswalks']} crosswalks",
+        f"{audit_entry['counts']['constructs']} constructs",
+    ]
+    return f"""
+<article class="instrument-card">
+  <h2><a href="instruments/{escape(bundle.slug)}.html">{escape(bundle.instrument.canonical_name)}</a></h2>
+  <p class="muted">{escape(bundle.instrument.id)}</p>
+  <p>{escape(bundle.instrument.short_description)}</p>
+  <div class="tag-row">{family_tags}</div>
+  <p class="coverage-line">{escape(" | ".join(coverage_bits))}</p>
+</article>
+"""
+
+
+def _metadata_lines(bundle: InstrumentBundle) -> list[str]:
+    lines = [
+        f"<strong>ID:</strong> {escape(bundle.instrument.id)}",
+        f"<strong>Status:</strong> {escape(bundle.instrument.status)}",
+    ]
+    if bundle.instrument.aliases:
+        lines.append(f"<strong>Aliases:</strong> {escape(', '.join(bundle.instrument.aliases))}")
+    if bundle.instrument.creators:
+        lines.append(f"<strong>Creators:</strong> {escape(', '.join(bundle.instrument.creators))}")
+    if bundle.instrument.publisher_or_owner:
+        lines.append(f"<strong>Publisher / Owner:</strong> {escape(bundle.instrument.publisher_or_owner)}")
+    if bundle.instrument.official_websites:
+        links = ", ".join(
+            f'<a href="{escape(url)}">{escape(url)}</a>' for url in bundle.instrument.official_websites if url
+        )
+        if links:
+            lines.append(f"<strong>Official websites:</strong> {links}")
+    return lines
+
+
+def _resource_lines(bundle: InstrumentBundle) -> list[str]:
+    lines: list[str] = []
+    for resource in bundle.resources:
+        title = escape(resource.title)
+        if resource.url:
+            title = f'<a href="{escape(resource.url)}">{title}</a>'
+        meta_parts = [resource.resource_type, resource.officiality]
+        if resource.publisher:
+            meta_parts.append(resource.publisher)
+        if resource.publication_date:
+            meta_parts.append(str(resource.publication_date))
+        description = f"{title} <span class=\"muted\">({' | '.join(escape(part) for part in meta_parts)})</span>"
+        if resource.notes:
+            description += f"<br />{escape(resource.notes)}"
+        lines.append(description)
+    return lines
+
+
+def _annotation_lines(bundle: InstrumentBundle) -> list[str]:
+    return [
+        (
+            f"<strong>{escape(annotation.ontology_dimension)}</strong>: "
+            f"{escape(', '.join(annotation.ontology_values))} "
+            f"<span class=\"muted\">[{escape(annotation.annotation_status)} / {escape(annotation.confidence)}]</span><br />"
+            f"{escape(annotation.rationale)}"
+        )
         for annotation in bundle.annotations
         if annotation.target_entity_type == "instrument"
     ]
-    claim_lines = [claim.claim_text for claim in bundle.claims]
-    inference_lines = [inference.text for inference in bundle.inferences]
-    construct_lines = [construct.name for construct in bundle.constructs]
+
+
+def _claim_lines(bundle: InstrumentBundle) -> list[str]:
+    return [escape(claim.claim_text) for claim in bundle.claims]
+
+
+def _inference_lines(bundle: InstrumentBundle) -> list[str]:
+    return [
+        (
+            f"{escape(inference.text)} "
+            f"<span class=\"muted\">[{escape(inference.inference_type)} / {escape(inference.confidence)}]</span>"
+        )
+        for inference in bundle.inferences
+    ]
+
+
+def _construct_lines(bundle: InstrumentBundle) -> list[str]:
+    lines: list[str] = []
+    for construct in bundle.constructs:
+        line = f"<strong>{escape(construct.name)}</strong>"
+        if construct.official_definition:
+            line += f"<br />{escape(construct.official_definition)}"
+        lines.append(line)
+    return lines
+
+
+def _crosswalk_lines(bundle: InstrumentBundle, slug_by_instrument_id: dict[str, str]) -> list[str]:
+    lines: list[str] = []
+    for crosswalk in bundle.crosswalks:
+        target_label = escape(crosswalk.target_entity_id)
+        if crosswalk.target_entity_type == "instrument" and crosswalk.target_entity_id in slug_by_instrument_id:
+            slug = slug_by_instrument_id[crosswalk.target_entity_id]
+            target_label = f'<a href="{escape(slug)}.html">{target_label}</a>'
+        lines.append(
+            (
+                f"{target_label} <span class=\"muted\">[{escape(crosswalk.relationship_type)} / "
+                f"{escape(crosswalk.relationship_strength)} / {escape(crosswalk.confidence)}]</span><br />"
+                f"{escape(crosswalk.rationale)}"
+            )
+        )
+    return lines
+
+
+def _risk_lines(bundle: InstrumentBundle) -> list[str]:
+    lines: list[str] = []
+    for risk in bundle.risks:
+        line = (
+            f"<strong>{escape(risk.risk_type)}</strong> <span class=\"muted\">[{escape(risk.severity)}]</span><br />"
+            f"{escape(risk.description)}"
+        )
+        if risk.mitigation:
+            line += f"<br /><em>Mitigation:</em> {escape(risk.mitigation)}"
+        lines.append(line)
+    return lines
+
+
+def _use_case_lines(bundle: InstrumentBundle) -> list[str]:
+    lines: list[str] = []
+    for use_case in bundle.use_cases:
+        line = (
+            f"<strong>{escape(use_case.use_context)}</strong> -> {escape(use_case.utility_type)} "
+            f"<span class=\"muted\">[{escape(use_case.suitability_level)}]</span>"
+        )
+        if use_case.cautions:
+            line += f"<br />{escape(use_case.cautions)}"
+        lines.append(line)
+    return lines
+
+
+def _bundle_html(bundle: InstrumentBundle, slug_by_instrument_id: dict[str, str]) -> str:
+    metadata = _render_list(_metadata_lines(bundle))
+    constructs = _render_list(_construct_lines(bundle))
+    claims = _render_list(_claim_lines(bundle))
+    resources = _render_list(_resource_lines(bundle))
+    annotations = _render_list(_annotation_lines(bundle))
+    inferences = _render_list(_inference_lines(bundle))
+    crosswalks = _render_list(_crosswalk_lines(bundle, slug_by_instrument_id))
+    risks = _render_list(_risk_lines(bundle))
+    use_cases = _render_list(_use_case_lines(bundle))
 
     return f"""<!doctype html>
 <html lang="en">
@@ -130,29 +271,97 @@ def _bundle_html(bundle: InstrumentBundle) -> str:
   </head>
   <body>
     <main>
-      <p><a href="../index.html">Back to registry</a></p>
+      <p><a href="../index.html">Back to registry</a> | <a href="../audit.html">Audit</a></p>
       <h1>{escape(bundle.instrument.canonical_name)}</h1>
       <p>{escape(bundle.instrument.short_description)}</p>
       <section>
+        <h2>Metadata</h2>
+        {metadata}
+      </section>
+      <section>
+        <h2>Families</h2>
+        {_render_tag_list(bundle.instrument.family)}
+      </section>
+      <section>
         <h2>Constructs</h2>
-        {render_items(construct_lines)}
+        {constructs}
       </section>
       <section>
         <h2>Source claims</h2>
-        {render_items(claim_lines)}
+        {claims}
+      </section>
+      <section>
+        <h2>Resources</h2>
+        {resources}
       </section>
       <section>
         <h2>Ontology annotations</h2>
-        {render_items(annotation_lines)}
+        {annotations}
       </section>
       <section>
         <h2>House inferences</h2>
-        {render_items(inference_lines)}
+        {inferences}
+      </section>
+      <section>
+        <h2>Crosswalks</h2>
+        {crosswalks}
+      </section>
+      <section>
+        <h2>Risks</h2>
+        {risks}
+      </section>
+      <section>
+        <h2>Use Cases</h2>
+        {use_cases}
       </section>
       <section>
         <h2>Notes</h2>
-        <pre>{escape(bundle.notes)}</pre>
+        <pre class="notes-block">{escape(bundle.notes)}</pre>
       </section>
+    </main>
+  </body>
+</html>
+"""
+
+
+def _audit_html(audit_entries: list[dict]) -> str:
+    rows = []
+    for entry in audit_entries:
+        rows.append(
+            "<tr>"
+            f"<td><a href=\"instruments/{escape(entry['slug'])}.html\">{escape(entry['canonical_name'])}</a></td>"
+            f"<td>{entry['counts']['resources']}</td>"
+            f"<td>{entry['counts']['crosswalks']}</td>"
+            f"<td>{entry['counts']['constructs']}</td>"
+            f"<td>{'yes' if entry['coverage']['has_official_or_semi_official_resource'] else 'no'}</td>"
+            "</tr>"
+        )
+    return f"""<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Registry Audit</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <p><a href="index.html">Back to registry</a></p>
+      <h1>Registry Audit</h1>
+      <p>Coverage snapshot for the seeded corpus.</p>
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Instrument</th>
+            <th>Resources</th>
+            <th>Crosswalks</th>
+            <th>Constructs</th>
+            <th>Official / Semi</th>
+          </tr>
+        </thead>
+        <tbody>
+          {''.join(rows)}
+        </tbody>
+      </table>
     </main>
   </body>
 </html>
@@ -228,16 +437,44 @@ def build_docs(root: Path) -> None:
     site_root = root / "site"
     site_instruments_root = site_root / "instruments"
     site_instruments_root.mkdir(parents=True, exist_ok=True)
+    audit_entries = [_audit_entry(bundle) for _, bundle in sorted(repository.instruments.items())]
+    audit_summary = {
+        "instrument_count": len(audit_entries),
+        "with_crosswalks": sum(1 for entry in audit_entries if entry["coverage"]["has_crosswalks"]),
+        "with_multiple_resources": sum(1 for entry in audit_entries if entry["coverage"]["has_multiple_resources"]),
+    }
+    audit_by_slug = {entry["slug"]: entry for entry in audit_entries}
+    slug_by_instrument_id = {
+        bundle.instrument.id: bundle.slug for _, bundle in sorted(repository.instruments.items())
+    }
 
-    style = """body { font-family: Georgia, serif; margin: 0; background: #f6f1e8; color: #1c1a16; }
-main { max-width: 920px; margin: 0 auto; padding: 48px 24px 80px; }
+    style = """body { font-family: Georgia, serif; margin: 0; background: linear-gradient(180deg, #f7f1e8 0%, #efe5d6 100%); color: #1c1a16; }
+main { max-width: 1040px; margin: 0 auto; padding: 48px 24px 80px; }
 a { color: #7a2f18; }
 h1, h2 { font-family: 'Palatino Linotype', serif; }
-pre { white-space: pre-wrap; background: #fffaf3; padding: 16px; border: 1px solid #d9c9ae; }
-section { margin-top: 32px; }"""
+section { margin-top: 32px; }
+.muted { color: #6f6352; font-size: 0.95rem; }
+.empty { color: #6f6352; font-style: italic; }
+.notes-block { white-space: pre-wrap; background: #fffaf3; padding: 16px; border: 1px solid #d9c9ae; border-radius: 10px; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.tag { background: #ead8bb; border: 1px solid #d1b78d; border-radius: 999px; padding: 4px 10px; font-size: 0.9rem; }
+.hero { display: grid; gap: 16px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 20px; }
+.stat-card, .instrument-card { background: rgba(255, 250, 243, 0.92); border: 1px solid #d9c9ae; border-radius: 14px; padding: 16px 18px; box-shadow: 0 12px 30px rgba(72, 49, 24, 0.06); }
+.stat-card strong { display: block; font-size: 1.8rem; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.coverage-line { margin-top: 12px; color: #6f6352; font-size: 0.95rem; }
+.item-list { padding-left: 20px; line-height: 1.55; }
+.audit-table { width: 100%; border-collapse: collapse; background: rgba(255, 250, 243, 0.92); border: 1px solid #d9c9ae; border-radius: 14px; overflow: hidden; }
+.audit-table th, .audit-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid #e7d8c0; }
+.audit-table th { background: #ead8bb; }
+"""
     (site_root / "style.css").write_text(style, encoding="utf-8")
 
-    index_items = "\n".join(_docs_index_entry(bundle) for _, bundle in sorted(repository.instruments.items()))
+    index_items = "\n".join(
+        _docs_index_entry(bundle, audit_by_slug[bundle.slug])
+        for _, bundle in sorted(repository.instruments.items())
+    )
     index_html = f"""<!doctype html>
 <html lang="en">
   <head>
@@ -247,14 +484,29 @@ section { margin-top: 32px; }"""
   </head>
   <body>
     <main>
-      <h1>Personality Instrument Registry</h1>
-      <p>Versioned corpus for personality and typology instruments.</p>
-      <ul>{index_items}</ul>
+      <section class="hero">
+        <h1>Personality Instrument Registry</h1>
+        <p>Versioned corpus for personality and typology instruments, with source claims, ontology labels, and house comparison kept separate.</p>
+        <p><a href="audit.html">View registry audit</a></p>
+      </section>
+      <section class="stats">
+        <article class="stat-card"><strong>{audit_summary['instrument_count']}</strong> seeded instruments</article>
+        <article class="stat-card"><strong>{audit_summary['with_multiple_resources']}</strong> with 2+ resources</article>
+        <article class="stat-card"><strong>{audit_summary['with_crosswalks']}</strong> with outgoing crosswalks</article>
+      </section>
+      <section>
+        <h2>Instrument Index</h2>
+        <div class="card-grid">{index_items}</div>
+      </section>
     </main>
   </body>
 </html>
 """
     (site_root / "index.html").write_text(index_html, encoding="utf-8")
+    (site_root / "audit.html").write_text(_audit_html(audit_entries), encoding="utf-8")
 
     for slug, bundle in repository.instruments.items():
-        (site_instruments_root / f"{slug}.html").write_text(_bundle_html(bundle), encoding="utf-8")
+        (site_instruments_root / f"{slug}.html").write_text(
+            _bundle_html(bundle, slug_by_instrument_id),
+            encoding="utf-8",
+        )
