@@ -13,7 +13,9 @@ If you are arriving cold, start here in this order:
 7. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
 8. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
 9. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-10. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+10. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+11. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+12. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 ## What this repo is
 
@@ -26,7 +28,7 @@ The repo has four distinct product layers:
 3. Technique and protocol library
    Reusable methods plus downstream protocols such as `ILENS`.
 4. Research stream
-   Privacy-minimizing contribution models and the result atom schema.
+   Privacy-minimizing contribution models, promotion policy, and the result atom schema.
 
 Do not collapse those layers into one.
 
@@ -98,6 +100,7 @@ npm run mcp:serve
 ## Downstream role
 
 This repo is meant to serve runtimes such as `GNOMY`.
+`GNOMY` is a lead consumer, not the only intended consumer.
 
 It should provide:
 - canonical framework records

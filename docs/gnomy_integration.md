@@ -2,6 +2,8 @@
 
 `GNOMY` should treat this repository as a knowledge and protocol substrate, not as a place to recreate local inference logic from scratch.
 
+`GNOMY` is a lead consumer of this repo, not the only intended consumer.
+
 Arrival references:
 
 - [AGENTS.md](/Users/noveltokens/a_person_index/AGENTS.md)
@@ -22,6 +24,7 @@ Arrival references:
 - protocol specs
 - research contribution models
 - result atom schema
+- research promotion policy
 
 ## Useful local commands
 
@@ -53,6 +56,24 @@ GNOMY should generally:
 3. normalize local outputs into the result atom schema when working below the whole-test level
 4. perform downstream person-level synthesis locally
 5. send back only normalized or distilled research contributions when useful
+
+## Boundary split
+
+This repo should own:
+
+- the map
+- the comparative method library
+- the protocol definitions
+- the governance rules for research return traffic
+
+`GNOMY` should own:
+
+- person-level synthesis
+- runtime execution against user evidence
+- report and interaction behavior
+- adaptation to context and user history
+
+Do not move the person-level inference runtime into this repo.
 
 ## What GNOMY should not send back by default
 

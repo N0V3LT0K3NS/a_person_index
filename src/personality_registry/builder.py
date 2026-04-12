@@ -113,7 +113,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "name": "personality-instrument-registry",
             "version": "0.1.0",
             "status": "active",
-            "current_phase": "phase_2_house_synthesis_and_protocol_substrate",
+            "current_phase": "phase_3_downstream_consumer_integration",
             "canonical_domain": "instrument_centered_framework_registry",
         },
         "product_layers": {
@@ -148,7 +148,23 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "docs/protocol_pack_grammar.md",
             "docs/protocol_packs.md",
             "docs/research_promotion.md",
+            "docs/system_boundaries.md",
+            "docs/phase_3_4_plan.md",
         ],
+        "consumer_model": {
+            "role": "shared_substrate",
+            "lead_example_consumer": "GNOMY",
+            "consumer_agnostic": True,
+            "non_goals": [
+                "person_level_inference_runtime",
+                "raw_personal_data_warehouse",
+                "consumer_quiz_app",
+            ],
+            "adjacent_layers": {
+                "runtime_layer": "Systems such as GNOMY perform person-level synthesis using this repo as a dependency.",
+                "research_ops_layer": "A later evidence pipeline can collect, aggregate, and review structured contributions before proposals come back here.",
+            },
+        },
         "canonical_sources": {
             "instrument_root": "instruments/",
             "ontology_root": "ontology/",
@@ -311,6 +327,12 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "result_atom_schema_id": extensions.result_atom_schema.id,
             "research_promotion_registry_id": extensions.promotion_registry.id,
         },
+        "next_priorities": [
+            "Integrate GNOMY and other consumers against the current substrate.",
+            "Deepen motif mappings and interaction hypotheses where runtime use reveals gaps.",
+            "Add research audit and candidate-review surfaces on top of the promotion registry.",
+            "Merge the widened repo identity and current surfaces into main.",
+        ],
         "protocol_pack_grammar": {
             "id": "protocol_pack_grammar_v0_1",
             "json_path": "generated/protocol_pack_grammar.json",

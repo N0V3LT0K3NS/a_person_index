@@ -22,9 +22,9 @@ Delivered:
 - static docs site
 - validation and tests
 
-## Phase 2: House Synthesis and Protocol Substrate
+## Phase 2: House Synthesis And Protocol Substrate
 
-Status: active and materially underway
+Status: complete enough for real consumer integration
 
 Goal:
 - add the first translation and downstream-consumption layer without breaking the canonical corpus
@@ -44,37 +44,47 @@ Delivered so far:
 - motif, protocol, interaction, research, and curated-pack query surfaces
 - stronger repo-level onboarding, manifesting, and agent-arrival docs
 
-Still to do in this phase:
-- richer mapping density across more framework seams
-- cleaner merge of the widened repo identity into `main`
-
-## Phase 3: Research Promotion and Evidence Flow
+## Phase 3: Downstream Consumer Integration
 
 Status: next
 
 Goal:
-- let downstream runtimes and human contributors feed structured, privacy-minimizing evidence back into the repo
+- prove the repository as a shared dependency surface for real consumers such as `GNOMY`
 
 Target deliverables:
-- staging distinctions such as anecdotal, aggregated, reviewed, promoted
-- research audit surfaces
-- better distinction between canonical truth, house synthesis, and emerging pattern evidence
-- contributor-side tooling and richer audit surfaces around promotion candidates
+- stable consumer contract across MCP, CLI, manifest, and generated artifacts
+- successful `GNOMY` use of protocol packs, result atoms, motifs, and interaction hypotheses
+- contract hardening based on real runtime pressure
+- richer protocol-pack coverage where repeated use justifies it
+- cleaner merge of the widened repo identity into `main`
 
-## Phase 4: Agent and Runtime Surfaces
+## Phase 4: Research Ops And Evidence Review
 
 Status: planned
 
 Goal:
-- make the repo callable as infrastructure by systems such as `GNOMY`
+- turn research governance into an operational evidence loop
 
 Target deliverables:
-- stable agent manifest
-- richer protocol-pack catalogs and downstream service bundles
-- lightweight API or richer MCP surface
-- improved machine-readable service contracts
+- contribution intake outside the canonical corpus
+- anonymization, deduplication, and aggregation
+- research audit surfaces
+- candidate-review outputs for mappings, interactions, and protocols
+- promotion logs and reviewed-change traces
 
-## Phase 5: Comparative Depth and Empirical Refinement
+## Phase 5: Generalized Framework Model
+
+Status: planned
+
+Goal:
+- broaden the canonical model beyond the current instrument-centered shape when real usage reveals where it is too narrow
+
+Target deliverables:
+- clearer umbrella `framework` model
+- subtype-aware canonical records
+- backward-compatible migration path from the current instrument-first corpus
+
+## Phase 6: Comparative Depth And Empirical Refinement
 
 Status: planned
 

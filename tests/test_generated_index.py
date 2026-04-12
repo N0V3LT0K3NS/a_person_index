@@ -83,7 +83,11 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert attachment_entry["coverage"]["has_multiple_use_cases"]
     assert export_payload["protocol_library"]["protocols"][0]["id"].startswith("proto_")
     assert manifest_payload["repository"]["name"] == "personality-instrument-registry"
+    assert manifest_payload["repository"]["current_phase"] == "phase_3_downstream_consumer_integration"
     assert manifest_payload["downstream_contract"]["result_atom_schema_id"] == "ras_result_atom_v0_1"
+    assert manifest_payload["consumer_model"]["lead_example_consumer"] == "GNOMY"
+    assert manifest_payload["consumer_model"]["consumer_agnostic"] is True
+    assert manifest_payload["next_priorities"]
     assert manifest_payload["service_primitives"]
     assert any(item["id"] == "list_protocol_packs" for item in manifest_payload["service_primitives"])
     assert any(item["id"] == "fetch_curated_protocol_pack" for item in manifest_payload["service_primitives"])

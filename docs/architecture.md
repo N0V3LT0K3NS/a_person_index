@@ -48,6 +48,7 @@ Companion docs:
 ## Relationship to GNOMY
 
 `GNOMY` is a downstream runtime and user-facing inference layer.
+It is a lead consumer of this repo, not the only intended consumer.
 
 This repo should serve GNOMY by supplying:
 
@@ -60,6 +61,11 @@ This repo should serve GNOMY by supplying:
 - research-backed caveats
 
 GNOMY, in turn, can send back normalized and privacy-minimizing research contributions rather than raw personal corpora.
+
+See also:
+
+- [system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+- [phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
 
 ## Service primitives
 

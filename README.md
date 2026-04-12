@@ -24,7 +24,9 @@ If you are arriving fresh, read these in order:
 7. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
 8. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
 9. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-10. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+10. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+11. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+12. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 Those files together explain what the repo is, what layer you are editing, how downstream systems should use it, and what is next.
 
@@ -49,9 +51,10 @@ This repo now distinguishes between:
 3. Technique and protocol library
    Reusable comparative methods plus downstream protocol specs such as `ILENS`.
 4. Research stream
-   Contribution models for mapping votes, result-atom bundles, and distilled observations.
+   Contribution models, promotion policy, and result-atom exchange contracts for mapping votes, result-atom bundles, and distilled observations.
 
 These layers should collaborate, but they should not be conflated.
+This repo is a shared substrate for multiple downstream consumers. `GNOMY` is a lead consumer, not the only one.
 
 ## Repository shape
 

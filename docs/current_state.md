@@ -64,7 +64,7 @@ As of the current branch state, the repo includes:
 - Not yet a generalized top-level `framework` registry beyond the current instrument-centered canonical corpus
 - Not yet a full HTTP API
 - Not yet a person-level inference engine
-- Not yet a research-promotion engine that automatically turns contributions into house mappings or interaction hypotheses
+- Not yet a full research operations pipeline with storage, aggregation, review queues, and promotion logs
 - Not yet merged to `main`
 
 ## Highest-value current use
@@ -80,7 +80,7 @@ Right now the repo is most useful as:
 
 The next highest-value tranche is:
 
-1. deepen motif mappings and interaction hypotheses across the strongest framework seams
-2. add research audit and candidate-review surfaces on top of the promotion registry
-3. keep improving repo onboarding and public presentation until the repo itself is self-explanatory
+1. integrate `GNOMY` and other consumers against the current substrate and stabilize the contract
+2. deepen motif mappings and interaction hypotheses across the strongest framework seams exposed by use
+3. add research audit and candidate-review surfaces on top of the promotion registry
 4. merge the widened repo identity and new surfaces into `main`
