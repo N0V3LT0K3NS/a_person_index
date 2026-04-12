@@ -10,6 +10,32 @@
     "github_url": "https://github.com/N0V3LT0K3NS/a_person_index",
     "homepage_url": "https://a-person-index.netlify.app"
   },
+  "site_variants": [
+    {
+      "id": "atlas",
+      "title": "Atlas of Personhood Systems",
+      "path": "landing-atlas.html",
+      "summary": "Editorial flagship direction that frames A Person Index as the comparative atlas where frameworks can finally talk without being flattened.",
+      "audience": "public_and_generalist",
+      "recommended": true
+    },
+    {
+      "id": "signal",
+      "title": "Signal Stack",
+      "path": "landing-signal.html",
+      "summary": "Systems-facing direction that emphasizes the runtime pipeline from canonical records to motifs, programs, packs, and research-safe return traffic.",
+      "audience": "agents_and_runtime_builders",
+      "recommended": false
+    },
+    {
+      "id": "field-guide",
+      "title": "Field Guide",
+      "path": "landing-field-guide.html",
+      "summary": "Minimal research and curator-facing direction that emphasizes boundaries, editorial stance, and long-term corpus discipline.",
+      "audience": "curators_and_researchers",
+      "recommended": false
+    }
+  ],
   "product_layers": {
     "canonical_registry": {
       "instrument_count": 15
@@ -71,6 +97,7 @@
     "docs/architecture.md",
     "docs/index_programs.md",
     "docs/codex_automation.md",
+    "docs/site_design_options.md",
     "docs/gnomy_integration.md",
     "docs/mcp.md",
     "docs/protocol_pack_grammar.md",
@@ -293,7 +320,7 @@
     "Integrate GNOMY and other consumers against the current substrate.",
     "Deepen motif mappings and interaction hypotheses where runtime use reveals gaps.",
     "Add research audit and candidate-review surfaces on top of the promotion registry.",
-    "Merge the widened repo identity and current surfaces into main."
+    "Broaden the canonical model only where real consumer pressure proves the current instrument-first shape too narrow."
   ],
   "protocol_pack_grammar": {
     "id": "protocol_pack_grammar_v0_1",

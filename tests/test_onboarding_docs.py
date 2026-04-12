@@ -9,6 +9,7 @@ def test_onboarding_docs_exist(repo_root):
         repo_root / "docs" / "current_state.md",
         repo_root / "docs" / "index_programs.md",
         repo_root / "docs" / "codex_automation.md",
+        repo_root / "docs" / "site_design_options.md",
         repo_root / "docs" / "mcp.md",
         repo_root / "docs" / "roadmap.md",
         repo_root / "docs" / "protocol_pack_grammar.md",
@@ -32,6 +33,7 @@ def test_readme_links_to_onboarding_surface(repo_root):
     assert "docs/current_state.md" in readme
     assert "docs/index_programs.md" in readme
     assert "docs/codex_automation.md" in readme
+    assert "docs/site_design_options.md" in readme
     assert "docs/mcp.md" in readme
     assert "docs/roadmap.md" in readme
     assert "docs/protocol_pack_grammar.md" in readme

@@ -6,6 +6,10 @@ from pathlib import Path
 
 from personality_registry.audit import audit_summary, bundle_audit_entry
 from personality_registry.extensions import ExtensionRegistryData, load_extensions_strict
+from personality_registry.landing_options import (
+    landing_site_bundle,
+    landing_variants_manifest,
+)
 from personality_registry.loader import InstrumentBundle, load_repository_strict
 from personality_registry.query import (
     compare_instruments,
@@ -122,17 +126,6 @@ def _render_list(items: list[str]) -> str:
     return "<ul class=\"item-list\">" + "".join(f"<li>{item}</li>" for item in items) + "</ul>"
 
 
-def _layer_card(title: str, count: int, noun: str, description: str) -> str:
-    return f"""
-<article class="instrument-card layer-card">
-  <p class="eyebrow">Layer</p>
-  <h2>{escape(title)}</h2>
-  <p class="coverage-line"><strong>{count}</strong> {escape(noun)}</p>
-  <p>{escape(description)}</p>
-</article>
-"""
-
-
 def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
     return {
         "repository": {
@@ -146,6 +139,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "github_url": "https://github.com/N0V3LT0K3NS/a_person_index",
             "homepage_url": "https://a-person-index.netlify.app",
         },
+        "site_variants": landing_variants_manifest(),
         "product_layers": {
             "canonical_registry": {
                 "instrument_count": len(repository.instruments),
@@ -201,6 +195,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "docs/architecture.md",
             "docs/index_programs.md",
             "docs/codex_automation.md",
+            "docs/site_design_options.md",
             "docs/gnomy_integration.md",
             "docs/mcp.md",
             "docs/protocol_pack_grammar.md",
@@ -782,7 +777,7 @@ def build_outputs(root: Path) -> dict:
     instrument_output_root.mkdir(parents=True, exist_ok=True)
     protocol_pack_output_root.mkdir(parents=True, exist_ok=True)
     for stale_path in protocol_pack_output_root.glob("*.json"):
-        stale_path.unlink()
+        stale_path.unlink(missing_ok=True)
 
     protocol_pack_payloads = {
         item.id: curated_protocol_pack_record(repository, extensions, item.id)
@@ -861,9 +856,11 @@ def build_outputs(root: Path) -> dict:
             ],
             "result_atom_schema": extensions.result_atom_schema.model_dump(mode="json"),
         },
+        "site_variants": landing_variants_manifest(),
     }
     manifest_payload = _manifest_payload(repository, extensions)
     protocol_pack_grammar_payload = protocol_pack_grammar()
+    site_variants_payload = {"variants": landing_variants_manifest()}
 
     (generated_root / "index.json").write_text(json.dumps(index_payload, indent=2), encoding="utf-8")
     (generated_root / "search.json").write_text(json.dumps(search_payload, indent=2), encoding="utf-8")
@@ -880,6 +877,10 @@ def build_outputs(root: Path) -> dict:
     )
     (generated_root / "protocol_pack_grammar.json").write_text(
         json.dumps(protocol_pack_grammar_payload, indent=2),
+        encoding="utf-8",
+    )
+    (generated_root / "site_variants.json").write_text(
+        json.dumps(site_variants_payload, indent=2),
         encoding="utf-8",
     )
 
@@ -1535,7 +1536,7 @@ def build_docs(root: Path) -> None:
     site_comparisons_root.mkdir(parents=True, exist_ok=True)
     site_protocol_packs_root.mkdir(parents=True, exist_ok=True)
     for stale_path in site_protocol_packs_root.glob("*.json"):
-        stale_path.unlink()
+        stale_path.unlink(missing_ok=True)
     audit_entries = [bundle_audit_entry(bundle) for _, bundle in sorted(repository.instruments.items())]
     audit_snapshot = audit_summary(audit_entries)
     audit_by_slug = {entry["slug"]: entry for entry in audit_entries}
@@ -1582,6 +1583,23 @@ def build_docs(root: Path) -> None:
         ],
         "result_atom_schema": extensions.result_atom_schema.model_dump(mode="json"),
     }
+    landing_context = {
+        "repo_url": "https://github.com/N0V3LT0K3NS/a_person_index",
+        "site_url": "https://a-person-index.netlify.app",
+        "stats": {
+            "frameworks": audit_snapshot["instrument_count"],
+            "motifs": len(extensions.motifs),
+            "mappings": len(extensions.mappings),
+            "interactions": len(extensions.interaction_hypotheses),
+            "programs": len(extensions.protocols),
+            "packs": len(extensions.protocol_packs),
+            "research_models": len(extensions.contribution_models),
+        },
+        "instrument_names": [
+            bundle.instrument.canonical_name for _, bundle in sorted(repository.instruments.items())
+        ],
+    }
+    landing_bundle = landing_site_bundle(landing_context)
 
     style = """:root {
   --bg-top: #f7f2e8;
@@ -1768,6 +1786,7 @@ section { margin-top: 36px; }
 }
 """
     (site_root / "style.css").write_text(style, encoding="utf-8")
+    (site_root / "landing.css").write_text(landing_bundle["css"], encoding="utf-8")
     (site_root / "favicon.svg").write_text(_favicon_svg(), encoding="utf-8")
     (site_data_root / "search.json").write_text(json.dumps(search_payload, indent=2), encoding="utf-8")
     (site_data_root / "audit.json").write_text(
@@ -1789,241 +1808,18 @@ section { margin-top: 36px; }
         json.dumps(protocol_pack_grammar_payload, indent=2),
         encoding="utf-8",
     )
+    (site_data_root / "site_variants.json").write_text(
+        json.dumps({"variants": landing_bundle["variants"]}, indent=2),
+        encoding="utf-8",
+    )
     for pack_id, payload in protocol_pack_payloads.items():
         (site_protocol_packs_root / f"{pack_id}.json").write_text(
             json.dumps(payload, indent=2),
             encoding="utf-8",
         )
 
-    featured_instrument_tags = _render_tag_list(
-        [bundle.instrument.canonical_name for _, bundle in sorted(repository.instruments.items())]
-    )
-    layer_cards = "\n".join(
-        [
-            _layer_card(
-                "Canonical Registry",
-                audit_snapshot["instrument_count"],
-                "framework records",
-                "Versioned source claims, ontology annotations, inferences, crosswalks, risks, and use cases for the current instrument-centered corpus.",
-            ),
-            _layer_card(
-                "House Synthesis",
-                len(extensions.motifs),
-                "motifs",
-                "Provisional translation motifs and construct mappings that let the repo compare frameworks without forcing false equivalence.",
-            ),
-            _layer_card(
-                "Interaction Hypotheses",
-                len(extensions.interaction_hypotheses),
-                "interaction hypotheses",
-                "House hypotheses about where constructs and motifs reinforce, tension, mask, or compensate for each other in downstream synthesis.",
-            ),
-            _layer_card(
-                "Index Programs",
-                len(extensions.protocols),
-                "program specs",
-                "Named downstream index programs such as ILENS, Paradox Finder, Translation Memo, and Human Model Card, composed from reusable comparative techniques.",
-            ),
-            _layer_card(
-                "Research Stream",
-                len(extensions.contribution_models),
-                "contribution models",
-                "Privacy-minimizing intake models plus a staged promotion policy for moving reviewed research into house synthesis or protocol revision.",
-            ),
-        ]
-    )
-    value_cards = "\n".join(
-        [
-            _extension_card(
-                eyebrow="What it does",
-                title="Keeps frameworks intact",
-                body="Stores each framework in its own terms, with source claims, versions, constructs, risks, and use cases preserved rather than flattened.",
-                tags=["canonical registry", "provenance", "versioned corpus"],
-            ),
-            _extension_card(
-                eyebrow="What it does",
-                title="Translates across systems",
-                body="Uses motifs, mappings, and interaction hypotheses as a house interlingua so agents can compare overlap, divergence, and incommensurability.",
-                tags=["house synthesis", "motifs", "cross-system translation"],
-            ),
-            _extension_card(
-                eyebrow="What it does",
-                title="Composes analyses like legos",
-                body="Builds small reusable techniques into named index programs such as Paradox Finder, Translation Memo, ILENS, and Human Model Card.",
-                tags=["techniques", "index programs", "runtime packs"],
-            ),
-            _extension_card(
-                eyebrow="What it does",
-                title="Supports downstream runtimes safely",
-                body="Exposes a CLI, generated JSON, and MCP surface so systems like GNOMY can consume the map without mixing runtime inference back into source truth.",
-                tags=["MCP", "CLI", "consumer-agnostic"],
-            ),
-        ]
-    )
-    consumer_cards = "\n".join(
-        [
-            _extension_card(
-                eyebrow="Who it serves",
-                title="Curators",
-                body="People extending the corpus, refining mappings, and keeping the ontology, motifs, and programs coherent over time.",
-                tags=["Git-native", "schema validation", "reviewable"],
-            ),
-            _extension_card(
-                eyebrow="Who it serves",
-                title="Agents",
-                body="Automation and analysis agents that need canonical records, translation handles, interaction hypotheses, and structured return contracts on arrival.",
-                tags=["manifest", "CLI", "MCP"],
-            ),
-            _extension_card(
-                eyebrow="Who it serves",
-                title="Runtimes like GNOMY",
-                body="Downstream systems that perform person-level synthesis locally while depending on this repo for shared knowledge, methods, and governance.",
-                tags=["shared substrate", "result atoms", "research-safe return traffic"],
-            ),
-        ]
-    )
-    repo_url = "https://github.com/N0V3LT0K3NS/a_person_index"
-    index_html = f"""<!doctype html>
-<html lang="en">
-  {_site_head("A Person Index (API)", "A Git-native substrate for personhood frameworks, house synthesis motifs, index programs, runtime packs, and research-safe return contracts.", "style.css", "favicon.svg")}
-  <body>
-    <main>
-      {_nav_html("", "registry")}
-      <section class="hero-panel">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow">A Person Index</p>
-            <h1 class="hero-title">One place for personhood frameworks to finally talk to each other.</h1>
-            <p class="page-lead">A Person Index (API) is a Git-native substrate for storing personhood frameworks faithfully, translating across them through a shared house interlingua, and composing reusable analysis programs that downstream runtimes can call without re-deriving the map by hand.</p>
-            <div class="action-row">
-              <a class="action-link primary" href="protocols.html">Browse programs</a>
-              <a class="action-link" href="search.html">Search the corpus</a>
-              <a class="action-link" href="compare.html">See comparisons</a>
-              <a class="action-link" href="{repo_url}">Open GitHub</a>
-            </div>
-          </div>
-          <aside class="hero-aside">
-            <p class="eyebrow">Why it matters</p>
-            <h2>More than a registry</h2>
-            <ul>
-              <li>Faithful canonical records for frameworks in their own terms</li>
-              <li>A house translation layer for fuzzy, partial, and non-equivalent mappings</li>
-              <li>Composable programs like `Paradox Finder` and `ILENS`</li>
-              <li>Research-safe return contracts for downstream systems</li>
-            </ul>
-            <div class="hero-note">
-              <p class="muted">Current canonical slice: instrument-centered, with the broader framework model and research ops layer planned next.</p>
-            </div>
-          </aside>
-        </div>
-      </section>
-      <section class="stats">
-        <article class="stat-card"><strong>{audit_snapshot['instrument_count']}</strong> seeded instruments</article>
-        <article class="stat-card"><strong>{audit_snapshot['instruments_with_multiple_resources']}</strong> with 2+ resources</article>
-        <article class="stat-card"><strong>{audit_snapshot['instruments_with_multiple_constructs']}</strong> with 2+ constructs</article>
-        <article class="stat-card"><strong>{audit_snapshot['instruments_with_crosswalks']}</strong> with outgoing crosswalks</article>
-      </section>
-      <section>
-        <div class="section-heading">
-          <p class="eyebrow">What it does</p>
-          <h2>Built to archive, translate, compose, and return signal.</h2>
-          <p class="muted">The point is not to rank frameworks by legitimacy and stop. The point is to preserve them, dimension them, and make them interoperable without destroying their differences.</p>
-        </div>
-        <div class="card-grid">{value_cards}</div>
-      </section>
-      <section class="home-band">
-        <div class="section-heading">
-          <p class="eyebrow">Composition Model</p>
-          <h2>Low-tech legos, not magical black boxes.</h2>
-          <p class="muted">A Person Index separates atomic operations from composed analyses and then hydrates those analyses into scoped runtime bundles.</p>
-        </div>
-        <div class="stack-grid">
-          <article class="stack-step">
-            <strong>1. Techniques</strong>
-            <h3>Small reusable operations</h3>
-            <p>Atomic moves such as `Paradox Scan`, `Cross-Framework Translation`, and `Result Atom Decomposition`.</p>
-            <div class="pill-list"><span class="pill">atomic</span><span class="pill">reusable</span><span class="pill">comparative</span></div>
-          </article>
-          <article class="stack-step">
-            <strong>2. Index programs</strong>
-            <h3>Named composed analyses</h3>
-            <p>Programs such as `Paradox Finder`, `Translation Memo`, `ILENS`, and `Human Model Card` that compose techniques into a stable workflow.</p>
-            <div class="pill-list"><span class="pill">Paradox Finder</span><span class="pill">ILENS</span><span class="pill">Translation Memo</span></div>
-          </article>
-          <article class="stack-step">
-            <strong>3. Program packs</strong>
-            <h3>Scoped runtime bundles</h3>
-            <p>Curated or dynamic packs that attach frameworks, motifs, mappings, interactions, and return contracts to a specific program run.</p>
-            <div class="pill-list"><span class="pill">scoped</span><span class="pill">runtime-ready</span><span class="pill">reviewed</span></div>
-          </article>
-        </div>
-      </section>
-      <section>
-        <div class="section-heading">
-          <p class="eyebrow">Who it serves</p>
-          <h2>A shared substrate, not a single consumer’s private ontology.</h2>
-          <p class="muted">GNOMY is a lead consumer, but the repo is designed to remain useful to curators, agents, compare tools, and future research workflows.</p>
-        </div>
-        <div class="card-grid">{consumer_cards}</div>
-      </section>
-      <section>
-        <h2>Product Layers</h2>
-        <div class="layer-grid">{layer_cards}</div>
-      </section>
-      <section>
-        <div class="section-heading">
-          <p class="eyebrow">Current Canonical Slice</p>
-          <h2>Fifteen seeded systems across psychometric, symbolic, workplace, and relational domains.</h2>
-          <p class="muted">The current corpus is instrument-centered, but the repo is already structured for the broader framework and program model.</p>
-        </div>
-        {featured_instrument_tags}
-        <div class="action-row">
-          <a class="action-link" href="search.html">Browse all framework records</a>
-          <a class="action-link" href="motifs.html">See the motif layer</a>
-          <a class="action-link" href="protocol-packs.html">See curated packs</a>
-          <a class="action-link" href="audit.html">See curation coverage</a>
-        </div>
-      </section>
-      <section class="home-band">
-        <div class="section-heading">
-          <p class="eyebrow">Start Here</p>
-          <h2>Three practical entry points.</h2>
-        </div>
-        <div class="stack-grid">
-          <article class="stack-step">
-            <strong>Curator</strong>
-            <h3>Extend the corpus</h3>
-            <p>Start with the repo docs, source YAML, and validation flow if you want to add frameworks, motifs, mappings, or programs.</p>
-            <div class="link-list">
-              <a href="{repo_url}">Open the GitHub repo</a>
-            </div>
-          </article>
-          <article class="stack-step">
-            <strong>Agent</strong>
-            <h3>Query the substrate</h3>
-            <p>Use the search, compare, motif, interaction, and program surfaces, or consume the manifest and MCP adapter directly.</p>
-            <div class="link-list">
-              <a href="search.html">Search</a>
-              <a href="protocols.html">Programs</a>
-              <a href="research.html">Research</a>
-            </div>
-          </article>
-          <article class="stack-step">
-            <strong>Runtime</strong>
-            <h3>Call packs, not vibes</h3>
-            <p>Fetch a program pack when the task is known, use the result atom schema when reasoning at the part level, and return only research-safe contribution shapes.</p>
-            <div class="link-list">
-              <a href="protocol-packs.html">Curated packs</a>
-              <a href="interactions.html">Interaction hypotheses</a>
-            </div>
-          </article>
-        </div>
-      </section>
-    </main>
-  </body>
-</html>
-"""
-    (site_root / "index.html").write_text(index_html, encoding="utf-8")
+    for name, html in landing_bundle["pages"].items():
+        (site_root / name).write_text(html, encoding="utf-8")
     (site_root / "audit.html").write_text(_audit_html(audit_entries, audit_snapshot), encoding="utf-8")
     (site_root / "search.html").write_text(_search_html(), encoding="utf-8")
     (site_root / "compare.html").write_text(_compare_index_html(comparison_entries), encoding="utf-8")

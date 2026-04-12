@@ -58,6 +58,7 @@ As of the current branch state, the repo includes:
 - read-only MCP adapter
 - Deterministic generated outputs
 - Static documentation site
+- Three generated landing-page directions for the public site
 - Contribution and governance docs
 - GitHub issue and PR templates
 - Codex task workflow scaffold

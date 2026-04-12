@@ -17,10 +17,16 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     protocol_packs_path = repo_root / "site" / "protocol-packs.html"
     research_path = repo_root / "site" / "research.html"
     favicon_path = repo_root / "site" / "favicon.svg"
+    landing_css_path = repo_root / "site" / "landing.css"
+    landing_options_path = repo_root / "site" / "landing-options.html"
+    landing_atlas_path = repo_root / "site" / "landing-atlas.html"
+    landing_signal_path = repo_root / "site" / "landing-signal.html"
+    landing_field_guide_path = repo_root / "site" / "landing-field-guide.html"
     search_data_path = repo_root / "site" / "data" / "search.json"
     comparisons_data_path = repo_root / "site" / "data" / "comparisons.json"
     extensions_data_path = repo_root / "site" / "data" / "extensions.json"
     manifest_data_path = repo_root / "site" / "data" / "manifest.json"
+    site_variants_data_path = repo_root / "site" / "data" / "site_variants.json"
     protocol_pack_grammar_data_path = repo_root / "site" / "data" / "protocol_pack_grammar.json"
     protocol_pack_index_data_path = repo_root / "site" / "data" / "protocol_packs" / "index.json"
     research_promotion_data_path = repo_root / "site" / "data" / "research_promotion.json"
@@ -38,10 +44,16 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     assert protocol_packs_path.exists()
     assert research_path.exists()
     assert favicon_path.exists()
+    assert landing_css_path.exists()
+    assert landing_options_path.exists()
+    assert landing_atlas_path.exists()
+    assert landing_signal_path.exists()
+    assert landing_field_guide_path.exists()
     assert search_data_path.exists()
     assert comparisons_data_path.exists()
     assert extensions_data_path.exists()
     assert manifest_data_path.exists()
+    assert site_variants_data_path.exists()
     assert protocol_pack_grammar_data_path.exists()
     assert protocol_pack_index_data_path.exists()
     assert research_promotion_data_path.exists()
@@ -58,17 +70,25 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     protocols_html = protocols_path.read_text(encoding="utf-8")
     protocol_packs_html = protocol_packs_path.read_text(encoding="utf-8")
     research_html = research_path.read_text(encoding="utf-8")
+    landing_options_html = landing_options_path.read_text(encoding="utf-8")
+    landing_atlas_html = landing_atlas_path.read_text(encoding="utf-8")
+    landing_signal_html = landing_signal_path.read_text(encoding="utf-8")
+    landing_field_guide_html = landing_field_guide_path.read_text(encoding="utf-8")
     instrument_html = instrument_path.read_text(encoding="utf-8")
     hexaco_html = hexaco_path.read_text(encoding="utf-8")
     compare_html = compare_path.read_text(encoding="utf-8")
 
-    assert "One place for personhood frameworks to finally talk to each other." in index_html
-    assert "Low-tech legos, not magical black boxes." in index_html
-    assert "A shared substrate, not a single consumer’s private ontology." in index_html
-    assert "Current Canonical Slice" in index_html
-    assert "Product Layers" in index_html
+    assert "Finally, a map where personhood frameworks can talk." in index_html
+    assert "landing.css" in index_html
+    assert "Atlas / flagship direction" in index_html
     assert 'meta name="viewport" content="width=device-width, initial-scale=1"' in index_html
     assert 'link rel="icon" href="favicon.svg" type="image/svg+xml"' in index_html
+    assert "Three ways to present the same substrate." in landing_options_html
+    assert "Atlas of Personhood Systems" in landing_options_html
+    assert "From frameworks to circuitry." in landing_signal_html
+    assert "A field guide to systems that describe a person." in landing_field_guide_html
+    assert "curator and research audiences" in landing_options_html
+    assert "The job is not to flatten these systems into one bucket." in landing_atlas_html
     assert "Index Audit" in audit_html
     assert "With 2+ claims" in audit_html
     assert "<th>Claims</th>" in audit_html

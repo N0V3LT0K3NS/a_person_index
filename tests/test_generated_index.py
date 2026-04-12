@@ -12,6 +12,7 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     search_path = repo_root / "generated" / "search.json"
     audit_path = repo_root / "generated" / "audit.json"
     manifest_path = repo_root / "generated" / "manifest.json"
+    site_variants_path = repo_root / "generated" / "site_variants.json"
     protocol_pack_grammar_path = repo_root / "generated" / "protocol_pack_grammar.json"
     protocol_pack_index_path = repo_root / "generated" / "protocol_packs" / "index.json"
     curated_protocol_pack_path = (
@@ -24,6 +25,7 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert search_path.exists()
     assert audit_path.exists()
     assert manifest_path.exists()
+    assert site_variants_path.exists()
     assert protocol_pack_grammar_path.exists()
     assert protocol_pack_index_path.exists()
     assert curated_protocol_pack_path.exists()
@@ -34,6 +36,7 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     search_payload = json.loads(search_path.read_text(encoding="utf-8"))
     audit_payload = json.loads(audit_path.read_text(encoding="utf-8"))
     manifest_payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+    site_variants_payload = json.loads(site_variants_path.read_text(encoding="utf-8"))
     protocol_pack_grammar_payload = json.loads(protocol_pack_grammar_path.read_text(encoding="utf-8"))
     protocol_pack_index_payload = json.loads(protocol_pack_index_path.read_text(encoding="utf-8"))
     research_promotion_payload = json.loads(research_promotion_path.read_text(encoding="utf-8"))
@@ -90,6 +93,8 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert manifest_payload["repository"]["github_url"] == "https://github.com/N0V3LT0K3NS/a_person_index"
     assert manifest_payload["repository"]["homepage_url"] == "https://a-person-index.netlify.app"
     assert manifest_payload["repository"]["current_phase"] == "phase_3_downstream_consumer_integration"
+    assert len(manifest_payload["site_variants"]) == 3
+    assert any(item["id"] == "atlas" and item["recommended"] for item in manifest_payload["site_variants"])
     assert manifest_payload["downstream_contract"]["result_atom_schema_id"] == "ras_result_atom_v0_1"
     assert manifest_payload["consumer_model"]["lead_example_consumer"] == "GNOMY"
     assert manifest_payload["consumer_model"]["consumer_agnostic"] is True
@@ -112,5 +117,7 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert "fetch_research_promotion_policy" in manifest_payload["interfaces"]["mcp"]["tool_ids"]
     assert protocol_pack_index_payload["protocol_packs"]
     assert protocol_pack_index_payload["protocol_packs"][0]["id"].startswith("ppk_")
+    assert len(site_variants_payload["variants"]) == 3
+    assert {item["id"] for item in site_variants_payload["variants"]} == {"atlas", "signal", "field-guide"}
     assert research_promotion_payload["id"] == "research_promotion_v0_1"
     assert protocol_pack_grammar_payload["id"] == "protocol_pack_grammar_v0_1"

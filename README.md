@@ -4,6 +4,8 @@ A Person Index (API) is a Git-native, agent-readable comparative substrate for p
 
 Live site: [a-person-index.netlify.app](https://a-person-index.netlify.app)
 
+Landing directions: [site/landing-options.html](/Users/noveltokens/a_person_index/site/landing-options.html) and [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
+
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
 1. Canonical registry
@@ -26,14 +28,15 @@ If you are arriving fresh, read these in order:
 6. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
 7. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
 8. [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md)
-9. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
-10. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
-11. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-12. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-13. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-14. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-15. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-16. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+9. [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
+10. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+11. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
+12. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+13. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+14. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+15. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+16. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+17. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 Those files together explain what the repo is, what layer you are editing, how downstream systems should use it, and what is next.
 
