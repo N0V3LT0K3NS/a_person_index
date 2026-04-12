@@ -13,3 +13,14 @@ resources:
   officiality: official
   notes: Official instrument page describing the HEXACO-PI-R and its 60-, 100-, and
     200-item self-report and observer versions.
+- instrument_id: instr_hexaco
+  version_id: ver_hexaco_general
+  language: en
+  access_status: public
+  id: res_hexaco_scale_descriptions
+  resource_type: reference
+  title: HEXACO Scale Descriptions
+  url: https://hexaco.org/scaledescriptions
+  publisher: HEXACO
+  officiality: official
+  notes: Official descriptions of the six HEXACO dimensions and their facet structure.

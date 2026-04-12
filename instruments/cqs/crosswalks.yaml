@@ -1,1 +1,13 @@
-crosswalks: []
+crosswalks:
+- id: xwk_cqs_big_five_contextual_capability
+  source_entity_type: instrument
+  source_entity_id: instr_cqs
+  target_entity_type: instrument
+  target_entity_id: instr_big_five
+  relationship_type: different_layer_of_personhood
+  relationship_strength: medium
+  rationale: CQS measures context-specific intercultural capability, while Big Five
+    measures broad trait tendencies. Both matter for cross-cultural effectiveness,
+    but they operate at different explanatory layers.
+  confidence: high
+  notes: House comparison between capability and trait layers.

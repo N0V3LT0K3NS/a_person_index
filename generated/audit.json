@@ -1,8 +1,8 @@
 {
   "summary": {
     "instrument_count": 15,
-    "instruments_with_crosswalks": 2,
-    "instruments_with_multiple_resources": 3,
+    "instruments_with_crosswalks": 15,
+    "instruments_with_multiple_resources": 15,
     "instruments_with_official_or_semi_official_resource": 12
   },
   "instruments": [
@@ -14,19 +14,19 @@
         "versions": 1,
         "constructs": 1,
         "claims": 1,
-        "resources": 1,
+        "resources": 2,
         "annotations": 24,
         "inferences": 1,
-        "crosswalks": 0,
+        "crosswalks": 1,
         "risks": 1,
         "use_cases": 1
       },
       "resource_officiality": {
-        "secondary": 1
+        "secondary": 2
       },
       "coverage": {
-        "has_crosswalks": false,
-        "has_multiple_resources": false,
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
         "has_official_or_semi_official_resource": false
       }
     },
@@ -63,19 +63,19 @@
         "versions": 1,
         "constructs": 1,
         "claims": 1,
-        "resources": 1,
+        "resources": 2,
         "annotations": 24,
         "inferences": 1,
-        "crosswalks": 0,
+        "crosswalks": 1,
         "risks": 1,
         "use_cases": 1
       },
       "resource_officiality": {
-        "official": 1
+        "official": 2
       },
       "coverage": {
-        "has_crosswalks": false,
-        "has_multiple_resources": false,
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -87,19 +87,19 @@
         "versions": 1,
         "constructs": 1,
         "claims": 1,
-        "resources": 1,
+        "resources": 2,
         "annotations": 24,
         "inferences": 1,
-        "crosswalks": 0,
+        "crosswalks": 1,
         "risks": 1,
         "use_cases": 1
       },
       "resource_officiality": {
-        "official": 1
+        "official": 2
       },
       "coverage": {
-        "has_crosswalks": false,
-        "has_multiple_resources": false,
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -111,19 +111,19 @@
         "versions": 1,
         "constructs": 1,
         "claims": 1,
-        "resources": 1,
+        "resources": 2,
         "annotations": 24,
         "inferences": 1,
-        "crosswalks": 0,
+        "crosswalks": 1,
         "risks": 1,
         "use_cases": 1
       },
       "resource_officiality": {
-        "official": 1
+        "official": 2
       },
       "coverage": {
-        "has_crosswalks": false,
-        "has_multiple_resources": false,
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -135,19 +135,19 @@
         "versions": 1,
         "constructs": 1,
         "claims": 1,
-        "resources": 1,
+        "resources": 2,
         "annotations": 24,
         "inferences": 1,
-        "crosswalks": 0,
+        "crosswalks": 1,
         "risks": 1,
         "use_cases": 1
       },
       "resource_officiality": {
-        "secondary": 1
+        "secondary": 2
       },
       "coverage": {
-        "has_crosswalks": false,
-        "has_multiple_resources": false,
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
         "has_official_or_semi_official_resource": false
       }
     },
@@ -159,19 +159,19 @@
         "versions": 1,
         "constructs": 1,
         "claims": 1,
-        "resources": 1,
+        "resources": 2,
         "annotations": 24,
         "inferences": 1,
-        "crosswalks": 0,
+        "crosswalks": 1,
         "risks": 1,
         "use_cases": 1
       },
       "resource_officiality": {
-        "semi_official": 1
+        "semi_official": 2
       },
       "coverage": {
-        "has_crosswalks": false,
-        "has_multiple_resources": false,
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -186,7 +186,7 @@
         "resources": 2,
         "annotations": 24,
         "inferences": 2,
-        "crosswalks": 0,
+        "crosswalks": 1,
         "risks": 2,
         "use_cases": 2
       },
@@ -194,7 +194,7 @@
         "semi_official": 2
       },
       "coverage": {
-        "has_crosswalks": false,
+        "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_official_or_semi_official_resource": true
       }
@@ -207,19 +207,19 @@
         "versions": 1,
         "constructs": 1,
         "claims": 1,
-        "resources": 1,
+        "resources": 2,
         "annotations": 24,
         "inferences": 1,
-        "crosswalks": 0,
+        "crosswalks": 1,
         "risks": 1,
         "use_cases": 1
       },
       "resource_officiality": {
-        "official": 1
+        "official": 2
       },
       "coverage": {
-        "has_crosswalks": false,
-        "has_multiple_resources": false,
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -231,19 +231,19 @@
         "versions": 1,
         "constructs": 1,
         "claims": 1,
-        "resources": 1,
+        "resources": 2,
         "annotations": 24,
         "inferences": 1,
-        "crosswalks": 0,
+        "crosswalks": 1,
         "risks": 1,
         "use_cases": 1
       },
       "resource_officiality": {
-        "official": 1
+        "official": 2
       },
       "coverage": {
-        "has_crosswalks": false,
-        "has_multiple_resources": false,
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -255,19 +255,19 @@
         "versions": 1,
         "constructs": 1,
         "claims": 1,
-        "resources": 1,
+        "resources": 2,
         "annotations": 24,
         "inferences": 1,
-        "crosswalks": 0,
+        "crosswalks": 1,
         "risks": 1,
         "use_cases": 1
       },
       "resource_officiality": {
-        "official": 1
+        "official": 2
       },
       "coverage": {
-        "has_crosswalks": false,
-        "has_multiple_resources": false,
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -279,19 +279,19 @@
         "versions": 1,
         "constructs": 1,
         "claims": 1,
-        "resources": 1,
+        "resources": 2,
         "annotations": 24,
         "inferences": 1,
-        "crosswalks": 0,
+        "crosswalks": 1,
         "risks": 1,
         "use_cases": 1
       },
       "resource_officiality": {
-        "official": 1
+        "official": 2
       },
       "coverage": {
-        "has_crosswalks": false,
-        "has_multiple_resources": false,
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -327,19 +327,19 @@
         "versions": 1,
         "constructs": 1,
         "claims": 1,
-        "resources": 1,
+        "resources": 2,
         "annotations": 24,
         "inferences": 1,
-        "crosswalks": 0,
+        "crosswalks": 1,
         "risks": 1,
         "use_cases": 1
       },
       "resource_officiality": {
-        "secondary": 1
+        "secondary": 2
       },
       "coverage": {
-        "has_crosswalks": false,
-        "has_multiple_resources": false,
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
         "has_official_or_semi_official_resource": false
       }
     },
@@ -351,19 +351,19 @@
         "versions": 1,
         "constructs": 1,
         "claims": 1,
-        "resources": 1,
+        "resources": 2,
         "annotations": 24,
         "inferences": 1,
-        "crosswalks": 0,
+        "crosswalks": 1,
         "risks": 1,
         "use_cases": 1
       },
       "resource_officiality": {
-        "official": 1
+        "official": 2
       },
       "coverage": {
-        "has_crosswalks": false,
-        "has_multiple_resources": false,
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
         "has_official_or_semi_official_resource": true
       }
     }

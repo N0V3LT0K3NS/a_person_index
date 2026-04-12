@@ -96,6 +96,21 @@
       "access_status": "public",
       "officiality": "secondary",
       "notes": "Research overview summarizing Bowlby, Ainsworth, Hazan and Shaver, and dimensional adult attachment work."
+    },
+    {
+      "id": "res_attachment_styles_ecrr",
+      "instrument_id": "instr_attachment_styles",
+      "version_id": "ver_attachment_styles_general",
+      "resource_type": "questionnaire",
+      "title": "Experiences in Close Relationships-Revised (ECR-R)",
+      "url": "https://labs.psychology.illinois.edu/~rcfraley/measures/ecrr.htm",
+      "author": "R. Chris Fraley",
+      "publication_date": null,
+      "publisher": "University of Illinois Urbana-Champaign",
+      "language": "en",
+      "access_status": "public",
+      "officiality": "secondary",
+      "notes": "Measurement page for the ECR-R, one of the most widely used adult attachment self-report instruments."
     }
   ],
   "annotations": [
@@ -589,7 +604,20 @@
       "timestamp": "2026-04-11"
     }
   ],
-  "crosswalks": [],
+  "crosswalks": [
+    {
+      "id": "xwk_attachment_styles_love_languages_relational",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_attachment_styles",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "relationship_type": "complementary_non_equivalent",
+      "relationship_strength": "medium",
+      "rationale": "Attachment styles and Love Languages both operate in relationship discourse, but attachment targets security and regulation patterns while Love Languages targets preferred expressions of care.",
+      "confidence": "high",
+      "notes": "Useful comparative link for relational frameworks that are often conflated in popular discourse."
+    }
+  ],
   "risks": [
     {
       "id": "rsk_attachment_styles_overinterpretation",

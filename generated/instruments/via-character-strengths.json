@@ -100,6 +100,21 @@
       "access_status": "public",
       "officiality": "official",
       "notes": "Official VIA page describing the 24 character strengths, six virtue categories, and the role of the VIA Survey."
+    },
+    {
+      "id": "res_via_character_strengths_character_strengths_page",
+      "instrument_id": "instr_via_character_strengths",
+      "version_id": "ver_via_character_strengths_general",
+      "resource_type": "overview",
+      "title": "Character Strengths",
+      "url": "https://www.viacharacter.org/character-strengths",
+      "author": null,
+      "publication_date": null,
+      "publisher": "VIA Institute on Character",
+      "language": "en",
+      "access_status": "public",
+      "officiality": "official",
+      "notes": "Official overview page describing VIA character strengths and their use in practice."
     }
   ],
   "annotations": [
@@ -581,7 +596,20 @@
       "timestamp": "2026-04-11"
     }
   ],
-  "crosswalks": [],
+  "crosswalks": [
+    {
+      "id": "xwk_via_cliftonstrengths_strengths",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_via_character_strengths",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_cliftonstrengths",
+      "relationship_type": "same_layer_different_cut",
+      "relationship_strength": "medium",
+      "rationale": "VIA and CliftonStrengths both offer strengths-based person description, but VIA is virtue-oriented and more explicitly grounded in positive psychology, whereas CliftonStrengths is a branded talent-development system.",
+      "confidence": "high",
+      "notes": "Comparative mapping across strengths vocabularies with different moral and workplace emphasis."
+    }
+  ],
   "risks": [
     {
       "id": "rsk_via_character_strengths_overinterpretation",

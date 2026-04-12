@@ -13,3 +13,15 @@ resources:
   officiality: official
   notes: Official VIA page describing the 24 character strengths, six virtue categories,
     and the role of the VIA Survey.
+- instrument_id: instr_via_character_strengths
+  version_id: ver_via_character_strengths_general
+  language: en
+  access_status: public
+  id: res_via_character_strengths_character_strengths_page
+  resource_type: overview
+  title: Character Strengths
+  url: https://www.viacharacter.org/character-strengths
+  publisher: VIA Institute on Character
+  officiality: official
+  notes: Official overview page describing VIA character strengths and their use in
+    practice.

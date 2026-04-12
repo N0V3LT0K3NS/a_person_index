@@ -13,3 +13,14 @@ resources:
   officiality: semi_official
   notes: Modern commercial overview of the DiSC model and its four-style behavioral
     framing within the Everything DiSC product family.
+- instrument_id: instr_disc
+  version_id: ver_disc_general
+  language: en
+  access_status: public
+  id: res_disc_what_is_disc
+  resource_type: overview
+  title: What Is DiSC?
+  url: https://www.everythingdisc.com/what-is-disc/
+  publisher: Everything DiSC / John Wiley & Sons
+  officiality: semi_official
+  notes: Commercial overview page describing the DiSC model and common workplace uses.

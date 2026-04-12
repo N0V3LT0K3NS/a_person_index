@@ -96,6 +96,21 @@
       "access_status": "public",
       "officiality": "secondary",
       "notes": "Seminal paper introducing the Dark Triad as overlapping but distinct subclinical constructs."
+    },
+    {
+      "id": "res_dark_triad_review",
+      "instrument_id": "instr_dark_triad",
+      "version_id": "ver_dark_triad_general",
+      "resource_type": "review",
+      "title": "Dark Triad personality: At the heart of darkness",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29106280/",
+      "author": null,
+      "publication_date": null,
+      "publisher": "PubMed",
+      "language": "en",
+      "access_status": "public",
+      "officiality": "secondary",
+      "notes": "Abstract page for a review article summarizing the structure, correlates, and interpretation of Dark Triad constructs."
     }
   ],
   "annotations": [
@@ -565,7 +580,20 @@
       "timestamp": "2026-04-11"
     }
   ],
-  "crosswalks": [],
+  "crosswalks": [
+    {
+      "id": "xwk_dark_triad_hexaco_inverse",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_dark_triad",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "relationship_type": "inverse_tendency",
+      "relationship_strength": "medium",
+      "rationale": "Dark Triad constructs frequently sit in inverse relation to prosociality-related HEXACO patterns, especially around Honesty-Humility, but they are not reducible to a single HEXACO domain.",
+      "confidence": "high",
+      "notes": "House comparison highlighting an important aversive-traits versus honesty-humility contrast."
+    }
+  ],
   "risks": [
     {
       "id": "rsk_dark_triad_overinterpretation",

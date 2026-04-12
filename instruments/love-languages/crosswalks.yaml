@@ -1,1 +1,13 @@
-crosswalks: []
+crosswalks:
+- id: xwk_love_languages_attachment_styles_overlap
+  source_entity_type: instrument
+  source_entity_id: instr_love_languages
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  relationship_type: loose_overlap
+  relationship_strength: medium
+  rationale: 'Love Languages and attachment frameworks both show up in relationship
+    discourse, but they address different questions: preferred expressions of care
+    versus security and regulation dynamics.'
+  confidence: high
+  notes: Useful relational crosswalk for agents navigating popular relationship frameworks.

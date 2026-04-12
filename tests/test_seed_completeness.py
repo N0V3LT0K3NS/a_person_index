@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from personality_registry.loader import load_repository_strict
+
 
 PLACEHOLDER_MARKERS = [
     "Starter registry entry",
@@ -25,3 +27,16 @@ def test_seeded_instruments_do_not_contain_placeholder_copy(repo_root):
             offending_files.append(str(path.relative_to(repo_root)))
 
     assert offending_files == []
+
+
+def test_seeded_instruments_meet_resource_and_crosswalk_baseline(repo_root):
+    repository = load_repository_strict(repo_root)
+
+    thin_instruments: list[str] = []
+    for slug, bundle in sorted(repository.instruments.items()):
+        if len(bundle.resources) < 2 or len(bundle.crosswalks) < 1:
+            thin_instruments.append(
+                f"{slug}: resources={len(bundle.resources)} crosswalks={len(bundle.crosswalks)}"
+            )
+
+    assert thin_instruments == []

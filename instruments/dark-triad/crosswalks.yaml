@@ -1,1 +1,14 @@
-crosswalks: []
+crosswalks:
+- id: xwk_dark_triad_hexaco_inverse
+  source_entity_type: instrument
+  source_entity_id: instr_dark_triad
+  target_entity_type: instrument
+  target_entity_id: instr_hexaco
+  relationship_type: inverse_tendency
+  relationship_strength: medium
+  rationale: Dark Triad constructs frequently sit in inverse relation to prosociality-related
+    HEXACO patterns, especially around Honesty-Humility, but they are not reducible
+    to a single HEXACO domain.
+  confidence: high
+  notes: House comparison highlighting an important aversive-traits versus honesty-humility
+    contrast.

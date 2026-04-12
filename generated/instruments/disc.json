@@ -96,6 +96,21 @@
       "access_status": "public",
       "officiality": "semi_official",
       "notes": "Modern commercial overview of the DiSC model and its four-style behavioral framing within the Everything DiSC product family."
+    },
+    {
+      "id": "res_disc_what_is_disc",
+      "instrument_id": "instr_disc",
+      "version_id": "ver_disc_general",
+      "resource_type": "overview",
+      "title": "What Is DiSC?",
+      "url": "https://www.everythingdisc.com/what-is-disc/",
+      "author": null,
+      "publication_date": null,
+      "publisher": "Everything DiSC / John Wiley & Sons",
+      "language": "en",
+      "access_status": "public",
+      "officiality": "semi_official",
+      "notes": "Commercial overview page describing the DiSC model and common workplace uses."
     }
   ],
   "annotations": [
@@ -579,7 +594,20 @@
       "timestamp": "2026-04-11"
     }
   ],
-  "crosswalks": [],
+  "crosswalks": [
+    {
+      "id": "xwk_disc_culture_index_workplace",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_disc",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_culture_index",
+      "relationship_type": "methodologically_similar",
+      "relationship_strength": "medium",
+      "rationale": "DISC and Culture Index are often deployed as lightweight workplace behavior tools, even though their proprietary ecosystems and interpretive claims differ.",
+      "confidence": "medium",
+      "notes": "Comparative mapping based on shared organizational use patterns."
+    }
+  ],
   "risks": [
     {
       "id": "rsk_disc_overinterpretation",

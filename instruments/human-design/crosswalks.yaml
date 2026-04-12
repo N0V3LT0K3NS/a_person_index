@@ -1,1 +1,12 @@
-crosswalks: []
+crosswalks:
+- id: xwk_human_design_natal_astrology_derived
+  source_entity_type: instrument
+  source_entity_id: instr_human_design
+  target_entity_type: instrument
+  target_entity_id: instr_natal_astrology
+  relationship_type: derived_from
+  relationship_strength: high
+  rationale: Human Design explicitly incorporates astrology among its source lineages
+    and depends on birth-chart style inputs for BodyGraph generation.
+  confidence: high
+  notes: Lineage-oriented mapping rather than an equivalence claim.

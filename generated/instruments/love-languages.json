@@ -97,6 +97,21 @@
       "access_status": "public",
       "officiality": "official",
       "notes": "Official explainer page describing the five love languages as different ways people give and receive love."
+    },
+    {
+      "id": "res_love_languages_home",
+      "instrument_id": "instr_love_languages",
+      "version_id": "ver_love_languages_general",
+      "resource_type": "overview",
+      "title": "The 5 Love Languages",
+      "url": "https://5lovelanguages.com/",
+      "author": null,
+      "publication_date": null,
+      "publisher": "Love Language Brand",
+      "language": "en",
+      "access_status": "public",
+      "officiality": "official",
+      "notes": "Official home page for the Five Love Languages brand ecosystem and associated materials."
     }
   ],
   "annotations": [
@@ -580,7 +595,20 @@
       "timestamp": "2026-04-11"
     }
   ],
-  "crosswalks": [],
+  "crosswalks": [
+    {
+      "id": "xwk_love_languages_attachment_styles_overlap",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_love_languages",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_attachment_styles",
+      "relationship_type": "loose_overlap",
+      "relationship_strength": "medium",
+      "rationale": "Love Languages and attachment frameworks both show up in relationship discourse, but they address different questions: preferred expressions of care versus security and regulation dynamics.",
+      "confidence": "high",
+      "notes": "Useful relational crosswalk for agents navigating popular relationship frameworks."
+    }
+  ],
   "risks": [
     {
       "id": "rsk_love_languages_overinterpretation",

@@ -14,3 +14,15 @@ resources:
   notes: Official company history and methodology page describing Culture Index's
     2004 launch, its founders, and its use of work-related trait measurement and free-choice
     adjective methodology.
+- instrument_id: instr_culture_index
+  version_id: ver_culture_index_general
+  language: en
+  access_status: public
+  id: res_culture_index_c_analyst
+  resource_type: assessment_page
+  title: C-Analyst
+  url: https://www.cultureindex.com/c-analyst
+  publisher: Culture Index, LLC
+  officiality: official
+  notes: Official product page describing the flagship Culture Index assessment and
+    its role in talent and fit decisions.

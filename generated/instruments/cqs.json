@@ -100,6 +100,21 @@
       "access_status": "public",
       "officiality": "official",
       "notes": "Official CQ research summary describing the four-factor model, CQS development, and validity evidence."
+    },
+    {
+      "id": "res_cqs_cq_pro_assessment",
+      "instrument_id": "instr_cqs",
+      "version_id": "ver_cqs_general",
+      "resource_type": "assessment_page",
+      "title": "CQ Pro Assessment",
+      "url": "https://culturalq.com/cq-store/assessments/cq-pro-assessment/",
+      "author": null,
+      "publication_date": null,
+      "publisher": "Cultural Intelligence Center",
+      "language": "en",
+      "access_status": "public",
+      "officiality": "official",
+      "notes": "Official product page describing the CQ Pro assessment and its use in development and benchmarking."
     }
   ],
   "annotations": [
@@ -579,7 +594,20 @@
       "timestamp": "2026-04-11"
     }
   ],
-  "crosswalks": [],
+  "crosswalks": [
+    {
+      "id": "xwk_cqs_big_five_contextual_capability",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_cqs",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "relationship_type": "different_layer_of_personhood",
+      "relationship_strength": "medium",
+      "rationale": "CQS measures context-specific intercultural capability, while Big Five measures broad trait tendencies. Both matter for cross-cultural effectiveness, but they operate at different explanatory layers.",
+      "confidence": "high",
+      "notes": "House comparison between capability and trait layers."
+    }
+  ],
   "risks": [
     {
       "id": "rsk_cqs_overinterpretation",

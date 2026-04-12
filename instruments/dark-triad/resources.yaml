@@ -13,3 +13,15 @@ resources:
   officiality: secondary
   notes: Seminal paper introducing the Dark Triad as overlapping but distinct subclinical
     constructs.
+- instrument_id: instr_dark_triad
+  version_id: ver_dark_triad_general
+  language: en
+  access_status: public
+  id: res_dark_triad_review
+  resource_type: review
+  title: 'Dark Triad personality: At the heart of darkness'
+  url: https://pubmed.ncbi.nlm.nih.gov/29106280/
+  publisher: PubMed
+  officiality: secondary
+  notes: Abstract page for a review article summarizing the structure, correlates,
+    and interpretation of Dark Triad constructs.

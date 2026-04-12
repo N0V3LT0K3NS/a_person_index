@@ -566,10 +566,12 @@ def placeholder_bundle(
     resource_access_status: str = "public",
     resource_officiality: str = "secondary",
     resource_notes: str | None = "Starter source placeholder. Replace with a canonical source.",
+    extra_resources: list[dict[str, Any]] | None = None,
     inference_id_suffix: str = "starter",
     inference_type: str = "starter_position",
     inference_confidence: str = "medium",
     inference_text: str | None = None,
+    crosswalks: list[dict[str, Any]] | None = None,
     risk_type: str = "overinterpretation",
     risk_severity: str = "medium",
     risk_description: str = "Outputs may be overread when context, method limits, or source quality are ignored.",
@@ -655,6 +657,34 @@ This is a starter registry entry for {canonical_name}. It is structurally valid 
 - treating a starter entry as fully researched
 """
 
+    resources = [
+        {
+            "id": resource_id,
+            "instrument_id": instrument_id,
+            "version_id": version_id,
+            "resource_type": resource_type,
+            "title": resource_title or f"{canonical_name} overview source",
+            "url": resource_url or f"https://example.org/{slug}",
+            "author": resource_author,
+            "publication_date": resource_publication_date,
+            "publisher": resource_publisher,
+            "language": resource_language,
+            "access_status": resource_access_status,
+            "officiality": resource_officiality,
+            "notes": resource_notes,
+        }
+    ]
+    for extra_resource in extra_resources or []:
+        resources.append(
+            {
+                "instrument_id": instrument_id,
+                "version_id": version_id,
+                "language": resource_language,
+                "access_status": resource_access_status,
+                **extra_resource,
+            }
+        )
+
     return {
         "instrument.yaml": {
             "instrument": {
@@ -722,25 +752,7 @@ This is a starter registry entry for {canonical_name}. It is structurally valid 
                 }
             ]
         },
-        "resources.yaml": {
-            "resources": [
-                {
-                    "id": resource_id,
-                    "instrument_id": instrument_id,
-                    "version_id": version_id,
-                    "resource_type": resource_type,
-                    "title": resource_title or f"{canonical_name} overview source",
-                    "url": resource_url or f"https://example.org/{slug}",
-                    "author": resource_author,
-                    "publication_date": resource_publication_date,
-                    "publisher": resource_publisher,
-                    "language": resource_language,
-                    "access_status": resource_access_status,
-                    "officiality": resource_officiality,
-                    "notes": resource_notes,
-                }
-            ]
-        },
+        "resources.yaml": {"resources": resources},
         "annotations.yaml": {"annotations": annotations},
         "inferences.yaml": {
             "inferences": [
@@ -761,7 +773,7 @@ This is a starter registry entry for {canonical_name}. It is structurally valid 
                 }
             ]
         },
-        "crosswalks.yaml": {"crosswalks": []},
+        "crosswalks.yaml": {"crosswalks": crosswalks or []},
         "risks.yaml": {
             "risks": [
                 {
@@ -1642,7 +1654,25 @@ ENNEAGRAM_BUNDLE = {
             },
         ]
     },
-    "crosswalks.yaml": {"crosswalks": []},
+    "crosswalks.yaml": {
+        "crosswalks": [
+            {
+                "id": "xwk_enneagram_big_five_person_layer",
+                "source_entity_type": "instrument",
+                "source_entity_id": "instr_enneagram",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_big_five",
+                "relationship_type": "different_layer_of_personhood",
+                "relationship_strength": "high",
+                "rationale": (
+                    "Enneagram organizes motive, fixation, and identity strategy, while Big Five organizes broad trait variance. "
+                    "They often complement each other in practice but do not describe the same layer of personhood."
+                ),
+                "confidence": "high",
+                "notes": "House comparative mapping between motivational typology and broad trait scaffolding.",
+            }
+        ]
+    },
     "risks.yaml": {
         "risks": [
             {
@@ -3116,8 +3146,373 @@ Treating six-factor trait outputs as a full account of character, ethics, or rel
 ]
 
 
+PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
+    "attachment-styles": {
+        "extra_resources": [
+            {
+                "id": "res_attachment_styles_ecrr",
+                "resource_type": "questionnaire",
+                "title": "Experiences in Close Relationships-Revised (ECR-R)",
+                "url": "https://labs.psychology.illinois.edu/~rcfraley/measures/ecrr.htm",
+                "author": "R. Chris Fraley",
+                "publisher": "University of Illinois Urbana-Champaign",
+                "officiality": "secondary",
+                "notes": "Measurement page for the ECR-R, one of the most widely used adult attachment self-report instruments.",
+            }
+        ],
+        "crosswalks": [
+            {
+                "id": "xwk_attachment_styles_love_languages_relational",
+                "source_entity_type": "instrument",
+                "source_entity_id": "instr_attachment_styles",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_love_languages",
+                "relationship_type": "complementary_non_equivalent",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "Attachment styles and Love Languages both operate in relationship discourse, but attachment targets security "
+                    "and regulation patterns while Love Languages targets preferred expressions of care."
+                ),
+                "confidence": "high",
+                "notes": "Useful comparative link for relational frameworks that are often conflated in popular discourse.",
+            }
+        ],
+    },
+    "cliftonstrengths": {
+        "extra_resources": [
+            {
+                "id": "res_cliftonstrengths_how_it_works",
+                "resource_type": "overview",
+                "title": "How CliftonStrengths Works",
+                "url": "https://www.gallup.com/cliftonstrengths/en/253676/how-cliftonstrengths-works.aspx",
+                "publisher": "Gallup",
+                "officiality": "official",
+                "notes": "Official Gallup explainer of how the assessment ranks talent themes and produces strengths reports.",
+            }
+        ],
+        "crosswalks": [
+            {
+                "id": "xwk_cliftonstrengths_via_strengths",
+                "source_entity_type": "instrument",
+                "source_entity_id": "instr_cliftonstrengths",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_via_character_strengths",
+                "relationship_type": "same_layer_different_cut",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "CliftonStrengths and VIA both offer strengths-oriented vocabularies, but CliftonStrengths emphasizes talent and "
+                    "performance themes while VIA emphasizes character strengths and virtues."
+                ),
+                "confidence": "high",
+                "notes": "House comparison across two strengths-first systems with different normative framing.",
+            }
+        ],
+    },
+    "cqs": {
+        "extra_resources": [
+            {
+                "id": "res_cqs_cq_pro_assessment",
+                "resource_type": "assessment_page",
+                "title": "CQ Pro Assessment",
+                "url": "https://culturalq.com/cq-store/assessments/cq-pro-assessment/",
+                "publisher": "Cultural Intelligence Center",
+                "officiality": "official",
+                "notes": "Official product page describing the CQ Pro assessment and its use in development and benchmarking.",
+            }
+        ],
+        "crosswalks": [
+            {
+                "id": "xwk_cqs_big_five_contextual_capability",
+                "source_entity_type": "instrument",
+                "source_entity_id": "instr_cqs",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_big_five",
+                "relationship_type": "different_layer_of_personhood",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "CQS measures context-specific intercultural capability, while Big Five measures broad trait tendencies. "
+                    "Both matter for cross-cultural effectiveness, but they operate at different explanatory layers."
+                ),
+                "confidence": "high",
+                "notes": "House comparison between capability and trait layers.",
+            }
+        ],
+    },
+    "culture-index": {
+        "extra_resources": [
+            {
+                "id": "res_culture_index_c_analyst",
+                "resource_type": "assessment_page",
+                "title": "C-Analyst",
+                "url": "https://www.cultureindex.com/c-analyst",
+                "publisher": "Culture Index, LLC",
+                "officiality": "official",
+                "notes": "Official product page describing the flagship Culture Index assessment and its role in talent and fit decisions.",
+            }
+        ],
+        "crosswalks": [
+            {
+                "id": "xwk_culture_index_disc_workplace",
+                "source_entity_type": "instrument",
+                "source_entity_id": "instr_culture_index",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_disc",
+                "relationship_type": "methodologically_similar",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "Culture Index and DISC are both used as brief workplace behavior-profiling tools, though Culture Index is more explicitly "
+                    "positioned for hiring and role-fit workflows."
+                ),
+                "confidence": "medium",
+                "notes": "Comparative workplace mapping based on deployment pattern rather than construct equivalence.",
+            }
+        ],
+    },
+    "dark-triad": {
+        "extra_resources": [
+            {
+                "id": "res_dark_triad_review",
+                "resource_type": "review",
+                "title": "Dark Triad personality: At the heart of darkness",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/29106280/",
+                "publisher": "PubMed",
+                "officiality": "secondary",
+                "notes": "Abstract page for a review article summarizing the structure, correlates, and interpretation of Dark Triad constructs.",
+            }
+        ],
+        "crosswalks": [
+            {
+                "id": "xwk_dark_triad_hexaco_inverse",
+                "source_entity_type": "instrument",
+                "source_entity_id": "instr_dark_triad",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_hexaco",
+                "relationship_type": "inverse_tendency",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "Dark Triad constructs frequently sit in inverse relation to prosociality-related HEXACO patterns, especially around "
+                    "Honesty-Humility, but they are not reducible to a single HEXACO domain."
+                ),
+                "confidence": "high",
+                "notes": "House comparison highlighting an important aversive-traits versus honesty-humility contrast.",
+            }
+        ],
+    },
+    "disc": {
+        "extra_resources": [
+            {
+                "id": "res_disc_what_is_disc",
+                "resource_type": "overview",
+                "title": "What Is DiSC?",
+                "url": "https://www.everythingdisc.com/what-is-disc/",
+                "publisher": "Everything DiSC / John Wiley & Sons",
+                "officiality": "semi_official",
+                "notes": "Commercial overview page describing the DiSC model and common workplace uses.",
+            }
+        ],
+        "crosswalks": [
+            {
+                "id": "xwk_disc_culture_index_workplace",
+                "source_entity_type": "instrument",
+                "source_entity_id": "instr_disc",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_culture_index",
+                "relationship_type": "methodologically_similar",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "DISC and Culture Index are often deployed as lightweight workplace behavior tools, even though their proprietary ecosystems "
+                    "and interpretive claims differ."
+                ),
+                "confidence": "medium",
+                "notes": "Comparative mapping based on shared organizational use patterns.",
+            }
+        ],
+    },
+    "hexaco": {
+        "extra_resources": [
+            {
+                "id": "res_hexaco_scale_descriptions",
+                "resource_type": "reference",
+                "title": "HEXACO Scale Descriptions",
+                "url": "https://hexaco.org/scaledescriptions",
+                "publisher": "HEXACO",
+                "officiality": "official",
+                "notes": "Official descriptions of the six HEXACO dimensions and their facet structure.",
+            }
+        ],
+        "crosswalks": [
+            {
+                "id": "xwk_hexaco_big_five_trait_neighbor",
+                "source_entity_type": "instrument",
+                "source_entity_id": "instr_hexaco",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_big_five",
+                "relationship_type": "strong_overlap",
+                "relationship_strength": "high",
+                "rationale": (
+                    "HEXACO and Big Five are neighboring broad trait frameworks with substantial overlap, though HEXACO adds "
+                    "Honesty-Humility and re-cuts some interpersonal-emotional variance."
+                ),
+                "confidence": "high",
+                "notes": "One of the closest cross-framework trait comparisons in the registry.",
+            }
+        ],
+    },
+    "human-design": {
+        "extra_resources": [
+            {
+                "id": "res_human_design_chart",
+                "resource_type": "chart_generator",
+                "title": "Get Your Chart",
+                "url": "https://jovianarchive.com/Get_Your_Chart",
+                "publisher": "Jovian Archive",
+                "officiality": "official",
+                "notes": "Official chart generator entry point used to produce a Human Design BodyGraph from birth data.",
+            }
+        ],
+        "crosswalks": [
+            {
+                "id": "xwk_human_design_natal_astrology_derived",
+                "source_entity_type": "instrument",
+                "source_entity_id": "instr_human_design",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_natal_astrology",
+                "relationship_type": "derived_from",
+                "relationship_strength": "high",
+                "rationale": (
+                    "Human Design explicitly incorporates astrology among its source lineages and depends on birth-chart style inputs "
+                    "for BodyGraph generation."
+                ),
+                "confidence": "high",
+                "notes": "Lineage-oriented mapping rather than an equivalence claim.",
+            }
+        ],
+    },
+    "kolbe": {
+        "extra_resources": [
+            {
+                "id": "res_kolbe_retest_reliability",
+                "resource_type": "technical_report",
+                "title": "Analysis of the Kolbe A Index: Test-Retest Reliability",
+                "url": "https://assets.kolbe.com/wp-content/uploads/20250114180834/TestReTest_Kolbe-A-Index_October2018_FINAL-3.pdf",
+                "publisher": "Kolbe Corp",
+                "officiality": "official",
+                "notes": "Official technical report focused on Kolbe A Index test-retest stability across Action Modes.",
+            }
+        ],
+        "crosswalks": [
+            {
+                "id": "xwk_kolbe_cliftonstrengths_work_layers",
+                "source_entity_type": "instrument",
+                "source_entity_id": "instr_kolbe",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_cliftonstrengths",
+                "relationship_type": "complementary_non_equivalent",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "Kolbe and CliftonStrengths both circulate in work-development settings, but Kolbe emphasizes instinctive action style "
+                    "while CliftonStrengths emphasizes talent themes and development language."
+                ),
+                "confidence": "high",
+                "notes": "House mapping across adjacent workplace-development systems.",
+            }
+        ],
+    },
+    "love-languages": {
+        "extra_resources": [
+            {
+                "id": "res_love_languages_home",
+                "resource_type": "overview",
+                "title": "The 5 Love Languages",
+                "url": "https://5lovelanguages.com/",
+                "publisher": "Love Language Brand",
+                "officiality": "official",
+                "notes": "Official home page for the Five Love Languages brand ecosystem and associated materials.",
+            }
+        ],
+        "crosswalks": [
+            {
+                "id": "xwk_love_languages_attachment_styles_overlap",
+                "source_entity_type": "instrument",
+                "source_entity_id": "instr_love_languages",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_attachment_styles",
+                "relationship_type": "loose_overlap",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "Love Languages and attachment frameworks both show up in relationship discourse, but they address different questions: "
+                    "preferred expressions of care versus security and regulation dynamics."
+                ),
+                "confidence": "high",
+                "notes": "Useful relational crosswalk for agents navigating popular relationship frameworks.",
+            }
+        ],
+    },
+    "natal-astrology": {
+        "extra_resources": [
+            {
+                "id": "res_natal_astrology_astrowiki",
+                "resource_type": "reference",
+                "title": "Birth Chart",
+                "url": "https://www.astro.com/astrowiki/en/Birth_Chart",
+                "publisher": "Astrodienst AstroWiki",
+                "officiality": "secondary",
+                "notes": "Reference page explaining the birth chart as the core interpretive object in natal astrology.",
+            }
+        ],
+        "crosswalks": [
+            {
+                "id": "xwk_natal_astrology_human_design_lineage",
+                "source_entity_type": "instrument",
+                "source_entity_id": "instr_natal_astrology",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_human_design",
+                "relationship_type": "historically_related",
+                "relationship_strength": "high",
+                "rationale": (
+                    "Natal astrology and Human Design occupy overlapping symbolic territory, and Human Design inherits part of its symbolic "
+                    "machinery from astrology while building a newer composite system on top."
+                ),
+                "confidence": "high",
+                "notes": "Lineage-aware symbolic systems mapping.",
+            }
+        ],
+    },
+    "via-character-strengths": {
+        "extra_resources": [
+            {
+                "id": "res_via_character_strengths_character_strengths_page",
+                "resource_type": "overview",
+                "title": "Character Strengths",
+                "url": "https://www.viacharacter.org/character-strengths",
+                "publisher": "VIA Institute on Character",
+                "officiality": "official",
+                "notes": "Official overview page describing VIA character strengths and their use in practice.",
+            }
+        ],
+        "crosswalks": [
+            {
+                "id": "xwk_via_cliftonstrengths_strengths",
+                "source_entity_type": "instrument",
+                "source_entity_id": "instr_via_character_strengths",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_cliftonstrengths",
+                "relationship_type": "same_layer_different_cut",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "VIA and CliftonStrengths both offer strengths-based person description, but VIA is virtue-oriented and more explicitly "
+                    "grounded in positive psychology, whereas CliftonStrengths is a branded talent-development system."
+                ),
+                "confidence": "high",
+                "notes": "Comparative mapping across strengths vocabularies with different moral and workplace emphasis.",
+            }
+        ],
+    },
+}
+
+
 PLACEHOLDER_BUNDLES = {
-    spec["slug"]: placeholder_bundle(**spec)
+    spec["slug"]: placeholder_bundle(**(spec | PLACEHOLDER_ENHANCEMENTS_BY_SLUG.get(spec["slug"], {})))
     for spec in PLACEHOLDER_SPECS
 }
 

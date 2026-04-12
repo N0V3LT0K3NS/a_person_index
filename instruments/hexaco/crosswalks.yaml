@@ -1,1 +1,13 @@
-crosswalks: []
+crosswalks:
+- id: xwk_hexaco_big_five_trait_neighbor
+  source_entity_type: instrument
+  source_entity_id: instr_hexaco
+  target_entity_type: instrument
+  target_entity_id: instr_big_five
+  relationship_type: strong_overlap
+  relationship_strength: high
+  rationale: HEXACO and Big Five are neighboring broad trait frameworks with substantial
+    overlap, though HEXACO adds Honesty-Humility and re-cuts some interpersonal-emotional
+    variance.
+  confidence: high
+  notes: One of the closest cross-framework trait comparisons in the registry.

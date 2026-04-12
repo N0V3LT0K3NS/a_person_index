@@ -1,1 +1,14 @@
-crosswalks: []
+crosswalks:
+- id: xwk_cliftonstrengths_via_strengths
+  source_entity_type: instrument
+  source_entity_id: instr_cliftonstrengths
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  relationship_type: same_layer_different_cut
+  relationship_strength: medium
+  rationale: CliftonStrengths and VIA both offer strengths-oriented vocabularies,
+    but CliftonStrengths emphasizes talent and performance themes while VIA emphasizes
+    character strengths and virtues.
+  confidence: high
+  notes: House comparison across two strengths-first systems with different normative
+    framing.

@@ -13,3 +13,16 @@ resources:
   officiality: secondary
   notes: Research overview summarizing Bowlby, Ainsworth, Hazan and Shaver, and dimensional
     adult attachment work.
+- instrument_id: instr_attachment_styles
+  version_id: ver_attachment_styles_general
+  language: en
+  access_status: public
+  id: res_attachment_styles_ecrr
+  resource_type: questionnaire
+  title: Experiences in Close Relationships-Revised (ECR-R)
+  url: https://labs.psychology.illinois.edu/~rcfraley/measures/ecrr.htm
+  author: R. Chris Fraley
+  publisher: University of Illinois Urbana-Champaign
+  officiality: secondary
+  notes: Measurement page for the ECR-R, one of the most widely used adult attachment
+    self-report instruments.

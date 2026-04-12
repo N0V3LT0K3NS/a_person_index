@@ -1,1 +1,14 @@
-crosswalks: []
+crosswalks:
+- id: xwk_culture_index_disc_workplace
+  source_entity_type: instrument
+  source_entity_id: instr_culture_index
+  target_entity_type: instrument
+  target_entity_id: instr_disc
+  relationship_type: methodologically_similar
+  relationship_strength: medium
+  rationale: Culture Index and DISC are both used as brief workplace behavior-profiling
+    tools, though Culture Index is more explicitly positioned for hiring and role-fit
+    workflows.
+  confidence: medium
+  notes: Comparative workplace mapping based on deployment pattern rather than construct
+    equivalence.

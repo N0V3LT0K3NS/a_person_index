@@ -13,3 +13,15 @@ resources:
   officiality: official
   notes: Official CQ research summary describing the four-factor model, CQS development,
     and validity evidence.
+- instrument_id: instr_cqs
+  version_id: ver_cqs_general
+  language: en
+  access_status: public
+  id: res_cqs_cq_pro_assessment
+  resource_type: assessment_page
+  title: CQ Pro Assessment
+  url: https://culturalq.com/cq-store/assessments/cq-pro-assessment/
+  publisher: Cultural Intelligence Center
+  officiality: official
+  notes: Official product page describing the CQ Pro assessment and its use in development
+    and benchmarking.

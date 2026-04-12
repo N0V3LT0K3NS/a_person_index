@@ -1,1 +1,13 @@
-crosswalks: []
+crosswalks:
+- id: xwk_kolbe_cliftonstrengths_work_layers
+  source_entity_type: instrument
+  source_entity_id: instr_kolbe
+  target_entity_type: instrument
+  target_entity_id: instr_cliftonstrengths
+  relationship_type: complementary_non_equivalent
+  relationship_strength: medium
+  rationale: Kolbe and CliftonStrengths both circulate in work-development settings,
+    but Kolbe emphasizes instinctive action style while CliftonStrengths emphasizes
+    talent themes and development language.
+  confidence: high
+  notes: House mapping across adjacent workplace-development systems.

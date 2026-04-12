@@ -1,1 +1,14 @@
-crosswalks: []
+crosswalks:
+- id: xwk_attachment_styles_love_languages_relational
+  source_entity_type: instrument
+  source_entity_id: instr_attachment_styles
+  target_entity_type: instrument
+  target_entity_id: instr_love_languages
+  relationship_type: complementary_non_equivalent
+  relationship_strength: medium
+  rationale: Attachment styles and Love Languages both operate in relationship discourse,
+    but attachment targets security and regulation patterns while Love Languages targets
+    preferred expressions of care.
+  confidence: high
+  notes: Useful comparative link for relational frameworks that are often conflated
+    in popular discourse.

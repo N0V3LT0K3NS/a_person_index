@@ -873,7 +873,20 @@
       "timestamp": "2026-04-11"
     }
   ],
-  "crosswalks": [],
+  "crosswalks": [
+    {
+      "id": "xwk_enneagram_big_five_person_layer",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_enneagram",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "relationship_type": "different_layer_of_personhood",
+      "relationship_strength": "high",
+      "rationale": "Enneagram organizes motive, fixation, and identity strategy, while Big Five organizes broad trait variance. They often complement each other in practice but do not describe the same layer of personhood.",
+      "confidence": "high",
+      "notes": "House comparative mapping between motivational typology and broad trait scaffolding."
+    }
+  ],
   "risks": [
     {
       "id": "rsk_enneagram_identity_capture",

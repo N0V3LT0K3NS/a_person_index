@@ -1,1 +1,14 @@
-crosswalks: []
+crosswalks:
+- id: xwk_via_cliftonstrengths_strengths
+  source_entity_type: instrument
+  source_entity_id: instr_via_character_strengths
+  target_entity_type: instrument
+  target_entity_id: instr_cliftonstrengths
+  relationship_type: same_layer_different_cut
+  relationship_strength: medium
+  rationale: VIA and CliftonStrengths both offer strengths-based person description,
+    but VIA is virtue-oriented and more explicitly grounded in positive psychology,
+    whereas CliftonStrengths is a branded talent-development system.
+  confidence: high
+  notes: Comparative mapping across strengths vocabularies with different moral and
+    workplace emphasis.

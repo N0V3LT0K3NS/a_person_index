@@ -13,3 +13,15 @@ resources:
   officiality: secondary
   notes: Mainstream secondary explainer describing the natal chart as a snapshot of
     the sky at birth that reveals personality, strengths, challenges, and life path.
+- instrument_id: instr_natal_astrology
+  version_id: ver_natal_astrology_general
+  language: en
+  access_status: public
+  id: res_natal_astrology_astrowiki
+  resource_type: reference
+  title: Birth Chart
+  url: https://www.astro.com/astrowiki/en/Birth_Chart
+  publisher: Astrodienst AstroWiki
+  officiality: secondary
+  notes: Reference page explaining the birth chart as the core interpretive object
+    in natal astrology.

@@ -101,6 +101,21 @@
       "access_status": "public",
       "officiality": "official",
       "notes": "Official Gallup overview describing CliftonStrengths as an online talent assessment grounded in 34 talent themes."
+    },
+    {
+      "id": "res_cliftonstrengths_how_it_works",
+      "instrument_id": "instr_cliftonstrengths",
+      "version_id": "ver_cliftonstrengths_general",
+      "resource_type": "overview",
+      "title": "How CliftonStrengths Works",
+      "url": "https://www.gallup.com/cliftonstrengths/en/253676/how-cliftonstrengths-works.aspx",
+      "author": null,
+      "publication_date": null,
+      "publisher": "Gallup",
+      "language": "en",
+      "access_status": "public",
+      "officiality": "official",
+      "notes": "Official Gallup explainer of how the assessment ranks talent themes and produces strengths reports."
     }
   ],
   "annotations": [
@@ -588,7 +603,20 @@
       "timestamp": "2026-04-11"
     }
   ],
-  "crosswalks": [],
+  "crosswalks": [
+    {
+      "id": "xwk_cliftonstrengths_via_strengths",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_cliftonstrengths",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_via_character_strengths",
+      "relationship_type": "same_layer_different_cut",
+      "relationship_strength": "medium",
+      "rationale": "CliftonStrengths and VIA both offer strengths-oriented vocabularies, but CliftonStrengths emphasizes talent and performance themes while VIA emphasizes character strengths and virtues.",
+      "confidence": "high",
+      "notes": "House comparison across two strengths-first systems with different normative framing."
+    }
+  ],
   "risks": [
     {
       "id": "rsk_cliftonstrengths_overinterpretation",

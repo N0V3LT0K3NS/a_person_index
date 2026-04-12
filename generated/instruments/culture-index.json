@@ -99,6 +99,21 @@
       "access_status": "public",
       "officiality": "official",
       "notes": "Official company history and methodology page describing Culture Index's 2004 launch, its founders, and its use of work-related trait measurement and free-choice adjective methodology."
+    },
+    {
+      "id": "res_culture_index_c_analyst",
+      "instrument_id": "instr_culture_index",
+      "version_id": "ver_culture_index_general",
+      "resource_type": "assessment_page",
+      "title": "C-Analyst",
+      "url": "https://www.cultureindex.com/c-analyst",
+      "author": null,
+      "publication_date": null,
+      "publisher": "Culture Index, LLC",
+      "language": "en",
+      "access_status": "public",
+      "officiality": "official",
+      "notes": "Official product page describing the flagship Culture Index assessment and its role in talent and fit decisions."
     }
   ],
   "annotations": [
@@ -572,7 +587,20 @@
       "timestamp": "2026-04-11"
     }
   ],
-  "crosswalks": [],
+  "crosswalks": [
+    {
+      "id": "xwk_culture_index_disc_workplace",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_culture_index",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "relationship_type": "methodologically_similar",
+      "relationship_strength": "medium",
+      "rationale": "Culture Index and DISC are both used as brief workplace behavior-profiling tools, though Culture Index is more explicitly positioned for hiring and role-fit workflows.",
+      "confidence": "medium",
+      "notes": "Comparative workplace mapping based on deployment pattern rather than construct equivalence."
+    }
+  ],
   "risks": [
     {
       "id": "rsk_culture_index_overinterpretation",

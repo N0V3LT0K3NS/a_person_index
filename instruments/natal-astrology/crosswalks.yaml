@@ -1,1 +1,13 @@
-crosswalks: []
+crosswalks:
+- id: xwk_natal_astrology_human_design_lineage
+  source_entity_type: instrument
+  source_entity_id: instr_natal_astrology
+  target_entity_type: instrument
+  target_entity_id: instr_human_design
+  relationship_type: historically_related
+  relationship_strength: high
+  rationale: Natal astrology and Human Design occupy overlapping symbolic territory,
+    and Human Design inherits part of its symbolic machinery from astrology while
+    building a newer composite system on top.
+  confidence: high
+  notes: Lineage-aware symbolic systems mapping.

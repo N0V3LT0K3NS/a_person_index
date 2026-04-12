@@ -13,3 +13,15 @@ resources:
   officiality: official
   notes: Official Gallup overview describing CliftonStrengths as an online talent
     assessment grounded in 34 talent themes.
+- instrument_id: instr_cliftonstrengths
+  version_id: ver_cliftonstrengths_general
+  language: en
+  access_status: public
+  id: res_cliftonstrengths_how_it_works
+  resource_type: overview
+  title: How CliftonStrengths Works
+  url: https://www.gallup.com/cliftonstrengths/en/253676/how-cliftonstrengths-works.aspx
+  publisher: Gallup
+  officiality: official
+  notes: Official Gallup explainer of how the assessment ranks talent themes and produces
+    strengths reports.

@@ -13,3 +13,15 @@ resources:
   officiality: official
   notes: Official Kolbe overview describing the Kolbe A Index as an instinct assessment
     measuring conative strengths and yielding a four-number MO result.
+- instrument_id: instr_kolbe
+  version_id: ver_kolbe_general
+  language: en
+  access_status: public
+  id: res_kolbe_retest_reliability
+  resource_type: technical_report
+  title: 'Analysis of the Kolbe A Index: Test-Retest Reliability'
+  url: https://assets.kolbe.com/wp-content/uploads/20250114180834/TestReTest_Kolbe-A-Index_October2018_FINAL-3.pdf
+  publisher: Kolbe Corp
+  officiality: official
+  notes: Official technical report focused on Kolbe A Index test-retest stability
+    across Action Modes.
