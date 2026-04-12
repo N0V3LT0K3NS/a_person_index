@@ -1,11 +1,12 @@
 inferences:
-- id: inf_natal_astrology_starter
+- id: inf_natal_astrology_symbolic_identity_language
   target_entity_type: instrument
   target_entity_id: instr_natal_astrology
-  inference_type: starter_position
-  text: Astrology belongs in the corpus because it functions as a durable symbolic
-    identity language even without empirical standing.
-  confidence: medium
+  inference_type: synthesis_position
+  text: Natal astrology belongs in the registry because it is one of the most durable
+    symbolic person-description systems in circulation, shaping identity, timing,
+    and meaning-making despite lacking empirical measurement standing.
+  confidence: high
   linked_entities: []
   author: house
   timestamp: '2026-04-11'

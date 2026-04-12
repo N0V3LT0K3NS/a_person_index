@@ -3,6 +3,6 @@ risks:
   instrument_id: instr_natal_astrology
   risk_type: overinterpretation
   severity: medium
-  description: Symbolic charts can be treated as destiny or objective explanation
-    rather than interpretive story language.
+  description: Charts can be treated as destiny or diagnostic truth, inviting determinism,
+    projection, and practitioner overreach.
   mitigation: Treat the framework as one layer among several and preserve uncertainty.

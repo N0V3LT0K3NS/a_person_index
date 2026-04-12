@@ -4,4 +4,5 @@ use_cases:
   use_context: self_reflection
   utility_type: self_understanding
   suitability_level: medium
-  cautions: High-stakes use should be treated with skepticism and strong guardrails.
+  cautions: Treat as a managerial heuristic with guardrails, not as an objective basis
+    for high-stakes employment decisions.

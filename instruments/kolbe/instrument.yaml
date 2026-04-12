@@ -11,12 +11,14 @@ instrument:
   short_description: A conative action-style instrument describing instinctive modes
     of initiating work and solving problems.
   creators:
-  - unknown
-  publisher_or_owner: unknown
-  original_release_year: null
-  official_websites: []
-  licensing_model: mixed
+  - Kathy Kolbe
+  publisher_or_owner: kolbe_corp
+  original_release_year: 1975
+  official_websites:
+  - https://www.kolbe.com/
+  licensing_model: proprietary
   primary_domain: personality_framework
   country_or_origin_context:
-  - mixed
-  notes: Starter registry entry for Kolbe A Index.
+  - united_states
+  notes: This entry centers the flagship Kolbe A Index within the broader Kolbe conative
+    assessment ecosystem.

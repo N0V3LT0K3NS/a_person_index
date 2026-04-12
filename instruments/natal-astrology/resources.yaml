@@ -3,12 +3,13 @@ resources:
   instrument_id: instr_natal_astrology
   version_id: ver_natal_astrology_general
   resource_type: overview
-  title: Natal Astrology overview source
-  url: https://example.org/natal-astrology
+  title: Free Birth Chart Calculator
+  url: https://www.astrology.com/birth-chart
   author: null
   publication_date: null
-  publisher: null
+  publisher: Astrology.com
   language: en
   access_status: public
   officiality: secondary
-  notes: Starter source placeholder. Replace with a canonical source.
+  notes: Mainstream secondary explainer describing the natal chart as a snapshot of
+    the sky at birth that reveals personality, strengths, challenges, and life path.

@@ -1,11 +1,12 @@
 inferences:
-- id: inf_culture_index_starter
+- id: inf_culture_index_high_stakes_workflow
   target_entity_type: instrument
   target_entity_id: instr_culture_index
-  inference_type: starter_position
-  text: Its practical relevance is concentrated in hiring and organizational decision
-    contexts, which raises the stakes of evidence and misuse concerns.
-  confidence: medium
+  inference_type: practical_risk
+  text: Culture Index is oriented toward managerial action more than reflective self-understanding;
+    because it is sold into hiring and role-fit workflows, evidence quality and interpretive
+    limits matter more than its branding suggests.
+  confidence: high
   linked_entities: []
   author: house
   timestamp: '2026-04-11'

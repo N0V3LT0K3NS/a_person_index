@@ -1,11 +1,12 @@
 inferences:
-- id: inf_human_design_starter
+- id: inf_human_design_identity_engine
   target_entity_type: instrument
   target_entity_id: instr_human_design
-  inference_type: starter_position
-  text: Human Design is socially powerful as identity language and symbolic meaning-making,
-    not as empirical measurement.
-  confidence: medium
+  inference_type: synthesis_position
+  text: Human Design is important to the registry less as an assessment instrument
+    than as a high-adhesion identity and decision language built around an internally
+    coherent symbolic cosmology.
+  confidence: high
   linked_entities: []
   author: house
   timestamp: '2026-04-11'

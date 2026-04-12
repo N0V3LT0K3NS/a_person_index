@@ -3,12 +3,12 @@ constructs:
   instrument_id: instr_kolbe
   version_ids:
   - ver_kolbe_general
-  name: Conative profile
-  short_name: Conative profile
+  name: MO profile
+  short_name: MO profile
   construct_kind:
   - dimension
-  official_definition: A profile intended to summarize instinctive methods of action
-    and problem solving.
+  official_definition: A four-number Method of Operation profile summarizing instinctive
+    action across Fact Finder, Follow Thru, Quick Start, and Implementor.
   scoring_type: variant_dependent
   polarity:
     low_label: null

@@ -3,12 +3,13 @@ resources:
   instrument_id: instr_human_design
   version_id: ver_human_design_general
   resource_type: overview
-  title: Human Design overview source
-  url: https://example.org/human-design
-  author: null
-  publication_date: null
-  publisher: null
+  title: Introduction to the Human Design System
+  url: https://jovianarchive.com/blogs/human-design-basics/introduction-to-the-human-design-system
+  author: Ra Uru Hu
+  publication_date: '2016-10-08'
+  publisher: Jovian Archive
   language: en
   access_status: public
-  officiality: secondary
-  notes: Starter source placeholder. Replace with a canonical source.
+  officiality: official
+  notes: Official founder-authored introduction describing Human Design as a synthesis
+    of ancient wisdom and modern science expressed through the Rave Mandala and BodyGraph.

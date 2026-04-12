@@ -4,4 +4,4 @@ use_cases:
   use_context: self_reflection
   utility_type: self_understanding
   suitability_level: medium
-  cautions: Keep empirical and symbolic layers clearly separated.
+  cautions: Keep empirical, symbolic, and interpretive layers clearly separated.

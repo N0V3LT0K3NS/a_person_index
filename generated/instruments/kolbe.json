@@ -14,17 +14,19 @@
     ],
     "short_description": "A conative action-style instrument describing instinctive modes of initiating work and solving problems.",
     "creators": [
-      "unknown"
+      "Kathy Kolbe"
     ],
-    "publisher_or_owner": "unknown",
-    "original_release_year": null,
-    "official_websites": [],
-    "licensing_model": "mixed",
+    "publisher_or_owner": "kolbe_corp",
+    "original_release_year": 1975,
+    "official_websites": [
+      "https://www.kolbe.com/"
+    ],
+    "licensing_model": "proprietary",
     "primary_domain": "personality_framework",
     "country_or_origin_context": [
-      "mixed"
+      "united_states"
     ],
-    "notes": "Starter registry entry for Kolbe A Index."
+    "notes": "This entry centers the flagship Kolbe A Index within the broader Kolbe conative assessment ecosystem."
   },
   "versions": [
     {
@@ -48,12 +50,12 @@
       "version_ids": [
         "ver_kolbe_general"
       ],
-      "name": "Conative profile",
-      "short_name": "Conative profile",
+      "name": "MO profile",
+      "short_name": "MO profile",
       "construct_kind": [
         "dimension"
       ],
-      "official_definition": "A profile intended to summarize instinctive methods of action and problem solving.",
+      "official_definition": "A four-number Method of Operation profile summarizing instinctive action across Fact Finder, Follow Thru, Quick Start, and Implementor.",
       "scoring_type": "variant_dependent",
       "polarity": {
         "low_label": null,
@@ -73,7 +75,7 @@
       "instrument_id": "instr_kolbe",
       "version_id": "ver_kolbe_general",
       "claim_type": "overview_claim",
-      "claim_text": "Kolbe claims to measure natural conative strengths related to action and workflow.",
+      "claim_text": "Kolbe claims the Kolbe A Index measures the instinctive ways a person takes action when striving, producing a four-number Method of Operation profile across four Action Modes.",
       "source_resource_ids": [
         "res_kolbe_overview"
       ],
@@ -86,15 +88,15 @@
       "instrument_id": "instr_kolbe",
       "version_id": "ver_kolbe_general",
       "resource_type": "overview",
-      "title": "Kolbe A Index overview source",
-      "url": "https://example.org/kolbe",
+      "title": "About The Kolbe A Index",
+      "url": "https://www.kolbe.com/kolbe-a-index/",
       "author": null,
       "publication_date": null,
-      "publisher": null,
+      "publisher": "Kolbe Corp",
       "language": "en",
       "access_status": "public",
-      "officiality": "secondary",
-      "notes": "Starter source placeholder. Replace with a canonical source."
+      "officiality": "official",
+      "notes": "Official Kolbe overview describing the Kolbe A Index as an instinct assessment measuring conative strengths and yielding a four-number MO result."
     }
   ],
   "annotations": [
@@ -557,12 +559,12 @@
   },
   "inferences": [
     {
-      "id": "inf_kolbe_starter",
+      "id": "inf_kolbe_action_style_layer",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_kolbe",
-      "inference_type": "starter_position",
-      "text": "Kolbe occupies a distinct niche because it frames differences in terms of action style rather than personality trait or type identity.",
-      "confidence": "medium",
+      "inference_type": "synthesis_position",
+      "text": "Kolbe is most useful as a work-execution layer adjacent to trait and motivation systems: it frames how people instinctively organize and initiate action more than who they are globally.",
+      "confidence": "high",
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
@@ -575,7 +577,7 @@
       "instrument_id": "instr_kolbe",
       "risk_type": "overinterpretation",
       "severity": "medium",
-      "description": "Workplace use can harden flexible work preferences into deterministic role assumptions.",
+      "description": "Its language of instinctive strengths can slide into essentialist hiring and role-fit claims, especially when stable action style is treated as a total capacity measure.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
     }
   ],
@@ -586,8 +588,8 @@
       "use_context": "self_reflection",
       "utility_type": "self_understanding",
       "suitability_level": "medium",
-      "cautions": "Use as a workflow discussion aid rather than a fixed capacity judgment."
+      "cautions": "Useful for workflow and task-fit discussion, weak as a total person model or unilateral hiring screen."
     }
   ],
-  "notes": "# Kolbe A Index\n\n## What it is\nA conative action-style instrument describing instinctive modes of initiating work and solving problems.\n\n## Why it matters\nThis is a starter registry entry for Kolbe A Index. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+  "notes": "# Kolbe A Index\n\n## What it is\nA proprietary conative assessment that describes instinctive ways of taking action through a four-number Method of Operation profile.\n\n## Why it matters\nKolbe matters because it occupies a distinct niche in the registry: it is neither a classic trait model nor a symbolic typology, but a branded action-style system focused on how people execute when they are free to be themselves.\n\n## What it is good for\n- workflow discussion\n- team collaboration language\n- coaching around task approach\n- distinguishing action style from personality identity\n\n## What it is weaker at\n- whole-person description\n- public psychometric transparency\n- motive and identity language\n- high-stakes selection decisions\n\n## Common misuse\nTreating a stable action-style profile as a definitive verdict on role fit, capability, or long-term hiring potential.\n"
 }

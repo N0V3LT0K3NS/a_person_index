@@ -3,12 +3,14 @@ resources:
   instrument_id: instr_culture_index
   version_id: ver_culture_index_general
   resource_type: overview
-  title: Culture Index overview source
-  url: https://example.org/culture-index
+  title: About Us | Culture Index Analytics
+  url: https://www.cultureindex.com/about-us
   author: null
   publication_date: null
-  publisher: null
+  publisher: Culture Index, LLC
   language: en
   access_status: public
-  officiality: secondary
-  notes: Starter source placeholder. Replace with a canonical source.
+  officiality: official
+  notes: Official company history and methodology page describing Culture Index's
+    2004 launch, its founders, and its use of work-related trait measurement and free-choice
+    adjective methodology.

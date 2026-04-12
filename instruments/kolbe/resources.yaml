@@ -3,12 +3,13 @@ resources:
   instrument_id: instr_kolbe
   version_id: ver_kolbe_general
   resource_type: overview
-  title: Kolbe A Index overview source
-  url: https://example.org/kolbe
+  title: About The Kolbe A Index
+  url: https://www.kolbe.com/kolbe-a-index/
   author: null
   publication_date: null
-  publisher: null
+  publisher: Kolbe Corp
   language: en
   access_status: public
-  officiality: secondary
-  notes: Starter source placeholder. Replace with a canonical source.
+  officiality: official
+  notes: Official Kolbe overview describing the Kolbe A Index as an instinct assessment
+    measuring conative strengths and yielding a four-number MO result.

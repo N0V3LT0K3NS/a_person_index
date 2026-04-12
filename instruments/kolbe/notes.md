@@ -1,15 +1,22 @@
 # Kolbe A Index
 
 ## What it is
-A conative action-style instrument describing instinctive modes of initiating work and solving problems.
+A proprietary conative assessment that describes instinctive ways of taking action through a four-number Method of Operation profile.
 
 ## Why it matters
-This is a starter registry entry for Kolbe A Index. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.
+Kolbe matters because it occupies a distinct niche in the registry: it is neither a classic trait model nor a symbolic typology, but a branded action-style system focused on how people execute when they are free to be themselves.
 
 ## What it is good for
-- placeholder registry coverage
-- incremental source collection
-- ontology refinement
+- workflow discussion
+- team collaboration language
+- coaching around task approach
+- distinguishing action style from personality identity
+
+## What it is weaker at
+- whole-person description
+- public psychometric transparency
+- motive and identity language
+- high-stakes selection decisions
 
 ## Common misuse
-- treating a starter entry as fully researched
+Treating a stable action-style profile as a definitive verdict on role fit, capability, or long-term hiring potential.

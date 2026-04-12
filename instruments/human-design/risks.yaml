@@ -3,6 +3,6 @@ risks:
   instrument_id: instr_human_design
   risk_type: overinterpretation
   severity: medium
-  description: The system invites deterministic self-narration and heavy identity
-    fusion.
+  description: Because the system presents itself as a precise bodygraph-based blueprint,
+    users can externalize agency to chart mechanics, teachings, or practitioners.
   mitigation: Treat the framework as one layer among several and preserve uncertainty.

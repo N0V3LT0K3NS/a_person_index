@@ -3,8 +3,9 @@ claims:
   instrument_id: instr_culture_index
   version_id: ver_culture_index_general
   claim_type: overview_claim
-  claim_text: Culture Index claims to predict workplace behavior and fit through a
-    brief assessment profile.
+  claim_text: Culture Index claims to measure seven work-related traits through a
+    quick survey and translate that data into hiring, management, and team-design
+    decisions.
   source_resource_ids:
   - res_culture_index_overview
   quotation_status: paraphrase

@@ -2174,6 +2174,12 @@ Using DISC profiles as rigid boxes for hiring, role assignment, or simplified ju
         "canonical_name": "Kolbe A Index",
         "short_names": ["Kolbe"],
         "short_description": "A conative action-style instrument describing instinctive modes of initiating work and solving problems.",
+        "creators": ["Kathy Kolbe"],
+        "publisher_or_owner": "kolbe_corp",
+        "original_release_year": 1975,
+        "official_websites": ["https://www.kolbe.com/"],
+        "licensing_model": "proprietary",
+        "country_or_origin_context": ["united_states"],
         "families": ["conative_action_style", "leadership_workplace"],
         "primary_measurement_target": ["work_style", "behavioral_style"],
         "representational_form": ["profile_vector"],
@@ -2198,12 +2204,61 @@ Using DISC profiles as rigid boxes for hiring, role assignment, or simplified ju
         "actionability_type": ["team_design_support", "coaching_intervention"],
         "cultural_symbolic_role": ["professional_shorthand"],
         "overlap_mode": ["workplace_family_resemblance"],
-        "construct_name": "Conative profile",
-        "construct_definition": "A profile intended to summarize instinctive methods of action and problem solving.",
-        "claim_text": "Kolbe claims to measure natural conative strengths related to action and workflow.",
-        "inference_text": "Kolbe occupies a distinct niche because it frames differences in terms of action style rather than personality trait or type identity.",
-        "risk_description": "Workplace use can harden flexible work preferences into deterministic role assumptions.",
-        "cautions": "Use as a workflow discussion aid rather than a fixed capacity judgment.",
+        "construct_name": "MO profile",
+        "construct_definition": (
+            "A four-number Method of Operation profile summarizing instinctive action across Fact Finder, "
+            "Follow Thru, Quick Start, and Implementor."
+        ),
+        "claim_text": (
+            "Kolbe claims the Kolbe A Index measures the instinctive ways a person takes action when striving, "
+            "producing a four-number Method of Operation profile across four Action Modes."
+        ),
+        "resource_title": "About The Kolbe A Index",
+        "resource_url": "https://www.kolbe.com/kolbe-a-index/",
+        "resource_publisher": "Kolbe Corp",
+        "resource_officiality": "official",
+        "resource_notes": (
+            "Official Kolbe overview describing the Kolbe A Index as an instinct assessment measuring conative "
+            "strengths and yielding a four-number MO result."
+        ),
+        "inference_id_suffix": "action_style_layer",
+        "inference_type": "synthesis_position",
+        "inference_confidence": "high",
+        "inference_text": (
+            "Kolbe is most useful as a work-execution layer adjacent to trait and motivation systems: it frames how "
+            "people instinctively organize and initiate action more than who they are globally."
+        ),
+        "risk_description": (
+            "Its language of instinctive strengths can slide into essentialist hiring and role-fit claims, especially "
+            "when stable action style is treated as a total capacity measure."
+        ),
+        "cautions": "Useful for workflow and task-fit discussion, weak as a total person model or unilateral hiring screen.",
+        "instrument_notes": (
+            "This entry centers the flagship Kolbe A Index within the broader Kolbe conative assessment ecosystem."
+        ),
+        "notes": """# Kolbe A Index
+
+## What it is
+A proprietary conative assessment that describes instinctive ways of taking action through a four-number Method of Operation profile.
+
+## Why it matters
+Kolbe matters because it occupies a distinct niche in the registry: it is neither a classic trait model nor a symbolic typology, but a branded action-style system focused on how people execute when they are free to be themselves.
+
+## What it is good for
+- workflow discussion
+- team collaboration language
+- coaching around task approach
+- distinguishing action style from personality identity
+
+## What it is weaker at
+- whole-person description
+- public psychometric transparency
+- motive and identity language
+- high-stakes selection decisions
+
+## Common misuse
+Treating a stable action-style profile as a definitive verdict on role fit, capability, or long-term hiring potential.
+""",
     },
     {
         "slug": "cliftonstrengths",
@@ -2546,6 +2601,12 @@ Treating self-report CQ as proof of real-world intercultural competence without 
         "canonical_name": "Culture Index",
         "short_names": ["Culture Index"],
         "short_description": "A workplace assessment framework focused on predictive patterns relevant to roles, performance, and organizational fit.",
+        "creators": ["Gary Walstrom", "Cecilia Bruening-Walstrom", "Louis Janda"],
+        "publisher_or_owner": "culture_index_llc",
+        "original_release_year": 2004,
+        "official_websites": ["https://www.cultureindex.com/"],
+        "licensing_model": "proprietary",
+        "country_or_origin_context": ["united_states"],
         "families": ["leadership_workplace", "trait_personality"],
         "primary_measurement_target": ["work_style", "behavioral_style"],
         "representational_form": ["profile_vector", "narrative_description"],
@@ -2572,16 +2633,69 @@ Treating self-report CQ as proof of real-world intercultural competence without 
         "overlap_mode": ["workplace_family_resemblance"],
         "construct_name": "Predictive workplace profile",
         "construct_definition": "A proprietary profile intended to support workplace fit and role-related discussion.",
-        "claim_text": "Culture Index claims to predict workplace behavior and fit through a brief assessment profile.",
-        "inference_text": "Its practical relevance is concentrated in hiring and organizational decision contexts, which raises the stakes of evidence and misuse concerns.",
-        "risk_description": "Using proprietary workplace outputs for high-stakes decisions can amplify false precision and bias.",
-        "cautions": "High-stakes use should be treated with skepticism and strong guardrails.",
+        "claim_text": (
+            "Culture Index claims to measure seven work-related traits through a quick survey and translate that data "
+            "into hiring, management, and team-design decisions."
+        ),
+        "resource_title": "About Us | Culture Index Analytics",
+        "resource_url": "https://www.cultureindex.com/about-us",
+        "resource_publisher": "Culture Index, LLC",
+        "resource_officiality": "official",
+        "resource_notes": (
+            "Official company history and methodology page describing Culture Index's 2004 launch, its founders, "
+            "and its use of work-related trait measurement and free-choice adjective methodology."
+        ),
+        "inference_id_suffix": "high_stakes_workflow",
+        "inference_type": "practical_risk",
+        "inference_confidence": "high",
+        "inference_text": (
+            "Culture Index is oriented toward managerial action more than reflective self-understanding; because it is "
+            "sold into hiring and role-fit workflows, evidence quality and interpretive limits matter more than its "
+            "branding suggests."
+        ),
+        "risk_description": (
+            "Using proprietary workplace outputs for hiring, filtering, or succession decisions can amplify false "
+            "precision, bias, and overconfidence."
+        ),
+        "cautions": "Treat as a managerial heuristic with guardrails, not as an objective basis for high-stakes employment decisions.",
+        "instrument_notes": (
+            "This entry centers the modern Culture Index assessment ecosystem as a proprietary workplace analytics system."
+        ),
+        "notes": """# Culture Index
+
+## What it is
+A proprietary workplace assessment system that uses a brief survey to model work-related traits for hiring, management, and organizational decision-making.
+
+## Why it matters
+Culture Index matters because it sits at the high-stakes end of the workplace-assessment spectrum. It is designed less for personal reflection than for operational decisions about fit, performance, and team design.
+
+## What it is good for
+- managerial discussion of work-style patterns
+- team planning language
+- organizational role-fit conversations
+- studying proprietary workplace assessment culture
+
+## What it is weaker at
+- transparent psychometric scrutiny
+- whole-person description
+- reflective self-understanding
+- safe use in consequential employment decisions
+
+## Common misuse
+Treating a proprietary work-traits profile as objective truth in hiring or succession decisions without strong validity scrutiny and human oversight.
+""",
     },
     {
         "slug": "human-design",
         "canonical_name": "Human Design",
         "short_names": ["Human Design"],
         "short_description": "A symbolic system combining astrology, I Ching, chakras, Kabbalah, and other traditions into a bodygraph-based self-description framework.",
+        "creators": ["Ra Uru Hu"],
+        "publisher_or_owner": "jovian_archive",
+        "original_release_year": 1987,
+        "official_websites": ["https://jovianarchive.com/"],
+        "licensing_model": "mixed_proprietary_and_community_ecosystem",
+        "country_or_origin_context": ["mixed"],
         "families": ["symbolic_archetypal_spiritual", "identity_self_concept", "worldview_meaning_making"],
         "primary_measurement_target": ["identity_narrative", "symbolic_archetypal_patterning", "subjective_meaning"],
         "representational_form": ["symbolic_chart", "narrative_description", "categorical_typology"],
@@ -2608,10 +2722,58 @@ Treating self-report CQ as proof of real-world intercultural competence without 
         "overlap_mode": ["shared_identity_space", "weak_direct_mapping"],
         "construct_name": "Bodygraph profile",
         "construct_definition": "A chart-based symbolic profile derived from birth data and interpreted through Human Design rules.",
-        "claim_text": "Human Design claims to reveal innate energetic patterns and decision strategies through a symbolic chart.",
-        "inference_text": "Human Design is socially powerful as identity language and symbolic meaning-making, not as empirical measurement.",
-        "risk_description": "The system invites deterministic self-narration and heavy identity fusion.",
-        "cautions": "Treat as symbolic language rather than literal person measurement.",
+        "claim_text": (
+            "Human Design claims that birth data can be used to generate a BodyGraph revealing a person's energetic "
+            "blueprint, differentiation, and decision strategy."
+        ),
+        "resource_title": "Introduction to the Human Design System",
+        "resource_url": "https://jovianarchive.com/blogs/human-design-basics/introduction-to-the-human-design-system",
+        "resource_author": "Ra Uru Hu",
+        "resource_publication_date": "2016-10-08",
+        "resource_publisher": "Jovian Archive",
+        "resource_officiality": "official",
+        "resource_notes": (
+            "Official founder-authored introduction describing Human Design as a synthesis of ancient wisdom and "
+            "modern science expressed through the Rave Mandala and BodyGraph."
+        ),
+        "inference_id_suffix": "identity_engine",
+        "inference_type": "synthesis_position",
+        "inference_confidence": "high",
+        "inference_text": (
+            "Human Design is important to the registry less as an assessment instrument than as a high-adhesion "
+            "identity and decision language built around an internally coherent symbolic cosmology."
+        ),
+        "risk_description": (
+            "Because the system presents itself as a precise bodygraph-based blueprint, users can externalize agency "
+            "to chart mechanics, teachings, or practitioners."
+        ),
+        "cautions": "Treat as symbolic meaning language and community practice, not as empirical person measurement.",
+        "instrument_notes": (
+            "This entry centers the Ra Uru Hu and Jovian Archive lineage while recognizing the broader Human Design ecosystem."
+        ),
+        "notes": """# Human Design
+
+## What it is
+A birth-data-driven symbolic system that produces a BodyGraph and associated teachings about type, authority, definition, and differentiated life mechanics.
+
+## Why it matters
+Human Design matters because it is one of the most elaborate contemporary identity systems operating in online, coaching, and spiritual spaces. It is structurally rich, culturally sticky, and interpretively heavy.
+
+## What it is good for
+- symbolic self-reflection
+- identity and decision language
+- community belonging
+- comparative study of modern spiritual person-models
+
+## What it is weaker at
+- empirical validation
+- low-burden interpretation
+- clean construct comparability
+- maintaining distance between symbolic map and lived agency
+
+## Common misuse
+Treating the chart as a literal blueprint that overrides context, development, uncertainty, or practical judgment.
+""",
     },
     {
         "slug": "natal-astrology",
@@ -2619,6 +2781,11 @@ Treating self-report CQ as proof of real-world intercultural competence without 
         "short_names": ["Natal Astrology", "Birth Chart Astrology"],
         "aliases": ["Birth Chart"],
         "short_description": "A symbolic charting system that interprets birth time and place through zodiacal and planetary symbolism.",
+        "creators": ["multiple_historical_lineages"],
+        "publisher_or_owner": "decentralized",
+        "official_websites": [],
+        "licensing_model": "decentralized",
+        "country_or_origin_context": ["mixed"],
         "families": ["symbolic_archetypal_spiritual", "worldview_meaning_making", "identity_self_concept"],
         "primary_measurement_target": ["symbolic_archetypal_patterning", "identity_narrative", "subjective_meaning"],
         "representational_form": ["symbolic_chart", "narrative_description"],
@@ -2645,10 +2812,55 @@ Treating self-report CQ as proof of real-world intercultural competence without 
         "overlap_mode": ["shared_identity_space"],
         "construct_name": "Natal chart profile",
         "construct_definition": "A symbolic birth chart interpreted through astrological houses, planets, and signs.",
-        "claim_text": "Natal astrology claims that birth-chart symbolism meaningfully describes temperament, patterning, and life themes.",
-        "inference_text": "Astrology belongs in the corpus because it functions as a durable symbolic identity language even without empirical standing.",
-        "risk_description": "Symbolic charts can be treated as destiny or objective explanation rather than interpretive story language.",
-        "cautions": "Keep empirical and symbolic layers clearly separated.",
+        "claim_text": (
+            "Natal astrology claims that a birth chart is a snapshot of the sky at the exact moment of birth and can "
+            "reveal personality, strengths, challenges, and life path."
+        ),
+        "resource_title": "Free Birth Chart Calculator",
+        "resource_url": "https://www.astrology.com/birth-chart",
+        "resource_publisher": "Astrology.com",
+        "resource_officiality": "secondary",
+        "resource_notes": (
+            "Mainstream secondary explainer describing the natal chart as a snapshot of the sky at birth that reveals "
+            "personality, strengths, challenges, and life path."
+        ),
+        "inference_id_suffix": "symbolic_identity_language",
+        "inference_type": "synthesis_position",
+        "inference_confidence": "high",
+        "inference_text": (
+            "Natal astrology belongs in the registry because it is one of the most durable symbolic person-description "
+            "systems in circulation, shaping identity, timing, and meaning-making despite lacking empirical measurement standing."
+        ),
+        "risk_description": (
+            "Charts can be treated as destiny or diagnostic truth, inviting determinism, projection, and practitioner overreach."
+        ),
+        "cautions": "Keep empirical, symbolic, and interpretive layers clearly separated.",
+        "instrument_notes": (
+            "This entry represents natal astrology as a decentralized symbolic framework rather than any single school or publisher."
+        ),
+        "notes": """# Natal Astrology
+
+## What it is
+A symbolic birth-chart system that maps planets, signs, houses, and aspects at the moment of birth to interpret personality and life themes.
+
+## Why it matters
+Natal astrology matters because it remains one of the oldest and most persistent symbolic languages for personhood, identity, timing, and meaning. Its cultural reach is far larger than its empirical standing.
+
+## What it is good for
+- symbolic self-reflection
+- narrative meaning-making
+- archetypal language
+- studying identity systems with strong cultural persistence
+
+## What it is weaker at
+- empirical measurement
+- inter-rater consistency across practitioners
+- construct commensurability with psychometric systems
+- resisting destiny narratives
+
+## Common misuse
+Treating the birth chart as objective diagnosis or fate rather than an interpretive symbolic framework.
+""",
     },
     {
         "slug": "attachment-styles",

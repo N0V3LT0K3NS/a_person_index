@@ -1,15 +1,22 @@
 # Culture Index
 
 ## What it is
-A workplace assessment framework focused on predictive patterns relevant to roles, performance, and organizational fit.
+A proprietary workplace assessment system that uses a brief survey to model work-related traits for hiring, management, and organizational decision-making.
 
 ## Why it matters
-This is a starter registry entry for Culture Index. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.
+Culture Index matters because it sits at the high-stakes end of the workplace-assessment spectrum. It is designed less for personal reflection than for operational decisions about fit, performance, and team design.
 
 ## What it is good for
-- placeholder registry coverage
-- incremental source collection
-- ontology refinement
+- managerial discussion of work-style patterns
+- team planning language
+- organizational role-fit conversations
+- studying proprietary workplace assessment culture
+
+## What it is weaker at
+- transparent psychometric scrutiny
+- whole-person description
+- reflective self-understanding
+- safe use in consequential employment decisions
 
 ## Common misuse
-- treating a starter entry as fully researched
+Treating a proprietary work-traits profile as objective truth in hiring or succession decisions without strong validity scrutiny and human oversight.

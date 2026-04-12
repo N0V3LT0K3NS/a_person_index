@@ -12,12 +12,14 @@ instrument:
   short_description: A symbolic system combining astrology, I Ching, chakras, Kabbalah,
     and other traditions into a bodygraph-based self-description framework.
   creators:
-  - unknown
-  publisher_or_owner: unknown
-  original_release_year: null
-  official_websites: []
-  licensing_model: mixed
+  - Ra Uru Hu
+  publisher_or_owner: jovian_archive
+  original_release_year: 1987
+  official_websites:
+  - https://jovianarchive.com/
+  licensing_model: mixed_proprietary_and_community_ecosystem
   primary_domain: personality_framework
   country_or_origin_context:
   - mixed
-  notes: Starter registry entry for Human Design.
+  notes: This entry centers the Ra Uru Hu and Jovian Archive lineage while recognizing
+    the broader Human Design ecosystem.

@@ -3,8 +3,9 @@ claims:
   instrument_id: instr_natal_astrology
   version_id: ver_natal_astrology_general
   claim_type: overview_claim
-  claim_text: Natal astrology claims that birth-chart symbolism meaningfully describes
-    temperament, patterning, and life themes.
+  claim_text: Natal astrology claims that a birth chart is a snapshot of the sky at
+    the exact moment of birth and can reveal personality, strengths, challenges, and
+    life path.
   source_resource_ids:
   - res_natal_astrology_overview
   quotation_status: paraphrase

@@ -1,15 +1,22 @@
 # Human Design
 
 ## What it is
-A symbolic system combining astrology, I Ching, chakras, Kabbalah, and other traditions into a bodygraph-based self-description framework.
+A birth-data-driven symbolic system that produces a BodyGraph and associated teachings about type, authority, definition, and differentiated life mechanics.
 
 ## Why it matters
-This is a starter registry entry for Human Design. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.
+Human Design matters because it is one of the most elaborate contemporary identity systems operating in online, coaching, and spiritual spaces. It is structurally rich, culturally sticky, and interpretively heavy.
 
 ## What it is good for
-- placeholder registry coverage
-- incremental source collection
-- ontology refinement
+- symbolic self-reflection
+- identity and decision language
+- community belonging
+- comparative study of modern spiritual person-models
+
+## What it is weaker at
+- empirical validation
+- low-burden interpretation
+- clean construct comparability
+- maintaining distance between symbolic map and lived agency
 
 ## Common misuse
-- treating a starter entry as fully researched
+Treating the chart as a literal blueprint that overrides context, development, uncertainty, or practical judgment.

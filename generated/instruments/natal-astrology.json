@@ -18,17 +18,17 @@
     ],
     "short_description": "A symbolic charting system that interprets birth time and place through zodiacal and planetary symbolism.",
     "creators": [
-      "unknown"
+      "multiple_historical_lineages"
     ],
-    "publisher_or_owner": "unknown",
+    "publisher_or_owner": "decentralized",
     "original_release_year": null,
     "official_websites": [],
-    "licensing_model": "mixed",
+    "licensing_model": "decentralized",
     "primary_domain": "personality_framework",
     "country_or_origin_context": [
       "mixed"
     ],
-    "notes": "Starter registry entry for Natal Astrology."
+    "notes": "This entry represents natal astrology as a decentralized symbolic framework rather than any single school or publisher."
   },
   "versions": [
     {
@@ -77,7 +77,7 @@
       "instrument_id": "instr_natal_astrology",
       "version_id": "ver_natal_astrology_general",
       "claim_type": "overview_claim",
-      "claim_text": "Natal astrology claims that birth-chart symbolism meaningfully describes temperament, patterning, and life themes.",
+      "claim_text": "Natal astrology claims that a birth chart is a snapshot of the sky at the exact moment of birth and can reveal personality, strengths, challenges, and life path.",
       "source_resource_ids": [
         "res_natal_astrology_overview"
       ],
@@ -90,15 +90,15 @@
       "instrument_id": "instr_natal_astrology",
       "version_id": "ver_natal_astrology_general",
       "resource_type": "overview",
-      "title": "Natal Astrology overview source",
-      "url": "https://example.org/natal-astrology",
+      "title": "Free Birth Chart Calculator",
+      "url": "https://www.astrology.com/birth-chart",
       "author": null,
       "publication_date": null,
-      "publisher": null,
+      "publisher": "Astrology.com",
       "language": "en",
       "access_status": "public",
       "officiality": "secondary",
-      "notes": "Starter source placeholder. Replace with a canonical source."
+      "notes": "Mainstream secondary explainer describing the natal chart as a snapshot of the sky at birth that reveals personality, strengths, challenges, and life path."
     }
   ],
   "annotations": [
@@ -577,12 +577,12 @@
   },
   "inferences": [
     {
-      "id": "inf_natal_astrology_starter",
+      "id": "inf_natal_astrology_symbolic_identity_language",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_natal_astrology",
-      "inference_type": "starter_position",
-      "text": "Astrology belongs in the corpus because it functions as a durable symbolic identity language even without empirical standing.",
-      "confidence": "medium",
+      "inference_type": "synthesis_position",
+      "text": "Natal astrology belongs in the registry because it is one of the most durable symbolic person-description systems in circulation, shaping identity, timing, and meaning-making despite lacking empirical measurement standing.",
+      "confidence": "high",
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
@@ -595,7 +595,7 @@
       "instrument_id": "instr_natal_astrology",
       "risk_type": "overinterpretation",
       "severity": "medium",
-      "description": "Symbolic charts can be treated as destiny or objective explanation rather than interpretive story language.",
+      "description": "Charts can be treated as destiny or diagnostic truth, inviting determinism, projection, and practitioner overreach.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
     }
   ],
@@ -606,8 +606,8 @@
       "use_context": "self_reflection",
       "utility_type": "self_understanding",
       "suitability_level": "medium",
-      "cautions": "Keep empirical and symbolic layers clearly separated."
+      "cautions": "Keep empirical, symbolic, and interpretive layers clearly separated."
     }
   ],
-  "notes": "# Natal Astrology\n\n## What it is\nA symbolic charting system that interprets birth time and place through zodiacal and planetary symbolism.\n\n## Why it matters\nThis is a starter registry entry for Natal Astrology. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+  "notes": "# Natal Astrology\n\n## What it is\nA symbolic birth-chart system that maps planets, signs, houses, and aspects at the moment of birth to interpret personality and life themes.\n\n## Why it matters\nNatal astrology matters because it remains one of the oldest and most persistent symbolic languages for personhood, identity, timing, and meaning. Its cultural reach is far larger than its empirical standing.\n\n## What it is good for\n- symbolic self-reflection\n- narrative meaning-making\n- archetypal language\n- studying identity systems with strong cultural persistence\n\n## What it is weaker at\n- empirical measurement\n- inter-rater consistency across practitioners\n- construct commensurability with psychometric systems\n- resisting destiny narratives\n\n## Common misuse\nTreating the birth chart as objective diagnosis or fate rather than an interpretive symbolic framework.\n"
 }

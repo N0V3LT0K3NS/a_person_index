@@ -4,4 +4,5 @@ use_cases:
   use_context: self_reflection
   utility_type: self_understanding
   suitability_level: medium
-  cautions: Treat as symbolic language rather than literal person measurement.
+  cautions: Treat as symbolic meaning language and community practice, not as empirical
+    person measurement.

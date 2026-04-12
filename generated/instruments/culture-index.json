@@ -14,17 +14,21 @@
     ],
     "short_description": "A workplace assessment framework focused on predictive patterns relevant to roles, performance, and organizational fit.",
     "creators": [
-      "unknown"
+      "Gary Walstrom",
+      "Cecilia Bruening-Walstrom",
+      "Louis Janda"
     ],
-    "publisher_or_owner": "unknown",
-    "original_release_year": null,
-    "official_websites": [],
-    "licensing_model": "mixed",
+    "publisher_or_owner": "culture_index_llc",
+    "original_release_year": 2004,
+    "official_websites": [
+      "https://www.cultureindex.com/"
+    ],
+    "licensing_model": "proprietary",
     "primary_domain": "personality_framework",
     "country_or_origin_context": [
-      "mixed"
+      "united_states"
     ],
-    "notes": "Starter registry entry for Culture Index."
+    "notes": "This entry centers the modern Culture Index assessment ecosystem as a proprietary workplace analytics system."
   },
   "versions": [
     {
@@ -73,7 +77,7 @@
       "instrument_id": "instr_culture_index",
       "version_id": "ver_culture_index_general",
       "claim_type": "overview_claim",
-      "claim_text": "Culture Index claims to predict workplace behavior and fit through a brief assessment profile.",
+      "claim_text": "Culture Index claims to measure seven work-related traits through a quick survey and translate that data into hiring, management, and team-design decisions.",
       "source_resource_ids": [
         "res_culture_index_overview"
       ],
@@ -86,15 +90,15 @@
       "instrument_id": "instr_culture_index",
       "version_id": "ver_culture_index_general",
       "resource_type": "overview",
-      "title": "Culture Index overview source",
-      "url": "https://example.org/culture-index",
+      "title": "About Us | Culture Index Analytics",
+      "url": "https://www.cultureindex.com/about-us",
       "author": null,
       "publication_date": null,
-      "publisher": null,
+      "publisher": "Culture Index, LLC",
       "language": "en",
       "access_status": "public",
-      "officiality": "secondary",
-      "notes": "Starter source placeholder. Replace with a canonical source."
+      "officiality": "official",
+      "notes": "Official company history and methodology page describing Culture Index's 2004 launch, its founders, and its use of work-related trait measurement and free-choice adjective methodology."
     }
   ],
   "annotations": [
@@ -557,12 +561,12 @@
   },
   "inferences": [
     {
-      "id": "inf_culture_index_starter",
+      "id": "inf_culture_index_high_stakes_workflow",
       "target_entity_type": "instrument",
       "target_entity_id": "instr_culture_index",
-      "inference_type": "starter_position",
-      "text": "Its practical relevance is concentrated in hiring and organizational decision contexts, which raises the stakes of evidence and misuse concerns.",
-      "confidence": "medium",
+      "inference_type": "practical_risk",
+      "text": "Culture Index is oriented toward managerial action more than reflective self-understanding; because it is sold into hiring and role-fit workflows, evidence quality and interpretive limits matter more than its branding suggests.",
+      "confidence": "high",
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
@@ -575,7 +579,7 @@
       "instrument_id": "instr_culture_index",
       "risk_type": "overinterpretation",
       "severity": "medium",
-      "description": "Using proprietary workplace outputs for high-stakes decisions can amplify false precision and bias.",
+      "description": "Using proprietary workplace outputs for hiring, filtering, or succession decisions can amplify false precision, bias, and overconfidence.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
     }
   ],
@@ -586,8 +590,8 @@
       "use_context": "self_reflection",
       "utility_type": "self_understanding",
       "suitability_level": "medium",
-      "cautions": "High-stakes use should be treated with skepticism and strong guardrails."
+      "cautions": "Treat as a managerial heuristic with guardrails, not as an objective basis for high-stakes employment decisions."
     }
   ],
-  "notes": "# Culture Index\n\n## What it is\nA workplace assessment framework focused on predictive patterns relevant to roles, performance, and organizational fit.\n\n## Why it matters\nThis is a starter registry entry for Culture Index. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+  "notes": "# Culture Index\n\n## What it is\nA proprietary workplace assessment system that uses a brief survey to model work-related traits for hiring, management, and organizational decision-making.\n\n## Why it matters\nCulture Index matters because it sits at the high-stakes end of the workplace-assessment spectrum. It is designed less for personal reflection than for operational decisions about fit, performance, and team design.\n\n## What it is good for\n- managerial discussion of work-style patterns\n- team planning language\n- organizational role-fit conversations\n- studying proprietary workplace assessment culture\n\n## What it is weaker at\n- transparent psychometric scrutiny\n- whole-person description\n- reflective self-understanding\n- safe use in consequential employment decisions\n\n## Common misuse\nTreating a proprietary work-traits profile as objective truth in hiring or succession decisions without strong validity scrutiny and human oversight.\n"
 }
