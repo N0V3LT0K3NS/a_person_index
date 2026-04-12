@@ -1,0 +1,10 @@
+claims:
+- id: clm_via_character_strengths_overview
+  instrument_id: instr_via_character_strengths
+  version_id: ver_via_character_strengths_general
+  claim_type: overview_claim
+  claim_text: VIA claims to identify and rank character strengths relevant to flourishing
+    and development.
+  source_resource_ids:
+  - res_via_character_strengths_overview
+  quotation_status: paraphrase

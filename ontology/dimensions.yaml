@@ -1,0 +1,97 @@
+dimensions:
+- id: instrument_family
+  cardinality: many
+  description: Top-level family membership for an instrument.
+  enum_file: enums/instrument_family.yaml
+- id: primary_measurement_target
+  cardinality: many
+  description: Primary things the instrument claims or appears to measure.
+  enum_file: enums/primary_measurement_target.yaml
+- id: representational_form
+  cardinality: many
+  description: How the instrument encodes a person.
+  enum_file: enums/representational_form.yaml
+- id: temporal_stance
+  cardinality: many
+  description: What kind of time-object the instrument assumes it captures.
+  enum_file: enums/temporal_stance.yaml
+- id: person_ontology
+  cardinality: many
+  description: What the instrument implicitly treats a person as.
+  enum_file: enums/person_ontology.yaml
+- id: administration_mode
+  cardinality: many
+  description: How the instrument gathers data.
+  enum_file: enums/administration_mode.yaml
+- id: scoring_logic
+  cardinality: many
+  description: How responses become outputs.
+  enum_file: enums/scoring_logic.yaml
+- id: epistemic_basis
+  cardinality: many
+  description: General evidence type or truth-claim basis.
+  enum_file: enums/epistemic_basis.yaml
+- id: evidence_profile
+  cardinality: many
+  description: More granular evidence annotations.
+  enum_file: enums/evidence_profile.yaml
+- id: interpretive_burden
+  cardinality: one
+  description: How much meaning depends on interpreter vs instrument.
+  enum_file: enums/interpretive_burden.yaml
+- id: granularity
+  cardinality: one
+  description: Resolution of the output model.
+  enum_file: enums/granularity.yaml
+- id: context_sensitivity
+  cardinality: one
+  description: How global vs context-sensitive the outputs are.
+  enum_file: enums/context_sensitivity.yaml
+- id: change_model
+  cardinality: many
+  description: What kind of change the instrument assumes is possible.
+  enum_file: enums/change_model.yaml
+- id: distortion_risk
+  cardinality: many
+  description: Likely distortions or misuse risks.
+  enum_file: enums/distortion_risk.yaml
+- id: deployment_context
+  cardinality: many
+  description: Common contexts where the instrument is used.
+  enum_file: enums/deployment_context.yaml
+- id: utility_profile
+  cardinality: many
+  description: What the instrument is actually useful for.
+  enum_file: enums/utility_profile.yaml
+- id: target_population
+  cardinality: many
+  description: Intended or normed user population.
+  enum_file: enums/target_population.yaml
+- id: norming_status
+  cardinality: one
+  description: Quality or presence of normative calibration.
+  enum_file: enums/norming_status.yaml
+- id: identity_adhesion_risk
+  cardinality: one
+  description: How likely users are to fuse output with identity.
+  enum_file: enums/identity_adhesion_risk.yaml
+- id: actionability_type
+  cardinality: many
+  description: What kind of actionability the instrument supports.
+  enum_file: enums/actionability_type.yaml
+- id: worldview_load
+  cardinality: one
+  description: Degree to which the instrument embeds a thick worldview.
+  enum_file: enums/worldview_load.yaml
+- id: cultural_symbolic_role
+  cardinality: many
+  description: Social and symbolic role beyond measurement.
+  enum_file: enums/cultural_symbolic_role.yaml
+- id: synthesis_value_for_ilens
+  cardinality: one
+  description: Estimated usefulness as an ILENS input layer.
+  enum_file: enums/synthesis_value_for_ilens.yaml
+- id: overlap_mode
+  cardinality: many
+  description: Typical overlap pattern with other instruments.
+  enum_file: enums/overlap_mode.yaml

@@ -1,0 +1,181 @@
+constructs:
+- id: con_enneagram_type_one
+  instrument_id: instr_enneagram
+  version_ids:
+  - ver_enneagram_general
+  name: Type One
+  short_name: One
+  construct_kind:
+  - type
+  - motivation
+  official_definition: A reform-oriented strategy organized around restraint, improvement,
+    and correctness.
+  scoring_type: categorical_or_best_fit
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: categorical_typology
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_enneagram_type_two
+  instrument_id: instr_enneagram
+  version_ids:
+  - ver_enneagram_general
+  name: Type Two
+  short_name: Two
+  construct_kind:
+  - type
+  - motivation
+  official_definition: A relationship-oriented strategy organized around helpfulness,
+    approval, and connection.
+  scoring_type: categorical_or_best_fit
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: categorical_typology
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_enneagram_type_three
+  instrument_id: instr_enneagram
+  version_ids:
+  - ver_enneagram_general
+  name: Type Three
+  short_name: Three
+  construct_kind:
+  - type
+  - motivation
+  official_definition: An achievement-oriented strategy organized around performance,
+    image, and adaptation.
+  scoring_type: categorical_or_best_fit
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: categorical_typology
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_enneagram_type_four
+  instrument_id: instr_enneagram
+  version_ids:
+  - ver_enneagram_general
+  name: Type Four
+  short_name: Four
+  construct_kind:
+  - type
+  - motivation
+  official_definition: An identity-oriented strategy organized around depth, uniqueness,
+    and longing.
+  scoring_type: categorical_or_best_fit
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: categorical_typology
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_enneagram_type_five
+  instrument_id: instr_enneagram
+  version_ids:
+  - ver_enneagram_general
+  name: Type Five
+  short_name: Five
+  construct_kind:
+  - type
+  - motivation
+  official_definition: A withdrawal-oriented strategy organized around competence,
+    privacy, and cognitive mastery.
+  scoring_type: categorical_or_best_fit
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: categorical_typology
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_enneagram_type_six
+  instrument_id: instr_enneagram
+  version_ids:
+  - ver_enneagram_general
+  name: Type Six
+  short_name: Six
+  construct_kind:
+  - type
+  - motivation
+  official_definition: A security-oriented strategy organized around vigilance, loyalty,
+    and threat management.
+  scoring_type: categorical_or_best_fit
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: categorical_typology
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_enneagram_type_seven
+  instrument_id: instr_enneagram
+  version_ids:
+  - ver_enneagram_general
+  name: Type Seven
+  short_name: Seven
+  construct_kind:
+  - type
+  - motivation
+  official_definition: An expansive strategy organized around possibility, stimulation,
+    and avoidance of constriction.
+  scoring_type: categorical_or_best_fit
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: categorical_typology
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_enneagram_type_eight
+  instrument_id: instr_enneagram
+  version_ids:
+  - ver_enneagram_general
+  name: Type Eight
+  short_name: Eight
+  construct_kind:
+  - type
+  - motivation
+  official_definition: A force-oriented strategy organized around autonomy, intensity,
+    and resistance to control.
+  scoring_type: categorical_or_best_fit
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: categorical_typology
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_enneagram_type_nine
+  instrument_id: instr_enneagram
+  version_ids:
+  - ver_enneagram_general
+  name: Type Nine
+  short_name: Nine
+  construct_kind:
+  - type
+  - motivation
+  official_definition: A harmony-oriented strategy organized around stability, merger,
+    and conflict minimization.
+  scoring_type: categorical_or_best_fit
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: categorical_typology
+    min: null
+    max: null
+  parent_construct_id: null

@@ -1,0 +1,76 @@
+$defs:
+  Crosswalk:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      source_entity_type:
+        enum:
+        - instrument
+        - version
+        - construct
+        title: Source Entity Type
+        type: string
+      source_entity_id:
+        title: Source Entity Id
+        type: string
+      target_entity_type:
+        enum:
+        - instrument
+        - version
+        - construct
+        title: Target Entity Type
+        type: string
+      target_entity_id:
+        title: Target Entity Id
+        type: string
+      relationship_type:
+        title: Relationship Type
+        type: string
+      relationship_strength:
+        enum:
+        - low
+        - medium
+        - high
+        title: Relationship Strength
+        type: string
+      rationale:
+        title: Rationale
+        type: string
+      confidence:
+        enum:
+        - low
+        - medium
+        - high
+        title: Confidence
+        type: string
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - source_entity_type
+    - source_entity_id
+    - target_entity_type
+    - target_entity_id
+    - relationship_type
+    - relationship_strength
+    - rationale
+    - confidence
+    title: Crosswalk
+    type: object
+additionalProperties: false
+properties:
+  crosswalks:
+    items:
+      $ref: '#/$defs/Crosswalk'
+    title: Crosswalks
+    type: array
+required:
+- crosswalks
+title: CrosswalksDocument
+type: object

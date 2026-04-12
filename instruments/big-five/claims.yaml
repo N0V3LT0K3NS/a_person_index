@@ -1,0 +1,27 @@
+claims:
+- id: clm_big_five_describes_five_broad_traits
+  instrument_id: instr_big_five
+  version_id: ver_big_five_general
+  claim_type: construct_claim
+  claim_text: The model organizes personality variation into five broad trait domains.
+  source_resource_ids:
+  - res_big_five_summary_source
+  quotation_status: paraphrase
+- id: clm_big_five_trait_stability
+  instrument_id: instr_big_five
+  version_id: ver_big_five_general
+  claim_type: temporal_claim
+  claim_text: The framework is intended to describe relatively stable personality
+    traits rather than momentary emotional states.
+  source_resource_ids:
+  - res_big_five_summary_source
+  quotation_status: paraphrase
+- id: clm_big_five_variant_ecosystem
+  instrument_id: instr_big_five
+  version_id: ver_big_five_ipip_50
+  claim_type: implementation_claim
+  claim_text: The Big Five exists as a family of instruments with multiple public
+    and proprietary implementations.
+  source_resource_ids:
+  - res_big_five_ipip
+  quotation_status: paraphrase

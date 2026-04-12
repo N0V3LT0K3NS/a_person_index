@@ -1,0 +1,20 @@
+constructs:
+- id: con_cqs_core
+  instrument_id: instr_cqs
+  version_ids:
+  - ver_cqs_general
+  name: Cultural intelligence profile
+  short_name: Cultural intelligence profile
+  construct_kind:
+  - dimension
+  official_definition: A profile across cultural metacognitive, cognitive, motivational,
+    and behavioral capabilities.
+  scoring_type: variant_dependent
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null

@@ -1,0 +1,111 @@
+$defs:
+  Construct:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      instrument_id:
+        title: Instrument Id
+        type: string
+      version_ids:
+        items:
+          type: string
+        title: Version Ids
+        type: array
+      name:
+        title: Name
+        type: string
+      short_name:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Short Name
+      construct_kind:
+        items:
+          type: string
+        title: Construct Kind
+        type: array
+      official_definition:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Official Definition
+      scoring_type:
+        title: Scoring Type
+        type: string
+      polarity:
+        anyOf:
+        - $ref: '#/$defs/ConstructPolarity'
+        - type: 'null'
+        default: null
+      value_range:
+        anyOf:
+        - $ref: '#/$defs/ConstructValueRange'
+        - type: 'null'
+        default: null
+      parent_construct_id:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Parent Construct Id
+    required:
+    - id
+    - instrument_id
+    - name
+    - scoring_type
+    title: Construct
+    type: object
+  ConstructPolarity:
+    additionalProperties: false
+    properties:
+      low_label:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Low Label
+      high_label:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: High Label
+    title: ConstructPolarity
+    type: object
+  ConstructValueRange:
+    additionalProperties: false
+    properties:
+      type:
+        title: Type
+        type: string
+      min:
+        anyOf:
+        - type: number
+        - type: 'null'
+        default: null
+        title: Min
+      max:
+        anyOf:
+        - type: number
+        - type: 'null'
+        default: null
+        title: Max
+    required:
+    - type
+    title: ConstructValueRange
+    type: object
+additionalProperties: false
+properties:
+  constructs:
+    items:
+      $ref: '#/$defs/Construct'
+    title: Constructs
+    type: array
+required:
+- constructs
+title: ConstructsDocument
+type: object

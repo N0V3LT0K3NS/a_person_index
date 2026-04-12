@@ -1,0 +1,85 @@
+constructs:
+- id: con_mbti_extraversion_introversion
+  instrument_id: instr_mbti
+  version_ids:
+  - ver_mbti_general
+  - ver_mbti_step_i
+  name: Extraversion / Introversion
+  short_name: E/I
+  construct_kind:
+  - preference_pair
+  - dimension
+  official_definition: A preference pair describing orientation toward outer engagement
+    or inner reflection.
+  scoring_type: bipolar_preference
+  polarity:
+    low_label: introversion
+    high_label: extraversion
+  value_range:
+    type: preference_pair
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_mbti_sensing_intuition
+  instrument_id: instr_mbti
+  version_ids:
+  - ver_mbti_general
+  - ver_mbti_step_i
+  name: Sensing / Intuition
+  short_name: S/N
+  construct_kind:
+  - preference_pair
+  - dimension
+  official_definition: A preference pair describing attention to concrete detail or
+    pattern-level possibility.
+  scoring_type: bipolar_preference
+  polarity:
+    low_label: sensing
+    high_label: intuition
+  value_range:
+    type: preference_pair
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_mbti_thinking_feeling
+  instrument_id: instr_mbti
+  version_ids:
+  - ver_mbti_general
+  - ver_mbti_step_i
+  name: Thinking / Feeling
+  short_name: T/F
+  construct_kind:
+  - preference_pair
+  - dimension
+  official_definition: A preference pair describing decision style in terms of impersonal
+    analysis or value-based consideration.
+  scoring_type: bipolar_preference
+  polarity:
+    low_label: feeling
+    high_label: thinking
+  value_range:
+    type: preference_pair
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_mbti_judging_perceiving
+  instrument_id: instr_mbti
+  version_ids:
+  - ver_mbti_general
+  - ver_mbti_step_i
+  name: Judging / Perceiving
+  short_name: J/P
+  construct_kind:
+  - preference_pair
+  - dimension
+  official_definition: A preference pair describing preference for structure and closure
+    or openness and spontaneity.
+  scoring_type: bipolar_preference
+  polarity:
+    low_label: perceiving
+    high_label: judging
+  value_range:
+    type: preference_pair
+    min: null
+    max: null
+  parent_construct_id: null

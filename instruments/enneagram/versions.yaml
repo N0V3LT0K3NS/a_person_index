@@ -1,0 +1,12 @@
+versions:
+- id: ver_enneagram_general
+  instrument_id: instr_enneagram
+  version_label: general_family_record
+  release_date: null
+  retired_date: null
+  current: true
+  change_summary: Umbrella record for the broader Enneagram ecosystem.
+  scoring_changes: null
+  construct_changes: null
+  norming_changes: null
+  administration_changes: self_identification_and_practitioner_guidance

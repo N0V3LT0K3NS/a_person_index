@@ -1,0 +1,27 @@
+claims:
+- id: clm_enneagram_nine_core_types
+  instrument_id: instr_enneagram
+  version_id: ver_enneagram_general
+  claim_type: construct_claim
+  claim_text: The system describes nine core personality strategies or types.
+  source_resource_ids:
+  - res_enneagram_overview
+  quotation_status: paraphrase
+- id: clm_enneagram_motivational_core
+  instrument_id: instr_enneagram
+  version_id: ver_enneagram_general
+  claim_type: motivational_claim
+  claim_text: Type descriptions are commonly framed through core motivations, fears,
+    desires, and defensive patterns.
+  source_resource_ids:
+  - res_enneagram_overview
+  quotation_status: paraphrase
+- id: clm_enneagram_growth_stress
+  instrument_id: instr_enneagram
+  version_id: ver_enneagram_general
+  claim_type: developmental_claim
+  claim_text: The framework often claims that each type has characteristic growth
+    and stress dynamics.
+  source_resource_ids:
+  - res_enneagram_riso_hudson
+  quotation_status: paraphrase

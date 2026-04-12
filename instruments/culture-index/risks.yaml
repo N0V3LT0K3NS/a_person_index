@@ -1,0 +1,8 @@
+risks:
+- id: rsk_culture_index_overinterpretation
+  instrument_id: instr_culture_index
+  risk_type: overinterpretation
+  severity: medium
+  description: Using proprietary workplace outputs for high-stakes decisions can amplify
+    false precision and bias.
+  mitigation: Treat the framework as one layer among several and preserve uncertainty.

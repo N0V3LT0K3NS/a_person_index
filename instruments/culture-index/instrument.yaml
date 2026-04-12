@@ -1,0 +1,22 @@
+instrument:
+  id: instr_culture_index
+  canonical_name: Culture Index
+  short_names:
+  - Culture Index
+  aliases: []
+  status: active
+  family:
+  - leadership_workplace
+  - trait_personality
+  short_description: A workplace assessment framework focused on predictive patterns
+    relevant to roles, performance, and organizational fit.
+  creators:
+  - unknown
+  publisher_or_owner: unknown
+  original_release_year: null
+  official_websites: []
+  licensing_model: mixed
+  primary_domain: personality_framework
+  country_or_origin_context:
+  - mixed
+  notes: Starter registry entry for Culture Index.

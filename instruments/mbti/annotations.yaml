@@ -1,0 +1,316 @@
+annotations:
+- id: ann_mbti_instrument_family
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: instrument_family
+  ontology_values:
+  - typology
+  - cognitive_style
+  - identity_self_concept
+  annotation_status: inferred
+  confidence: high
+  rationale: MBTI is fundamentally a typology built around preference-based categories.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_primary_measurement_target
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: primary_measurement_target
+  ontology_values:
+  - cognitive_preferences
+  - interpersonal_style
+  - work_style
+  - communication_preferences
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'primary_measurement_target'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_representational_form
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: representational_form
+  ontology_values:
+  - categorical_typology
+  - binary_preferences
+  - profile_vector
+  annotation_status: inferred
+  confidence: high
+  rationale: The framework uses preference pairs that collapse into categorical type
+    codes.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_temporal_stance
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: temporal_stance
+  ontology_values:
+  - semi_stable_patterns
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'temporal_stance'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_person_ontology
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: person_ontology
+  ontology_values:
+  - hybrid_personhood_model
+  - work_behavior_pattern
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'person_ontology'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_administration_mode
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: administration_mode
+  ontology_values:
+  - self_report_questionnaire
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'administration_mode'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_scoring_logic
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: scoring_logic
+  ontology_values:
+  - ipsative_preference_scoring
+  - type_assignment_rules
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'scoring_logic'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_epistemic_basis
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: epistemic_basis
+  ontology_values:
+  - mixed_psychometric_and_theoretical
+  annotation_status: inferred
+  confidence: medium
+  rationale: MBTI combines questionnaire measurement with a strong theoretical inheritance
+    and a contested evidence profile.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_evidence_profile
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: evidence_profile
+  ontology_values:
+  - mixed_evidence
+  - proprietary_or_limited_transparency
+  - contested_validity
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'evidence_profile'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_interpretive_burden
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: interpretive_burden
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'interpretive_burden'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_granularity
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: granularity
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'granularity'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_context_sensitivity
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: context_sensitivity
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'context_sensitivity'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_change_model
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: change_model
+  ontology_values:
+  - situational_expression
+  - identity_revision
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'change_model'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_distortion_risk
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: distortion_risk
+  ontology_values:
+  - overinterpretation
+  - reification
+  - workplace_misuse
+  - self_report_distortion
+  annotation_status: inferred
+  confidence: high
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'distortion_risk'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_deployment_context
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: deployment_context
+  ontology_values:
+  - workplace
+  - coaching
+  - self_reflection
+  - team_design
+  - leadership_development
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'deployment_context'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_utility_profile
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: utility_profile
+  ontology_values:
+  - communication_adaptation
+  - team_alignment
+  - self_understanding
+  - coaching_language
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'utility_profile'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_target_population
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: target_population
+  ontology_values:
+  - general_adult_population
+  - workplace_teams
+  - leaders_managers
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'target_population'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_norming_status
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: norming_status
+  ontology_values:
+  - variant_dependent
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'norming_status'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_identity_adhesion_risk
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: identity_adhesion_risk
+  ontology_values:
+  - high
+  annotation_status: inferred
+  confidence: high
+  rationale: Users frequently adopt MBTI type as a durable social identity label.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_actionability_type
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: actionability_type
+  ontology_values:
+  - communication_adjustment
+  - team_design_support
+  - descriptive_reflection
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'actionability_type'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_worldview_load
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: worldview_load
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'worldview_load'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_cultural_symbolic_role
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: cultural_symbolic_role
+  ontology_values:
+  - workplace_identity_language
+  - pop_psychology_meme
+  - professional_shorthand
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'cultural_symbolic_role'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_synthesis_value_for_ilens
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: synthesis_value_for_ilens
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Myers-Briggs Type Indicator on the ontology dimension
+    'synthesis_value_for_ilens'.
+  evidence_links:
+  - res_mbti_overview
+- id: ann_mbti_overlap_mode
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  ontology_dimension: overlap_mode
+  ontology_values:
+  - often_misread_as_equivalent
+  - partial_construct_overlap
+  annotation_status: inferred
+  confidence: medium
+  rationale: MBTI is often loosely overlapped with trait models even when the underlying
+    constructs are not equivalent.
+  evidence_links:
+  - res_mbti_overview

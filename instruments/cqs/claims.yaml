@@ -1,0 +1,10 @@
+claims:
+- id: clm_cqs_overview
+  instrument_id: instr_cqs
+  version_id: ver_cqs_general
+  claim_type: overview_claim
+  claim_text: CQS claims to measure capabilities relevant to functioning effectively
+    across cultural contexts.
+  source_resource_ids:
+  - res_cqs_overview
+  quotation_status: paraphrase

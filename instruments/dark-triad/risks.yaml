@@ -1,0 +1,7 @@
+risks:
+- id: rsk_dark_triad_overinterpretation
+  instrument_id: instr_dark_triad
+  risk_type: overinterpretation
+  severity: medium
+  description: Scores can be moralized or used as total character judgments.
+  mitigation: Treat the framework as one layer among several and preserve uncertainty.

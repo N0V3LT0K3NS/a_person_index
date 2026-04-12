@@ -1,0 +1,49 @@
+$defs:
+  Claim:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      instrument_id:
+        title: Instrument Id
+        type: string
+      version_id:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Version Id
+      claim_type:
+        title: Claim Type
+        type: string
+      claim_text:
+        title: Claim Text
+        type: string
+      source_resource_ids:
+        items:
+          type: string
+        title: Source Resource Ids
+        type: array
+      quotation_status:
+        title: Quotation Status
+        type: string
+    required:
+    - id
+    - instrument_id
+    - claim_type
+    - claim_text
+    - quotation_status
+    title: Claim
+    type: object
+additionalProperties: false
+properties:
+  claims:
+    items:
+      $ref: '#/$defs/Claim'
+    title: Claims
+    type: array
+required:
+- claims
+title: ClaimsDocument
+type: object

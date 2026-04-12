@@ -1,0 +1,11 @@
+inferences:
+- id: inf_attachment_styles_starter
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  inference_type: starter_position
+  text: Attachment language is highly useful for relationship interpretation but often
+    overgeneralized beyond the contexts that activate it.
+  confidence: medium
+  linked_entities: []
+  author: house
+  timestamp: '2026-04-11'

@@ -1,0 +1,8 @@
+risks:
+- id: rsk_love_languages_overinterpretation
+  instrument_id: instr_love_languages
+  risk_type: overinterpretation
+  severity: medium
+  description: Low-resolution categories can flatten complex relational dynamics into
+    a single favorite language.
+  mitigation: Treat the framework as one layer among several and preserve uncertainty.

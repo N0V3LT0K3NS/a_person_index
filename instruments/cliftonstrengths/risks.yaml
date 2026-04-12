@@ -1,0 +1,8 @@
+risks:
+- id: rsk_cliftonstrengths_overinterpretation
+  instrument_id: instr_cliftonstrengths
+  risk_type: overinterpretation
+  severity: medium
+  description: Users may confuse branded strengths language with total capability
+    or role fit.
+  mitigation: Treat the framework as one layer among several and preserve uncertainty.

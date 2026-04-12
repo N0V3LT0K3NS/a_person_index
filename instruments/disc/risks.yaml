@@ -1,0 +1,8 @@
+risks:
+- id: rsk_disc_overinterpretation
+  instrument_id: instr_disc
+  risk_type: overinterpretation
+  severity: medium
+  description: DISC profiles are easy to overuse as simplified workplace identity
+    boxes.
+  mitigation: Treat the framework as one layer among several and preserve uncertainty.

@@ -1,0 +1,7 @@
+use_cases:
+- id: use_disc_self_reflection
+  instrument_id: instr_disc
+  use_context: self_reflection
+  utility_type: self_understanding
+  suitability_level: medium
+  cautions: Useful for team language, weak for total personality explanation.

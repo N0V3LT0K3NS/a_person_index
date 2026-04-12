@@ -1,0 +1,49 @@
+$defs:
+  UseCase:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      instrument_id:
+        title: Instrument Id
+        type: string
+      use_context:
+        title: Use Context
+        type: string
+      utility_type:
+        title: Utility Type
+        type: string
+      suitability_level:
+        enum:
+        - low
+        - medium
+        - high
+        - mixed
+        title: Suitability Level
+        type: string
+      cautions:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Cautions
+    required:
+    - id
+    - instrument_id
+    - use_context
+    - utility_type
+    - suitability_level
+    title: UseCase
+    type: object
+additionalProperties: false
+properties:
+  use_cases:
+    items:
+      $ref: '#/$defs/UseCase'
+    title: Use Cases
+    type: array
+required:
+- use_cases
+title: UseCasesDocument
+type: object

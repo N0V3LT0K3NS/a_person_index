@@ -1,0 +1,23 @@
+versions:
+- id: ver_mbti_general
+  instrument_id: instr_mbti
+  version_label: general_family_record
+  release_date: null
+  retired_date: null
+  current: true
+  change_summary: Umbrella record for the broader MBTI family.
+  scoring_changes: null
+  construct_changes: null
+  norming_changes: null
+  administration_changes: null
+- id: ver_mbti_step_i
+  instrument_id: instr_mbti
+  version_label: Step_I
+  release_date: null
+  retired_date: null
+  current: true
+  change_summary: Representative step-based version for standard type assignment.
+  scoring_changes: preference_pair_scoring
+  construct_changes: four_preference_pairs
+  norming_changes: variant_specific
+  administration_changes: self_report_questionnaire

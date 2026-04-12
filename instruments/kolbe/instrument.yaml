@@ -1,0 +1,22 @@
+instrument:
+  id: instr_kolbe
+  canonical_name: Kolbe A Index
+  short_names:
+  - Kolbe
+  aliases: []
+  status: active
+  family:
+  - conative_action_style
+  - leadership_workplace
+  short_description: A conative action-style instrument describing instinctive modes
+    of initiating work and solving problems.
+  creators:
+  - unknown
+  publisher_or_owner: unknown
+  original_release_year: null
+  official_websites: []
+  licensing_model: mixed
+  primary_domain: personality_framework
+  country_or_origin_context:
+  - mixed
+  notes: Starter registry entry for Kolbe A Index.

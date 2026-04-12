@@ -1,0 +1,22 @@
+inferences:
+- id: inf_mbti_shorthand_value
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  inference_type: practical_strength
+  text: MBTI persists because it offers an extremely portable social shorthand for
+    communication and work-style differences.
+  confidence: high
+  linked_entities:
+  - instr_big_five
+  author: house
+  timestamp: '2026-04-11'
+- id: inf_mbti_binary_limit
+  target_entity_type: instrument
+  target_entity_id: instr_mbti
+  inference_type: practical_limit
+  text: Its type-coded outputs are often easier to remember than to justify, especially
+    when they are treated as trait measures rather than interpretive preferences.
+  confidence: high
+  linked_entities: []
+  author: house
+  timestamp: '2026-04-11'

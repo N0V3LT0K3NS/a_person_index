@@ -1,0 +1,10 @@
+claims:
+- id: clm_culture_index_overview
+  instrument_id: instr_culture_index
+  version_id: ver_culture_index_general
+  claim_type: overview_claim
+  claim_text: Culture Index claims to predict workplace behavior and fit through a
+    brief assessment profile.
+  source_resource_ids:
+  - res_culture_index_overview
+  quotation_status: paraphrase

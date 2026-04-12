@@ -1,0 +1,20 @@
+constructs:
+- id: con_dark_triad_core
+  instrument_id: instr_dark_triad
+  version_ids:
+  - ver_dark_triad_general
+  name: Dark trait profile
+  short_name: Dark trait profile
+  construct_kind:
+  - dimension
+  official_definition: A profile across dark personality features such as narcissism,
+    Machiavellianism, and psychopathy.
+  scoring_type: variant_dependent
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null

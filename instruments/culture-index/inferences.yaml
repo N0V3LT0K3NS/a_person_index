@@ -1,0 +1,11 @@
+inferences:
+- id: inf_culture_index_starter
+  target_entity_type: instrument
+  target_entity_id: instr_culture_index
+  inference_type: starter_position
+  text: Its practical relevance is concentrated in hiring and organizational decision
+    contexts, which raises the stakes of evidence and misuse concerns.
+  confidence: medium
+  linked_entities: []
+  author: house
+  timestamp: '2026-04-11'

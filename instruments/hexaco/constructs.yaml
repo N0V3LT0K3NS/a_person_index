@@ -1,0 +1,20 @@
+constructs:
+- id: con_hexaco_core
+  instrument_id: instr_hexaco
+  version_ids:
+  - ver_hexaco_general
+  name: HEXACO trait profile
+  short_name: HEXACO trait profile
+  construct_kind:
+  - dimension
+  official_definition: A dimensional profile across six broad personality factors
+    including Honesty-Humility.
+  scoring_type: variant_dependent
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null

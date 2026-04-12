@@ -1,0 +1,10 @@
+claims:
+- id: clm_disc_overview
+  instrument_id: instr_disc
+  version_id: ver_disc_general
+  claim_type: overview_claim
+  claim_text: DISC claims to describe observable workplace and interaction styles
+    through four broad categories or factors.
+  source_resource_ids:
+  - res_disc_overview
+  quotation_status: paraphrase

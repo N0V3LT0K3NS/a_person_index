@@ -1,0 +1,11 @@
+inferences:
+- id: inf_cqs_starter
+  target_entity_type: instrument
+  target_entity_id: instr_cqs
+  inference_type: starter_position
+  text: CQS matters because it measures a contextual competence layer that many personality
+    systems ignore.
+  confidence: medium
+  linked_entities: []
+  author: house
+  timestamp: '2026-04-11'

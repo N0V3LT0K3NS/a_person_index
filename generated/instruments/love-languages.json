@@ -1,0 +1,603 @@
+{
+  "slug": "love-languages",
+  "instrument": {
+    "id": "instr_love_languages",
+    "canonical_name": "The Five Love Languages",
+    "short_names": [
+      "Love Languages"
+    ],
+    "aliases": [],
+    "status": "active",
+    "family": [
+      "attachment_relational",
+      "identity_self_concept"
+    ],
+    "short_description": "A relational preference framework describing preferred modes of expressing and receiving affection.",
+    "creators": [
+      "unknown"
+    ],
+    "publisher_or_owner": "unknown",
+    "original_release_year": null,
+    "official_websites": [],
+    "licensing_model": "mixed",
+    "primary_domain": "personality_framework",
+    "country_or_origin_context": [
+      "mixed"
+    ],
+    "notes": "Starter registry entry for The Five Love Languages."
+  },
+  "versions": [
+    {
+      "id": "ver_love_languages_general",
+      "instrument_id": "instr_love_languages",
+      "version_label": "general_family_record",
+      "release_date": null,
+      "retired_date": null,
+      "current": true,
+      "change_summary": "Generic umbrella record for the initial registry scaffold.",
+      "scoring_changes": null,
+      "construct_changes": null,
+      "norming_changes": null,
+      "administration_changes": null
+    }
+  ],
+  "constructs": [
+    {
+      "id": "con_love_languages_core",
+      "instrument_id": "instr_love_languages",
+      "version_ids": [
+        "ver_love_languages_general"
+      ],
+      "name": "Preferred affection channel",
+      "short_name": "Preferred affection channel",
+      "construct_kind": [
+        "dimension"
+      ],
+      "official_definition": "A preferred mode of giving or receiving affection, such as words, time, gifts, service, or touch.",
+      "scoring_type": "variant_dependent",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm_love_languages_overview",
+      "instrument_id": "instr_love_languages",
+      "version_id": "ver_love_languages_general",
+      "claim_type": "overview_claim",
+      "claim_text": "Love Languages claims that people have preferred channels for expressing and receiving affection.",
+      "source_resource_ids": [
+        "res_love_languages_overview"
+      ],
+      "quotation_status": "paraphrase"
+    }
+  ],
+  "resources": [
+    {
+      "id": "res_love_languages_overview",
+      "instrument_id": "instr_love_languages",
+      "version_id": "ver_love_languages_general",
+      "resource_type": "overview",
+      "title": "The Five Love Languages overview source",
+      "url": "https://example.org/love-languages",
+      "author": null,
+      "publication_date": null,
+      "publisher": null,
+      "language": "en",
+      "access_status": "public",
+      "officiality": "secondary",
+      "notes": "Starter source placeholder. Replace with a canonical source."
+    }
+  ],
+  "annotations": [
+    {
+      "id": "ann_love_languages_instrument_family",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "instrument_family",
+      "ontology_values": [
+        "attachment_relational",
+        "identity_self_concept"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'instrument_family'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_primary_measurement_target",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "primary_measurement_target",
+      "ontology_values": [
+        "relational_needs",
+        "communication_preferences",
+        "interpersonal_style"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'primary_measurement_target'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_representational_form",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "representational_form",
+      "ontology_values": [
+        "categorical_typology",
+        "profile_vector",
+        "narrative_description"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'representational_form'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_temporal_stance",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "temporal_stance",
+      "ontology_values": [
+        "semi_stable_patterns"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'temporal_stance'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_person_ontology",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "person_ontology",
+      "ontology_values": [
+        "relational_attachment_system"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'person_ontology'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_administration_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "administration_mode",
+      "ontology_values": [
+        "self_report_questionnaire",
+        "self_identification"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'administration_mode'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_scoring_logic",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "scoring_logic",
+      "ontology_values": [
+        "type_assignment_rules",
+        "sum_or_average_scale_scoring"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'scoring_logic'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_epistemic_basis",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "epistemic_basis",
+      "ontology_values": [
+        "popular_psychology",
+        "weak_or_contested_empirical_basis"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'epistemic_basis'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_interpretive_burden",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "interpretive_burden",
+      "ontology_values": [
+        "low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'interpretive_burden'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_granularity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "granularity",
+      "ontology_values": [
+        "low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'granularity'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_context_sensitivity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "context_sensitivity",
+      "ontology_values": [
+        "high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'context_sensitivity'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_change_model",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "change_model",
+      "ontology_values": [
+        "situational_expression",
+        "identity_revision"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'change_model'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_distortion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "distortion_risk",
+      "ontology_values": [
+        "overinterpretation",
+        "reification"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'distortion_risk'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_deployment_context",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "deployment_context",
+      "ontology_values": [
+        "relationship_support",
+        "self_reflection",
+        "coaching"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'deployment_context'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_utility_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "utility_profile",
+      "ontology_values": [
+        "relational_patterning",
+        "communication_adaptation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'utility_profile'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_identity_adhesion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "identity_adhesion_risk",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'identity_adhesion_risk'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_worldview_load",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "worldview_load",
+      "ontology_values": [
+        "low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'worldview_load'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_synthesis_value_for_ilens",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_values": [
+        "low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'synthesis_value_for_ilens'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_evidence_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "evidence_profile",
+      "ontology_values": [
+        "mostly_anecdotal_or_practitioner_based",
+        "contested_validity"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'evidence_profile'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_target_population",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "target_population",
+      "ontology_values": [
+        "couples_families",
+        "general_adult_population"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'target_population'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_norming_status",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "norming_status",
+      "ontology_values": [
+        "not_normed"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'norming_status'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_actionability_type",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "actionability_type",
+      "ontology_values": [
+        "relational_discussion"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'actionability_type'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_cultural_symbolic_role",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "cultural_symbolic_role",
+      "ontology_values": [
+        "internet_identity_language",
+        "pop_psychology_meme"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'cultural_symbolic_role'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    },
+    {
+      "id": "ann_love_languages_overlap_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "ontology_dimension": "overlap_mode",
+      "ontology_values": [
+        "shared_identity_space"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for The Five Love Languages on the ontology dimension 'overlap_mode'.",
+      "evidence_links": [
+        "res_love_languages_overview"
+      ]
+    }
+  ],
+  "annotation_index": {
+    "instrument_family": [
+      "attachment_relational",
+      "identity_self_concept"
+    ],
+    "primary_measurement_target": [
+      "communication_preferences",
+      "interpersonal_style",
+      "relational_needs"
+    ],
+    "representational_form": [
+      "categorical_typology",
+      "narrative_description",
+      "profile_vector"
+    ],
+    "temporal_stance": [
+      "semi_stable_patterns"
+    ],
+    "person_ontology": [
+      "relational_attachment_system"
+    ],
+    "administration_mode": [
+      "self_identification",
+      "self_report_questionnaire"
+    ],
+    "scoring_logic": [
+      "sum_or_average_scale_scoring",
+      "type_assignment_rules"
+    ],
+    "epistemic_basis": [
+      "popular_psychology",
+      "weak_or_contested_empirical_basis"
+    ],
+    "interpretive_burden": [
+      "low"
+    ],
+    "granularity": [
+      "low"
+    ],
+    "context_sensitivity": [
+      "high"
+    ],
+    "change_model": [
+      "identity_revision",
+      "situational_expression"
+    ],
+    "distortion_risk": [
+      "overinterpretation",
+      "reification"
+    ],
+    "deployment_context": [
+      "coaching",
+      "relationship_support",
+      "self_reflection"
+    ],
+    "utility_profile": [
+      "communication_adaptation",
+      "relational_patterning"
+    ],
+    "identity_adhesion_risk": [
+      "medium"
+    ],
+    "worldview_load": [
+      "low"
+    ],
+    "synthesis_value_for_ilens": [
+      "low"
+    ],
+    "evidence_profile": [
+      "contested_validity",
+      "mostly_anecdotal_or_practitioner_based"
+    ],
+    "target_population": [
+      "couples_families",
+      "general_adult_population"
+    ],
+    "norming_status": [
+      "not_normed"
+    ],
+    "actionability_type": [
+      "relational_discussion"
+    ],
+    "cultural_symbolic_role": [
+      "internet_identity_language",
+      "pop_psychology_meme"
+    ],
+    "overlap_mode": [
+      "shared_identity_space"
+    ]
+  },
+  "inferences": [
+    {
+      "id": "inf_love_languages_starter",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_love_languages",
+      "inference_type": "starter_position",
+      "text": "Its value is mostly conversational and relational rather than psychometric.",
+      "confidence": "medium",
+      "linked_entities": [],
+      "author": "house",
+      "timestamp": "2026-04-11"
+    }
+  ],
+  "crosswalks": [],
+  "risks": [
+    {
+      "id": "rsk_love_languages_overinterpretation",
+      "instrument_id": "instr_love_languages",
+      "risk_type": "overinterpretation",
+      "severity": "medium",
+      "description": "Low-resolution categories can flatten complex relational dynamics into a single favorite language.",
+      "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "use_love_languages_self_reflection",
+      "instrument_id": "instr_love_languages",
+      "use_context": "self_reflection",
+      "utility_type": "self_understanding",
+      "suitability_level": "medium",
+      "cautions": "Useful as a conversation opener, not as a full relationship model."
+    }
+  ],
+  "notes": "# The Five Love Languages\n\n## What it is\nA relational preference framework describing preferred modes of expressing and receiving affection.\n\n## Why it matters\nThis is a starter registry entry for The Five Love Languages. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+}

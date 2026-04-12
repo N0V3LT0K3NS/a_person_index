@@ -1,0 +1,7 @@
+use_cases:
+- id: use_dark_triad_self_reflection
+  instrument_id: instr_dark_triad
+  use_context: self_reflection
+  utility_type: self_understanding
+  suitability_level: medium
+  cautions: Treat as a narrow construct cluster, not a whole-person verdict.

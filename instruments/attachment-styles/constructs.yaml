@@ -1,0 +1,20 @@
+constructs:
+- id: con_attachment_styles_core
+  instrument_id: instr_attachment_styles
+  version_ids:
+  - ver_attachment_styles_general
+  name: Attachment pattern
+  short_name: Attachment pattern
+  construct_kind:
+  - dimension
+  official_definition: A pattern of closeness regulation, security, anxiety, and avoidance
+    in relational contexts.
+  scoring_type: variant_dependent
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null

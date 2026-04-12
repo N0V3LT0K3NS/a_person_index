@@ -1,0 +1,304 @@
+annotations:
+- id: ann_via_character_strengths_instrument_family
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: instrument_family
+  ontology_values:
+  - strengths_talent
+  - values_moral_orientation
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'instrument_family'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_primary_measurement_target
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: primary_measurement_target
+  ontology_values:
+  - moral_character
+  - strengths_talents
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'primary_measurement_target'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_representational_form
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: representational_form
+  ontology_values:
+  - rank_order_strengths
+  - profile_vector
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'representational_form'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_temporal_stance
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: temporal_stance
+  ontology_values:
+  - semi_stable_patterns
+  - developmental_path
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'temporal_stance'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_person_ontology
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: person_ontology
+  ontology_values:
+  - moral_character_profile
+  - strengths_expression_profile
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'person_ontology'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_administration_mode
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: administration_mode
+  ontology_values:
+  - self_report_questionnaire
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'administration_mode'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_scoring_logic
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: scoring_logic
+  ontology_values:
+  - rank_order_selection
+  - sum_or_average_scale_scoring
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'scoring_logic'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_epistemic_basis
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: epistemic_basis
+  ontology_values:
+  - strong_psychometric_validation
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'epistemic_basis'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_interpretive_burden
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: interpretive_burden
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'interpretive_burden'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_granularity
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: granularity
+  ontology_values:
+  - high
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'granularity'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_context_sensitivity
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: context_sensitivity
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'context_sensitivity'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_change_model
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: change_model
+  ontology_values:
+  - developmental_growth
+  - skills_trainability
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'change_model'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_distortion_risk
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: distortion_risk
+  ontology_values:
+  - overinterpretation
+  - self_report_distortion
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'distortion_risk'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_deployment_context
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: deployment_context
+  ontology_values:
+  - self_reflection
+  - coaching
+  - education
+  - research
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'deployment_context'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_utility_profile
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: utility_profile
+  ontology_values:
+  - strengths_identification
+  - developmental_reflection
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'utility_profile'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_identity_adhesion_risk
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: identity_adhesion_risk
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'identity_adhesion_risk'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_worldview_load
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: worldview_load
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'worldview_load'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_synthesis_value_for_ilens
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: synthesis_value_for_ilens
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'synthesis_value_for_ilens'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_evidence_profile
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: evidence_profile
+  ontology_values:
+  - extensive_peer_review
+  - normative_data_available
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'evidence_profile'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_target_population
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: target_population
+  ontology_values:
+  - general_adult_population
+  - students
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'target_population'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_norming_status
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: norming_status
+  ontology_values:
+  - well_normed
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'norming_status'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_actionability_type
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: actionability_type
+  ontology_values:
+  - developmental_planning
+  - descriptive_reflection
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'actionability_type'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_cultural_symbolic_role
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: cultural_symbolic_role
+  ontology_values:
+  - professional_shorthand
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'cultural_symbolic_role'.
+  evidence_links:
+  - res_via_character_strengths_overview
+- id: ann_via_character_strengths_overlap_mode
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  ontology_dimension: overlap_mode
+  ontology_values:
+  - complementary_layers
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for VIA Character Strengths on the ontology dimension
+    'overlap_mode'.
+  evidence_links:
+  - res_via_character_strengths_overview

@@ -1,0 +1,10 @@
+claims:
+- id: clm_cliftonstrengths_overview
+  instrument_id: instr_cliftonstrengths
+  version_id: ver_cliftonstrengths_general
+  claim_type: overview_claim
+  claim_text: CliftonStrengths claims to identify recurring talent patterns that can
+    be productively developed into strengths.
+  source_resource_ids:
+  - res_cliftonstrengths_overview
+  quotation_status: paraphrase

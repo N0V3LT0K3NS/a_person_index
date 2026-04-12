@@ -1,0 +1,914 @@
+{
+  "slug": "enneagram",
+  "instrument": {
+    "id": "instr_enneagram",
+    "canonical_name": "Enneagram of Personality",
+    "short_names": [
+      "Enneagram"
+    ],
+    "aliases": [
+      "Enneagram of Personality Types"
+    ],
+    "status": "active",
+    "family": [
+      "typology",
+      "motivational",
+      "identity_self_concept",
+      "worldview_meaning_making"
+    ],
+    "short_description": "A typological framework centered on nine core personality strategies often described in terms of motivation, fear, desire, fixation, defense, and growth/stress patterns.",
+    "creators": [
+      "multiple_historical_lineages"
+    ],
+    "publisher_or_owner": "decentralized",
+    "original_release_year": null,
+    "official_websites": [],
+    "licensing_model": "decentralized",
+    "primary_domain": "personality_typology",
+    "country_or_origin_context": [
+      "mixed"
+    ],
+    "notes": "This record represents the broader Enneagram ecosystem rather than a single publisher-specific assessment."
+  },
+  "versions": [
+    {
+      "id": "ver_enneagram_general",
+      "instrument_id": "instr_enneagram",
+      "version_label": "general_family_record",
+      "release_date": null,
+      "retired_date": null,
+      "current": true,
+      "change_summary": "Umbrella record for the broader Enneagram ecosystem.",
+      "scoring_changes": null,
+      "construct_changes": null,
+      "norming_changes": null,
+      "administration_changes": "self_identification_and_practitioner_guidance"
+    }
+  ],
+  "constructs": [
+    {
+      "id": "con_enneagram_type_one",
+      "instrument_id": "instr_enneagram",
+      "version_ids": [
+        "ver_enneagram_general"
+      ],
+      "name": "Type One",
+      "short_name": "One",
+      "construct_kind": [
+        "type",
+        "motivation"
+      ],
+      "official_definition": "A reform-oriented strategy organized around restraint, improvement, and correctness.",
+      "scoring_type": "categorical_or_best_fit",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "categorical_typology",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_enneagram_type_two",
+      "instrument_id": "instr_enneagram",
+      "version_ids": [
+        "ver_enneagram_general"
+      ],
+      "name": "Type Two",
+      "short_name": "Two",
+      "construct_kind": [
+        "type",
+        "motivation"
+      ],
+      "official_definition": "A relationship-oriented strategy organized around helpfulness, approval, and connection.",
+      "scoring_type": "categorical_or_best_fit",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "categorical_typology",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_enneagram_type_three",
+      "instrument_id": "instr_enneagram",
+      "version_ids": [
+        "ver_enneagram_general"
+      ],
+      "name": "Type Three",
+      "short_name": "Three",
+      "construct_kind": [
+        "type",
+        "motivation"
+      ],
+      "official_definition": "An achievement-oriented strategy organized around performance, image, and adaptation.",
+      "scoring_type": "categorical_or_best_fit",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "categorical_typology",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_enneagram_type_four",
+      "instrument_id": "instr_enneagram",
+      "version_ids": [
+        "ver_enneagram_general"
+      ],
+      "name": "Type Four",
+      "short_name": "Four",
+      "construct_kind": [
+        "type",
+        "motivation"
+      ],
+      "official_definition": "An identity-oriented strategy organized around depth, uniqueness, and longing.",
+      "scoring_type": "categorical_or_best_fit",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "categorical_typology",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_enneagram_type_five",
+      "instrument_id": "instr_enneagram",
+      "version_ids": [
+        "ver_enneagram_general"
+      ],
+      "name": "Type Five",
+      "short_name": "Five",
+      "construct_kind": [
+        "type",
+        "motivation"
+      ],
+      "official_definition": "A withdrawal-oriented strategy organized around competence, privacy, and cognitive mastery.",
+      "scoring_type": "categorical_or_best_fit",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "categorical_typology",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_enneagram_type_six",
+      "instrument_id": "instr_enneagram",
+      "version_ids": [
+        "ver_enneagram_general"
+      ],
+      "name": "Type Six",
+      "short_name": "Six",
+      "construct_kind": [
+        "type",
+        "motivation"
+      ],
+      "official_definition": "A security-oriented strategy organized around vigilance, loyalty, and threat management.",
+      "scoring_type": "categorical_or_best_fit",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "categorical_typology",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_enneagram_type_seven",
+      "instrument_id": "instr_enneagram",
+      "version_ids": [
+        "ver_enneagram_general"
+      ],
+      "name": "Type Seven",
+      "short_name": "Seven",
+      "construct_kind": [
+        "type",
+        "motivation"
+      ],
+      "official_definition": "An expansive strategy organized around possibility, stimulation, and avoidance of constriction.",
+      "scoring_type": "categorical_or_best_fit",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "categorical_typology",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_enneagram_type_eight",
+      "instrument_id": "instr_enneagram",
+      "version_ids": [
+        "ver_enneagram_general"
+      ],
+      "name": "Type Eight",
+      "short_name": "Eight",
+      "construct_kind": [
+        "type",
+        "motivation"
+      ],
+      "official_definition": "A force-oriented strategy organized around autonomy, intensity, and resistance to control.",
+      "scoring_type": "categorical_or_best_fit",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "categorical_typology",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_enneagram_type_nine",
+      "instrument_id": "instr_enneagram",
+      "version_ids": [
+        "ver_enneagram_general"
+      ],
+      "name": "Type Nine",
+      "short_name": "Nine",
+      "construct_kind": [
+        "type",
+        "motivation"
+      ],
+      "official_definition": "A harmony-oriented strategy organized around stability, merger, and conflict minimization.",
+      "scoring_type": "categorical_or_best_fit",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "categorical_typology",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm_enneagram_nine_core_types",
+      "instrument_id": "instr_enneagram",
+      "version_id": "ver_enneagram_general",
+      "claim_type": "construct_claim",
+      "claim_text": "The system describes nine core personality strategies or types.",
+      "source_resource_ids": [
+        "res_enneagram_overview"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_enneagram_motivational_core",
+      "instrument_id": "instr_enneagram",
+      "version_id": "ver_enneagram_general",
+      "claim_type": "motivational_claim",
+      "claim_text": "Type descriptions are commonly framed through core motivations, fears, desires, and defensive patterns.",
+      "source_resource_ids": [
+        "res_enneagram_overview"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_enneagram_growth_stress",
+      "instrument_id": "instr_enneagram",
+      "version_id": "ver_enneagram_general",
+      "claim_type": "developmental_claim",
+      "claim_text": "The framework often claims that each type has characteristic growth and stress dynamics.",
+      "source_resource_ids": [
+        "res_enneagram_riso_hudson"
+      ],
+      "quotation_status": "paraphrase"
+    }
+  ],
+  "resources": [
+    {
+      "id": "res_enneagram_overview",
+      "instrument_id": "instr_enneagram",
+      "version_id": "ver_enneagram_general",
+      "resource_type": "overview",
+      "title": "Enneagram overview source",
+      "url": "https://example.org/enneagram-overview",
+      "author": null,
+      "publication_date": null,
+      "publisher": null,
+      "language": "en",
+      "access_status": "public",
+      "officiality": "secondary",
+      "notes": "Placeholder overview source. Replace with a more specific lineage-aware reference set."
+    },
+    {
+      "id": "res_enneagram_riso_hudson",
+      "instrument_id": "instr_enneagram",
+      "version_id": "ver_enneagram_general",
+      "resource_type": "book",
+      "title": "Representative Enneagram book source",
+      "url": "https://example.org/enneagram-book",
+      "author": "example_author",
+      "publication_date": null,
+      "publisher": "example_publisher",
+      "language": "en",
+      "access_status": "public",
+      "officiality": "secondary",
+      "notes": "Placeholder source standing in for a more specific Enneagram text."
+    }
+  ],
+  "annotations": [
+    {
+      "id": "ann_enneagram_instrument_family",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "instrument_family",
+      "ontology_values": [
+        "typology",
+        "motivational",
+        "identity_self_concept",
+        "worldview_meaning_making"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "The Enneagram is widely used as a typological and motivational system and often functions as an identity and meaning-making language.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_primary_measurement_target",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "primary_measurement_target",
+      "ontology_values": [
+        "motivation_drives",
+        "defense_patterns",
+        "identity_narrative",
+        "interpersonal_style"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'primary_measurement_target'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_representational_form",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "representational_form",
+      "ontology_values": [
+        "categorical_typology",
+        "hybrid_dimensional_typological",
+        "narrative_description",
+        "developmental_level"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "The system is type-based but often includes wings, instincts, and developmental levels.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_temporal_stance",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "temporal_stance",
+      "ontology_values": [
+        "semi_stable_patterns",
+        "developmental_path"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'temporal_stance'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_person_ontology",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "person_ontology",
+      "ontology_values": [
+        "dynamic_strategy_system",
+        "motivational_structure"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'person_ontology'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_administration_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "administration_mode",
+      "ontology_values": [
+        "self_identification",
+        "practitioner_interview",
+        "workshop_facilitation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'administration_mode'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_scoring_logic",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "scoring_logic",
+      "ontology_values": [
+        "type_assignment_rules",
+        "interpretive_pattern_matching",
+        "expert_interpretation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'scoring_logic'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_epistemic_basis",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "epistemic_basis",
+      "ontology_values": [
+        "mixed_lineages",
+        "narrative_interpretation",
+        "weak_or_contested_empirical_basis"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "The Enneagram draws from mixed lineages and interpretive traditions and remains empirically contested.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_evidence_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "evidence_profile",
+      "ontology_values": [
+        "mostly_anecdotal_or_practitioner_based",
+        "contested_validity"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'evidence_profile'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_interpretive_burden",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "interpretive_burden",
+      "ontology_values": [
+        "high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "Meaning often depends heavily on practitioner sophistication, user self-identification, and interpretive context.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_granularity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "granularity",
+      "ontology_values": [
+        "high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'granularity'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_context_sensitivity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "context_sensitivity",
+      "ontology_values": [
+        "high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'context_sensitivity'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_change_model",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "change_model",
+      "ontology_values": [
+        "developmental_growth",
+        "subtype_refinement",
+        "identity_revision"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'change_model'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_distortion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "distortion_risk",
+      "ontology_values": [
+        "identity_capture",
+        "practitioner_projection",
+        "overinterpretation",
+        "confirmation_bias"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'distortion_risk'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_deployment_context",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "deployment_context",
+      "ontology_values": [
+        "coaching",
+        "self_reflection",
+        "therapy",
+        "spiritual_community",
+        "internet_identity_culture"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'deployment_context'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_utility_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "utility_profile",
+      "ontology_values": [
+        "motive_exploration",
+        "developmental_reflection",
+        "coaching_language",
+        "relational_patterning"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'utility_profile'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_target_population",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "target_population",
+      "ontology_values": [
+        "general_adult_population",
+        "coaching_clients",
+        "spiritual_seekers"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'target_population'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_norming_status",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "norming_status",
+      "ontology_values": [
+        "limited_norms"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'norming_status'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_identity_adhesion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "identity_adhesion_risk",
+      "ontology_values": [
+        "very_high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "Users frequently fuse with type identity or use type language as a durable self-narration frame.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_actionability_type",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "actionability_type",
+      "ontology_values": [
+        "developmental_planning",
+        "relational_discussion"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'actionability_type'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_worldview_load",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "worldview_load",
+      "ontology_values": [
+        "high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'worldview_load'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_cultural_symbolic_role",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "cultural_symbolic_role",
+      "ontology_values": [
+        "coaching_identity_language",
+        "community_belonging_language",
+        "internet_identity_language"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'cultural_symbolic_role'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_synthesis_value_for_ilens",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_values": [
+        "high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "The Enneagram is useful when motive, defense, and identity language matter, but it should not be treated as a psychometric anchor.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    },
+    {
+      "id": "ann_enneagram_overlap_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "ontology_dimension": "overlap_mode",
+      "ontology_values": [
+        "shared_identity_space",
+        "complementary_layers"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Enneagram of Personality on the ontology dimension 'overlap_mode'.",
+      "evidence_links": [
+        "res_enneagram_overview"
+      ]
+    }
+  ],
+  "annotation_index": {
+    "instrument_family": [
+      "identity_self_concept",
+      "motivational",
+      "typology",
+      "worldview_meaning_making"
+    ],
+    "primary_measurement_target": [
+      "defense_patterns",
+      "identity_narrative",
+      "interpersonal_style",
+      "motivation_drives"
+    ],
+    "representational_form": [
+      "categorical_typology",
+      "developmental_level",
+      "hybrid_dimensional_typological",
+      "narrative_description"
+    ],
+    "temporal_stance": [
+      "developmental_path",
+      "semi_stable_patterns"
+    ],
+    "person_ontology": [
+      "dynamic_strategy_system",
+      "motivational_structure"
+    ],
+    "administration_mode": [
+      "practitioner_interview",
+      "self_identification",
+      "workshop_facilitation"
+    ],
+    "scoring_logic": [
+      "expert_interpretation",
+      "interpretive_pattern_matching",
+      "type_assignment_rules"
+    ],
+    "epistemic_basis": [
+      "mixed_lineages",
+      "narrative_interpretation",
+      "weak_or_contested_empirical_basis"
+    ],
+    "evidence_profile": [
+      "contested_validity",
+      "mostly_anecdotal_or_practitioner_based"
+    ],
+    "interpretive_burden": [
+      "high"
+    ],
+    "granularity": [
+      "high"
+    ],
+    "context_sensitivity": [
+      "high"
+    ],
+    "change_model": [
+      "developmental_growth",
+      "identity_revision",
+      "subtype_refinement"
+    ],
+    "distortion_risk": [
+      "confirmation_bias",
+      "identity_capture",
+      "overinterpretation",
+      "practitioner_projection"
+    ],
+    "deployment_context": [
+      "coaching",
+      "internet_identity_culture",
+      "self_reflection",
+      "spiritual_community",
+      "therapy"
+    ],
+    "utility_profile": [
+      "coaching_language",
+      "developmental_reflection",
+      "motive_exploration",
+      "relational_patterning"
+    ],
+    "target_population": [
+      "coaching_clients",
+      "general_adult_population",
+      "spiritual_seekers"
+    ],
+    "norming_status": [
+      "limited_norms"
+    ],
+    "identity_adhesion_risk": [
+      "very_high"
+    ],
+    "actionability_type": [
+      "developmental_planning",
+      "relational_discussion"
+    ],
+    "worldview_load": [
+      "high"
+    ],
+    "cultural_symbolic_role": [
+      "coaching_identity_language",
+      "community_belonging_language",
+      "internet_identity_language"
+    ],
+    "synthesis_value_for_ilens": [
+      "high"
+    ],
+    "overlap_mode": [
+      "complementary_layers",
+      "shared_identity_space"
+    ]
+  },
+  "inferences": [
+    {
+      "id": "inf_enneagram_motive_depth",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "inference_type": "comparative_strength",
+      "text": "Enneagram is comparatively strong as a language of motive, defense strategy, and identity narrative even where psychometric grounding remains weak.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_big_five"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_enneagram_identity_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "inference_type": "practical_risk",
+      "text": "Its practical power is partly social and narrative, which also makes it unusually prone to identity capture and practitioner overreach.",
+      "confidence": "high",
+      "linked_entities": [],
+      "author": "house",
+      "timestamp": "2026-04-11"
+    }
+  ],
+  "crosswalks": [],
+  "risks": [
+    {
+      "id": "rsk_enneagram_identity_capture",
+      "instrument_id": "instr_enneagram",
+      "risk_type": "identity_capture",
+      "severity": "high",
+      "description": "Users may fuse with a type identity and treat it as destiny, justification, or a durable self-explanation.",
+      "mitigation": "Frame type as a working hypothesis and revisit fit over time."
+    },
+    {
+      "id": "rsk_enneagram_practitioner_projection",
+      "instrument_id": "instr_enneagram",
+      "risk_type": "practitioner_projection",
+      "severity": "high",
+      "description": "Interpretation can become highly dependent on coach or teacher style, leading to confident but weakly grounded typing.",
+      "mitigation": "Prefer transparent rationale, multiple indicators, and explicit uncertainty."
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "use_enneagram_self_reflection",
+      "instrument_id": "instr_enneagram",
+      "use_context": "self_reflection",
+      "utility_type": "motive_exploration",
+      "suitability_level": "high",
+      "cautions": "Most useful when treated as exploratory language rather than fixed identity truth."
+    },
+    {
+      "id": "use_enneagram_coaching",
+      "instrument_id": "instr_enneagram",
+      "use_context": "coaching",
+      "utility_type": "developmental_reflection",
+      "suitability_level": "medium",
+      "cautions": "Outcome quality varies sharply with practitioner rigor."
+    }
+  ],
+  "notes": "# Enneagram of Personality\n\n## What it is\nA typological framework organized around nine core strategies often described through motives, fears, desires, and defenses.\n\n## Why it matters\nIn this registry, Enneagram is valuable because it captures identity and motive language that many more psychometric frameworks describe only indirectly. It is also a strong example of a system that is culturally sticky despite a weaker evidence base.\n\n## What it is good for\n- motive exploration\n- coaching language\n- developmental reflection\n- relational patterning\n- identity narrative analysis\n\n## What it is weaker at\n- psychometric grounding\n- standardized measurement\n- low-interpretation administration\n- clean construct commensurability\n\n## Common misuse\nUsing type as destiny language or as an overconfident total explanation of the person.\n"
+}

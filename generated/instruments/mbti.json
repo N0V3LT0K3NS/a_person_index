@@ -1,0 +1,805 @@
+{
+  "slug": "mbti",
+  "instrument": {
+    "id": "instr_mbti",
+    "canonical_name": "Myers-Briggs Type Indicator",
+    "short_names": [
+      "MBTI"
+    ],
+    "aliases": [
+      "Myers Briggs"
+    ],
+    "status": "active",
+    "family": [
+      "typology",
+      "cognitive_style",
+      "identity_self_concept"
+    ],
+    "short_description": "A widely used typology framework built around four preference pairs that combine into sixteen type codes.",
+    "creators": [
+      "Katherine Cook Briggs",
+      "Isabel Briggs Myers"
+    ],
+    "publisher_or_owner": "licensed_publishers",
+    "original_release_year": 1943,
+    "official_websites": [],
+    "licensing_model": "proprietary",
+    "primary_domain": "personality_typology",
+    "country_or_origin_context": [
+      "united_states"
+    ],
+    "notes": "This entry covers the broader MBTI ecosystem, not just a single publisher manual or training pathway."
+  },
+  "versions": [
+    {
+      "id": "ver_mbti_general",
+      "instrument_id": "instr_mbti",
+      "version_label": "general_family_record",
+      "release_date": null,
+      "retired_date": null,
+      "current": true,
+      "change_summary": "Umbrella record for the broader MBTI family.",
+      "scoring_changes": null,
+      "construct_changes": null,
+      "norming_changes": null,
+      "administration_changes": null
+    },
+    {
+      "id": "ver_mbti_step_i",
+      "instrument_id": "instr_mbti",
+      "version_label": "Step_I",
+      "release_date": null,
+      "retired_date": null,
+      "current": true,
+      "change_summary": "Representative step-based version for standard type assignment.",
+      "scoring_changes": "preference_pair_scoring",
+      "construct_changes": "four_preference_pairs",
+      "norming_changes": "variant_specific",
+      "administration_changes": "self_report_questionnaire"
+    }
+  ],
+  "constructs": [
+    {
+      "id": "con_mbti_extraversion_introversion",
+      "instrument_id": "instr_mbti",
+      "version_ids": [
+        "ver_mbti_general",
+        "ver_mbti_step_i"
+      ],
+      "name": "Extraversion / Introversion",
+      "short_name": "E/I",
+      "construct_kind": [
+        "preference_pair",
+        "dimension"
+      ],
+      "official_definition": "A preference pair describing orientation toward outer engagement or inner reflection.",
+      "scoring_type": "bipolar_preference",
+      "polarity": {
+        "low_label": "introversion",
+        "high_label": "extraversion"
+      },
+      "value_range": {
+        "type": "preference_pair",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_mbti_sensing_intuition",
+      "instrument_id": "instr_mbti",
+      "version_ids": [
+        "ver_mbti_general",
+        "ver_mbti_step_i"
+      ],
+      "name": "Sensing / Intuition",
+      "short_name": "S/N",
+      "construct_kind": [
+        "preference_pair",
+        "dimension"
+      ],
+      "official_definition": "A preference pair describing attention to concrete detail or pattern-level possibility.",
+      "scoring_type": "bipolar_preference",
+      "polarity": {
+        "low_label": "sensing",
+        "high_label": "intuition"
+      },
+      "value_range": {
+        "type": "preference_pair",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_mbti_thinking_feeling",
+      "instrument_id": "instr_mbti",
+      "version_ids": [
+        "ver_mbti_general",
+        "ver_mbti_step_i"
+      ],
+      "name": "Thinking / Feeling",
+      "short_name": "T/F",
+      "construct_kind": [
+        "preference_pair",
+        "dimension"
+      ],
+      "official_definition": "A preference pair describing decision style in terms of impersonal analysis or value-based consideration.",
+      "scoring_type": "bipolar_preference",
+      "polarity": {
+        "low_label": "feeling",
+        "high_label": "thinking"
+      },
+      "value_range": {
+        "type": "preference_pair",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_mbti_judging_perceiving",
+      "instrument_id": "instr_mbti",
+      "version_ids": [
+        "ver_mbti_general",
+        "ver_mbti_step_i"
+      ],
+      "name": "Judging / Perceiving",
+      "short_name": "J/P",
+      "construct_kind": [
+        "preference_pair",
+        "dimension"
+      ],
+      "official_definition": "A preference pair describing preference for structure and closure or openness and spontaneity.",
+      "scoring_type": "bipolar_preference",
+      "polarity": {
+        "low_label": "perceiving",
+        "high_label": "judging"
+      },
+      "value_range": {
+        "type": "preference_pair",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm_mbti_sixteen_types",
+      "instrument_id": "instr_mbti",
+      "version_id": "ver_mbti_general",
+      "claim_type": "typology_claim",
+      "claim_text": "The framework organizes people into sixteen type combinations based on four preference pairs.",
+      "source_resource_ids": [
+        "res_mbti_overview"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_mbti_preferences_not_abilities",
+      "instrument_id": "instr_mbti",
+      "version_id": "ver_mbti_general",
+      "claim_type": "construct_claim",
+      "claim_text": "Type outputs are commonly framed as preferences rather than measures of ability or skill.",
+      "source_resource_ids": [
+        "res_mbti_overview"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_mbti_jungian_basis",
+      "instrument_id": "instr_mbti",
+      "version_id": "ver_mbti_general",
+      "claim_type": "theoretical_claim",
+      "claim_text": "The system is presented as deriving from Jungian ideas about psychological type.",
+      "source_resource_ids": [
+        "res_mbti_manual"
+      ],
+      "quotation_status": "paraphrase"
+    }
+  ],
+  "resources": [
+    {
+      "id": "res_mbti_overview",
+      "instrument_id": "instr_mbti",
+      "version_id": "ver_mbti_general",
+      "resource_type": "overview",
+      "title": "MBTI overview source",
+      "url": "https://example.org/mbti-overview",
+      "author": null,
+      "publication_date": null,
+      "publisher": null,
+      "language": "en",
+      "access_status": "public",
+      "officiality": "secondary",
+      "notes": "Placeholder MBTI overview source. Replace with current official and critical references."
+    },
+    {
+      "id": "res_mbti_manual",
+      "instrument_id": "instr_mbti",
+      "version_id": "ver_mbti_step_i",
+      "resource_type": "manual",
+      "title": "Representative MBTI manual source",
+      "url": "https://example.org/mbti-manual",
+      "author": "example_author",
+      "publication_date": null,
+      "publisher": "example_publisher",
+      "language": "en",
+      "access_status": "restricted",
+      "officiality": "semi_official",
+      "notes": "Placeholder manual source."
+    }
+  ],
+  "annotations": [
+    {
+      "id": "ann_mbti_instrument_family",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "instrument_family",
+      "ontology_values": [
+        "typology",
+        "cognitive_style",
+        "identity_self_concept"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "MBTI is fundamentally a typology built around preference-based categories.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_primary_measurement_target",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "primary_measurement_target",
+      "ontology_values": [
+        "cognitive_preferences",
+        "interpersonal_style",
+        "work_style",
+        "communication_preferences"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'primary_measurement_target'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_representational_form",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "representational_form",
+      "ontology_values": [
+        "categorical_typology",
+        "binary_preferences",
+        "profile_vector"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "The framework uses preference pairs that collapse into categorical type codes.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_temporal_stance",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "temporal_stance",
+      "ontology_values": [
+        "semi_stable_patterns"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'temporal_stance'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_person_ontology",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "person_ontology",
+      "ontology_values": [
+        "hybrid_personhood_model",
+        "work_behavior_pattern"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'person_ontology'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_administration_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "administration_mode",
+      "ontology_values": [
+        "self_report_questionnaire"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'administration_mode'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_scoring_logic",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "scoring_logic",
+      "ontology_values": [
+        "ipsative_preference_scoring",
+        "type_assignment_rules"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'scoring_logic'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_epistemic_basis",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "epistemic_basis",
+      "ontology_values": [
+        "mixed_psychometric_and_theoretical"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "MBTI combines questionnaire measurement with a strong theoretical inheritance and a contested evidence profile.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_evidence_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "evidence_profile",
+      "ontology_values": [
+        "mixed_evidence",
+        "proprietary_or_limited_transparency",
+        "contested_validity"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'evidence_profile'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_interpretive_burden",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "interpretive_burden",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'interpretive_burden'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_granularity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "granularity",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'granularity'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_context_sensitivity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "context_sensitivity",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'context_sensitivity'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_change_model",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "change_model",
+      "ontology_values": [
+        "situational_expression",
+        "identity_revision"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'change_model'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_distortion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "distortion_risk",
+      "ontology_values": [
+        "overinterpretation",
+        "reification",
+        "workplace_misuse",
+        "self_report_distortion"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'distortion_risk'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_deployment_context",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "deployment_context",
+      "ontology_values": [
+        "workplace",
+        "coaching",
+        "self_reflection",
+        "team_design",
+        "leadership_development"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'deployment_context'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_utility_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "utility_profile",
+      "ontology_values": [
+        "communication_adaptation",
+        "team_alignment",
+        "self_understanding",
+        "coaching_language"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'utility_profile'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_target_population",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "target_population",
+      "ontology_values": [
+        "general_adult_population",
+        "workplace_teams",
+        "leaders_managers"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'target_population'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_norming_status",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "norming_status",
+      "ontology_values": [
+        "variant_dependent"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'norming_status'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_identity_adhesion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "identity_adhesion_risk",
+      "ontology_values": [
+        "high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "Users frequently adopt MBTI type as a durable social identity label.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_actionability_type",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "actionability_type",
+      "ontology_values": [
+        "communication_adjustment",
+        "team_design_support",
+        "descriptive_reflection"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'actionability_type'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_worldview_load",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "worldview_load",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'worldview_load'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_cultural_symbolic_role",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "cultural_symbolic_role",
+      "ontology_values": [
+        "workplace_identity_language",
+        "pop_psychology_meme",
+        "professional_shorthand"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'cultural_symbolic_role'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_synthesis_value_for_ilens",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Myers-Briggs Type Indicator on the ontology dimension 'synthesis_value_for_ilens'.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    },
+    {
+      "id": "ann_mbti_overlap_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "ontology_dimension": "overlap_mode",
+      "ontology_values": [
+        "often_misread_as_equivalent",
+        "partial_construct_overlap"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "MBTI is often loosely overlapped with trait models even when the underlying constructs are not equivalent.",
+      "evidence_links": [
+        "res_mbti_overview"
+      ]
+    }
+  ],
+  "annotation_index": {
+    "instrument_family": [
+      "cognitive_style",
+      "identity_self_concept",
+      "typology"
+    ],
+    "primary_measurement_target": [
+      "cognitive_preferences",
+      "communication_preferences",
+      "interpersonal_style",
+      "work_style"
+    ],
+    "representational_form": [
+      "binary_preferences",
+      "categorical_typology",
+      "profile_vector"
+    ],
+    "temporal_stance": [
+      "semi_stable_patterns"
+    ],
+    "person_ontology": [
+      "hybrid_personhood_model",
+      "work_behavior_pattern"
+    ],
+    "administration_mode": [
+      "self_report_questionnaire"
+    ],
+    "scoring_logic": [
+      "ipsative_preference_scoring",
+      "type_assignment_rules"
+    ],
+    "epistemic_basis": [
+      "mixed_psychometric_and_theoretical"
+    ],
+    "evidence_profile": [
+      "contested_validity",
+      "mixed_evidence",
+      "proprietary_or_limited_transparency"
+    ],
+    "interpretive_burden": [
+      "medium"
+    ],
+    "granularity": [
+      "medium"
+    ],
+    "context_sensitivity": [
+      "medium"
+    ],
+    "change_model": [
+      "identity_revision",
+      "situational_expression"
+    ],
+    "distortion_risk": [
+      "overinterpretation",
+      "reification",
+      "self_report_distortion",
+      "workplace_misuse"
+    ],
+    "deployment_context": [
+      "coaching",
+      "leadership_development",
+      "self_reflection",
+      "team_design",
+      "workplace"
+    ],
+    "utility_profile": [
+      "coaching_language",
+      "communication_adaptation",
+      "self_understanding",
+      "team_alignment"
+    ],
+    "target_population": [
+      "general_adult_population",
+      "leaders_managers",
+      "workplace_teams"
+    ],
+    "norming_status": [
+      "variant_dependent"
+    ],
+    "identity_adhesion_risk": [
+      "high"
+    ],
+    "actionability_type": [
+      "communication_adjustment",
+      "descriptive_reflection",
+      "team_design_support"
+    ],
+    "worldview_load": [
+      "medium"
+    ],
+    "cultural_symbolic_role": [
+      "pop_psychology_meme",
+      "professional_shorthand",
+      "workplace_identity_language"
+    ],
+    "synthesis_value_for_ilens": [
+      "medium"
+    ],
+    "overlap_mode": [
+      "often_misread_as_equivalent",
+      "partial_construct_overlap"
+    ]
+  },
+  "inferences": [
+    {
+      "id": "inf_mbti_shorthand_value",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "inference_type": "practical_strength",
+      "text": "MBTI persists because it offers an extremely portable social shorthand for communication and work-style differences.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_big_five"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_mbti_binary_limit",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_mbti",
+      "inference_type": "practical_limit",
+      "text": "Its type-coded outputs are often easier to remember than to justify, especially when they are treated as trait measures rather than interpretive preferences.",
+      "confidence": "high",
+      "linked_entities": [],
+      "author": "house",
+      "timestamp": "2026-04-11"
+    }
+  ],
+  "crosswalks": [
+    {
+      "id": "xwk_mbti_intuition_big_five_openness",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_mbti_sensing_intuition",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_big_five_openness",
+      "relationship_type": "loose_overlap",
+      "relationship_strength": "medium",
+      "rationale": "MBTI intuition and Big Five openness often occupy nearby cultural territory, but they arise from different models and are not interchangeable.",
+      "confidence": "medium",
+      "notes": "House comparison only; not an official translation."
+    }
+  ],
+  "risks": [
+    {
+      "id": "rsk_mbti_reification",
+      "instrument_id": "instr_mbti",
+      "risk_type": "reification",
+      "severity": "high",
+      "description": "Type codes can be reified into rigid identity boxes that obscure within-type variability.",
+      "mitigation": "Treat type language as a conversational shorthand rather than a total explanatory model."
+    },
+    {
+      "id": "rsk_mbti_workplace_misuse",
+      "instrument_id": "instr_mbti",
+      "risk_type": "workplace_misuse",
+      "severity": "medium",
+      "description": "Organizations may overuse MBTI for role assignment, selection, or simplistic team narratives.",
+      "mitigation": "Keep use limited to discussion and reflection rather than high-stakes decision making."
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "use_mbti_team_design",
+      "instrument_id": "instr_mbti",
+      "use_context": "team_design",
+      "utility_type": "communication_adaptation",
+      "suitability_level": "medium",
+      "cautions": "Useful as a discussion starter, weak as a personnel decision framework."
+    },
+    {
+      "id": "use_mbti_self_reflection",
+      "instrument_id": "instr_mbti",
+      "use_context": "self_reflection",
+      "utility_type": "self_understanding",
+      "suitability_level": "medium",
+      "cautions": "Best treated as a preference-language heuristic rather than a fixed identity verdict."
+    }
+  ],
+  "notes": "# Myers-Briggs Type Indicator\n\n## What it is\nA typological framework based on four preference pairs that combine into sixteen type codes.\n\n## Why it matters\nMBTI is culturally and organizationally important because it functions as a durable shorthand for personality difference, especially in workplace and coaching settings. Its practical stickiness matters even where evidence and construct commensurability remain contested.\n\n## What it is good for\n- communication shorthand\n- lightweight team discussion\n- reflective preference language\n- coaching conversation\n\n## What it is weaker at\n- trait measurement\n- clean construct comparability\n- high-stakes decisions\n- preserving nuance under binary labels\n\n## Common misuse\nTreating type as a hard box or using it for selection and assignment decisions.\n"
+}

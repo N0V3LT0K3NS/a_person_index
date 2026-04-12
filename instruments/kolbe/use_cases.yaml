@@ -1,0 +1,7 @@
+use_cases:
+- id: use_kolbe_self_reflection
+  instrument_id: instr_kolbe
+  use_context: self_reflection
+  utility_type: self_understanding
+  suitability_level: medium
+  cautions: Use as a workflow discussion aid rather than a fixed capacity judgment.

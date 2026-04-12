@@ -1,0 +1,17 @@
+risks:
+- id: rsk_mbti_reification
+  instrument_id: instr_mbti
+  risk_type: reification
+  severity: high
+  description: Type codes can be reified into rigid identity boxes that obscure within-type
+    variability.
+  mitigation: Treat type language as a conversational shorthand rather than a total
+    explanatory model.
+- id: rsk_mbti_workplace_misuse
+  instrument_id: instr_mbti
+  risk_type: workplace_misuse
+  severity: medium
+  description: Organizations may overuse MBTI for role assignment, selection, or simplistic
+    team narratives.
+  mitigation: Keep use limited to discussion and reflection rather than high-stakes
+    decision making.

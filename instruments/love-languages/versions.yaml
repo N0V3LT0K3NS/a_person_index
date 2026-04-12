@@ -1,0 +1,12 @@
+versions:
+- id: ver_love_languages_general
+  instrument_id: instr_love_languages
+  version_label: general_family_record
+  release_date: null
+  retired_date: null
+  current: true
+  change_summary: Generic umbrella record for the initial registry scaffold.
+  scoring_changes: null
+  construct_changes: null
+  norming_changes: null
+  administration_changes: null

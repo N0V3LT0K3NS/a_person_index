@@ -1,0 +1,11 @@
+inferences:
+- id: inf_via_character_strengths_starter
+  target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  inference_type: starter_position
+  text: VIA matters because it combines positive psychology language with a relatively
+    structured strengths taxonomy.
+  confidence: medium
+  linked_entities: []
+  author: house
+  timestamp: '2026-04-11'

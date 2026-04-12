@@ -1,0 +1,310 @@
+annotations:
+- id: ann_attachment_styles_instrument_family
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: instrument_family
+  ontology_values:
+  - attachment_relational
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'instrument_family'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_primary_measurement_target
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: primary_measurement_target
+  ontology_values:
+  - attachment_patterns
+  - relational_needs
+  - interpersonal_style
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'primary_measurement_target'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_representational_form
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: representational_form
+  ontology_values:
+  - categorical_typology
+  - hybrid_dimensional_typological
+  - narrative_description
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'representational_form'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_temporal_stance
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: temporal_stance
+  ontology_values:
+  - semi_stable_patterns
+  - developmental_path
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'temporal_stance'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_person_ontology
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: person_ontology
+  ontology_values:
+  - relational_attachment_system
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'person_ontology'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_administration_mode
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: administration_mode
+  ontology_values:
+  - self_report_questionnaire
+  - practitioner_interview
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'administration_mode'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_scoring_logic
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: scoring_logic
+  ontology_values:
+  - type_assignment_rules
+  - sum_or_average_scale_scoring
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'scoring_logic'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_epistemic_basis
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: epistemic_basis
+  ontology_values:
+  - strong_psychometric_validation
+  - clinical_observation
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'epistemic_basis'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_interpretive_burden
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: interpretive_burden
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'interpretive_burden'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_granularity
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: granularity
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'granularity'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_context_sensitivity
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: context_sensitivity
+  ontology_values:
+  - high
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'context_sensitivity'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_change_model
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: change_model
+  ontology_values:
+  - developmental_growth
+  - situational_expression
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'change_model'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_distortion_risk
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: distortion_risk
+  ontology_values:
+  - overinterpretation
+  - identity_capture
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'distortion_risk'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_deployment_context
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: deployment_context
+  ontology_values:
+  - therapy
+  - relationship_support
+  - self_reflection
+  - coaching
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'deployment_context'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_utility_profile
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: utility_profile
+  ontology_values:
+  - relational_patterning
+  - developmental_reflection
+  - self_understanding
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'utility_profile'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_identity_adhesion_risk
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: identity_adhesion_risk
+  ontology_values:
+  - high
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'identity_adhesion_risk'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_worldview_load
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: worldview_load
+  ontology_values:
+  - low
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'worldview_load'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_synthesis_value_for_ilens
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: synthesis_value_for_ilens
+  ontology_values:
+  - high
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'synthesis_value_for_ilens'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_evidence_profile
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: evidence_profile
+  ontology_values:
+  - extensive_peer_review
+  - mixed_evidence
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'evidence_profile'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_target_population
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: target_population
+  ontology_values:
+  - general_adult_population
+  - couples_families
+  - clinical_populations
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'target_population'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_norming_status
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: norming_status
+  ontology_values:
+  - variant_dependent
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'norming_status'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_actionability_type
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: actionability_type
+  ontology_values:
+  - developmental_planning
+  - relational_discussion
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'actionability_type'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_cultural_symbolic_role
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: cultural_symbolic_role
+  ontology_values:
+  - internet_identity_language
+  - professional_shorthand
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'cultural_symbolic_role'.
+  evidence_links:
+  - res_attachment_styles_overview
+- id: ann_attachment_styles_overlap_mode
+  target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  ontology_dimension: overlap_mode
+  ontology_values:
+  - complementary_layers
+  - shared_identity_space
+  annotation_status: inferred
+  confidence: medium
+  rationale: House annotation for Attachment Style Frameworks on the ontology dimension
+    'overlap_mode'.
+  evidence_links:
+  - res_attachment_styles_overview

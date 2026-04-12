@@ -1,0 +1,11 @@
+inferences:
+- id: inf_kolbe_starter
+  target_entity_type: instrument
+  target_entity_id: instr_kolbe
+  inference_type: starter_position
+  text: Kolbe occupies a distinct niche because it frames differences in terms of
+    action style rather than personality trait or type identity.
+  confidence: medium
+  linked_entities: []
+  author: house
+  timestamp: '2026-04-11'

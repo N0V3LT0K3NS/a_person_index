@@ -1,0 +1,26 @@
+inferences:
+- id: inf_big_five_foundational_anchor
+  target_entity_type: instrument
+  target_entity_id: instr_big_five
+  inference_type: synthesis_position
+  text: Big Five is one of the best baseline anchor frameworks for a synthesis system
+    because it supplies relatively stable broad trait scaffolding without imposing
+    a thick symbolic identity narrative.
+  confidence: high
+  linked_entities:
+  - instr_mbti
+  - instr_enneagram
+  author: house
+  timestamp: '2026-04-11'
+- id: inf_big_five_limitations
+  target_entity_type: instrument
+  target_entity_id: instr_big_five
+  inference_type: practical_limit
+  text: Big Five is weaker as a direct language of motive, defense strategy, or identity
+    narrative than systems like Enneagram, despite being stronger in psychometric
+    grounding.
+  confidence: high
+  linked_entities:
+  - instr_enneagram
+  author: house
+  timestamp: '2026-04-11'

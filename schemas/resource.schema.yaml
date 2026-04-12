@@ -1,0 +1,85 @@
+$defs:
+  Resource:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      instrument_id:
+        title: Instrument Id
+        type: string
+      version_id:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Version Id
+      resource_type:
+        title: Resource Type
+        type: string
+      title:
+        title: Title
+        type: string
+      url:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Url
+      author:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Author
+      publication_date:
+        anyOf:
+        - format: date
+          type: string
+        - type: 'null'
+        default: null
+        title: Publication Date
+      publisher:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Publisher
+      language:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Language
+      access_status:
+        title: Access Status
+        type: string
+      officiality:
+        title: Officiality
+        type: string
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - instrument_id
+    - resource_type
+    - title
+    - access_status
+    - officiality
+    title: Resource
+    type: object
+additionalProperties: false
+properties:
+  resources:
+    items:
+      $ref: '#/$defs/Resource'
+    title: Resources
+    type: array
+required:
+- resources
+title: ResourcesDocument
+type: object

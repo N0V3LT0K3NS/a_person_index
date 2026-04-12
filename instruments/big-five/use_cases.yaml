@@ -1,0 +1,13 @@
+use_cases:
+- id: use_big_five_self_reflection
+  instrument_id: instr_big_five
+  use_context: self_reflection
+  utility_type: self_understanding
+  suitability_level: high
+  cautions: Best used as broad descriptive scaffolding, not destiny language.
+- id: use_big_five_team_design
+  instrument_id: instr_big_five
+  use_context: team_design
+  utility_type: communication_adaptation
+  suitability_level: medium
+  cautions: Should not be used as the sole basis for team role assignment.

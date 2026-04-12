@@ -1,0 +1,10 @@
+inferences:
+- id: inf_love_languages_starter
+  target_entity_type: instrument
+  target_entity_id: instr_love_languages
+  inference_type: starter_position
+  text: Its value is mostly conversational and relational rather than psychometric.
+  confidence: medium
+  linked_entities: []
+  author: house
+  timestamp: '2026-04-11'

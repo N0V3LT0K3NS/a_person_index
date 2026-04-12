@@ -1,0 +1,14 @@
+resources:
+- id: res_human_design_overview
+  instrument_id: instr_human_design
+  version_id: ver_human_design_general
+  resource_type: overview
+  title: Human Design overview source
+  url: https://example.org/human-design
+  author: null
+  publication_date: null
+  publisher: null
+  language: en
+  access_status: public
+  officiality: secondary
+  notes: Starter source placeholder. Replace with a canonical source.

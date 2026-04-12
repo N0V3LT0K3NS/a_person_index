@@ -1,0 +1,11 @@
+inferences:
+- id: inf_cliftonstrengths_starter
+  target_entity_type: instrument
+  target_entity_id: instr_cliftonstrengths
+  inference_type: starter_position
+  text: The framework is valuable as a strengths-first coaching language even when
+    it is less useful for comprehensive person modeling.
+  confidence: medium
+  linked_entities: []
+  author: house
+  timestamp: '2026-04-11'

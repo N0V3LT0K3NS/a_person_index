@@ -1,0 +1,20 @@
+constructs:
+- id: con_cliftonstrengths_core
+  instrument_id: instr_cliftonstrengths
+  version_ids:
+  - ver_cliftonstrengths_general
+  name: Talent theme profile
+  short_name: Talent theme profile
+  construct_kind:
+  - dimension
+  official_definition: Rank-ordered strengths themes intended to highlight recurring
+    talent patterns.
+  scoring_type: variant_dependent
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null

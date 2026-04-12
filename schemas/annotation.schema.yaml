@@ -1,0 +1,71 @@
+$defs:
+  Annotation:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      target_entity_type:
+        enum:
+        - instrument
+        - version
+        - construct
+        title: Target Entity Type
+        type: string
+      target_entity_id:
+        title: Target Entity Id
+        type: string
+      ontology_dimension:
+        title: Ontology Dimension
+        type: string
+      ontology_values:
+        items:
+          type: string
+        title: Ontology Values
+        type: array
+      annotation_status:
+        enum:
+        - explicit
+        - implicit
+        - inferred
+        - comparative
+        - contested
+        title: Annotation Status
+        type: string
+      confidence:
+        enum:
+        - low
+        - medium
+        - high
+        title: Confidence
+        type: string
+      rationale:
+        title: Rationale
+        type: string
+      evidence_links:
+        items:
+          type: string
+        title: Evidence Links
+        type: array
+    required:
+    - id
+    - target_entity_type
+    - target_entity_id
+    - ontology_dimension
+    - ontology_values
+    - annotation_status
+    - confidence
+    - rationale
+    title: Annotation
+    type: object
+additionalProperties: false
+properties:
+  annotations:
+    items:
+      $ref: '#/$defs/Annotation'
+    title: Annotations
+    type: array
+required:
+- annotations
+title: AnnotationsDocument
+type: object

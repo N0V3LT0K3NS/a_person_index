@@ -1,0 +1,600 @@
+{
+  "slug": "hexaco",
+  "instrument": {
+    "id": "instr_hexaco",
+    "canonical_name": "HEXACO Personality Inventory",
+    "short_names": [
+      "HEXACO"
+    ],
+    "aliases": [],
+    "status": "active",
+    "family": [
+      "trait_personality"
+    ],
+    "short_description": "A trait personality framework extending five-factor trait models with an additional Honesty-Humility domain.",
+    "creators": [
+      "unknown"
+    ],
+    "publisher_or_owner": "unknown",
+    "original_release_year": null,
+    "official_websites": [],
+    "licensing_model": "mixed",
+    "primary_domain": "personality_framework",
+    "country_or_origin_context": [
+      "mixed"
+    ],
+    "notes": "Starter registry entry for HEXACO Personality Inventory."
+  },
+  "versions": [
+    {
+      "id": "ver_hexaco_general",
+      "instrument_id": "instr_hexaco",
+      "version_label": "general_family_record",
+      "release_date": null,
+      "retired_date": null,
+      "current": true,
+      "change_summary": "Generic umbrella record for the initial registry scaffold.",
+      "scoring_changes": null,
+      "construct_changes": null,
+      "norming_changes": null,
+      "administration_changes": null
+    }
+  ],
+  "constructs": [
+    {
+      "id": "con_hexaco_core",
+      "instrument_id": "instr_hexaco",
+      "version_ids": [
+        "ver_hexaco_general"
+      ],
+      "name": "HEXACO trait profile",
+      "short_name": "HEXACO trait profile",
+      "construct_kind": [
+        "dimension"
+      ],
+      "official_definition": "A dimensional profile across six broad personality factors including Honesty-Humility.",
+      "scoring_type": "variant_dependent",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm_hexaco_overview",
+      "instrument_id": "instr_hexaco",
+      "version_id": "ver_hexaco_general",
+      "claim_type": "overview_claim",
+      "claim_text": "HEXACO claims to measure six broad personality dimensions with stronger cross-cultural lexical grounding for the six-factor structure.",
+      "source_resource_ids": [
+        "res_hexaco_overview"
+      ],
+      "quotation_status": "paraphrase"
+    }
+  ],
+  "resources": [
+    {
+      "id": "res_hexaco_overview",
+      "instrument_id": "instr_hexaco",
+      "version_id": "ver_hexaco_general",
+      "resource_type": "overview",
+      "title": "HEXACO Personality Inventory overview source",
+      "url": "https://example.org/hexaco",
+      "author": null,
+      "publication_date": null,
+      "publisher": null,
+      "language": "en",
+      "access_status": "public",
+      "officiality": "secondary",
+      "notes": "Starter source placeholder. Replace with a canonical source."
+    }
+  ],
+  "annotations": [
+    {
+      "id": "ann_hexaco_instrument_family",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "instrument_family",
+      "ontology_values": [
+        "trait_personality"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'instrument_family'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_primary_measurement_target",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "primary_measurement_target",
+      "ontology_values": [
+        "stable_traits",
+        "interpersonal_style",
+        "affect_emotion",
+        "moral_character"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'primary_measurement_target'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_representational_form",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "representational_form",
+      "ontology_values": [
+        "continuous_dimensional",
+        "hierarchical_model"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'representational_form'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_temporal_stance",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "temporal_stance",
+      "ontology_values": [
+        "stable_traits"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'temporal_stance'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_person_ontology",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "person_ontology",
+      "ontology_values": [
+        "trait_container"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'person_ontology'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_administration_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "administration_mode",
+      "ontology_values": [
+        "self_report_questionnaire",
+        "observer_report"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'administration_mode'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_scoring_logic",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "scoring_logic",
+      "ontology_values": [
+        "sum_or_average_scale_scoring",
+        "factor_scoring"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'scoring_logic'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_epistemic_basis",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "epistemic_basis",
+      "ontology_values": [
+        "strong_psychometric_validation",
+        "cross_cultural_research"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'epistemic_basis'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_interpretive_burden",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "interpretive_burden",
+      "ontology_values": [
+        "low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'interpretive_burden'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_granularity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "granularity",
+      "ontology_values": [
+        "high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'granularity'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_context_sensitivity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "context_sensitivity",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'context_sensitivity'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_change_model",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "change_model",
+      "ontology_values": [
+        "trait_stability",
+        "developmental_growth"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'change_model'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_distortion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "distortion_risk",
+      "ontology_values": [
+        "self_report_distortion",
+        "overinterpretation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'distortion_risk'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_deployment_context",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "deployment_context",
+      "ontology_values": [
+        "research",
+        "self_reflection",
+        "workplace"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'deployment_context'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_utility_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "utility_profile",
+      "ontology_values": [
+        "research_baseline",
+        "self_understanding"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'utility_profile'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_identity_adhesion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "identity_adhesion_risk",
+      "ontology_values": [
+        "low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'identity_adhesion_risk'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_worldview_load",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "worldview_load",
+      "ontology_values": [
+        "very_low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'worldview_load'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_synthesis_value_for_ilens",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_values": [
+        "high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'synthesis_value_for_ilens'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_evidence_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "evidence_profile",
+      "ontology_values": [
+        "extensive_peer_review",
+        "cross_cultural_support",
+        "normative_data_available"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'evidence_profile'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_target_population",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "target_population",
+      "ontology_values": [
+        "general_adult_population"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'target_population'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_norming_status",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "norming_status",
+      "ontology_values": [
+        "well_normed"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'norming_status'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_actionability_type",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "actionability_type",
+      "ontology_values": [
+        "descriptive_reflection"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'actionability_type'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_cultural_symbolic_role",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "cultural_symbolic_role",
+      "ontology_values": [
+        "research_anchor"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'cultural_symbolic_role'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    },
+    {
+      "id": "ann_hexaco_overlap_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "ontology_dimension": "overlap_mode",
+      "ontology_values": [
+        "partial_construct_overlap",
+        "complementary_layers"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for HEXACO Personality Inventory on the ontology dimension 'overlap_mode'.",
+      "evidence_links": [
+        "res_hexaco_overview"
+      ]
+    }
+  ],
+  "annotation_index": {
+    "instrument_family": [
+      "trait_personality"
+    ],
+    "primary_measurement_target": [
+      "affect_emotion",
+      "interpersonal_style",
+      "moral_character",
+      "stable_traits"
+    ],
+    "representational_form": [
+      "continuous_dimensional",
+      "hierarchical_model"
+    ],
+    "temporal_stance": [
+      "stable_traits"
+    ],
+    "person_ontology": [
+      "trait_container"
+    ],
+    "administration_mode": [
+      "observer_report",
+      "self_report_questionnaire"
+    ],
+    "scoring_logic": [
+      "factor_scoring",
+      "sum_or_average_scale_scoring"
+    ],
+    "epistemic_basis": [
+      "cross_cultural_research",
+      "strong_psychometric_validation"
+    ],
+    "interpretive_burden": [
+      "low"
+    ],
+    "granularity": [
+      "high"
+    ],
+    "context_sensitivity": [
+      "medium"
+    ],
+    "change_model": [
+      "developmental_growth",
+      "trait_stability"
+    ],
+    "distortion_risk": [
+      "overinterpretation",
+      "self_report_distortion"
+    ],
+    "deployment_context": [
+      "research",
+      "self_reflection",
+      "workplace"
+    ],
+    "utility_profile": [
+      "research_baseline",
+      "self_understanding"
+    ],
+    "identity_adhesion_risk": [
+      "low"
+    ],
+    "worldview_load": [
+      "very_low"
+    ],
+    "synthesis_value_for_ilens": [
+      "high"
+    ],
+    "evidence_profile": [
+      "cross_cultural_support",
+      "extensive_peer_review",
+      "normative_data_available"
+    ],
+    "target_population": [
+      "general_adult_population"
+    ],
+    "norming_status": [
+      "well_normed"
+    ],
+    "actionability_type": [
+      "descriptive_reflection"
+    ],
+    "cultural_symbolic_role": [
+      "research_anchor"
+    ],
+    "overlap_mode": [
+      "complementary_layers",
+      "partial_construct_overlap"
+    ]
+  },
+  "inferences": [
+    {
+      "id": "inf_hexaco_starter",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_hexaco",
+      "inference_type": "starter_position",
+      "text": "HEXACO is especially valuable where honesty-humility and cross-cultural lexical grounding matter.",
+      "confidence": "medium",
+      "linked_entities": [],
+      "author": "house",
+      "timestamp": "2026-04-11"
+    }
+  ],
+  "crosswalks": [],
+  "risks": [
+    {
+      "id": "rsk_hexaco_overinterpretation",
+      "instrument_id": "instr_hexaco",
+      "risk_type": "overinterpretation",
+      "severity": "medium",
+      "description": "Like other trait models, HEXACO can be overread as a total explanation of the person.",
+      "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "use_hexaco_self_reflection",
+      "instrument_id": "instr_hexaco",
+      "use_context": "self_reflection",
+      "utility_type": "self_understanding",
+      "suitability_level": "medium",
+      "cautions": "Useful as broad descriptive scaffolding, not as a complete model of motive or meaning."
+    }
+  ],
+  "notes": "# HEXACO Personality Inventory\n\n## What it is\nA trait personality framework extending five-factor trait models with an additional Honesty-Humility domain.\n\n## Why it matters\nThis is a starter registry entry for HEXACO Personality Inventory. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+}

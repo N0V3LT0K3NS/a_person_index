@@ -1,0 +1,14 @@
+resources:
+- id: res_via_character_strengths_overview
+  instrument_id: instr_via_character_strengths
+  version_id: ver_via_character_strengths_general
+  resource_type: overview
+  title: VIA Character Strengths overview source
+  url: https://example.org/via-character-strengths
+  author: null
+  publication_date: null
+  publisher: null
+  language: en
+  access_status: public
+  officiality: secondary
+  notes: Starter source placeholder. Replace with a canonical source.

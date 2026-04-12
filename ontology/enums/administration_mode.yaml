@@ -1,0 +1,8 @@
+values:
+- self_report_questionnaire
+- observer_report
+- practitioner_interview
+- practitioner_interpretation
+- algorithmic_chart_calculation
+- self_identification
+- workshop_facilitation

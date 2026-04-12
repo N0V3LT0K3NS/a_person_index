@@ -1,0 +1,23 @@
+instrument:
+  id: instr_human_design
+  canonical_name: Human Design
+  short_names:
+  - Human Design
+  aliases: []
+  status: active
+  family:
+  - symbolic_archetypal_spiritual
+  - identity_self_concept
+  - worldview_meaning_making
+  short_description: A symbolic system combining astrology, I Ching, chakras, Kabbalah,
+    and other traditions into a bodygraph-based self-description framework.
+  creators:
+  - unknown
+  publisher_or_owner: unknown
+  original_release_year: null
+  official_websites: []
+  licensing_model: mixed
+  primary_domain: personality_framework
+  country_or_origin_context:
+  - mixed
+  notes: Starter registry entry for Human Design.

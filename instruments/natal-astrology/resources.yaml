@@ -1,0 +1,14 @@
+resources:
+- id: res_natal_astrology_overview
+  instrument_id: instr_natal_astrology
+  version_id: ver_natal_astrology_general
+  resource_type: overview
+  title: Natal Astrology overview source
+  url: https://example.org/natal-astrology
+  author: null
+  publication_date: null
+  publisher: null
+  language: en
+  access_status: public
+  officiality: secondary
+  notes: Starter source placeholder. Replace with a canonical source.

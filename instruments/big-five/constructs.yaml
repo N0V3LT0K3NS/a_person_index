@@ -1,0 +1,106 @@
+constructs:
+- id: con_big_five_openness
+  instrument_id: instr_big_five
+  version_ids:
+  - ver_big_five_general
+  - ver_big_five_ipip_50
+  name: Openness to Experience
+  short_name: Openness
+  construct_kind:
+  - trait
+  - dimension
+  official_definition: Broad tendency toward imagination, curiosity, aesthetic sensitivity,
+    intellectual exploration, and preference for novelty and complexity.
+  scoring_type: continuous
+  polarity:
+    low_label: low_openness
+    high_label: high_openness
+  value_range:
+    type: instrument_variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_big_five_conscientiousness
+  instrument_id: instr_big_five
+  version_ids:
+  - ver_big_five_general
+  - ver_big_five_ipip_50
+  name: Conscientiousness
+  short_name: Conscientiousness
+  construct_kind:
+  - trait
+  - dimension
+  official_definition: Broad tendency toward organization, self-discipline, reliability,
+    and goal-directed behavior.
+  scoring_type: continuous
+  polarity:
+    low_label: low_conscientiousness
+    high_label: high_conscientiousness
+  value_range:
+    type: instrument_variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_big_five_extraversion
+  instrument_id: instr_big_five
+  version_ids:
+  - ver_big_five_general
+  - ver_big_five_ipip_50
+  name: Extraversion
+  short_name: Extraversion
+  construct_kind:
+  - trait
+  - dimension
+  official_definition: Broad tendency toward sociability, energetic engagement, positive
+    affect, and stimulation seeking.
+  scoring_type: continuous
+  polarity:
+    low_label: low_extraversion
+    high_label: high_extraversion
+  value_range:
+    type: instrument_variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_big_five_agreeableness
+  instrument_id: instr_big_five
+  version_ids:
+  - ver_big_five_general
+  - ver_big_five_ipip_50
+  name: Agreeableness
+  short_name: Agreeableness
+  construct_kind:
+  - trait
+  - dimension
+  official_definition: Broad tendency toward compassion, cooperation, trust, and concern
+    for social harmony.
+  scoring_type: continuous
+  polarity:
+    low_label: low_agreeableness
+    high_label: high_agreeableness
+  value_range:
+    type: instrument_variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
+- id: con_big_five_neuroticism
+  instrument_id: instr_big_five
+  version_ids:
+  - ver_big_five_general
+  - ver_big_five_ipip_50
+  name: Neuroticism
+  short_name: Neuroticism
+  construct_kind:
+  - trait
+  - dimension
+  official_definition: Broad tendency toward emotional volatility, stress reactivity,
+    negative affect, and vulnerability.
+  scoring_type: continuous
+  polarity:
+    low_label: low_neuroticism
+    high_label: high_neuroticism
+  value_range:
+    type: instrument_variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null

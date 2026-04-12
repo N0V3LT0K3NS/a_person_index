@@ -1,0 +1,22 @@
+instrument:
+  id: instr_disc
+  canonical_name: DISC
+  short_names:
+  - DISC
+  aliases: []
+  status: active
+  family:
+  - behavioral_interactional
+  - leadership_workplace
+  short_description: A workplace-friendly behavioral style framework organized around
+    four broad interaction styles.
+  creators:
+  - unknown
+  publisher_or_owner: unknown
+  original_release_year: null
+  official_websites: []
+  licensing_model: mixed
+  primary_domain: personality_framework
+  country_or_origin_context:
+  - mixed
+  notes: Starter registry entry for DISC.

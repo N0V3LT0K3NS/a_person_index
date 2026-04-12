@@ -1,0 +1,10 @@
+claims:
+- id: clm_human_design_overview
+  instrument_id: instr_human_design
+  version_id: ver_human_design_general
+  claim_type: overview_claim
+  claim_text: Human Design claims to reveal innate energetic patterns and decision
+    strategies through a symbolic chart.
+  source_resource_ids:
+  - res_human_design_overview
+  quotation_status: paraphrase

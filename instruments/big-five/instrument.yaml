@@ -1,0 +1,27 @@
+instrument:
+  id: instr_big_five
+  canonical_name: Big Five Personality Model
+  short_names:
+  - Big Five
+  - OCEAN
+  - Five-Factor Model
+  aliases:
+  - FFM
+  status: active
+  family:
+  - trait_personality
+  short_description: A dimensional trait personality framework typically organized
+    around Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism.
+  creators:
+  - Lewis Goldberg
+  - multiple_contributors
+  publisher_or_owner: none_decentralized
+  original_release_year: 1981
+  official_websites:
+  - null
+  licensing_model: mixed_public_and_proprietary_variants
+  primary_domain: personality_trait_model
+  country_or_origin_context:
+  - united_states
+  notes: This entry refers to the general Big Five / Five-Factor Model family rather
+    than a single proprietary questionnaire instance.

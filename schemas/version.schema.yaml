@@ -1,0 +1,76 @@
+$defs:
+  InstrumentVersion:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      instrument_id:
+        title: Instrument Id
+        type: string
+      version_label:
+        title: Version Label
+        type: string
+      release_date:
+        anyOf:
+        - format: date
+          type: string
+        - type: 'null'
+        default: null
+        title: Release Date
+      retired_date:
+        anyOf:
+        - format: date
+          type: string
+        - type: 'null'
+        default: null
+        title: Retired Date
+      current:
+        title: Current
+        type: boolean
+      change_summary:
+        title: Change Summary
+        type: string
+      scoring_changes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Scoring Changes
+      construct_changes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Construct Changes
+      norming_changes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Norming Changes
+      administration_changes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Administration Changes
+    required:
+    - id
+    - instrument_id
+    - version_label
+    - current
+    - change_summary
+    title: InstrumentVersion
+    type: object
+additionalProperties: false
+properties:
+  versions:
+    items:
+      $ref: '#/$defs/InstrumentVersion'
+    title: Versions
+    type: array
+required:
+- versions
+title: VersionsDocument
+type: object

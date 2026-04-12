@@ -1,0 +1,16 @@
+risks:
+- id: rsk_big_five_self_report_distortion
+  instrument_id: instr_big_five
+  risk_type: self_report_distortion
+  severity: medium
+  description: Results can be affected by social desirability, self-deception, mood,
+    or role-based answering.
+  mitigation: Prefer repeated administration, observer reports, or triangulation with
+    other evidence sources when possible.
+- id: rsk_big_five_overinterpretation
+  instrument_id: instr_big_five
+  risk_type: overinterpretation
+  severity: medium
+  description: Broad trait scores are often treated as total explanations of a person,
+    obscuring context, motive, and narrative structure.
+  mitigation: Position Big Five as a baseline layer rather than a total person-model.

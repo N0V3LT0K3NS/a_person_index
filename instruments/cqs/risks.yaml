@@ -1,0 +1,7 @@
+risks:
+- id: rsk_cqs_overinterpretation
+  instrument_id: instr_cqs
+  risk_type: overinterpretation
+  severity: medium
+  description: Self-report scores can be mistaken for demonstrated intercultural skill.
+  mitigation: Treat the framework as one layer among several and preserve uncertainty.

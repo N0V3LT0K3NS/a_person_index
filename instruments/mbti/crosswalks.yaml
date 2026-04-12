@@ -1,0 +1,12 @@
+crosswalks:
+- id: xwk_mbti_intuition_big_five_openness
+  source_entity_type: construct
+  source_entity_id: con_mbti_sensing_intuition
+  target_entity_type: construct
+  target_entity_id: con_big_five_openness
+  relationship_type: loose_overlap
+  relationship_strength: medium
+  rationale: MBTI intuition and Big Five openness often occupy nearby cultural territory,
+    but they arise from different models and are not interchangeable.
+  confidence: medium
+  notes: House comparison only; not an official translation.

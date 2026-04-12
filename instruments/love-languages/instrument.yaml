@@ -1,0 +1,22 @@
+instrument:
+  id: instr_love_languages
+  canonical_name: The Five Love Languages
+  short_names:
+  - Love Languages
+  aliases: []
+  status: active
+  family:
+  - attachment_relational
+  - identity_self_concept
+  short_description: A relational preference framework describing preferred modes
+    of expressing and receiving affection.
+  creators:
+  - unknown
+  publisher_or_owner: unknown
+  original_release_year: null
+  official_websites: []
+  licensing_model: mixed
+  primary_domain: personality_framework
+  country_or_origin_context:
+  - mixed
+  notes: Starter registry entry for The Five Love Languages.

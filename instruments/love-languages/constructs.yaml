@@ -1,0 +1,20 @@
+constructs:
+- id: con_love_languages_core
+  instrument_id: instr_love_languages
+  version_ids:
+  - ver_love_languages_general
+  name: Preferred affection channel
+  short_name: Preferred affection channel
+  construct_kind:
+  - dimension
+  official_definition: A preferred mode of giving or receiving affection, such as
+    words, time, gifts, service, or touch.
+  scoring_type: variant_dependent
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null

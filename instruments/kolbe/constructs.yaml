@@ -1,0 +1,20 @@
+constructs:
+- id: con_kolbe_core
+  instrument_id: instr_kolbe
+  version_ids:
+  - ver_kolbe_general
+  name: Conative profile
+  short_name: Conative profile
+  construct_kind:
+  - dimension
+  official_definition: A profile intended to summarize instinctive methods of action
+    and problem solving.
+  scoring_type: variant_dependent
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null

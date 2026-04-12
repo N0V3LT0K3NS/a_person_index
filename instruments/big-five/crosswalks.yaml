@@ -1,0 +1,23 @@
+crosswalks:
+- id: xwk_big_five_openness_mbti_intuition
+  source_entity_type: construct
+  source_entity_id: con_big_five_openness
+  target_entity_type: construct
+  target_entity_id: con_mbti_sensing_intuition
+  relationship_type: loose_overlap
+  relationship_strength: medium
+  rationale: High openness often overlaps with constructs culturally associated with
+    MBTI intuition, but the mapping is partial and non-equivalent.
+  confidence: medium
+  notes: This is not a one-to-one translation and should not be represented as such.
+- id: xwk_big_five_neuroticism_enneagram_reactivity
+  source_entity_type: instrument
+  source_entity_id: instr_big_five
+  target_entity_type: instrument
+  target_entity_id: instr_enneagram
+  relationship_type: complementary_non_equivalent
+  relationship_strength: medium
+  rationale: Big Five and Enneagram both capture meaningful aspects of emotional and
+    behavioral patterning, but they operate at different descriptive levels.
+  confidence: medium
+  notes: null

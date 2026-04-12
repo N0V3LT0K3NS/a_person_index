@@ -1,0 +1,616 @@
+{
+  "slug": "human-design",
+  "instrument": {
+    "id": "instr_human_design",
+    "canonical_name": "Human Design",
+    "short_names": [
+      "Human Design"
+    ],
+    "aliases": [],
+    "status": "active",
+    "family": [
+      "symbolic_archetypal_spiritual",
+      "identity_self_concept",
+      "worldview_meaning_making"
+    ],
+    "short_description": "A symbolic system combining astrology, I Ching, chakras, Kabbalah, and other traditions into a bodygraph-based self-description framework.",
+    "creators": [
+      "unknown"
+    ],
+    "publisher_or_owner": "unknown",
+    "original_release_year": null,
+    "official_websites": [],
+    "licensing_model": "mixed",
+    "primary_domain": "personality_framework",
+    "country_or_origin_context": [
+      "mixed"
+    ],
+    "notes": "Starter registry entry for Human Design."
+  },
+  "versions": [
+    {
+      "id": "ver_human_design_general",
+      "instrument_id": "instr_human_design",
+      "version_label": "general_family_record",
+      "release_date": null,
+      "retired_date": null,
+      "current": true,
+      "change_summary": "Generic umbrella record for the initial registry scaffold.",
+      "scoring_changes": null,
+      "construct_changes": null,
+      "norming_changes": null,
+      "administration_changes": null
+    }
+  ],
+  "constructs": [
+    {
+      "id": "con_human_design_core",
+      "instrument_id": "instr_human_design",
+      "version_ids": [
+        "ver_human_design_general"
+      ],
+      "name": "Bodygraph profile",
+      "short_name": "Bodygraph profile",
+      "construct_kind": [
+        "dimension"
+      ],
+      "official_definition": "A chart-based symbolic profile derived from birth data and interpreted through Human Design rules.",
+      "scoring_type": "variant_dependent",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm_human_design_overview",
+      "instrument_id": "instr_human_design",
+      "version_id": "ver_human_design_general",
+      "claim_type": "overview_claim",
+      "claim_text": "Human Design claims to reveal innate energetic patterns and decision strategies through a symbolic chart.",
+      "source_resource_ids": [
+        "res_human_design_overview"
+      ],
+      "quotation_status": "paraphrase"
+    }
+  ],
+  "resources": [
+    {
+      "id": "res_human_design_overview",
+      "instrument_id": "instr_human_design",
+      "version_id": "ver_human_design_general",
+      "resource_type": "overview",
+      "title": "Human Design overview source",
+      "url": "https://example.org/human-design",
+      "author": null,
+      "publication_date": null,
+      "publisher": null,
+      "language": "en",
+      "access_status": "public",
+      "officiality": "secondary",
+      "notes": "Starter source placeholder. Replace with a canonical source."
+    }
+  ],
+  "annotations": [
+    {
+      "id": "ann_human_design_instrument_family",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "instrument_family",
+      "ontology_values": [
+        "symbolic_archetypal_spiritual",
+        "identity_self_concept",
+        "worldview_meaning_making"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'instrument_family'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_primary_measurement_target",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "primary_measurement_target",
+      "ontology_values": [
+        "identity_narrative",
+        "symbolic_archetypal_patterning",
+        "subjective_meaning"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'primary_measurement_target'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_representational_form",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "representational_form",
+      "ontology_values": [
+        "symbolic_chart",
+        "narrative_description",
+        "categorical_typology"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'representational_form'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_temporal_stance",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "temporal_stance",
+      "ontology_values": [
+        "cyclical_temporal_pattern",
+        "identity_narrative_snapshot"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'temporal_stance'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_person_ontology",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "person_ontology",
+      "ontology_values": [
+        "symbolic_cosmological_self"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'person_ontology'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_administration_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "administration_mode",
+      "ontology_values": [
+        "algorithmic_chart_calculation",
+        "practitioner_interpretation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'administration_mode'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_scoring_logic",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "scoring_logic",
+      "ontology_values": [
+        "algorithmic_chart_rules",
+        "expert_interpretation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'scoring_logic'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_epistemic_basis",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "epistemic_basis",
+      "ontology_values": [
+        "symbolic_tradition",
+        "mixed_lineages"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'epistemic_basis'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_interpretive_burden",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "interpretive_burden",
+      "ontology_values": [
+        "very_high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'interpretive_burden'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_granularity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "granularity",
+      "ontology_values": [
+        "very_high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'granularity'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_context_sensitivity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "context_sensitivity",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'context_sensitivity'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_change_model",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "change_model",
+      "ontology_values": [
+        "identity_revision",
+        "cyclical_activation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'change_model'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_distortion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "distortion_risk",
+      "ontology_values": [
+        "identity_capture",
+        "barnum_effect",
+        "determinism",
+        "practitioner_projection"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'distortion_risk'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_deployment_context",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "deployment_context",
+      "ontology_values": [
+        "self_reflection",
+        "coaching",
+        "spiritual_community",
+        "internet_identity_culture"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'deployment_context'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_utility_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "utility_profile",
+      "ontology_values": [
+        "symbolic_reflection",
+        "coaching_language"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'utility_profile'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_identity_adhesion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "identity_adhesion_risk",
+      "ontology_values": [
+        "very_high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'identity_adhesion_risk'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_worldview_load",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "worldview_load",
+      "ontology_values": [
+        "very_high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'worldview_load'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_synthesis_value_for_ilens",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_values": [
+        "low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'synthesis_value_for_ilens'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_evidence_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "evidence_profile",
+      "ontology_values": [
+        "mostly_anecdotal_or_practitioner_based"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'evidence_profile'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_target_population",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "target_population",
+      "ontology_values": [
+        "spiritual_seekers",
+        "internet_communities"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'target_population'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_norming_status",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "norming_status",
+      "ontology_values": [
+        "not_normed"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'norming_status'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_actionability_type",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "actionability_type",
+      "ontology_values": [
+        "symbolic_storytelling"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'actionability_type'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_cultural_symbolic_role",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "cultural_symbolic_role",
+      "ontology_values": [
+        "spiritual_symbolic_system",
+        "internet_identity_language",
+        "community_belonging_language"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'cultural_symbolic_role'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    },
+    {
+      "id": "ann_human_design_overlap_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "ontology_dimension": "overlap_mode",
+      "ontology_values": [
+        "shared_identity_space",
+        "weak_direct_mapping"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Human Design on the ontology dimension 'overlap_mode'.",
+      "evidence_links": [
+        "res_human_design_overview"
+      ]
+    }
+  ],
+  "annotation_index": {
+    "instrument_family": [
+      "identity_self_concept",
+      "symbolic_archetypal_spiritual",
+      "worldview_meaning_making"
+    ],
+    "primary_measurement_target": [
+      "identity_narrative",
+      "subjective_meaning",
+      "symbolic_archetypal_patterning"
+    ],
+    "representational_form": [
+      "categorical_typology",
+      "narrative_description",
+      "symbolic_chart"
+    ],
+    "temporal_stance": [
+      "cyclical_temporal_pattern",
+      "identity_narrative_snapshot"
+    ],
+    "person_ontology": [
+      "symbolic_cosmological_self"
+    ],
+    "administration_mode": [
+      "algorithmic_chart_calculation",
+      "practitioner_interpretation"
+    ],
+    "scoring_logic": [
+      "algorithmic_chart_rules",
+      "expert_interpretation"
+    ],
+    "epistemic_basis": [
+      "mixed_lineages",
+      "symbolic_tradition"
+    ],
+    "interpretive_burden": [
+      "very_high"
+    ],
+    "granularity": [
+      "very_high"
+    ],
+    "context_sensitivity": [
+      "medium"
+    ],
+    "change_model": [
+      "cyclical_activation",
+      "identity_revision"
+    ],
+    "distortion_risk": [
+      "barnum_effect",
+      "determinism",
+      "identity_capture",
+      "practitioner_projection"
+    ],
+    "deployment_context": [
+      "coaching",
+      "internet_identity_culture",
+      "self_reflection",
+      "spiritual_community"
+    ],
+    "utility_profile": [
+      "coaching_language",
+      "symbolic_reflection"
+    ],
+    "identity_adhesion_risk": [
+      "very_high"
+    ],
+    "worldview_load": [
+      "very_high"
+    ],
+    "synthesis_value_for_ilens": [
+      "low"
+    ],
+    "evidence_profile": [
+      "mostly_anecdotal_or_practitioner_based"
+    ],
+    "target_population": [
+      "internet_communities",
+      "spiritual_seekers"
+    ],
+    "norming_status": [
+      "not_normed"
+    ],
+    "actionability_type": [
+      "symbolic_storytelling"
+    ],
+    "cultural_symbolic_role": [
+      "community_belonging_language",
+      "internet_identity_language",
+      "spiritual_symbolic_system"
+    ],
+    "overlap_mode": [
+      "shared_identity_space",
+      "weak_direct_mapping"
+    ]
+  },
+  "inferences": [
+    {
+      "id": "inf_human_design_starter",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_human_design",
+      "inference_type": "starter_position",
+      "text": "Human Design is socially powerful as identity language and symbolic meaning-making, not as empirical measurement.",
+      "confidence": "medium",
+      "linked_entities": [],
+      "author": "house",
+      "timestamp": "2026-04-11"
+    }
+  ],
+  "crosswalks": [],
+  "risks": [
+    {
+      "id": "rsk_human_design_overinterpretation",
+      "instrument_id": "instr_human_design",
+      "risk_type": "overinterpretation",
+      "severity": "medium",
+      "description": "The system invites deterministic self-narration and heavy identity fusion.",
+      "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "use_human_design_self_reflection",
+      "instrument_id": "instr_human_design",
+      "use_context": "self_reflection",
+      "utility_type": "self_understanding",
+      "suitability_level": "medium",
+      "cautions": "Treat as symbolic language rather than literal person measurement."
+    }
+  ],
+  "notes": "# Human Design\n\n## What it is\nA symbolic system combining astrology, I Ching, chakras, Kabbalah, and other traditions into a bodygraph-based self-description framework.\n\n## Why it matters\nThis is a starter registry entry for Human Design. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+}

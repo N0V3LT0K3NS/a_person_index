@@ -1,0 +1,7 @@
+use_cases:
+- id: use_love_languages_self_reflection
+  instrument_id: instr_love_languages
+  use_context: self_reflection
+  utility_type: self_understanding
+  suitability_level: medium
+  cautions: Useful as a conversation opener, not as a full relationship model.

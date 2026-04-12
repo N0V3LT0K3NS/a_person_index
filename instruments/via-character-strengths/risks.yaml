@@ -1,0 +1,8 @@
+risks:
+- id: rsk_via_character_strengths_overinterpretation
+  instrument_id: instr_via_character_strengths
+  risk_type: overinterpretation
+  severity: medium
+  description: Strengths rankings can be taken as moral verdicts or fixed rankings
+    of worth.
+  mitigation: Treat the framework as one layer among several and preserve uncertainty.

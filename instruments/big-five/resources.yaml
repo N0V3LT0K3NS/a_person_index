@@ -1,0 +1,27 @@
+resources:
+- id: res_big_five_summary_source
+  instrument_id: instr_big_five
+  version_id: ver_big_five_general
+  resource_type: overview
+  title: Big Five overview source
+  url: https://example.org/big-five-overview
+  author: example_author
+  publication_date: null
+  publisher: example_publisher
+  language: en
+  access_status: public
+  officiality: secondary
+  notes: Placeholder seed source. Replace with a canonical Big Five reference.
+- id: res_big_five_ipip
+  instrument_id: instr_big_five
+  version_id: ver_big_five_ipip_50
+  resource_type: questionnaire_site
+  title: IPIP Big Five questionnaire
+  url: https://example.org/ipip-big-five
+  author: null
+  publication_date: null
+  publisher: null
+  language: en
+  access_status: public
+  officiality: semi_official
+  notes: Placeholder IPIP variant source. Replace with a specific implementation source.

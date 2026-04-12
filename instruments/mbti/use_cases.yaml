@@ -1,0 +1,14 @@
+use_cases:
+- id: use_mbti_team_design
+  instrument_id: instr_mbti
+  use_context: team_design
+  utility_type: communication_adaptation
+  suitability_level: medium
+  cautions: Useful as a discussion starter, weak as a personnel decision framework.
+- id: use_mbti_self_reflection
+  instrument_id: instr_mbti
+  use_context: self_reflection
+  utility_type: self_understanding
+  suitability_level: medium
+  cautions: Best treated as a preference-language heuristic rather than a fixed identity
+    verdict.

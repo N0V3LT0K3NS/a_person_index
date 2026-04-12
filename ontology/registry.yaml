@@ -1,0 +1,14 @@
+ontology:
+  id: instrument_ontology_v0_1
+  title: Human Description Instrument Ontology
+  status: active
+  version: 0.1.0
+  description: A versioned ontology for describing and comparing personality tests,
+    typology systems, psychometric instruments, symbolic self-description systems,
+    and adjacent person-labeling frameworks.
+  principles:
+  - separate_source_claims_from_meta_annotations
+  - separate_explicit_from_implicit_from_inferred
+  - preserve_epistemic_differences
+  - keep_crosswalks_first_class
+  - support_incremental_growth

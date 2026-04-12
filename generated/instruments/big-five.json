@@ -1,0 +1,834 @@
+{
+  "slug": "big-five",
+  "instrument": {
+    "id": "instr_big_five",
+    "canonical_name": "Big Five Personality Model",
+    "short_names": [
+      "Big Five",
+      "OCEAN",
+      "Five-Factor Model"
+    ],
+    "aliases": [
+      "FFM"
+    ],
+    "status": "active",
+    "family": [
+      "trait_personality"
+    ],
+    "short_description": "A dimensional trait personality framework typically organized around Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism.",
+    "creators": [
+      "Lewis Goldberg",
+      "multiple_contributors"
+    ],
+    "publisher_or_owner": "none_decentralized",
+    "original_release_year": 1981,
+    "official_websites": [
+      null
+    ],
+    "licensing_model": "mixed_public_and_proprietary_variants",
+    "primary_domain": "personality_trait_model",
+    "country_or_origin_context": [
+      "united_states"
+    ],
+    "notes": "This entry refers to the general Big Five / Five-Factor Model family rather than a single proprietary questionnaire instance."
+  },
+  "versions": [
+    {
+      "id": "ver_big_five_general",
+      "instrument_id": "instr_big_five",
+      "version_label": "general_family_record",
+      "release_date": null,
+      "retired_date": null,
+      "current": true,
+      "change_summary": "Generic umbrella record representing the broader Big Five family.",
+      "scoring_changes": null,
+      "construct_changes": null,
+      "norming_changes": null,
+      "administration_changes": null
+    },
+    {
+      "id": "ver_big_five_ipip_50",
+      "instrument_id": "instr_big_five",
+      "version_label": "IPIP_50_item_variant",
+      "release_date": null,
+      "retired_date": null,
+      "current": true,
+      "change_summary": "Common open-access short-form implementation.",
+      "scoring_changes": "shorter_item_set",
+      "construct_changes": "same_top_level_constructs",
+      "norming_changes": "variant_specific",
+      "administration_changes": "self_report_questionnaire"
+    }
+  ],
+  "constructs": [
+    {
+      "id": "con_big_five_openness",
+      "instrument_id": "instr_big_five",
+      "version_ids": [
+        "ver_big_five_general",
+        "ver_big_five_ipip_50"
+      ],
+      "name": "Openness to Experience",
+      "short_name": "Openness",
+      "construct_kind": [
+        "trait",
+        "dimension"
+      ],
+      "official_definition": "Broad tendency toward imagination, curiosity, aesthetic sensitivity, intellectual exploration, and preference for novelty and complexity.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": "low_openness",
+        "high_label": "high_openness"
+      },
+      "value_range": {
+        "type": "instrument_variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_big_five_conscientiousness",
+      "instrument_id": "instr_big_five",
+      "version_ids": [
+        "ver_big_five_general",
+        "ver_big_five_ipip_50"
+      ],
+      "name": "Conscientiousness",
+      "short_name": "Conscientiousness",
+      "construct_kind": [
+        "trait",
+        "dimension"
+      ],
+      "official_definition": "Broad tendency toward organization, self-discipline, reliability, and goal-directed behavior.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": "low_conscientiousness",
+        "high_label": "high_conscientiousness"
+      },
+      "value_range": {
+        "type": "instrument_variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_big_five_extraversion",
+      "instrument_id": "instr_big_five",
+      "version_ids": [
+        "ver_big_five_general",
+        "ver_big_five_ipip_50"
+      ],
+      "name": "Extraversion",
+      "short_name": "Extraversion",
+      "construct_kind": [
+        "trait",
+        "dimension"
+      ],
+      "official_definition": "Broad tendency toward sociability, energetic engagement, positive affect, and stimulation seeking.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": "low_extraversion",
+        "high_label": "high_extraversion"
+      },
+      "value_range": {
+        "type": "instrument_variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_big_five_agreeableness",
+      "instrument_id": "instr_big_five",
+      "version_ids": [
+        "ver_big_five_general",
+        "ver_big_five_ipip_50"
+      ],
+      "name": "Agreeableness",
+      "short_name": "Agreeableness",
+      "construct_kind": [
+        "trait",
+        "dimension"
+      ],
+      "official_definition": "Broad tendency toward compassion, cooperation, trust, and concern for social harmony.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": "low_agreeableness",
+        "high_label": "high_agreeableness"
+      },
+      "value_range": {
+        "type": "instrument_variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    },
+    {
+      "id": "con_big_five_neuroticism",
+      "instrument_id": "instr_big_five",
+      "version_ids": [
+        "ver_big_five_general",
+        "ver_big_five_ipip_50"
+      ],
+      "name": "Neuroticism",
+      "short_name": "Neuroticism",
+      "construct_kind": [
+        "trait",
+        "dimension"
+      ],
+      "official_definition": "Broad tendency toward emotional volatility, stress reactivity, negative affect, and vulnerability.",
+      "scoring_type": "continuous",
+      "polarity": {
+        "low_label": "low_neuroticism",
+        "high_label": "high_neuroticism"
+      },
+      "value_range": {
+        "type": "instrument_variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm_big_five_describes_five_broad_traits",
+      "instrument_id": "instr_big_five",
+      "version_id": "ver_big_five_general",
+      "claim_type": "construct_claim",
+      "claim_text": "The model organizes personality variation into five broad trait domains.",
+      "source_resource_ids": [
+        "res_big_five_summary_source"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_big_five_trait_stability",
+      "instrument_id": "instr_big_five",
+      "version_id": "ver_big_five_general",
+      "claim_type": "temporal_claim",
+      "claim_text": "The framework is intended to describe relatively stable personality traits rather than momentary emotional states.",
+      "source_resource_ids": [
+        "res_big_five_summary_source"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_big_five_variant_ecosystem",
+      "instrument_id": "instr_big_five",
+      "version_id": "ver_big_five_ipip_50",
+      "claim_type": "implementation_claim",
+      "claim_text": "The Big Five exists as a family of instruments with multiple public and proprietary implementations.",
+      "source_resource_ids": [
+        "res_big_five_ipip"
+      ],
+      "quotation_status": "paraphrase"
+    }
+  ],
+  "resources": [
+    {
+      "id": "res_big_five_summary_source",
+      "instrument_id": "instr_big_five",
+      "version_id": "ver_big_five_general",
+      "resource_type": "overview",
+      "title": "Big Five overview source",
+      "url": "https://example.org/big-five-overview",
+      "author": "example_author",
+      "publication_date": null,
+      "publisher": "example_publisher",
+      "language": "en",
+      "access_status": "public",
+      "officiality": "secondary",
+      "notes": "Placeholder seed source. Replace with a canonical Big Five reference."
+    },
+    {
+      "id": "res_big_five_ipip",
+      "instrument_id": "instr_big_five",
+      "version_id": "ver_big_five_ipip_50",
+      "resource_type": "questionnaire_site",
+      "title": "IPIP Big Five questionnaire",
+      "url": "https://example.org/ipip-big-five",
+      "author": null,
+      "publication_date": null,
+      "publisher": null,
+      "language": "en",
+      "access_status": "public",
+      "officiality": "semi_official",
+      "notes": "Placeholder IPIP variant source. Replace with a specific implementation source."
+    }
+  ],
+  "annotations": [
+    {
+      "id": "ann_big_five_instrument_family",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "instrument_family",
+      "ontology_values": [
+        "trait_personality"
+      ],
+      "annotation_status": "explicit",
+      "confidence": "high",
+      "rationale": "The Big Five is explicitly a trait personality framework.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_primary_measurement_target",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "primary_measurement_target",
+      "ontology_values": [
+        "stable_traits",
+        "interpersonal_style",
+        "affect_emotion",
+        "work_style"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "The model is trait-centered, but trait domains also bear on emotionality, interpersonal style, and work-related behavior.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_representational_form",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "representational_form",
+      "ontology_values": [
+        "continuous_dimensional",
+        "hierarchical_model"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "Most Big Five implementations are continuous dimensional models and many also organize facets beneath broader domains.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_temporal_stance",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "temporal_stance",
+      "ontology_values": [
+        "stable_traits"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "The framework is designed to describe comparatively stable trait patterns.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_person_ontology",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "person_ontology",
+      "ontology_values": [
+        "trait_container"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "The model treats the person primarily as a profile of broad dispositional traits.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_administration_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "administration_mode",
+      "ontology_values": [
+        "self_report_questionnaire",
+        "observer_report"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "Big Five instruments commonly use self-report and sometimes observer report.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_scoring_logic",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "scoring_logic",
+      "ontology_values": [
+        "sum_or_average_scale_scoring",
+        "factor_scoring"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "Questionnaire responses typically become continuous factor or scale scores.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_epistemic_basis",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "epistemic_basis",
+      "ontology_values": [
+        "strong_psychometric_validation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "Relative to many adjacent systems, the Big Five has a strong psychometric validation base.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_evidence_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "evidence_profile",
+      "ontology_values": [
+        "extensive_peer_review",
+        "normative_data_available",
+        "cross_cultural_support"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "House annotation for Big Five Personality Model on the ontology dimension 'evidence_profile'.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_interpretive_burden",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "interpretive_burden",
+      "ontology_values": [
+        "low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "Interpretation is comparatively direct because the output model is trait-based.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_granularity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "granularity",
+      "ontology_values": [
+        "high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "The framework is broad at the top level but often enriched by facet-level resolution.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_context_sensitivity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "context_sensitivity",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "The model aims for cross-situational traits, but expression still varies with role and context.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_change_model",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "change_model",
+      "ontology_values": [
+        "trait_stability",
+        "situational_expression",
+        "developmental_growth"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "Trait stability is primary, but developmental and situational changes are still relevant.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_distortion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "distortion_risk",
+      "ontology_values": [
+        "self_report_distortion",
+        "overinterpretation",
+        "reductionism"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "Self-report bias and overreading broad traits are persistent hazards in practical use.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_deployment_context",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "deployment_context",
+      "ontology_values": [
+        "self_reflection",
+        "research",
+        "workplace",
+        "coaching",
+        "team_design"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "The Big Five is used across research, coaching, workplace, and self-reflection contexts.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_utility_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "utility_profile",
+      "ontology_values": [
+        "self_understanding",
+        "research_baseline",
+        "communication_adaptation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "Its strongest uses are baseline trait description, comparison, and synthesis anchoring.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_target_population",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "target_population",
+      "ontology_values": [
+        "general_adult_population",
+        "workplace_teams"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Big Five Personality Model on the ontology dimension 'target_population'.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_norming_status",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "norming_status",
+      "ontology_values": [
+        "variant_dependent"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Big Five Personality Model on the ontology dimension 'norming_status'.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_identity_adhesion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "identity_adhesion_risk",
+      "ontology_values": [
+        "low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "The Big Five is less identity-sticky than more typological or symbolic systems.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_actionability_type",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "actionability_type",
+      "ontology_values": [
+        "descriptive_reflection",
+        "communication_adjustment"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Big Five Personality Model on the ontology dimension 'actionability_type'.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_worldview_load",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "worldview_load",
+      "ontology_values": [
+        "very_low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "It carries relatively little metaphysical or worldview baggage.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_cultural_symbolic_role",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "cultural_symbolic_role",
+      "ontology_values": [
+        "research_anchor",
+        "professional_shorthand"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Big Five Personality Model on the ontology dimension 'cultural_symbolic_role'.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_synthesis_value_for_ilens",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_values": [
+        "very_high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "high",
+      "rationale": "Big Five is an unusually strong baseline anchor for synthesis because it offers stable broad scaffolding.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    },
+    {
+      "id": "ann_big_five_overlap_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "ontology_dimension": "overlap_mode",
+      "ontology_values": [
+        "partial_construct_overlap",
+        "complementary_layers"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "Overlap with other systems is often partial or complementary rather than directly translatable.",
+      "evidence_links": [
+        "res_big_five_summary_source"
+      ]
+    }
+  ],
+  "annotation_index": {
+    "instrument_family": [
+      "trait_personality"
+    ],
+    "primary_measurement_target": [
+      "affect_emotion",
+      "interpersonal_style",
+      "stable_traits",
+      "work_style"
+    ],
+    "representational_form": [
+      "continuous_dimensional",
+      "hierarchical_model"
+    ],
+    "temporal_stance": [
+      "stable_traits"
+    ],
+    "person_ontology": [
+      "trait_container"
+    ],
+    "administration_mode": [
+      "observer_report",
+      "self_report_questionnaire"
+    ],
+    "scoring_logic": [
+      "factor_scoring",
+      "sum_or_average_scale_scoring"
+    ],
+    "epistemic_basis": [
+      "strong_psychometric_validation"
+    ],
+    "evidence_profile": [
+      "cross_cultural_support",
+      "extensive_peer_review",
+      "normative_data_available"
+    ],
+    "interpretive_burden": [
+      "low"
+    ],
+    "granularity": [
+      "high"
+    ],
+    "context_sensitivity": [
+      "medium"
+    ],
+    "change_model": [
+      "developmental_growth",
+      "situational_expression",
+      "trait_stability"
+    ],
+    "distortion_risk": [
+      "overinterpretation",
+      "reductionism",
+      "self_report_distortion"
+    ],
+    "deployment_context": [
+      "coaching",
+      "research",
+      "self_reflection",
+      "team_design",
+      "workplace"
+    ],
+    "utility_profile": [
+      "communication_adaptation",
+      "research_baseline",
+      "self_understanding"
+    ],
+    "target_population": [
+      "general_adult_population",
+      "workplace_teams"
+    ],
+    "norming_status": [
+      "variant_dependent"
+    ],
+    "identity_adhesion_risk": [
+      "low"
+    ],
+    "actionability_type": [
+      "communication_adjustment",
+      "descriptive_reflection"
+    ],
+    "worldview_load": [
+      "very_low"
+    ],
+    "cultural_symbolic_role": [
+      "professional_shorthand",
+      "research_anchor"
+    ],
+    "synthesis_value_for_ilens": [
+      "very_high"
+    ],
+    "overlap_mode": [
+      "complementary_layers",
+      "partial_construct_overlap"
+    ]
+  },
+  "inferences": [
+    {
+      "id": "inf_big_five_foundational_anchor",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "inference_type": "synthesis_position",
+      "text": "Big Five is one of the best baseline anchor frameworks for a synthesis system because it supplies relatively stable broad trait scaffolding without imposing a thick symbolic identity narrative.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_mbti",
+        "instr_enneagram"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_big_five_limitations",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_big_five",
+      "inference_type": "practical_limit",
+      "text": "Big Five is weaker as a direct language of motive, defense strategy, or identity narrative than systems like Enneagram, despite being stronger in psychometric grounding.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_enneagram"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
+    }
+  ],
+  "crosswalks": [
+    {
+      "id": "xwk_big_five_openness_mbti_intuition",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_big_five_openness",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_mbti_sensing_intuition",
+      "relationship_type": "loose_overlap",
+      "relationship_strength": "medium",
+      "rationale": "High openness often overlaps with constructs culturally associated with MBTI intuition, but the mapping is partial and non-equivalent.",
+      "confidence": "medium",
+      "notes": "This is not a one-to-one translation and should not be represented as such."
+    },
+    {
+      "id": "xwk_big_five_neuroticism_enneagram_reactivity",
+      "source_entity_type": "instrument",
+      "source_entity_id": "instr_big_five",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_enneagram",
+      "relationship_type": "complementary_non_equivalent",
+      "relationship_strength": "medium",
+      "rationale": "Big Five and Enneagram both capture meaningful aspects of emotional and behavioral patterning, but they operate at different descriptive levels.",
+      "confidence": "medium",
+      "notes": null
+    }
+  ],
+  "risks": [
+    {
+      "id": "rsk_big_five_self_report_distortion",
+      "instrument_id": "instr_big_five",
+      "risk_type": "self_report_distortion",
+      "severity": "medium",
+      "description": "Results can be affected by social desirability, self-deception, mood, or role-based answering.",
+      "mitigation": "Prefer repeated administration, observer reports, or triangulation with other evidence sources when possible."
+    },
+    {
+      "id": "rsk_big_five_overinterpretation",
+      "instrument_id": "instr_big_five",
+      "risk_type": "overinterpretation",
+      "severity": "medium",
+      "description": "Broad trait scores are often treated as total explanations of a person, obscuring context, motive, and narrative structure.",
+      "mitigation": "Position Big Five as a baseline layer rather than a total person-model."
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "use_big_five_self_reflection",
+      "instrument_id": "instr_big_five",
+      "use_context": "self_reflection",
+      "utility_type": "self_understanding",
+      "suitability_level": "high",
+      "cautions": "Best used as broad descriptive scaffolding, not destiny language."
+    },
+    {
+      "id": "use_big_five_team_design",
+      "instrument_id": "instr_big_five",
+      "use_context": "team_design",
+      "utility_type": "communication_adaptation",
+      "suitability_level": "medium",
+      "cautions": "Should not be used as the sole basis for team role assignment."
+    }
+  ],
+  "notes": "# Big Five Personality Model\n\n## What it is\nA broad trait framework organizing personality variation into five major domains.\n\n## Why it matters\nIn this registry, Big Five functions as one of the strongest empirical anchor layers for synthesis work. It is less thick as an identity language than systems like Enneagram or Human Design, but stronger as a baseline trait scaffold.\n\n## What it is good for\n- broad personality description\n- baseline trait comparison\n- self-reflection\n- communication and work-style inference\n- synthesis anchoring\n\n## What it is weaker at\n- motive language\n- identity narrative\n- defense strategy\n- symbolic meaning\n- thick developmental storytelling\n\n## Common misuse\nTreating broad traits as a total explanation of a person.\n"
+}

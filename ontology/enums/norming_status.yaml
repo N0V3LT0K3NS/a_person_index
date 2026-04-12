@@ -1,0 +1,6 @@
+values:
+- well_normed
+- variant_dependent
+- limited_norms
+- not_normed
+- unknown

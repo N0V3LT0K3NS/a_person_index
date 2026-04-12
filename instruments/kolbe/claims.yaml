@@ -1,0 +1,10 @@
+claims:
+- id: clm_kolbe_overview
+  instrument_id: instr_kolbe
+  version_id: ver_kolbe_general
+  claim_type: overview_claim
+  claim_text: Kolbe claims to measure natural conative strengths related to action
+    and workflow.
+  source_resource_ids:
+  - res_kolbe_overview
+  quotation_status: paraphrase

@@ -1,0 +1,50 @@
+$defs:
+  Risk:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      instrument_id:
+        title: Instrument Id
+        type: string
+      risk_type:
+        title: Risk Type
+        type: string
+      severity:
+        enum:
+        - low
+        - medium
+        - high
+        - very_high
+        - critical
+        title: Severity
+        type: string
+      description:
+        title: Description
+        type: string
+      mitigation:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Mitigation
+    required:
+    - id
+    - instrument_id
+    - risk_type
+    - severity
+    - description
+    title: Risk
+    type: object
+additionalProperties: false
+properties:
+  risks:
+    items:
+      $ref: '#/$defs/Risk'
+    title: Risks
+    type: array
+required:
+- risks
+title: RisksDocument
+type: object

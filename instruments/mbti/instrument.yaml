@@ -1,0 +1,26 @@
+instrument:
+  id: instr_mbti
+  canonical_name: Myers-Briggs Type Indicator
+  short_names:
+  - MBTI
+  aliases:
+  - Myers Briggs
+  status: active
+  family:
+  - typology
+  - cognitive_style
+  - identity_self_concept
+  short_description: A widely used typology framework built around four preference
+    pairs that combine into sixteen type codes.
+  creators:
+  - Katherine Cook Briggs
+  - Isabel Briggs Myers
+  publisher_or_owner: licensed_publishers
+  original_release_year: 1943
+  official_websites: []
+  licensing_model: proprietary
+  primary_domain: personality_typology
+  country_or_origin_context:
+  - united_states
+  notes: This entry covers the broader MBTI ecosystem, not just a single publisher
+    manual or training pathway.

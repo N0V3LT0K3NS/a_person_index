@@ -1,0 +1,22 @@
+instrument:
+  id: instr_cqs
+  canonical_name: Cultural Intelligence Scale
+  short_names:
+  - CQS
+  - Cultural Intelligence Scale
+  aliases: []
+  status: active
+  family:
+  - cultural_intercultural
+  short_description: An intercultural capability instrument describing how effectively
+    a person can function across cultural contexts.
+  creators:
+  - unknown
+  publisher_or_owner: unknown
+  original_release_year: null
+  official_websites: []
+  licensing_model: mixed
+  primary_domain: personality_framework
+  country_or_origin_context:
+  - mixed
+  notes: Starter registry entry for Cultural Intelligence Scale.

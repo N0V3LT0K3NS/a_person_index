@@ -1,0 +1,20 @@
+constructs:
+- id: con_via_character_strengths_core
+  instrument_id: instr_via_character_strengths
+  version_ids:
+  - ver_via_character_strengths_general
+  name: Character strengths profile
+  short_name: Character strengths profile
+  construct_kind:
+  - dimension
+  official_definition: A ranked profile of character strengths organized within a
+    virtue taxonomy.
+  scoring_type: variant_dependent
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null

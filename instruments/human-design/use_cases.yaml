@@ -1,0 +1,7 @@
+use_cases:
+- id: use_human_design_self_reflection
+  instrument_id: instr_human_design
+  use_context: self_reflection
+  utility_type: self_understanding
+  suitability_level: medium
+  cautions: Treat as symbolic language rather than literal person measurement.

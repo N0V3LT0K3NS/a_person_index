@@ -1,0 +1,11 @@
+inferences:
+- id: inf_disc_starter
+  target_entity_type: instrument
+  target_entity_id: instr_disc
+  inference_type: starter_position
+  text: DISC is pragmatically sticky in organizations because it is easy to explain,
+    administer, and discuss.
+  confidence: medium
+  linked_entities: []
+  author: house
+  timestamp: '2026-04-11'

@@ -1,0 +1,93 @@
+$defs:
+  Instrument:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      canonical_name:
+        title: Canonical Name
+        type: string
+      short_names:
+        items:
+          type: string
+        title: Short Names
+        type: array
+      aliases:
+        items:
+          type: string
+        title: Aliases
+        type: array
+      status:
+        title: Status
+        type: string
+      family:
+        items:
+          type: string
+        title: Family
+        type: array
+      short_description:
+        title: Short Description
+        type: string
+      creators:
+        items:
+          type: string
+        title: Creators
+        type: array
+      publisher_or_owner:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Publisher Or Owner
+      original_release_year:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Original Release Year
+      official_websites:
+        items:
+          anyOf:
+          - type: string
+          - type: 'null'
+        title: Official Websites
+        type: array
+      licensing_model:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Licensing Model
+      primary_domain:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Primary Domain
+      country_or_origin_context:
+        items:
+          type: string
+        title: Country Or Origin Context
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - canonical_name
+    - status
+    - short_description
+    title: Instrument
+    type: object
+additionalProperties: false
+properties:
+  instrument:
+    $ref: '#/$defs/Instrument'
+required:
+- instrument
+title: InstrumentDocument
+type: object

@@ -1,0 +1,28 @@
+claims:
+- id: clm_mbti_sixteen_types
+  instrument_id: instr_mbti
+  version_id: ver_mbti_general
+  claim_type: typology_claim
+  claim_text: The framework organizes people into sixteen type combinations based
+    on four preference pairs.
+  source_resource_ids:
+  - res_mbti_overview
+  quotation_status: paraphrase
+- id: clm_mbti_preferences_not_abilities
+  instrument_id: instr_mbti
+  version_id: ver_mbti_general
+  claim_type: construct_claim
+  claim_text: Type outputs are commonly framed as preferences rather than measures
+    of ability or skill.
+  source_resource_ids:
+  - res_mbti_overview
+  quotation_status: paraphrase
+- id: clm_mbti_jungian_basis
+  instrument_id: instr_mbti
+  version_id: ver_mbti_general
+  claim_type: theoretical_claim
+  claim_text: The system is presented as deriving from Jungian ideas about psychological
+    type.
+  source_resource_ids:
+  - res_mbti_manual
+  quotation_status: paraphrase

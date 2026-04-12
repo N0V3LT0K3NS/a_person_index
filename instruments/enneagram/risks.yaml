@@ -1,0 +1,15 @@
+risks:
+- id: rsk_enneagram_identity_capture
+  instrument_id: instr_enneagram
+  risk_type: identity_capture
+  severity: high
+  description: Users may fuse with a type identity and treat it as destiny, justification,
+    or a durable self-explanation.
+  mitigation: Frame type as a working hypothesis and revisit fit over time.
+- id: rsk_enneagram_practitioner_projection
+  instrument_id: instr_enneagram
+  risk_type: practitioner_projection
+  severity: high
+  description: Interpretation can become highly dependent on coach or teacher style,
+    leading to confident but weakly grounded typing.
+  mitigation: Prefer transparent rationale, multiple indicators, and explicit uncertainty.

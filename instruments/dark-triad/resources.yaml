@@ -1,0 +1,14 @@
+resources:
+- id: res_dark_triad_overview
+  instrument_id: instr_dark_triad
+  version_id: ver_dark_triad_general
+  resource_type: overview
+  title: Dark Triad overview source
+  url: https://example.org/dark-triad
+  author: null
+  publication_date: null
+  publisher: null
+  language: en
+  access_status: public
+  officiality: secondary
+  notes: Starter source placeholder. Replace with a canonical source.

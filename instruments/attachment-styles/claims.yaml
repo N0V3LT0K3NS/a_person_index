@@ -1,0 +1,10 @@
+claims:
+- id: clm_attachment_styles_overview
+  instrument_id: instr_attachment_styles
+  version_id: ver_attachment_styles_general
+  claim_type: overview_claim
+  claim_text: Attachment frameworks claim to describe recurring relational patterns
+    that shape closeness, safety, and regulation.
+  source_resource_ids:
+  - res_attachment_styles_overview
+  quotation_status: paraphrase

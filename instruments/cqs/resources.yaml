@@ -1,0 +1,14 @@
+resources:
+- id: res_cqs_overview
+  instrument_id: instr_cqs
+  version_id: ver_cqs_general
+  resource_type: overview
+  title: Cultural Intelligence Scale overview source
+  url: https://example.org/cqs
+  author: null
+  publication_date: null
+  publisher: null
+  language: en
+  access_status: public
+  officiality: secondary
+  notes: Starter source placeholder. Replace with a canonical source.

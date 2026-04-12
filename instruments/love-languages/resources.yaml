@@ -1,0 +1,14 @@
+resources:
+- id: res_love_languages_overview
+  instrument_id: instr_love_languages
+  version_id: ver_love_languages_general
+  resource_type: overview
+  title: The Five Love Languages overview source
+  url: https://example.org/love-languages
+  author: null
+  publication_date: null
+  publisher: null
+  language: en
+  access_status: public
+  officiality: secondary
+  notes: Starter source placeholder. Replace with a canonical source.

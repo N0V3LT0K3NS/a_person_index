@@ -1,0 +1,7 @@
+use_cases:
+- id: use_cqs_self_reflection
+  instrument_id: instr_cqs
+  use_context: self_reflection
+  utility_type: self_understanding
+  suitability_level: medium
+  cautions: Use alongside behavioral evidence when possible.

@@ -1,0 +1,11 @@
+inferences:
+- id: inf_hexaco_starter
+  target_entity_type: instrument
+  target_entity_id: instr_hexaco
+  inference_type: starter_position
+  text: HEXACO is especially valuable where honesty-humility and cross-cultural lexical
+    grounding matter.
+  confidence: medium
+  linked_entities: []
+  author: house
+  timestamp: '2026-04-11'

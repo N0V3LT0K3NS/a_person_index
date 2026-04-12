@@ -1,0 +1,11 @@
+inferences:
+- id: inf_dark_triad_starter
+  target_entity_type: instrument
+  target_entity_id: instr_dark_triad
+  inference_type: starter_position
+  text: The framework is analytically useful but especially vulnerable to moral overreading
+    and stigmatizing simplification.
+  confidence: medium
+  linked_entities: []
+  author: house
+  timestamp: '2026-04-11'

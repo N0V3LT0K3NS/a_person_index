@@ -1,0 +1,64 @@
+$defs:
+  Inference:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      target_entity_type:
+        enum:
+        - instrument
+        - version
+        - construct
+        title: Target Entity Type
+        type: string
+      target_entity_id:
+        title: Target Entity Id
+        type: string
+      inference_type:
+        title: Inference Type
+        type: string
+      text:
+        title: Text
+        type: string
+      confidence:
+        enum:
+        - low
+        - medium
+        - high
+        title: Confidence
+        type: string
+      linked_entities:
+        items:
+          type: string
+        title: Linked Entities
+        type: array
+      author:
+        title: Author
+        type: string
+      timestamp:
+        format: date
+        title: Timestamp
+        type: string
+    required:
+    - id
+    - target_entity_type
+    - target_entity_id
+    - inference_type
+    - text
+    - confidence
+    - author
+    - timestamp
+    title: Inference
+    type: object
+additionalProperties: false
+properties:
+  inferences:
+    items:
+      $ref: '#/$defs/Inference'
+    title: Inferences
+    type: array
+required:
+- inferences
+title: InferencesDocument
+type: object

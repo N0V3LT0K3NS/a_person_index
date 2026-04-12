@@ -1,0 +1,20 @@
+constructs:
+- id: con_natal_astrology_core
+  instrument_id: instr_natal_astrology
+  version_ids:
+  - ver_natal_astrology_general
+  name: Natal chart profile
+  short_name: Natal chart profile
+  construct_kind:
+  - dimension
+  official_definition: A symbolic birth chart interpreted through astrological houses,
+    planets, and signs.
+  scoring_type: variant_dependent
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null

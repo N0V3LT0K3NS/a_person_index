@@ -1,0 +1,25 @@
+instrument:
+  id: instr_natal_astrology
+  canonical_name: Natal Astrology
+  short_names:
+  - Natal Astrology
+  - Birth Chart Astrology
+  aliases:
+  - Birth Chart
+  status: active
+  family:
+  - symbolic_archetypal_spiritual
+  - worldview_meaning_making
+  - identity_self_concept
+  short_description: A symbolic charting system that interprets birth time and place
+    through zodiacal and planetary symbolism.
+  creators:
+  - unknown
+  publisher_or_owner: unknown
+  original_release_year: null
+  official_websites: []
+  licensing_model: mixed
+  primary_domain: personality_framework
+  country_or_origin_context:
+  - mixed
+  notes: Starter registry entry for Natal Astrology.

@@ -1,0 +1,2027 @@
+{
+  "generated_at": "2026-04-11T22:37:03.893032+00:00",
+  "ontology": {
+    "registry": {
+      "ontology": {
+        "id": "instrument_ontology_v0_1",
+        "title": "Human Description Instrument Ontology",
+        "status": "active",
+        "version": "0.1.0",
+        "description": "A versioned ontology for describing and comparing personality tests, typology systems, psychometric instruments, symbolic self-description systems, and adjacent person-labeling frameworks.",
+        "principles": [
+          "separate_source_claims_from_meta_annotations",
+          "separate_explicit_from_implicit_from_inferred",
+          "preserve_epistemic_differences",
+          "keep_crosswalks_first_class",
+          "support_incremental_growth"
+        ]
+      }
+    },
+    "dimensions": {
+      "dimensions": [
+        {
+          "id": "instrument_family",
+          "cardinality": "many",
+          "description": "Top-level family membership for an instrument.",
+          "enum_file": "enums/instrument_family.yaml"
+        },
+        {
+          "id": "primary_measurement_target",
+          "cardinality": "many",
+          "description": "Primary things the instrument claims or appears to measure.",
+          "enum_file": "enums/primary_measurement_target.yaml"
+        },
+        {
+          "id": "representational_form",
+          "cardinality": "many",
+          "description": "How the instrument encodes a person.",
+          "enum_file": "enums/representational_form.yaml"
+        },
+        {
+          "id": "temporal_stance",
+          "cardinality": "many",
+          "description": "What kind of time-object the instrument assumes it captures.",
+          "enum_file": "enums/temporal_stance.yaml"
+        },
+        {
+          "id": "person_ontology",
+          "cardinality": "many",
+          "description": "What the instrument implicitly treats a person as.",
+          "enum_file": "enums/person_ontology.yaml"
+        },
+        {
+          "id": "administration_mode",
+          "cardinality": "many",
+          "description": "How the instrument gathers data.",
+          "enum_file": "enums/administration_mode.yaml"
+        },
+        {
+          "id": "scoring_logic",
+          "cardinality": "many",
+          "description": "How responses become outputs.",
+          "enum_file": "enums/scoring_logic.yaml"
+        },
+        {
+          "id": "epistemic_basis",
+          "cardinality": "many",
+          "description": "General evidence type or truth-claim basis.",
+          "enum_file": "enums/epistemic_basis.yaml"
+        },
+        {
+          "id": "evidence_profile",
+          "cardinality": "many",
+          "description": "More granular evidence annotations.",
+          "enum_file": "enums/evidence_profile.yaml"
+        },
+        {
+          "id": "interpretive_burden",
+          "cardinality": "one",
+          "description": "How much meaning depends on interpreter vs instrument.",
+          "enum_file": "enums/interpretive_burden.yaml"
+        },
+        {
+          "id": "granularity",
+          "cardinality": "one",
+          "description": "Resolution of the output model.",
+          "enum_file": "enums/granularity.yaml"
+        },
+        {
+          "id": "context_sensitivity",
+          "cardinality": "one",
+          "description": "How global vs context-sensitive the outputs are.",
+          "enum_file": "enums/context_sensitivity.yaml"
+        },
+        {
+          "id": "change_model",
+          "cardinality": "many",
+          "description": "What kind of change the instrument assumes is possible.",
+          "enum_file": "enums/change_model.yaml"
+        },
+        {
+          "id": "distortion_risk",
+          "cardinality": "many",
+          "description": "Likely distortions or misuse risks.",
+          "enum_file": "enums/distortion_risk.yaml"
+        },
+        {
+          "id": "deployment_context",
+          "cardinality": "many",
+          "description": "Common contexts where the instrument is used.",
+          "enum_file": "enums/deployment_context.yaml"
+        },
+        {
+          "id": "utility_profile",
+          "cardinality": "many",
+          "description": "What the instrument is actually useful for.",
+          "enum_file": "enums/utility_profile.yaml"
+        },
+        {
+          "id": "target_population",
+          "cardinality": "many",
+          "description": "Intended or normed user population.",
+          "enum_file": "enums/target_population.yaml"
+        },
+        {
+          "id": "norming_status",
+          "cardinality": "one",
+          "description": "Quality or presence of normative calibration.",
+          "enum_file": "enums/norming_status.yaml"
+        },
+        {
+          "id": "identity_adhesion_risk",
+          "cardinality": "one",
+          "description": "How likely users are to fuse output with identity.",
+          "enum_file": "enums/identity_adhesion_risk.yaml"
+        },
+        {
+          "id": "actionability_type",
+          "cardinality": "many",
+          "description": "What kind of actionability the instrument supports.",
+          "enum_file": "enums/actionability_type.yaml"
+        },
+        {
+          "id": "worldview_load",
+          "cardinality": "one",
+          "description": "Degree to which the instrument embeds a thick worldview.",
+          "enum_file": "enums/worldview_load.yaml"
+        },
+        {
+          "id": "cultural_symbolic_role",
+          "cardinality": "many",
+          "description": "Social and symbolic role beyond measurement.",
+          "enum_file": "enums/cultural_symbolic_role.yaml"
+        },
+        {
+          "id": "synthesis_value_for_ilens",
+          "cardinality": "one",
+          "description": "Estimated usefulness as an ILENS input layer.",
+          "enum_file": "enums/synthesis_value_for_ilens.yaml"
+        },
+        {
+          "id": "overlap_mode",
+          "cardinality": "many",
+          "description": "Typical overlap pattern with other instruments.",
+          "enum_file": "enums/overlap_mode.yaml"
+        }
+      ]
+    },
+    "enums": {
+      "instrument_family": [
+        "trait_personality",
+        "typology",
+        "motivational",
+        "affective",
+        "attachment_relational",
+        "behavioral_interactional",
+        "conative_action_style",
+        "cognitive_style",
+        "learning_style",
+        "strengths_talent",
+        "values_moral_orientation",
+        "leadership_workplace",
+        "developmental_stage",
+        "clinical_symptom_pathology",
+        "resilience_wellbeing",
+        "cultural_intercultural",
+        "identity_self_concept",
+        "worldview_meaning_making",
+        "symbolic_archetypal_spiritual",
+        "hybrid_integrative",
+        "projective",
+        "observer_rating",
+        "other"
+      ],
+      "primary_measurement_target": [
+        "stable_traits",
+        "interpersonal_style",
+        "affect_emotion",
+        "work_style",
+        "motivation_drives",
+        "defense_patterns",
+        "attachment_patterns",
+        "behavioral_style",
+        "strengths_talents",
+        "cultural_adaptation",
+        "identity_narrative",
+        "symbolic_archetypal_patterning",
+        "moral_character",
+        "dark_personality_features",
+        "cognitive_preferences",
+        "communication_preferences",
+        "values_orientation",
+        "relational_needs",
+        "developmental_growth",
+        "subjective_meaning"
+      ],
+      "representational_form": [
+        "continuous_dimensional",
+        "hierarchical_model",
+        "categorical_typology",
+        "hybrid_dimensional_typological",
+        "narrative_description",
+        "developmental_level",
+        "profile_vector",
+        "symbolic_chart",
+        "rank_order_strengths",
+        "binary_preferences"
+      ],
+      "temporal_stance": [
+        "stable_traits",
+        "semi_stable_patterns",
+        "situational_state",
+        "cyclical_temporal_pattern",
+        "developmental_path",
+        "identity_narrative_snapshot"
+      ],
+      "person_ontology": [
+        "trait_container",
+        "dynamic_strategy_system",
+        "motivational_structure",
+        "relational_attachment_system",
+        "symbolic_cosmological_self",
+        "strengths_expression_profile",
+        "work_behavior_pattern",
+        "hybrid_personhood_model",
+        "cultural_competence_profile",
+        "moral_character_profile"
+      ],
+      "administration_mode": [
+        "self_report_questionnaire",
+        "observer_report",
+        "practitioner_interview",
+        "practitioner_interpretation",
+        "algorithmic_chart_calculation",
+        "self_identification",
+        "workshop_facilitation"
+      ],
+      "scoring_logic": [
+        "sum_or_average_scale_scoring",
+        "ipsative_preference_scoring",
+        "type_assignment_rules",
+        "interpretive_pattern_matching",
+        "algorithmic_chart_rules",
+        "rank_order_selection",
+        "expert_interpretation",
+        "factor_scoring"
+      ],
+      "epistemic_basis": [
+        "strong_psychometric_validation",
+        "mixed_psychometric_and_theoretical",
+        "weak_or_contested_empirical_basis",
+        "clinical_observation",
+        "coaching_practice",
+        "symbolic_tradition",
+        "mixed_lineages",
+        "proprietary_workplace_analytics",
+        "cross_cultural_research",
+        "popular_psychology",
+        "narrative_interpretation"
+      ],
+      "evidence_profile": [
+        "extensive_peer_review",
+        "normative_data_available",
+        "proprietary_or_limited_transparency",
+        "cross_cultural_support",
+        "mostly_anecdotal_or_practitioner_based",
+        "contested_validity",
+        "mixed_evidence",
+        "open_question_bank_available"
+      ],
+      "interpretive_burden": [
+        "low",
+        "medium",
+        "high",
+        "very_high"
+      ],
+      "granularity": [
+        "low",
+        "medium",
+        "high",
+        "very_high"
+      ],
+      "context_sensitivity": [
+        "low",
+        "medium",
+        "high",
+        "very_high"
+      ],
+      "change_model": [
+        "trait_stability",
+        "developmental_growth",
+        "situational_expression",
+        "skills_trainability",
+        "cyclical_activation",
+        "identity_revision",
+        "subtype_refinement"
+      ],
+      "distortion_risk": [
+        "self_report_distortion",
+        "overinterpretation",
+        "identity_capture",
+        "barnum_effect",
+        "practitioner_projection",
+        "cultural_overgeneralization",
+        "workplace_misuse",
+        "reductionism",
+        "reification",
+        "confirmation_bias",
+        "determinism",
+        "false_precision"
+      ],
+      "deployment_context": [
+        "self_reflection",
+        "coaching",
+        "therapy",
+        "workplace",
+        "hiring",
+        "education",
+        "team_design",
+        "leadership_development",
+        "relationship_support",
+        "spiritual_community",
+        "internet_identity_culture",
+        "research",
+        "intercultural_training"
+      ],
+      "utility_profile": [
+        "self_understanding",
+        "communication_adaptation",
+        "team_alignment",
+        "developmental_reflection",
+        "selection_screening",
+        "coaching_language",
+        "cultural_navigation",
+        "research_baseline",
+        "symbolic_reflection",
+        "motive_exploration",
+        "strengths_identification",
+        "relational_patterning"
+      ],
+      "target_population": [
+        "general_adult_population",
+        "workplace_teams",
+        "students",
+        "coaching_clients",
+        "clinical_populations",
+        "spiritual_seekers",
+        "internet_communities",
+        "leaders_managers",
+        "couples_families",
+        "multicultural_professionals"
+      ],
+      "norming_status": [
+        "well_normed",
+        "variant_dependent",
+        "limited_norms",
+        "not_normed",
+        "unknown"
+      ],
+      "identity_adhesion_risk": [
+        "very_low",
+        "low",
+        "medium",
+        "high",
+        "very_high"
+      ],
+      "actionability_type": [
+        "descriptive_reflection",
+        "coaching_intervention",
+        "communication_adjustment",
+        "selection_decision_support",
+        "team_design_support",
+        "developmental_planning",
+        "relational_discussion",
+        "symbolic_storytelling"
+      ],
+      "worldview_load": [
+        "very_low",
+        "low",
+        "medium",
+        "high",
+        "very_high"
+      ],
+      "cultural_symbolic_role": [
+        "professional_shorthand",
+        "internet_identity_language",
+        "workplace_identity_language",
+        "spiritual_symbolic_system",
+        "coaching_identity_language",
+        "research_anchor",
+        "pop_psychology_meme",
+        "community_belonging_language"
+      ],
+      "synthesis_value_for_ilens": [
+        "low",
+        "medium",
+        "high",
+        "very_high"
+      ],
+      "overlap_mode": [
+        "partial_construct_overlap",
+        "shared_identity_space",
+        "complementary_layers",
+        "often_misread_as_equivalent",
+        "weak_direct_mapping",
+        "workplace_family_resemblance"
+      ]
+    }
+  },
+  "instruments": [
+    {
+      "slug": "attachment-styles",
+      "id": "instr_attachment_styles",
+      "canonical_name": "Attachment Style Frameworks",
+      "short_names": [
+        "Attachment Styles"
+      ],
+      "aliases": [],
+      "family": [
+        "attachment_relational"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "attachment_relational"
+        ],
+        "primary_measurement_target": [
+          "attachment_patterns",
+          "interpersonal_style",
+          "relational_needs"
+        ],
+        "representational_form": [
+          "categorical_typology",
+          "hybrid_dimensional_typological",
+          "narrative_description"
+        ],
+        "temporal_stance": [
+          "developmental_path",
+          "semi_stable_patterns"
+        ],
+        "person_ontology": [
+          "relational_attachment_system"
+        ],
+        "administration_mode": [
+          "practitioner_interview",
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "sum_or_average_scale_scoring",
+          "type_assignment_rules"
+        ],
+        "epistemic_basis": [
+          "clinical_observation",
+          "strong_psychometric_validation"
+        ],
+        "interpretive_burden": [
+          "medium"
+        ],
+        "granularity": [
+          "medium"
+        ],
+        "context_sensitivity": [
+          "high"
+        ],
+        "change_model": [
+          "developmental_growth",
+          "situational_expression"
+        ],
+        "distortion_risk": [
+          "identity_capture",
+          "overinterpretation"
+        ],
+        "deployment_context": [
+          "coaching",
+          "relationship_support",
+          "self_reflection",
+          "therapy"
+        ],
+        "utility_profile": [
+          "developmental_reflection",
+          "relational_patterning",
+          "self_understanding"
+        ],
+        "identity_adhesion_risk": [
+          "high"
+        ],
+        "worldview_load": [
+          "low"
+        ],
+        "synthesis_value_for_ilens": [
+          "high"
+        ],
+        "evidence_profile": [
+          "extensive_peer_review",
+          "mixed_evidence"
+        ],
+        "target_population": [
+          "clinical_populations",
+          "couples_families",
+          "general_adult_population"
+        ],
+        "norming_status": [
+          "variant_dependent"
+        ],
+        "actionability_type": [
+          "developmental_planning",
+          "relational_discussion"
+        ],
+        "cultural_symbolic_role": [
+          "internet_identity_language",
+          "professional_shorthand"
+        ],
+        "overlap_mode": [
+          "complementary_layers",
+          "shared_identity_space"
+        ]
+      }
+    },
+    {
+      "slug": "big-five",
+      "id": "instr_big_five",
+      "canonical_name": "Big Five Personality Model",
+      "short_names": [
+        "Big Five",
+        "OCEAN",
+        "Five-Factor Model"
+      ],
+      "aliases": [
+        "FFM"
+      ],
+      "family": [
+        "trait_personality"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "trait_personality"
+        ],
+        "primary_measurement_target": [
+          "affect_emotion",
+          "interpersonal_style",
+          "stable_traits",
+          "work_style"
+        ],
+        "representational_form": [
+          "continuous_dimensional",
+          "hierarchical_model"
+        ],
+        "temporal_stance": [
+          "stable_traits"
+        ],
+        "person_ontology": [
+          "trait_container"
+        ],
+        "administration_mode": [
+          "observer_report",
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "factor_scoring",
+          "sum_or_average_scale_scoring"
+        ],
+        "epistemic_basis": [
+          "strong_psychometric_validation"
+        ],
+        "evidence_profile": [
+          "cross_cultural_support",
+          "extensive_peer_review",
+          "normative_data_available"
+        ],
+        "interpretive_burden": [
+          "low"
+        ],
+        "granularity": [
+          "high"
+        ],
+        "context_sensitivity": [
+          "medium"
+        ],
+        "change_model": [
+          "developmental_growth",
+          "situational_expression",
+          "trait_stability"
+        ],
+        "distortion_risk": [
+          "overinterpretation",
+          "reductionism",
+          "self_report_distortion"
+        ],
+        "deployment_context": [
+          "coaching",
+          "research",
+          "self_reflection",
+          "team_design",
+          "workplace"
+        ],
+        "utility_profile": [
+          "communication_adaptation",
+          "research_baseline",
+          "self_understanding"
+        ],
+        "target_population": [
+          "general_adult_population",
+          "workplace_teams"
+        ],
+        "norming_status": [
+          "variant_dependent"
+        ],
+        "identity_adhesion_risk": [
+          "low"
+        ],
+        "actionability_type": [
+          "communication_adjustment",
+          "descriptive_reflection"
+        ],
+        "worldview_load": [
+          "very_low"
+        ],
+        "cultural_symbolic_role": [
+          "professional_shorthand",
+          "research_anchor"
+        ],
+        "synthesis_value_for_ilens": [
+          "very_high"
+        ],
+        "overlap_mode": [
+          "complementary_layers",
+          "partial_construct_overlap"
+        ]
+      }
+    },
+    {
+      "slug": "cliftonstrengths",
+      "id": "instr_cliftonstrengths",
+      "canonical_name": "CliftonStrengths",
+      "short_names": [
+        "CliftonStrengths",
+        "StrengthsFinder"
+      ],
+      "aliases": [
+        "StrengthsFinder"
+      ],
+      "family": [
+        "strengths_talent",
+        "leadership_workplace"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "leadership_workplace",
+          "strengths_talent"
+        ],
+        "primary_measurement_target": [
+          "interpersonal_style",
+          "strengths_talents",
+          "work_style"
+        ],
+        "representational_form": [
+          "narrative_description",
+          "profile_vector",
+          "rank_order_strengths"
+        ],
+        "temporal_stance": [
+          "semi_stable_patterns"
+        ],
+        "person_ontology": [
+          "strengths_expression_profile"
+        ],
+        "administration_mode": [
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "rank_order_selection"
+        ],
+        "epistemic_basis": [
+          "mixed_psychometric_and_theoretical",
+          "proprietary_workplace_analytics"
+        ],
+        "interpretive_burden": [
+          "medium"
+        ],
+        "granularity": [
+          "high"
+        ],
+        "context_sensitivity": [
+          "medium"
+        ],
+        "change_model": [
+          "developmental_growth",
+          "situational_expression"
+        ],
+        "distortion_risk": [
+          "overinterpretation",
+          "workplace_misuse"
+        ],
+        "deployment_context": [
+          "coaching",
+          "leadership_development",
+          "self_reflection",
+          "workplace"
+        ],
+        "utility_profile": [
+          "coaching_language",
+          "strengths_identification",
+          "team_alignment"
+        ],
+        "identity_adhesion_risk": [
+          "medium"
+        ],
+        "worldview_load": [
+          "medium"
+        ],
+        "synthesis_value_for_ilens": [
+          "medium"
+        ],
+        "evidence_profile": [
+          "mixed_evidence",
+          "proprietary_or_limited_transparency"
+        ],
+        "target_population": [
+          "general_adult_population",
+          "leaders_managers",
+          "workplace_teams"
+        ],
+        "norming_status": [
+          "variant_dependent"
+        ],
+        "actionability_type": [
+          "developmental_planning",
+          "team_design_support"
+        ],
+        "cultural_symbolic_role": [
+          "coaching_identity_language",
+          "workplace_identity_language"
+        ],
+        "overlap_mode": [
+          "workplace_family_resemblance"
+        ]
+      }
+    },
+    {
+      "slug": "cqs",
+      "id": "instr_cqs",
+      "canonical_name": "Cultural Intelligence Scale",
+      "short_names": [
+        "CQS",
+        "Cultural Intelligence Scale"
+      ],
+      "aliases": [],
+      "family": [
+        "cultural_intercultural"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "cultural_intercultural"
+        ],
+        "primary_measurement_target": [
+          "behavioral_style",
+          "cultural_adaptation"
+        ],
+        "representational_form": [
+          "continuous_dimensional",
+          "profile_vector"
+        ],
+        "temporal_stance": [
+          "developmental_path",
+          "semi_stable_patterns"
+        ],
+        "person_ontology": [
+          "cultural_competence_profile"
+        ],
+        "administration_mode": [
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "sum_or_average_scale_scoring"
+        ],
+        "epistemic_basis": [
+          "cross_cultural_research",
+          "strong_psychometric_validation"
+        ],
+        "interpretive_burden": [
+          "medium"
+        ],
+        "granularity": [
+          "medium"
+        ],
+        "context_sensitivity": [
+          "high"
+        ],
+        "change_model": [
+          "developmental_growth",
+          "skills_trainability"
+        ],
+        "distortion_risk": [
+          "false_precision",
+          "self_report_distortion"
+        ],
+        "deployment_context": [
+          "education",
+          "intercultural_training",
+          "research",
+          "workplace"
+        ],
+        "utility_profile": [
+          "cultural_navigation",
+          "developmental_reflection"
+        ],
+        "identity_adhesion_risk": [
+          "low"
+        ],
+        "worldview_load": [
+          "low"
+        ],
+        "synthesis_value_for_ilens": [
+          "medium"
+        ],
+        "evidence_profile": [
+          "cross_cultural_support",
+          "extensive_peer_review"
+        ],
+        "target_population": [
+          "general_adult_population",
+          "multicultural_professionals",
+          "students"
+        ],
+        "norming_status": [
+          "well_normed"
+        ],
+        "actionability_type": [
+          "descriptive_reflection",
+          "developmental_planning"
+        ],
+        "cultural_symbolic_role": [
+          "professional_shorthand"
+        ],
+        "overlap_mode": [
+          "complementary_layers"
+        ]
+      }
+    },
+    {
+      "slug": "culture-index",
+      "id": "instr_culture_index",
+      "canonical_name": "Culture Index",
+      "short_names": [
+        "Culture Index"
+      ],
+      "aliases": [],
+      "family": [
+        "leadership_workplace",
+        "trait_personality"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "leadership_workplace",
+          "trait_personality"
+        ],
+        "primary_measurement_target": [
+          "behavioral_style",
+          "work_style"
+        ],
+        "representational_form": [
+          "narrative_description",
+          "profile_vector"
+        ],
+        "temporal_stance": [
+          "semi_stable_patterns"
+        ],
+        "person_ontology": [
+          "work_behavior_pattern"
+        ],
+        "administration_mode": [
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "interpretive_pattern_matching",
+          "sum_or_average_scale_scoring"
+        ],
+        "epistemic_basis": [
+          "mixed_psychometric_and_theoretical",
+          "proprietary_workplace_analytics"
+        ],
+        "interpretive_burden": [
+          "medium"
+        ],
+        "granularity": [
+          "medium"
+        ],
+        "context_sensitivity": [
+          "medium"
+        ],
+        "change_model": [
+          "situational_expression"
+        ],
+        "distortion_risk": [
+          "false_precision",
+          "workplace_misuse"
+        ],
+        "deployment_context": [
+          "hiring",
+          "leadership_development",
+          "workplace"
+        ],
+        "utility_profile": [
+          "selection_screening",
+          "team_alignment"
+        ],
+        "identity_adhesion_risk": [
+          "medium"
+        ],
+        "worldview_load": [
+          "medium"
+        ],
+        "synthesis_value_for_ilens": [
+          "low"
+        ],
+        "evidence_profile": [
+          "proprietary_or_limited_transparency"
+        ],
+        "target_population": [
+          "leaders_managers",
+          "workplace_teams"
+        ],
+        "norming_status": [
+          "variant_dependent"
+        ],
+        "actionability_type": [
+          "selection_decision_support",
+          "team_design_support"
+        ],
+        "cultural_symbolic_role": [
+          "workplace_identity_language"
+        ],
+        "overlap_mode": [
+          "workplace_family_resemblance"
+        ]
+      }
+    },
+    {
+      "slug": "dark-triad",
+      "id": "instr_dark_triad",
+      "canonical_name": "Dark Triad",
+      "short_names": [
+        "Dark Triad"
+      ],
+      "aliases": [],
+      "family": [
+        "trait_personality",
+        "clinical_symptom_pathology"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "clinical_symptom_pathology",
+          "trait_personality"
+        ],
+        "primary_measurement_target": [
+          "dark_personality_features",
+          "interpersonal_style"
+        ],
+        "representational_form": [
+          "continuous_dimensional",
+          "profile_vector"
+        ],
+        "temporal_stance": [
+          "semi_stable_patterns"
+        ],
+        "person_ontology": [
+          "trait_container"
+        ],
+        "administration_mode": [
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "factor_scoring",
+          "sum_or_average_scale_scoring"
+        ],
+        "epistemic_basis": [
+          "strong_psychometric_validation"
+        ],
+        "interpretive_burden": [
+          "medium"
+        ],
+        "granularity": [
+          "medium"
+        ],
+        "context_sensitivity": [
+          "medium"
+        ],
+        "change_model": [
+          "situational_expression",
+          "trait_stability"
+        ],
+        "distortion_risk": [
+          "overinterpretation",
+          "reification",
+          "self_report_distortion"
+        ],
+        "deployment_context": [
+          "research",
+          "self_reflection"
+        ],
+        "utility_profile": [
+          "research_baseline"
+        ],
+        "identity_adhesion_risk": [
+          "medium"
+        ],
+        "worldview_load": [
+          "low"
+        ],
+        "synthesis_value_for_ilens": [
+          "medium"
+        ],
+        "evidence_profile": [
+          "extensive_peer_review",
+          "mixed_evidence"
+        ],
+        "target_population": [
+          "general_adult_population"
+        ],
+        "norming_status": [
+          "variant_dependent"
+        ],
+        "actionability_type": [
+          "descriptive_reflection"
+        ],
+        "cultural_symbolic_role": [
+          "professional_shorthand"
+        ],
+        "overlap_mode": [
+          "partial_construct_overlap"
+        ]
+      }
+    },
+    {
+      "slug": "disc",
+      "id": "instr_disc",
+      "canonical_name": "DISC",
+      "short_names": [
+        "DISC"
+      ],
+      "aliases": [],
+      "family": [
+        "behavioral_interactional",
+        "leadership_workplace"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "behavioral_interactional",
+          "leadership_workplace"
+        ],
+        "primary_measurement_target": [
+          "behavioral_style",
+          "interpersonal_style",
+          "work_style"
+        ],
+        "representational_form": [
+          "categorical_typology",
+          "profile_vector"
+        ],
+        "temporal_stance": [
+          "semi_stable_patterns"
+        ],
+        "person_ontology": [
+          "work_behavior_pattern"
+        ],
+        "administration_mode": [
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "sum_or_average_scale_scoring",
+          "type_assignment_rules"
+        ],
+        "epistemic_basis": [
+          "mixed_psychometric_and_theoretical",
+          "proprietary_workplace_analytics"
+        ],
+        "interpretive_burden": [
+          "medium"
+        ],
+        "granularity": [
+          "medium"
+        ],
+        "context_sensitivity": [
+          "medium"
+        ],
+        "change_model": [
+          "situational_expression",
+          "skills_trainability"
+        ],
+        "distortion_risk": [
+          "overinterpretation",
+          "workplace_misuse"
+        ],
+        "deployment_context": [
+          "coaching",
+          "leadership_development",
+          "team_design",
+          "workplace"
+        ],
+        "utility_profile": [
+          "communication_adaptation",
+          "team_alignment"
+        ],
+        "identity_adhesion_risk": [
+          "medium"
+        ],
+        "worldview_load": [
+          "low"
+        ],
+        "synthesis_value_for_ilens": [
+          "medium"
+        ],
+        "evidence_profile": [
+          "mixed_evidence",
+          "proprietary_or_limited_transparency"
+        ],
+        "target_population": [
+          "leaders_managers",
+          "workplace_teams"
+        ],
+        "norming_status": [
+          "variant_dependent"
+        ],
+        "actionability_type": [
+          "communication_adjustment",
+          "team_design_support"
+        ],
+        "cultural_symbolic_role": [
+          "professional_shorthand",
+          "workplace_identity_language"
+        ],
+        "overlap_mode": [
+          "workplace_family_resemblance"
+        ]
+      }
+    },
+    {
+      "slug": "enneagram",
+      "id": "instr_enneagram",
+      "canonical_name": "Enneagram of Personality",
+      "short_names": [
+        "Enneagram"
+      ],
+      "aliases": [
+        "Enneagram of Personality Types"
+      ],
+      "family": [
+        "typology",
+        "motivational",
+        "identity_self_concept",
+        "worldview_meaning_making"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "identity_self_concept",
+          "motivational",
+          "typology",
+          "worldview_meaning_making"
+        ],
+        "primary_measurement_target": [
+          "defense_patterns",
+          "identity_narrative",
+          "interpersonal_style",
+          "motivation_drives"
+        ],
+        "representational_form": [
+          "categorical_typology",
+          "developmental_level",
+          "hybrid_dimensional_typological",
+          "narrative_description"
+        ],
+        "temporal_stance": [
+          "developmental_path",
+          "semi_stable_patterns"
+        ],
+        "person_ontology": [
+          "dynamic_strategy_system",
+          "motivational_structure"
+        ],
+        "administration_mode": [
+          "practitioner_interview",
+          "self_identification",
+          "workshop_facilitation"
+        ],
+        "scoring_logic": [
+          "expert_interpretation",
+          "interpretive_pattern_matching",
+          "type_assignment_rules"
+        ],
+        "epistemic_basis": [
+          "mixed_lineages",
+          "narrative_interpretation",
+          "weak_or_contested_empirical_basis"
+        ],
+        "evidence_profile": [
+          "contested_validity",
+          "mostly_anecdotal_or_practitioner_based"
+        ],
+        "interpretive_burden": [
+          "high"
+        ],
+        "granularity": [
+          "high"
+        ],
+        "context_sensitivity": [
+          "high"
+        ],
+        "change_model": [
+          "developmental_growth",
+          "identity_revision",
+          "subtype_refinement"
+        ],
+        "distortion_risk": [
+          "confirmation_bias",
+          "identity_capture",
+          "overinterpretation",
+          "practitioner_projection"
+        ],
+        "deployment_context": [
+          "coaching",
+          "internet_identity_culture",
+          "self_reflection",
+          "spiritual_community",
+          "therapy"
+        ],
+        "utility_profile": [
+          "coaching_language",
+          "developmental_reflection",
+          "motive_exploration",
+          "relational_patterning"
+        ],
+        "target_population": [
+          "coaching_clients",
+          "general_adult_population",
+          "spiritual_seekers"
+        ],
+        "norming_status": [
+          "limited_norms"
+        ],
+        "identity_adhesion_risk": [
+          "very_high"
+        ],
+        "actionability_type": [
+          "developmental_planning",
+          "relational_discussion"
+        ],
+        "worldview_load": [
+          "high"
+        ],
+        "cultural_symbolic_role": [
+          "coaching_identity_language",
+          "community_belonging_language",
+          "internet_identity_language"
+        ],
+        "synthesis_value_for_ilens": [
+          "high"
+        ],
+        "overlap_mode": [
+          "complementary_layers",
+          "shared_identity_space"
+        ]
+      }
+    },
+    {
+      "slug": "hexaco",
+      "id": "instr_hexaco",
+      "canonical_name": "HEXACO Personality Inventory",
+      "short_names": [
+        "HEXACO"
+      ],
+      "aliases": [],
+      "family": [
+        "trait_personality"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "trait_personality"
+        ],
+        "primary_measurement_target": [
+          "affect_emotion",
+          "interpersonal_style",
+          "moral_character",
+          "stable_traits"
+        ],
+        "representational_form": [
+          "continuous_dimensional",
+          "hierarchical_model"
+        ],
+        "temporal_stance": [
+          "stable_traits"
+        ],
+        "person_ontology": [
+          "trait_container"
+        ],
+        "administration_mode": [
+          "observer_report",
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "factor_scoring",
+          "sum_or_average_scale_scoring"
+        ],
+        "epistemic_basis": [
+          "cross_cultural_research",
+          "strong_psychometric_validation"
+        ],
+        "interpretive_burden": [
+          "low"
+        ],
+        "granularity": [
+          "high"
+        ],
+        "context_sensitivity": [
+          "medium"
+        ],
+        "change_model": [
+          "developmental_growth",
+          "trait_stability"
+        ],
+        "distortion_risk": [
+          "overinterpretation",
+          "self_report_distortion"
+        ],
+        "deployment_context": [
+          "research",
+          "self_reflection",
+          "workplace"
+        ],
+        "utility_profile": [
+          "research_baseline",
+          "self_understanding"
+        ],
+        "identity_adhesion_risk": [
+          "low"
+        ],
+        "worldview_load": [
+          "very_low"
+        ],
+        "synthesis_value_for_ilens": [
+          "high"
+        ],
+        "evidence_profile": [
+          "cross_cultural_support",
+          "extensive_peer_review",
+          "normative_data_available"
+        ],
+        "target_population": [
+          "general_adult_population"
+        ],
+        "norming_status": [
+          "well_normed"
+        ],
+        "actionability_type": [
+          "descriptive_reflection"
+        ],
+        "cultural_symbolic_role": [
+          "research_anchor"
+        ],
+        "overlap_mode": [
+          "complementary_layers",
+          "partial_construct_overlap"
+        ]
+      }
+    },
+    {
+      "slug": "human-design",
+      "id": "instr_human_design",
+      "canonical_name": "Human Design",
+      "short_names": [
+        "Human Design"
+      ],
+      "aliases": [],
+      "family": [
+        "symbolic_archetypal_spiritual",
+        "identity_self_concept",
+        "worldview_meaning_making"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "identity_self_concept",
+          "symbolic_archetypal_spiritual",
+          "worldview_meaning_making"
+        ],
+        "primary_measurement_target": [
+          "identity_narrative",
+          "subjective_meaning",
+          "symbolic_archetypal_patterning"
+        ],
+        "representational_form": [
+          "categorical_typology",
+          "narrative_description",
+          "symbolic_chart"
+        ],
+        "temporal_stance": [
+          "cyclical_temporal_pattern",
+          "identity_narrative_snapshot"
+        ],
+        "person_ontology": [
+          "symbolic_cosmological_self"
+        ],
+        "administration_mode": [
+          "algorithmic_chart_calculation",
+          "practitioner_interpretation"
+        ],
+        "scoring_logic": [
+          "algorithmic_chart_rules",
+          "expert_interpretation"
+        ],
+        "epistemic_basis": [
+          "mixed_lineages",
+          "symbolic_tradition"
+        ],
+        "interpretive_burden": [
+          "very_high"
+        ],
+        "granularity": [
+          "very_high"
+        ],
+        "context_sensitivity": [
+          "medium"
+        ],
+        "change_model": [
+          "cyclical_activation",
+          "identity_revision"
+        ],
+        "distortion_risk": [
+          "barnum_effect",
+          "determinism",
+          "identity_capture",
+          "practitioner_projection"
+        ],
+        "deployment_context": [
+          "coaching",
+          "internet_identity_culture",
+          "self_reflection",
+          "spiritual_community"
+        ],
+        "utility_profile": [
+          "coaching_language",
+          "symbolic_reflection"
+        ],
+        "identity_adhesion_risk": [
+          "very_high"
+        ],
+        "worldview_load": [
+          "very_high"
+        ],
+        "synthesis_value_for_ilens": [
+          "low"
+        ],
+        "evidence_profile": [
+          "mostly_anecdotal_or_practitioner_based"
+        ],
+        "target_population": [
+          "internet_communities",
+          "spiritual_seekers"
+        ],
+        "norming_status": [
+          "not_normed"
+        ],
+        "actionability_type": [
+          "symbolic_storytelling"
+        ],
+        "cultural_symbolic_role": [
+          "community_belonging_language",
+          "internet_identity_language",
+          "spiritual_symbolic_system"
+        ],
+        "overlap_mode": [
+          "shared_identity_space",
+          "weak_direct_mapping"
+        ]
+      }
+    },
+    {
+      "slug": "kolbe",
+      "id": "instr_kolbe",
+      "canonical_name": "Kolbe A Index",
+      "short_names": [
+        "Kolbe"
+      ],
+      "aliases": [],
+      "family": [
+        "conative_action_style",
+        "leadership_workplace"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "conative_action_style",
+          "leadership_workplace"
+        ],
+        "primary_measurement_target": [
+          "behavioral_style",
+          "work_style"
+        ],
+        "representational_form": [
+          "profile_vector"
+        ],
+        "temporal_stance": [
+          "semi_stable_patterns"
+        ],
+        "person_ontology": [
+          "work_behavior_pattern"
+        ],
+        "administration_mode": [
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "sum_or_average_scale_scoring"
+        ],
+        "epistemic_basis": [
+          "mixed_psychometric_and_theoretical",
+          "proprietary_workplace_analytics"
+        ],
+        "interpretive_burden": [
+          "medium"
+        ],
+        "granularity": [
+          "medium"
+        ],
+        "context_sensitivity": [
+          "medium"
+        ],
+        "change_model": [
+          "situational_expression",
+          "trait_stability"
+        ],
+        "distortion_risk": [
+          "overinterpretation",
+          "workplace_misuse"
+        ],
+        "deployment_context": [
+          "coaching",
+          "team_design",
+          "workplace"
+        ],
+        "utility_profile": [
+          "communication_adaptation",
+          "team_alignment"
+        ],
+        "identity_adhesion_risk": [
+          "medium"
+        ],
+        "worldview_load": [
+          "low"
+        ],
+        "synthesis_value_for_ilens": [
+          "medium"
+        ],
+        "evidence_profile": [
+          "mixed_evidence",
+          "proprietary_or_limited_transparency"
+        ],
+        "target_population": [
+          "leaders_managers",
+          "workplace_teams"
+        ],
+        "norming_status": [
+          "variant_dependent"
+        ],
+        "actionability_type": [
+          "coaching_intervention",
+          "team_design_support"
+        ],
+        "cultural_symbolic_role": [
+          "professional_shorthand"
+        ],
+        "overlap_mode": [
+          "workplace_family_resemblance"
+        ]
+      }
+    },
+    {
+      "slug": "love-languages",
+      "id": "instr_love_languages",
+      "canonical_name": "The Five Love Languages",
+      "short_names": [
+        "Love Languages"
+      ],
+      "aliases": [],
+      "family": [
+        "attachment_relational",
+        "identity_self_concept"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "attachment_relational",
+          "identity_self_concept"
+        ],
+        "primary_measurement_target": [
+          "communication_preferences",
+          "interpersonal_style",
+          "relational_needs"
+        ],
+        "representational_form": [
+          "categorical_typology",
+          "narrative_description",
+          "profile_vector"
+        ],
+        "temporal_stance": [
+          "semi_stable_patterns"
+        ],
+        "person_ontology": [
+          "relational_attachment_system"
+        ],
+        "administration_mode": [
+          "self_identification",
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "sum_or_average_scale_scoring",
+          "type_assignment_rules"
+        ],
+        "epistemic_basis": [
+          "popular_psychology",
+          "weak_or_contested_empirical_basis"
+        ],
+        "interpretive_burden": [
+          "low"
+        ],
+        "granularity": [
+          "low"
+        ],
+        "context_sensitivity": [
+          "high"
+        ],
+        "change_model": [
+          "identity_revision",
+          "situational_expression"
+        ],
+        "distortion_risk": [
+          "overinterpretation",
+          "reification"
+        ],
+        "deployment_context": [
+          "coaching",
+          "relationship_support",
+          "self_reflection"
+        ],
+        "utility_profile": [
+          "communication_adaptation",
+          "relational_patterning"
+        ],
+        "identity_adhesion_risk": [
+          "medium"
+        ],
+        "worldview_load": [
+          "low"
+        ],
+        "synthesis_value_for_ilens": [
+          "low"
+        ],
+        "evidence_profile": [
+          "contested_validity",
+          "mostly_anecdotal_or_practitioner_based"
+        ],
+        "target_population": [
+          "couples_families",
+          "general_adult_population"
+        ],
+        "norming_status": [
+          "not_normed"
+        ],
+        "actionability_type": [
+          "relational_discussion"
+        ],
+        "cultural_symbolic_role": [
+          "internet_identity_language",
+          "pop_psychology_meme"
+        ],
+        "overlap_mode": [
+          "shared_identity_space"
+        ]
+      }
+    },
+    {
+      "slug": "mbti",
+      "id": "instr_mbti",
+      "canonical_name": "Myers-Briggs Type Indicator",
+      "short_names": [
+        "MBTI"
+      ],
+      "aliases": [
+        "Myers Briggs"
+      ],
+      "family": [
+        "typology",
+        "cognitive_style",
+        "identity_self_concept"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "cognitive_style",
+          "identity_self_concept",
+          "typology"
+        ],
+        "primary_measurement_target": [
+          "cognitive_preferences",
+          "communication_preferences",
+          "interpersonal_style",
+          "work_style"
+        ],
+        "representational_form": [
+          "binary_preferences",
+          "categorical_typology",
+          "profile_vector"
+        ],
+        "temporal_stance": [
+          "semi_stable_patterns"
+        ],
+        "person_ontology": [
+          "hybrid_personhood_model",
+          "work_behavior_pattern"
+        ],
+        "administration_mode": [
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "ipsative_preference_scoring",
+          "type_assignment_rules"
+        ],
+        "epistemic_basis": [
+          "mixed_psychometric_and_theoretical"
+        ],
+        "evidence_profile": [
+          "contested_validity",
+          "mixed_evidence",
+          "proprietary_or_limited_transparency"
+        ],
+        "interpretive_burden": [
+          "medium"
+        ],
+        "granularity": [
+          "medium"
+        ],
+        "context_sensitivity": [
+          "medium"
+        ],
+        "change_model": [
+          "identity_revision",
+          "situational_expression"
+        ],
+        "distortion_risk": [
+          "overinterpretation",
+          "reification",
+          "self_report_distortion",
+          "workplace_misuse"
+        ],
+        "deployment_context": [
+          "coaching",
+          "leadership_development",
+          "self_reflection",
+          "team_design",
+          "workplace"
+        ],
+        "utility_profile": [
+          "coaching_language",
+          "communication_adaptation",
+          "self_understanding",
+          "team_alignment"
+        ],
+        "target_population": [
+          "general_adult_population",
+          "leaders_managers",
+          "workplace_teams"
+        ],
+        "norming_status": [
+          "variant_dependent"
+        ],
+        "identity_adhesion_risk": [
+          "high"
+        ],
+        "actionability_type": [
+          "communication_adjustment",
+          "descriptive_reflection",
+          "team_design_support"
+        ],
+        "worldview_load": [
+          "medium"
+        ],
+        "cultural_symbolic_role": [
+          "pop_psychology_meme",
+          "professional_shorthand",
+          "workplace_identity_language"
+        ],
+        "synthesis_value_for_ilens": [
+          "medium"
+        ],
+        "overlap_mode": [
+          "often_misread_as_equivalent",
+          "partial_construct_overlap"
+        ]
+      }
+    },
+    {
+      "slug": "natal-astrology",
+      "id": "instr_natal_astrology",
+      "canonical_name": "Natal Astrology",
+      "short_names": [
+        "Natal Astrology",
+        "Birth Chart Astrology"
+      ],
+      "aliases": [
+        "Birth Chart"
+      ],
+      "family": [
+        "symbolic_archetypal_spiritual",
+        "worldview_meaning_making",
+        "identity_self_concept"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "identity_self_concept",
+          "symbolic_archetypal_spiritual",
+          "worldview_meaning_making"
+        ],
+        "primary_measurement_target": [
+          "identity_narrative",
+          "subjective_meaning",
+          "symbolic_archetypal_patterning"
+        ],
+        "representational_form": [
+          "narrative_description",
+          "symbolic_chart"
+        ],
+        "temporal_stance": [
+          "cyclical_temporal_pattern",
+          "identity_narrative_snapshot"
+        ],
+        "person_ontology": [
+          "symbolic_cosmological_self"
+        ],
+        "administration_mode": [
+          "algorithmic_chart_calculation",
+          "practitioner_interpretation"
+        ],
+        "scoring_logic": [
+          "algorithmic_chart_rules",
+          "expert_interpretation"
+        ],
+        "epistemic_basis": [
+          "symbolic_tradition"
+        ],
+        "interpretive_burden": [
+          "very_high"
+        ],
+        "granularity": [
+          "very_high"
+        ],
+        "context_sensitivity": [
+          "high"
+        ],
+        "change_model": [
+          "cyclical_activation",
+          "identity_revision"
+        ],
+        "distortion_risk": [
+          "barnum_effect",
+          "determinism",
+          "identity_capture",
+          "practitioner_projection"
+        ],
+        "deployment_context": [
+          "coaching",
+          "internet_identity_culture",
+          "self_reflection",
+          "spiritual_community"
+        ],
+        "utility_profile": [
+          "coaching_language",
+          "symbolic_reflection"
+        ],
+        "identity_adhesion_risk": [
+          "very_high"
+        ],
+        "worldview_load": [
+          "very_high"
+        ],
+        "synthesis_value_for_ilens": [
+          "low"
+        ],
+        "evidence_profile": [
+          "mostly_anecdotal_or_practitioner_based"
+        ],
+        "target_population": [
+          "internet_communities",
+          "spiritual_seekers"
+        ],
+        "norming_status": [
+          "not_normed"
+        ],
+        "actionability_type": [
+          "symbolic_storytelling"
+        ],
+        "cultural_symbolic_role": [
+          "community_belonging_language",
+          "internet_identity_language",
+          "spiritual_symbolic_system"
+        ],
+        "overlap_mode": [
+          "shared_identity_space"
+        ]
+      }
+    },
+    {
+      "slug": "via-character-strengths",
+      "id": "instr_via_character_strengths",
+      "canonical_name": "VIA Character Strengths",
+      "short_names": [
+        "VIA Character Strengths",
+        "VIA"
+      ],
+      "aliases": [],
+      "family": [
+        "strengths_talent",
+        "values_moral_orientation"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "strengths_talent",
+          "values_moral_orientation"
+        ],
+        "primary_measurement_target": [
+          "moral_character",
+          "strengths_talents"
+        ],
+        "representational_form": [
+          "profile_vector",
+          "rank_order_strengths"
+        ],
+        "temporal_stance": [
+          "developmental_path",
+          "semi_stable_patterns"
+        ],
+        "person_ontology": [
+          "moral_character_profile",
+          "strengths_expression_profile"
+        ],
+        "administration_mode": [
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "rank_order_selection",
+          "sum_or_average_scale_scoring"
+        ],
+        "epistemic_basis": [
+          "strong_psychometric_validation"
+        ],
+        "interpretive_burden": [
+          "medium"
+        ],
+        "granularity": [
+          "high"
+        ],
+        "context_sensitivity": [
+          "medium"
+        ],
+        "change_model": [
+          "developmental_growth",
+          "skills_trainability"
+        ],
+        "distortion_risk": [
+          "overinterpretation",
+          "self_report_distortion"
+        ],
+        "deployment_context": [
+          "coaching",
+          "education",
+          "research",
+          "self_reflection"
+        ],
+        "utility_profile": [
+          "developmental_reflection",
+          "strengths_identification"
+        ],
+        "identity_adhesion_risk": [
+          "medium"
+        ],
+        "worldview_load": [
+          "medium"
+        ],
+        "synthesis_value_for_ilens": [
+          "medium"
+        ],
+        "evidence_profile": [
+          "extensive_peer_review",
+          "normative_data_available"
+        ],
+        "target_population": [
+          "general_adult_population",
+          "students"
+        ],
+        "norming_status": [
+          "well_normed"
+        ],
+        "actionability_type": [
+          "descriptive_reflection",
+          "developmental_planning"
+        ],
+        "cultural_symbolic_role": [
+          "professional_shorthand"
+        ],
+        "overlap_mode": [
+          "complementary_layers"
+        ]
+      }
+    }
+  ]
+}

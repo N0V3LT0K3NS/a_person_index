@@ -1,0 +1,613 @@
+{
+  "slug": "natal-astrology",
+  "instrument": {
+    "id": "instr_natal_astrology",
+    "canonical_name": "Natal Astrology",
+    "short_names": [
+      "Natal Astrology",
+      "Birth Chart Astrology"
+    ],
+    "aliases": [
+      "Birth Chart"
+    ],
+    "status": "active",
+    "family": [
+      "symbolic_archetypal_spiritual",
+      "worldview_meaning_making",
+      "identity_self_concept"
+    ],
+    "short_description": "A symbolic charting system that interprets birth time and place through zodiacal and planetary symbolism.",
+    "creators": [
+      "unknown"
+    ],
+    "publisher_or_owner": "unknown",
+    "original_release_year": null,
+    "official_websites": [],
+    "licensing_model": "mixed",
+    "primary_domain": "personality_framework",
+    "country_or_origin_context": [
+      "mixed"
+    ],
+    "notes": "Starter registry entry for Natal Astrology."
+  },
+  "versions": [
+    {
+      "id": "ver_natal_astrology_general",
+      "instrument_id": "instr_natal_astrology",
+      "version_label": "general_family_record",
+      "release_date": null,
+      "retired_date": null,
+      "current": true,
+      "change_summary": "Generic umbrella record for the initial registry scaffold.",
+      "scoring_changes": null,
+      "construct_changes": null,
+      "norming_changes": null,
+      "administration_changes": null
+    }
+  ],
+  "constructs": [
+    {
+      "id": "con_natal_astrology_core",
+      "instrument_id": "instr_natal_astrology",
+      "version_ids": [
+        "ver_natal_astrology_general"
+      ],
+      "name": "Natal chart profile",
+      "short_name": "Natal chart profile",
+      "construct_kind": [
+        "dimension"
+      ],
+      "official_definition": "A symbolic birth chart interpreted through astrological houses, planets, and signs.",
+      "scoring_type": "variant_dependent",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm_natal_astrology_overview",
+      "instrument_id": "instr_natal_astrology",
+      "version_id": "ver_natal_astrology_general",
+      "claim_type": "overview_claim",
+      "claim_text": "Natal astrology claims that birth-chart symbolism meaningfully describes temperament, patterning, and life themes.",
+      "source_resource_ids": [
+        "res_natal_astrology_overview"
+      ],
+      "quotation_status": "paraphrase"
+    }
+  ],
+  "resources": [
+    {
+      "id": "res_natal_astrology_overview",
+      "instrument_id": "instr_natal_astrology",
+      "version_id": "ver_natal_astrology_general",
+      "resource_type": "overview",
+      "title": "Natal Astrology overview source",
+      "url": "https://example.org/natal-astrology",
+      "author": null,
+      "publication_date": null,
+      "publisher": null,
+      "language": "en",
+      "access_status": "public",
+      "officiality": "secondary",
+      "notes": "Starter source placeholder. Replace with a canonical source."
+    }
+  ],
+  "annotations": [
+    {
+      "id": "ann_natal_astrology_instrument_family",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "instrument_family",
+      "ontology_values": [
+        "symbolic_archetypal_spiritual",
+        "worldview_meaning_making",
+        "identity_self_concept"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'instrument_family'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_primary_measurement_target",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "primary_measurement_target",
+      "ontology_values": [
+        "symbolic_archetypal_patterning",
+        "identity_narrative",
+        "subjective_meaning"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'primary_measurement_target'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_representational_form",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "representational_form",
+      "ontology_values": [
+        "symbolic_chart",
+        "narrative_description"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'representational_form'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_temporal_stance",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "temporal_stance",
+      "ontology_values": [
+        "cyclical_temporal_pattern",
+        "identity_narrative_snapshot"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'temporal_stance'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_person_ontology",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "person_ontology",
+      "ontology_values": [
+        "symbolic_cosmological_self"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'person_ontology'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_administration_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "administration_mode",
+      "ontology_values": [
+        "algorithmic_chart_calculation",
+        "practitioner_interpretation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'administration_mode'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_scoring_logic",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "scoring_logic",
+      "ontology_values": [
+        "algorithmic_chart_rules",
+        "expert_interpretation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'scoring_logic'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_epistemic_basis",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "epistemic_basis",
+      "ontology_values": [
+        "symbolic_tradition"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'epistemic_basis'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_interpretive_burden",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "interpretive_burden",
+      "ontology_values": [
+        "very_high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'interpretive_burden'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_granularity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "granularity",
+      "ontology_values": [
+        "very_high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'granularity'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_context_sensitivity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "context_sensitivity",
+      "ontology_values": [
+        "high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'context_sensitivity'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_change_model",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "change_model",
+      "ontology_values": [
+        "cyclical_activation",
+        "identity_revision"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'change_model'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_distortion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "distortion_risk",
+      "ontology_values": [
+        "barnum_effect",
+        "determinism",
+        "identity_capture",
+        "practitioner_projection"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'distortion_risk'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_deployment_context",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "deployment_context",
+      "ontology_values": [
+        "self_reflection",
+        "spiritual_community",
+        "coaching",
+        "internet_identity_culture"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'deployment_context'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_utility_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "utility_profile",
+      "ontology_values": [
+        "symbolic_reflection",
+        "coaching_language"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'utility_profile'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_identity_adhesion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "identity_adhesion_risk",
+      "ontology_values": [
+        "very_high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'identity_adhesion_risk'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_worldview_load",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "worldview_load",
+      "ontology_values": [
+        "very_high"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'worldview_load'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_synthesis_value_for_ilens",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_values": [
+        "low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'synthesis_value_for_ilens'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_evidence_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "evidence_profile",
+      "ontology_values": [
+        "mostly_anecdotal_or_practitioner_based"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'evidence_profile'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_target_population",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "target_population",
+      "ontology_values": [
+        "spiritual_seekers",
+        "internet_communities"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'target_population'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_norming_status",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "norming_status",
+      "ontology_values": [
+        "not_normed"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'norming_status'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_actionability_type",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "actionability_type",
+      "ontology_values": [
+        "symbolic_storytelling"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'actionability_type'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_cultural_symbolic_role",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "cultural_symbolic_role",
+      "ontology_values": [
+        "spiritual_symbolic_system",
+        "internet_identity_language",
+        "community_belonging_language"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'cultural_symbolic_role'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    },
+    {
+      "id": "ann_natal_astrology_overlap_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "ontology_dimension": "overlap_mode",
+      "ontology_values": [
+        "shared_identity_space"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Natal Astrology on the ontology dimension 'overlap_mode'.",
+      "evidence_links": [
+        "res_natal_astrology_overview"
+      ]
+    }
+  ],
+  "annotation_index": {
+    "instrument_family": [
+      "identity_self_concept",
+      "symbolic_archetypal_spiritual",
+      "worldview_meaning_making"
+    ],
+    "primary_measurement_target": [
+      "identity_narrative",
+      "subjective_meaning",
+      "symbolic_archetypal_patterning"
+    ],
+    "representational_form": [
+      "narrative_description",
+      "symbolic_chart"
+    ],
+    "temporal_stance": [
+      "cyclical_temporal_pattern",
+      "identity_narrative_snapshot"
+    ],
+    "person_ontology": [
+      "symbolic_cosmological_self"
+    ],
+    "administration_mode": [
+      "algorithmic_chart_calculation",
+      "practitioner_interpretation"
+    ],
+    "scoring_logic": [
+      "algorithmic_chart_rules",
+      "expert_interpretation"
+    ],
+    "epistemic_basis": [
+      "symbolic_tradition"
+    ],
+    "interpretive_burden": [
+      "very_high"
+    ],
+    "granularity": [
+      "very_high"
+    ],
+    "context_sensitivity": [
+      "high"
+    ],
+    "change_model": [
+      "cyclical_activation",
+      "identity_revision"
+    ],
+    "distortion_risk": [
+      "barnum_effect",
+      "determinism",
+      "identity_capture",
+      "practitioner_projection"
+    ],
+    "deployment_context": [
+      "coaching",
+      "internet_identity_culture",
+      "self_reflection",
+      "spiritual_community"
+    ],
+    "utility_profile": [
+      "coaching_language",
+      "symbolic_reflection"
+    ],
+    "identity_adhesion_risk": [
+      "very_high"
+    ],
+    "worldview_load": [
+      "very_high"
+    ],
+    "synthesis_value_for_ilens": [
+      "low"
+    ],
+    "evidence_profile": [
+      "mostly_anecdotal_or_practitioner_based"
+    ],
+    "target_population": [
+      "internet_communities",
+      "spiritual_seekers"
+    ],
+    "norming_status": [
+      "not_normed"
+    ],
+    "actionability_type": [
+      "symbolic_storytelling"
+    ],
+    "cultural_symbolic_role": [
+      "community_belonging_language",
+      "internet_identity_language",
+      "spiritual_symbolic_system"
+    ],
+    "overlap_mode": [
+      "shared_identity_space"
+    ]
+  },
+  "inferences": [
+    {
+      "id": "inf_natal_astrology_starter",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_natal_astrology",
+      "inference_type": "starter_position",
+      "text": "Astrology belongs in the corpus because it functions as a durable symbolic identity language even without empirical standing.",
+      "confidence": "medium",
+      "linked_entities": [],
+      "author": "house",
+      "timestamp": "2026-04-11"
+    }
+  ],
+  "crosswalks": [],
+  "risks": [
+    {
+      "id": "rsk_natal_astrology_overinterpretation",
+      "instrument_id": "instr_natal_astrology",
+      "risk_type": "overinterpretation",
+      "severity": "medium",
+      "description": "Symbolic charts can be treated as destiny or objective explanation rather than interpretive story language.",
+      "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "use_natal_astrology_self_reflection",
+      "instrument_id": "instr_natal_astrology",
+      "use_context": "self_reflection",
+      "utility_type": "self_understanding",
+      "suitability_level": "medium",
+      "cautions": "Keep empirical and symbolic layers clearly separated."
+    }
+  ],
+  "notes": "# Natal Astrology\n\n## What it is\nA symbolic charting system that interprets birth time and place through zodiacal and planetary symbolism.\n\n## Why it matters\nThis is a starter registry entry for Natal Astrology. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+}

@@ -1,0 +1,22 @@
+inferences:
+- id: inf_enneagram_motive_depth
+  target_entity_type: instrument
+  target_entity_id: instr_enneagram
+  inference_type: comparative_strength
+  text: Enneagram is comparatively strong as a language of motive, defense strategy,
+    and identity narrative even where psychometric grounding remains weak.
+  confidence: high
+  linked_entities:
+  - instr_big_five
+  author: house
+  timestamp: '2026-04-11'
+- id: inf_enneagram_identity_risk
+  target_entity_type: instrument
+  target_entity_id: instr_enneagram
+  inference_type: practical_risk
+  text: Its practical power is partly social and narrative, which also makes it unusually
+    prone to identity capture and practitioner overreach.
+  confidence: high
+  linked_entities: []
+  author: house
+  timestamp: '2026-04-11'

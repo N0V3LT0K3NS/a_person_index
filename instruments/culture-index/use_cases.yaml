@@ -1,0 +1,7 @@
+use_cases:
+- id: use_culture_index_self_reflection
+  instrument_id: instr_culture_index
+  use_context: self_reflection
+  utility_type: self_understanding
+  suitability_level: medium
+  cautions: High-stakes use should be treated with skepticism and strong guardrails.

@@ -1,0 +1,21 @@
+instrument:
+  id: instr_attachment_styles
+  canonical_name: Attachment Style Frameworks
+  short_names:
+  - Attachment Styles
+  aliases: []
+  status: active
+  family:
+  - attachment_relational
+  short_description: A family of relational frameworks describing recurring patterns
+    of security, anxiety, avoidance, and closeness regulation.
+  creators:
+  - unknown
+  publisher_or_owner: unknown
+  original_release_year: null
+  official_websites: []
+  licensing_model: mixed
+  primary_domain: personality_framework
+  country_or_origin_context:
+  - mixed
+  notes: Starter registry entry for Attachment Style Frameworks.

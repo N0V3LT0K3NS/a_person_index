@@ -1,0 +1,14 @@
+resources:
+- id: res_hexaco_overview
+  instrument_id: instr_hexaco
+  version_id: ver_hexaco_general
+  resource_type: overview
+  title: HEXACO Personality Inventory overview source
+  url: https://example.org/hexaco
+  author: null
+  publication_date: null
+  publisher: null
+  language: en
+  access_status: public
+  officiality: secondary
+  notes: Starter source placeholder. Replace with a canonical source.

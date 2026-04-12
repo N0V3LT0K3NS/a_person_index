@@ -1,0 +1,14 @@
+use_cases:
+- id: use_enneagram_self_reflection
+  instrument_id: instr_enneagram
+  use_context: self_reflection
+  utility_type: motive_exploration
+  suitability_level: high
+  cautions: Most useful when treated as exploratory language rather than fixed identity
+    truth.
+- id: use_enneagram_coaching
+  instrument_id: instr_enneagram
+  use_context: coaching
+  utility_type: developmental_reflection
+  suitability_level: medium
+  cautions: Outcome quality varies sharply with practitioner rigor.

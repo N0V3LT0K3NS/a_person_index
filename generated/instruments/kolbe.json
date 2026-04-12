@@ -1,0 +1,593 @@
+{
+  "slug": "kolbe",
+  "instrument": {
+    "id": "instr_kolbe",
+    "canonical_name": "Kolbe A Index",
+    "short_names": [
+      "Kolbe"
+    ],
+    "aliases": [],
+    "status": "active",
+    "family": [
+      "conative_action_style",
+      "leadership_workplace"
+    ],
+    "short_description": "A conative action-style instrument describing instinctive modes of initiating work and solving problems.",
+    "creators": [
+      "unknown"
+    ],
+    "publisher_or_owner": "unknown",
+    "original_release_year": null,
+    "official_websites": [],
+    "licensing_model": "mixed",
+    "primary_domain": "personality_framework",
+    "country_or_origin_context": [
+      "mixed"
+    ],
+    "notes": "Starter registry entry for Kolbe A Index."
+  },
+  "versions": [
+    {
+      "id": "ver_kolbe_general",
+      "instrument_id": "instr_kolbe",
+      "version_label": "general_family_record",
+      "release_date": null,
+      "retired_date": null,
+      "current": true,
+      "change_summary": "Generic umbrella record for the initial registry scaffold.",
+      "scoring_changes": null,
+      "construct_changes": null,
+      "norming_changes": null,
+      "administration_changes": null
+    }
+  ],
+  "constructs": [
+    {
+      "id": "con_kolbe_core",
+      "instrument_id": "instr_kolbe",
+      "version_ids": [
+        "ver_kolbe_general"
+      ],
+      "name": "Conative profile",
+      "short_name": "Conative profile",
+      "construct_kind": [
+        "dimension"
+      ],
+      "official_definition": "A profile intended to summarize instinctive methods of action and problem solving.",
+      "scoring_type": "variant_dependent",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm_kolbe_overview",
+      "instrument_id": "instr_kolbe",
+      "version_id": "ver_kolbe_general",
+      "claim_type": "overview_claim",
+      "claim_text": "Kolbe claims to measure natural conative strengths related to action and workflow.",
+      "source_resource_ids": [
+        "res_kolbe_overview"
+      ],
+      "quotation_status": "paraphrase"
+    }
+  ],
+  "resources": [
+    {
+      "id": "res_kolbe_overview",
+      "instrument_id": "instr_kolbe",
+      "version_id": "ver_kolbe_general",
+      "resource_type": "overview",
+      "title": "Kolbe A Index overview source",
+      "url": "https://example.org/kolbe",
+      "author": null,
+      "publication_date": null,
+      "publisher": null,
+      "language": "en",
+      "access_status": "public",
+      "officiality": "secondary",
+      "notes": "Starter source placeholder. Replace with a canonical source."
+    }
+  ],
+  "annotations": [
+    {
+      "id": "ann_kolbe_instrument_family",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "instrument_family",
+      "ontology_values": [
+        "conative_action_style",
+        "leadership_workplace"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'instrument_family'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_primary_measurement_target",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "primary_measurement_target",
+      "ontology_values": [
+        "work_style",
+        "behavioral_style"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'primary_measurement_target'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_representational_form",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "representational_form",
+      "ontology_values": [
+        "profile_vector"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'representational_form'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_temporal_stance",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "temporal_stance",
+      "ontology_values": [
+        "semi_stable_patterns"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'temporal_stance'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_person_ontology",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "person_ontology",
+      "ontology_values": [
+        "work_behavior_pattern"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'person_ontology'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_administration_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "administration_mode",
+      "ontology_values": [
+        "self_report_questionnaire"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'administration_mode'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_scoring_logic",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "scoring_logic",
+      "ontology_values": [
+        "sum_or_average_scale_scoring"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'scoring_logic'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_epistemic_basis",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "epistemic_basis",
+      "ontology_values": [
+        "proprietary_workplace_analytics",
+        "mixed_psychometric_and_theoretical"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'epistemic_basis'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_interpretive_burden",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "interpretive_burden",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'interpretive_burden'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_granularity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "granularity",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'granularity'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_context_sensitivity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "context_sensitivity",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'context_sensitivity'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_change_model",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "change_model",
+      "ontology_values": [
+        "trait_stability",
+        "situational_expression"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'change_model'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_distortion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "distortion_risk",
+      "ontology_values": [
+        "workplace_misuse",
+        "overinterpretation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'distortion_risk'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_deployment_context",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "deployment_context",
+      "ontology_values": [
+        "workplace",
+        "coaching",
+        "team_design"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'deployment_context'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_utility_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "utility_profile",
+      "ontology_values": [
+        "team_alignment",
+        "communication_adaptation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'utility_profile'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_identity_adhesion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "identity_adhesion_risk",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'identity_adhesion_risk'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_worldview_load",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "worldview_load",
+      "ontology_values": [
+        "low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'worldview_load'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_synthesis_value_for_ilens",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'synthesis_value_for_ilens'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_evidence_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "evidence_profile",
+      "ontology_values": [
+        "proprietary_or_limited_transparency",
+        "mixed_evidence"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'evidence_profile'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_target_population",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "target_population",
+      "ontology_values": [
+        "workplace_teams",
+        "leaders_managers"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'target_population'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_norming_status",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "norming_status",
+      "ontology_values": [
+        "variant_dependent"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'norming_status'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_actionability_type",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "actionability_type",
+      "ontology_values": [
+        "team_design_support",
+        "coaching_intervention"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'actionability_type'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_cultural_symbolic_role",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "cultural_symbolic_role",
+      "ontology_values": [
+        "professional_shorthand"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'cultural_symbolic_role'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    },
+    {
+      "id": "ann_kolbe_overlap_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "ontology_dimension": "overlap_mode",
+      "ontology_values": [
+        "workplace_family_resemblance"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for Kolbe A Index on the ontology dimension 'overlap_mode'.",
+      "evidence_links": [
+        "res_kolbe_overview"
+      ]
+    }
+  ],
+  "annotation_index": {
+    "instrument_family": [
+      "conative_action_style",
+      "leadership_workplace"
+    ],
+    "primary_measurement_target": [
+      "behavioral_style",
+      "work_style"
+    ],
+    "representational_form": [
+      "profile_vector"
+    ],
+    "temporal_stance": [
+      "semi_stable_patterns"
+    ],
+    "person_ontology": [
+      "work_behavior_pattern"
+    ],
+    "administration_mode": [
+      "self_report_questionnaire"
+    ],
+    "scoring_logic": [
+      "sum_or_average_scale_scoring"
+    ],
+    "epistemic_basis": [
+      "mixed_psychometric_and_theoretical",
+      "proprietary_workplace_analytics"
+    ],
+    "interpretive_burden": [
+      "medium"
+    ],
+    "granularity": [
+      "medium"
+    ],
+    "context_sensitivity": [
+      "medium"
+    ],
+    "change_model": [
+      "situational_expression",
+      "trait_stability"
+    ],
+    "distortion_risk": [
+      "overinterpretation",
+      "workplace_misuse"
+    ],
+    "deployment_context": [
+      "coaching",
+      "team_design",
+      "workplace"
+    ],
+    "utility_profile": [
+      "communication_adaptation",
+      "team_alignment"
+    ],
+    "identity_adhesion_risk": [
+      "medium"
+    ],
+    "worldview_load": [
+      "low"
+    ],
+    "synthesis_value_for_ilens": [
+      "medium"
+    ],
+    "evidence_profile": [
+      "mixed_evidence",
+      "proprietary_or_limited_transparency"
+    ],
+    "target_population": [
+      "leaders_managers",
+      "workplace_teams"
+    ],
+    "norming_status": [
+      "variant_dependent"
+    ],
+    "actionability_type": [
+      "coaching_intervention",
+      "team_design_support"
+    ],
+    "cultural_symbolic_role": [
+      "professional_shorthand"
+    ],
+    "overlap_mode": [
+      "workplace_family_resemblance"
+    ]
+  },
+  "inferences": [
+    {
+      "id": "inf_kolbe_starter",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_kolbe",
+      "inference_type": "starter_position",
+      "text": "Kolbe occupies a distinct niche because it frames differences in terms of action style rather than personality trait or type identity.",
+      "confidence": "medium",
+      "linked_entities": [],
+      "author": "house",
+      "timestamp": "2026-04-11"
+    }
+  ],
+  "crosswalks": [],
+  "risks": [
+    {
+      "id": "rsk_kolbe_overinterpretation",
+      "instrument_id": "instr_kolbe",
+      "risk_type": "overinterpretation",
+      "severity": "medium",
+      "description": "Workplace use can harden flexible work preferences into deterministic role assumptions.",
+      "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "use_kolbe_self_reflection",
+      "instrument_id": "instr_kolbe",
+      "use_context": "self_reflection",
+      "utility_type": "self_understanding",
+      "suitability_level": "medium",
+      "cautions": "Use as a workflow discussion aid rather than a fixed capacity judgment."
+    }
+  ],
+  "notes": "# Kolbe A Index\n\n## What it is\nA conative action-style instrument describing instinctive modes of initiating work and solving problems.\n\n## Why it matters\nThis is a starter registry entry for Kolbe A Index. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+}

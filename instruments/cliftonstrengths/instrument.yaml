@@ -1,0 +1,24 @@
+instrument:
+  id: instr_cliftonstrengths
+  canonical_name: CliftonStrengths
+  short_names:
+  - CliftonStrengths
+  - StrengthsFinder
+  aliases:
+  - StrengthsFinder
+  status: active
+  family:
+  - strengths_talent
+  - leadership_workplace
+  short_description: A strengths and talent language that ranks recurring patterns
+    of thought, feeling, and behavior into named themes.
+  creators:
+  - unknown
+  publisher_or_owner: unknown
+  original_release_year: null
+  official_websites: []
+  licensing_model: mixed
+  primary_domain: personality_framework
+  country_or_origin_context:
+  - mixed
+  notes: Starter registry entry for CliftonStrengths.

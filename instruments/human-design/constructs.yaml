@@ -1,0 +1,20 @@
+constructs:
+- id: con_human_design_core
+  instrument_id: instr_human_design
+  version_ids:
+  - ver_human_design_general
+  name: Bodygraph profile
+  short_name: Bodygraph profile
+  construct_kind:
+  - dimension
+  official_definition: A chart-based symbolic profile derived from birth data and
+    interpreted through Human Design rules.
+  scoring_type: variant_dependent
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null

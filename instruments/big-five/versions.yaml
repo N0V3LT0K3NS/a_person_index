@@ -1,0 +1,23 @@
+versions:
+- id: ver_big_five_general
+  instrument_id: instr_big_five
+  version_label: general_family_record
+  release_date: null
+  retired_date: null
+  current: true
+  change_summary: Generic umbrella record representing the broader Big Five family.
+  scoring_changes: null
+  construct_changes: null
+  norming_changes: null
+  administration_changes: null
+- id: ver_big_five_ipip_50
+  instrument_id: instr_big_five
+  version_label: IPIP_50_item_variant
+  release_date: null
+  retired_date: null
+  current: true
+  change_summary: Common open-access short-form implementation.
+  scoring_changes: shorter_item_set
+  construct_changes: same_top_level_constructs
+  norming_changes: variant_specific
+  administration_changes: self_report_questionnaire

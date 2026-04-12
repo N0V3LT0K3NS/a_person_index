@@ -1,0 +1,603 @@
+{
+  "slug": "disc",
+  "instrument": {
+    "id": "instr_disc",
+    "canonical_name": "DISC",
+    "short_names": [
+      "DISC"
+    ],
+    "aliases": [],
+    "status": "active",
+    "family": [
+      "behavioral_interactional",
+      "leadership_workplace"
+    ],
+    "short_description": "A workplace-friendly behavioral style framework organized around four broad interaction styles.",
+    "creators": [
+      "unknown"
+    ],
+    "publisher_or_owner": "unknown",
+    "original_release_year": null,
+    "official_websites": [],
+    "licensing_model": "mixed",
+    "primary_domain": "personality_framework",
+    "country_or_origin_context": [
+      "mixed"
+    ],
+    "notes": "Starter registry entry for DISC."
+  },
+  "versions": [
+    {
+      "id": "ver_disc_general",
+      "instrument_id": "instr_disc",
+      "version_label": "general_family_record",
+      "release_date": null,
+      "retired_date": null,
+      "current": true,
+      "change_summary": "Generic umbrella record for the initial registry scaffold.",
+      "scoring_changes": null,
+      "construct_changes": null,
+      "norming_changes": null,
+      "administration_changes": null
+    }
+  ],
+  "constructs": [
+    {
+      "id": "con_disc_core",
+      "instrument_id": "instr_disc",
+      "version_ids": [
+        "ver_disc_general"
+      ],
+      "name": "DISC style profile",
+      "short_name": "DISC style profile",
+      "construct_kind": [
+        "dimension"
+      ],
+      "official_definition": "Composite profile across dominance, influence, steadiness, and conscientiousness style dimensions.",
+      "scoring_type": "variant_dependent",
+      "polarity": {
+        "low_label": null,
+        "high_label": null
+      },
+      "value_range": {
+        "type": "variant_dependent",
+        "min": null,
+        "max": null
+      },
+      "parent_construct_id": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm_disc_overview",
+      "instrument_id": "instr_disc",
+      "version_id": "ver_disc_general",
+      "claim_type": "overview_claim",
+      "claim_text": "DISC claims to describe observable workplace and interaction styles through four broad categories or factors.",
+      "source_resource_ids": [
+        "res_disc_overview"
+      ],
+      "quotation_status": "paraphrase"
+    }
+  ],
+  "resources": [
+    {
+      "id": "res_disc_overview",
+      "instrument_id": "instr_disc",
+      "version_id": "ver_disc_general",
+      "resource_type": "overview",
+      "title": "DISC overview source",
+      "url": "https://example.org/disc",
+      "author": null,
+      "publication_date": null,
+      "publisher": null,
+      "language": "en",
+      "access_status": "public",
+      "officiality": "secondary",
+      "notes": "Starter source placeholder. Replace with a canonical source."
+    }
+  ],
+  "annotations": [
+    {
+      "id": "ann_disc_instrument_family",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "instrument_family",
+      "ontology_values": [
+        "behavioral_interactional",
+        "leadership_workplace"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'instrument_family'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_primary_measurement_target",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "primary_measurement_target",
+      "ontology_values": [
+        "behavioral_style",
+        "interpersonal_style",
+        "work_style"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'primary_measurement_target'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_representational_form",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "representational_form",
+      "ontology_values": [
+        "profile_vector",
+        "categorical_typology"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'representational_form'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_temporal_stance",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "temporal_stance",
+      "ontology_values": [
+        "semi_stable_patterns"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'temporal_stance'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_person_ontology",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "person_ontology",
+      "ontology_values": [
+        "work_behavior_pattern"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'person_ontology'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_administration_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "administration_mode",
+      "ontology_values": [
+        "self_report_questionnaire"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'administration_mode'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_scoring_logic",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "scoring_logic",
+      "ontology_values": [
+        "type_assignment_rules",
+        "sum_or_average_scale_scoring"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'scoring_logic'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_epistemic_basis",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "epistemic_basis",
+      "ontology_values": [
+        "mixed_psychometric_and_theoretical",
+        "proprietary_workplace_analytics"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'epistemic_basis'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_interpretive_burden",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "interpretive_burden",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'interpretive_burden'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_granularity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "granularity",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'granularity'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_context_sensitivity",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "context_sensitivity",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'context_sensitivity'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_change_model",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "change_model",
+      "ontology_values": [
+        "situational_expression",
+        "skills_trainability"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'change_model'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_distortion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "distortion_risk",
+      "ontology_values": [
+        "workplace_misuse",
+        "overinterpretation"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'distortion_risk'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_deployment_context",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "deployment_context",
+      "ontology_values": [
+        "workplace",
+        "team_design",
+        "leadership_development",
+        "coaching"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'deployment_context'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_utility_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "utility_profile",
+      "ontology_values": [
+        "communication_adaptation",
+        "team_alignment"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'utility_profile'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_identity_adhesion_risk",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "identity_adhesion_risk",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'identity_adhesion_risk'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_worldview_load",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "worldview_load",
+      "ontology_values": [
+        "low"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'worldview_load'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_synthesis_value_for_ilens",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "synthesis_value_for_ilens",
+      "ontology_values": [
+        "medium"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'synthesis_value_for_ilens'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_evidence_profile",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "evidence_profile",
+      "ontology_values": [
+        "mixed_evidence",
+        "proprietary_or_limited_transparency"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'evidence_profile'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_target_population",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "target_population",
+      "ontology_values": [
+        "workplace_teams",
+        "leaders_managers"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'target_population'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_norming_status",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "norming_status",
+      "ontology_values": [
+        "variant_dependent"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'norming_status'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_actionability_type",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "actionability_type",
+      "ontology_values": [
+        "communication_adjustment",
+        "team_design_support"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'actionability_type'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_cultural_symbolic_role",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "cultural_symbolic_role",
+      "ontology_values": [
+        "workplace_identity_language",
+        "professional_shorthand"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'cultural_symbolic_role'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    },
+    {
+      "id": "ann_disc_overlap_mode",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "ontology_dimension": "overlap_mode",
+      "ontology_values": [
+        "workplace_family_resemblance"
+      ],
+      "annotation_status": "inferred",
+      "confidence": "medium",
+      "rationale": "House annotation for DISC on the ontology dimension 'overlap_mode'.",
+      "evidence_links": [
+        "res_disc_overview"
+      ]
+    }
+  ],
+  "annotation_index": {
+    "instrument_family": [
+      "behavioral_interactional",
+      "leadership_workplace"
+    ],
+    "primary_measurement_target": [
+      "behavioral_style",
+      "interpersonal_style",
+      "work_style"
+    ],
+    "representational_form": [
+      "categorical_typology",
+      "profile_vector"
+    ],
+    "temporal_stance": [
+      "semi_stable_patterns"
+    ],
+    "person_ontology": [
+      "work_behavior_pattern"
+    ],
+    "administration_mode": [
+      "self_report_questionnaire"
+    ],
+    "scoring_logic": [
+      "sum_or_average_scale_scoring",
+      "type_assignment_rules"
+    ],
+    "epistemic_basis": [
+      "mixed_psychometric_and_theoretical",
+      "proprietary_workplace_analytics"
+    ],
+    "interpretive_burden": [
+      "medium"
+    ],
+    "granularity": [
+      "medium"
+    ],
+    "context_sensitivity": [
+      "medium"
+    ],
+    "change_model": [
+      "situational_expression",
+      "skills_trainability"
+    ],
+    "distortion_risk": [
+      "overinterpretation",
+      "workplace_misuse"
+    ],
+    "deployment_context": [
+      "coaching",
+      "leadership_development",
+      "team_design",
+      "workplace"
+    ],
+    "utility_profile": [
+      "communication_adaptation",
+      "team_alignment"
+    ],
+    "identity_adhesion_risk": [
+      "medium"
+    ],
+    "worldview_load": [
+      "low"
+    ],
+    "synthesis_value_for_ilens": [
+      "medium"
+    ],
+    "evidence_profile": [
+      "mixed_evidence",
+      "proprietary_or_limited_transparency"
+    ],
+    "target_population": [
+      "leaders_managers",
+      "workplace_teams"
+    ],
+    "norming_status": [
+      "variant_dependent"
+    ],
+    "actionability_type": [
+      "communication_adjustment",
+      "team_design_support"
+    ],
+    "cultural_symbolic_role": [
+      "professional_shorthand",
+      "workplace_identity_language"
+    ],
+    "overlap_mode": [
+      "workplace_family_resemblance"
+    ]
+  },
+  "inferences": [
+    {
+      "id": "inf_disc_starter",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_disc",
+      "inference_type": "starter_position",
+      "text": "DISC is pragmatically sticky in organizations because it is easy to explain, administer, and discuss.",
+      "confidence": "medium",
+      "linked_entities": [],
+      "author": "house",
+      "timestamp": "2026-04-11"
+    }
+  ],
+  "crosswalks": [],
+  "risks": [
+    {
+      "id": "rsk_disc_overinterpretation",
+      "instrument_id": "instr_disc",
+      "risk_type": "overinterpretation",
+      "severity": "medium",
+      "description": "DISC profiles are easy to overuse as simplified workplace identity boxes.",
+      "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "use_disc_self_reflection",
+      "instrument_id": "instr_disc",
+      "use_context": "self_reflection",
+      "utility_type": "self_understanding",
+      "suitability_level": "medium",
+      "cautions": "Useful for team language, weak for total personality explanation."
+    }
+  ],
+  "notes": "# DISC\n\n## What it is\nA workplace-friendly behavioral style framework organized around four broad interaction styles.\n\n## Why it matters\nThis is a starter registry entry for DISC. It is structurally valid but should be deepened with better sources, richer claims, and more precise cross-system analysis.\n\n## What it is good for\n- placeholder registry coverage\n- incremental source collection\n- ontology refinement\n\n## Common misuse\n- treating a starter entry as fully researched\n"
+}

@@ -1,0 +1,28 @@
+resources:
+- id: res_enneagram_overview
+  instrument_id: instr_enneagram
+  version_id: ver_enneagram_general
+  resource_type: overview
+  title: Enneagram overview source
+  url: https://example.org/enneagram-overview
+  author: null
+  publication_date: null
+  publisher: null
+  language: en
+  access_status: public
+  officiality: secondary
+  notes: Placeholder overview source. Replace with a more specific lineage-aware reference
+    set.
+- id: res_enneagram_riso_hudson
+  instrument_id: instr_enneagram
+  version_id: ver_enneagram_general
+  resource_type: book
+  title: Representative Enneagram book source
+  url: https://example.org/enneagram-book
+  author: example_author
+  publication_date: null
+  publisher: example_publisher
+  language: en
+  access_status: public
+  officiality: secondary
+  notes: Placeholder source standing in for a more specific Enneagram text.

@@ -1,0 +1,20 @@
+constructs:
+- id: con_disc_core
+  instrument_id: instr_disc
+  version_ids:
+  - ver_disc_general
+  name: DISC style profile
+  short_name: DISC style profile
+  construct_kind:
+  - dimension
+  official_definition: Composite profile across dominance, influence, steadiness,
+    and conscientiousness style dimensions.
+  scoring_type: variant_dependent
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null

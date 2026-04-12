@@ -1,0 +1,8 @@
+risks:
+- id: rsk_attachment_styles_overinterpretation
+  instrument_id: instr_attachment_styles
+  risk_type: overinterpretation
+  severity: medium
+  description: People may adopt an attachment label as a total identity instead of
+    a relational pattern under specific conditions.
+  mitigation: Treat the framework as one layer among several and preserve uncertainty.

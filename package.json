@@ -1,0 +1,15 @@
+{
+  "name": "a_person_index",
+  "private": true,
+  "scripts": {
+    "validate": "python3 scripts/validate.py",
+    "lint:ids": "python3 scripts/lint_ids.py",
+    "build": "python3 scripts/build_index.py",
+    "export": "python3 scripts/export_json.py",
+    "docs": "python3 scripts/generate_docs.py",
+    "schemas": "python3 scripts/export_schemas.py",
+    "scaffold": "python3 scripts/scaffold_instrument.py",
+    "seed": "python3 scripts/seed_registry.py",
+    "test": "python3 -m pytest"
+  }
+}

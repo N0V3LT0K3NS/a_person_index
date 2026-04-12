@@ -1,0 +1,20 @@
+constructs:
+- id: con_culture_index_core
+  instrument_id: instr_culture_index
+  version_ids:
+  - ver_culture_index_general
+  name: Predictive workplace profile
+  short_name: Predictive workplace profile
+  construct_kind:
+  - dimension
+  official_definition: A proprietary profile intended to support workplace fit and
+    role-related discussion.
+  scoring_type: variant_dependent
+  polarity:
+    low_label: null
+    high_label: null
+  value_range:
+    type: variant_dependent
+    min: null
+    max: null
+  parent_construct_id: null
