@@ -44,6 +44,7 @@ ENTITY_PREFIXES = {
     "technique": "tech_",
     "protocol": "proto_",
     "protocol_pack": "ppk_",
+    "promotion_pathway": "rpp_",
     "contribution_model": "rcm_",
     "result_atom_schema": "ras_",
 }

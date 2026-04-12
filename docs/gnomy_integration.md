@@ -9,6 +9,7 @@ Arrival references:
 - [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
 - [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
 - [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+- [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
 
 ## What GNOMY should read from this repo
 
@@ -36,6 +37,7 @@ python3 scripts/query_registry.py protocol-packs --featured
 python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack
 python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram
 python3 scripts/query_registry.py protocol-pack-grammar
+python3 scripts/query_registry.py research-promotion
 python3 scripts/query_registry.py techniques "Paradox Scan"
 python3 scripts/query_registry.py result-atom-schema
 python3 scripts/query_registry.py research-models

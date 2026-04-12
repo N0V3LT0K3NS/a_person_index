@@ -2,6 +2,10 @@
 
 The research stream exists to refine mappings and protocols without turning the canonical registry into a dump of raw user material.
 
+Companion governance doc:
+
+- [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+
 ## Default collection posture
 
 - prefer structured judgments over free text
@@ -27,6 +31,10 @@ Research evidence should move through stages before it affects house synthesis:
 2. aggregated or clustered pattern
 3. reviewed
 4. promoted to house inference, interaction hypothesis, or protocol revision
+
+The typed source of truth for those stages and pathways lives in:
+
+- [research/promotion_registry.yaml](/Users/noveltokens/a_person_index/research/promotion_registry.yaml)
 
 ## Preferred GNOMY return payloads
 

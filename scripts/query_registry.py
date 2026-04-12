@@ -15,6 +15,7 @@ from personality_registry.query import (
     find_contribution_models,
     find_interaction_hypotheses,
     find_motifs,
+    find_promotion_pathways,
     find_protocol_packs,
     find_protocols,
     find_techniques,
@@ -22,10 +23,12 @@ from personality_registry.query import (
     load_extensions_for_query,
     load_repository_for_query,
     motif_record,
+    promotion_pathway_record,
     protocol_pack,
     protocol_pack_grammar,
     protocol_record,
     query_results,
+    research_promotion_registry_record,
     resolve_instrument,
     result_atom_schema_record,
     show_instrument,
@@ -397,6 +400,62 @@ def _render_contribution_model_record_text(payload):
     return "\n".join(lines)
 
 
+def _render_research_promotion_registry_text(payload):
+    registry = payload["promotion_registry"]
+    lines = [
+        f"{registry['name']} ({registry['id']})",
+        f"status: {registry['status']}",
+        registry["summary"],
+        "",
+        "Stages:",
+    ]
+    for stage in registry["stages"]:
+        lines.append(f"  - {stage['id']}: {stage['name']}")
+    lines.append("")
+    lines.append("Promotion pathways:")
+    for pathway in registry["promotion_pathways"]:
+        lines.append(
+            f"  - {pathway['id']}: {pathway['contribution_model_id']} -> {pathway['target_outcome_type']}"
+        )
+    return "\n".join(lines)
+
+
+def _render_promotion_pathways_text(results):
+    if not results:
+        return "No matching promotion pathways."
+    lines = []
+    for item in results:
+        lines.append(f"{item['id']}: {item['contribution_model_name']} -> {item['target_outcome_type']}")
+        lines.append(f"  layer={item['target_layer']} stages={', '.join(item['stages'])}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_promotion_pathway_record_text(payload):
+    pathway = payload["promotion_pathway"]
+    contribution_model = payload["contribution_model"]
+    lines = [
+        f"{pathway['id']}",
+        f"contribution model: {contribution_model['name']} ({contribution_model['id']})",
+        f"target layer: {pathway['target_layer']}",
+        f"target outcome: {pathway['target_outcome_type']}",
+        pathway["summary"],
+        "",
+        "Stages:",
+    ]
+    for stage in payload["stages"]:
+        lines.append(f"  - {stage['id']}: {stage['name']}")
+    lines.append("")
+    lines.append("Evidence requirements:")
+    for item in pathway["evidence_requirements"]:
+        lines.append(f"  - {item}")
+    lines.append("")
+    lines.append("Reviewer questions:")
+    for item in pathway["reviewer_questions"]:
+        lines.append(f"  - {item}")
+    return "\n".join(lines)
+
+
 def _render_interactions_text(results):
     if not results:
         return "No matching interaction hypotheses."
@@ -610,6 +669,38 @@ def main() -> int:
     research_parser.add_argument("--text", help="Substring search across contribution model fields.")
     research_parser.add_argument("--format", choices=("text", "json"), default="text")
 
+    research_promotion_parser = subparsers.add_parser(
+        "research-promotion",
+        help="Show the research promotion registry or list/show promotion pathways.",
+    )
+    research_promotion_parser.add_argument(
+        "ref",
+        nargs="?",
+        help="Optional promotion pathway ID for a detailed record.",
+    )
+    research_promotion_parser.add_argument(
+        "--contribution-model",
+        help="Filter promotion pathways by contribution model ID or name.",
+    )
+    research_promotion_parser.add_argument(
+        "--target-layer",
+        choices=("house_synthesis", "protocol_library", "research_stream"),
+        help="Filter promotion pathways by target layer.",
+    )
+    research_promotion_parser.add_argument(
+        "--outcome",
+        choices=(
+            "mapping_revision",
+            "interaction_hypothesis",
+            "house_inference",
+            "protocol_revision",
+            "comparative_analysis",
+        ),
+        help="Filter promotion pathways by target outcome type.",
+    )
+    research_promotion_parser.add_argument("--text", help="Substring search across promotion pathway fields.")
+    research_promotion_parser.add_argument("--format", choices=("text", "json"), default="text")
+
     interactions_parser = subparsers.add_parser(
         "interactions", help="List or show house interaction hypotheses."
     )
@@ -795,6 +886,34 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_contribution_models_text(payload))
+        return 0
+
+    if args.command == "research-promotion":
+        if args.ref:
+            payload = promotion_pathway_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_promotion_pathway_record_text(payload))
+            return 0
+        if args.contribution_model or args.target_layer or args.outcome or args.text:
+            payload = find_promotion_pathways(
+                extensions,
+                contribution_model=args.contribution_model,
+                target_layer=args.target_layer,
+                target_outcome_type=args.outcome,
+                text=args.text,
+            )
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_promotion_pathways_text(payload))
+            return 0
+        payload = research_promotion_registry_record(extensions)
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_research_promotion_registry_text(payload))
         return 0
 
     if args.command == "interactions":

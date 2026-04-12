@@ -275,6 +275,7 @@ def collect_validation_errors(root: Path) -> list[str]:
             "technique": extensions.techniques,
             "protocol": extensions.protocols,
             "protocol_pack": extensions.protocol_packs,
+            "promotion_pathway": extensions.promotion_registry.promotion_pathways,
             "contribution_model": extensions.contribution_models,
             "result_atom_schema": [extensions.result_atom_schema],
         }
@@ -344,6 +345,12 @@ def collect_validation_errors(root: Path) -> list[str]:
                     )
 
         protocol_ids = {protocol.id for protocol in extensions.protocols}
+        contribution_model_ids = {item.id for item in extensions.contribution_models}
+        stage_ids = [stage.id for stage in extensions.promotion_registry.stages]
+        stage_id_set = set(stage_ids)
+        if len(stage_ids) != len(stage_id_set):
+            errors.append("research/promotion_registry.yaml: duplicate promotion stage IDs detected")
+
         for protocol_pack in extensions.protocol_packs:
             if protocol_pack.protocol_id not in protocol_ids:
                 errors.append(
@@ -374,6 +381,45 @@ def collect_validation_errors(root: Path) -> list[str]:
                         f"protocol_packs/catalog.yaml: protocol pack '{protocol_pack.id}' construct target "
                         f"'{construct_id}' is a {construct_entity[0]}, not a construct"
                     )
+
+        for contribution_model in extensions.contribution_models:
+            for stage_id in contribution_model.promotion_path:
+                if stage_id not in stage_id_set:
+                    errors.append(
+                        f"research/contribution_models.yaml: contribution model '{contribution_model.id}' references "
+                        f"unknown promotion stage '{stage_id}'"
+                    )
+
+        target_stage_by_outcome = {
+            "mapping_revision": "promoted_to_house_mapping",
+            "interaction_hypothesis": "promoted_to_interaction_hypothesis",
+            "house_inference": "promoted_to_house_inference",
+            "protocol_revision": "protocol_revision",
+            "comparative_analysis": "comparative_analysis",
+        }
+        for pathway in extensions.promotion_registry.promotion_pathways:
+            if pathway.contribution_model_id not in contribution_model_ids:
+                errors.append(
+                    f"research/promotion_registry.yaml: promotion pathway '{pathway.id}' references missing "
+                    f"contribution model '{pathway.contribution_model_id}'"
+                )
+            for stage_id in pathway.stages:
+                if stage_id not in stage_id_set:
+                    errors.append(
+                        f"research/promotion_registry.yaml: promotion pathway '{pathway.id}' references unknown "
+                        f"stage '{stage_id}'"
+                    )
+            if pathway.target_layer in {"house_synthesis", "protocol_library"} and "reviewed" not in pathway.stages:
+                errors.append(
+                    f"research/promotion_registry.yaml: promotion pathway '{pathway.id}' must include 'reviewed' "
+                    f"before changing {pathway.target_layer}"
+                )
+            expected_terminal_stage = target_stage_by_outcome[pathway.target_outcome_type]
+            if not pathway.stages or pathway.stages[-1] != expected_terminal_stage:
+                errors.append(
+                    f"research/promotion_registry.yaml: promotion pathway '{pathway.id}' must end with "
+                    f"'{expected_terminal_stage}' for outcome '{pathway.target_outcome_type}'"
+                )
 
         for interaction in extensions.interaction_hypotheses:
             for side, entity_type, entity_id in (

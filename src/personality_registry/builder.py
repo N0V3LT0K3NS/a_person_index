@@ -132,6 +132,8 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             },
             "research_stream": {
                 "contribution_model_count": len(extensions.contribution_models),
+                "promotion_pathway_count": len(extensions.promotion_registry.promotion_pathways),
+                "promotion_registry_id": extensions.promotion_registry.id,
                 "result_atom_schema_id": extensions.result_atom_schema.id,
             },
         },
@@ -145,6 +147,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "docs/mcp.md",
             "docs/protocol_pack_grammar.md",
             "docs/protocol_packs.md",
+            "docs/research_promotion.md",
         ],
         "canonical_sources": {
             "instrument_root": "instruments/",
@@ -165,6 +168,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "protocol_pack_grammar_path": "generated/protocol_pack_grammar.json",
             "protocol_pack_catalog_path": "generated/protocol_packs/index.json",
             "protocol_pack_root": "generated/protocol_packs/",
+            "research_promotion_path": "generated/research_promotion.json",
             "do_not_edit_directly": [
                 "generated/",
                 "site/",
@@ -237,6 +241,11 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "command": "python3 scripts/query_registry.py research-models",
                 "purpose": "Return allowed research contribution models for safe return traffic.",
             },
+            {
+                "id": "fetch_research_promotion_policy",
+                "command": "python3 scripts/query_registry.py research-promotion",
+                "purpose": "Return the staged promotion policy that governs how research contributions can influence house synthesis or protocol revision.",
+            },
         ],
         "interfaces": {
             "cli": {
@@ -267,11 +276,13 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                     "fetch_protocol_pack_grammar",
                     "fetch_result_atom_schema",
                     "fetch_research_models",
+                    "fetch_research_promotion_policy",
                 ],
                 "resource_uris": [
                     "registry://manifest",
                     "registry://current-state",
                     "registry://roadmap",
+                    "registry://research-promotion",
                     "registry://protocol-packs",
                     "registry://protocol-pack/{pack_id}",
                     "registry://protocol-pack-grammar",
@@ -298,6 +309,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "rcm_protocol_feedback",
             ],
             "result_atom_schema_id": extensions.result_atom_schema.id,
+            "research_promotion_registry_id": extensions.promotion_registry.id,
         },
         "protocol_pack_grammar": {
             "id": "protocol_pack_grammar_v0_1",
@@ -311,6 +323,12 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "featured_ids": [
                 item.id for item in extensions.protocol_packs if item.featured
             ],
+        },
+        "research_promotion": {
+            "id": extensions.promotion_registry.id,
+            "json_path": "generated/research_promotion.json",
+            "doc_path": "docs/research_promotion.md",
+            "promotion_pathway_count": len(extensions.promotion_registry.promotion_pathways),
         },
     }
 
@@ -667,6 +685,7 @@ def build_outputs(root: Path) -> dict:
     protocol_pack_index_payload = {
         "protocol_packs": find_protocol_packs(repository, extensions),
     }
+    research_promotion_payload = extensions.promotion_registry.model_dump(mode="json")
 
     bundle_payloads = {slug: _bundle_to_dict(bundle) for slug, bundle in repository.instruments.items()}
     index_payload = {
@@ -691,6 +710,8 @@ def build_outputs(root: Path) -> dict:
             },
             "research_stream": {
                 "contribution_model_count": len(extensions.contribution_models),
+                "promotion_pathway_count": len(extensions.promotion_registry.promotion_pathways),
+                "promotion_registry_id": extensions.promotion_registry.id,
                 "result_atom_schema_id": extensions.result_atom_schema.id,
             },
         },
@@ -728,6 +749,7 @@ def build_outputs(root: Path) -> dict:
             "protocol_packs": [item.model_dump(mode="json") for item in extensions.protocol_packs],
         },
         "research_stream": {
+            "promotion_registry": research_promotion_payload,
             "contribution_models": [
                 item.model_dump(mode="json") for item in extensions.contribution_models
             ],
@@ -744,6 +766,10 @@ def build_outputs(root: Path) -> dict:
     (generated_root / "manifest.json").write_text(json.dumps(manifest_payload, indent=2), encoding="utf-8")
     (protocol_pack_output_root / "index.json").write_text(
         json.dumps(protocol_pack_index_payload, indent=2),
+        encoding="utf-8",
+    )
+    (generated_root / "research_promotion.json").write_text(
+        json.dumps(research_promotion_payload, indent=2),
         encoding="utf-8",
     )
     (generated_root / "protocol_pack_grammar.json").write_text(
@@ -1061,7 +1087,7 @@ def _protocol_packs_html(repository, extensions: ExtensionRegistryData) -> str:
 
 
 def _research_html(extensions: ExtensionRegistryData) -> str:
-    cards = "\n".join(
+    contribution_cards = "\n".join(
         _extension_card(
             eyebrow="Contribution Model",
             title=item.name,
@@ -1071,6 +1097,17 @@ def _research_html(extensions: ExtensionRegistryData) -> str:
             meta=item.privacy_posture,
         )
         for item in sorted(extensions.contribution_models, key=lambda model: model.name.lower())
+    )
+    pathway_cards = "\n".join(
+        _extension_card(
+            eyebrow="Promotion Pathway",
+            title=f"{item.contribution_model_id} -> {item.target_outcome_type}",
+            body=item.summary,
+            tags=[item.target_layer, *item.stages[-2:]],
+            anchor=item.id,
+            meta=", ".join(item.stages),
+        )
+        for item in sorted(extensions.promotion_registry.promotion_pathways, key=lambda item: item.id)
     )
     return f"""<!doctype html>
 <html lang="en">
@@ -1085,14 +1122,33 @@ def _research_html(extensions: ExtensionRegistryData) -> str:
       <section class="hero-panel">
         <p class="eyebrow">Research Stream</p>
         <h1>Research Contribution Models</h1>
-        <p class="page-lead">Structured, privacy-minimizing intake models for mapping feedback, result atoms, distilled observations, and protocol revision signals.</p>
+        <p class="page-lead">Structured, privacy-minimizing intake models plus a staged promotion policy for turning reviewed research into house synthesis or protocol changes without collapsing raw contributions into truth.</p>
       </section>
       <section class="stats">
         <article class="stat-card"><strong>{len(extensions.contribution_models)}</strong> contribution models</article>
-        <article class="stat-card"><strong>4</strong> promotion stages</article>
+        <article class="stat-card"><strong>{len(extensions.promotion_registry.stages)}</strong> promotion stages</article>
+        <article class="stat-card"><strong>{len(extensions.promotion_registry.promotion_pathways)}</strong> promotion pathways</article>
       </section>
       <section>
-        <div class="card-grid">{cards}</div>
+        <h2>Promotion Policy</h2>
+        <div class="card-grid">
+          {_extension_card(
+              eyebrow="Registry",
+              title=extensions.promotion_registry.name,
+              body=extensions.promotion_registry.summary,
+              tags=[extensions.promotion_registry.status, f"pathways={len(extensions.promotion_registry.promotion_pathways)}"],
+              anchor=extensions.promotion_registry.id,
+              meta="Research governance object",
+          )}
+        </div>
+      </section>
+      <section>
+        <h2>Contribution Models</h2>
+        <div class="card-grid">{contribution_cards}</div>
+      </section>
+      <section>
+        <h2>Promotion Pathways</h2>
+        <div class="card-grid">{pathway_cards}</div>
       </section>
       <section>
         <h2>Result Atom Schema</h2>
@@ -1110,7 +1166,7 @@ def _research_html(extensions: ExtensionRegistryData) -> str:
       <section class="hero-panel">
         <p class="eyebrow">GNOMY</p>
         <h2>Expected exchange pattern</h2>
-        <p class="page-lead">Downstream runtimes should send normalized result atoms, mapping votes, pairwise judgments, or distilled observations back into the research stream rather than raw user corpora.</p>
+        <p class="page-lead">Downstream runtimes should send normalized result atoms, mapping votes, pairwise judgments, or distilled observations back into the research stream, then let the staged promotion policy determine whether anything becomes reviewed house synthesis or protocol revision.</p>
       </section>
     </main>
   </body>
@@ -1426,6 +1482,7 @@ def build_docs(root: Path) -> None:
         item.id: curated_protocol_pack_record(repository, extensions, item.id)
         for item in extensions.protocol_packs
     }
+    research_promotion_payload = extensions.promotion_registry.model_dump(mode="json")
     extension_payload = {
         "motifs": [item.model_dump(mode="json") for item in extensions.motifs],
         "mappings": [item.model_dump(mode="json") for item in extensions.mappings],
@@ -1435,6 +1492,7 @@ def build_docs(root: Path) -> None:
         "techniques": [item.model_dump(mode="json") for item in extensions.techniques],
         "protocols": [item.model_dump(mode="json") for item in extensions.protocols],
         "protocol_packs": [item.model_dump(mode="json") for item in extensions.protocol_packs],
+        "promotion_registry": research_promotion_payload,
         "contribution_models": [
             item.model_dump(mode="json") for item in extensions.contribution_models
         ],
@@ -1495,6 +1553,10 @@ section { margin-top: 32px; }
         json.dumps(protocol_pack_index_payload, indent=2),
         encoding="utf-8",
     )
+    (site_data_root / "research_promotion.json").write_text(
+        json.dumps(research_promotion_payload, indent=2),
+        encoding="utf-8",
+    )
     (site_data_root / "protocol_pack_grammar.json").write_text(
         json.dumps(protocol_pack_grammar_payload, indent=2),
         encoding="utf-8",
@@ -1539,7 +1601,7 @@ section { margin-top: 32px; }
                 "Research Stream",
                 len(extensions.contribution_models),
                 "contribution models",
-                "Privacy-minimizing intake models for mapping votes, result-atom bundles, and distilled observations from downstream systems.",
+                "Privacy-minimizing intake models plus a staged promotion policy for moving reviewed research into house synthesis or protocol revision.",
             ),
         ]
     )

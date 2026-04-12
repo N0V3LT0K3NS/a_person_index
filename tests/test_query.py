@@ -8,6 +8,7 @@ from personality_registry.query import (
     find_contribution_models,
     find_interaction_hypotheses,
     find_motifs,
+    find_promotion_pathways,
     find_protocol_packs,
     find_protocols,
     find_techniques,
@@ -20,6 +21,8 @@ from personality_registry.query import (
     protocol_pack_grammar,
     protocol_record,
     query_results,
+    promotion_pathway_record,
+    research_promotion_registry_record,
     result_atom_schema_record,
     resolve_instrument,
     show_instrument,
@@ -216,6 +219,28 @@ def test_find_protocol_packs_surfaces_featured_catalog_entries(repo_root):
     pack_ids = {item["id"] for item in payload}
     assert "ppk_ilens_core_trait_motive_stack" in pack_ids
     assert "ppk_translation_attachment_and_care" in pack_ids
+
+
+def test_research_promotion_registry_record_is_available(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = research_promotion_registry_record(extensions)
+    assert payload["promotion_registry"]["id"] == "research_promotion_v0_1"
+    assert payload["promotion_pathway_count"] >= 5
+
+
+def test_find_promotion_pathways_for_mapping_vote(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = find_promotion_pathways(extensions, contribution_model="Mapping Vote")
+    pathway_ids = {item["id"] for item in payload}
+    assert "rpp_mapping_vote_to_house_mapping" in pathway_ids
+
+
+def test_promotion_pathway_record_expands_contribution_model(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = promotion_pathway_record(extensions, "rpp_protocol_feedback_to_protocol_revision")
+    assert payload["promotion_pathway"]["target_outcome_type"] == "protocol_revision"
+    assert payload["contribution_model"]["id"] == "rcm_protocol_feedback"
+    assert payload["stages"][-1]["id"] == "protocol_revision"
 
 
 def test_curated_protocol_pack_record_expands_catalog_entry(repo_root):

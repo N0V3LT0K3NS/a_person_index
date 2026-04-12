@@ -11,20 +11,37 @@
       <section class="hero-panel">
         <p class="eyebrow">Research Stream</p>
         <h1>Research Contribution Models</h1>
-        <p class="page-lead">Structured, privacy-minimizing intake models for mapping feedback, result atoms, distilled observations, and protocol revision signals.</p>
+        <p class="page-lead">Structured, privacy-minimizing intake models plus a staged promotion policy for turning reviewed research into house synthesis or protocol changes without collapsing raw contributions into truth.</p>
       </section>
       <section class="stats">
         <article class="stat-card"><strong>5</strong> contribution models</article>
-        <article class="stat-card"><strong>4</strong> promotion stages</article>
+        <article class="stat-card"><strong>11</strong> promotion stages</article>
+        <article class="stat-card"><strong>5</strong> promotion pathways</article>
       </section>
       <section>
+        <h2>Promotion Policy</h2>
+        <div class="card-grid">
+          
+<article class="instrument-card extension-card" id="research_promotion_v0_1">
+  <p class="eyebrow">Registry</p>
+  <h2>Research Promotion Registry</h2>
+  <p class="muted">Research governance object</p>
+  <p>Staged rules for moving privacy-minimizing research contributions from raw intake toward reviewed house synthesis or protocol revision without letting anecdote overwrite canonical framework records.
+</p>
+  <div class="tag-row"><span class="tag">active</span><span class="tag">pathways=5</span></div>
+</article>
+
+        </div>
+      </section>
+      <section>
+        <h2>Contribution Models</h2>
         <div class="card-grid">
 <article class="instrument-card extension-card" id="rcm_distilled_observation">
   <p class="eyebrow">Contribution Model</p>
   <h2>Distilled Observation</h2>
   <p class="muted">Distilled and anonymized by default; no raw transcripts in the canonical stream.</p>
   <p>Record short anonymized insights about how mappings, tensions, or combinations behave in practice.</p>
-  <div class="tag-row"><span class="tag">anecdotal</span><span class="tag">clustered_pattern</span><span class="tag">reviewed</span><span class="tag">house_inference</span></div>
+  <div class="tag-row"><span class="tag">anecdotal</span><span class="tag">clustered_pattern</span><span class="tag">reviewed</span><span class="tag">promoted_to_house_inference</span></div>
 </article>
 
 
@@ -33,7 +50,7 @@
   <h2>Mapping Vote</h2>
   <p class="muted">No raw narrative required; contribution should stay at the judgment layer by default.</p>
   <p>Collect lightweight feedback on whether a proposed mapping fits lived experience.</p>
-  <div class="tag-row"><span class="tag">anecdotal</span><span class="tag">aggregated</span><span class="tag">reviewed</span><span class="tag">promoted_to_house_inference</span></div>
+  <div class="tag-row"><span class="tag">anecdotal</span><span class="tag">aggregated</span><span class="tag">reviewed</span><span class="tag">promoted_to_house_mapping</span></div>
 </article>
 
 
@@ -42,7 +59,7 @@
   <h2>Pairwise Relation Judgment</h2>
   <p class="muted">Structured labels first; free text only if strictly necessary.</p>
   <p>Capture whether two result atoms feel reinforcing, contradictory, orthogonal, or context-dependent.</p>
-  <div class="tag-row"><span class="tag">anecdotal</span><span class="tag">aggregated</span><span class="tag">reviewed</span><span class="tag">interaction_hypothesis</span></div>
+  <div class="tag-row"><span class="tag">anecdotal</span><span class="tag">aggregated</span><span class="tag">reviewed</span><span class="tag">promoted_to_interaction_hypothesis</span></div>
 </article>
 
 
@@ -65,6 +82,59 @@
 </div>
       </section>
       <section>
+        <h2>Promotion Pathways</h2>
+        <div class="card-grid">
+<article class="instrument-card extension-card" id="rpp_distilled_observation_to_house_inference">
+  <p class="eyebrow">Promotion Pathway</p>
+  <h2>rcm_distilled_observation -&gt; house_inference</h2>
+  <p class="muted">anecdotal, clustered_pattern, reviewed, promoted_to_house_inference</p>
+  <p>Distilled observations should cluster into a recurring pattern and be reviewed before they become broader house inferences or caveats.
+</p>
+  <div class="tag-row"><span class="tag">house_synthesis</span><span class="tag">reviewed</span><span class="tag">promoted_to_house_inference</span></div>
+</article>
+
+
+<article class="instrument-card extension-card" id="rpp_mapping_vote_to_house_mapping">
+  <p class="eyebrow">Promotion Pathway</p>
+  <h2>rcm_mapping_vote -&gt; mapping_revision</h2>
+  <p class="muted">anecdotal, aggregated, reviewed, promoted_to_house_mapping</p>
+  <p>Mapping votes should accumulate around a specific mapping ID before a reviewer considers changing mapping confidence, rationale, or structure.
+</p>
+  <div class="tag-row"><span class="tag">house_synthesis</span><span class="tag">reviewed</span><span class="tag">promoted_to_house_mapping</span></div>
+</article>
+
+
+<article class="instrument-card extension-card" id="rpp_pairwise_relation_to_interaction_hypothesis">
+  <p class="eyebrow">Promotion Pathway</p>
+  <h2>rcm_pairwise_relation_judgment -&gt; interaction_hypothesis</h2>
+  <p class="muted">anecdotal, aggregated, reviewed, promoted_to_interaction_hypothesis</p>
+  <p>Pairwise relation judgments should accumulate into a reviewed candidate interaction hypothesis before changing the interaction registry.
+</p>
+  <div class="tag-row"><span class="tag">house_synthesis</span><span class="tag">reviewed</span><span class="tag">promoted_to_interaction_hypothesis</span></div>
+</article>
+
+
+<article class="instrument-card extension-card" id="rpp_protocol_feedback_to_protocol_revision">
+  <p class="eyebrow">Promotion Pathway</p>
+  <h2>rcm_protocol_feedback -&gt; protocol_revision</h2>
+  <p class="muted">feedback_log, reviewed, protocol_revision</p>
+  <p>Protocol feedback should accumulate in a reviewable log before changing protocol instructions, output contracts, or technique bundles.
+</p>
+  <div class="tag-row"><span class="tag">protocol_library</span><span class="tag">reviewed</span><span class="tag">protocol_revision</span></div>
+</article>
+
+
+<article class="instrument-card extension-card" id="rpp_result_atom_bundle_to_comparative_analysis">
+  <p class="eyebrow">Promotion Pathway</p>
+  <h2>rcm_result_atom_bundle -&gt; comparative_analysis</h2>
+  <p class="muted">normalized_input, aggregated, comparative_analysis</p>
+  <p>Result atom bundles should first become comparative analysis artifacts rather than direct house synthesis changes.
+</p>
+  <div class="tag-row"><span class="tag">research_stream</span><span class="tag">aggregated</span><span class="tag">comparative_analysis</span></div>
+</article>
+</div>
+      </section>
+      <section>
         <h2>Result Atom Schema</h2>
         <div class="card-grid">
           
@@ -83,7 +153,7 @@
       <section class="hero-panel">
         <p class="eyebrow">GNOMY</p>
         <h2>Expected exchange pattern</h2>
-        <p class="page-lead">Downstream runtimes should send normalized result atoms, mapping votes, pairwise judgments, or distilled observations back into the research stream rather than raw user corpora.</p>
+        <p class="page-lead">Downstream runtimes should send normalized result atoms, mapping votes, pairwise judgments, or distilled observations back into the research stream, then let the staged promotion policy determine whether anything becomes reviewed house synthesis or protocol revision.</p>
       </section>
     </main>
   </body>

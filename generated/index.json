@@ -441,6 +441,8 @@
     },
     "research_stream": {
       "contribution_model_count": 5,
+      "promotion_pathway_count": 5,
+      "promotion_registry_id": "research_promotion_v0_1",
       "result_atom_schema_id": "ras_result_atom_v0_1"
     }
   },

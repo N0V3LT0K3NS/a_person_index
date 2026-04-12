@@ -35,6 +35,9 @@ if (!tools.tools.some((tool) => tool.name === "fetch_protocol_pack")) {
 if (!tools.tools.some((tool) => tool.name === "fetch_curated_protocol_pack")) {
   throw new Error("Expected fetch_curated_protocol_pack tool in MCP surface.");
 }
+if (!tools.tools.some((tool) => tool.name === "fetch_research_promotion_policy")) {
+  throw new Error("Expected fetch_research_promotion_policy tool in MCP surface.");
+}
 
 const manifest = await client.readResource({ uri: "registry://manifest" });
 if (!manifest.contents?.[0]?.text?.includes("personality-instrument-registry")) {
@@ -44,6 +47,11 @@ if (!manifest.contents?.[0]?.text?.includes("personality-instrument-registry")) 
 const curatedPackIndex = await client.readResource({ uri: "registry://protocol-packs" });
 if (!curatedPackIndex.contents?.[0]?.text?.includes("ppk_ilens_core_trait_motive_stack")) {
   throw new Error("Expected protocol-pack catalog content.");
+}
+
+const researchPromotion = await client.readResource({ uri: "registry://research-promotion" });
+if (!researchPromotion.contents?.[0]?.text?.includes("research_promotion_v0_1")) {
+  throw new Error("Expected research promotion resource content.");
 }
 
 const prompt = await client.getPrompt({ name: "registry-arrival" });
@@ -83,6 +91,23 @@ if (curatedProtocolPack.isError) {
 
 if (curatedProtocolPack.structuredContent?.catalog_entry?.id !== "ppk_ilens_core_trait_motive_stack") {
   throw new Error("Expected curated protocol pack catalog entry.");
+}
+
+const promotionPolicy = await client.callTool({
+  name: "fetch_research_promotion_policy",
+  arguments: {
+    contribution_model: "Mapping Vote",
+  },
+});
+
+if (promotionPolicy.isError) {
+  throw new Error(
+    `Research promotion tool returned error: ${promotionPolicy.content?.[0]?.text ?? "unknown error"}`,
+  );
+}
+
+if (!Array.isArray(promotionPolicy.structuredContent?.promotion_pathways) || !promotionPolicy.structuredContent.promotion_pathways.length) {
+  throw new Error("Expected filtered research promotion pathways.");
 }
 
 await transport.close();

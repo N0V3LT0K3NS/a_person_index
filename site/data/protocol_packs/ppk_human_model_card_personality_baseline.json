@@ -647,7 +647,7 @@
             "anecdotal",
             "clustered_pattern",
             "reviewed",
-            "house_inference"
+            "promoted_to_house_inference"
           ],
           "notes": "Useful for preserving real-world synthesis insight without over-collecting sensitive detail.\n"
         },

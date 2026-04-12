@@ -18,6 +18,7 @@ As of the current branch state, the repo includes:
 - 3 protocol specs
 - 4 curated protocol packs
 - 5 research contribution models
+- 5 research promotion pathways
 - 1 result atom schema
 
 ## What is complete
@@ -46,6 +47,7 @@ As of the current branch state, the repo includes:
 ### Research stream
 
 - Contribution models for mapping votes, relation judgments, result-atom bundles, distilled observations, and protocol feedback
+- A typed promotion registry that governs how research can move from intake to reviewed house synthesis or protocol revision
 - A normalized result atom schema for downstream runtimes such as `GNOMY`
 
 ### Operational layer
@@ -78,7 +80,7 @@ Right now the repo is most useful as:
 
 The next highest-value tranche is:
 
-1. formalize research promotion from contribution -> reviewed pattern -> house synthesis
-2. deepen motif mappings and interaction hypotheses across the strongest framework seams
+1. deepen motif mappings and interaction hypotheses across the strongest framework seams
+2. add research audit and candidate-review surfaces on top of the promotion registry
 3. keep improving repo onboarding and public presentation until the repo itself is self-explanatory
 4. merge the widened repo identity and new surfaces into `main`

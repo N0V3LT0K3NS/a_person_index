@@ -42,6 +42,7 @@ npm run mcp:smoke
 - `registry://manifest`
 - `registry://current-state`
 - `registry://roadmap`
+- `registry://research-promotion`
 - `registry://protocol-packs`
 - `registry://protocol-pack/{pack_id}`
 - `registry://protocol-pack-grammar`
@@ -61,6 +62,7 @@ npm run mcp:smoke
 - `fetch_protocol_pack_grammar`
 - `fetch_result_atom_schema`
 - `fetch_research_models`
+- `fetch_research_promotion_policy`
 
 ## Exposed prompts
 

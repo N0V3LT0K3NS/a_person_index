@@ -22,6 +22,8 @@
     },
     "research_stream": {
       "contribution_model_count": 5,
+      "promotion_pathway_count": 5,
+      "promotion_registry_id": "research_promotion_v0_1",
       "result_atom_schema_id": "ras_result_atom_v0_1"
     }
   },
@@ -34,7 +36,8 @@
     "docs/gnomy_integration.md",
     "docs/mcp.md",
     "docs/protocol_pack_grammar.md",
-    "docs/protocol_packs.md"
+    "docs/protocol_packs.md",
+    "docs/research_promotion.md"
   ],
   "canonical_sources": {
     "instrument_root": "instruments/",
@@ -55,6 +58,7 @@
     "protocol_pack_grammar_path": "generated/protocol_pack_grammar.json",
     "protocol_pack_catalog_path": "generated/protocol_packs/index.json",
     "protocol_pack_root": "generated/protocol_packs/",
+    "research_promotion_path": "generated/research_promotion.json",
     "do_not_edit_directly": [
       "generated/",
       "site/",
@@ -126,6 +130,11 @@
       "id": "fetch_research_models",
       "command": "python3 scripts/query_registry.py research-models",
       "purpose": "Return allowed research contribution models for safe return traffic."
+    },
+    {
+      "id": "fetch_research_promotion_policy",
+      "command": "python3 scripts/query_registry.py research-promotion",
+      "purpose": "Return the staged promotion policy that governs how research contributions can influence house synthesis or protocol revision."
     }
   ],
   "interfaces": {
@@ -156,12 +165,14 @@
         "fetch_protocol_pack",
         "fetch_protocol_pack_grammar",
         "fetch_result_atom_schema",
-        "fetch_research_models"
+        "fetch_research_models",
+        "fetch_research_promotion_policy"
       ],
       "resource_uris": [
         "registry://manifest",
         "registry://current-state",
         "registry://roadmap",
+        "registry://research-promotion",
         "registry://protocol-packs",
         "registry://protocol-pack/{pack_id}",
         "registry://protocol-pack-grammar",
@@ -187,7 +198,8 @@
       "rcm_distilled_observation",
       "rcm_protocol_feedback"
     ],
-    "result_atom_schema_id": "ras_result_atom_v0_1"
+    "result_atom_schema_id": "ras_result_atom_v0_1",
+    "research_promotion_registry_id": "research_promotion_v0_1"
   },
   "protocol_pack_grammar": {
     "id": "protocol_pack_grammar_v0_1",
@@ -202,5 +214,11 @@
       "ppk_ilens_core_trait_motive_stack",
       "ppk_translation_attachment_and_care"
     ]
+  },
+  "research_promotion": {
+    "id": "research_promotion_v0_1",
+    "json_path": "generated/research_promotion.json",
+    "doc_path": "docs/research_promotion.md",
+    "promotion_pathway_count": 5
   }
 }

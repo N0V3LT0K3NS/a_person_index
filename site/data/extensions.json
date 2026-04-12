@@ -869,6 +869,306 @@
       "notes": "This pack does not replace the need for broader behavioral corpus evidence, but it gives downstream agents a consistent baseline bundle for model-card synthesis work.\n"
     }
   ],
+  "promotion_registry": {
+    "id": "research_promotion_v0_1",
+    "name": "Research Promotion Registry",
+    "status": "active",
+    "summary": "Staged rules for moving privacy-minimizing research contributions from raw intake toward reviewed house synthesis or protocol revision without letting anecdote overwrite canonical framework records.\n",
+    "principles": [
+      "preserve_provenance_and_stage_labels",
+      "do_not_promote_single_observations_without_review",
+      "keep_house_synthesis_distinct_from_canonical_source_truth",
+      "prefer_aggregation_before_revision",
+      "preserve_conflict_and_counterevidence"
+    ],
+    "stages": [
+      {
+        "id": "anecdotal",
+        "name": "Anecdotal",
+        "summary": "A single contribution or small set of low-density observations that may be suggestive but is not yet fit to change house synthesis.\n",
+        "stage_kind": "collection",
+        "entry_criteria": [
+          "contribution was received in a supported research model"
+        ],
+        "exit_criteria": [
+          "multiple related contributions can be grouped or reviewed"
+        ],
+        "notes": null
+      },
+      {
+        "id": "normalized_input",
+        "name": "Normalized Input",
+        "summary": "A structured contribution that is transport-safe and ready for aggregation or comparative analysis.\n",
+        "stage_kind": "collection",
+        "entry_criteria": [
+          "payload conforms to an approved schema such as result atoms"
+        ],
+        "exit_criteria": [
+          "inputs can be grouped by construct, mapping, or interaction target"
+        ],
+        "notes": null
+      },
+      {
+        "id": "aggregated",
+        "name": "Aggregated",
+        "summary": "Multiple related contributions have been grouped into a comparable set without yet claiming a stable pattern.\n",
+        "stage_kind": "aggregation",
+        "entry_criteria": [
+          "repeated contributions share a target mapping, framework seam, or motif seam"
+        ],
+        "exit_criteria": [
+          "a reviewer can inspect consistency, disagreement, and scope conditions"
+        ],
+        "notes": null
+      },
+      {
+        "id": "clustered_pattern",
+        "name": "Clustered Pattern",
+        "summary": "Distilled observations have been grouped into a recurring pattern rather than left as isolated anecdotes.\n",
+        "stage_kind": "aggregation",
+        "entry_criteria": [
+          "multiple observations converge around the same pattern or caveat"
+        ],
+        "exit_criteria": [
+          "the pattern can be compared against existing house synthesis"
+        ],
+        "notes": null
+      },
+      {
+        "id": "comparative_analysis",
+        "name": "Comparative Analysis",
+        "summary": "Structured research inputs have been turned into an analysis artifact that can inform mappings, interactions, or future review.\n",
+        "stage_kind": "aggregation",
+        "entry_criteria": [
+          "normalized contributions are sufficient for structured comparison"
+        ],
+        "exit_criteria": [
+          "analysis produces explicit candidates, tensions, or confidence shifts"
+        ],
+        "notes": null
+      },
+      {
+        "id": "feedback_log",
+        "name": "Feedback Log",
+        "summary": "Protocol-specific success and failure feedback has been captured in a reviewable form without yet changing the protocol surface.\n",
+        "stage_kind": "collection",
+        "entry_criteria": [
+          "protocol feedback references a known protocol and a concrete issue"
+        ],
+        "exit_criteria": [
+          "repeated feedback can be reviewed as a revision candidate"
+        ],
+        "notes": null
+      },
+      {
+        "id": "reviewed",
+        "name": "Reviewed",
+        "summary": "A curator has examined the aggregated or analyzed evidence, checked for scope limits and conflicts, and decided whether promotion is warranted.\n",
+        "stage_kind": "review",
+        "entry_criteria": [
+          "evidence and counterevidence are visible",
+          "reviewer can name the exact target and expected change"
+        ],
+        "exit_criteria": [
+          "outcome is either promoted, contested, or sent back for more evidence"
+        ],
+        "notes": null
+      },
+      {
+        "id": "promoted_to_house_mapping",
+        "name": "Promoted To House Mapping",
+        "summary": "Reviewed research has justified a mapping revision, confidence change, or a new mapping candidate in the house synthesis layer.\n",
+        "stage_kind": "promotion",
+        "entry_criteria": [
+          "reviewed evidence supports a change to construct or instrument mapping"
+        ],
+        "exit_criteria": [
+          "mapping change is encoded in the canonical house synthesis files"
+        ],
+        "notes": null
+      },
+      {
+        "id": "promoted_to_interaction_hypothesis",
+        "name": "Promoted To Interaction Hypothesis",
+        "summary": "Reviewed research has justified a new or revised interaction hypothesis.\n",
+        "stage_kind": "promotion",
+        "entry_criteria": [
+          "reviewed evidence supports a stable interaction claim"
+        ],
+        "exit_criteria": [
+          "interaction hypothesis is encoded in the interaction registry"
+        ],
+        "notes": null
+      },
+      {
+        "id": "promoted_to_house_inference",
+        "name": "Promoted To House Inference",
+        "summary": "Reviewed research has justified a broader house inference or caution that is not limited to one mapping object.\n",
+        "stage_kind": "promotion",
+        "entry_criteria": [
+          "reviewed evidence supports a synthesis-level note or caveat"
+        ],
+        "exit_criteria": [
+          "house inference is encoded with clear provenance and scope"
+        ],
+        "notes": null
+      },
+      {
+        "id": "protocol_revision",
+        "name": "Protocol Revision",
+        "summary": "Reviewed feedback has justified a change to a downstream protocol or technique bundle.\n",
+        "stage_kind": "revision",
+        "entry_criteria": [
+          "reviewed protocol feedback identifies a recurrent failure or missing step"
+        ],
+        "exit_criteria": [
+          "protocol or technique update is encoded in the protocol layer"
+        ],
+        "notes": null
+      }
+    ],
+    "promotion_pathways": [
+      {
+        "id": "rpp_mapping_vote_to_house_mapping",
+        "contribution_model_id": "rcm_mapping_vote",
+        "target_outcome_type": "mapping_revision",
+        "target_layer": "house_synthesis",
+        "summary": "Mapping votes should accumulate around a specific mapping ID before a reviewer considers changing mapping confidence, rationale, or structure.\n",
+        "stages": [
+          "anecdotal",
+          "aggregated",
+          "reviewed",
+          "promoted_to_house_mapping"
+        ],
+        "evidence_requirements": [
+          "group repeated votes by mapping_id",
+          "preserve both support and rejection rates",
+          "inspect whether disagreement is global or context-specific"
+        ],
+        "reviewer_questions": [
+          "Is the mapping broadly supported, broadly rejected, or split by context?",
+          "Does the evidence justify a confidence shift, a rationale rewrite, or a mapping split?"
+        ],
+        "output_artifacts": [
+          "mapping review memo",
+          "mapping revision proposal",
+          "confidence adjustment record"
+        ],
+        "notes": null
+      },
+      {
+        "id": "rpp_pairwise_relation_to_interaction_hypothesis",
+        "contribution_model_id": "rcm_pairwise_relation_judgment",
+        "target_outcome_type": "interaction_hypothesis",
+        "target_layer": "house_synthesis",
+        "summary": "Pairwise relation judgments should accumulate into a reviewed candidate interaction hypothesis before changing the interaction registry.\n",
+        "stages": [
+          "anecdotal",
+          "aggregated",
+          "reviewed",
+          "promoted_to_interaction_hypothesis"
+        ],
+        "evidence_requirements": [
+          "normalize repeated relation labels for the same atom pairing",
+          "keep contradictory judgments visible",
+          "note when the relation appears context-dependent"
+        ],
+        "reviewer_questions": [
+          "Is the relation stable enough to formalize as an interaction hypothesis?",
+          "Should the result be marked reinforcing, tension-producing, or context-dependent?"
+        ],
+        "output_artifacts": [
+          "interaction review memo",
+          "new interaction candidate",
+          "interaction confidence note"
+        ],
+        "notes": null
+      },
+      {
+        "id": "rpp_result_atom_bundle_to_comparative_analysis",
+        "contribution_model_id": "rcm_result_atom_bundle",
+        "target_outcome_type": "comparative_analysis",
+        "target_layer": "research_stream",
+        "summary": "Result atom bundles should first become comparative analysis artifacts rather than direct house synthesis changes.\n",
+        "stages": [
+          "normalized_input",
+          "aggregated",
+          "comparative_analysis"
+        ],
+        "evidence_requirements": [
+          "preserve framework and construct provenance",
+          "group atoms by seam, motif, or compare target before synthesis",
+          "avoid direct promotion from raw result bundles"
+        ],
+        "reviewer_questions": [
+          "What seams or tensions recur across the grouped atoms?",
+          "Which mappings or interactions need targeted review next?"
+        ],
+        "output_artifacts": [
+          "comparative analysis memo",
+          "candidate mapping review queue",
+          "candidate interaction review queue"
+        ],
+        "notes": null
+      },
+      {
+        "id": "rpp_distilled_observation_to_house_inference",
+        "contribution_model_id": "rcm_distilled_observation",
+        "target_outcome_type": "house_inference",
+        "target_layer": "house_synthesis",
+        "summary": "Distilled observations should cluster into a recurring pattern and be reviewed before they become broader house inferences or caveats.\n",
+        "stages": [
+          "anecdotal",
+          "clustered_pattern",
+          "reviewed",
+          "promoted_to_house_inference"
+        ],
+        "evidence_requirements": [
+          "cluster observations by linked entities or repeated caveat",
+          "keep scope and context window explicit",
+          "preserve counterexamples when available"
+        ],
+        "reviewer_questions": [
+          "Is this a recurring pattern or an attractive anecdote?",
+          "Should the output be encoded as an inference, caveat, or no change?"
+        ],
+        "output_artifacts": [
+          "clustered observation memo",
+          "house inference candidate",
+          "caveat proposal"
+        ],
+        "notes": null
+      },
+      {
+        "id": "rpp_protocol_feedback_to_protocol_revision",
+        "contribution_model_id": "rcm_protocol_feedback",
+        "target_outcome_type": "protocol_revision",
+        "target_layer": "protocol_library",
+        "summary": "Protocol feedback should accumulate in a reviewable log before changing protocol instructions, output contracts, or technique bundles.\n",
+        "stages": [
+          "feedback_log",
+          "reviewed",
+          "protocol_revision"
+        ],
+        "evidence_requirements": [
+          "group feedback by protocol_id and failure mode",
+          "distinguish missing-input problems from protocol-design problems",
+          "preserve both success and failure notes"
+        ],
+        "reviewer_questions": [
+          "Is the protocol failing because of design, missing inputs, or misuse?",
+          "Does the fix belong in the protocol spec, a technique, or downstream guidance?"
+        ],
+        "output_artifacts": [
+          "protocol review memo",
+          "protocol revision proposal",
+          "technique update candidate"
+        ],
+        "notes": null
+      }
+    ],
+    "notes": "Promotion pathways are governance objects. They define how evidence can influence house synthesis or protocols without confusing intake data with canonical truth.\n"
+  },
   "contribution_models": [
     {
       "id": "rcm_mapping_vote",
@@ -888,7 +1188,7 @@
         "anecdotal",
         "aggregated",
         "reviewed",
-        "promoted_to_house_inference"
+        "promoted_to_house_mapping"
       ],
       "notes": "Best default research input when the goal is to refine construct-to-motif mappings without collecting sensitive life detail.\n"
     },
@@ -910,7 +1210,7 @@
         "anecdotal",
         "aggregated",
         "reviewed",
-        "interaction_hypothesis"
+        "promoted_to_interaction_hypothesis"
       ],
       "notes": "Useful for discovering stable tension and reinforcement patterns across systems.\n"
     },
@@ -955,7 +1255,7 @@
         "anecdotal",
         "clustered_pattern",
         "reviewed",
-        "house_inference"
+        "promoted_to_house_inference"
       ],
       "notes": "Useful for preserving real-world synthesis insight without over-collecting sensitive detail.\n"
     },

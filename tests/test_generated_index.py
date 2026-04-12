@@ -17,6 +17,7 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     curated_protocol_pack_path = (
         repo_root / "generated" / "protocol_packs" / "ppk_ilens_core_trait_motive_stack.json"
     )
+    research_promotion_path = repo_root / "generated" / "research_promotion.json"
     registry_path = repo_root / "generated" / "registry.json"
 
     assert index_path.exists()
@@ -26,6 +27,7 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert protocol_pack_grammar_path.exists()
     assert protocol_pack_index_path.exists()
     assert curated_protocol_pack_path.exists()
+    assert research_promotion_path.exists()
     assert registry_path.exists()
 
     index_payload = json.loads(index_path.read_text(encoding="utf-8"))
@@ -34,6 +36,7 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     manifest_payload = json.loads(manifest_path.read_text(encoding="utf-8"))
     protocol_pack_grammar_payload = json.loads(protocol_pack_grammar_path.read_text(encoding="utf-8"))
     protocol_pack_index_payload = json.loads(protocol_pack_index_path.read_text(encoding="utf-8"))
+    research_promotion_payload = json.loads(research_promotion_path.read_text(encoding="utf-8"))
 
     assert len(index_payload["instruments"]) == len(export_payload["instruments"])
     assert len(search_payload["entries"]) == len(export_payload["instruments"])
@@ -57,6 +60,9 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     )
     assert index_payload["product_layers"]["research_stream"]["contribution_model_count"] == len(
         export_payload["research_stream"]["contribution_models"]
+    )
+    assert index_payload["product_layers"]["research_stream"]["promotion_pathway_count"] == len(
+        export_payload["research_stream"]["promotion_registry"]["promotion_pathways"]
     )
     assert index_payload["product_layers"]["research_stream"]["result_atom_schema_id"] == export_payload[
         "research_stream"
@@ -82,10 +88,13 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert any(item["id"] == "list_protocol_packs" for item in manifest_payload["service_primitives"])
     assert any(item["id"] == "fetch_curated_protocol_pack" for item in manifest_payload["service_primitives"])
     assert any(item["id"] == "fetch_protocol_pack" for item in manifest_payload["service_primitives"])
+    assert any(item["id"] == "fetch_research_promotion_policy" for item in manifest_payload["service_primitives"])
     assert manifest_payload["interfaces"]["mcp"]["status"] == "active_read_only"
     assert "list_protocol_packs" in manifest_payload["interfaces"]["mcp"]["tool_ids"]
     assert "fetch_curated_protocol_pack" in manifest_payload["interfaces"]["mcp"]["tool_ids"]
     assert "fetch_protocol_pack" in manifest_payload["interfaces"]["mcp"]["tool_ids"]
+    assert "fetch_research_promotion_policy" in manifest_payload["interfaces"]["mcp"]["tool_ids"]
     assert protocol_pack_index_payload["protocol_packs"]
     assert protocol_pack_index_payload["protocol_packs"][0]["id"].startswith("ppk_")
+    assert research_promotion_payload["id"] == "research_promotion_v0_1"
     assert protocol_pack_grammar_payload["id"] == "protocol_pack_grammar_v0_1"

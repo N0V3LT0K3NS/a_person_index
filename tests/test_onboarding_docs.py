@@ -9,6 +9,7 @@ def test_onboarding_docs_exist(repo_root):
         repo_root / "docs" / "roadmap.md",
         repo_root / "docs" / "protocol_pack_grammar.md",
         repo_root / "docs" / "protocol_packs.md",
+        repo_root / "docs" / "research_promotion.md",
     ]
     for path in required_paths:
         assert path.exists(), f"Missing onboarding document: {path}"
@@ -22,4 +23,5 @@ def test_readme_links_to_onboarding_surface(repo_root):
     assert "docs/roadmap.md" in readme
     assert "docs/protocol_pack_grammar.md" in readme
     assert "docs/protocol_packs.md" in readme
+    assert "docs/research_promotion.md" in readme
     assert "generated/manifest.json" in readme

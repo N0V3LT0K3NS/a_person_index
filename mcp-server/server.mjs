@@ -33,6 +33,14 @@ function jsonResult(payload) {
   };
 }
 
+function jsonCollectionResult(key, items) {
+  const payload = { [key]: items };
+  return {
+    content: [{ type: "text", text: JSON.stringify(payload, null, 2) }],
+    structuredContent: payload,
+  };
+}
+
 function errorResult(message) {
   return {
     content: [{ type: "text", text: message }],
@@ -152,6 +160,24 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/roadmap.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "research-promotion",
+    "registry://research-promotion",
+    {
+      title: "Research Promotion Policy",
+      description: "Staged promotion policy for research contributions and review pathways.",
+      mimeType: "application/json",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("generated/research_promotion.json"),
         },
       ],
     }),
@@ -297,7 +323,7 @@ async function buildServer() {
         for (const filter of filters ?? []) args.push("--filter", filter);
         if (text) args.push("--text", text);
         if (related_to) args.push("--related-to", related_to);
-        return jsonResult(await runRegistryQuery(args, pythonBin));
+        return jsonCollectionResult("results", await runRegistryQuery(args, pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }
@@ -352,7 +378,10 @@ async function buildServer() {
     },
     async ({ related_to }) => {
       try {
-        return jsonResult(await runRegistryQuery(["motifs", "--related-to", related_to], pythonBin));
+        return jsonCollectionResult(
+          "motifs",
+          await runRegistryQuery(["motifs", "--related-to", related_to], pythonBin),
+        );
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }
@@ -378,7 +407,7 @@ async function buildServer() {
         if (interaction_type) args.push("--type", interaction_type);
         if (protocol) args.push("--protocol", protocol);
         if (text) args.push("--text", text);
-        return jsonResult(await runRegistryQuery(args, pythonBin));
+        return jsonCollectionResult("interaction_hypotheses", await runRegistryQuery(args, pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }
@@ -424,7 +453,7 @@ async function buildServer() {
         if (protocol) args.push("--protocol", protocol);
         if (status) args.push("--status", status);
         if (featured) args.push("--featured");
-        return jsonResult(await runRegistryQuery(args, pythonBin));
+        return jsonCollectionResult("protocol_packs", await runRegistryQuery(args, pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }
@@ -519,7 +548,47 @@ async function buildServer() {
         const args = ["research-models"];
         if (ref) args.push(ref);
         if (text) args.push("--text", text);
-        return jsonResult(await runRegistryQuery(args, pythonBin));
+        const payload = await runRegistryQuery(args, pythonBin);
+        if (Array.isArray(payload)) {
+          return jsonCollectionResult("contribution_models", payload);
+        }
+        return jsonResult(payload);
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_research_promotion_policy",
+    {
+      title: "Fetch Research Promotion Policy",
+      description: "Return the staged promotion policy or filter promotion pathways by contribution model, layer, or outcome.",
+      inputSchema: {
+        contribution_model: z.string().optional(),
+        target_layer: z.enum(["house_synthesis", "protocol_library", "research_stream"]).optional(),
+        outcome: z.enum([
+          "mapping_revision",
+          "interaction_hypothesis",
+          "house_inference",
+          "protocol_revision",
+          "comparative_analysis",
+        ]).optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ contribution_model, target_layer, outcome, text }) => {
+      try {
+        const args = ["research-promotion"];
+        if (contribution_model) args.push("--contribution-model", contribution_model);
+        if (target_layer) args.push("--target-layer", target_layer);
+        if (outcome) args.push("--outcome", outcome);
+        if (text) args.push("--text", text);
+        const payload = await runRegistryQuery(args, pythonBin);
+        if (Array.isArray(payload)) {
+          return jsonCollectionResult("promotion_pathways", payload);
+        }
+        return jsonResult(payload);
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }

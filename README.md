@@ -23,7 +23,8 @@ If you are arriving fresh, read these in order:
 6. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
 7. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
 8. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-9. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+9. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+10. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 Those files together explain what the repo is, what layer you are editing, how downstream systems should use it, and what is next.
 
@@ -94,6 +95,7 @@ Key conventions:
 - `protocols/registry.yaml` stores downstream protocol specs such as `ILENS` and `Human Model Card`.
 - `protocol_packs/catalog.yaml` stores curated, stable protocol-pack scopes for repeated downstream use.
 - `research/contribution_models.yaml` stores privacy-minimizing contribution models for future research intake.
+- `research/promotion_registry.yaml` stores the staged promotion policy that governs how research can influence house synthesis or protocol revision.
 - `research/result_atom_schema.yaml` stores the normalized downstream result-atom contract for runtime exchange.
 
 The active, fully populated corpus remains instrument-centered for now. The new top-level directories formalize the next architecture layer without forcing a premature package rename.
@@ -158,6 +160,7 @@ python3 scripts/query_registry.py protocol-packs --featured
 python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack
 python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram
 python3 scripts/query_registry.py protocol-pack-grammar
+python3 scripts/query_registry.py research-promotion
 python3 scripts/query_registry.py result-atom-schema
 python3 scripts/query_registry.py research-models
 npm run mcp:serve
@@ -235,6 +238,7 @@ Generated outputs are written to:
 - `generated/protocol_packs/index.json`: curated protocol-pack catalog for stable downstream retrieval
 - `generated/protocol_packs/*.json`: generated curated protocol-pack artifacts
 - `generated/protocol_pack_grammar.json`: machine-readable grammar for building and validating future protocol packs
+- `generated/research_promotion.json`: machine-readable staged promotion policy for research contributions
 - `generated/registry.json`: full export payload, including house synthesis, protocol, and research registries
 - `mcp-server/`: read-only Node MCP adapter over the Python query surface
 - `site/`: self-contained static documentation site, including browse, audit, search, and comparison pages
@@ -263,6 +267,7 @@ The motif, protocol, and research registries are now available through dedicated
 - `python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack`
 - `python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram`
 - `python3 scripts/query_registry.py protocol-pack-grammar`
+- `python3 scripts/query_registry.py research-promotion`
 - `python3 scripts/query_registry.py techniques "Paradox Scan"`
 - `python3 scripts/query_registry.py result-atom-schema`
 - `python3 scripts/query_registry.py research-models`
@@ -272,6 +277,7 @@ The repo also now exposes a read-only MCP interface for agent-native use:
 - `npm run mcp:serve`
 - [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
 - [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+- [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
 
 ## Deployment
 

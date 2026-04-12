@@ -17,6 +17,7 @@ EXTENSION_FILE_MODELS = {
     "techniques/registry.yaml": "techniques",
     "protocols/registry.yaml": "protocols",
     "protocol_packs/catalog.yaml": "protocol_packs",
+    "research/promotion_registry.yaml": "promotion_registry",
     "research/contribution_models.yaml": "contribution_models",
     "research/result_atom_schema.yaml": "result_atom_schema",
 }
@@ -173,6 +174,50 @@ class ProtocolPacksDocument(StrictModel):
     protocol_packs: list[ProtocolPackSpec]
 
 
+class PromotionStage(StrictModel):
+    id: str
+    name: str
+    summary: str
+    stage_kind: Literal["collection", "aggregation", "review", "promotion", "revision"]
+    entry_criteria: list[str] = Field(default_factory=list)
+    exit_criteria: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class PromotionPathway(StrictModel):
+    id: str
+    contribution_model_id: str
+    target_outcome_type: Literal[
+        "mapping_revision",
+        "interaction_hypothesis",
+        "house_inference",
+        "protocol_revision",
+        "comparative_analysis",
+    ]
+    target_layer: Literal["house_synthesis", "protocol_library", "research_stream"]
+    summary: str
+    stages: list[str] = Field(default_factory=list)
+    evidence_requirements: list[str] = Field(default_factory=list)
+    reviewer_questions: list[str] = Field(default_factory=list)
+    output_artifacts: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class PromotionRegistry(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    summary: str
+    principles: list[str] = Field(default_factory=list)
+    stages: list[PromotionStage] = Field(default_factory=list)
+    promotion_pathways: list[PromotionPathway] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class PromotionRegistryDocument(StrictModel):
+    promotion_registry: PromotionRegistry
+
+
 class ContributionModel(StrictModel):
     id: str
     name: str
@@ -219,6 +264,7 @@ DOCUMENT_MODEL_BY_FILE = {
     "techniques/registry.yaml": TechniquesDocument,
     "protocols/registry.yaml": ProtocolsDocument,
     "protocol_packs/catalog.yaml": ProtocolPacksDocument,
+    "research/promotion_registry.yaml": PromotionRegistryDocument,
     "research/contribution_models.yaml": ContributionModelsDocument,
     "research/result_atom_schema.yaml": ResultAtomSchemaDocument,
 }
@@ -232,6 +278,7 @@ class ExtensionRegistryData:
     techniques: list[Technique]
     protocols: list[Protocol]
     protocol_packs: list[ProtocolPackSpec]
+    promotion_registry: PromotionRegistry
     contribution_models: list[ContributionModel]
     result_atom_schema: ResultAtomSchema
 
@@ -279,6 +326,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
     techniques_doc = documents["techniques/registry.yaml"]
     protocols_doc = documents["protocols/registry.yaml"]
     protocol_packs_doc = documents["protocol_packs/catalog.yaml"]
+    promotion_registry_doc = documents["research/promotion_registry.yaml"]
     contribution_models_doc = documents["research/contribution_models.yaml"]
     result_atom_schema_doc = documents["research/result_atom_schema.yaml"]
 
@@ -289,6 +337,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
         techniques=techniques_doc.techniques,
         protocols=protocols_doc.protocols,
         protocol_packs=protocol_packs_doc.protocol_packs,
+        promotion_registry=promotion_registry_doc.promotion_registry,
         contribution_models=contribution_models_doc.contribution_models,
         result_atom_schema=result_atom_schema_doc.result_atom_schema,
     )

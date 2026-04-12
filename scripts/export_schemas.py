@@ -27,6 +27,7 @@ FILE_NAMES = {
     "techniques/registry.yaml": "technique.schema.yaml",
     "protocols/registry.yaml": "protocol.schema.yaml",
     "protocol_packs/catalog.yaml": "protocol_pack.schema.yaml",
+    "research/promotion_registry.yaml": "research_promotion.schema.yaml",
     "research/contribution_models.yaml": "contribution_model.schema.yaml",
     "research/result_atom_schema.yaml": "result_atom_schema.schema.yaml",
 }

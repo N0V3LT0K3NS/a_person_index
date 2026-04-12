@@ -1,0 +1,162 @@
+$defs:
+  PromotionPathway:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      contribution_model_id:
+        title: Contribution Model Id
+        type: string
+      target_outcome_type:
+        enum:
+        - mapping_revision
+        - interaction_hypothesis
+        - house_inference
+        - protocol_revision
+        - comparative_analysis
+        title: Target Outcome Type
+        type: string
+      target_layer:
+        enum:
+        - house_synthesis
+        - protocol_library
+        - research_stream
+        title: Target Layer
+        type: string
+      summary:
+        title: Summary
+        type: string
+      stages:
+        items:
+          type: string
+        title: Stages
+        type: array
+      evidence_requirements:
+        items:
+          type: string
+        title: Evidence Requirements
+        type: array
+      reviewer_questions:
+        items:
+          type: string
+        title: Reviewer Questions
+        type: array
+      output_artifacts:
+        items:
+          type: string
+        title: Output Artifacts
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - contribution_model_id
+    - target_outcome_type
+    - target_layer
+    - summary
+    title: PromotionPathway
+    type: object
+  PromotionRegistry:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      name:
+        title: Name
+        type: string
+      status:
+        enum:
+        - draft
+        - experimental
+        - active
+        title: Status
+        type: string
+      summary:
+        title: Summary
+        type: string
+      principles:
+        items:
+          type: string
+        title: Principles
+        type: array
+      stages:
+        items:
+          $ref: '#/$defs/PromotionStage'
+        title: Stages
+        type: array
+      promotion_pathways:
+        items:
+          $ref: '#/$defs/PromotionPathway'
+        title: Promotion Pathways
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - name
+    - status
+    - summary
+    title: PromotionRegistry
+    type: object
+  PromotionStage:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      name:
+        title: Name
+        type: string
+      summary:
+        title: Summary
+        type: string
+      stage_kind:
+        enum:
+        - collection
+        - aggregation
+        - review
+        - promotion
+        - revision
+        title: Stage Kind
+        type: string
+      entry_criteria:
+        items:
+          type: string
+        title: Entry Criteria
+        type: array
+      exit_criteria:
+        items:
+          type: string
+        title: Exit Criteria
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - name
+    - summary
+    - stage_kind
+    title: PromotionStage
+    type: object
+additionalProperties: false
+properties:
+  promotion_registry:
+    $ref: '#/$defs/PromotionRegistry'
+required:
+- promotion_registry
+title: PromotionRegistryDocument
+type: object

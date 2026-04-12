@@ -229,6 +229,14 @@ def resolve_contribution_model(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.contribution_models, ref, ("name",))
 
 
+def resolve_promotion_pathway(extensions: ExtensionRegistryData, ref: str):
+    return _resolve_extension_item(
+        extensions.promotion_registry.promotion_pathways,
+        ref,
+        ("summary",),
+    )
+
+
 def resolve_interaction_hypothesis(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.interaction_hypotheses, ref, ("summary",))
 
@@ -971,6 +979,79 @@ def find_contribution_models(
 def contribution_model_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, Any]:
     item = resolve_contribution_model(extensions, ref)
     return {"contribution_model": item.model_dump(mode="json")}
+
+
+def research_promotion_registry_record(extensions: ExtensionRegistryData) -> dict[str, Any]:
+    registry = extensions.promotion_registry.model_dump(mode="json")
+    return {
+        "promotion_registry": registry,
+        "stage_count": len(extensions.promotion_registry.stages),
+        "promotion_pathway_count": len(extensions.promotion_registry.promotion_pathways),
+    }
+
+
+def find_promotion_pathways(
+    extensions: ExtensionRegistryData,
+    *,
+    contribution_model: str | None = None,
+    target_layer: str | None = None,
+    target_outcome_type: str | None = None,
+    text: str | None = None,
+) -> list[dict[str, Any]]:
+    contribution_model_id = (
+        resolve_contribution_model(extensions, contribution_model).id if contribution_model else None
+    )
+    contribution_models_by_id = {
+        item.id: item.name for item in extensions.contribution_models
+    }
+    results: list[dict[str, Any]] = []
+    for pathway in extensions.promotion_registry.promotion_pathways:
+        if contribution_model_id and pathway.contribution_model_id != contribution_model_id:
+            continue
+        if target_layer and pathway.target_layer != target_layer:
+            continue
+        if target_outcome_type and pathway.target_outcome_type != target_outcome_type:
+            continue
+        if text:
+            blob = "\n".join(
+                [
+                    pathway.id,
+                    pathway.contribution_model_id,
+                    contribution_models_by_id.get(pathway.contribution_model_id, ""),
+                    pathway.target_layer,
+                    pathway.target_outcome_type,
+                    pathway.summary,
+                    *pathway.stages,
+                    *pathway.evidence_requirements,
+                    *pathway.reviewer_questions,
+                    *pathway.output_artifacts,
+                ]
+            )
+            if _normalize(text) not in _normalize(blob):
+                continue
+        results.append(
+            {
+                **pathway.model_dump(mode="json"),
+                "contribution_model_name": contribution_models_by_id.get(
+                    pathway.contribution_model_id,
+                    pathway.contribution_model_id,
+                ),
+            }
+        )
+    return sorted(results, key=lambda item: item["id"])
+
+
+def promotion_pathway_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, Any]:
+    pathway = resolve_promotion_pathway(extensions, ref)
+    contribution_model = resolve_contribution_model(extensions, pathway.contribution_model_id)
+    stage_index = {
+        stage.id: stage.model_dump(mode="json") for stage in extensions.promotion_registry.stages
+    }
+    return {
+        "promotion_pathway": pathway.model_dump(mode="json"),
+        "contribution_model": contribution_model.model_dump(mode="json"),
+        "stages": [stage_index[stage_id] for stage_id in pathway.stages if stage_id in stage_index],
+    }
 
 
 def result_atom_schema_record(extensions: ExtensionRegistryData) -> dict[str, Any]:

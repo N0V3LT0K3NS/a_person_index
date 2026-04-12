@@ -22,6 +22,7 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     manifest_data_path = repo_root / "site" / "data" / "manifest.json"
     protocol_pack_grammar_data_path = repo_root / "site" / "data" / "protocol_pack_grammar.json"
     protocol_pack_index_data_path = repo_root / "site" / "data" / "protocol_packs" / "index.json"
+    research_promotion_data_path = repo_root / "site" / "data" / "research_promotion.json"
     instrument_path = repo_root / "site" / "instruments" / "enneagram.html"
     hexaco_path = repo_root / "site" / "instruments" / "hexaco.html"
     compare_path = repo_root / "site" / "comparisons" / "big-five--mbti.html"
@@ -41,6 +42,7 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     assert manifest_data_path.exists()
     assert protocol_pack_grammar_data_path.exists()
     assert protocol_pack_index_data_path.exists()
+    assert research_promotion_data_path.exists()
     assert instrument_path.exists()
     assert hexaco_path.exists()
     assert compare_path.exists()
@@ -75,6 +77,8 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     assert "Curated Protocol Packs" in protocol_packs_html
     assert "Stable, reviewed runtime bundles" in protocol_packs_html
     assert "Research Contribution Models" in research_html
+    assert "Promotion Pathways" in research_html
+    assert "promotion policy" in research_html.lower()
     assert "Result Atom Schema" in research_html
     assert "Resources" in instrument_html
     assert "Crosswalks" in instrument_html

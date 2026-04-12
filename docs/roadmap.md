@@ -39,6 +39,7 @@ Delivered so far:
 - curated protocol-pack catalog and generated pack artifacts
 - read-only MCP adapter over the Python query surface
 - research contribution models
+- research promotion registry
 - result atom schema
 - motif, protocol, interaction, research, and curated-pack query surfaces
 - stronger repo-level onboarding, manifesting, and agent-arrival docs
@@ -55,10 +56,10 @@ Goal:
 - let downstream runtimes and human contributors feed structured, privacy-minimizing evidence back into the repo
 
 Target deliverables:
-- reviewed promotion workflow from contribution models into house synthesis
 - staging distinctions such as anecdotal, aggregated, reviewed, promoted
 - research audit surfaces
 - better distinction between canonical truth, house synthesis, and emerging pattern evidence
+- contributor-side tooling and richer audit surfaces around promotion candidates
 
 ## Phase 4: Agent and Runtime Surfaces
 

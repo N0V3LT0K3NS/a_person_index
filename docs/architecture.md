@@ -14,7 +14,7 @@ It now has four distinct product layers:
    Reusable comparative methods and downstream synthesis protocols such as `ILENS` and `Human Model Card`.
 
 4. Research stream
-   Privacy-minimizing contribution models for collecting mapping feedback, pairwise judgments, result-atom bundles, and distilled observations.
+   Privacy-minimizing contribution models plus a staged promotion registry for collecting mapping feedback, pairwise judgments, result-atom bundles, and distilled observations without collapsing them straight into truth.
 
 ## Why this split matters
 

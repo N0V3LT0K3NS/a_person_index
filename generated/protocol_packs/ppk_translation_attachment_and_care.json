@@ -403,7 +403,7 @@
             "anecdotal",
             "aggregated",
             "reviewed",
-            "promoted_to_house_inference"
+            "promoted_to_house_mapping"
           ],
           "notes": "Best default research input when the goal is to refine construct-to-motif mappings without collecting sensitive life detail.\n"
         },
@@ -425,7 +425,7 @@
             "anecdotal",
             "aggregated",
             "reviewed",
-            "interaction_hypothesis"
+            "promoted_to_interaction_hypothesis"
           ],
           "notes": "Useful for discovering stable tension and reinforcement patterns across systems.\n"
         },
@@ -447,7 +447,7 @@
             "anecdotal",
             "clustered_pattern",
             "reviewed",
-            "house_inference"
+            "promoted_to_house_inference"
           ],
           "notes": "Useful for preserving real-world synthesis insight without over-collecting sensitive detail.\n"
         },
