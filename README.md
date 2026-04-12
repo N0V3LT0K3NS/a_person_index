@@ -165,6 +165,18 @@ The generated static site now exposes the same corpus through:
 - `site/compare.html`: generated comparison index
 - `site/comparisons/*.html`: pairwise comparison pages derived from recorded crosswalks
 
+## Deployment
+
+The repo now includes a Netlify deployment workflow at `.github/workflows/netlify-deploy.yml`.
+
+- Pushes to `main` deploy `site/` to Netlify production.
+- Pushes to `codex/**` branches deploy preview builds to Netlify.
+- To enable it, add GitHub repository secrets:
+- `NETLIFY_AUTH_TOKEN`
+- `NETLIFY_SITE_ID`
+
+The current Netlify site ID is `cc79449d-0efc-4029-9733-0f0039a37bf4`.
+
 Examples:
 
 ```bash
