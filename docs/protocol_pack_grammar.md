@@ -150,9 +150,9 @@ For curated pack lifecycle, maintenance, and source catalog rules, also see:
 ## Example commands
 
 ```bash
-python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram
-python3 scripts/query_registry.py protocol-pack "Translation Memo" --framework "Human Design" --framework "Natal Astrology"
-python3 scripts/query_registry.py protocol-pack-grammar
+python3 scripts/query_registry.py program-pack ILENS --framework MBTI --framework Enneagram
+python3 scripts/query_registry.py program-pack "Translation Memo" --framework "Human Design" --framework "Natal Astrology"
+python3 scripts/query_registry.py program-pack-grammar
 ```
 
 ## Future authoring rule

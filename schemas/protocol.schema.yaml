@@ -15,6 +15,15 @@ $defs:
         - active
         title: Status
         type: string
+      program_kind:
+        enum:
+        - micro_program
+        - translation_program
+        - synthesis_program
+        - artifact_program
+        - research_program
+        title: Program Kind
+        type: string
       purpose:
         title: Purpose
         type: string
@@ -41,6 +50,11 @@ $defs:
           type: string
         title: Technique Ids
         type: array
+      component_program_ids:
+        items:
+          type: string
+        title: Component Program Ids
+        type: array
       primary_outputs:
         items:
           type: string
@@ -56,6 +70,7 @@ $defs:
     - id
     - name
     - status
+    - program_kind
     - purpose
     - summary
     title: Protocol

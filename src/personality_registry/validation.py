@@ -337,14 +337,24 @@ def collect_validation_errors(root: Path) -> list[str]:
                         f"is a {target_entity[0]}, not a {target_type}"
                     )
 
+        protocol_ids = {protocol.id for protocol in extensions.protocols}
         for protocol in extensions.protocols:
             for technique_id in protocol.technique_ids:
                 if technique_id not in technique_ids:
                     errors.append(
                         f"protocols/registry.yaml: protocol '{protocol.id}' references missing technique '{technique_id}'"
                     )
+            for component_program_id in protocol.component_program_ids:
+                if component_program_id == protocol.id:
+                    errors.append(
+                        f"protocols/registry.yaml: protocol '{protocol.id}' cannot compose itself as a component program"
+                    )
+                elif component_program_id not in protocol_ids:
+                    errors.append(
+                        f"protocols/registry.yaml: protocol '{protocol.id}' references missing component program "
+                        f"'{component_program_id}'"
+                    )
 
-        protocol_ids = {protocol.id for protocol in extensions.protocols}
         contribution_model_ids = {item.id for item in extensions.contribution_models}
         stage_ids = [stage.id for stage in extensions.promotion_registry.stages]
         stage_id_set = set(stage_ids)

@@ -131,12 +131,20 @@ class Protocol(StrictModel):
     id: str
     name: str
     status: Literal["draft", "experimental", "active"]
+    program_kind: Literal[
+        "micro_program",
+        "translation_program",
+        "synthesis_program",
+        "artifact_program",
+        "research_program",
+    ]
     purpose: str
     summary: str
     downstream_consumers: list[str] = Field(default_factory=list)
     required_inputs: list[str] = Field(default_factory=list)
     optional_inputs: list[str] = Field(default_factory=list)
     technique_ids: list[str] = Field(default_factory=list)
+    component_program_ids: list[str] = Field(default_factory=list)
     primary_outputs: list[str] = Field(default_factory=list)
     notes: Optional[str] = None
 

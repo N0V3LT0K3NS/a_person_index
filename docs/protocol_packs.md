@@ -1,6 +1,6 @@
 # Curated Protocol Packs
 
-This document defines the curated protocol-pack layer.
+This document defines the curated protocol-pack layer for A Person Index.
 
 ## What it is
 
@@ -12,7 +12,7 @@ Curated protocol packs are stable, reviewed runtime bundles built from:
 - scoped framework or construct targets
 - generated motif traces, mappings, and interaction hypotheses
 
-They sit between raw protocol specs and fully ad hoc downstream assembly.
+They sit between raw index program specs and fully ad hoc downstream assembly.
 
 ## Why they exist
 
@@ -78,6 +78,16 @@ Use curated packs when:
 - the scope is reviewed and intentionally named
 - another agent should be able to discover and trust it on arrival
 
+## Relationship to index programs
+
+Within A Person Index:
+
+- techniques are the smallest reusable operations
+- index programs are the named composed analyses
+- curated packs are the runtime-ready scoped bundles
+
+That is why this layer exists. It is the bridge from reusable method to repeated execution.
+
 ## Maintenance rules
 
 - Keep the protocol authoritative for purpose, inputs, and primary outputs.
@@ -90,10 +100,10 @@ Use curated packs when:
 ## Common commands
 
 ```bash
-python3 scripts/query_registry.py protocol-packs
-python3 scripts/query_registry.py protocol-packs --featured
-python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack
-python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram
+python3 scripts/query_registry.py program-packs
+python3 scripts/query_registry.py program-packs --featured
+python3 scripts/query_registry.py program-packs ppk_ilens_core_trait_motive_stack
+python3 scripts/query_registry.py program-pack ILENS --framework MBTI --framework Enneagram
 ```
 
 ## Relationship to MCP

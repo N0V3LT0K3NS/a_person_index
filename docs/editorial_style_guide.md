@@ -8,7 +8,7 @@ This registry is not a marketing site and not a fandom wiki. The writing standar
 - State what the system is before stating whether it is useful.
 - Keep source claims, ontology labels, and house inferences clearly separated.
 - Treat weak-evidence but culturally important systems seriously without pretending they are stronger than they are.
-- Keep canonical registry content, house synthesis content, protocol specs, and research intake language clearly separated.
+- Keep canonical registry content, house synthesis content, index program specs, and research intake language clearly separated.
 
 ## Notes template
 

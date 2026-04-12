@@ -22,7 +22,7 @@ if (transport.stderr) {
 }
 
 const client = new Client({
-  name: "personality-registry-smoke-test",
+  name: "a-person-index-smoke-test",
   version: "0.1.0",
 });
 
@@ -40,7 +40,8 @@ if (!tools.tools.some((tool) => tool.name === "fetch_research_promotion_policy")
 }
 
 const manifest = await client.readResource({ uri: "registry://manifest" });
-if (!manifest.contents?.[0]?.text?.includes("personality-instrument-registry")) {
+const manifestPayload = JSON.parse(manifest.contents?.[0]?.text ?? "{}");
+if (manifestPayload.repository?.name !== "a-person-index") {
   throw new Error("Expected registry manifest content.");
 }
 

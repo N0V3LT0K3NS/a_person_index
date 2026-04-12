@@ -4,7 +4,7 @@ This document compresses what the repository currently is, what is complete, and
 
 ## One-line status
 
-The repo is now a working personhood-framework registry plus a first house synthesis, protocol, and research substrate.
+The repo is now A Person Index: a working personhood-framework index plus a first house synthesis, technique, program, pack, and research substrate.
 
 ## Current shipped scope
 
@@ -15,7 +15,7 @@ As of the current branch state, the repo includes:
 - 16 construct or instrument mappings into motifs
 - 7 interaction hypotheses
 - 6 reusable techniques
-- 3 protocol specs
+- 4 index program specs
 - 4 curated protocol packs
 - 5 research contribution models
 - 5 research promotion pathways
@@ -37,11 +37,11 @@ As of the current branch state, the repo includes:
 - First interaction-hypothesis layer
 - Query surfaces for motif tracing and interaction lookup
 
-### Technique and protocol library
+### Technique library and index programs
 
 - Techniques are first-class records rather than scattered prompt fragments
-- Protocols such as `ILENS`, `Human Model Card`, and `Translation Memo` are explicitly modeled as consumers of the registry
-- Protocol packs are now a callable runtime bundle shape rather than an implicit orchestration task left to downstream agents
+- Index programs such as `Paradox Finder`, `ILENS`, `Human Model Card`, and `Translation Memo` are explicitly modeled as consumers of the index
+- Runtime packs are now a callable bundle shape rather than an implicit orchestration task left to downstream agents
 - Curated protocol packs now have a source catalog, generated artifacts, and stable discovery surfaces for downstream agents
 
 ### Research stream
@@ -73,7 +73,7 @@ Right now the repo is most useful as:
 
 1. a canonical registry of personhood systems
 2. a comparative translation substrate
-3. a protocol/spec and curated-pack library for downstream runtimes
+3. a technique, index-program, and curated-pack library for downstream runtimes
 4. a research intake contract for privacy-minimizing return traffic
 
 ## Immediate next work

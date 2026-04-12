@@ -105,17 +105,17 @@ async function runRegistryQuery(args, pythonBin) {
 async function buildServer() {
   const pythonBin = await resolvePythonBin();
   const server = new McpServer({
-    name: "personality-instrument-registry",
+    name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, protocol packs, result atom schema, and research contribution models from the Personality Instrument Registry. Keep canonical data, house synthesis, protocols, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, and research contribution models from A Person Index. Keep canonical data, house synthesis, index programs, and research evidence clearly separated.",
   });
 
   server.registerResource(
     "manifest",
     "registry://manifest",
     {
-      title: "Registry Manifest",
+      title: "A Person Index Manifest",
       description: "Machine-readable onboarding and service-primitives manifest.",
       mimeType: "application/json",
     },
@@ -152,7 +152,7 @@ async function buildServer() {
     "registry://roadmap",
     {
       title: "Roadmap",
-      description: "Phase and direction document for the registry.",
+      description: "Phase and direction document for A Person Index.",
       mimeType: "text/markdown",
     },
     async (uri) => ({
@@ -187,7 +187,7 @@ async function buildServer() {
     "protocol-packs",
     "registry://protocol-packs",
     {
-      title: "Protocol Pack Catalog",
+      title: "Program Pack Catalog",
       description: "Curated protocol-pack catalog and summary index.",
       mimeType: "application/json",
     },
@@ -223,7 +223,7 @@ async function buildServer() {
     "protocol-pack-grammar",
     "registry://protocol-pack-grammar",
     {
-      title: "Protocol Pack Grammar",
+      title: "Program Pack Grammar",
       description: "Canonical grammar for generated protocol packs.",
       mimeType: "application/json",
     },
@@ -258,7 +258,7 @@ async function buildServer() {
   server.registerPrompt(
     "registry-arrival",
     {
-      title: "Registry Arrival",
+      title: "A Person Index Arrival",
       description: "Orient a newly arrived agent to the repo, layers, and safe starting surfaces.",
     },
     async () => ({

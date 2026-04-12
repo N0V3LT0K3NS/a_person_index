@@ -1,6 +1,6 @@
 # GNOMY Integration
 
-`GNOMY` should treat this repository as a knowledge and protocol substrate, not as a place to recreate local inference logic from scratch.
+`GNOMY` should treat A Person Index as a knowledge, technique, and index-program substrate, not as a place to recreate local inference logic from scratch.
 
 `GNOMY` is a lead consumer of this repo, not the only intended consumer.
 
@@ -21,7 +21,7 @@ Arrival references:
 - motif mappings
 - interaction hypotheses
 - techniques
-- protocol specs
+- index program specs
 - research contribution models
 - result atom schema
 - research promotion policy
@@ -35,11 +35,11 @@ python3 scripts/query_registry.py find --related-to MBTI
 python3 scripts/query_registry.py trace MBTI
 python3 scripts/query_registry.py motifs --related-to "Attachment Style Frameworks"
 python3 scripts/query_registry.py interactions --related-to "Attachment Style Frameworks"
-python3 scripts/query_registry.py protocols ILENS
-python3 scripts/query_registry.py protocol-packs --featured
-python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack
-python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram
-python3 scripts/query_registry.py protocol-pack-grammar
+python3 scripts/query_registry.py programs ILENS
+python3 scripts/query_registry.py program-packs --featured
+python3 scripts/query_registry.py program-packs ppk_ilens_core_trait_motive_stack
+python3 scripts/query_registry.py program-pack ILENS --framework MBTI --framework Enneagram
+python3 scripts/query_registry.py program-pack-grammar
 python3 scripts/query_registry.py research-promotion
 python3 scripts/query_registry.py techniques "Paradox Scan"
 python3 scripts/query_registry.py result-atom-schema
@@ -52,7 +52,7 @@ npm run mcp:serve
 GNOMY should generally:
 
 1. connect to the MCP server or fall back to the local CLI
-2. fetch a protocol pack when a downstream task already has a known protocol and target scope
+2. fetch a program pack when a downstream task already has a known program and target scope
 3. normalize local outputs into the result atom schema when working below the whole-test level
 4. perform downstream person-level synthesis locally
 5. send back only normalized or distilled research contributions when useful

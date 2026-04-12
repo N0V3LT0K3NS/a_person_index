@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "personality-instrument-registry"
+name = "a-person-index"
 version = "0.1.0"
-description = "Git-native knowledge substrate for personhood frameworks, synthesis motifs, and protocol specs."
+description = "Git-native comparative substrate for personhood frameworks, synthesis motifs, and index programs."
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [

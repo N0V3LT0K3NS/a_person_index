@@ -1,6 +1,6 @@
 # Agent Guide
 
-This repository is an agent-readable knowledge substrate for personhood frameworks.
+This repository is A Person Index (API), an agent-readable knowledge substrate for personhood frameworks.
 
 If you are arriving cold, start here in this order:
 
@@ -8,26 +8,29 @@ If you are arriving cold, start here in this order:
 2. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
 3. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
 4. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
-5. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
-6. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
-7. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-8. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-9. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-10. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-11. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-12. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+5. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
+6. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+7. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
+8. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+9. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+10. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+11. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+12. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+13. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 ## What this repo is
 
-The repo has four distinct product layers:
+The repo has five distinct product layers:
 
 1. Canonical registry
    Source-faithful framework records, currently centered on instruments.
 2. House synthesis substrate
    Motifs, construct mappings, and interaction hypotheses.
-3. Technique and protocol library
-   Reusable methods plus downstream protocols such as `ILENS`.
-4. Research stream
+3. Technique library
+   Atomic reusable operations such as `Paradox Scan`.
+4. Index programs and runtime packs
+   Composed programs such as `Paradox Finder`, `ILENS`, and `Human Model Card`, plus scoped packs for downstream runtimes.
+5. Research stream
    Privacy-minimizing contribution models, promotion policy, and the result atom schema.
 
 Do not collapse those layers into one.
@@ -43,7 +46,7 @@ Canonical sources:
 - [mappings/construct_to_motif.yaml](/Users/noveltokens/a_person_index/mappings/construct_to_motif.yaml)
 - [interactions/registry.yaml](/Users/noveltokens/a_person_index/interactions/registry.yaml)
 - [techniques/registry.yaml](/Users/noveltokens/a_person_index/techniques/registry.yaml)
-- [protocols/registry.yaml](/Users/noveltokens/a_person_index/protocols/registry.yaml)
+- [protocols/registry.yaml](/Users/noveltokens/a_person_index/protocols/registry.yaml) for index program specs
 - [protocol_packs/catalog.yaml](/Users/noveltokens/a_person_index/protocol_packs/catalog.yaml)
 - [research/contribution_models.yaml](/Users/noveltokens/a_person_index/research/contribution_models.yaml)
 - [research/promotion_registry.yaml](/Users/noveltokens/a_person_index/research/promotion_registry.yaml)
@@ -58,7 +61,7 @@ Do not manually edit:
 
 - Keep source claims, ontology annotations, and house inferences separate.
 - Treat motifs, mappings, and interaction hypotheses as house synthesis, not source truth.
-- Treat protocols as downstream consumers of the map, not the map itself.
+- Treat index programs as downstream consumers of the map, not the map itself.
 - Treat research contributions as staged evidence, not immediate canonical fact.
 - Do not put raw user chats or personal corpora into canonical framework records.
 
@@ -84,11 +87,11 @@ python3 scripts/query_registry.py compare MBTI Enneagram
 python3 scripts/query_registry.py trace MBTI
 python3 scripts/query_registry.py motifs --related-to MBTI
 python3 scripts/query_registry.py interactions --related-to "Attachment Style Frameworks"
-python3 scripts/query_registry.py protocols ILENS
-python3 scripts/query_registry.py protocol-packs --featured
-python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack
-python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram
-python3 scripts/query_registry.py protocol-pack-grammar
+python3 scripts/query_registry.py programs ILENS
+python3 scripts/query_registry.py program-packs --featured
+python3 scripts/query_registry.py program-packs ppk_ilens_core_trait_motive_stack
+python3 scripts/query_registry.py program-pack ILENS --framework MBTI --framework Enneagram
+python3 scripts/query_registry.py program-pack-grammar
 python3 scripts/query_registry.py research-promotion
 python3 scripts/query_registry.py techniques "Paradox Scan"
 python3 scripts/query_registry.py result-atom-schema
@@ -109,7 +112,7 @@ It should provide:
 - motifs and construct mappings
 - interaction hypotheses
 - reusable techniques
-- protocol specs
+- index program specs
 - research contribution models
 - the result atom schema
 

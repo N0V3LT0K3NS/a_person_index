@@ -65,15 +65,15 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     assert "Product Layers" in index_html
     assert "House Synthesis" in index_html
     assert "Browse motifs" in index_html
-    assert "Registry Audit" in audit_html
+    assert "Index Audit" in audit_html
     assert "With 2+ claims" in audit_html
     assert "<th>Claims</th>" in audit_html
-    assert "Registry Search" in search_html
+    assert "Index Search" in search_html
     assert 'fetch("data/search.json")' in search_html
     assert "Comparison Index" in compare_index_html
     assert "House Motifs" in motifs_html
     assert "Interaction Hypotheses" in interactions_html
-    assert "Protocol Library" in protocols_html
+    assert "Index Programs" in protocols_html
     assert "Curated Protocol Packs" in protocol_packs_html
     assert "Stable, reviewed runtime bundles" in protocol_packs_html
     assert "Research Contribution Models" in research_html

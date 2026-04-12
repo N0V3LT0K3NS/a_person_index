@@ -1,6 +1,6 @@
 {
   "id": "protocol_pack_grammar_v0_1",
-  "summary": "Canonical grammar for assembling downstream protocol packs from registry primitives.",
+  "summary": "Canonical grammar for assembling downstream program packs from A Person Index primitives.",
   "required_sections": [
     {
       "section": "pack",
@@ -20,6 +20,7 @@
       "required_keys": [
         "id",
         "name",
+        "program_kind",
         "purpose",
         "summary",
         "required_inputs",
@@ -92,6 +93,7 @@
   "construction_rules": [
     "A protocol pack is assembled from existing protocol, technique, mapping, interaction, and research records rather than authored as source truth.",
     "Keep the protocol record authoritative for purpose, inputs, optional inputs, and primary outputs.",
+    "Treat protocols as index programs: they compose techniques and may compose smaller programs when the analysis warrants it.",
     "Scope the pack to explicit target frameworks or constructs when possible.",
     "Derive motifs through trace and mapping logic instead of manual motif selection.",
     "Filter interaction hypotheses by both target scope and protocol relevance.",

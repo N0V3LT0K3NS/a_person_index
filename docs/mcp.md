@@ -1,6 +1,6 @@
 # MCP Interface
 
-This repository now exposes a read-only MCP adapter for agent-native access.
+A Person Index now exposes a read-only MCP adapter for agent-native access.
 
 ## Why it exists
 
@@ -82,6 +82,12 @@ Do not:
 - reimplement registry logic in Node
 - mutate canonical records through MCP
 - let MCP responses drift from CLI semantics
+
+## Product-language note
+
+The MCP surface still uses a `registry://` URI scheme for compatibility.
+
+That scheme names the access surface, not the entire product. The product is A Person Index. Within it, the canonical registry remains one important layer.
 
 ## Versioning and constraints
 

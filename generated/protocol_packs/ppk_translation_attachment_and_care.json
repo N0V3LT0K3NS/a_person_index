@@ -43,8 +43,9 @@
       "id": "proto_translation_memo",
       "name": "Translation Memo",
       "status": "active",
+      "program_kind": "translation_program",
       "purpose": "Generate an evidence-aware memo about overlap, divergence, and incommensurability between selected frameworks or constructs.\n",
-      "summary": "A compact comparative protocol for agents that need to explain how two or more systems connect without forcing a single unified language.\n",
+      "summary": "A compact comparative program for agents that need to explain how two or more systems connect without forcing a single unified language.\n",
       "downstream_consumers": [
         "GNOMY",
         "curation agents",
@@ -63,6 +64,7 @@
         "tech_cross_framework_translation",
         "tech_symbolic_vs_empirical_bracketing"
       ],
+      "component_program_ids": [],
       "primary_outputs": [
         "overlap memo",
         "mismatch warnings",
@@ -124,6 +126,7 @@
         "notes": null
       }
     ],
+    "component_programs": [],
     "targets": [
       {
         "entity_type": "instrument",

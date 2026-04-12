@@ -4,7 +4,7 @@ This roadmap codifies where the repository has come from, where it is now, and w
 
 ## North star
 
-Build a Git-native, agent-readable comparative atlas of personhood frameworks, then use that atlas to support translation, synthesis protocols, and eventually research-backed understanding of recurring circuitry across systems.
+Build A Person Index: a Git-native, agent-readable comparative atlas of personhood frameworks that supports translation, composable analysis programs, and eventually research-backed understanding of recurring circuitry across systems.
 
 ## Phase 1: Canonical Registry
 
@@ -34,7 +34,7 @@ Delivered so far:
 - construct-to-motif mappings
 - interaction hypotheses
 - technique registry
-- protocol registry
+- first index programs in the protocol registry
 - protocol-pack query surface and grammar
 - curated protocol-pack catalog and generated pack artifacts
 - read-only MCP adapter over the Python query surface
@@ -53,7 +53,7 @@ Goal:
 
 Target deliverables:
 - stable consumer contract across MCP, CLI, manifest, and generated artifacts
-- successful `GNOMY` use of protocol packs, result atoms, motifs, and interaction hypotheses
+- successful `GNOMY` use of index programs, program packs, result atoms, motifs, and interaction hypotheses
 - contract hardening based on real runtime pressure
 - richer protocol-pack coverage where repeated use justifies it
 - cleaner merge of the widened repo identity into `main`

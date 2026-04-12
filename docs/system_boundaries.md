@@ -24,7 +24,7 @@ This repo owns:
 - ontology annotations
 - house motifs, mappings, and interaction hypotheses
 - comparative techniques
-- downstream protocol specs
+- downstream index program specs
 - curated protocol packs
 - research contribution schemas
 - research promotion policy
@@ -52,7 +52,7 @@ Those are adjacent systems, not this repository.
 - intake of user evidence
 - local person-level synthesis
 - report generation
-- protocol execution on real people
+- protocol execution on real people using techniques, programs, and packs supplied by this repo
 - adaptation to context, history, and interaction
 
 `GNOMY` should call this repo for:

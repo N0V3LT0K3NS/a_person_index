@@ -1,7 +1,7 @@
-# Protocols
+# Index Programs
 
-This directory stores downstream protocol specs.
+This directory stores downstream index program specs.
 
-Protocols consume the canonical registry, motifs, mappings, and techniques to support applied synthesis systems such as `ILENS` or `Human Model Card`.
+Index programs consume the canonical registry, motifs, mappings, and techniques to support applied synthesis systems such as `Paradox Finder`, `ILENS`, or `Human Model Card`.
 
-Protocols are not the ontology itself.
+They are not the ontology itself.

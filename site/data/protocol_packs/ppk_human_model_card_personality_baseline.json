@@ -48,8 +48,9 @@
       "id": "proto_human_model_card",
       "name": "Human Model Card",
       "status": "experimental",
+      "program_kind": "artifact_program",
       "purpose": "Produce a formal, evidence-stratified report that models a person as an evolving cognitive-behavioral system rather than as a flattering type label.\n",
-      "summary": "A report protocol that uses model-card language to organize personhood evidence, contradictions, deployment conditions, and failure modes.\n",
+      "summary": "A report program that uses model-card language to organize personhood evidence, contradictions, deployment conditions, and failure modes.\n",
       "downstream_consumers": [
         "GNOMY",
         "analyst agents",
@@ -70,12 +71,15 @@
         "tech_contradiction_preservation",
         "tech_stable_vs_adaptive_split"
       ],
+      "component_program_ids": [
+        "proto_paradox_finder"
+      ],
       "primary_outputs": [
         "human model card artifact",
         "deployment guidance",
         "caveats and known unknowns"
       ],
-      "notes": "This protocol belongs to the applied synthesis layer. It should not be mistaken for canonical framework data.\n"
+      "notes": "This index program belongs to the applied synthesis layer. It should not be mistaken for canonical framework data.\n"
     },
     "techniques": [
       {
@@ -153,6 +157,43 @@
           "Do not claim essence when the evidence is situational."
         ],
         "notes": null
+      }
+    ],
+    "component_programs": [
+      {
+        "id": "proto_paradox_finder",
+        "name": "Paradox Finder",
+        "status": "active",
+        "program_kind": "micro_program",
+        "purpose": "Surface load-bearing contradictions, layer mismatches, and unresolved tensions across frameworks, constructs, motifs, or result atoms without averaging them away.\n",
+        "summary": "A compact index program that packages paradox scanning and contradiction preservation into a reusable analysis pass. It can stand alone or serve as a component program inside larger synthesis workflows.\n",
+        "downstream_consumers": [
+          "GNOMY",
+          "synthesis agents",
+          "curation agents"
+        ],
+        "required_inputs": [
+          "result atoms or comparable comparative signals",
+          "construct mappings",
+          "motif traces or comparison outputs"
+        ],
+        "optional_inputs": [
+          "behavioral observations",
+          "longitudinal notes",
+          "house interaction hypotheses"
+        ],
+        "technique_ids": [
+          "tech_paradox_scan",
+          "tech_contradiction_preservation",
+          "tech_stable_vs_adaptive_split"
+        ],
+        "component_program_ids": [],
+        "primary_outputs": [
+          "paradox candidate memo",
+          "tension map",
+          "unresolved contradiction notes"
+        ],
+        "notes": "Useful both as a standalone analysis program and as a reusable component inside larger synthesis programs such as ILENS or Human Model Card.\n"
       }
     ],
     "targets": [

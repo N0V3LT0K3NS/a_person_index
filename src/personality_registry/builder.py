@@ -110,11 +110,13 @@ def _layer_card(title: str, count: int, noun: str, description: str) -> str:
 def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
     return {
         "repository": {
-            "name": "personality-instrument-registry",
+            "name": "a-person-index",
+            "title": "A Person Index (API)",
             "version": "0.1.0",
             "status": "active",
             "current_phase": "phase_3_downstream_consumer_integration",
             "canonical_domain": "instrument_centered_framework_registry",
+            "internal_python_package": "personality_registry",
         },
         "product_layers": {
             "canonical_registry": {
@@ -129,6 +131,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "technique_count": len(extensions.techniques),
                 "protocol_count": len(extensions.protocols),
                 "protocol_pack_count": len(extensions.protocol_packs),
+                "public_label": "index_programs",
             },
             "research_stream": {
                 "contribution_model_count": len(extensions.contribution_models),
@@ -137,12 +140,37 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "result_atom_schema_id": extensions.result_atom_schema.id,
             },
         },
+        "composition_model": {
+            "summary": (
+                "A Person Index composes atomic techniques into index programs and then hydrates "
+                "those programs into scoped runtime packs."
+            ),
+            "techniques": {
+                "count": len(extensions.techniques),
+                "source_path": "techniques/registry.yaml",
+                "role": "smallest reusable comparative operations",
+                "examples": ["tech_paradox_scan", "tech_cross_framework_translation"],
+            },
+            "index_programs": {
+                "count": len(extensions.protocols),
+                "source_path": "protocols/registry.yaml",
+                "role": "composed analysis or synthesis programs built from techniques",
+                "examples": ["proto_paradox_finder", "proto_translation_memo", "proto_ilens"],
+            },
+            "runtime_packs": {
+                "count": len(extensions.protocol_packs),
+                "source_path": "protocol_packs/catalog.yaml",
+                "role": "scoped bundles that hydrate a program with motifs, mappings, interactions, and return contracts",
+                "examples": ["ppk_ilens_core_trait_motive_stack"],
+            },
+        },
         "start_here": [
             "AGENTS.md",
             "README.md",
             "docs/current_state.md",
             "docs/roadmap.md",
             "docs/architecture.md",
+            "docs/index_programs.md",
             "docs/gnomy_integration.md",
             "docs/mcp.md",
             "docs/protocol_pack_grammar.md",
@@ -224,28 +252,28 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             },
             {
                 "id": "fetch_protocol_spec",
-                "command": "python3 scripts/query_registry.py protocols ILENS",
-                "purpose": "Return protocol specs and required techniques.",
+                "command": "python3 scripts/query_registry.py programs ILENS",
+                "purpose": "Return an index program spec, its techniques, and any component programs.",
             },
             {
                 "id": "list_protocol_packs",
-                "command": "python3 scripts/query_registry.py protocol-packs --featured",
-                "purpose": "List curated protocol packs intended for stable downstream use.",
+                "command": "python3 scripts/query_registry.py program-packs --featured",
+                "purpose": "List curated runtime packs intended for stable downstream use.",
             },
             {
                 "id": "fetch_curated_protocol_pack",
-                "command": "python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack",
-                "purpose": "Return a curated protocol-pack catalog entry plus its generated runtime bundle.",
+                "command": "python3 scripts/query_registry.py program-packs ppk_ilens_core_trait_motive_stack",
+                "purpose": "Return a curated runtime pack catalog entry plus its generated bundle.",
             },
             {
                 "id": "fetch_protocol_pack",
-                "command": "python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram",
-                "purpose": "Return a downstream-ready bundle of protocol, techniques, motifs, mappings, interactions, and return models.",
+                "command": "python3 scripts/query_registry.py program-pack ILENS --framework MBTI --framework Enneagram",
+                "purpose": "Return a downstream-ready bundle of program, techniques, component programs, motifs, mappings, interactions, and return models.",
             },
             {
                 "id": "fetch_protocol_pack_grammar",
-                "command": "python3 scripts/query_registry.py protocol-pack-grammar",
-                "purpose": "Return the canonical grammar for assembling future protocol packs.",
+                "command": "python3 scripts/query_registry.py program-pack-grammar",
+                "purpose": "Return the canonical grammar for assembling future runtime packs.",
             },
             {
                 "id": "fetch_result_atom_schema",
@@ -384,12 +412,12 @@ def _extension_card(
 
 def _nav_html(prefix: str, current: str) -> str:
     links = [
-        ("index.html", "registry", "Registry"),
+        ("index.html", "registry", "Index"),
         ("search.html", "search", "Search"),
         ("compare.html", "compare", "Compare"),
         ("motifs.html", "motifs", "Motifs"),
         ("interactions.html", "interactions", "Interactions"),
-        ("protocols.html", "protocols", "Protocols"),
+        ("protocols.html", "protocols", "Programs"),
         ("protocol-packs.html", "protocol-packs", "Packs"),
         ("research.html", "research", "Research"),
         ("audit.html", "audit", "Audit"),
@@ -568,7 +596,7 @@ def _bundle_html(bundle: InstrumentBundle, entity_refs: dict[str, dict[str, str]
         <h1>{escape(bundle.instrument.canonical_name)}</h1>
         <p class="page-lead">{escape(bundle.instrument.short_description)}</p>
         <div class="action-row">
-          <a class="action-link" href="../index.html">Browse registry</a>
+          <a class="action-link" href="../index.html">Browse index</a>
           <a class="action-link" href="../search.html">Search records</a>
           <a class="action-link" href="../compare.html">Compare systems</a>
         </div>
@@ -643,14 +671,14 @@ def _audit_html(audit_entries: list[dict], summary: dict) -> str:
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Registry Audit</title>
+    <title>A Person Index Audit</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main>
       {_nav_html("", "audit")}
       <section class="hero-panel">
-        <p class="eyebrow">Registry Audit</p>
+        <p class="eyebrow">Index Audit</p>
         <h1>Coverage Snapshot</h1>
         <p class="page-lead">Structural and curation coverage for the shipped seed corpus.</p>
       </section>
@@ -1003,12 +1031,16 @@ def _protocols_html(extensions: ExtensionRegistryData) -> str:
     technique_usage = _protocol_usage_by_technique(extensions)
     protocol_cards = "\n".join(
         _extension_card(
-            eyebrow="Protocol",
+            eyebrow="Index Program",
             title=protocol.name,
             body=protocol.summary,
-            tags=[protocol.status, *protocol.downstream_consumers],
+            tags=[protocol.program_kind, protocol.status, *protocol.downstream_consumers],
             anchor=protocol.id,
-            meta=f"{len(protocol.technique_ids)} techniques | {len(protocol.required_inputs)} required inputs",
+            meta=(
+                f"{len(protocol.technique_ids)} techniques | "
+                f"{len(protocol.component_program_ids)} component programs | "
+                f"{len(protocol.required_inputs)} required inputs"
+            ),
         )
         for protocol in sorted(extensions.protocols, key=lambda item: item.name.lower())
     )
@@ -1027,23 +1059,23 @@ def _protocols_html(extensions: ExtensionRegistryData) -> str:
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Protocol Library</title>
+    <title>Index Programs</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main>
       {_nav_html("", "protocols")}
       <section class="hero-panel">
-        <p class="eyebrow">Protocol Layer</p>
-        <h1>Protocol Library</h1>
-        <p class="page-lead">Downstream protocol specs and reusable techniques for systems like ILENS, Human Model Card, and other synthesis workflows.</p>
+        <p class="eyebrow">Composable Analysis Layer</p>
+        <h1>Index Programs</h1>
+        <p class="page-lead">Reusable techniques plus composed index programs for systems like ILENS, Human Model Card, Translation Memo, and smaller lego tools such as Paradox Finder.</p>
       </section>
       <section class="stats">
-        <article class="stat-card"><strong>{len(extensions.protocols)}</strong> protocols</article>
+        <article class="stat-card"><strong>{len(extensions.protocols)}</strong> programs</article>
         <article class="stat-card"><strong>{len(extensions.techniques)}</strong> techniques</article>
       </section>
       <section>
-        <h2>Protocols</h2>
+        <h2>Index Programs</h2>
         <div class="card-grid">{protocol_cards}</div>
       </section>
       <section>
@@ -1052,7 +1084,7 @@ def _protocols_html(extensions: ExtensionRegistryData) -> str:
       </section>
       <section class="hero-panel">
         <p class="eyebrow">Curated Runtime Bundles</p>
-        <h2>Protocol packs</h2>
+        <h2>Program packs</h2>
         <p class="page-lead">Use curated packs when a downstream task should start from a stable, reviewed bundle rather than assembling scope ad hoc.</p>
         <div class="action-row">
           <a class="action-link" href="protocol-packs.html">Browse curated packs</a>
@@ -1093,7 +1125,7 @@ def _protocol_packs_html(repository, extensions: ExtensionRegistryData) -> str:
       <section class="hero-panel">
         <p class="eyebrow">Protocol Packs</p>
         <h1>Curated Protocol Packs</h1>
-        <p class="page-lead">Stable, reviewed runtime bundles generated from cataloged scopes, protocol specs, technique bundles, motif traces, mappings, and interaction hypotheses.</p>
+        <p class="page-lead">Stable, reviewed runtime bundles generated from cataloged scopes, index program specs, technique bundles, motif traces, mappings, and interaction hypotheses.</p>
       </section>
       <section class="stats">
         <article class="stat-card"><strong>{len(extensions.protocol_packs)}</strong> curated packs</article>
@@ -1333,14 +1365,14 @@ def _search_html() -> str:
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Registry Search</title>
+    <title>A Person Index Search</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main>
       __NAV__
       <section class="hero-panel">
-        <p class="eyebrow">Registry Search</p>
+        <p class="eyebrow">Index Search</p>
         <h1>Find instruments by name, alias, ontology, or notes</h1>
         <p class="page-lead">Client-side search across the current canonical corpus. Motifs, protocols, and research models have dedicated pages and CLI surfaces.</p>
       </section>
@@ -1357,7 +1389,7 @@ def _search_html() -> str:
             </select>
           </label>
         </div>
-        <p id="search-meta" class="muted">Loading registry data…</p>
+        <p id="search-meta" class="muted">Loading A Person Index data…</p>
         <div id="search-results" class="card-grid search-results"></div>
       </section>
     </main>
@@ -1436,7 +1468,7 @@ def _compare_index_html(comparison_entries: list[dict]) -> str:
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Registry Comparisons</title>
+    <title>A Person Index Comparisons</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -1614,10 +1646,10 @@ section { margin-top: 32px; }
                 "House hypotheses about where constructs and motifs reinforce, tension, mask, or compensate for each other in downstream synthesis.",
             ),
             _layer_card(
-                "Protocol Library",
+                "Index Programs",
                 len(extensions.protocols),
-                "protocol specs",
-                "Named downstream protocols such as ILENS and Human Model Card, composed from reusable comparative techniques.",
+                "program specs",
+                "Named downstream index programs such as ILENS, Paradox Finder, Translation Memo, and Human Model Card, composed from reusable comparative techniques.",
             ),
             _layer_card(
                 "Research Stream",
@@ -1631,22 +1663,22 @@ section { margin-top: 32px; }
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Personality Instrument Registry</title>
+    <title>A Person Index (API)</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main>
       {_nav_html("", "registry")}
       <section class="hero-panel">
-        <p class="eyebrow">Registry</p>
-        <h1>Personality Instrument Registry</h1>
-        <p class="page-lead">Current canonical slice of a broader personhood framework registry, house synthesis substrate, protocol library, and research stream.</p>
+        <p class="eyebrow">A Person Index</p>
+        <h1>A Person Index (API)</h1>
+        <p class="page-lead">A Git-native index for personhood frameworks, house synthesis motifs, composable analysis programs, and research-safe return contracts.</p>
         <div class="action-row">
           <a class="action-link" href="search.html">Search the corpus</a>
           <a class="action-link" href="compare.html">Browse comparisons</a>
           <a class="action-link" href="motifs.html">Browse motifs</a>
           <a class="action-link" href="interactions.html">Browse interactions</a>
-          <a class="action-link" href="protocols.html">Browse protocols</a>
+          <a class="action-link" href="protocols.html">Browse programs</a>
           <a class="action-link" href="protocol-packs.html">Browse curated packs</a>
           <a class="action-link" href="audit.html">View audit</a>
         </div>

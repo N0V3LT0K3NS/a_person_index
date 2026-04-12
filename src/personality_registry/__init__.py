@@ -1,4 +1,4 @@
-"""Personality Instrument Registry tooling."""
+"""A Person Index tooling."""
 
 __all__ = [
     "builder",

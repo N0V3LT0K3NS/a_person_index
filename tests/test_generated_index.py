@@ -58,6 +58,9 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert index_payload["product_layers"]["protocol_library"]["protocol_pack_count"] == len(
         export_payload["protocol_library"]["protocol_packs"]
     )
+    assert manifest_payload["composition_model"]["index_programs"]["count"] == len(
+        export_payload["protocol_library"]["protocols"]
+    )
     assert index_payload["product_layers"]["research_stream"]["contribution_model_count"] == len(
         export_payload["research_stream"]["contribution_models"]
     )
@@ -81,8 +84,9 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert attachment_entry["coverage"]["has_multiple_inferences"]
     assert attachment_entry["coverage"]["has_multiple_risks"]
     assert attachment_entry["coverage"]["has_multiple_use_cases"]
-    assert export_payload["protocol_library"]["protocols"][0]["id"].startswith("proto_")
-    assert manifest_payload["repository"]["name"] == "personality-instrument-registry"
+    assert any(item["id"] == "proto_paradox_finder" for item in export_payload["protocol_library"]["protocols"])
+    assert manifest_payload["repository"]["name"] == "a-person-index"
+    assert manifest_payload["repository"]["title"] == "A Person Index (API)"
     assert manifest_payload["repository"]["current_phase"] == "phase_3_downstream_consumer_integration"
     assert manifest_payload["downstream_contract"]["result_atom_schema_id"] == "ras_result_atom_v0_1"
     assert manifest_payload["consumer_model"]["lead_example_consumer"] == "GNOMY"

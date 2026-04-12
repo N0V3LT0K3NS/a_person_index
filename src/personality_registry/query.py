@@ -471,9 +471,11 @@ def find_protocols(
                     protocol.name,
                     protocol.summary,
                     protocol.purpose,
+                    protocol.program_kind,
                     *protocol.downstream_consumers,
                     *protocol.required_inputs,
                     *protocol.optional_inputs,
+                    *protocol.component_program_ids,
                 ]
             )
             if _normalize(text) not in _normalize(blob):
@@ -485,12 +487,18 @@ def find_protocols(
 def protocol_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, Any]:
     protocol = resolve_protocol(extensions, ref)
     techniques_by_id = {technique.id: technique for technique in extensions.techniques}
+    programs_by_id = {item.id: item for item in extensions.protocols}
     return {
         "protocol": protocol.model_dump(mode="json"),
         "techniques": [
             techniques_by_id[technique_id].model_dump(mode="json")
             for technique_id in protocol.technique_ids
             if technique_id in techniques_by_id
+        ],
+        "component_programs": [
+            programs_by_id[program_id].model_dump(mode="json")
+            for program_id in protocol.component_program_ids
+            if program_id in programs_by_id
         ],
     }
 
@@ -572,7 +580,7 @@ def find_protocol_packs(
 def protocol_pack_grammar() -> dict[str, Any]:
     return {
         "id": "protocol_pack_grammar_v0_1",
-        "summary": "Canonical grammar for assembling downstream protocol packs from registry primitives.",
+        "summary": "Canonical grammar for assembling downstream program packs from A Person Index primitives.",
         "required_sections": [
             {
                 "section": "pack",
@@ -589,7 +597,15 @@ def protocol_pack_grammar() -> dict[str, Any]:
             },
             {
                 "section": "protocol",
-                "required_keys": ["id", "name", "purpose", "summary", "required_inputs", "primary_outputs"],
+                "required_keys": [
+                    "id",
+                    "name",
+                    "program_kind",
+                    "purpose",
+                    "summary",
+                    "required_inputs",
+                    "primary_outputs",
+                ],
             },
             {
                 "section": "techniques",
@@ -623,6 +639,7 @@ def protocol_pack_grammar() -> dict[str, Any]:
         "construction_rules": [
             "A protocol pack is assembled from existing protocol, technique, mapping, interaction, and research records rather than authored as source truth.",
             "Keep the protocol record authoritative for purpose, inputs, optional inputs, and primary outputs.",
+            "Treat protocols as index programs: they compose techniques and may compose smaller programs when the analysis warrants it.",
             "Scope the pack to explicit target frameworks or constructs when possible.",
             "Derive motifs through trace and mapping logic instead of manual motif selection.",
             "Filter interaction hypotheses by both target scope and protocol relevance.",
@@ -676,6 +693,11 @@ def protocol_pack_grammar() -> dict[str, Any]:
 
 def _protocol_pack_return_model_ids(protocol_id: str) -> list[str]:
     mapping = {
+        "proto_paradox_finder": [
+            "rcm_pairwise_relation_judgment",
+            "rcm_distilled_observation",
+            "rcm_protocol_feedback",
+        ],
         "proto_ilens": [
             "rcm_result_atom_bundle",
             "rcm_mapping_vote",
@@ -706,6 +728,11 @@ def _protocol_pack_execution_order(protocol_id: str) -> list[str]:
         "Load the protocol's technique bundle and preserve cautions.",
     ]
     protocol_specific = {
+        "proto_paradox_finder": [
+            "Scan for tensions, contradictions, and layer mismatches across the available signals.",
+            "Separate durable paradoxes from merely context-bound disagreement when evidence allows.",
+            "Emit paradox candidates and unresolved tension notes instead of forced synthesis.",
+        ],
         "proto_ilens": [
             "Normalize result atoms or equivalent part-level inputs when available.",
             "Preserve contradictions, paradoxes, and layer mismatches rather than averaging them away.",
@@ -753,6 +780,7 @@ def protocol_pack(
 ) -> dict[str, Any]:
     protocol = resolve_protocol(extensions, ref)
     techniques_by_id = {technique.id: technique for technique in extensions.techniques}
+    programs_by_id = {item.id: item for item in extensions.protocols}
     contribution_models_by_id = {
         model.id: model.model_dump(mode="json") for model in extensions.contribution_models
     }
@@ -849,7 +877,7 @@ def protocol_pack(
     result_atom_relevant = "result atoms" in {
         *protocol.required_inputs,
         *protocol.optional_inputs,
-    } or protocol.id in {"proto_ilens", "proto_human_model_card"}
+    } or protocol.id in {"proto_paradox_finder", "proto_ilens", "proto_human_model_card"}
 
     return {
         "pack": {
@@ -869,6 +897,11 @@ def protocol_pack(
             techniques_by_id[technique_id].model_dump(mode="json")
             for technique_id in protocol.technique_ids
             if technique_id in techniques_by_id
+        ],
+        "component_programs": [
+            programs_by_id[program_id].model_dump(mode="json")
+            for program_id in protocol.component_program_ids
+            if program_id in programs_by_id
         ],
         "targets": targets,
         "canonical_records": canonical_records,

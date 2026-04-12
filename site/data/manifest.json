@@ -1,10 +1,12 @@
 {
   "repository": {
-    "name": "personality-instrument-registry",
+    "name": "a-person-index",
+    "title": "A Person Index (API)",
     "version": "0.1.0",
     "status": "active",
     "current_phase": "phase_3_downstream_consumer_integration",
-    "canonical_domain": "instrument_centered_framework_registry"
+    "canonical_domain": "instrument_centered_framework_registry",
+    "internal_python_package": "personality_registry"
   },
   "product_layers": {
     "canonical_registry": {
@@ -17,8 +19,9 @@
     },
     "protocol_library": {
       "technique_count": 6,
-      "protocol_count": 3,
-      "protocol_pack_count": 4
+      "protocol_count": 4,
+      "protocol_pack_count": 4,
+      "public_label": "index_programs"
     },
     "research_stream": {
       "contribution_model_count": 5,
@@ -27,12 +30,43 @@
       "result_atom_schema_id": "ras_result_atom_v0_1"
     }
   },
+  "composition_model": {
+    "summary": "A Person Index composes atomic techniques into index programs and then hydrates those programs into scoped runtime packs.",
+    "techniques": {
+      "count": 6,
+      "source_path": "techniques/registry.yaml",
+      "role": "smallest reusable comparative operations",
+      "examples": [
+        "tech_paradox_scan",
+        "tech_cross_framework_translation"
+      ]
+    },
+    "index_programs": {
+      "count": 4,
+      "source_path": "protocols/registry.yaml",
+      "role": "composed analysis or synthesis programs built from techniques",
+      "examples": [
+        "proto_paradox_finder",
+        "proto_translation_memo",
+        "proto_ilens"
+      ]
+    },
+    "runtime_packs": {
+      "count": 4,
+      "source_path": "protocol_packs/catalog.yaml",
+      "role": "scoped bundles that hydrate a program with motifs, mappings, interactions, and return contracts",
+      "examples": [
+        "ppk_ilens_core_trait_motive_stack"
+      ]
+    }
+  },
   "start_here": [
     "AGENTS.md",
     "README.md",
     "docs/current_state.md",
     "docs/roadmap.md",
     "docs/architecture.md",
+    "docs/index_programs.md",
     "docs/gnomy_integration.md",
     "docs/mcp.md",
     "docs/protocol_pack_grammar.md",
@@ -114,28 +148,28 @@
     },
     {
       "id": "fetch_protocol_spec",
-      "command": "python3 scripts/query_registry.py protocols ILENS",
-      "purpose": "Return protocol specs and required techniques."
+      "command": "python3 scripts/query_registry.py programs ILENS",
+      "purpose": "Return an index program spec, its techniques, and any component programs."
     },
     {
       "id": "list_protocol_packs",
-      "command": "python3 scripts/query_registry.py protocol-packs --featured",
-      "purpose": "List curated protocol packs intended for stable downstream use."
+      "command": "python3 scripts/query_registry.py program-packs --featured",
+      "purpose": "List curated runtime packs intended for stable downstream use."
     },
     {
       "id": "fetch_curated_protocol_pack",
-      "command": "python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack",
-      "purpose": "Return a curated protocol-pack catalog entry plus its generated runtime bundle."
+      "command": "python3 scripts/query_registry.py program-packs ppk_ilens_core_trait_motive_stack",
+      "purpose": "Return a curated runtime pack catalog entry plus its generated bundle."
     },
     {
       "id": "fetch_protocol_pack",
-      "command": "python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram",
-      "purpose": "Return a downstream-ready bundle of protocol, techniques, motifs, mappings, interactions, and return models."
+      "command": "python3 scripts/query_registry.py program-pack ILENS --framework MBTI --framework Enneagram",
+      "purpose": "Return a downstream-ready bundle of program, techniques, component programs, motifs, mappings, interactions, and return models."
     },
     {
       "id": "fetch_protocol_pack_grammar",
-      "command": "python3 scripts/query_registry.py protocol-pack-grammar",
-      "purpose": "Return the canonical grammar for assembling future protocol packs."
+      "command": "python3 scripts/query_registry.py program-pack-grammar",
+      "purpose": "Return the canonical grammar for assembling future runtime packs."
     },
     {
       "id": "fetch_result_atom_schema",

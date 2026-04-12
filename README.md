@@ -1,13 +1,14 @@
-# Personality Instrument Registry
+# A Person Index (API)
 
-Personality Instrument Registry is the current canonical slice of a broader Git-native, agent-readable registry for personhood frameworks, house synthesis motifs, reusable comparative techniques, downstream protocols, and privacy-minimizing research intake.
+A Person Index (API) is a Git-native, agent-readable comparative substrate for personhood frameworks, house synthesis motifs, composable analysis techniques, index programs, runtime packs, and privacy-minimizing research intake.
 
-The repository began as an instrument registry in milestone 1. It now explicitly carries four product layers:
+The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
 1. Canonical registry
 2. House synthesis substrate
-3. Technique and protocol library
-4. Research stream
+3. Technique library
+4. Index programs and runtime packs
+5. Research stream
 
 Canonical source data still lives in structured YAML files, is validated with typed Python models, and is exported into generated JSON and browsable docs.
 
@@ -19,14 +20,15 @@ If you are arriving fresh, read these in order:
 2. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
 3. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
 4. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
-5. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
-6. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
-7. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-8. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-9. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-10. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-11. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-12. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+5. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
+6. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+7. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
+8. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+9. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+10. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+11. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+12. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+13. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 Those files together explain what the repo is, what layer you are editing, how downstream systems should use it, and what is next.
 
@@ -48,9 +50,11 @@ This repo now distinguishes between:
    Source-faithful records for instruments and adjacent personhood frameworks.
 2. House synthesis substrate
    Motifs and mappings used as a translation interlingua across frameworks.
-3. Technique and protocol library
-   Reusable comparative methods plus downstream protocol specs such as `ILENS`.
-4. Research stream
+3. Technique library
+   The smallest reusable lego units such as `Paradox Scan`, `Cross-Framework Translation`, and `Result Atom Decomposition`.
+4. Index programs and runtime packs
+   Composed programs such as `ILENS`, `Translation Memo`, `Human Model Card`, and `Paradox Finder`, plus scoped runtime bundles that hydrate those programs with motifs, mappings, interactions, and return contracts.
+5. Research stream
    Contribution models, promotion policy, and result-atom exchange contracts for mapping votes, result-atom bundles, and distilled observations.
 
 These layers should collaborate, but they should not be conflated.
@@ -95,13 +99,26 @@ Key conventions:
 - `mappings/construct_to_motif.yaml` stores provisional construct-to-motif and instrument-to-motif mappings.
 - `interactions/registry.yaml` stores house interaction hypotheses across motifs and constructs.
 - `techniques/registry.yaml` stores reusable comparative methods.
-- `protocols/registry.yaml` stores downstream protocol specs such as `ILENS` and `Human Model Card`.
+- `protocols/registry.yaml` stores index program specs such as `ILENS`, `Paradox Finder`, and `Human Model Card`.
 - `protocol_packs/catalog.yaml` stores curated, stable protocol-pack scopes for repeated downstream use.
 - `research/contribution_models.yaml` stores privacy-minimizing contribution models for future research intake.
 - `research/promotion_registry.yaml` stores the staged promotion policy that governs how research can influence house synthesis or protocol revision.
 - `research/result_atom_schema.yaml` stores the normalized downstream result-atom contract for runtime exchange.
 
-The active, fully populated corpus remains instrument-centered for now. The new top-level directories formalize the next architecture layer without forcing a premature package rename.
+The active, fully populated corpus remains instrument-centered for now. The new top-level directories formalize the broader A Person Index architecture without forcing a premature internal package rename.
+
+## Composability model
+
+A Person Index is meant to feel like legos:
+
+1. Techniques
+   Atomic reusable operations such as `Paradox Scan`.
+2. Index programs
+   Composed analyses or synthesis workflows such as `Paradox Finder`, `Translation Memo`, `ILENS`, or `Human Model Card`.
+3. Runtime packs
+   Scoped bundles that hydrate an index program with the exact frameworks, motifs, mappings, interaction hypotheses, and research return contracts needed for a task.
+
+The internal registry path is still `protocols/registry.yaml`, but the public product concept is `index programs`.
 
 ## Seed corpus
 
@@ -158,11 +175,11 @@ python3 scripts/query_registry.py compare "Big Five" MBTI
 python3 scripts/query_registry.py trace MBTI
 python3 scripts/query_registry.py motifs --related-to MBTI
 python3 scripts/query_registry.py interactions --related-to MBTI
-python3 scripts/query_registry.py protocols ILENS
-python3 scripts/query_registry.py protocol-packs --featured
-python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack
-python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram
-python3 scripts/query_registry.py protocol-pack-grammar
+python3 scripts/query_registry.py programs ILENS
+python3 scripts/query_registry.py program-packs --featured
+python3 scripts/query_registry.py program-packs ppk_ilens_core_trait_motive_stack
+python3 scripts/query_registry.py program-pack ILENS --framework MBTI --framework Enneagram
+python3 scripts/query_registry.py program-pack-grammar
 python3 scripts/query_registry.py research-promotion
 python3 scripts/query_registry.py result-atom-schema
 python3 scripts/query_registry.py research-models
@@ -232,17 +249,17 @@ Minimum required annotation dimensions are documented in:
 
 Generated outputs are written to:
 
-- `generated/index.json`: aggregate registry summary
+- `generated/index.json`: aggregate API summary
 - `generated/search.json`: search-oriented flattened records
 - `generated/audit.json`: curation-depth and coverage summary per instrument
-- `generated/index.json`: aggregate registry summary plus product-layer counts
+- `generated/index.json`: aggregate API summary plus product-layer counts
 - `generated/instruments/*.json`: per-instrument exports
 - `generated/manifest.json`: machine-readable onboarding and service-primitives manifest for agents
 - `generated/protocol_packs/index.json`: curated protocol-pack catalog for stable downstream retrieval
 - `generated/protocol_packs/*.json`: generated curated protocol-pack artifacts
 - `generated/protocol_pack_grammar.json`: machine-readable grammar for building and validating future protocol packs
 - `generated/research_promotion.json`: machine-readable staged promotion policy for research contributions
-- `generated/registry.json`: full export payload, including house synthesis, protocol, and research registries
+- `generated/registry.json`: full export payload, including house synthesis, index-program, and research registries
 - `mcp-server/`: read-only Node MCP adapter over the Python query surface
 - `site/`: self-contained static documentation site, including browse, audit, search, and comparison pages
 - `site/data/*.json`: deployed data payloads used by the static site at runtime
@@ -255,8 +272,8 @@ The repository includes a query CLI for exact lookup, filter retrieval, text sea
 
 The generated static site now exposes the same corpus through:
 
-- `site/index.html`: registry browse entry point
-- `site/search.html`: client-side search over shipped registry data
+- `site/index.html`: A Person Index browse entry point
+- `site/search.html`: client-side search over shipped API data
 - `site/compare.html`: generated comparison index
 - `site/comparisons/*.html`: pairwise comparison pages derived from recorded crosswalks
 
@@ -265,11 +282,11 @@ The motif, protocol, and research registries are now available through dedicated
 - `python3 scripts/query_registry.py trace MBTI`
 - `python3 scripts/query_registry.py motifs --related-to MBTI`
 - `python3 scripts/query_registry.py interactions --related-to MBTI`
-- `python3 scripts/query_registry.py protocols ILENS`
-- `python3 scripts/query_registry.py protocol-packs --featured`
-- `python3 scripts/query_registry.py protocol-packs ppk_ilens_core_trait_motive_stack`
-- `python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram`
-- `python3 scripts/query_registry.py protocol-pack-grammar`
+- `python3 scripts/query_registry.py programs ILENS`
+- `python3 scripts/query_registry.py program-packs --featured`
+- `python3 scripts/query_registry.py program-packs ppk_ilens_core_trait_motive_stack`
+- `python3 scripts/query_registry.py program-pack ILENS --framework MBTI --framework Enneagram`
+- `python3 scripts/query_registry.py program-pack-grammar`
 - `python3 scripts/query_registry.py research-promotion`
 - `python3 scripts/query_registry.py techniques "Paradox Scan"`
 - `python3 scripts/query_registry.py result-atom-schema`
@@ -318,7 +335,7 @@ When adding or editing content:
 
 - keep source claims, ontology annotations, and house inferences clearly separated
 - treat motifs and mappings as house synthesis, not source truth
-- treat protocols as downstream consumers of the map, not the map itself
+- treat index programs as downstream consumers of the map, not the map itself
 - treat research contributions as staged evidence, not immediate canonical fact
 
 ## Downstream role
@@ -331,7 +348,7 @@ It should eventually provide:
 - crosswalks and construct mappings
 - house motifs
 - reusable comparative techniques
-- protocol specs
+- index program specs
 - research-backed caveats and refinements
 
-`ILENS` now lives conceptually in the protocol layer, not as the ontology itself.
+`ILENS` now lives conceptually in the index-program layer, not as the ontology itself.

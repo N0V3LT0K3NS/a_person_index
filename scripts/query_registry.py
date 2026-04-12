@@ -233,12 +233,14 @@ def _render_trace_text(payload):
 
 def _render_protocols_text(results):
     if not results:
-        return "No matching protocols."
+        return "No matching index programs."
     lines = []
     for item in results:
         lines.append(f"{item['name']} ({item['id']})")
         lines.append(
-            f"  status={item['status']} consumers={', '.join(item['downstream_consumers']) or 'none'}"
+            "  "
+            f"kind={item['program_kind']} status={item['status']} "
+            f"consumers={', '.join(item['downstream_consumers']) or 'none'}"
         )
         lines.append(f"  {item['summary']}")
     return "\n".join(lines)
@@ -248,6 +250,7 @@ def _render_protocol_record_text(payload):
     protocol = payload["protocol"]
     lines = [
         f"{protocol['name']} ({protocol['id']})",
+        f"kind: {protocol['program_kind']}",
         f"status: {protocol['status']}",
         f"consumers: {', '.join(protocol['downstream_consumers']) or 'none'}",
         protocol["summary"],
@@ -260,6 +263,13 @@ def _render_protocol_record_text(payload):
     lines.append("Techniques:")
     for technique in payload["techniques"]:
         lines.append(f"  {technique['name']} ({technique['id']})")
+    lines.append("")
+    lines.append("Component programs:")
+    if payload["component_programs"]:
+        for program in payload["component_programs"]:
+            lines.append(f"  {program['name']} ({program['id']})")
+    else:
+        lines.append("  none")
     return "\n".join(lines)
 
 
@@ -270,8 +280,19 @@ def _render_protocol_pack_text(payload):
         f"grammar: {pack['grammar_id']}",
         f"targets: {', '.join(pack['target_labels']) or 'protocol-only'}",
         "",
-        "Techniques:",
+        "Component programs:",
     ]
+    if payload["component_programs"]:
+        for program in payload["component_programs"]:
+            lines.append(f"  - {program['name']} ({program['id']})")
+    else:
+        lines.append("  none")
+    lines.extend(
+        [
+            "",
+        "Techniques:",
+        ]
+    )
     for technique in payload["techniques"]:
         lines.append(f"  - {technique['name']} ({technique['id']})")
     lines.append("")
@@ -366,7 +387,7 @@ def _render_technique_record_text(payload):
         f"{technique['name']} ({technique['id']})",
         technique["summary"],
         "",
-        "Used by protocols:",
+        "Used by programs:",
     ]
     if payload["used_by_protocol_ids"]:
         for protocol_id in payload["used_by_protocol_ids"]:
@@ -514,7 +535,7 @@ def _render_result_atom_schema_text(payload):
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Query the Personality Instrument Registry.")
+    parser = argparse.ArgumentParser(description="Query A Person Index.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     find_parser = subparsers.add_parser("find", help="Find instruments by ID, name, alias, filters, or text.")
@@ -602,7 +623,11 @@ def main() -> int:
     trace_parser.add_argument("ref", help="Instrument or construct reference.")
     trace_parser.add_argument("--format", choices=("text", "json"), default="text")
 
-    protocols_parser = subparsers.add_parser("protocols", help="List or show protocol specs.")
+    protocols_parser = subparsers.add_parser(
+        "protocols",
+        aliases=["programs"],
+        help="List or show index program specs.",
+    )
     protocols_parser.add_argument("ref", nargs="?", help="Optional protocol ID or name for a detailed record.")
     protocols_parser.add_argument("--text", help="Substring search across protocol fields.")
     protocols_parser.add_argument("--consumer", help="Filter protocols by downstream consumer label.")
@@ -610,7 +635,8 @@ def main() -> int:
 
     protocol_pack_parser = subparsers.add_parser(
         "protocol-pack",
-        help="Assemble a downstream-ready protocol pack from protocol, scope, and registry primitives.",
+        aliases=["program-pack"],
+        help="Assemble a downstream-ready runtime pack from an index program, scope, and A Person Index primitives.",
     )
     protocol_pack_parser.add_argument("ref", help="Protocol ID or name.")
     protocol_pack_parser.add_argument(
@@ -627,13 +653,15 @@ def main() -> int:
 
     protocol_pack_grammar_parser = subparsers.add_parser(
         "protocol-pack-grammar",
-        help="Show the canonical grammar for generated protocol packs.",
+        aliases=["program-pack-grammar"],
+        help="Show the canonical grammar for generated runtime packs.",
     )
     protocol_pack_grammar_parser.add_argument("--format", choices=("text", "json"), default="text")
 
     protocol_packs_parser = subparsers.add_parser(
         "protocol-packs",
-        help="List or show curated protocol-pack catalog entries and their generated bundles.",
+        aliases=["program-packs"],
+        help="List or show curated runtime-pack catalog entries and their generated bundles.",
     )
     protocol_packs_parser.add_argument(
         "ref",
@@ -798,7 +826,7 @@ def main() -> int:
             print(_render_trace_text(payload))
         return 0
 
-    if args.command == "protocols":
+    if args.command in {"protocols", "programs"}:
         if args.ref:
             payload = protocol_record(extensions, args.ref)
             if args.format == "json":
@@ -813,7 +841,7 @@ def main() -> int:
             print(_render_protocols_text(payload))
         return 0
 
-    if args.command == "protocol-pack":
+    if args.command in {"protocol-pack", "program-pack"}:
         payload = protocol_pack(
             repository,
             extensions,
@@ -827,7 +855,7 @@ def main() -> int:
             print(_render_protocol_pack_text(payload))
         return 0
 
-    if args.command == "protocol-pack-grammar":
+    if args.command in {"protocol-pack-grammar", "program-pack-grammar"}:
         payload = protocol_pack_grammar()
         if args.format == "json":
             print(dumps_json(payload))
@@ -835,7 +863,7 @@ def main() -> int:
             print(_render_protocol_pack_grammar_text(payload))
         return 0
 
-    if args.command == "protocol-packs":
+    if args.command in {"protocol-packs", "program-packs"}:
         if args.ref:
             payload = curated_protocol_pack_record(repository, extensions, args.ref)
             if args.format == "json":

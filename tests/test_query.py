@@ -148,6 +148,8 @@ def test_protocol_record_expands_techniques(repo_root):
     payload = protocol_record(extensions, "ILENS")
     assert payload["protocol"]["id"] == "proto_ilens"
     assert len(payload["techniques"]) >= 3
+    component_ids = {item["id"] for item in payload["component_programs"]}
+    assert {"proto_paradox_finder", "proto_translation_memo"} <= component_ids
 
 
 def test_extension_finders_return_expected_records(repo_root):
@@ -156,6 +158,7 @@ def test_extension_finders_return_expected_records(repo_root):
     technique_ids = {item["id"] for item in find_techniques(extensions, text="paradox")}
     contribution_ids = {item["id"] for item in find_contribution_models(extensions, text="normalized")}
     assert "proto_ilens" in protocol_ids
+    assert "proto_paradox_finder" in protocol_ids
     assert "tech_paradox_scan" in technique_ids
     assert "rcm_result_atom_bundle" in contribution_ids
 
@@ -206,6 +209,8 @@ def test_protocol_pack_expands_scope_for_ilens(repo_root):
     assert payload["pack"]["protocol_id"] == "proto_ilens"
     assert {"instr_mbti", "instr_enneagram"} <= set(payload["pack"]["target_framework_ids"])
     assert payload["techniques"]
+    component_ids = {item["id"] for item in payload["component_programs"]}
+    assert "proto_paradox_finder" in component_ids
     assert payload["motif_summary"]
     assert payload["interaction_hypotheses"]
     assert payload["return_contract"]["preferred_contribution_model_ids"]
