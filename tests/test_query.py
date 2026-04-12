@@ -14,6 +14,8 @@ from personality_registry.query import (
     interaction_hypothesis_record,
     instrument_record,
     motif_record,
+    protocol_pack,
+    protocol_pack_grammar,
     protocol_record,
     query_results,
     result_atom_schema_record,
@@ -185,3 +187,28 @@ def test_result_atom_schema_record_is_available(repo_root):
     assert payload["result_atom_schema"]["id"] == "ras_result_atom_v0_1"
     required_fields = {field["name"] for field in payload["result_atom_schema"]["required_fields"]}
     assert {"framework_id", "construct_id", "output_type", "output_value"} <= required_fields
+
+
+def test_protocol_pack_expands_scope_for_ilens(repo_root):
+    repository = load_repository_strict(repo_root)
+    extensions = load_extensions_strict(repo_root)
+    payload = protocol_pack(
+        repository,
+        extensions,
+        "ILENS",
+        framework_refs=["MBTI", "Enneagram"],
+    )
+    assert payload["pack"]["protocol_id"] == "proto_ilens"
+    assert {"instr_mbti", "instr_enneagram"} <= set(payload["pack"]["target_framework_ids"])
+    assert payload["techniques"]
+    assert payload["motif_summary"]
+    assert payload["interaction_hypotheses"]
+    assert payload["return_contract"]["preferred_contribution_model_ids"]
+    assert payload["return_contract"]["result_atom_schema"]["id"] == "ras_result_atom_v0_1"
+
+
+def test_protocol_pack_grammar_has_required_sections():
+    payload = protocol_pack_grammar()
+    section_names = {section["section"] for section in payload["required_sections"]}
+    assert payload["id"] == "protocol_pack_grammar_v0_1"
+    assert {"pack", "protocol", "techniques", "return_contract"} <= section_names

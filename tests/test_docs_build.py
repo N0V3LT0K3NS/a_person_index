@@ -19,6 +19,7 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     comparisons_data_path = repo_root / "site" / "data" / "comparisons.json"
     extensions_data_path = repo_root / "site" / "data" / "extensions.json"
     manifest_data_path = repo_root / "site" / "data" / "manifest.json"
+    protocol_pack_grammar_data_path = repo_root / "site" / "data" / "protocol_pack_grammar.json"
     instrument_path = repo_root / "site" / "instruments" / "enneagram.html"
     hexaco_path = repo_root / "site" / "instruments" / "hexaco.html"
     compare_path = repo_root / "site" / "comparisons" / "big-five--mbti.html"
@@ -35,6 +36,7 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     assert comparisons_data_path.exists()
     assert extensions_data_path.exists()
     assert manifest_data_path.exists()
+    assert protocol_pack_grammar_data_path.exists()
     assert instrument_path.exists()
     assert hexaco_path.exists()
     assert compare_path.exists()

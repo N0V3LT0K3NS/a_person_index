@@ -483,6 +483,337 @@ def protocol_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, An
     }
 
 
+def protocol_pack_grammar() -> dict[str, Any]:
+    return {
+        "id": "protocol_pack_grammar_v0_1",
+        "summary": "Canonical grammar for assembling downstream protocol packs from registry primitives.",
+        "required_sections": [
+            {
+                "section": "pack",
+                "required_keys": [
+                    "id",
+                    "grammar_id",
+                    "protocol_id",
+                    "protocol_name",
+                    "target_count",
+                    "target_framework_ids",
+                    "target_construct_ids",
+                    "target_labels",
+                ],
+            },
+            {
+                "section": "protocol",
+                "required_keys": ["id", "name", "purpose", "summary", "required_inputs", "primary_outputs"],
+            },
+            {
+                "section": "techniques",
+                "required_keys": ["id", "name", "purpose", "summary", "steps", "cautions"],
+            },
+            {
+                "section": "canonical_records",
+                "required_keys": ["instrument_id", "canonical_name", "slug", "family", "short_description"],
+            },
+            {
+                "section": "motif_summary",
+                "required_keys": ["motif", "mapping_count", "source_labels", "relationship_types"],
+            },
+            {
+                "section": "interaction_hypotheses",
+                "required_keys": ["id", "left", "right", "interaction_type", "summary", "protocol_relevance"],
+            },
+            {
+                "section": "input_contract",
+                "required_keys": ["required_inputs", "optional_inputs"],
+            },
+            {
+                "section": "output_contract",
+                "required_keys": ["primary_outputs"],
+            },
+            {
+                "section": "return_contract",
+                "required_keys": ["preferred_contribution_model_ids", "contribution_models", "result_atom_schema"],
+            },
+        ],
+        "construction_rules": [
+            "A protocol pack is assembled from existing protocol, technique, mapping, interaction, and research records rather than authored as source truth.",
+            "Keep the protocol record authoritative for purpose, inputs, optional inputs, and primary outputs.",
+            "Scope the pack to explicit target frameworks or constructs when possible.",
+            "Derive motifs through trace and mapping logic instead of manual motif selection.",
+            "Filter interaction hypotheses by both target scope and protocol relevance.",
+            "Include the result atom schema when the protocol can consume or emit result-atom level reasoning.",
+            "Return contribution models should reflect the protocol's likely feedback channel rather than every possible research model.",
+        ],
+        "targeting_rules": [
+            "Framework targets should expand to their canonical construct set for motif tracing.",
+            "Construct targets should keep both construct identity and parent framework identity.",
+            "A pack may be protocol-only, but scoped packs are preferred for runtime use.",
+        ],
+        "authoring_template": {
+            "pack": {
+                "id": "pack_{protocol_id}__{scope}",
+                "grammar_id": "protocol_pack_grammar_v0_1",
+                "protocol_id": "{protocol_id}",
+                "protocol_name": "{protocol_name}",
+                "target_count": "{n}",
+                "target_framework_ids": ["instr_example"],
+                "target_construct_ids": ["con_example"],
+                "target_labels": ["Example Target"],
+            },
+            "protocol": "{expanded protocol record}",
+            "techniques": ["{expanded technique records}"],
+            "targets": ["{resolved entity references}"],
+            "canonical_records": ["{minimal canonical framework records}"],
+            "motif_summary": ["{aggregated motif trace entries}"],
+            "relevant_mappings": ["{deduplicated mapping payloads}"],
+            "interaction_hypotheses": ["{deduplicated interaction payloads}"],
+            "input_contract": {
+                "required_inputs": ["{protocol.required_inputs}"],
+                "optional_inputs": ["{protocol.optional_inputs}"],
+            },
+            "execution_order": [
+                "resolve canonical scope",
+                "expand motif trace",
+                "expand interaction hypotheses",
+                "apply techniques",
+                "emit primary outputs",
+                "return structured research feedback",
+            ],
+            "output_contract": {"primary_outputs": ["{protocol.primary_outputs}"]},
+            "return_contract": {
+                "preferred_contribution_model_ids": ["rcm_example"],
+                "contribution_models": ["{expanded contribution model records}"],
+                "result_atom_schema": "{expanded result atom schema or null}",
+            },
+        },
+    }
+
+
+def _protocol_pack_return_model_ids(protocol_id: str) -> list[str]:
+    mapping = {
+        "proto_ilens": [
+            "rcm_result_atom_bundle",
+            "rcm_mapping_vote",
+            "rcm_pairwise_relation_judgment",
+            "rcm_distilled_observation",
+            "rcm_protocol_feedback",
+        ],
+        "proto_human_model_card": [
+            "rcm_result_atom_bundle",
+            "rcm_distilled_observation",
+            "rcm_protocol_feedback",
+        ],
+        "proto_translation_memo": [
+            "rcm_mapping_vote",
+            "rcm_pairwise_relation_judgment",
+            "rcm_distilled_observation",
+            "rcm_protocol_feedback",
+        ],
+    }
+    return mapping.get(protocol_id, ["rcm_protocol_feedback"])
+
+
+def _protocol_pack_execution_order(protocol_id: str) -> list[str]:
+    common = [
+        "Resolve canonical framework records for the current target scope.",
+        "Trace target frameworks or constructs through the motif layer.",
+        "Expand interaction hypotheses relevant to the scoped targets and selected protocol.",
+        "Load the protocol's technique bundle and preserve cautions.",
+    ]
+    protocol_specific = {
+        "proto_ilens": [
+            "Normalize result atoms or equivalent part-level inputs when available.",
+            "Preserve contradictions, paradoxes, and layer mismatches rather than averaging them away.",
+            "Emit synthesized parameters and caveats.",
+        ],
+        "proto_human_model_card": [
+            "Assemble evidence and provenance into a formal system-modeling frame.",
+            "Preserve stable paradoxes, deployment conditions, and failure modes.",
+            "Emit the report artifact with explicit caveats and known unknowns.",
+        ],
+        "proto_translation_memo": [
+            "Bracket symbolic versus empirical status before claiming overlap.",
+            "Explain overlap, divergence, and incommensurability directly.",
+            "Emit mismatch warnings and suggested follow-up mappings.",
+        ],
+    }
+    ending = ["Return structured feedback through the preferred research contribution models."]
+    return common + protocol_specific.get(protocol_id, []) + ending
+
+
+def _minimal_canonical_record(bundle: InstrumentBundle) -> dict[str, Any]:
+    return {
+        "instrument_id": bundle.instrument.id,
+        "canonical_name": bundle.instrument.canonical_name,
+        "slug": bundle.slug,
+        "family": bundle.instrument.family,
+        "short_description": bundle.instrument.short_description,
+    }
+
+
+def _pack_id(protocol_id: str, targets: list[dict[str, str]]) -> str:
+    if not targets:
+        return f"pack_{protocol_id}"
+    scope = "__".join(sorted(target["entity_id"] for target in targets))
+    return f"pack_{protocol_id}__{scope}"
+
+
+def protocol_pack(
+    repository: RepositoryData,
+    extensions: ExtensionRegistryData,
+    ref: str,
+    *,
+    framework_refs: Iterable[str] | None = None,
+    construct_refs: Iterable[str] | None = None,
+) -> dict[str, Any]:
+    protocol = resolve_protocol(extensions, ref)
+    techniques_by_id = {technique.id: technique for technique in extensions.techniques}
+    contribution_models_by_id = {
+        model.id: model.model_dump(mode="json") for model in extensions.contribution_models
+    }
+
+    targets: list[dict[str, str]] = []
+    seen_target_ids: set[str] = set()
+    target_instrument_ids: set[str] = set()
+    traces: list[dict[str, Any]] = []
+
+    for framework_ref in framework_refs or []:
+        entity = resolve_entity_reference(repository, framework_ref)
+        if entity["entity_type"] != "instrument":
+            raise KeyError(f"Framework target '{framework_ref}' did not resolve to an instrument.")
+        if entity["entity_id"] not in seen_target_ids:
+            targets.append(entity)
+            seen_target_ids.add(entity["entity_id"])
+        target_instrument_ids.add(entity["instrument_id"])
+        traces.append(trace_entity_to_motifs(repository, extensions, framework_ref))
+
+    for construct_ref in construct_refs or []:
+        entity = resolve_entity_reference(repository, construct_ref)
+        if entity["entity_type"] != "construct":
+            raise KeyError(f"Construct target '{construct_ref}' did not resolve to a construct.")
+        if entity["entity_id"] not in seen_target_ids:
+            targets.append(entity)
+            seen_target_ids.add(entity["entity_id"])
+        target_instrument_ids.add(entity["instrument_id"])
+        traces.append(trace_entity_to_motifs(repository, extensions, construct_ref))
+
+    canonical_records = [
+        _minimal_canonical_record(bundle)
+        for bundle in sorted(repository.instruments.values(), key=lambda item: item.instrument.canonical_name.lower())
+        if bundle.instrument.id in target_instrument_ids
+    ]
+
+    motif_summary_by_id: dict[str, dict[str, Any]] = {}
+    mappings_by_id: dict[str, dict[str, Any]] = {}
+    for trace in traces:
+        for item in trace["motif_summary"]:
+            motif_id = item["motif"]["id"]
+            aggregate = motif_summary_by_id.setdefault(
+                motif_id,
+                {
+                    "motif": item["motif"],
+                    "mapping_count": 0,
+                    "source_labels": set(),
+                    "relationship_types": set(),
+                },
+            )
+            aggregate["mapping_count"] += item["mapping_count"]
+            aggregate["source_labels"].update(item["source_labels"])
+            aggregate["relationship_types"].update(item["relationship_types"])
+            for mapping in item["mappings"]:
+                mappings_by_id.setdefault(mapping["id"], mapping)
+        for mapping in trace["direct_mappings"]:
+            mappings_by_id.setdefault(mapping["id"], mapping)
+        for construct_group in trace["construct_mappings"]:
+            for mapping in construct_group["mappings"]:
+                mappings_by_id.setdefault(mapping["id"], mapping)
+
+    motif_summary = [
+        {
+            "motif": aggregate["motif"],
+            "mapping_count": aggregate["mapping_count"],
+            "source_labels": sorted(aggregate["source_labels"]),
+            "relationship_types": sorted(aggregate["relationship_types"]),
+        }
+        for _, aggregate in sorted(
+            motif_summary_by_id.items(),
+            key=lambda item: item[1]["motif"]["name"].lower(),
+        )
+    ]
+    relevant_mappings = sorted(mappings_by_id.values(), key=lambda item: item["id"])
+
+    interaction_payloads: dict[str, dict[str, Any]] = {}
+    if targets:
+        for target in targets:
+            for item in find_interaction_hypotheses(
+                repository,
+                extensions,
+                related_to=target["entity_id"],
+                protocol=protocol.id,
+            ):
+                interaction_payloads.setdefault(item["id"], item)
+    else:
+        for item in find_interaction_hypotheses(
+            repository,
+            extensions,
+            protocol=protocol.id,
+        ):
+            interaction_payloads.setdefault(item["id"], item)
+
+    preferred_contribution_model_ids = _protocol_pack_return_model_ids(protocol.id)
+    result_atom_relevant = "result atoms" in {
+        *protocol.required_inputs,
+        *protocol.optional_inputs,
+    } or protocol.id in {"proto_ilens", "proto_human_model_card"}
+
+    return {
+        "pack": {
+            "id": _pack_id(protocol.id, targets),
+            "grammar_id": "protocol_pack_grammar_v0_1",
+            "protocol_id": protocol.id,
+            "protocol_name": protocol.name,
+            "target_count": len(targets),
+            "target_framework_ids": sorted(target_instrument_ids),
+            "target_construct_ids": sorted(
+                target["entity_id"] for target in targets if target["entity_type"] == "construct"
+            ),
+            "target_labels": [target["label"] for target in targets],
+        },
+        "protocol": protocol.model_dump(mode="json"),
+        "techniques": [
+            techniques_by_id[technique_id].model_dump(mode="json")
+            for technique_id in protocol.technique_ids
+            if technique_id in techniques_by_id
+        ],
+        "targets": targets,
+        "canonical_records": canonical_records,
+        "motif_summary": motif_summary,
+        "relevant_mappings": relevant_mappings,
+        "interaction_hypotheses": sorted(
+            interaction_payloads.values(),
+            key=lambda item: item["id"],
+        ),
+        "input_contract": {
+            "required_inputs": protocol.required_inputs,
+            "optional_inputs": protocol.optional_inputs,
+        },
+        "execution_order": _protocol_pack_execution_order(protocol.id),
+        "output_contract": {
+            "primary_outputs": protocol.primary_outputs,
+        },
+        "return_contract": {
+            "preferred_contribution_model_ids": preferred_contribution_model_ids,
+            "contribution_models": [
+                contribution_models_by_id[model_id]
+                for model_id in preferred_contribution_model_ids
+                if model_id in contribution_models_by_id
+            ],
+            "result_atom_schema": (
+                extensions.result_atom_schema.model_dump(mode="json") if result_atom_relevant else None
+            ),
+        },
+    }
+
+
 def find_techniques(extensions: ExtensionRegistryData, *, text: str | None = None) -> list[dict[str, Any]]:
     results = []
     for technique in extensions.techniques:

@@ -39,6 +39,7 @@ As of the current branch state, the repo includes:
 
 - Techniques are first-class records rather than scattered prompt fragments
 - Protocols such as `ILENS`, `Human Model Card`, and `Translation Memo` are explicitly modeled as consumers of the registry
+- Protocol packs are now a callable runtime bundle shape rather than an implicit orchestration task left to downstream agents
 
 ### Research stream
 

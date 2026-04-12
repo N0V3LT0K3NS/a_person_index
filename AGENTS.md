@@ -9,7 +9,8 @@ If you are arriving cold, start here in this order:
 3. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
 4. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
 5. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
-6. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+6. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+7. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 ## What this repo is
 
@@ -77,6 +78,8 @@ python3 scripts/query_registry.py trace MBTI
 python3 scripts/query_registry.py motifs --related-to MBTI
 python3 scripts/query_registry.py interactions --related-to "Attachment Style Frameworks"
 python3 scripts/query_registry.py protocols ILENS
+python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram
+python3 scripts/query_registry.py protocol-pack-grammar
 python3 scripts/query_registry.py techniques "Paradox Scan"
 python3 scripts/query_registry.py result-atom-schema
 python3 scripts/query_registry.py research-models

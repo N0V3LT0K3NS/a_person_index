@@ -47,6 +47,7 @@
   "generated_outputs": {
     "json_root": "generated/",
     "site_root": "site/",
+    "protocol_pack_grammar_path": "generated/protocol_pack_grammar.json",
     "do_not_edit_directly": [
       "generated/",
       "site/",
@@ -90,6 +91,16 @@
       "purpose": "Return protocol specs and required techniques."
     },
     {
+      "id": "fetch_protocol_pack",
+      "command": "python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram",
+      "purpose": "Return a downstream-ready bundle of protocol, techniques, motifs, mappings, interactions, and return models."
+    },
+    {
+      "id": "fetch_protocol_pack_grammar",
+      "command": "python3 scripts/query_registry.py protocol-pack-grammar",
+      "purpose": "Return the canonical grammar for assembling future protocol packs."
+    },
+    {
       "id": "fetch_result_atom_schema",
       "command": "python3 scripts/query_registry.py result-atom-schema",
       "purpose": "Return the normalized downstream result-atom contract."
@@ -114,5 +125,10 @@
       "rcm_protocol_feedback"
     ],
     "result_atom_schema_id": "ras_result_atom_v0_1"
+  },
+  "protocol_pack_grammar": {
+    "id": "protocol_pack_grammar_v0_1",
+    "json_path": "generated/protocol_pack_grammar.json",
+    "doc_path": "docs/protocol_pack_grammar.md"
   }
 }

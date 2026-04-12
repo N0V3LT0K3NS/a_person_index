@@ -35,6 +35,7 @@ Delivered so far:
 - interaction hypotheses
 - technique registry
 - protocol registry
+- protocol-pack query surface and grammar
 - research contribution models
 - result atom schema
 - motif, protocol, interaction, and research query surfaces

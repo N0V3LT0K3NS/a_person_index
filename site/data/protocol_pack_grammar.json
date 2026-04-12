@@ -1,0 +1,173 @@
+{
+  "id": "protocol_pack_grammar_v0_1",
+  "summary": "Canonical grammar for assembling downstream protocol packs from registry primitives.",
+  "required_sections": [
+    {
+      "section": "pack",
+      "required_keys": [
+        "id",
+        "grammar_id",
+        "protocol_id",
+        "protocol_name",
+        "target_count",
+        "target_framework_ids",
+        "target_construct_ids",
+        "target_labels"
+      ]
+    },
+    {
+      "section": "protocol",
+      "required_keys": [
+        "id",
+        "name",
+        "purpose",
+        "summary",
+        "required_inputs",
+        "primary_outputs"
+      ]
+    },
+    {
+      "section": "techniques",
+      "required_keys": [
+        "id",
+        "name",
+        "purpose",
+        "summary",
+        "steps",
+        "cautions"
+      ]
+    },
+    {
+      "section": "canonical_records",
+      "required_keys": [
+        "instrument_id",
+        "canonical_name",
+        "slug",
+        "family",
+        "short_description"
+      ]
+    },
+    {
+      "section": "motif_summary",
+      "required_keys": [
+        "motif",
+        "mapping_count",
+        "source_labels",
+        "relationship_types"
+      ]
+    },
+    {
+      "section": "interaction_hypotheses",
+      "required_keys": [
+        "id",
+        "left",
+        "right",
+        "interaction_type",
+        "summary",
+        "protocol_relevance"
+      ]
+    },
+    {
+      "section": "input_contract",
+      "required_keys": [
+        "required_inputs",
+        "optional_inputs"
+      ]
+    },
+    {
+      "section": "output_contract",
+      "required_keys": [
+        "primary_outputs"
+      ]
+    },
+    {
+      "section": "return_contract",
+      "required_keys": [
+        "preferred_contribution_model_ids",
+        "contribution_models",
+        "result_atom_schema"
+      ]
+    }
+  ],
+  "construction_rules": [
+    "A protocol pack is assembled from existing protocol, technique, mapping, interaction, and research records rather than authored as source truth.",
+    "Keep the protocol record authoritative for purpose, inputs, optional inputs, and primary outputs.",
+    "Scope the pack to explicit target frameworks or constructs when possible.",
+    "Derive motifs through trace and mapping logic instead of manual motif selection.",
+    "Filter interaction hypotheses by both target scope and protocol relevance.",
+    "Include the result atom schema when the protocol can consume or emit result-atom level reasoning.",
+    "Return contribution models should reflect the protocol's likely feedback channel rather than every possible research model."
+  ],
+  "targeting_rules": [
+    "Framework targets should expand to their canonical construct set for motif tracing.",
+    "Construct targets should keep both construct identity and parent framework identity.",
+    "A pack may be protocol-only, but scoped packs are preferred for runtime use."
+  ],
+  "authoring_template": {
+    "pack": {
+      "id": "pack_{protocol_id}__{scope}",
+      "grammar_id": "protocol_pack_grammar_v0_1",
+      "protocol_id": "{protocol_id}",
+      "protocol_name": "{protocol_name}",
+      "target_count": "{n}",
+      "target_framework_ids": [
+        "instr_example"
+      ],
+      "target_construct_ids": [
+        "con_example"
+      ],
+      "target_labels": [
+        "Example Target"
+      ]
+    },
+    "protocol": "{expanded protocol record}",
+    "techniques": [
+      "{expanded technique records}"
+    ],
+    "targets": [
+      "{resolved entity references}"
+    ],
+    "canonical_records": [
+      "{minimal canonical framework records}"
+    ],
+    "motif_summary": [
+      "{aggregated motif trace entries}"
+    ],
+    "relevant_mappings": [
+      "{deduplicated mapping payloads}"
+    ],
+    "interaction_hypotheses": [
+      "{deduplicated interaction payloads}"
+    ],
+    "input_contract": {
+      "required_inputs": [
+        "{protocol.required_inputs}"
+      ],
+      "optional_inputs": [
+        "{protocol.optional_inputs}"
+      ]
+    },
+    "execution_order": [
+      "resolve canonical scope",
+      "expand motif trace",
+      "expand interaction hypotheses",
+      "apply techniques",
+      "emit primary outputs",
+      "return structured research feedback"
+    ],
+    "output_contract": {
+      "primary_outputs": [
+        "{protocol.primary_outputs}"
+      ]
+    },
+    "return_contract": {
+      "preferred_contribution_model_ids": [
+        "rcm_example"
+      ],
+      "contribution_models": [
+        "{expanded contribution model records}"
+      ],
+      "result_atom_schema": "{expanded result atom schema or null}"
+    }
+  }
+}

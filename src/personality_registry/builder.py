@@ -7,7 +7,7 @@ from pathlib import Path
 from personality_registry.audit import audit_summary, bundle_audit_entry
 from personality_registry.extensions import ExtensionRegistryData, load_extensions_strict
 from personality_registry.loader import InstrumentBundle, load_repository_strict
-from personality_registry.query import compare_instruments
+from personality_registry.query import compare_instruments, protocol_pack_grammar
 from personality_registry.validation import validate_repository
 
 
@@ -152,6 +152,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
         "generated_outputs": {
             "json_root": "generated/",
             "site_root": "site/",
+            "protocol_pack_grammar_path": "generated/protocol_pack_grammar.json",
             "do_not_edit_directly": [
                 "generated/",
                 "site/",
@@ -195,6 +196,16 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "purpose": "Return protocol specs and required techniques.",
             },
             {
+                "id": "fetch_protocol_pack",
+                "command": "python3 scripts/query_registry.py protocol-pack ILENS --framework MBTI --framework Enneagram",
+                "purpose": "Return a downstream-ready bundle of protocol, techniques, motifs, mappings, interactions, and return models.",
+            },
+            {
+                "id": "fetch_protocol_pack_grammar",
+                "command": "python3 scripts/query_registry.py protocol-pack-grammar",
+                "purpose": "Return the canonical grammar for assembling future protocol packs.",
+            },
+            {
                 "id": "fetch_result_atom_schema",
                 "command": "python3 scripts/query_registry.py result-atom-schema",
                 "purpose": "Return the normalized downstream result-atom contract.",
@@ -219,6 +230,11 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "rcm_protocol_feedback",
             ],
             "result_atom_schema_id": extensions.result_atom_schema.id,
+        },
+        "protocol_pack_grammar": {
+            "id": "protocol_pack_grammar_v0_1",
+            "json_path": "generated/protocol_pack_grammar.json",
+            "doc_path": "docs/protocol_pack_grammar.md",
         },
     }
 
@@ -628,12 +644,17 @@ def build_outputs(root: Path) -> dict:
         },
     }
     manifest_payload = _manifest_payload(repository, extensions)
+    protocol_pack_grammar_payload = protocol_pack_grammar()
 
     (generated_root / "index.json").write_text(json.dumps(index_payload, indent=2), encoding="utf-8")
     (generated_root / "search.json").write_text(json.dumps(search_payload, indent=2), encoding="utf-8")
     (generated_root / "audit.json").write_text(json.dumps(audit_payload, indent=2), encoding="utf-8")
     (generated_root / "registry.json").write_text(json.dumps(export_payload, indent=2), encoding="utf-8")
     (generated_root / "manifest.json").write_text(json.dumps(manifest_payload, indent=2), encoding="utf-8")
+    (generated_root / "protocol_pack_grammar.json").write_text(
+        json.dumps(protocol_pack_grammar_payload, indent=2),
+        encoding="utf-8",
+    )
 
     for slug, payload in bundle_payloads.items():
         (instrument_output_root / f"{slug}.json").write_text(
@@ -1240,6 +1261,7 @@ def build_docs(root: Path) -> None:
         ]
     }
     manifest_payload = _manifest_payload(repository, extensions)
+    protocol_pack_grammar_payload = protocol_pack_grammar()
     extension_payload = {
         "motifs": [item.model_dump(mode="json") for item in extensions.motifs],
         "mappings": [item.model_dump(mode="json") for item in extensions.mappings],
@@ -1304,6 +1326,10 @@ section { margin-top: 32px; }
     (site_data_root / "comparisons.json").write_text(json.dumps(comparison_payload, indent=2), encoding="utf-8")
     (site_data_root / "extensions.json").write_text(json.dumps(extension_payload, indent=2), encoding="utf-8")
     (site_data_root / "manifest.json").write_text(json.dumps(manifest_payload, indent=2), encoding="utf-8")
+    (site_data_root / "protocol_pack_grammar.json").write_text(
+        json.dumps(protocol_pack_grammar_payload, indent=2),
+        encoding="utf-8",
+    )
 
     index_items = "\n".join(
         _docs_index_entry(bundle, audit_by_slug[bundle.slug])

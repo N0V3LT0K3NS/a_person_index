@@ -20,6 +20,8 @@ from personality_registry.query import (
     load_extensions_for_query,
     load_repository_for_query,
     motif_record,
+    protocol_pack,
+    protocol_pack_grammar,
     protocol_record,
     query_results,
     resolve_instrument,
@@ -256,6 +258,63 @@ def _render_protocol_record_text(payload):
     return "\n".join(lines)
 
 
+def _render_protocol_pack_text(payload):
+    pack = payload["pack"]
+    lines = [
+        f"{pack['protocol_name']} pack ({pack['id']})",
+        f"grammar: {pack['grammar_id']}",
+        f"targets: {', '.join(pack['target_labels']) or 'protocol-only'}",
+        "",
+        "Techniques:",
+    ]
+    for technique in payload["techniques"]:
+        lines.append(f"  - {technique['name']} ({technique['id']})")
+    lines.append("")
+    lines.append("Motifs:")
+    if payload["motif_summary"]:
+        for item in payload["motif_summary"]:
+            lines.append(
+                f"  - {item['motif']['name']} ({item['motif']['id']}): "
+                f"mappings={item['mapping_count']} via {', '.join(item['source_labels'])}"
+            )
+    else:
+        lines.append("  none")
+    lines.append("")
+    lines.append("Interaction hypotheses:")
+    if payload["interaction_hypotheses"]:
+        for item in payload["interaction_hypotheses"]:
+            lines.append(
+                f"  - {item['id']}: {item['left']['label']} <> {item['right']['label']} [{item['interaction_type']}]"
+            )
+    else:
+        lines.append("  none")
+    lines.append("")
+    lines.append("Execution order:")
+    for step in payload["execution_order"]:
+        lines.append(f"  - {step}")
+    lines.append("")
+    lines.append("Preferred return models:")
+    for item in payload["return_contract"]["preferred_contribution_model_ids"]:
+        lines.append(f"  - {item}")
+    return "\n".join(lines)
+
+
+def _render_protocol_pack_grammar_text(payload):
+    lines = [
+        f"{payload['id']}",
+        payload["summary"],
+        "",
+        "Required sections:",
+    ]
+    for section in payload["required_sections"]:
+        lines.append(f"  - {section['section']}: {', '.join(section['required_keys'])}")
+    lines.append("")
+    lines.append("Construction rules:")
+    for rule in payload["construction_rules"]:
+        lines.append(f"  - {rule}")
+    return "\n".join(lines)
+
+
 def _render_techniques_text(results):
     if not results:
         return "No matching techniques."
@@ -458,6 +517,29 @@ def main() -> int:
     protocols_parser.add_argument("--consumer", help="Filter protocols by downstream consumer label.")
     protocols_parser.add_argument("--format", choices=("text", "json"), default="text")
 
+    protocol_pack_parser = subparsers.add_parser(
+        "protocol-pack",
+        help="Assemble a downstream-ready protocol pack from protocol, scope, and registry primitives.",
+    )
+    protocol_pack_parser.add_argument("ref", help="Protocol ID or name.")
+    protocol_pack_parser.add_argument(
+        "--framework",
+        action="append",
+        help="Framework or instrument reference to scope the pack. Repeatable.",
+    )
+    protocol_pack_parser.add_argument(
+        "--construct",
+        action="append",
+        help="Construct reference to scope the pack. Repeatable.",
+    )
+    protocol_pack_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    protocol_pack_grammar_parser = subparsers.add_parser(
+        "protocol-pack-grammar",
+        help="Show the canonical grammar for generated protocol packs.",
+    )
+    protocol_pack_grammar_parser.add_argument("--format", choices=("text", "json"), default="text")
+
     techniques_parser = subparsers.add_parser("techniques", help="List or show technique records.")
     techniques_parser.add_argument("ref", nargs="?", help="Optional technique ID or name for a detailed record.")
     techniques_parser.add_argument("--text", help="Substring search across technique fields.")
@@ -582,6 +664,28 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_protocols_text(payload))
+        return 0
+
+    if args.command == "protocol-pack":
+        payload = protocol_pack(
+            repository,
+            extensions,
+            args.ref,
+            framework_refs=args.framework,
+            construct_refs=args.construct,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_protocol_pack_text(payload))
+        return 0
+
+    if args.command == "protocol-pack-grammar":
+        payload = protocol_pack_grammar()
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_protocol_pack_grammar_text(payload))
         return 0
 
     if args.command == "techniques":
