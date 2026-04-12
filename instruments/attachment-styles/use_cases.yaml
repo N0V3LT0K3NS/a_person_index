@@ -5,3 +5,10 @@ use_cases:
   utility_type: self_understanding
   suitability_level: medium
   cautions: Preserve context and developmental nuance when using attachment labels.
+- instrument_id: instr_attachment_styles
+  id: use_attachment_styles_therapy
+  use_context: therapy
+  utility_type: relationship_pattern_reflection
+  suitability_level: high
+  cautions: Best used with developmental history and current relational context, not
+    as a fixed diagnostic badge.

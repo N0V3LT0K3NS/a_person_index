@@ -10,3 +10,15 @@ inferences:
   linked_entities: []
   author: house
   timestamp: '2026-04-11'
+- target_entity_type: instrument
+  target_entity_id: instr_dark_triad
+  linked_entities:
+  - instr_hexaco
+  - instr_big_five
+  author: house
+  timestamp: '2026-04-11'
+  id: inf_dark_triad_not_balanced_model
+  inference_type: practical_limit
+  text: The Dark Triad is valuable for aversive-trait and interpersonal-risk analysis,
+    but it is too narrow to function as a balanced developmental or whole-person framework.
+  confidence: high

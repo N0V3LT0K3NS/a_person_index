@@ -8,3 +8,22 @@ claims:
   source_resource_ids:
   - res_dark_triad_overview
   quotation_status: paraphrase
+- instrument_id: instr_dark_triad
+  version_id: ver_dark_triad_general
+  source_resource_ids:
+  - res_dark_triad_overview
+  quotation_status: paraphrase
+  id: clm_dark_triad_construct_distinctness
+  claim_type: construct_claim
+  claim_text: Dark Triad research treats narcissism, Machiavellianism, and psychopathy
+    as related but distinct socially aversive traits rather than as a single unitary
+    construct.
+- instrument_id: instr_dark_triad
+  version_id: ver_dark_triad_general
+  source_resource_ids:
+  - res_dark_triad_review
+  quotation_status: paraphrase
+  id: clm_dark_triad_subclinical_scope
+  claim_type: theoretical_claim
+  claim_text: The Dark Triad is typically framed as a subclinical personality cluster,
+    not as a substitute for formal clinical diagnosis.

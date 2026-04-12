@@ -93,6 +93,7 @@ python3 scripts/query_registry.py find --family trait_personality
 python3 scripts/query_registry.py show MBTI --section constructs
 python3 scripts/query_registry.py compare "Big Five" MBTI
 python3 scripts/query_registry.py audit --needs-official-resource
+python3 scripts/query_registry.py audit --needs-multiple-claims
 python3 -m pytest
 ```
 

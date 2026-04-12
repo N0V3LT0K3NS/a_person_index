@@ -6,3 +6,12 @@ risks:
   description: People may adopt an attachment label as a total identity instead of
     a relational pattern under specific conditions.
   mitigation: Treat the framework as one layer among several and preserve uncertainty.
+- instrument_id: instr_attachment_styles
+  id: rsk_attachment_styles_partner_pathologizing
+  risk_type: partner_pathologizing
+  severity: medium
+  description: Popular attachment language is often used to diagnose partners or explain
+    conflict unilaterally without considering mutual dynamics, stress, or relationship
+    history.
+  mitigation: Use attachment labels to open inquiry into patterns, not to assign unilateral
+    blame.

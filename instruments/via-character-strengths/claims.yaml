@@ -8,3 +8,22 @@ claims:
   source_resource_ids:
   - res_via_character_strengths_overview
   quotation_status: paraphrase
+- instrument_id: instr_via_character_strengths
+  version_id: ver_via_character_strengths_general
+  source_resource_ids:
+  - res_via_character_strengths_overview
+  quotation_status: paraphrase
+  id: clm_via_character_strengths_six_virtues
+  claim_type: construct_claim
+  claim_text: 'The VIA classification groups 24 character strengths under six broad
+    virtue categories: Wisdom, Courage, Humanity, Justice, Temperance, and Transcendence.'
+- instrument_id: instr_via_character_strengths
+  version_id: ver_via_character_strengths_general
+  source_resource_ids:
+  - res_via_character_strengths_character_strengths_page
+  quotation_status: paraphrase
+  id: clm_via_character_strengths_applied_development
+  claim_type: usage_claim
+  claim_text: VIA materials position character strengths as capacities that can be
+    identified and developed for greater flourishing across coaching, education, and
+    well-being practice.

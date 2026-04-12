@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
+from personality_registry.audit import audit_summary, bundle_audit_entry
 from personality_registry.loader import InstrumentBundle, RepositoryData, load_repository_strict
 
 
@@ -152,62 +153,36 @@ def audit_repository(
     *,
     needs_crosswalks: bool = False,
     needs_multiple_resources: bool = False,
+    needs_multiple_claims: bool = False,
+    needs_multiple_inferences: bool = False,
+    needs_multiple_risks: bool = False,
+    needs_multiple_use_cases: bool = False,
     needs_official_or_semi_official_resource: bool = False,
 ) -> dict:
     entries: list[dict] = []
     for bundle in sorted(repository.instruments.values(), key=lambda item: item.instrument.canonical_name.lower()):
-        officiality_counts: dict[str, int] = {}
-        for resource in bundle.resources:
-            officiality_counts[resource.officiality] = officiality_counts.get(resource.officiality, 0) + 1
-
-        counts = {
-            "resources": len(bundle.resources),
-            "crosswalks": len(bundle.crosswalks),
-            "constructs": len(bundle.constructs),
-        }
-        coverage = {
-            "has_crosswalks": counts["crosswalks"] > 0,
-            "has_multiple_resources": counts["resources"] > 1,
-            "has_multiple_constructs": counts["constructs"] > 1,
-            "has_official_or_semi_official_resource": any(
-                resource.officiality in {"official", "semi_official"} for resource in bundle.resources
-            ),
-        }
+        entry = bundle_audit_entry(bundle)
+        coverage = entry["coverage"]
 
         if needs_crosswalks and coverage["has_crosswalks"]:
             continue
         if needs_multiple_resources and coverage["has_multiple_resources"]:
             continue
+        if needs_multiple_claims and coverage["has_multiple_claims"]:
+            continue
+        if needs_multiple_inferences and coverage["has_multiple_inferences"]:
+            continue
+        if needs_multiple_risks and coverage["has_multiple_risks"]:
+            continue
+        if needs_multiple_use_cases and coverage["has_multiple_use_cases"]:
+            continue
         if needs_official_or_semi_official_resource and coverage["has_official_or_semi_official_resource"]:
             continue
 
-        entries.append(
-            {
-                "slug": bundle.slug,
-                "instrument_id": bundle.instrument.id,
-                "canonical_name": bundle.instrument.canonical_name,
-                "counts": counts,
-                "resource_officiality": dict(sorted(officiality_counts.items())),
-                "coverage": coverage,
-            }
-        )
+        entries.append(entry)
 
     return {
-        "summary": {
-            "instrument_count": len(repository.instruments),
-            "instruments_with_crosswalks": sum(1 for bundle in repository.instruments.values() if bundle.crosswalks),
-            "instruments_with_multiple_resources": sum(
-                1 for bundle in repository.instruments.values() if len(bundle.resources) > 1
-            ),
-            "instruments_with_multiple_constructs": sum(
-                1 for bundle in repository.instruments.values() if len(bundle.constructs) > 1
-            ),
-            "instruments_with_official_or_semi_official_resource": sum(
-                1
-                for bundle in repository.instruments.values()
-                if any(resource.officiality in {"official", "semi_official"} for resource in bundle.resources)
-            ),
-        },
+        "summary": audit_summary([bundle_audit_entry(bundle) for bundle in repository.instruments.values()]),
         "instruments": entries,
     }
 

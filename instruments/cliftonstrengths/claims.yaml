@@ -8,3 +8,21 @@ claims:
   source_resource_ids:
   - res_cliftonstrengths_overview
   quotation_status: paraphrase
+- instrument_id: instr_cliftonstrengths
+  version_id: ver_cliftonstrengths_general
+  source_resource_ids:
+  - res_cliftonstrengths_how_it_works
+  quotation_status: paraphrase
+  id: clm_cliftonstrengths_four_domains
+  claim_type: construct_claim
+  claim_text: 'Gallup groups the 34 CliftonStrengths talent themes into four broader
+    domains: Executing, Influencing, Relationship Building, and Strategic Thinking.'
+- instrument_id: instr_cliftonstrengths
+  version_id: ver_cliftonstrengths_general
+  source_resource_ids:
+  - res_cliftonstrengths_how_it_works
+  quotation_status: paraphrase
+  id: clm_cliftonstrengths_ranked_output
+  claim_type: implementation_claim
+  claim_text: CliftonStrengths reports an individual's pattern as a ranked profile
+    of talent themes rather than as a deficit-oriented pathology or symptom score.

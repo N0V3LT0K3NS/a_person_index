@@ -12,3 +12,38 @@ crosswalks:
   confidence: high
   notes: House comparison highlighting an important aversive-traits versus honesty-humility
     contrast.
+- id: xwk_dark_triad_narcissism_hexaco_honesty_humility
+  source_entity_type: construct
+  source_entity_id: con_dark_triad_narcissism
+  target_entity_type: construct
+  target_entity_id: con_hexaco_honesty_humility
+  relationship_type: inverse_tendency
+  relationship_strength: medium
+  rationale: Grandiose entitlement and self-importance often pull against the modesty
+    and fairness facets central to HEXACO Honesty-Humility, though narcissism also
+    carries variance not captured by that single domain.
+  confidence: medium
+  notes: A directional contrast, not a full reduction.
+- id: xwk_dark_triad_machiavellianism_hexaco_honesty_humility
+  source_entity_type: construct
+  source_entity_id: con_dark_triad_machiavellianism
+  target_entity_type: construct
+  target_entity_id: con_hexaco_honesty_humility
+  relationship_type: inverse_tendency
+  relationship_strength: high
+  rationale: Machiavellianism's manipulativeness and instrumental cynicism cut strongly
+    against the sincerity and fairness profile associated with HEXACO Honesty-Humility.
+  confidence: high
+  notes: One of the clearest construct-level cross-system contrasts in the registry.
+- id: xwk_dark_triad_psychopathy_hexaco_agreeableness
+  source_entity_type: construct
+  source_entity_id: con_dark_triad_psychopathy
+  target_entity_type: construct
+  target_entity_id: con_hexaco_agreeableness
+  relationship_type: inverse_tendency
+  relationship_strength: high
+  rationale: Psychopathy's callousness and antagonism often sit opposite the forgiveness
+    and gentleness emphasized by HEXACO Agreeableness, while still extending beyond
+    that domain in impulsivity and fearlessness.
+  confidence: high
+  notes: Useful comparative anchor for aversive versus prosocial trait structure.

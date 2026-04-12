@@ -5,3 +5,10 @@ use_cases:
   utility_type: self_understanding
   suitability_level: medium
   cautions: Treat strengths as developmental tendencies rather than moral badges.
+- instrument_id: instr_via_character_strengths
+  id: use_via_character_strengths_coaching
+  use_context: coaching
+  utility_type: developmental_reflection
+  suitability_level: high
+  cautions: Works best when strengths are treated as developable capacities and not
+    as proof of moral superiority.

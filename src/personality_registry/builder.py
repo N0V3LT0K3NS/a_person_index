@@ -4,6 +4,7 @@ import json
 from html import escape
 from pathlib import Path
 
+from personality_registry.audit import audit_summary, bundle_audit_entry
 from personality_registry.loader import InstrumentBundle, load_repository_strict
 from personality_registry.validation import validate_repository
 
@@ -69,40 +70,6 @@ def _search_entry(bundle: InstrumentBundle) -> dict:
         "annotation_index": {key: sorted(set(values)) for key, values in annotation_index.items()},
         "related_instruments": related_instruments,
         "text": "\n".join(part for part in text_parts if part).strip(),
-    }
-
-
-def _audit_entry(bundle: InstrumentBundle) -> dict:
-    officiality_counts: dict[str, int] = {}
-    for resource in bundle.resources:
-        officiality_counts[resource.officiality] = officiality_counts.get(resource.officiality, 0) + 1
-
-    counts = {
-        "versions": len(bundle.versions),
-        "constructs": len(bundle.constructs),
-        "claims": len(bundle.claims),
-        "resources": len(bundle.resources),
-        "annotations": len(bundle.annotations),
-        "inferences": len(bundle.inferences),
-        "crosswalks": len(bundle.crosswalks),
-        "risks": len(bundle.risks),
-        "use_cases": len(bundle.use_cases),
-    }
-
-    return {
-        "slug": bundle.slug,
-        "instrument_id": bundle.instrument.id,
-        "canonical_name": bundle.instrument.canonical_name,
-        "counts": counts,
-        "resource_officiality": dict(sorted(officiality_counts.items())),
-        "coverage": {
-            "has_crosswalks": counts["crosswalks"] > 0,
-            "has_multiple_resources": counts["resources"] > 1,
-            "has_multiple_constructs": counts["constructs"] > 1,
-            "has_official_or_semi_official_resource": any(
-                resource.officiality in {"official", "semi_official"} for resource in bundle.resources
-            ),
-        },
     }
 
 
@@ -335,7 +302,7 @@ def _bundle_html(bundle: InstrumentBundle, entity_refs: dict[str, dict[str, str]
 """
 
 
-def _audit_html(audit_entries: list[dict]) -> str:
+def _audit_html(audit_entries: list[dict], summary: dict) -> str:
     rows = []
     for entry in audit_entries:
         rows.append(
@@ -343,7 +310,11 @@ def _audit_html(audit_entries: list[dict]) -> str:
             f"<td><a href=\"instruments/{escape(entry['slug'])}.html\">{escape(entry['canonical_name'])}</a></td>"
             f"<td>{entry['counts']['resources']}</td>"
             f"<td>{entry['counts']['constructs']}</td>"
+            f"<td>{entry['counts']['claims']}</td>"
+            f"<td>{entry['counts']['inferences']}</td>"
             f"<td>{entry['counts']['crosswalks']}</td>"
+            f"<td>{entry['counts']['risks']}</td>"
+            f"<td>{entry['counts']['use_cases']}</td>"
             f"<td>{'yes' if entry['coverage']['has_official_or_semi_official_resource'] else 'no'}</td>"
             "</tr>"
         )
@@ -359,13 +330,27 @@ def _audit_html(audit_entries: list[dict]) -> str:
       <p><a href="index.html">Back to registry</a></p>
       <h1>Registry Audit</h1>
       <p>Coverage snapshot for the seeded corpus.</p>
+      <section class="stats">
+        <article class="stat-card"><strong>{summary['instrument_count']}</strong><span>Instruments</span></article>
+        <article class="stat-card"><strong>{summary['instruments_with_multiple_resources']}</strong><span>With 2+ resources</span></article>
+        <article class="stat-card"><strong>{summary['instruments_with_multiple_constructs']}</strong><span>With 2+ constructs</span></article>
+        <article class="stat-card"><strong>{summary['instruments_with_multiple_claims']}</strong><span>With 2+ claims</span></article>
+        <article class="stat-card"><strong>{summary['instruments_with_multiple_inferences']}</strong><span>With 2+ inferences</span></article>
+        <article class="stat-card"><strong>{summary['instruments_with_multiple_risks']}</strong><span>With 2+ risks</span></article>
+        <article class="stat-card"><strong>{summary['instruments_with_multiple_use_cases']}</strong><span>With 2+ use cases</span></article>
+        <article class="stat-card"><strong>{summary['instruments_with_official_or_semi_official_resource']}</strong><span>With official/semi source</span></article>
+      </section>
       <table class="audit-table">
         <thead>
           <tr>
             <th>Instrument</th>
             <th>Resources</th>
             <th>Constructs</th>
+            <th>Claims</th>
+            <th>Inferences</th>
             <th>Crosswalks</th>
+            <th>Risks</th>
+            <th>Use Cases</th>
             <th>Official / Semi</th>
           </tr>
         </thead>
@@ -409,25 +394,8 @@ def build_outputs(root: Path) -> dict:
     search_payload = {
         "entries": [_search_entry(bundle) for _, bundle in sorted(repository.instruments.items())],
     }
-    audit_entries = [_audit_entry(bundle) for _, bundle in sorted(repository.instruments.items())]
-    audit_payload = {
-        "summary": {
-            "instrument_count": len(audit_entries),
-            "instruments_with_crosswalks": sum(1 for entry in audit_entries if entry["coverage"]["has_crosswalks"]),
-            "instruments_with_multiple_resources": sum(
-                1 for entry in audit_entries if entry["coverage"]["has_multiple_resources"]
-            ),
-            "instruments_with_multiple_constructs": sum(
-                1 for entry in audit_entries if entry["coverage"]["has_multiple_constructs"]
-            ),
-            "instruments_with_official_or_semi_official_resource": sum(
-                1
-                for entry in audit_entries
-                if entry["coverage"]["has_official_or_semi_official_resource"]
-            ),
-        },
-        "instruments": audit_entries,
-    }
+    audit_entries = [bundle_audit_entry(bundle) for _, bundle in sorted(repository.instruments.items())]
+    audit_payload = {"summary": audit_summary(audit_entries), "instruments": audit_entries}
     export_payload = {
         "ontology": index_payload["ontology"],
         "instruments": bundle_payloads,
@@ -451,13 +419,8 @@ def build_docs(root: Path) -> None:
     site_root = root / "site"
     site_instruments_root = site_root / "instruments"
     site_instruments_root.mkdir(parents=True, exist_ok=True)
-    audit_entries = [_audit_entry(bundle) for _, bundle in sorted(repository.instruments.items())]
-    audit_summary = {
-        "instrument_count": len(audit_entries),
-        "with_crosswalks": sum(1 for entry in audit_entries if entry["coverage"]["has_crosswalks"]),
-        "with_multiple_resources": sum(1 for entry in audit_entries if entry["coverage"]["has_multiple_resources"]),
-        "with_multiple_constructs": sum(1 for entry in audit_entries if entry["coverage"]["has_multiple_constructs"]),
-    }
+    audit_entries = [bundle_audit_entry(bundle) for _, bundle in sorted(repository.instruments.items())]
+    audit_snapshot = audit_summary(audit_entries)
     audit_by_slug = {entry["slug"]: entry for entry in audit_entries}
     entity_refs: dict[str, dict[str, str]] = {}
     for _, bundle in sorted(repository.instruments.items()):
@@ -518,10 +481,10 @@ section { margin-top: 32px; }
         <p><a href="audit.html">View registry audit</a></p>
       </section>
       <section class="stats">
-        <article class="stat-card"><strong>{audit_summary['instrument_count']}</strong> seeded instruments</article>
-        <article class="stat-card"><strong>{audit_summary['with_multiple_resources']}</strong> with 2+ resources</article>
-        <article class="stat-card"><strong>{audit_summary['with_multiple_constructs']}</strong> with 2+ constructs</article>
-        <article class="stat-card"><strong>{audit_summary['with_crosswalks']}</strong> with outgoing crosswalks</article>
+        <article class="stat-card"><strong>{audit_snapshot['instrument_count']}</strong> seeded instruments</article>
+        <article class="stat-card"><strong>{audit_snapshot['instruments_with_multiple_resources']}</strong> with 2+ resources</article>
+        <article class="stat-card"><strong>{audit_snapshot['instruments_with_multiple_constructs']}</strong> with 2+ constructs</article>
+        <article class="stat-card"><strong>{audit_snapshot['instruments_with_crosswalks']}</strong> with outgoing crosswalks</article>
       </section>
       <section>
         <h2>Instrument Index</h2>
@@ -532,7 +495,7 @@ section { margin-top: 32px; }
 </html>
 """
     (site_root / "index.html").write_text(index_html, encoding="utf-8")
-    (site_root / "audit.html").write_text(_audit_html(audit_entries), encoding="utf-8")
+    (site_root / "audit.html").write_text(_audit_html(audit_entries, audit_snapshot), encoding="utf-8")
 
     for slug, bundle in repository.instruments.items():
         (site_instruments_root / f"{slug}.html").write_text(

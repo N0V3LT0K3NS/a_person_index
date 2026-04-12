@@ -10,3 +10,16 @@ inferences:
   linked_entities: []
   author: house
   timestamp: '2026-04-11'
+- target_entity_type: instrument
+  target_entity_id: instr_cliftonstrengths
+  linked_entities:
+  - instr_via_character_strengths
+  - instr_big_five
+  author: house
+  timestamp: '2026-04-11'
+  id: inf_cliftonstrengths_branded_workplace_layer
+  inference_type: practical_limit
+  text: CliftonStrengths works best as a branded development language inside coaching
+    and workplace contexts, but it leaves motive, shadow, and non-work identity layers
+    comparatively under-described.
+  confidence: high

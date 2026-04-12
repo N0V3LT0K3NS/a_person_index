@@ -105,6 +105,28 @@
         "res_attachment_styles_overview"
       ],
       "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_attachment_styles_dimensional_model",
+      "instrument_id": "instr_attachment_styles",
+      "version_id": "ver_attachment_styles_general",
+      "claim_type": "construct_claim",
+      "claim_text": "Contemporary adult attachment measures often represent attachment variation along anxiety and avoidance dimensions rather than only fixed style labels.",
+      "source_resource_ids": [
+        "res_attachment_styles_ecrr"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_attachment_styles_relational_context",
+      "instrument_id": "instr_attachment_styles",
+      "version_id": "ver_attachment_styles_general",
+      "claim_type": "theoretical_claim",
+      "claim_text": "Attachment theory is intended to describe expectations of availability, closeness, and distress regulation within emotionally significant relationships.",
+      "source_resource_ids": [
+        "res_attachment_styles_overview"
+      ],
+      "quotation_status": "paraphrase"
     }
   ],
   "resources": [
@@ -628,6 +650,20 @@
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_attachment_styles_not_total_personality",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_attachment_styles",
+      "inference_type": "practical_limit",
+      "text": "Attachment language is strongest as a relationship-pattern layer and weakens when it is treated as a global whole-person typology detached from context.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_love_languages",
+        "instr_big_five"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
     }
   ],
   "crosswalks": [
@@ -642,6 +678,30 @@
       "rationale": "Attachment styles and Love Languages both operate in relationship discourse, but attachment targets security and regulation patterns while Love Languages targets preferred expressions of care.",
       "confidence": "high",
       "notes": "Useful comparative link for relational frameworks that are often conflated in popular discourse."
+    },
+    {
+      "id": "xwk_attachment_styles_anxiety_words_of_affirmation",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_attachment_styles_anxiety",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_love_languages_words_of_affirmation",
+      "relationship_type": "loose_overlap",
+      "relationship_strength": "medium",
+      "rationale": "Higher attachment anxiety often heightens sensitivity to reassurance and verbal confirmation, which can overlap with a felt importance of affirming language, though the constructs are not equivalent.",
+      "confidence": "medium",
+      "notes": "This is a contextual overlap, not a translation between insecurity and preference."
+    },
+    {
+      "id": "xwk_attachment_styles_avoidance_physical_touch",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_attachment_styles_avoidance",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_love_languages_physical_touch",
+      "relationship_type": "inverse_tendency",
+      "relationship_strength": "medium",
+      "rationale": "Attachment avoidance can coincide with reduced comfort around closeness and touch, but a lower touch preference is neither necessary nor sufficient for avoidant attachment.",
+      "confidence": "medium",
+      "notes": "Useful only as a cautionary comparative pattern, not as a diagnostic shortcut."
     }
   ],
   "risks": [
@@ -652,6 +712,14 @@
       "severity": "medium",
       "description": "People may adopt an attachment label as a total identity instead of a relational pattern under specific conditions.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    },
+    {
+      "id": "rsk_attachment_styles_partner_pathologizing",
+      "instrument_id": "instr_attachment_styles",
+      "risk_type": "partner_pathologizing",
+      "severity": "medium",
+      "description": "Popular attachment language is often used to diagnose partners or explain conflict unilaterally without considering mutual dynamics, stress, or relationship history.",
+      "mitigation": "Use attachment labels to open inquiry into patterns, not to assign unilateral blame."
     }
   ],
   "use_cases": [
@@ -662,6 +730,14 @@
       "utility_type": "self_understanding",
       "suitability_level": "medium",
       "cautions": "Preserve context and developmental nuance when using attachment labels."
+    },
+    {
+      "id": "use_attachment_styles_therapy",
+      "instrument_id": "instr_attachment_styles",
+      "use_context": "therapy",
+      "utility_type": "relationship_pattern_reflection",
+      "suitability_level": "high",
+      "cautions": "Best used with developmental history and current relational context, not as a fixed diagnostic badge."
     }
   ],
   "notes": "# Attachment Style Frameworks\n\n## What it is\nA family of relational frameworks describing recurring patterns of security, anxiety, avoidance, and closeness regulation.\n\n## Why it matters\nAttachment frameworks matter because they capture a relational layer that broad trait models often blur: how people seek safety, proximity, reassurance, and distance in emotionally important relationships.\n\n## What it is good for\n- relational patterning\n- therapy and coaching conversation\n- understanding anxiety and avoidance dynamics\n- contextual self-reflection in close relationships\n\n## What it is weaker at\n- whole-person personality modeling\n- context-free labeling\n- clean single-test standardization across the family\n- explaining symbolic or motivational identity systems\n\n## Common misuse\nTreating an attachment style as a permanent identity instead of a relational pattern that can vary by context, relationship, and development.\n"

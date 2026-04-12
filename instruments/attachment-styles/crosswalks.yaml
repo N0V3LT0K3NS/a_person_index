@@ -12,3 +12,27 @@ crosswalks:
   confidence: high
   notes: Useful comparative link for relational frameworks that are often conflated
     in popular discourse.
+- id: xwk_attachment_styles_anxiety_words_of_affirmation
+  source_entity_type: construct
+  source_entity_id: con_attachment_styles_anxiety
+  target_entity_type: construct
+  target_entity_id: con_love_languages_words_of_affirmation
+  relationship_type: loose_overlap
+  relationship_strength: medium
+  rationale: Higher attachment anxiety often heightens sensitivity to reassurance
+    and verbal confirmation, which can overlap with a felt importance of affirming
+    language, though the constructs are not equivalent.
+  confidence: medium
+  notes: This is a contextual overlap, not a translation between insecurity and preference.
+- id: xwk_attachment_styles_avoidance_physical_touch
+  source_entity_type: construct
+  source_entity_id: con_attachment_styles_avoidance
+  target_entity_type: construct
+  target_entity_id: con_love_languages_physical_touch
+  relationship_type: inverse_tendency
+  relationship_strength: medium
+  rationale: Attachment avoidance can coincide with reduced comfort around closeness
+    and touch, but a lower touch preference is neither necessary nor sufficient for
+    avoidant attachment.
+  confidence: medium
+  notes: Useful only as a cautionary comparative pattern, not as a diagnostic shortcut.

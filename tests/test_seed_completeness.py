@@ -66,3 +66,28 @@ def test_known_seeded_instruments_have_top_level_construct_depth(repo_root):
             failures.append(f"{slug}: expected>={minimum} got={len(bundle.constructs)}")
 
     assert failures == []
+
+
+def test_curated_relational_and_strengths_batch_has_richer_depth(repo_root):
+    repository = load_repository_strict(repo_root)
+    expected_minimums = {
+        "attachment-styles": {"claims": 3, "inferences": 2, "risks": 2, "use_cases": 2},
+        "cliftonstrengths": {"claims": 3, "inferences": 2, "risks": 2, "use_cases": 2},
+        "dark-triad": {"claims": 3, "inferences": 2, "risks": 2, "use_cases": 2},
+        "via-character-strengths": {"claims": 3, "inferences": 2, "risks": 2, "use_cases": 2},
+    }
+
+    failures: list[str] = []
+    for slug, minimums in expected_minimums.items():
+        bundle = repository.instruments[slug]
+        actual = {
+            "claims": len(bundle.claims),
+            "inferences": len(bundle.inferences),
+            "risks": len(bundle.risks),
+            "use_cases": len(bundle.use_cases),
+        }
+        for field, minimum in minimums.items():
+            if actual[field] < minimum:
+                failures.append(f"{slug}: expected {field}>={minimum} got={actual[field]}")
+
+    assert failures == []

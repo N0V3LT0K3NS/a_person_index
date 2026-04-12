@@ -5,3 +5,10 @@ use_cases:
   utility_type: self_understanding
   suitability_level: medium
   cautions: Strong for strengths framing, weak as a total ontology of personhood.
+- instrument_id: instr_cliftonstrengths
+  id: use_cliftonstrengths_team_design
+  use_context: team_design
+  utility_type: communication_adaptation
+  suitability_level: high
+  cautions: Useful for role and collaboration discussion, but weak if it becomes the
+    sole basis for staffing decisions.

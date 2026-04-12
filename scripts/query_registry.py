@@ -65,6 +65,10 @@ def _render_audit_text(payload):
         f"  with crosswalks: {payload['summary']['instruments_with_crosswalks']}",
         f"  with 2+ resources: {payload['summary']['instruments_with_multiple_resources']}",
         f"  with 2+ constructs: {payload['summary']['instruments_with_multiple_constructs']}",
+        f"  with 2+ claims: {payload['summary']['instruments_with_multiple_claims']}",
+        f"  with 2+ inferences: {payload['summary']['instruments_with_multiple_inferences']}",
+        f"  with 2+ risks: {payload['summary']['instruments_with_multiple_risks']}",
+        f"  with 2+ use cases: {payload['summary']['instruments_with_multiple_use_cases']}",
         (
             "  with official/semi-official resource: "
             f"{payload['summary']['instruments_with_official_or_semi_official_resource']}"
@@ -77,7 +81,10 @@ def _render_audit_text(payload):
             lines.append(f"  {entry['canonical_name']} ({entry['instrument_id']})")
             lines.append(
                 "    "
-                f"resources={entry['counts']['resources']} crosswalks={entry['counts']['crosswalks']} "
+                f"resources={entry['counts']['resources']} constructs={entry['counts']['constructs']} "
+                f"claims={entry['counts']['claims']} inferences={entry['counts']['inferences']} "
+                f"crosswalks={entry['counts']['crosswalks']} risks={entry['counts']['risks']} "
+                f"use_cases={entry['counts']['use_cases']} "
                 f"officiality={entry['resource_officiality']}"
             )
     return "\n".join(lines)
@@ -193,6 +200,26 @@ def main() -> int:
         action="store_true",
         help="Show only instruments missing an official or semi-official resource.",
     )
+    audit_parser.add_argument(
+        "--needs-multiple-claims",
+        action="store_true",
+        help="Show only instruments with fewer than two source claims.",
+    )
+    audit_parser.add_argument(
+        "--needs-multiple-inferences",
+        action="store_true",
+        help="Show only instruments with fewer than two house inferences.",
+    )
+    audit_parser.add_argument(
+        "--needs-multiple-risks",
+        action="store_true",
+        help="Show only instruments with fewer than two risk records.",
+    )
+    audit_parser.add_argument(
+        "--needs-multiple-use-cases",
+        action="store_true",
+        help="Show only instruments with fewer than two use cases.",
+    )
     audit_parser.add_argument("--format", choices=("text", "json"), default="text")
 
     args = parser.parse_args()
@@ -224,6 +251,10 @@ def main() -> int:
             repository,
             needs_crosswalks=args.needs_crosswalks,
             needs_multiple_resources=args.needs_multiple_resources,
+            needs_multiple_claims=args.needs_multiple_claims,
+            needs_multiple_inferences=args.needs_multiple_inferences,
+            needs_multiple_risks=args.needs_multiple_risks,
+            needs_multiple_use_cases=args.needs_multiple_use_cases,
             needs_official_or_semi_official_resource=args.needs_official_resource,
         )
         if args.format == "json":

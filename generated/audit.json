@@ -4,6 +4,10 @@
     "instruments_with_crosswalks": 15,
     "instruments_with_multiple_resources": 15,
     "instruments_with_multiple_constructs": 15,
+    "instruments_with_multiple_claims": 7,
+    "instruments_with_multiple_inferences": 7,
+    "instruments_with_multiple_risks": 7,
+    "instruments_with_multiple_use_cases": 7,
     "instruments_with_official_or_semi_official_resource": 12
   },
   "instruments": [
@@ -14,13 +18,13 @@
       "counts": {
         "versions": 1,
         "constructs": 2,
-        "claims": 1,
+        "claims": 3,
         "resources": 2,
         "annotations": 24,
-        "inferences": 1,
-        "crosswalks": 1,
-        "risks": 1,
-        "use_cases": 1
+        "inferences": 2,
+        "crosswalks": 3,
+        "risks": 2,
+        "use_cases": 2
       },
       "resource_officiality": {
         "secondary": 2
@@ -29,6 +33,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": true,
+        "has_multiple_inferences": true,
+        "has_multiple_risks": true,
+        "has_multiple_use_cases": true,
         "has_official_or_semi_official_resource": false
       }
     },
@@ -55,6 +63,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": true,
+        "has_multiple_inferences": true,
+        "has_multiple_risks": true,
+        "has_multiple_use_cases": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -65,13 +77,13 @@
       "counts": {
         "versions": 1,
         "constructs": 4,
-        "claims": 1,
+        "claims": 3,
         "resources": 2,
         "annotations": 24,
-        "inferences": 1,
-        "crosswalks": 1,
-        "risks": 1,
-        "use_cases": 1
+        "inferences": 2,
+        "crosswalks": 4,
+        "risks": 2,
+        "use_cases": 2
       },
       "resource_officiality": {
         "official": 2
@@ -80,6 +92,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": true,
+        "has_multiple_inferences": true,
+        "has_multiple_risks": true,
+        "has_multiple_use_cases": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -105,6 +121,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": false,
+        "has_multiple_inferences": false,
+        "has_multiple_risks": false,
+        "has_multiple_use_cases": false,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -130,6 +150,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": false,
+        "has_multiple_inferences": false,
+        "has_multiple_risks": false,
+        "has_multiple_use_cases": false,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -140,13 +164,13 @@
       "counts": {
         "versions": 1,
         "constructs": 3,
-        "claims": 1,
+        "claims": 3,
         "resources": 2,
         "annotations": 24,
-        "inferences": 1,
-        "crosswalks": 1,
-        "risks": 1,
-        "use_cases": 1
+        "inferences": 2,
+        "crosswalks": 4,
+        "risks": 2,
+        "use_cases": 2
       },
       "resource_officiality": {
         "secondary": 2
@@ -155,6 +179,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": true,
+        "has_multiple_inferences": true,
+        "has_multiple_risks": true,
+        "has_multiple_use_cases": true,
         "has_official_or_semi_official_resource": false
       }
     },
@@ -180,6 +208,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": false,
+        "has_multiple_inferences": false,
+        "has_multiple_risks": false,
+        "has_multiple_use_cases": false,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -205,6 +237,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": true,
+        "has_multiple_inferences": true,
+        "has_multiple_risks": true,
+        "has_multiple_use_cases": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -230,6 +266,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": false,
+        "has_multiple_inferences": false,
+        "has_multiple_risks": false,
+        "has_multiple_use_cases": false,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -255,6 +295,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": false,
+        "has_multiple_inferences": false,
+        "has_multiple_risks": false,
+        "has_multiple_use_cases": false,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -280,6 +324,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": false,
+        "has_multiple_inferences": false,
+        "has_multiple_risks": false,
+        "has_multiple_use_cases": false,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -305,6 +353,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": false,
+        "has_multiple_inferences": false,
+        "has_multiple_risks": false,
+        "has_multiple_use_cases": false,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -330,6 +382,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": true,
+        "has_multiple_inferences": true,
+        "has_multiple_risks": true,
+        "has_multiple_use_cases": true,
         "has_official_or_semi_official_resource": true
       }
     },
@@ -355,6 +411,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": false,
+        "has_multiple_inferences": false,
+        "has_multiple_risks": false,
+        "has_multiple_use_cases": false,
         "has_official_or_semi_official_resource": false
       }
     },
@@ -365,13 +425,13 @@
       "counts": {
         "versions": 1,
         "constructs": 6,
-        "claims": 1,
+        "claims": 3,
         "resources": 2,
         "annotations": 24,
-        "inferences": 1,
-        "crosswalks": 1,
-        "risks": 1,
-        "use_cases": 1
+        "inferences": 2,
+        "crosswalks": 4,
+        "risks": 2,
+        "use_cases": 2
       },
       "resource_officiality": {
         "official": 2
@@ -380,6 +440,10 @@
         "has_crosswalks": true,
         "has_multiple_resources": true,
         "has_multiple_constructs": true,
+        "has_multiple_claims": true,
+        "has_multiple_inferences": true,
+        "has_multiple_risks": true,
+        "has_multiple_use_cases": true,
         "has_official_or_semi_official_resource": true
       }
     }

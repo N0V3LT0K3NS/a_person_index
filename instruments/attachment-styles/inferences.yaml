@@ -10,3 +10,15 @@ inferences:
   linked_entities: []
   author: house
   timestamp: '2026-04-11'
+- target_entity_type: instrument
+  target_entity_id: instr_attachment_styles
+  linked_entities:
+  - instr_love_languages
+  - instr_big_five
+  author: house
+  timestamp: '2026-04-11'
+  id: inf_attachment_styles_not_total_personality
+  inference_type: practical_limit
+  text: Attachment language is strongest as a relationship-pattern layer and weakens
+    when it is treated as a global whole-person typology detached from context.
+  confidence: high

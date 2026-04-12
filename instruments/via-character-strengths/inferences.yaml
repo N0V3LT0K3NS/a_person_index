@@ -10,3 +10,16 @@ inferences:
   linked_entities: []
   author: house
   timestamp: '2026-04-11'
+- target_entity_type: instrument
+  target_entity_id: instr_via_character_strengths
+  linked_entities:
+  - instr_cliftonstrengths
+  - instr_dark_triad
+  author: house
+  timestamp: '2026-04-11'
+  id: inf_via_character_strengths_shadow_limits
+  inference_type: practical_limit
+  text: VIA is unusually strong for positive-personality and virtue language, but
+    it under-describes shadow, defense, and exploitative behavior compared with darker
+    or more conflict-oriented frameworks.
+  confidence: high

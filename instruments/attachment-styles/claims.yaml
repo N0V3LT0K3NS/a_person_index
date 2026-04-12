@@ -9,3 +9,21 @@ claims:
   source_resource_ids:
   - res_attachment_styles_overview
   quotation_status: paraphrase
+- instrument_id: instr_attachment_styles
+  version_id: ver_attachment_styles_general
+  source_resource_ids:
+  - res_attachment_styles_ecrr
+  quotation_status: paraphrase
+  id: clm_attachment_styles_dimensional_model
+  claim_type: construct_claim
+  claim_text: Contemporary adult attachment measures often represent attachment variation
+    along anxiety and avoidance dimensions rather than only fixed style labels.
+- instrument_id: instr_attachment_styles
+  version_id: ver_attachment_styles_general
+  source_resource_ids:
+  - res_attachment_styles_overview
+  quotation_status: paraphrase
+  id: clm_attachment_styles_relational_context
+  claim_type: theoretical_claim
+  claim_text: Attachment theory is intended to describe expectations of availability,
+    closeness, and distress regulation within emotionally significant relationships.

@@ -6,3 +6,11 @@ risks:
   description: Users may confuse branded strengths language with total capability
     or role fit.
   mitigation: Treat the framework as one layer among several and preserve uncertainty.
+- instrument_id: instr_cliftonstrengths
+  id: rsk_cliftonstrengths_workplace_misuse
+  risk_type: workplace_misuse
+  severity: high
+  description: Organizations may use top themes as hiring screens or fixed role assignments
+    even though the system is better suited to development, coaching, and team conversation.
+  mitigation: Keep CliftonStrengths in development workflows and avoid treating theme
+    rankings as selection criteria.

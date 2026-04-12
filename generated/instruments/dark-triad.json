@@ -130,6 +130,28 @@
         "res_dark_triad_overview"
       ],
       "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_dark_triad_construct_distinctness",
+      "instrument_id": "instr_dark_triad",
+      "version_id": "ver_dark_triad_general",
+      "claim_type": "construct_claim",
+      "claim_text": "Dark Triad research treats narcissism, Machiavellianism, and psychopathy as related but distinct socially aversive traits rather than as a single unitary construct.",
+      "source_resource_ids": [
+        "res_dark_triad_overview"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_dark_triad_subclinical_scope",
+      "instrument_id": "instr_dark_triad",
+      "version_id": "ver_dark_triad_general",
+      "claim_type": "theoretical_claim",
+      "claim_text": "The Dark Triad is typically framed as a subclinical personality cluster, not as a substitute for formal clinical diagnosis.",
+      "source_resource_ids": [
+        "res_dark_triad_review"
+      ],
+      "quotation_status": "paraphrase"
     }
   ],
   "resources": [
@@ -629,6 +651,20 @@
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_dark_triad_not_balanced_model",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_dark_triad",
+      "inference_type": "practical_limit",
+      "text": "The Dark Triad is valuable for aversive-trait and interpersonal-risk analysis, but it is too narrow to function as a balanced developmental or whole-person framework.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_hexaco",
+        "instr_big_five"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
     }
   ],
   "crosswalks": [
@@ -643,6 +679,42 @@
       "rationale": "Dark Triad constructs frequently sit in inverse relation to prosociality-related HEXACO patterns, especially around Honesty-Humility, but they are not reducible to a single HEXACO domain.",
       "confidence": "high",
       "notes": "House comparison highlighting an important aversive-traits versus honesty-humility contrast."
+    },
+    {
+      "id": "xwk_dark_triad_narcissism_hexaco_honesty_humility",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_dark_triad_narcissism",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_hexaco_honesty_humility",
+      "relationship_type": "inverse_tendency",
+      "relationship_strength": "medium",
+      "rationale": "Grandiose entitlement and self-importance often pull against the modesty and fairness facets central to HEXACO Honesty-Humility, though narcissism also carries variance not captured by that single domain.",
+      "confidence": "medium",
+      "notes": "A directional contrast, not a full reduction."
+    },
+    {
+      "id": "xwk_dark_triad_machiavellianism_hexaco_honesty_humility",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_dark_triad_machiavellianism",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_hexaco_honesty_humility",
+      "relationship_type": "inverse_tendency",
+      "relationship_strength": "high",
+      "rationale": "Machiavellianism's manipulativeness and instrumental cynicism cut strongly against the sincerity and fairness profile associated with HEXACO Honesty-Humility.",
+      "confidence": "high",
+      "notes": "One of the clearest construct-level cross-system contrasts in the registry."
+    },
+    {
+      "id": "xwk_dark_triad_psychopathy_hexaco_agreeableness",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_dark_triad_psychopathy",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_hexaco_agreeableness",
+      "relationship_type": "inverse_tendency",
+      "relationship_strength": "high",
+      "rationale": "Psychopathy's callousness and antagonism often sit opposite the forgiveness and gentleness emphasized by HEXACO Agreeableness, while still extending beyond that domain in impulsivity and fearlessness.",
+      "confidence": "high",
+      "notes": "Useful comparative anchor for aversive versus prosocial trait structure."
     }
   ],
   "risks": [
@@ -653,6 +725,14 @@
       "severity": "medium",
       "description": "Scores can be moralized or used as total character judgments.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    },
+    {
+      "id": "rsk_dark_triad_stigmatization",
+      "instrument_id": "instr_dark_triad",
+      "risk_type": "stigmatization",
+      "severity": "high",
+      "description": "Dark Triad labels can be used as moral condemnation or amateur diagnosis, especially in online discourse where subclinical constructs are flattened into villain labels.",
+      "mitigation": "Keep the framework tied to narrow construct interpretation and avoid using it as a total-person verdict."
     }
   ],
   "use_cases": [
@@ -663,6 +743,14 @@
       "utility_type": "self_understanding",
       "suitability_level": "medium",
       "cautions": "Treat as a narrow construct cluster, not a whole-person verdict."
+    },
+    {
+      "id": "use_dark_triad_research",
+      "instrument_id": "instr_dark_triad",
+      "use_context": "research",
+      "utility_type": "aversive_trait_comparison",
+      "suitability_level": "high",
+      "cautions": "Most useful for research, comparative trait analysis, and narrow risk interpretation rather than everyday identity labeling."
     }
   ],
   "notes": "# Dark Triad\n\n## What it is\nA construct cluster organized around narcissism, Machiavellianism, and psychopathy as overlapping but distinct socially aversive traits.\n\n## Why it matters\nDark Triad matters because it captures a narrow but important slice of personality variation that broad positive or neutral trait models often understate: manipulativeness, grandiosity, callousness, and exploitative style.\n\n## What it is good for\n- research on aversive traits\n- comparison to agreeableness and honesty-humility layers\n- narrow interpersonal risk profiling\n\n## What it is weaker at\n- whole-person modeling\n- developmental nuance\n- context-rich interpretation\n- non-pathologizing everyday self-understanding\n\n## Common misuse\nUsing dark-trait shorthand as a moral diagnosis or total character verdict.\n"

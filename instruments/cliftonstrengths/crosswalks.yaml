@@ -12,3 +12,40 @@ crosswalks:
   confidence: high
   notes: House comparison across two strengths-first systems with different normative
     framing.
+- id: xwk_cliftonstrengths_strategic_thinking_via_wisdom
+  source_entity_type: construct
+  source_entity_id: con_cliftonstrengths_strategic_thinking
+  target_entity_type: construct
+  target_entity_id: con_via_wisdom
+  relationship_type: same_layer_different_cut
+  relationship_strength: high
+  rationale: CliftonStrengths Strategic Thinking and VIA Wisdom both organize around
+    learning, sense-making, and using knowledge well, though one is talent-performance
+    language and the other is virtue language.
+  confidence: high
+  notes: A relatively strong bridge between workplace-strength and character-strength
+    vocabularies.
+- id: xwk_cliftonstrengths_relationship_building_via_humanity
+  source_entity_type: construct
+  source_entity_id: con_cliftonstrengths_relationship_building
+  target_entity_type: construct
+  target_entity_id: con_via_humanity
+  relationship_type: loose_overlap
+  relationship_strength: high
+  rationale: Relationship Building and Humanity both emphasize interpersonal warmth
+    and connection, but CliftonStrengths frames this as talent at building bonds while
+    VIA frames it as character virtue.
+  confidence: high
+  notes: Overlap is meaningful but still normatively different.
+- id: xwk_cliftonstrengths_influencing_via_courage
+  source_entity_type: construct
+  source_entity_id: con_cliftonstrengths_influencing
+  target_entity_type: construct
+  target_entity_id: con_via_courage
+  relationship_type: loose_overlap
+  relationship_strength: medium
+  rationale: Influencing can overlap with courage-related themes of speaking up and
+    acting publicly, but CliftonStrengths highlights effectiveness and impact whereas
+    VIA highlights virtue in the face of difficulty.
+  confidence: medium
+  notes: Best treated as a partial bridge rather than a one-to-one mapping.

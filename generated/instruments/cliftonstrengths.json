@@ -160,6 +160,28 @@
         "res_cliftonstrengths_overview"
       ],
       "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_cliftonstrengths_four_domains",
+      "instrument_id": "instr_cliftonstrengths",
+      "version_id": "ver_cliftonstrengths_general",
+      "claim_type": "construct_claim",
+      "claim_text": "Gallup groups the 34 CliftonStrengths talent themes into four broader domains: Executing, Influencing, Relationship Building, and Strategic Thinking.",
+      "source_resource_ids": [
+        "res_cliftonstrengths_how_it_works"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_cliftonstrengths_ranked_output",
+      "instrument_id": "instr_cliftonstrengths",
+      "version_id": "ver_cliftonstrengths_general",
+      "claim_type": "implementation_claim",
+      "claim_text": "CliftonStrengths reports an individual's pattern as a ranked profile of talent themes rather than as a deficit-oriented pathology or symptom score.",
+      "source_resource_ids": [
+        "res_cliftonstrengths_how_it_works"
+      ],
+      "quotation_status": "paraphrase"
     }
   ],
   "resources": [
@@ -677,6 +699,20 @@
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_cliftonstrengths_branded_workplace_layer",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_cliftonstrengths",
+      "inference_type": "practical_limit",
+      "text": "CliftonStrengths works best as a branded development language inside coaching and workplace contexts, but it leaves motive, shadow, and non-work identity layers comparatively under-described.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_via_character_strengths",
+        "instr_big_five"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
     }
   ],
   "crosswalks": [
@@ -691,6 +727,42 @@
       "rationale": "CliftonStrengths and VIA both offer strengths-oriented vocabularies, but CliftonStrengths emphasizes talent and performance themes while VIA emphasizes character strengths and virtues.",
       "confidence": "high",
       "notes": "House comparison across two strengths-first systems with different normative framing."
+    },
+    {
+      "id": "xwk_cliftonstrengths_strategic_thinking_via_wisdom",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_cliftonstrengths_strategic_thinking",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_via_wisdom",
+      "relationship_type": "same_layer_different_cut",
+      "relationship_strength": "high",
+      "rationale": "CliftonStrengths Strategic Thinking and VIA Wisdom both organize around learning, sense-making, and using knowledge well, though one is talent-performance language and the other is virtue language.",
+      "confidence": "high",
+      "notes": "A relatively strong bridge between workplace-strength and character-strength vocabularies."
+    },
+    {
+      "id": "xwk_cliftonstrengths_relationship_building_via_humanity",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_cliftonstrengths_relationship_building",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_via_humanity",
+      "relationship_type": "loose_overlap",
+      "relationship_strength": "high",
+      "rationale": "Relationship Building and Humanity both emphasize interpersonal warmth and connection, but CliftonStrengths frames this as talent at building bonds while VIA frames it as character virtue.",
+      "confidence": "high",
+      "notes": "Overlap is meaningful but still normatively different."
+    },
+    {
+      "id": "xwk_cliftonstrengths_influencing_via_courage",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_cliftonstrengths_influencing",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_via_courage",
+      "relationship_type": "loose_overlap",
+      "relationship_strength": "medium",
+      "rationale": "Influencing can overlap with courage-related themes of speaking up and acting publicly, but CliftonStrengths highlights effectiveness and impact whereas VIA highlights virtue in the face of difficulty.",
+      "confidence": "medium",
+      "notes": "Best treated as a partial bridge rather than a one-to-one mapping."
     }
   ],
   "risks": [
@@ -701,6 +773,14 @@
       "severity": "medium",
       "description": "Users may confuse branded strengths language with total capability or role fit.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    },
+    {
+      "id": "rsk_cliftonstrengths_workplace_misuse",
+      "instrument_id": "instr_cliftonstrengths",
+      "risk_type": "workplace_misuse",
+      "severity": "high",
+      "description": "Organizations may use top themes as hiring screens or fixed role assignments even though the system is better suited to development, coaching, and team conversation.",
+      "mitigation": "Keep CliftonStrengths in development workflows and avoid treating theme rankings as selection criteria."
     }
   ],
   "use_cases": [
@@ -711,6 +791,14 @@
       "utility_type": "self_understanding",
       "suitability_level": "medium",
       "cautions": "Strong for strengths framing, weak as a total ontology of personhood."
+    },
+    {
+      "id": "use_cliftonstrengths_team_design",
+      "instrument_id": "instr_cliftonstrengths",
+      "use_context": "team_design",
+      "utility_type": "communication_adaptation",
+      "suitability_level": "high",
+      "cautions": "Useful for role and collaboration discussion, but weak if it becomes the sole basis for staffing decisions."
     }
   ],
   "notes": "# CliftonStrengths\n\n## What it is\nA Gallup strengths assessment that ranks 34 talent themes based on recurring patterns of thought, feeling, and behavior.\n\n## Why it matters\nCliftonStrengths matters because it is one of the most culturally sticky strengths vocabularies in workplaces and coaching. It functions less as a whole-person theory than as a branded language for talent development and self-description.\n\n## What it is good for\n- strengths language\n- coaching and team development\n- role reflection\n- talent-focused development planning\n\n## What it is weaker at\n- psychometric transparency outside Gallup\n- dark-side behavior\n- motive and defense language\n- non-work identity layers\n\n## Common misuse\nTreating top themes as fixed role entitlements or using them as hiring filters instead of development prompts.\n"

@@ -558,6 +558,7 @@ def placeholder_bundle(
     include_primary_construct: bool = True,
     extra_constructs: list[dict[str, Any]] | None = None,
     claim_text: str = "",
+    extra_claims: list[dict[str, Any]] | None = None,
     resource_type: str = "overview",
     resource_title: str | None = None,
     resource_url: str | None = None,
@@ -573,15 +574,18 @@ def placeholder_bundle(
     inference_type: str = "starter_position",
     inference_confidence: str = "medium",
     inference_text: str | None = None,
+    extra_inferences: list[dict[str, Any]] | None = None,
     crosswalks: list[dict[str, Any]] | None = None,
     risk_type: str = "overinterpretation",
     risk_severity: str = "medium",
     risk_description: str = "Outputs may be overread when context, method limits, or source quality are ignored.",
     risk_mitigation: str = "Treat the framework as one layer among several and preserve uncertainty.",
+    extra_risks: list[dict[str, Any]] | None = None,
     use_context: str = "self_reflection",
     utility_type: str = "self_understanding",
     suitability_level: str = "medium",
     cautions: str = "Use as a descriptive aid, not a total account of the person.",
+    extra_use_cases: list[dict[str, Any]] | None = None,
     notes: str | None = None,
     instrument_notes: str | None = None,
     instrument_id: str | None = None,
@@ -719,6 +723,93 @@ This is a starter registry entry for {canonical_name}. It is structurally valid 
             }
         )
 
+    claims = [
+        {
+            "id": claim_id,
+            "instrument_id": instrument_id,
+            "version_id": version_id,
+            "claim_type": "overview_claim",
+            "claim_text": claim_text,
+            "source_resource_ids": [resource_id],
+            "quotation_status": "paraphrase",
+        }
+    ]
+    for extra_claim in extra_claims or []:
+        claims.append(
+            {
+                "instrument_id": instrument_id,
+                "version_id": version_id,
+                "source_resource_ids": [resource_id],
+                "quotation_status": "paraphrase",
+                **extra_claim,
+            }
+        )
+
+    inferences = [
+        {
+            "id": inference_id,
+            "target_entity_type": "instrument",
+            "target_entity_id": instrument_id,
+            "inference_type": inference_type,
+            "text": inference_text
+            or (
+                f"{canonical_name} is included as a starter entry to preserve coverage across the instrument "
+                "landscape while deeper source curation is still underway."
+            ),
+            "confidence": inference_confidence,
+            "linked_entities": [],
+            "author": "house",
+            "timestamp": "2026-04-11",
+        }
+    ]
+    for extra_inference in extra_inferences or []:
+        inferences.append(
+            {
+                "target_entity_type": "instrument",
+                "target_entity_id": instrument_id,
+                "linked_entities": [],
+                "author": "house",
+                "timestamp": "2026-04-11",
+                **extra_inference,
+            }
+        )
+
+    risks = [
+        {
+            "id": risk_id,
+            "instrument_id": instrument_id,
+            "risk_type": risk_type,
+            "severity": risk_severity,
+            "description": risk_description,
+            "mitigation": risk_mitigation,
+        }
+    ]
+    for extra_risk in extra_risks or []:
+        risks.append(
+            {
+                "instrument_id": instrument_id,
+                **extra_risk,
+            }
+        )
+
+    use_cases = [
+        {
+            "id": use_case_id,
+            "instrument_id": instrument_id,
+            "use_context": use_context,
+            "utility_type": utility_type,
+            "suitability_level": suitability_level,
+            "cautions": cautions,
+        }
+    ]
+    for extra_use_case in extra_use_cases or []:
+        use_cases.append(
+            {
+                "instrument_id": instrument_id,
+                **extra_use_case,
+            }
+        )
+
     return {
         "instrument.yaml": {
             "instrument": {
@@ -757,65 +848,13 @@ This is a starter registry entry for {canonical_name}. It is structurally valid 
             ]
         },
         "constructs.yaml": {"constructs": constructs},
-        "claims.yaml": {
-            "claims": [
-                {
-                    "id": claim_id,
-                    "instrument_id": instrument_id,
-                    "version_id": version_id,
-                    "claim_type": "overview_claim",
-                    "claim_text": claim_text,
-                    "source_resource_ids": [resource_id],
-                    "quotation_status": "paraphrase",
-                }
-            ]
-        },
+        "claims.yaml": {"claims": claims},
         "resources.yaml": {"resources": resources},
         "annotations.yaml": {"annotations": annotations},
-        "inferences.yaml": {
-            "inferences": [
-                {
-                    "id": inference_id,
-                    "target_entity_type": "instrument",
-                    "target_entity_id": instrument_id,
-                    "inference_type": inference_type,
-                    "text": inference_text
-                    or (
-                        f"{canonical_name} is included as a starter entry to preserve coverage across the instrument "
-                        "landscape while deeper source curation is still underway."
-                    ),
-                    "confidence": inference_confidence,
-                    "linked_entities": [],
-                    "author": "house",
-                    "timestamp": "2026-04-11",
-                }
-            ]
-        },
+        "inferences.yaml": {"inferences": inferences},
         "crosswalks.yaml": {"crosswalks": crosswalks or []},
-        "risks.yaml": {
-            "risks": [
-                {
-                    "id": risk_id,
-                    "instrument_id": instrument_id,
-                    "risk_type": risk_type,
-                    "severity": risk_severity,
-                    "description": risk_description,
-                    "mitigation": risk_mitigation,
-                }
-            ]
-        },
-        "use_cases.yaml": {
-            "use_cases": [
-                {
-                    "id": use_case_id,
-                    "instrument_id": instrument_id,
-                    "use_context": use_context,
-                    "utility_type": utility_type,
-                    "suitability_level": suitability_level,
-                    "cautions": cautions,
-                }
-            ]
-        },
+        "risks.yaml": {"risks": risks},
+        "use_cases.yaml": {"use_cases": use_cases},
         "notes.md": note_text,
     }
 
@@ -3167,6 +3206,26 @@ Treating six-factor trait outputs as a full account of character, ethics, or rel
 PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
     "attachment-styles": {
         "include_primary_construct": False,
+        "extra_claims": [
+            {
+                "id": "clm_attachment_styles_dimensional_model",
+                "claim_type": "construct_claim",
+                "claim_text": (
+                    "Contemporary adult attachment measures often represent attachment variation along anxiety and "
+                    "avoidance dimensions rather than only fixed style labels."
+                ),
+                "source_resource_ids": ["res_attachment_styles_ecrr"],
+            },
+            {
+                "id": "clm_attachment_styles_relational_context",
+                "claim_type": "theoretical_claim",
+                "claim_text": (
+                    "Attachment theory is intended to describe expectations of availability, closeness, and distress "
+                    "regulation within emotionally significant relationships."
+                ),
+                "source_resource_ids": ["res_attachment_styles_overview"],
+            },
+        ],
         "extra_constructs": [
             {
                 "id": "con_attachment_styles_anxiety",
@@ -3184,6 +3243,18 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "official_definition": "Discomfort with dependence, emotional intimacy, and closeness in attachment relationships.",
                 "scoring_type": "continuous",
             },
+        ],
+        "extra_inferences": [
+            {
+                "id": "inf_attachment_styles_not_total_personality",
+                "inference_type": "practical_limit",
+                "text": (
+                    "Attachment language is strongest as a relationship-pattern layer and weakens when it is treated "
+                    "as a global whole-person typology detached from context."
+                ),
+                "confidence": "high",
+                "linked_entities": ["instr_love_languages", "instr_big_five"],
+            }
         ],
         "extra_resources": [
             {
@@ -3212,11 +3283,84 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 ),
                 "confidence": "high",
                 "notes": "Useful comparative link for relational frameworks that are often conflated in popular discourse.",
+            },
+            {
+                "id": "xwk_attachment_styles_anxiety_words_of_affirmation",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_attachment_styles_anxiety",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_love_languages_words_of_affirmation",
+                "relationship_type": "loose_overlap",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "Higher attachment anxiety often heightens sensitivity to reassurance and verbal confirmation, which "
+                    "can overlap with a felt importance of affirming language, though the constructs are not equivalent."
+                ),
+                "confidence": "medium",
+                "notes": "This is a contextual overlap, not a translation between insecurity and preference.",
+            },
+            {
+                "id": "xwk_attachment_styles_avoidance_physical_touch",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_attachment_styles_avoidance",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_love_languages_physical_touch",
+                "relationship_type": "inverse_tendency",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "Attachment avoidance can coincide with reduced comfort around closeness and touch, but a lower "
+                    "touch preference is neither necessary nor sufficient for avoidant attachment."
+                ),
+                "confidence": "medium",
+                "notes": "Useful only as a cautionary comparative pattern, not as a diagnostic shortcut.",
+            },
+        ],
+        "extra_risks": [
+            {
+                "id": "rsk_attachment_styles_partner_pathologizing",
+                "risk_type": "partner_pathologizing",
+                "severity": "medium",
+                "description": (
+                    "Popular attachment language is often used to diagnose partners or explain conflict unilaterally "
+                    "without considering mutual dynamics, stress, or relationship history."
+                ),
+                "mitigation": "Use attachment labels to open inquiry into patterns, not to assign unilateral blame.",
+            }
+        ],
+        "extra_use_cases": [
+            {
+                "id": "use_attachment_styles_therapy",
+                "use_context": "therapy",
+                "utility_type": "relationship_pattern_reflection",
+                "suitability_level": "high",
+                "cautions": (
+                    "Best used with developmental history and current relational context, not as a fixed diagnostic badge."
+                ),
             }
         ],
     },
     "cliftonstrengths": {
         "include_primary_construct": False,
+        "extra_claims": [
+            {
+                "id": "clm_cliftonstrengths_four_domains",
+                "claim_type": "construct_claim",
+                "claim_text": (
+                    "Gallup groups the 34 CliftonStrengths talent themes into four broader domains: Executing, "
+                    "Influencing, Relationship Building, and Strategic Thinking."
+                ),
+                "source_resource_ids": ["res_cliftonstrengths_how_it_works"],
+            },
+            {
+                "id": "clm_cliftonstrengths_ranked_output",
+                "claim_type": "implementation_claim",
+                "claim_text": (
+                    "CliftonStrengths reports an individual's pattern as a ranked profile of talent themes rather than "
+                    "as a deficit-oriented pathology or symptom score."
+                ),
+                "source_resource_ids": ["res_cliftonstrengths_how_it_works"],
+            },
+        ],
         "extra_constructs": [
             {
                 "id": "con_cliftonstrengths_executing",
@@ -3251,6 +3395,18 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "scoring_type": "rank_order_grouping",
             },
         ],
+        "extra_inferences": [
+            {
+                "id": "inf_cliftonstrengths_branded_workplace_layer",
+                "inference_type": "practical_limit",
+                "text": (
+                    "CliftonStrengths works best as a branded development language inside coaching and workplace "
+                    "contexts, but it leaves motive, shadow, and non-work identity layers comparatively under-described."
+                ),
+                "confidence": "high",
+                "linked_entities": ["instr_via_character_strengths", "instr_big_five"],
+            }
+        ],
         "extra_resources": [
             {
                 "id": "res_cliftonstrengths_how_it_works",
@@ -3277,6 +3433,74 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 ),
                 "confidence": "high",
                 "notes": "House comparison across two strengths-first systems with different normative framing.",
+            },
+            {
+                "id": "xwk_cliftonstrengths_strategic_thinking_via_wisdom",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_cliftonstrengths_strategic_thinking",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_via_wisdom",
+                "relationship_type": "same_layer_different_cut",
+                "relationship_strength": "high",
+                "rationale": (
+                    "CliftonStrengths Strategic Thinking and VIA Wisdom both organize around learning, sense-making, "
+                    "and using knowledge well, though one is talent-performance language and the other is virtue language."
+                ),
+                "confidence": "high",
+                "notes": "A relatively strong bridge between workplace-strength and character-strength vocabularies.",
+            },
+            {
+                "id": "xwk_cliftonstrengths_relationship_building_via_humanity",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_cliftonstrengths_relationship_building",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_via_humanity",
+                "relationship_type": "loose_overlap",
+                "relationship_strength": "high",
+                "rationale": (
+                    "Relationship Building and Humanity both emphasize interpersonal warmth and connection, but "
+                    "CliftonStrengths frames this as talent at building bonds while VIA frames it as character virtue."
+                ),
+                "confidence": "high",
+                "notes": "Overlap is meaningful but still normatively different.",
+            },
+            {
+                "id": "xwk_cliftonstrengths_influencing_via_courage",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_cliftonstrengths_influencing",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_via_courage",
+                "relationship_type": "loose_overlap",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "Influencing can overlap with courage-related themes of speaking up and acting publicly, but "
+                    "CliftonStrengths highlights effectiveness and impact whereas VIA highlights virtue in the face of difficulty."
+                ),
+                "confidence": "medium",
+                "notes": "Best treated as a partial bridge rather than a one-to-one mapping.",
+            },
+        ],
+        "extra_risks": [
+            {
+                "id": "rsk_cliftonstrengths_workplace_misuse",
+                "risk_type": "workplace_misuse",
+                "severity": "high",
+                "description": (
+                    "Organizations may use top themes as hiring screens or fixed role assignments even though the "
+                    "system is better suited to development, coaching, and team conversation."
+                ),
+                "mitigation": "Keep CliftonStrengths in development workflows and avoid treating theme rankings as selection criteria.",
+            }
+        ],
+        "extra_use_cases": [
+            {
+                "id": "use_cliftonstrengths_team_design",
+                "use_context": "team_design",
+                "utility_type": "communication_adaptation",
+                "suitability_level": "high",
+                "cautions": (
+                    "Useful for role and collaboration discussion, but weak if it becomes the sole basis for staffing decisions."
+                ),
             }
         ],
     },
@@ -3436,6 +3660,26 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
     },
     "dark-triad": {
         "include_primary_construct": False,
+        "extra_claims": [
+            {
+                "id": "clm_dark_triad_construct_distinctness",
+                "claim_type": "construct_claim",
+                "claim_text": (
+                    "Dark Triad research treats narcissism, Machiavellianism, and psychopathy as related but distinct "
+                    "socially aversive traits rather than as a single unitary construct."
+                ),
+                "source_resource_ids": ["res_dark_triad_overview"],
+            },
+            {
+                "id": "clm_dark_triad_subclinical_scope",
+                "claim_type": "theoretical_claim",
+                "claim_text": (
+                    "The Dark Triad is typically framed as a subclinical personality cluster, not as a substitute for "
+                    "formal clinical diagnosis."
+                ),
+                "source_resource_ids": ["res_dark_triad_review"],
+            },
+        ],
         "extra_constructs": [
             {
                 "id": "con_dark_triad_narcissism",
@@ -3461,6 +3705,18 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "official_definition": "Callousness, impulsivity, low empathy, and diminished concern for harm to others.",
                 "scoring_type": "continuous",
             },
+        ],
+        "extra_inferences": [
+            {
+                "id": "inf_dark_triad_not_balanced_model",
+                "inference_type": "practical_limit",
+                "text": (
+                    "The Dark Triad is valuable for aversive-trait and interpersonal-risk analysis, but it is too narrow "
+                    "to function as a balanced developmental or whole-person framework."
+                ),
+                "confidence": "high",
+                "linked_entities": ["instr_hexaco", "instr_big_five"],
+            }
         ],
         "extra_resources": [
             {
@@ -3488,6 +3744,74 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 ),
                 "confidence": "high",
                 "notes": "House comparison highlighting an important aversive-traits versus honesty-humility contrast.",
+            },
+            {
+                "id": "xwk_dark_triad_narcissism_hexaco_honesty_humility",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_dark_triad_narcissism",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_hexaco_honesty_humility",
+                "relationship_type": "inverse_tendency",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "Grandiose entitlement and self-importance often pull against the modesty and fairness facets central "
+                    "to HEXACO Honesty-Humility, though narcissism also carries variance not captured by that single domain."
+                ),
+                "confidence": "medium",
+                "notes": "A directional contrast, not a full reduction.",
+            },
+            {
+                "id": "xwk_dark_triad_machiavellianism_hexaco_honesty_humility",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_dark_triad_machiavellianism",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_hexaco_honesty_humility",
+                "relationship_type": "inverse_tendency",
+                "relationship_strength": "high",
+                "rationale": (
+                    "Machiavellianism's manipulativeness and instrumental cynicism cut strongly against the sincerity and "
+                    "fairness profile associated with HEXACO Honesty-Humility."
+                ),
+                "confidence": "high",
+                "notes": "One of the clearest construct-level cross-system contrasts in the registry.",
+            },
+            {
+                "id": "xwk_dark_triad_psychopathy_hexaco_agreeableness",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_dark_triad_psychopathy",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_hexaco_agreeableness",
+                "relationship_type": "inverse_tendency",
+                "relationship_strength": "high",
+                "rationale": (
+                    "Psychopathy's callousness and antagonism often sit opposite the forgiveness and gentleness "
+                    "emphasized by HEXACO Agreeableness, while still extending beyond that domain in impulsivity and fearlessness."
+                ),
+                "confidence": "high",
+                "notes": "Useful comparative anchor for aversive versus prosocial trait structure.",
+            },
+        ],
+        "extra_risks": [
+            {
+                "id": "rsk_dark_triad_stigmatization",
+                "risk_type": "stigmatization",
+                "severity": "high",
+                "description": (
+                    "Dark Triad labels can be used as moral condemnation or amateur diagnosis, especially in online discourse "
+                    "where subclinical constructs are flattened into villain labels."
+                ),
+                "mitigation": "Keep the framework tied to narrow construct interpretation and avoid using it as a total-person verdict.",
+            }
+        ],
+        "extra_use_cases": [
+            {
+                "id": "use_dark_triad_research",
+                "use_context": "research",
+                "utility_type": "aversive_trait_comparison",
+                "suitability_level": "high",
+                "cautions": (
+                    "Most useful for research, comparative trait analysis, and narrow risk interpretation rather than everyday identity labeling."
+                ),
             }
         ],
     },
@@ -4050,6 +4374,26 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
     },
     "via-character-strengths": {
         "include_primary_construct": False,
+        "extra_claims": [
+            {
+                "id": "clm_via_character_strengths_six_virtues",
+                "claim_type": "construct_claim",
+                "claim_text": (
+                    "The VIA classification groups 24 character strengths under six broad virtue categories: Wisdom, "
+                    "Courage, Humanity, Justice, Temperance, and Transcendence."
+                ),
+                "source_resource_ids": ["res_via_character_strengths_overview"],
+            },
+            {
+                "id": "clm_via_character_strengths_applied_development",
+                "claim_type": "usage_claim",
+                "claim_text": (
+                    "VIA materials position character strengths as capacities that can be identified and developed for "
+                    "greater flourishing across coaching, education, and well-being practice."
+                ),
+                "source_resource_ids": ["res_via_character_strengths_character_strengths_page"],
+            },
+        ],
         "extra_constructs": [
             {
                 "id": "con_via_wisdom",
@@ -4100,6 +4444,18 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 "scoring_type": "rank_order_grouping",
             },
         ],
+        "extra_inferences": [
+            {
+                "id": "inf_via_character_strengths_shadow_limits",
+                "inference_type": "practical_limit",
+                "text": (
+                    "VIA is unusually strong for positive-personality and virtue language, but it under-describes shadow, "
+                    "defense, and exploitative behavior compared with darker or more conflict-oriented frameworks."
+                ),
+                "confidence": "high",
+                "linked_entities": ["instr_cliftonstrengths", "instr_dark_triad"],
+            }
+        ],
         "extra_resources": [
             {
                 "id": "res_via_character_strengths_character_strengths_page",
@@ -4126,6 +4482,74 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 ),
                 "confidence": "high",
                 "notes": "Comparative mapping across strengths vocabularies with different moral and workplace emphasis.",
+            },
+            {
+                "id": "xwk_via_wisdom_cliftonstrengths_strategic_thinking",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_via_wisdom",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_cliftonstrengths_strategic_thinking",
+                "relationship_type": "same_layer_different_cut",
+                "relationship_strength": "high",
+                "rationale": (
+                    "VIA Wisdom and CliftonStrengths Strategic Thinking both emphasize using knowledge and perspective well, "
+                    "but VIA frames that pattern as virtue while CliftonStrengths frames it as talent."
+                ),
+                "confidence": "high",
+                "notes": "A strong bi-directional bridge across strengths vocabularies.",
+            },
+            {
+                "id": "xwk_via_humanity_cliftonstrengths_relationship_building",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_via_humanity",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_cliftonstrengths_relationship_building",
+                "relationship_type": "loose_overlap",
+                "relationship_strength": "high",
+                "rationale": (
+                    "Humanity and Relationship Building both emphasize warmth and connection, though VIA emphasizes ethical "
+                    "character while CliftonStrengths emphasizes relational effectiveness."
+                ),
+                "confidence": "high",
+                "notes": "Shared interpersonal emphasis with different normative framing.",
+            },
+            {
+                "id": "xwk_via_courage_cliftonstrengths_influencing",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_via_courage",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_cliftonstrengths_influencing",
+                "relationship_type": "loose_overlap",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "VIA Courage and CliftonStrengths Influencing can both show up as visible action and speaking up, "
+                    "but they are grounded in different theories of what that action means."
+                ),
+                "confidence": "medium",
+                "notes": "Useful as a partial bridge between virtue and performance vocabularies.",
+            },
+        ],
+        "extra_risks": [
+            {
+                "id": "rsk_via_character_strengths_positivity_bias",
+                "risk_type": "positivity_bias",
+                "severity": "medium",
+                "description": (
+                    "A strengths-only lens can mute conflict, shadow, or harm dynamics if VIA language is used to avoid "
+                    "harder conversations about limitations or destructive patterns."
+                ),
+                "mitigation": "Pair strengths reflection with frameworks that can name costs, overuse, and interpersonal harm.",
+            }
+        ],
+        "extra_use_cases": [
+            {
+                "id": "use_via_character_strengths_coaching",
+                "use_context": "coaching",
+                "utility_type": "developmental_reflection",
+                "suitability_level": "high",
+                "cautions": (
+                    "Works best when strengths are treated as developable capacities and not as proof of moral superiority."
+                ),
             }
         ],
     },

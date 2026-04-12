@@ -24,6 +24,8 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
 
     assert "View registry audit" in index_html
     assert "Registry Audit" in audit_html
+    assert "With 2+ claims" in audit_html
+    assert "<th>Claims</th>" in audit_html
     assert "Resources" in instrument_html
     assert "Crosswalks" in instrument_html
     assert "Risks" in instrument_html

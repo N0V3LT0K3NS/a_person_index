@@ -12,3 +12,39 @@ crosswalks:
   confidence: high
   notes: Comparative mapping across strengths vocabularies with different moral and
     workplace emphasis.
+- id: xwk_via_wisdom_cliftonstrengths_strategic_thinking
+  source_entity_type: construct
+  source_entity_id: con_via_wisdom
+  target_entity_type: construct
+  target_entity_id: con_cliftonstrengths_strategic_thinking
+  relationship_type: same_layer_different_cut
+  relationship_strength: high
+  rationale: VIA Wisdom and CliftonStrengths Strategic Thinking both emphasize using
+    knowledge and perspective well, but VIA frames that pattern as virtue while CliftonStrengths
+    frames it as talent.
+  confidence: high
+  notes: A strong bi-directional bridge across strengths vocabularies.
+- id: xwk_via_humanity_cliftonstrengths_relationship_building
+  source_entity_type: construct
+  source_entity_id: con_via_humanity
+  target_entity_type: construct
+  target_entity_id: con_cliftonstrengths_relationship_building
+  relationship_type: loose_overlap
+  relationship_strength: high
+  rationale: Humanity and Relationship Building both emphasize warmth and connection,
+    though VIA emphasizes ethical character while CliftonStrengths emphasizes relational
+    effectiveness.
+  confidence: high
+  notes: Shared interpersonal emphasis with different normative framing.
+- id: xwk_via_courage_cliftonstrengths_influencing
+  source_entity_type: construct
+  source_entity_id: con_via_courage
+  target_entity_type: construct
+  target_entity_id: con_cliftonstrengths_influencing
+  relationship_type: loose_overlap
+  relationship_strength: medium
+  rationale: VIA Courage and CliftonStrengths Influencing can both show up as visible
+    action and speaking up, but they are grounded in different theories of what that
+    action means.
+  confidence: medium
+  notes: Useful as a partial bridge between virtue and performance vocabularies.

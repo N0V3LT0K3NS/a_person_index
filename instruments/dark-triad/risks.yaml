@@ -5,3 +5,12 @@ risks:
   severity: medium
   description: Scores can be moralized or used as total character judgments.
   mitigation: Treat the framework as one layer among several and preserve uncertainty.
+- instrument_id: instr_dark_triad
+  id: rsk_dark_triad_stigmatization
+  risk_type: stigmatization
+  severity: high
+  description: Dark Triad labels can be used as moral condemnation or amateur diagnosis,
+    especially in online discourse where subclinical constructs are flattened into
+    villain labels.
+  mitigation: Keep the framework tied to narrow construct interpretation and avoid
+    using it as a total-person verdict.

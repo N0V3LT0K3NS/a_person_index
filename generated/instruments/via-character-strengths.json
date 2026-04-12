@@ -209,6 +209,28 @@
         "res_via_character_strengths_overview"
       ],
       "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_via_character_strengths_six_virtues",
+      "instrument_id": "instr_via_character_strengths",
+      "version_id": "ver_via_character_strengths_general",
+      "claim_type": "construct_claim",
+      "claim_text": "The VIA classification groups 24 character strengths under six broad virtue categories: Wisdom, Courage, Humanity, Justice, Temperance, and Transcendence.",
+      "source_resource_ids": [
+        "res_via_character_strengths_overview"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_via_character_strengths_applied_development",
+      "instrument_id": "instr_via_character_strengths",
+      "version_id": "ver_via_character_strengths_general",
+      "claim_type": "usage_claim",
+      "claim_text": "VIA materials position character strengths as capacities that can be identified and developed for greater flourishing across coaching, education, and well-being practice.",
+      "source_resource_ids": [
+        "res_via_character_strengths_character_strengths_page"
+      ],
+      "quotation_status": "paraphrase"
     }
   ],
   "resources": [
@@ -720,6 +742,20 @@
       "linked_entities": [],
       "author": "house",
       "timestamp": "2026-04-11"
+    },
+    {
+      "id": "inf_via_character_strengths_shadow_limits",
+      "target_entity_type": "instrument",
+      "target_entity_id": "instr_via_character_strengths",
+      "inference_type": "practical_limit",
+      "text": "VIA is unusually strong for positive-personality and virtue language, but it under-describes shadow, defense, and exploitative behavior compared with darker or more conflict-oriented frameworks.",
+      "confidence": "high",
+      "linked_entities": [
+        "instr_cliftonstrengths",
+        "instr_dark_triad"
+      ],
+      "author": "house",
+      "timestamp": "2026-04-11"
     }
   ],
   "crosswalks": [
@@ -734,6 +770,42 @@
       "rationale": "VIA and CliftonStrengths both offer strengths-based person description, but VIA is virtue-oriented and more explicitly grounded in positive psychology, whereas CliftonStrengths is a branded talent-development system.",
       "confidence": "high",
       "notes": "Comparative mapping across strengths vocabularies with different moral and workplace emphasis."
+    },
+    {
+      "id": "xwk_via_wisdom_cliftonstrengths_strategic_thinking",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_via_wisdom",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_cliftonstrengths_strategic_thinking",
+      "relationship_type": "same_layer_different_cut",
+      "relationship_strength": "high",
+      "rationale": "VIA Wisdom and CliftonStrengths Strategic Thinking both emphasize using knowledge and perspective well, but VIA frames that pattern as virtue while CliftonStrengths frames it as talent.",
+      "confidence": "high",
+      "notes": "A strong bi-directional bridge across strengths vocabularies."
+    },
+    {
+      "id": "xwk_via_humanity_cliftonstrengths_relationship_building",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_via_humanity",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_cliftonstrengths_relationship_building",
+      "relationship_type": "loose_overlap",
+      "relationship_strength": "high",
+      "rationale": "Humanity and Relationship Building both emphasize warmth and connection, though VIA emphasizes ethical character while CliftonStrengths emphasizes relational effectiveness.",
+      "confidence": "high",
+      "notes": "Shared interpersonal emphasis with different normative framing."
+    },
+    {
+      "id": "xwk_via_courage_cliftonstrengths_influencing",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_via_courage",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_cliftonstrengths_influencing",
+      "relationship_type": "loose_overlap",
+      "relationship_strength": "medium",
+      "rationale": "VIA Courage and CliftonStrengths Influencing can both show up as visible action and speaking up, but they are grounded in different theories of what that action means.",
+      "confidence": "medium",
+      "notes": "Useful as a partial bridge between virtue and performance vocabularies."
     }
   ],
   "risks": [
@@ -744,6 +816,14 @@
       "severity": "medium",
       "description": "Strengths rankings can be taken as moral verdicts or fixed rankings of worth.",
       "mitigation": "Treat the framework as one layer among several and preserve uncertainty."
+    },
+    {
+      "id": "rsk_via_character_strengths_positivity_bias",
+      "instrument_id": "instr_via_character_strengths",
+      "risk_type": "positivity_bias",
+      "severity": "medium",
+      "description": "A strengths-only lens can mute conflict, shadow, or harm dynamics if VIA language is used to avoid harder conversations about limitations or destructive patterns.",
+      "mitigation": "Pair strengths reflection with frameworks that can name costs, overuse, and interpersonal harm."
     }
   ],
   "use_cases": [
@@ -754,6 +834,14 @@
       "utility_type": "self_understanding",
       "suitability_level": "medium",
       "cautions": "Treat strengths as developmental tendencies rather than moral badges."
+    },
+    {
+      "id": "use_via_character_strengths_coaching",
+      "instrument_id": "instr_via_character_strengths",
+      "use_context": "coaching",
+      "utility_type": "developmental_reflection",
+      "suitability_level": "high",
+      "cautions": "Works best when strengths are treated as developable capacities and not as proof of moral superiority."
     }
   ],
   "notes": "# VIA Character Strengths\n\n## What it is\nA strengths framework that organizes 24 character strengths under six virtue categories and measures them through the VIA Survey.\n\n## Why it matters\nVIA matters because it gives the registry a structured positive-personality and moral-character layer. It is one of the clearest alternatives to deficit-heavy or identity-heavy systems when the goal is strengths description and development.\n\n## What it is good for\n- strengths identification\n- coaching and education\n- positive psychology research\n- developmental reflection\n\n## What it is weaker at\n- dark-side behavior\n- motive conflict\n- whole-person relational dynamics\n- symbolic identity language\n\n## Common misuse\nTreating ranked strengths as moral rankings of the person rather than as tendencies that can be cultivated, overused, or context-dependent.\n"

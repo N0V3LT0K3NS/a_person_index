@@ -6,3 +6,12 @@ risks:
   description: Strengths rankings can be taken as moral verdicts or fixed rankings
     of worth.
   mitigation: Treat the framework as one layer among several and preserve uncertainty.
+- instrument_id: instr_via_character_strengths
+  id: rsk_via_character_strengths_positivity_bias
+  risk_type: positivity_bias
+  severity: medium
+  description: A strengths-only lens can mute conflict, shadow, or harm dynamics if
+    VIA language is used to avoid harder conversations about limitations or destructive
+    patterns.
+  mitigation: Pair strengths reflection with frameworks that can name costs, overuse,
+    and interpersonal harm.

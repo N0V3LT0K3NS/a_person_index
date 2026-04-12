@@ -5,3 +5,10 @@ use_cases:
   utility_type: self_understanding
   suitability_level: medium
   cautions: Treat as a narrow construct cluster, not a whole-person verdict.
+- instrument_id: instr_dark_triad
+  id: use_dark_triad_research
+  use_context: research
+  utility_type: aversive_trait_comparison
+  suitability_level: high
+  cautions: Most useful for research, comparative trait analysis, and narrow risk
+    interpretation rather than everyday identity labeling.
