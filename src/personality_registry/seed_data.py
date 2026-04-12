@@ -3553,6 +3553,63 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 ),
                 "confidence": "medium",
                 "notes": "Comparative mapping based on shared organizational use patterns.",
+            },
+            {
+                "id": "xwk_disc_dominance_culture_index_autonomy",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_disc_dominance",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_culture_index_autonomy",
+                "relationship_type": "loose_overlap",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "DISC Dominance and Culture Index Autonomy both point toward assertive, self-directed behavioral expression, "
+                    "though they come from different workplace profiling systems."
+                ),
+                "confidence": "medium",
+                "notes": "House construct mapping across adjacent workplace behavior models.",
+            },
+            {
+                "id": "xwk_disc_influence_culture_index_social_ability",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_disc_influence",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_culture_index_social_ability",
+                "relationship_type": "loose_overlap",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "DISC Influence and Culture Index Social Ability both occupy an interpersonal expressiveness and persuasion zone."
+                ),
+                "confidence": "medium",
+                "notes": "Useful but non-equivalent translation across workplace interaction constructs.",
+            },
+            {
+                "id": "xwk_disc_steadiness_culture_index_patience",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_disc_steadiness",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_culture_index_patience",
+                "relationship_type": "loose_overlap",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "DISC Steadiness and Culture Index Patience both point toward consistency, stability, and tolerance for steadier rhythms."
+                ),
+                "confidence": "medium",
+                "notes": "Construct-level overlap for slower-paced, stability-seeking work styles.",
+            },
+            {
+                "id": "xwk_disc_conscientiousness_culture_index_conformity",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_disc_conscientiousness",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_culture_index_conformity",
+                "relationship_type": "loose_overlap",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "DISC Conscientiousness and Culture Index Conformity both describe orientation toward rules, quality, and structured standards."
+                ),
+                "confidence": "medium",
+                "notes": "House construct mapping for order- and precision-oriented work behavior.",
             }
         ],
     },
@@ -3634,6 +3691,92 @@ PLACEHOLDER_ENHANCEMENTS_BY_SLUG = {
                 ),
                 "confidence": "high",
                 "notes": "One of the closest cross-framework trait comparisons in the registry.",
+            },
+            {
+                "id": "xwk_hexaco_honesty_humility_dark_triad",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_hexaco_honesty_humility",
+                "target_entity_type": "instrument",
+                "target_entity_id": "instr_dark_triad",
+                "relationship_type": "inverse_tendency",
+                "relationship_strength": "high",
+                "rationale": (
+                    "Honesty-Humility often moves inversely to manipulative, exploitative, and entitled tendencies that cluster in Dark Triad measures."
+                ),
+                "confidence": "high",
+                "notes": "Construct-to-instrument mapping because the inverse relation spans multiple dark-trait constructs.",
+            },
+            {
+                "id": "xwk_hexaco_emotionality_big_five_neuroticism",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_hexaco_emotionality",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_big_five_neuroticism",
+                "relationship_type": "strong_overlap",
+                "relationship_strength": "high",
+                "rationale": (
+                    "HEXACO Emotionality and Big Five Neuroticism share substantial variance around anxiety and emotional sensitivity, "
+                    "even though HEXACO Emotionality also packages dependence and sentimentality somewhat differently."
+                ),
+                "confidence": "high",
+                "notes": "Close neighboring trait constructs with non-identical composition.",
+            },
+            {
+                "id": "xwk_hexaco_extraversion_big_five_extraversion",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_hexaco_extraversion",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_big_five_extraversion",
+                "relationship_type": "strong_overlap",
+                "relationship_strength": "high",
+                "rationale": (
+                    "Extraversion is one of the cleanest overlap zones between HEXACO and Big Five, covering sociability, liveliness, and social confidence."
+                ),
+                "confidence": "high",
+                "notes": "High-confidence neighboring trait mapping.",
+            },
+            {
+                "id": "xwk_hexaco_agreeableness_big_five_agreeableness",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_hexaco_agreeableness",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_big_five_agreeableness",
+                "relationship_type": "partial_translation",
+                "relationship_strength": "medium",
+                "rationale": (
+                    "HEXACO Agreeableness and Big Five Agreeableness overlap around interpersonal softness and tolerance, "
+                    "but the models cut some interpersonal content differently, especially alongside Honesty-Humility."
+                ),
+                "confidence": "high",
+                "notes": "Related but not one-to-one because interpersonal variance is partitioned differently across the models.",
+            },
+            {
+                "id": "xwk_hexaco_conscientiousness_big_five_conscientiousness",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_hexaco_conscientiousness",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_big_five_conscientiousness",
+                "relationship_type": "strong_overlap",
+                "relationship_strength": "high",
+                "rationale": (
+                    "Conscientiousness is another close overlap zone between HEXACO and Big Five, centered on organization, diligence, and self-discipline."
+                ),
+                "confidence": "high",
+                "notes": "High-confidence neighboring trait mapping.",
+            },
+            {
+                "id": "xwk_hexaco_openness_big_five_openness",
+                "source_entity_type": "construct",
+                "source_entity_id": "con_hexaco_openness",
+                "target_entity_type": "construct",
+                "target_entity_id": "con_big_five_openness",
+                "relationship_type": "strong_overlap",
+                "relationship_strength": "high",
+                "rationale": (
+                    "Openness to Experience is a major shared factor between HEXACO and Big Five, covering curiosity, aesthetics, and receptivity to novelty."
+                ),
+                "confidence": "high",
+                "notes": "High-confidence neighboring trait mapping.",
             }
         ],
     },

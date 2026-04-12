@@ -682,6 +682,54 @@
       "rationale": "DISC and Culture Index are often deployed as lightweight workplace behavior tools, even though their proprietary ecosystems and interpretive claims differ.",
       "confidence": "medium",
       "notes": "Comparative mapping based on shared organizational use patterns."
+    },
+    {
+      "id": "xwk_disc_dominance_culture_index_autonomy",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_disc_dominance",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_culture_index_autonomy",
+      "relationship_type": "loose_overlap",
+      "relationship_strength": "medium",
+      "rationale": "DISC Dominance and Culture Index Autonomy both point toward assertive, self-directed behavioral expression, though they come from different workplace profiling systems.",
+      "confidence": "medium",
+      "notes": "House construct mapping across adjacent workplace behavior models."
+    },
+    {
+      "id": "xwk_disc_influence_culture_index_social_ability",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_disc_influence",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_culture_index_social_ability",
+      "relationship_type": "loose_overlap",
+      "relationship_strength": "medium",
+      "rationale": "DISC Influence and Culture Index Social Ability both occupy an interpersonal expressiveness and persuasion zone.",
+      "confidence": "medium",
+      "notes": "Useful but non-equivalent translation across workplace interaction constructs."
+    },
+    {
+      "id": "xwk_disc_steadiness_culture_index_patience",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_disc_steadiness",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_culture_index_patience",
+      "relationship_type": "loose_overlap",
+      "relationship_strength": "medium",
+      "rationale": "DISC Steadiness and Culture Index Patience both point toward consistency, stability, and tolerance for steadier rhythms.",
+      "confidence": "medium",
+      "notes": "Construct-level overlap for slower-paced, stability-seeking work styles."
+    },
+    {
+      "id": "xwk_disc_conscientiousness_culture_index_conformity",
+      "source_entity_type": "construct",
+      "source_entity_id": "con_disc_conscientiousness",
+      "target_entity_type": "construct",
+      "target_entity_id": "con_culture_index_conformity",
+      "relationship_type": "loose_overlap",
+      "relationship_strength": "medium",
+      "rationale": "DISC Conscientiousness and Culture Index Conformity both describe orientation toward rules, quality, and structured standards.",
+      "confidence": "medium",
+      "notes": "House construct mapping for order- and precision-oriented work behavior."
     }
   ],
   "risks": [

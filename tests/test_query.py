@@ -44,6 +44,18 @@ def test_compare_includes_construct_crosswalks(repo_root):
     assert payload["crosswalks"]
 
 
+def test_compare_hexaco_and_big_five_includes_multiple_construct_crosswalks(repo_root):
+    repository = load_repository_strict(repo_root)
+    payload = compare_instruments(repository, "HEXACO", "Big Five")
+    assert len(payload["crosswalks"]) >= 5
+
+
+def test_compare_disc_and_culture_index_includes_construct_crosswalks(repo_root):
+    repository = load_repository_strict(repo_root)
+    payload = compare_instruments(repository, "DISC", "Culture Index")
+    assert len(payload["crosswalks"]) >= 5
+
+
 def test_audit_summary_reflects_seed_coverage(repo_root):
     repository = load_repository_strict(repo_root)
     payload = audit_repository(repository)
