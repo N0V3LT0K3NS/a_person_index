@@ -1,0 +1,215 @@
+name: Codex Task
+
+on:
+  workflow_dispatch:
+    inputs:
+      task_title:
+        description: Short title for the Codex task
+        required: true
+        type: string
+      task_body:
+        description: Full task description and acceptance criteria
+        required: true
+        type: string
+      base_branch:
+        description: Base branch for the pull request
+        required: false
+        default: main
+        type: string
+      issue_number:
+        description: Optional GitHub issue number to comment back on
+        required: false
+        type: string
+      verification_commands:
+        description: Newline-separated verification commands
+        required: false
+        type: string
+        default: |
+          python3 scripts/export_schemas.py
+          python3 scripts/validate.py
+          python3 scripts/build_index.py
+          python3 scripts/generate_docs.py
+          npm run mcp:smoke
+          python3 -m pytest
+  issues:
+    types:
+      - opened
+      - edited
+      - labeled
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  codex-task:
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'issues' && contains(join(github.event.issue.labels.*.name, ','), 'codex-task')) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          python -m pip install --upgrade pip
+          pip install -e '.[dev]'
+          npm install -g pnpm
+          pnpm add -g @openai/codex
+
+      - name: Configure Git author
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+      - name: Derive task variables
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            ISSUE_NUMBER_VALUE="${{ inputs.issue_number }}"
+            echo "TASK_TITLE=${{ inputs.task_title }}" >> "$GITHUB_ENV"
+            {
+              echo "TASK_BODY<<EOF"
+              echo "${{ inputs.task_body }}"
+              echo "EOF"
+            } >> "$GITHUB_ENV"
+            echo "BASE_BRANCH=${{ inputs.base_branch }}" >> "$GITHUB_ENV"
+            {
+              echo "VERIFICATION_COMMANDS<<EOF"
+              echo "${{ inputs.verification_commands }}"
+              echo "EOF"
+            } >> "$GITHUB_ENV"
+            echo "ISSUE_NUMBER=${ISSUE_NUMBER_VALUE}" >> "$GITHUB_ENV"
+          else
+            ISSUE_NUMBER_VALUE="${{ github.event.issue.number }}"
+            echo "TASK_TITLE=${{ github.event.issue.title }}" >> "$GITHUB_ENV"
+            {
+              echo "TASK_BODY<<EOF"
+              echo "${{ github.event.issue.body }}"
+              echo "EOF"
+            } >> "$GITHUB_ENV"
+            echo "BASE_BRANCH=main" >> "$GITHUB_ENV"
+            {
+              echo "VERIFICATION_COMMANDS<<EOF"
+              echo "python3 scripts/export_schemas.py"
+              echo "python3 scripts/validate.py"
+              echo "python3 scripts/build_index.py"
+              echo "python3 scripts/generate_docs.py"
+              echo "npm run mcp:smoke"
+              echo "python3 -m pytest"
+              echo "EOF"
+            } >> "$GITHUB_ENV"
+            echo "ISSUE_NUMBER=${ISSUE_NUMBER_VALUE}" >> "$GITHUB_ENV"
+          fi
+
+          BRANCH_SUFFIX="${{ github.run_id }}"
+          if [ -n "${ISSUE_NUMBER_VALUE}" ]; then
+            BRANCH_SUFFIX="issue-${ISSUE_NUMBER_VALUE}"
+          fi
+          echo "WORK_BRANCH=codex/${BRANCH_SUFFIX}" >> "$GITHUB_ENV"
+
+      - name: Build Codex prompt
+        run: |
+          {
+            echo "Repository: A Person Index (API)"
+            echo
+            echo "Read and follow these first:"
+            echo "- AGENTS.md"
+            echo "- README.md"
+            echo "- CONTRIBUTING.md"
+            echo "- docs/current_state.md"
+            echo "- docs/architecture.md"
+            echo "- docs/index_programs.md"
+            echo "- docs/codex_automation.md"
+            echo "- docs/system_boundaries.md"
+            echo "- docs/phase_3_4_plan.md"
+            echo "- generated/manifest.json"
+            echo
+            echo "Automation context:"
+            cat .github/codex/automation_context.md
+            echo
+            echo "Task title:"
+            echo "${TASK_TITLE}"
+            echo
+            echo "Task body:"
+            echo "${TASK_BODY}"
+            echo
+            echo "Required verification commands:"
+            echo "${VERIFICATION_COMMANDS}"
+            echo
+            echo "Requirements:"
+            echo "- Keep changes scoped and PR-ready."
+            echo "- Rebuild generated outputs if source files change."
+            echo "- Update docs/tests when behavior or public framing changes."
+            echo "- If a verification command is intentionally not applicable, explain that in the PR body."
+          } > codex-task.prompt
+
+      - name: Run Codex
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          CODEX_QUIET_MODE: "1"
+        run: |
+          codex --approval-mode full-auto --no-terminal --quiet "$(cat codex-task.prompt)"
+
+      - name: Run verification
+        run: |
+          while IFS= read -r command; do
+            [ -z "$command" ] && continue
+            echo "Running: $command"
+            bash -lc "$command"
+          done <<< "$VERIFICATION_COMMANDS"
+
+      - name: Create pull request
+        id: cpr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          base: ${{ env.BASE_BRANCH }}
+          branch: ${{ env.WORK_BRANCH }}
+          title: ${{ env.TASK_TITLE }}
+          commit-message: "codex: ${{ env.TASK_TITLE }}"
+          body: |
+            Auto-generated by Codex.
+
+            ## Source
+
+            - workflow: `${{ github.workflow }}`
+            - run: `${{ github.run_id }}`
+            - issue: `${{ env.ISSUE_NUMBER }}`
+
+            ## Task
+
+            ${{ env.TASK_BODY }}
+
+            ## Verification
+
+            ${{ env.VERIFICATION_COMMANDS }}
+          labels: |
+            codex
+            automated-pr
+
+      - name: Comment on linked issue
+        if: ${{ env.ISSUE_NUMBER != '' && steps.cpr.outputs.pull-request-url != '' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue_number = Number(process.env.ISSUE_NUMBER);
+            const prUrl = `${{ steps.cpr.outputs.pull-request-url }}`;
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number,
+              body: `Codex prepared a PR for this task: ${prUrl}`,
+            });

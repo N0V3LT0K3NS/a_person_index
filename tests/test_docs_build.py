@@ -16,6 +16,7 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     protocols_path = repo_root / "site" / "protocols.html"
     protocol_packs_path = repo_root / "site" / "protocol-packs.html"
     research_path = repo_root / "site" / "research.html"
+    favicon_path = repo_root / "site" / "favicon.svg"
     search_data_path = repo_root / "site" / "data" / "search.json"
     comparisons_data_path = repo_root / "site" / "data" / "comparisons.json"
     extensions_data_path = repo_root / "site" / "data" / "extensions.json"
@@ -36,6 +37,7 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     assert protocols_path.exists()
     assert protocol_packs_path.exists()
     assert research_path.exists()
+    assert favicon_path.exists()
     assert search_data_path.exists()
     assert comparisons_data_path.exists()
     assert extensions_data_path.exists()
@@ -60,11 +62,13 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     hexaco_html = hexaco_path.read_text(encoding="utf-8")
     compare_html = compare_path.read_text(encoding="utf-8")
 
-    assert "Search the corpus" in index_html
-    assert "Browse comparisons" in index_html
+    assert "One place for personhood frameworks to finally talk to each other." in index_html
+    assert "Low-tech legos, not magical black boxes." in index_html
+    assert "A shared substrate, not a single consumer’s private ontology." in index_html
+    assert "Current Canonical Slice" in index_html
     assert "Product Layers" in index_html
-    assert "House Synthesis" in index_html
-    assert "Browse motifs" in index_html
+    assert 'meta name="viewport" content="width=device-width, initial-scale=1"' in index_html
+    assert 'link rel="icon" href="favicon.svg" type="image/svg+xml"' in index_html
     assert "Index Audit" in audit_html
     assert "With 2+ claims" in audit_html
     assert "<th>Claims</th>" in audit_html
@@ -84,6 +88,7 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     assert "Crosswalks" in instrument_html
     assert "Risks" in instrument_html
     assert "Use Cases" in instrument_html
+    assert 'link rel="icon" href="../favicon.svg" type="image/svg+xml"' in instrument_html
     assert 'href="big-five.html#con_big_five_openness"' in hexaco_html
     assert "Shared Ontology Annotations" in compare_html
     assert "Recorded Crosswalks" in compare_html

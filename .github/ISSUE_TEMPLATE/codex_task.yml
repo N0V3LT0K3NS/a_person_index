@@ -1,0 +1,73 @@
+name: Codex Task
+description: Request a scoped Codex-driven repo change with enough context to run safely.
+title: "[Codex Task]: "
+labels:
+  - codex-task
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when you want Codex to prepare a PR against A Person Index.
+        Keep the request bounded and include the acceptance criteria and verification expectations.
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What should Codex change?
+      placeholder: Add a new index program, fix stale landing-page copy, deepen a framework record, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      description: What must be true for this task to be complete?
+      placeholder: |
+        - docs updated
+        - generated outputs rebuilt
+        - tests passing
+    validations:
+      required: true
+
+  - type: textarea
+    id: context_paths
+    attributes:
+      label: Context files or areas
+      description: Point Codex at the most relevant files, pages, or product layers.
+      placeholder: |
+        README.md
+        docs/index_programs.md
+        src/personality_registry/builder.py
+        site/index.html
+    validations:
+      required: false
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: Required verification
+      description: Override only if this task needs a custom verification path.
+      placeholder: |
+        python3 scripts/export_schemas.py
+        python3 scripts/validate.py
+        python3 scripts/build_index.py
+        python3 scripts/generate_docs.py
+        npm run mcp:smoke
+        python3 -m pytest
+    validations:
+      required: false
+
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Primary layer
+      options:
+        - canonical registry
+        - house synthesis
+        - technique / index program / pack
+        - research stream
+        - docs / site / automation
+    validations:
+      required: true

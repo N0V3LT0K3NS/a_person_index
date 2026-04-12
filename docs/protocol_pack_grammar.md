@@ -6,6 +6,8 @@ This document defines the canonical syntax for generated protocol packs.
 
 A protocol pack is a downstream-ready bundle assembled from existing registry primitives.
 
+The internal `protocol_pack` naming remains in the grammar and generated artifacts for compatibility, even as the public product language increasingly refers to these as `program packs`.
+
 It is not source truth.
 It is not a new ontology object.
 It is a generated runtime bundle that packages:

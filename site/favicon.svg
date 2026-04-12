@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="A Person Index">
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#7d321d" />
+  <path d="M20 46L30 18H34L44 46H39.5L36.8 38.5H27.2L24.5 46H20ZM28.6 34.3H35.4L32 24.6L28.6 34.3Z" fill="#fff4e3" />
+  <circle cx="48" cy="18" r="5" fill="#f3dfbf" />
+</svg>

@@ -22,6 +22,32 @@ def _count_label(count: int, singular: str, plural: str | None = None) -> str:
     return f"{count} {word}"
 
 
+def _site_head(title: str, description: str, stylesheet_href: str, icon_href: str) -> str:
+    safe_title = escape(title)
+    safe_description = escape(" ".join(description.split()))
+    return f"""<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{safe_description}" />
+    <meta name="theme-color" content="#7d321d" />
+    <meta property="og:title" content="{safe_title}" />
+    <meta property="og:description" content="{safe_description}" />
+    <meta property="og:type" content="website" />
+    <title>{safe_title}</title>
+    <link rel="icon" href="{escape(icon_href)}" type="image/svg+xml" />
+    <link rel="stylesheet" href="{escape(stylesheet_href)}" />
+  </head>"""
+
+
+def _favicon_svg() -> str:
+    return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="A Person Index">
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#7d321d" />
+  <path d="M20 46L30 18H34L44 46H39.5L36.8 38.5H27.2L24.5 46H20ZM28.6 34.3H35.4L32 24.6L28.6 34.3Z" fill="#fff4e3" />
+  <circle cx="48" cy="18" r="5" fill="#f3dfbf" />
+</svg>
+"""
+
+
 def _bundle_to_dict(bundle: InstrumentBundle) -> dict:
     annotation_map: dict[str, list[str]] = {}
     for annotation in bundle.annotations:
@@ -167,10 +193,12 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
         "start_here": [
             "AGENTS.md",
             "README.md",
+            "CONTRIBUTING.md",
             "docs/current_state.md",
             "docs/roadmap.md",
             "docs/architecture.md",
             "docs/index_programs.md",
+            "docs/codex_automation.md",
             "docs/gnomy_integration.md",
             "docs/mcp.md",
             "docs/protocol_pack_grammar.md",
@@ -222,6 +250,40 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "python3 scripts/export_schemas.py",
                 "python3 scripts/build_index.py",
                 "python3 scripts/generate_docs.py",
+            ],
+        },
+        "compatibility_surfaces": {
+            "uri_scheme": "registry://",
+            "uri_scheme_reason": "Kept stable for the MCP/read-only access surface even though the product is A Person Index.",
+            "internal_program_registry_path": "protocols/registry.yaml",
+            "internal_pack_paths": [
+                "protocol_packs/",
+                "generated/protocol_packs/",
+            ],
+            "internal_name_reason": "These internal paths remain in place to preserve backward compatibility and avoid unnecessary churn in the typed models and generated exports.",
+        },
+        "governance": {
+            "contributing_doc": "CONTRIBUTING.md",
+            "security_doc": "SECURITY.md",
+            "codeowners": ".github/CODEOWNERS",
+            "codex_automation_doc": "docs/codex_automation.md",
+            "codex_automation_context": ".github/codex/automation_context.md",
+            "issue_templates": [
+                ".github/ISSUE_TEMPLATE/codex_task.yml",
+            ],
+            "pull_request_template": ".github/pull_request_template.md",
+            "verification_commands": [
+                "python3 scripts/export_schemas.py",
+                "python3 scripts/validate.py",
+                "python3 scripts/build_index.py",
+                "python3 scripts/generate_docs.py",
+                "npm run mcp:smoke",
+                "python3 -m pytest",
+            ],
+            "automation_workflows": [
+                ".github/workflows/ci.yml",
+                ".github/workflows/netlify-deploy.yml",
+                ".github/workflows/codex-task.yml",
             ],
         },
         "service_primitives": [
@@ -412,7 +474,7 @@ def _extension_card(
 
 def _nav_html(prefix: str, current: str) -> str:
     links = [
-        ("index.html", "registry", "Index"),
+        ("index.html", "registry", "Home"),
         ("search.html", "search", "Search"),
         ("compare.html", "compare", "Compare"),
         ("motifs.html", "motifs", "Motifs"),
@@ -583,11 +645,7 @@ def _bundle_html(bundle: InstrumentBundle, entity_refs: dict[str, dict[str, str]
 
     return f"""<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>{escape(bundle.instrument.canonical_name)}</title>
-    <link rel="stylesheet" href="../style.css" />
-  </head>
+  {_site_head(bundle.instrument.canonical_name, bundle.instrument.short_description, "../style.css", "../favicon.svg")}
   <body>
     <main>
       {_nav_html("../", "instrument")}
@@ -669,11 +727,7 @@ def _audit_html(audit_entries: list[dict], summary: dict) -> str:
         )
     return f"""<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>A Person Index Audit</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  {_site_head("A Person Index Audit", "Structural and curation coverage for the shipped A Person Index seed corpus.", "style.css", "favicon.svg")}
   <body>
     <main>
       {_nav_html("", "audit")}
@@ -1001,11 +1055,7 @@ def _motifs_html(extensions: ExtensionRegistryData) -> str:
     )
     return f"""<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>House Motifs</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  {_site_head("House Motifs", "Provisional translation handles for mapping recurring circuitry across personhood frameworks in A Person Index.", "style.css", "favicon.svg")}
   <body>
     <main>
       {_nav_html("", "motifs")}
@@ -1057,11 +1107,7 @@ def _protocols_html(extensions: ExtensionRegistryData) -> str:
     )
     return f"""<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Index Programs</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  {_site_head("Index Programs", "Reusable techniques and composed index programs such as ILENS, Human Model Card, Translation Memo, and Paradox Finder.", "style.css", "favicon.svg")}
   <body>
     <main>
       {_nav_html("", "protocols")}
@@ -1114,11 +1160,7 @@ def _protocol_packs_html(repository, extensions: ExtensionRegistryData) -> str:
     )
     return f"""<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Curated Protocol Packs</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  {_site_head("Curated Program Packs", "Stable reviewed runtime bundles generated from cataloged scopes, program specs, motif traces, mappings, and interaction hypotheses.", "style.css", "favicon.svg")}
   <body>
     <main>
       {_nav_html("", "protocol-packs")}
@@ -1165,11 +1207,7 @@ def _research_html(extensions: ExtensionRegistryData) -> str:
     )
     return f"""<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Research Contribution Models</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  {_site_head("Research Contribution Models", "Privacy-minimizing research intake models and promotion pathways for A Person Index.", "style.css", "favicon.svg")}
   <body>
     <main>
       {_nav_html("", "research")}
@@ -1242,11 +1280,7 @@ def _interactions_html(repository, extensions: ExtensionRegistryData) -> str:
     )
     return f"""<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Interaction Hypotheses</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  {_site_head("Interaction Hypotheses", "House hypotheses about where constructs and motifs reinforce, mask, compensate, or tension each other in downstream synthesis.", "style.css", "favicon.svg")}
   <body>
     <main>
       {_nav_html("", "interactions")}
@@ -1313,11 +1347,7 @@ def _comparison_html(entry: dict, entity_refs: dict[str, dict[str, str]]) -> str
 
     return f"""<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>{escape(left['canonical_name'])} vs {escape(right['canonical_name'])}</title>
-    <link rel="stylesheet" href="../style.css" />
-  </head>
+  {_site_head(f"{left['canonical_name']} vs {right['canonical_name']}", f"Shared ontology values and recorded crosswalks for {left['canonical_name']} and {right['canonical_name']} in A Person Index.", "../style.css", "../favicon.svg")}
   <body>
     <main>
       {_nav_html("../", "compare")}
@@ -1361,16 +1391,18 @@ def _comparison_html(entry: dict, entity_refs: dict[str, dict[str, str]]) -> str
 
 def _search_html() -> str:
     nav = _nav_html("", "search")
+    head = _site_head(
+        "A Person Index Search",
+        "Search the current A Person Index canonical corpus by name, alias, ontology, or notes.",
+        "style.css",
+        "favicon.svg",
+    )
     return """<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>A Person Index Search</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  __HEAD__
   <body>
     <main>
-      __NAV__
+      {nav}
       <section class="hero-panel">
         <p class="eyebrow">Index Search</p>
         <h1>Find instruments by name, alias, ontology, or notes</h1>
@@ -1458,7 +1490,7 @@ def _search_html() -> str:
     </script>
   </body>
 </html>
-""".replace("__NAV__", nav)
+""".replace("__HEAD__", head).replace("{nav}", nav)
 
 
 def _compare_index_html(comparison_entries: list[dict]) -> str:
@@ -1466,17 +1498,13 @@ def _compare_index_html(comparison_entries: list[dict]) -> str:
     cards = "\n".join(_comparison_card(entry) for entry in comparison_entries)
     return f"""<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>A Person Index Comparisons</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  {_site_head("A Person Index Comparisons", "Recorded framework comparisons generated from crosswalks and shared ontology values across A Person Index.", "style.css", "favicon.svg")}
   <body>
     <main>
       {nav}
       <section class="hero-panel">
         <p class="eyebrow">Comparison Index</p>
-        <h1>Recorded instrument comparisons</h1>
+        <h1>Recorded framework comparisons</h1>
         <p class="page-lead">Static comparison pages generated from crosswalks and shared ontology values across the canonical framework corpus.</p>
       </section>
       <section class="stats">
@@ -1553,38 +1581,120 @@ def build_docs(root: Path) -> None:
         "result_atom_schema": extensions.result_atom_schema.model_dump(mode="json"),
     }
 
-    style = """body { font-family: Georgia, serif; margin: 0; background:
-radial-gradient(circle at top, rgba(255, 244, 218, 0.8), transparent 38%),
-linear-gradient(180deg, #f3ecdf 0%, #eadfcd 100%); color: #1f1a14; }
-main { max-width: 1120px; margin: 0 auto; padding: 28px 24px 88px; }
-a { color: #7d321d; text-decoration-thickness: 0.08em; text-underline-offset: 0.14em; }
-h1, h2 { font-family: 'Palatino Linotype', 'Book Antiqua', serif; letter-spacing: -0.02em; }
-section { margin-top: 32px; }
+    style = """:root {
+  --bg-top: #f7f2e8;
+  --bg-bottom: #ede3d2;
+  --panel: rgba(255, 250, 243, 0.94);
+  --panel-strong: rgba(255, 247, 235, 0.97);
+  --line: #d9c9ae;
+  --line-strong: #cbaa75;
+  --ink: #1f1a14;
+  --ink-soft: #5f5345;
+  --accent: #7d321d;
+  --accent-soft: #f3dfbf;
+  --shadow: 0 18px 40px rgba(72, 49, 24, 0.08);
+}
+body {
+  font-family: Georgia, serif;
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(255, 244, 218, 0.84), transparent 38%),
+    linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+  color: var(--ink);
+}
+main { max-width: 1140px; margin: 0 auto; padding: 28px 24px 88px; }
+a { color: var(--accent); text-decoration-thickness: 0.08em; text-underline-offset: 0.14em; }
+h1, h2, h3 { font-family: 'Palatino Linotype', 'Book Antiqua', serif; letter-spacing: -0.02em; margin: 0; }
+p { line-height: 1.6; }
+section { margin-top: 36px; }
 .site-nav { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
-.site-nav a { padding: 10px 14px; border: 1px solid #d5b88f; border-radius: 999px; background: rgba(255, 249, 240, 0.78); text-decoration: none; color: #5c2c19; }
-.site-nav a.active { background: #7d321d; color: #fff7ed; border-color: #7d321d; }
-.hero-panel { background: linear-gradient(135deg, rgba(255, 250, 242, 0.94), rgba(246, 231, 204, 0.92)); border: 1px solid #d8bf97; border-radius: 22px; padding: 24px 26px; box-shadow: 0 18px 40px rgba(85, 57, 24, 0.08); }
-.eyebrow { margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.78rem; color: #8b5b2b; }
-.page-lead { max-width: 62ch; font-size: 1.05rem; color: #4d3f30; }
-.action-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
-.action-link { display: inline-flex; align-items: center; justify-content: center; padding: 10px 14px; border-radius: 999px; background: #f5e4c5; border: 1px solid #d8bf97; text-decoration: none; }
-.muted { color: #6f6352; font-size: 0.95rem; }
-.empty { color: #6f6352; font-style: italic; }
-.notes-block { white-space: pre-wrap; background: #fffaf3; padding: 16px; border: 1px solid #d9c9ae; border-radius: 12px; }
+.site-nav a {
+  padding: 10px 14px;
+  border: 1px solid #d5b88f;
+  border-radius: 999px;
+  background: rgba(255, 249, 240, 0.78);
+  text-decoration: none;
+  color: #5c2c19;
+}
+.site-nav a.active { background: var(--accent); color: #fff7ed; border-color: var(--accent); }
+.hero-panel,
+.instrument-card,
+.stat-card,
+.search-shell,
+.audit-table,
+.hero-aside {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.hero-panel {
+  border-radius: 26px;
+  padding: 28px 30px;
+  background: linear-gradient(135deg, rgba(255, 250, 242, 0.94), rgba(246, 231, 204, 0.92));
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.95fr);
+  gap: 18px;
+  align-items: stretch;
+}
+.hero-title {
+  max-width: 12ch;
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  line-height: 0.95;
+}
+.hero-copy { max-width: 68ch; }
+.hero-aside {
+  border-radius: 24px;
+  padding: 22px 24px;
+  background: linear-gradient(180deg, rgba(124, 50, 29, 0.96), rgba(79, 32, 20, 0.96));
+  color: #fff5e8;
+}
+.hero-aside h2 { font-size: 1.2rem; margin-bottom: 12px; }
+.hero-aside p,
+.hero-aside li { color: rgba(255, 245, 232, 0.88); }
+.hero-aside ul { margin: 0; padding-left: 20px; line-height: 1.55; }
+.eyebrow {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  color: #8b5b2b;
+}
+.hero-aside .eyebrow { color: rgba(255, 229, 184, 0.82); }
+.page-lead { max-width: 64ch; font-size: 1.08rem; color: #4d3f30; margin: 14px 0 0; }
+.action-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  border: 1px solid var(--line-strong);
+  text-decoration: none;
+}
+.action-link.primary {
+  background: var(--accent);
+  color: #fff7ed;
+  border-color: var(--accent);
+}
+.muted { color: var(--ink-soft); font-size: 0.95rem; }
+.empty { color: var(--ink-soft); font-style: italic; }
+.notes-block { white-space: pre-wrap; background: #fffaf3; padding: 16px; border: 1px solid var(--line); border-radius: 12px; }
 .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .tag { background: #ead8bb; border: 1px solid #d1b78d; border-radius: 999px; padding: 4px 10px; font-size: 0.9rem; }
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 20px; }
-.stat-card, .instrument-card { background: rgba(255, 250, 243, 0.94); border: 1px solid #d9c9ae; border-radius: 16px; padding: 18px 20px; box-shadow: 0 12px 30px rgba(72, 49, 24, 0.06); }
-.stat-card strong { display: block; font-size: 1.8rem; }
-.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-.compare-card h2, .search-card h2 { font-size: 1.15rem; }
-.coverage-line { margin-top: 12px; color: #6f6352; font-size: 0.95rem; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 22px; }
+.stat-card, .instrument-card { border-radius: 18px; padding: 18px 20px; }
+.stat-card strong { display: block; font-size: 2rem; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+.coverage-line { margin-top: 12px; color: var(--ink-soft); font-size: 0.95rem; }
 .item-list { padding-left: 20px; line-height: 1.58; }
-.audit-table { width: 100%; border-collapse: collapse; background: rgba(255, 250, 243, 0.94); border: 1px solid #d9c9ae; border-radius: 16px; overflow: hidden; }
+.audit-table { width: 100%; border-collapse: collapse; border-radius: 16px; overflow: hidden; }
 .audit-table th, .audit-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid #e7d8c0; vertical-align: top; }
 .audit-table th { background: #ead8bb; }
 .comparison-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-.search-shell { background: rgba(255, 250, 243, 0.9); border: 1px solid #d9c9ae; border-radius: 18px; padding: 20px; box-shadow: 0 12px 30px rgba(72, 49, 24, 0.05); }
+.search-shell { border-radius: 18px; padding: 20px; }
 .search-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
 .search-controls label { display: grid; gap: 8px; font-weight: 600; color: #4f3a27; }
 .search-controls input, .search-controls select { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid #cfb693; background: #fffdf9; font: inherit; }
@@ -1592,9 +1702,71 @@ section { margin-top: 32px; }
 .layer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 .layer-card strong { font-size: 1.2rem; }
 .extension-card h2 { font-size: 1.15rem; }
-@media (max-width: 720px) { main { padding: 22px 16px 72px; } .hero-panel { padding: 20px 18px; } }
+.section-heading { max-width: 56ch; margin-bottom: 16px; }
+.section-heading h2 { font-size: 1.8rem; margin-bottom: 8px; }
+.home-band {
+  background: rgba(255, 248, 237, 0.7);
+  border: 1px solid rgba(201, 169, 120, 0.48);
+  border-radius: 24px;
+  padding: 22px;
+}
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.stack-step {
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+}
+.stack-step strong {
+  display: block;
+  font-size: 0.86rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b5b2b;
+  margin-bottom: 10px;
+}
+.stack-step h3 { font-size: 1.2rem; margin-bottom: 10px; }
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(243, 223, 191, 0.76);
+  border: 1px solid rgba(201, 169, 120, 0.7);
+  font-size: 0.9rem;
+}
+.link-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+.hero-note {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 229, 184, 0.24);
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-title { max-width: none; }
+}
+@media (max-width: 720px) {
+  main { padding: 22px 16px 72px; }
+  .hero-panel { padding: 22px 20px; }
+  .hero-aside { padding: 20px; }
+}
 """
     (site_root / "style.css").write_text(style, encoding="utf-8")
+    (site_root / "favicon.svg").write_text(_favicon_svg(), encoding="utf-8")
     (site_data_root / "search.json").write_text(json.dumps(search_payload, indent=2), encoding="utf-8")
     (site_data_root / "audit.json").write_text(
         json.dumps({"summary": audit_snapshot, "instruments": audit_entries}, indent=2),
@@ -1621,9 +1793,8 @@ section { margin-top: 32px; }
             encoding="utf-8",
         )
 
-    index_items = "\n".join(
-        _docs_index_entry(bundle, audit_by_slug[bundle.slug])
-        for _, bundle in sorted(repository.instruments.items())
+    featured_instrument_tags = _render_tag_list(
+        [bundle.instrument.canonical_name for _, bundle in sorted(repository.instruments.items())]
     )
     layer_cards = "\n".join(
         [
@@ -1659,28 +1830,89 @@ section { margin-top: 32px; }
             ),
         ]
     )
+    value_cards = "\n".join(
+        [
+            _extension_card(
+                eyebrow="What it does",
+                title="Keeps frameworks intact",
+                body="Stores each framework in its own terms, with source claims, versions, constructs, risks, and use cases preserved rather than flattened.",
+                tags=["canonical registry", "provenance", "versioned corpus"],
+            ),
+            _extension_card(
+                eyebrow="What it does",
+                title="Translates across systems",
+                body="Uses motifs, mappings, and interaction hypotheses as a house interlingua so agents can compare overlap, divergence, and incommensurability.",
+                tags=["house synthesis", "motifs", "cross-system translation"],
+            ),
+            _extension_card(
+                eyebrow="What it does",
+                title="Composes analyses like legos",
+                body="Builds small reusable techniques into named index programs such as Paradox Finder, Translation Memo, ILENS, and Human Model Card.",
+                tags=["techniques", "index programs", "runtime packs"],
+            ),
+            _extension_card(
+                eyebrow="What it does",
+                title="Supports downstream runtimes safely",
+                body="Exposes a CLI, generated JSON, and MCP surface so systems like GNOMY can consume the map without mixing runtime inference back into source truth.",
+                tags=["MCP", "CLI", "consumer-agnostic"],
+            ),
+        ]
+    )
+    consumer_cards = "\n".join(
+        [
+            _extension_card(
+                eyebrow="Who it serves",
+                title="Curators",
+                body="People extending the corpus, refining mappings, and keeping the ontology, motifs, and programs coherent over time.",
+                tags=["Git-native", "schema validation", "reviewable"],
+            ),
+            _extension_card(
+                eyebrow="Who it serves",
+                title="Agents",
+                body="Automation and analysis agents that need canonical records, translation handles, interaction hypotheses, and structured return contracts on arrival.",
+                tags=["manifest", "CLI", "MCP"],
+            ),
+            _extension_card(
+                eyebrow="Who it serves",
+                title="Runtimes like GNOMY",
+                body="Downstream systems that perform person-level synthesis locally while depending on this repo for shared knowledge, methods, and governance.",
+                tags=["shared substrate", "result atoms", "research-safe return traffic"],
+            ),
+        ]
+    )
+    repo_url = "https://github.com/N0V3LT0K3NS/a_person_index"
     index_html = f"""<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>A Person Index (API)</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  {_site_head("A Person Index (API)", "A Git-native substrate for personhood frameworks, house synthesis motifs, index programs, runtime packs, and research-safe return contracts.", "style.css", "favicon.svg")}
   <body>
     <main>
       {_nav_html("", "registry")}
       <section class="hero-panel">
-        <p class="eyebrow">A Person Index</p>
-        <h1>A Person Index (API)</h1>
-        <p class="page-lead">A Git-native index for personhood frameworks, house synthesis motifs, composable analysis programs, and research-safe return contracts.</p>
-        <div class="action-row">
-          <a class="action-link" href="search.html">Search the corpus</a>
-          <a class="action-link" href="compare.html">Browse comparisons</a>
-          <a class="action-link" href="motifs.html">Browse motifs</a>
-          <a class="action-link" href="interactions.html">Browse interactions</a>
-          <a class="action-link" href="protocols.html">Browse programs</a>
-          <a class="action-link" href="protocol-packs.html">Browse curated packs</a>
-          <a class="action-link" href="audit.html">View audit</a>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">A Person Index</p>
+            <h1 class="hero-title">One place for personhood frameworks to finally talk to each other.</h1>
+            <p class="page-lead">A Person Index (API) is a Git-native substrate for storing personhood frameworks faithfully, translating across them through a shared house interlingua, and composing reusable analysis programs that downstream runtimes can call without re-deriving the map by hand.</p>
+            <div class="action-row">
+              <a class="action-link primary" href="protocols.html">Browse programs</a>
+              <a class="action-link" href="search.html">Search the corpus</a>
+              <a class="action-link" href="compare.html">See comparisons</a>
+              <a class="action-link" href="{repo_url}">Open GitHub</a>
+            </div>
+          </div>
+          <aside class="hero-aside">
+            <p class="eyebrow">Why it matters</p>
+            <h2>More than a registry</h2>
+            <ul>
+              <li>Faithful canonical records for frameworks in their own terms</li>
+              <li>A house translation layer for fuzzy, partial, and non-equivalent mappings</li>
+              <li>Composable programs like `Paradox Finder` and `ILENS`</li>
+              <li>Research-safe return contracts for downstream systems</li>
+            </ul>
+            <div class="hero-note">
+              <p class="muted">Current canonical slice: instrument-centered, with the broader framework model and research ops layer planned next.</p>
+            </div>
+          </aside>
         </div>
       </section>
       <section class="stats">
@@ -1690,12 +1922,100 @@ section { margin-top: 32px; }
         <article class="stat-card"><strong>{audit_snapshot['instruments_with_crosswalks']}</strong> with outgoing crosswalks</article>
       </section>
       <section>
+        <div class="section-heading">
+          <p class="eyebrow">What it does</p>
+          <h2>Built to archive, translate, compose, and return signal.</h2>
+          <p class="muted">The point is not to rank frameworks by legitimacy and stop. The point is to preserve them, dimension them, and make them interoperable without destroying their differences.</p>
+        </div>
+        <div class="card-grid">{value_cards}</div>
+      </section>
+      <section class="home-band">
+        <div class="section-heading">
+          <p class="eyebrow">Composition Model</p>
+          <h2>Low-tech legos, not magical black boxes.</h2>
+          <p class="muted">A Person Index separates atomic operations from composed analyses and then hydrates those analyses into scoped runtime bundles.</p>
+        </div>
+        <div class="stack-grid">
+          <article class="stack-step">
+            <strong>1. Techniques</strong>
+            <h3>Small reusable operations</h3>
+            <p>Atomic moves such as `Paradox Scan`, `Cross-Framework Translation`, and `Result Atom Decomposition`.</p>
+            <div class="pill-list"><span class="pill">atomic</span><span class="pill">reusable</span><span class="pill">comparative</span></div>
+          </article>
+          <article class="stack-step">
+            <strong>2. Index programs</strong>
+            <h3>Named composed analyses</h3>
+            <p>Programs such as `Paradox Finder`, `Translation Memo`, `ILENS`, and `Human Model Card` that compose techniques into a stable workflow.</p>
+            <div class="pill-list"><span class="pill">Paradox Finder</span><span class="pill">ILENS</span><span class="pill">Translation Memo</span></div>
+          </article>
+          <article class="stack-step">
+            <strong>3. Program packs</strong>
+            <h3>Scoped runtime bundles</h3>
+            <p>Curated or dynamic packs that attach frameworks, motifs, mappings, interactions, and return contracts to a specific program run.</p>
+            <div class="pill-list"><span class="pill">scoped</span><span class="pill">runtime-ready</span><span class="pill">reviewed</span></div>
+          </article>
+        </div>
+      </section>
+      <section>
+        <div class="section-heading">
+          <p class="eyebrow">Who it serves</p>
+          <h2>A shared substrate, not a single consumer’s private ontology.</h2>
+          <p class="muted">GNOMY is a lead consumer, but the repo is designed to remain useful to curators, agents, compare tools, and future research workflows.</p>
+        </div>
+        <div class="card-grid">{consumer_cards}</div>
+      </section>
+      <section>
         <h2>Product Layers</h2>
         <div class="layer-grid">{layer_cards}</div>
       </section>
       <section>
-        <h2>Instrument Index</h2>
-        <div class="card-grid">{index_items}</div>
+        <div class="section-heading">
+          <p class="eyebrow">Current Canonical Slice</p>
+          <h2>Fifteen seeded systems across psychometric, symbolic, workplace, and relational domains.</h2>
+          <p class="muted">The current corpus is instrument-centered, but the repo is already structured for the broader framework and program model.</p>
+        </div>
+        {featured_instrument_tags}
+        <div class="action-row">
+          <a class="action-link" href="search.html">Browse all framework records</a>
+          <a class="action-link" href="motifs.html">See the motif layer</a>
+          <a class="action-link" href="protocol-packs.html">See curated packs</a>
+          <a class="action-link" href="audit.html">See curation coverage</a>
+        </div>
+      </section>
+      <section class="home-band">
+        <div class="section-heading">
+          <p class="eyebrow">Start Here</p>
+          <h2>Three practical entry points.</h2>
+        </div>
+        <div class="stack-grid">
+          <article class="stack-step">
+            <strong>Curator</strong>
+            <h3>Extend the corpus</h3>
+            <p>Start with the repo docs, source YAML, and validation flow if you want to add frameworks, motifs, mappings, or programs.</p>
+            <div class="link-list">
+              <a href="{repo_url}">Open the GitHub repo</a>
+            </div>
+          </article>
+          <article class="stack-step">
+            <strong>Agent</strong>
+            <h3>Query the substrate</h3>
+            <p>Use the search, compare, motif, interaction, and program surfaces, or consume the manifest and MCP adapter directly.</p>
+            <div class="link-list">
+              <a href="search.html">Search</a>
+              <a href="protocols.html">Programs</a>
+              <a href="research.html">Research</a>
+            </div>
+          </article>
+          <article class="stack-step">
+            <strong>Runtime</strong>
+            <h3>Call packs, not vibes</h3>
+            <p>Fetch a program pack when the task is known, use the result atom schema when reasoning at the part level, and return only research-safe contribution shapes.</p>
+            <div class="link-list">
+              <a href="protocol-packs.html">Curated packs</a>
+              <a href="interactions.html">Interaction hypotheses</a>
+            </div>
+          </article>
+        </div>
       </section>
     </main>
   </body>

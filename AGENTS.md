@@ -5,18 +5,21 @@ This repository is A Person Index (API), an agent-readable knowledge substrate f
 If you are arriving cold, start here in this order:
 
 1. [README.md](/Users/noveltokens/a_person_index/README.md)
-2. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
-3. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
-4. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
-5. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
-6. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
-7. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
-8. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-9. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-10. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-11. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-12. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-13. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+2. [CONTRIBUTING.md](/Users/noveltokens/a_person_index/CONTRIBUTING.md)
+3. [SECURITY.md](/Users/noveltokens/a_person_index/SECURITY.md)
+4. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
+5. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
+6. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
+7. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
+8. [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md)
+9. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+10. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
+11. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+12. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+13. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+14. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+15. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+16. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 ## What this repo is
 
@@ -56,6 +59,14 @@ Do not manually edit:
 - [generated](/Users/noveltokens/a_person_index/generated)
 - [site](/Users/noveltokens/a_person_index/site)
 - [schemas](/Users/noveltokens/a_person_index/schemas)
+
+Compatibility note:
+
+- `registry://...` URIs
+- `protocols/registry.yaml`
+- `protocol_packs/`
+
+remain stable for compatibility. Treat them as implementation surfaces, not the product’s preferred public language.
 
 ## Core rules
 

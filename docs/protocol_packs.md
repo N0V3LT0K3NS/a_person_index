@@ -31,6 +31,8 @@ The curated pack source of truth is:
 
 - [protocol_packs/catalog.yaml](/Users/noveltokens/a_person_index/protocol_packs/catalog.yaml)
 
+The internal `protocol_packs` path remains stable for compatibility even though the broader public product language is `program packs`.
+
 Generated artifacts are emitted to:
 
 - [generated/protocol_packs/index.json](/Users/noveltokens/a_person_index/generated/protocol_packs/index.json)

@@ -91,6 +91,12 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert manifest_payload["downstream_contract"]["result_atom_schema_id"] == "ras_result_atom_v0_1"
     assert manifest_payload["consumer_model"]["lead_example_consumer"] == "GNOMY"
     assert manifest_payload["consumer_model"]["consumer_agnostic"] is True
+    assert manifest_payload["compatibility_surfaces"]["uri_scheme"] == "registry://"
+    assert manifest_payload["governance"]["contributing_doc"] == "CONTRIBUTING.md"
+    assert manifest_payload["governance"]["security_doc"] == "SECURITY.md"
+    assert manifest_payload["governance"]["codeowners"] == ".github/CODEOWNERS"
+    assert manifest_payload["governance"]["codex_automation_doc"] == "docs/codex_automation.md"
+    assert ".github/workflows/codex-task.yml" in manifest_payload["governance"]["automation_workflows"]
     assert manifest_payload["next_priorities"]
     assert manifest_payload["service_primitives"]
     assert any(item["id"] == "list_protocol_packs" for item in manifest_payload["service_primitives"])

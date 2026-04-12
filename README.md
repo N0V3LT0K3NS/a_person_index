@@ -17,18 +17,21 @@ Canonical source data still lives in structured YAML files, is validated with ty
 If you are arriving fresh, read these in order:
 
 1. [AGENTS.md](/Users/noveltokens/a_person_index/AGENTS.md)
-2. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
-3. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
-4. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
-5. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
-6. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
-7. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
-8. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-9. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-10. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-11. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-12. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-13. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+2. [CONTRIBUTING.md](/Users/noveltokens/a_person_index/CONTRIBUTING.md)
+3. [SECURITY.md](/Users/noveltokens/a_person_index/SECURITY.md)
+4. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
+5. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
+6. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
+7. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
+8. [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md)
+9. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+10. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
+11. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+12. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+13. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+14. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+15. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+16. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 Those files together explain what the repo is, what layer you are editing, how downstream systems should use it, and what is next.
 
@@ -119,6 +122,16 @@ A Person Index is meant to feel like legos:
    Scoped bundles that hydrate an index program with the exact frameworks, motifs, mappings, interaction hypotheses, and research return contracts needed for a task.
 
 The internal registry path is still `protocols/registry.yaml`, but the public product concept is `index programs`.
+
+## Compatibility surfaces
+
+Some names intentionally remain stable for compatibility:
+
+- `registry://...` on the MCP surface
+- `protocols/registry.yaml`
+- `protocol_packs/`
+
+These are implementation and compatibility surfaces, not the product’s preferred public language.
 
 ## Seed corpus
 
@@ -226,6 +239,27 @@ Validation enforces:
 - result atom schema availability for downstream runtimes
 
 Broken references or missing required annotation dimensions fail validation.
+
+## Contribution and automation
+
+Repo contribution and automation surfaces are documented in:
+
+- [CONTRIBUTING.md](/Users/noveltokens/a_person_index/CONTRIBUTING.md)
+- [SECURITY.md](/Users/noveltokens/a_person_index/SECURITY.md)
+- [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md)
+- [.github/ISSUE_TEMPLATE/codex_task.yml](/Users/noveltokens/a_person_index/.github/ISSUE_TEMPLATE/codex_task.yml)
+- [.github/pull_request_template.md](/Users/noveltokens/a_person_index/.github/pull_request_template.md)
+
+The default verification path is:
+
+```bash
+python3 scripts/export_schemas.py
+python3 scripts/validate.py
+python3 scripts/build_index.py
+python3 scripts/generate_docs.py
+npm run mcp:smoke
+python3 -m pytest
+```
 
 ## Ontology
 

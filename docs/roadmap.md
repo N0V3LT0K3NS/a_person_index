@@ -43,6 +43,7 @@ Delivered so far:
 - result atom schema
 - motif, protocol, interaction, research, and curated-pack query surfaces
 - stronger repo-level onboarding, manifesting, and agent-arrival docs
+- contribution, PR, and Codex automation scaffolding
 
 ## Phase 3: Downstream Consumer Integration
 

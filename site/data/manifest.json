@@ -63,10 +63,12 @@
   "start_here": [
     "AGENTS.md",
     "README.md",
+    "CONTRIBUTING.md",
     "docs/current_state.md",
     "docs/roadmap.md",
     "docs/architecture.md",
     "docs/index_programs.md",
+    "docs/codex_automation.md",
     "docs/gnomy_integration.md",
     "docs/mcp.md",
     "docs/protocol_pack_grammar.md",
@@ -118,6 +120,40 @@
       "python3 scripts/export_schemas.py",
       "python3 scripts/build_index.py",
       "python3 scripts/generate_docs.py"
+    ]
+  },
+  "compatibility_surfaces": {
+    "uri_scheme": "registry://",
+    "uri_scheme_reason": "Kept stable for the MCP/read-only access surface even though the product is A Person Index.",
+    "internal_program_registry_path": "protocols/registry.yaml",
+    "internal_pack_paths": [
+      "protocol_packs/",
+      "generated/protocol_packs/"
+    ],
+    "internal_name_reason": "These internal paths remain in place to preserve backward compatibility and avoid unnecessary churn in the typed models and generated exports."
+  },
+  "governance": {
+    "contributing_doc": "CONTRIBUTING.md",
+    "security_doc": "SECURITY.md",
+    "codeowners": ".github/CODEOWNERS",
+    "codex_automation_doc": "docs/codex_automation.md",
+    "codex_automation_context": ".github/codex/automation_context.md",
+    "issue_templates": [
+      ".github/ISSUE_TEMPLATE/codex_task.yml"
+    ],
+    "pull_request_template": ".github/pull_request_template.md",
+    "verification_commands": [
+      "python3 scripts/export_schemas.py",
+      "python3 scripts/validate.py",
+      "python3 scripts/build_index.py",
+      "python3 scripts/generate_docs.py",
+      "npm run mcp:smoke",
+      "python3 -m pytest"
+    ],
+    "automation_workflows": [
+      ".github/workflows/ci.yml",
+      ".github/workflows/netlify-deploy.yml",
+      ".github/workflows/codex-task.yml"
     ]
   },
   "service_primitives": [

@@ -13,3 +13,8 @@ build/
 
 # Node dependencies
 node_modules/
+
+# Local review and browser QA artifacts
+.playwright-cli/
+output/
+temp_notepad/
