@@ -149,13 +149,21 @@ Generated outputs are written to:
 - `generated/audit.json`: curation-depth and coverage summary per instrument
 - `generated/instruments/*.json`: per-instrument exports
 - `generated/registry.json`: full export payload
-- `site/`: simple static HTML documentation
+- `site/`: self-contained static documentation site, including browse, audit, search, and comparison pages
+- `site/data/*.json`: deployed data payloads used by the static site at runtime
 
 Generated files are deterministic and can be rebuilt locally.
 
 ## Retrieval workflows
 
 The repository includes a query CLI for exact lookup, filter retrieval, text search, relationship lookup, and side-by-side comparison.
+
+The generated static site now exposes the same corpus through:
+
+- `site/index.html`: registry browse entry point
+- `site/search.html`: client-side search over shipped registry data
+- `site/compare.html`: generated comparison index
+- `site/comparisons/*.html`: pairwise comparison pages derived from recorded crosswalks
 
 Examples:
 

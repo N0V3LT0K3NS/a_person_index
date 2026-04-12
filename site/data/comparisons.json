@@ -1,0 +1,231 @@
+{
+  "comparisons": [
+    {
+      "slug": "attachment-styles--love-languages",
+      "left": {
+        "slug": "attachment-styles",
+        "id": "instr_attachment_styles",
+        "canonical_name": "Attachment Style Frameworks",
+        "family": [
+          "attachment_relational"
+        ]
+      },
+      "right": {
+        "slug": "love-languages",
+        "id": "instr_love_languages",
+        "canonical_name": "The Five Love Languages",
+        "family": [
+          "attachment_relational",
+          "identity_self_concept"
+        ]
+      },
+      "crosswalk_count": 4,
+      "shared_dimension_count": 17
+    },
+    {
+      "slug": "big-five--cqs",
+      "left": {
+        "slug": "big-five",
+        "id": "instr_big_five",
+        "canonical_name": "Big Five Personality Model",
+        "family": [
+          "trait_personality"
+        ]
+      },
+      "right": {
+        "slug": "cqs",
+        "id": "instr_cqs",
+        "canonical_name": "Cultural Intelligence Scale",
+        "family": [
+          "cultural_intercultural"
+        ]
+      },
+      "crosswalk_count": 1,
+      "shared_dimension_count": 13
+    },
+    {
+      "slug": "big-five--enneagram",
+      "left": {
+        "slug": "big-five",
+        "id": "instr_big_five",
+        "canonical_name": "Big Five Personality Model",
+        "family": [
+          "trait_personality"
+        ]
+      },
+      "right": {
+        "slug": "enneagram",
+        "id": "instr_enneagram",
+        "canonical_name": "Enneagram of Personality",
+        "family": [
+          "typology",
+          "motivational",
+          "identity_self_concept",
+          "worldview_meaning_making"
+        ]
+      },
+      "crosswalk_count": 2,
+      "shared_dimension_count": 7
+    },
+    {
+      "slug": "big-five--hexaco",
+      "left": {
+        "slug": "big-five",
+        "id": "instr_big_five",
+        "canonical_name": "Big Five Personality Model",
+        "family": [
+          "trait_personality"
+        ]
+      },
+      "right": {
+        "slug": "hexaco",
+        "id": "instr_hexaco",
+        "canonical_name": "HEXACO Personality Inventory",
+        "family": [
+          "trait_personality"
+        ]
+      },
+      "crosswalk_count": 6,
+      "shared_dimension_count": 22
+    },
+    {
+      "slug": "big-five--mbti",
+      "left": {
+        "slug": "big-five",
+        "id": "instr_big_five",
+        "canonical_name": "Big Five Personality Model",
+        "family": [
+          "trait_personality"
+        ]
+      },
+      "right": {
+        "slug": "mbti",
+        "id": "instr_mbti",
+        "canonical_name": "Myers-Briggs Type Indicator",
+        "family": [
+          "typology",
+          "cognitive_style",
+          "identity_self_concept"
+        ]
+      },
+      "crosswalk_count": 2,
+      "shared_dimension_count": 12
+    },
+    {
+      "slug": "cliftonstrengths--kolbe",
+      "left": {
+        "slug": "cliftonstrengths",
+        "id": "instr_cliftonstrengths",
+        "canonical_name": "CliftonStrengths",
+        "family": [
+          "strengths_talent",
+          "leadership_workplace"
+        ]
+      },
+      "right": {
+        "slug": "kolbe",
+        "id": "instr_kolbe",
+        "canonical_name": "Kolbe A Index",
+        "family": [
+          "conative_action_style",
+          "leadership_workplace"
+        ]
+      },
+      "crosswalk_count": 1,
+      "shared_dimension_count": 19
+    },
+    {
+      "slug": "cliftonstrengths--via-character-strengths",
+      "left": {
+        "slug": "cliftonstrengths",
+        "id": "instr_cliftonstrengths",
+        "canonical_name": "CliftonStrengths",
+        "family": [
+          "strengths_talent",
+          "leadership_workplace"
+        ]
+      },
+      "right": {
+        "slug": "via-character-strengths",
+        "id": "instr_via_character_strengths",
+        "canonical_name": "VIA Character Strengths",
+        "family": [
+          "strengths_talent",
+          "values_moral_orientation"
+        ]
+      },
+      "crosswalk_count": 8,
+      "shared_dimension_count": 19
+    },
+    {
+      "slug": "culture-index--disc",
+      "left": {
+        "slug": "culture-index",
+        "id": "instr_culture_index",
+        "canonical_name": "Culture Index",
+        "family": [
+          "leadership_workplace",
+          "trait_personality"
+        ]
+      },
+      "right": {
+        "slug": "disc",
+        "id": "instr_disc",
+        "canonical_name": "DISC",
+        "family": [
+          "behavioral_interactional",
+          "leadership_workplace"
+        ]
+      },
+      "crosswalk_count": 6,
+      "shared_dimension_count": 22
+    },
+    {
+      "slug": "dark-triad--hexaco",
+      "left": {
+        "slug": "dark-triad",
+        "id": "instr_dark_triad",
+        "canonical_name": "Dark Triad",
+        "family": [
+          "trait_personality",
+          "clinical_symptom_pathology"
+        ]
+      },
+      "right": {
+        "slug": "hexaco",
+        "id": "instr_hexaco",
+        "canonical_name": "HEXACO Personality Inventory",
+        "family": [
+          "trait_personality"
+        ]
+      },
+      "crosswalk_count": 5,
+      "shared_dimension_count": 16
+    },
+    {
+      "slug": "human-design--natal-astrology",
+      "left": {
+        "slug": "human-design",
+        "id": "instr_human_design",
+        "canonical_name": "Human Design",
+        "family": [
+          "symbolic_archetypal_spiritual",
+          "identity_self_concept",
+          "worldview_meaning_making"
+        ]
+      },
+      "right": {
+        "slug": "natal-astrology",
+        "id": "instr_natal_astrology",
+        "canonical_name": "Natal Astrology",
+        "family": [
+          "symbolic_archetypal_spiritual",
+          "worldview_meaning_making",
+          "identity_self_concept"
+        ]
+      },
+      "crosswalk_count": 2,
+      "shared_dimension_count": 23
+    }
+  ]
+}

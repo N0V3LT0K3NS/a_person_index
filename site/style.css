@@ -1,20 +1,37 @@
-body { font-family: Georgia, serif; margin: 0; background: linear-gradient(180deg, #f7f1e8 0%, #efe5d6 100%); color: #1c1a16; }
-main { max-width: 1040px; margin: 0 auto; padding: 48px 24px 80px; }
-a { color: #7a2f18; }
-h1, h2 { font-family: 'Palatino Linotype', serif; }
+body { font-family: Georgia, serif; margin: 0; background:
+radial-gradient(circle at top, rgba(255, 244, 218, 0.8), transparent 38%),
+linear-gradient(180deg, #f3ecdf 0%, #eadfcd 100%); color: #1f1a14; }
+main { max-width: 1120px; margin: 0 auto; padding: 28px 24px 88px; }
+a { color: #7d321d; text-decoration-thickness: 0.08em; text-underline-offset: 0.14em; }
+h1, h2 { font-family: 'Palatino Linotype', 'Book Antiqua', serif; letter-spacing: -0.02em; }
 section { margin-top: 32px; }
+.site-nav { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+.site-nav a { padding: 10px 14px; border: 1px solid #d5b88f; border-radius: 999px; background: rgba(255, 249, 240, 0.78); text-decoration: none; color: #5c2c19; }
+.site-nav a.active { background: #7d321d; color: #fff7ed; border-color: #7d321d; }
+.hero-panel { background: linear-gradient(135deg, rgba(255, 250, 242, 0.94), rgba(246, 231, 204, 0.92)); border: 1px solid #d8bf97; border-radius: 22px; padding: 24px 26px; box-shadow: 0 18px 40px rgba(85, 57, 24, 0.08); }
+.eyebrow { margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.78rem; color: #8b5b2b; }
+.page-lead { max-width: 62ch; font-size: 1.05rem; color: #4d3f30; }
+.action-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.action-link { display: inline-flex; align-items: center; justify-content: center; padding: 10px 14px; border-radius: 999px; background: #f5e4c5; border: 1px solid #d8bf97; text-decoration: none; }
 .muted { color: #6f6352; font-size: 0.95rem; }
 .empty { color: #6f6352; font-style: italic; }
-.notes-block { white-space: pre-wrap; background: #fffaf3; padding: 16px; border: 1px solid #d9c9ae; border-radius: 10px; }
+.notes-block { white-space: pre-wrap; background: #fffaf3; padding: 16px; border: 1px solid #d9c9ae; border-radius: 12px; }
 .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .tag { background: #ead8bb; border: 1px solid #d1b78d; border-radius: 999px; padding: 4px 10px; font-size: 0.9rem; }
-.hero { display: grid; gap: 16px; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 20px; }
-.stat-card, .instrument-card { background: rgba(255, 250, 243, 0.92); border: 1px solid #d9c9ae; border-radius: 14px; padding: 16px 18px; box-shadow: 0 12px 30px rgba(72, 49, 24, 0.06); }
+.stat-card, .instrument-card { background: rgba(255, 250, 243, 0.94); border: 1px solid #d9c9ae; border-radius: 16px; padding: 18px 20px; box-shadow: 0 12px 30px rgba(72, 49, 24, 0.06); }
 .stat-card strong { display: block; font-size: 1.8rem; }
 .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.compare-card h2, .search-card h2 { font-size: 1.15rem; }
 .coverage-line { margin-top: 12px; color: #6f6352; font-size: 0.95rem; }
-.item-list { padding-left: 20px; line-height: 1.55; }
-.audit-table { width: 100%; border-collapse: collapse; background: rgba(255, 250, 243, 0.92); border: 1px solid #d9c9ae; border-radius: 14px; overflow: hidden; }
-.audit-table th, .audit-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid #e7d8c0; }
+.item-list { padding-left: 20px; line-height: 1.58; }
+.audit-table { width: 100%; border-collapse: collapse; background: rgba(255, 250, 243, 0.94); border: 1px solid #d9c9ae; border-radius: 16px; overflow: hidden; }
+.audit-table th, .audit-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid #e7d8c0; vertical-align: top; }
 .audit-table th { background: #ead8bb; }
+.comparison-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.search-shell { background: rgba(255, 250, 243, 0.9); border: 1px solid #d9c9ae; border-radius: 18px; padding: 20px; box-shadow: 0 12px 30px rgba(72, 49, 24, 0.05); }
+.search-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.search-controls label { display: grid; gap: 8px; font-weight: 600; color: #4f3a27; }
+.search-controls input, .search-controls select { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid #cfb693; background: #fffdf9; font: inherit; }
+.search-results { margin-top: 20px; }
+@media (max-width: 720px) { main { padding: 22px 16px 72px; } .hero-panel { padding: 20px 18px; } }

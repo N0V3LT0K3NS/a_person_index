@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Registry Search</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <nav class="site-nav"><a href="index.html">Registry</a><a href="search.html" class="active">Search</a><a href="compare.html">Compare</a><a href="audit.html">Audit</a></nav>
+      <section class="hero-panel">
+        <p class="eyebrow">Registry Search</p>
+        <h1>Find instruments by name, alias, ontology, or notes</h1>
+        <p class="page-lead">Client-side search across the shipped static corpus. Results are backed by data published with the site.</p>
+      </section>
+      <section class="search-shell">
+        <div class="search-controls">
+          <label>
+            Query
+            <input id="search-query" type="search" placeholder="Big Five, attachment, identity narrative, hiring..." />
+          </label>
+          <label>
+            Family
+            <select id="family-filter">
+              <option value="">All families</option>
+            </select>
+          </label>
+        </div>
+        <p id="search-meta" class="muted">Loading registry data…</p>
+        <div id="search-results" class="card-grid search-results"></div>
+      </section>
+    </main>
+    <script>
+      (async function () {
+        const queryInput = document.getElementById("search-query");
+        const familyFilter = document.getElementById("family-filter");
+        const meta = document.getElementById("search-meta");
+        const resultsNode = document.getElementById("search-results");
+
+        const response = await fetch("data/search.json");
+        const payload = await response.json();
+        const entries = payload.entries.map((entry) => ({
+          ...entry,
+          families: (entry.annotation_index.instrument_family || []).slice().sort(),
+        }));
+
+        const families = Array.from(new Set(entries.flatMap((entry) => entry.families))).sort();
+        for (const family of families) {
+          const option = document.createElement("option");
+          option.value = family;
+          option.textContent = family;
+          familyFilter.appendChild(option);
+        }
+
+        function render() {
+          const query = queryInput.value.trim().toLowerCase();
+          const family = familyFilter.value;
+          const matches = entries.filter((entry) => {
+            const familyMatch = !family || entry.families.includes(family);
+            const textMatch =
+              !query ||
+              entry.canonical_name.toLowerCase().includes(query) ||
+              entry.instrument_id.toLowerCase().includes(query) ||
+              entry.slug.toLowerCase().includes(query) ||
+              entry.short_names.some((item) => item.toLowerCase().includes(query)) ||
+              entry.aliases.some((item) => item.toLowerCase().includes(query)) ||
+              entry.text.toLowerCase().includes(query);
+            return familyMatch && textMatch;
+          });
+
+          meta.textContent = `${matches.length} result${matches.length === 1 ? "" : "s"} across ${entries.length} shipped records`;
+          resultsNode.innerHTML = matches
+            .map((entry) => {
+              const tags = entry.families.map((family) => `<span class="tag">${family}</span>`).join("");
+              return `
+                <article class="instrument-card search-card">
+                  <p class="eyebrow">Instrument</p>
+                  <h2><a href="instruments/${entry.slug}.html">${entry.canonical_name}</a></h2>
+                  <p class="muted">${entry.instrument_id}</p>
+                  <div class="tag-row">${tags}</div>
+                </article>
+              `;
+            })
+            .join("");
+
+          if (!matches.length) {
+            resultsNode.innerHTML = '<p class="empty">No matching instruments.</p>';
+          }
+        }
+
+        queryInput.addEventListener("input", render);
+        familyFilter.addEventListener("change", render);
+        render();
+      })();
+    </script>
+  </body>
+</html>
