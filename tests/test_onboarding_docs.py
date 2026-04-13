@@ -11,6 +11,8 @@ def test_onboarding_docs_exist(repo_root):
         repo_root / "skills" / "a-person-index" / "agents" / "openai.yaml",
         repo_root / "skills" / "a-person-index" / "references" / "workflows.md",
         repo_root / "docs" / "release_status.md",
+        repo_root / "docs" / "agent_quickstart.md",
+        repo_root / "docs" / "assessment_workflow.md",
         repo_root / "docs" / "current_state.md",
         repo_root / "docs" / "index_programs.md",
         repo_root / "docs" / "codex_automation.md",
@@ -24,6 +26,7 @@ def test_onboarding_docs_exist(repo_root):
         repo_root / "docs" / "phase_3_4_plan.md",
         repo_root / "examples" / "mcp" / "README.md",
         repo_root / "examples" / "mcp" / "claude-code.mcp.json.example",
+        repo_root / "examples" / "mcp" / "claude-desktop-config.json.example",
         repo_root / "examples" / "mcp" / "hermes-wrapper.sh.example",
         repo_root / ".github" / "ISSUE_TEMPLATE" / "codex_task.yml",
         repo_root / ".github" / "pull_request_template.md",
@@ -39,6 +42,8 @@ def test_readme_links_to_onboarding_surface(repo_root):
     assert "CHANGELOG.md" in readme
     assert "CONTRIBUTING.md" in readme
     assert "SECURITY.md" in readme
+    assert "docs/agent_quickstart.md" in readme
+    assert "docs/assessment_workflow.md" in readme
     assert "docs/release_status.md" in readme
     assert "docs/current_state.md" in readme
     assert "docs/index_programs.md" in readme

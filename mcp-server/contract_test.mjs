@@ -56,6 +56,9 @@ expect(manifestPayload.interfaces?.mcp?.contract_test === "npm run mcp:contract"
 const currentState = await client.readResource({ uri: "registry://current-state" });
 expect(currentState.contents?.[0]?.text?.includes("read-only MCP adapter"), "Expected current state to mention MCP adapter.");
 
+const quickstart = await client.readResource({ uri: "registry://quickstart" });
+expect(quickstart.contents?.[0]?.text?.includes("First moves"), "Expected quickstart resource content.");
+
 const mbtiResource = await client.readResource({ uri: "registry://instrument/mbti" });
 const mbtiPayload = JSON.parse(mbtiResource.contents?.[0]?.text ?? "{}");
 expect(mbtiPayload.instrument?.id === "instr_mbti", "Expected MBTI resource payload.");
@@ -108,7 +111,7 @@ expect(program.structuredContent?.protocol?.id === "proto_ilens", "Expected ILEN
 const packList = await client.callTool({
   name: "list_protocol_packs",
   arguments: {
-    featured_only: true,
+    featured: true,
   },
 });
 expect(!packList.isError, "Expected list_protocol_packs tool to succeed.");

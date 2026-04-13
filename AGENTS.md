@@ -4,28 +4,32 @@ This repository is A Person Index (API), an agent-readable knowledge substrate f
 
 If Codex is the host and the companion skill is installed, prefer `$a-person-index` for comparative work, program-pack use, and research-safe return formatting. The skill is an operating layer on top of this repo's MCP and CLI surfaces, not a second source of truth.
 
+If you only need the fast arrival path, prefer [docs/agent_quickstart.md](/Users/noveltokens/a_person_index/docs/agent_quickstart.md) and [docs/assessment_workflow.md](/Users/noveltokens/a_person_index/docs/assessment_workflow.md) before reading the full repo.
+
 If you are arriving cold, start here in this order:
 
 1. [README.md](/Users/noveltokens/a_person_index/README.md)
-2. [CHANGELOG.md](/Users/noveltokens/a_person_index/CHANGELOG.md)
-3. [docs/release_status.md](/Users/noveltokens/a_person_index/docs/release_status.md)
-4. [CONTRIBUTING.md](/Users/noveltokens/a_person_index/CONTRIBUTING.md)
-5. [SECURITY.md](/Users/noveltokens/a_person_index/SECURITY.md)
-6. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
-7. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
-8. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
-9. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
-10. [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md)
-11. [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
-12. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
-13. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
-14. [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md)
-15. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-16. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-17. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-18. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-19. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-20. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+2. [docs/agent_quickstart.md](/Users/noveltokens/a_person_index/docs/agent_quickstart.md)
+3. [docs/assessment_workflow.md](/Users/noveltokens/a_person_index/docs/assessment_workflow.md)
+4. [CHANGELOG.md](/Users/noveltokens/a_person_index/CHANGELOG.md)
+5. [docs/release_status.md](/Users/noveltokens/a_person_index/docs/release_status.md)
+6. [CONTRIBUTING.md](/Users/noveltokens/a_person_index/CONTRIBUTING.md)
+7. [SECURITY.md](/Users/noveltokens/a_person_index/SECURITY.md)
+8. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
+9. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
+10. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
+11. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
+12. [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md)
+13. [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
+14. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+15. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
+16. [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md)
+17. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+18. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+19. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+20. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+21. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+22. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 ## What this repo is
 

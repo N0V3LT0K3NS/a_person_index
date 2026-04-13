@@ -44,6 +44,7 @@ This document states the current release posture of A Person Index in compact op
 - pytest passes
 - MCP smoke and contract tests pass
 - Claude Code client path tested
+- Claude Desktop client path scripted and documented
 - Hermes client path tested
 
 ## What comes next

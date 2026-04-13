@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import subprocess
+
 from personality_registry.extensions import load_extensions_strict
 from personality_registry.loader import load_repository_strict
 from personality_registry.query import (
@@ -41,6 +43,29 @@ def test_query_by_family_and_text(repo_root):
     results = query_results(repository, families=["typology"], text="identity narrative")
     result_ids = {result.instrument_id for result in results}
     assert "instr_enneagram" in result_ids
+
+
+def test_query_text_matches_common_natural_variants(repo_root):
+    repository = load_repository_strict(repo_root)
+    results = query_results(repository, text="astrology natal chart love language")
+    result_ids = {result.instrument_id for result in results}
+    assert "instr_natal_astrology" in result_ids
+    assert "instr_love_languages" in result_ids
+
+
+def test_query_text_can_recover_frameworks_from_mixed_assessment_blob(repo_root):
+    repository = load_repository_strict(repo_root)
+    results = query_results(
+        repository,
+        text="Human Design Enneagram MBTI Big Five OCEAN StrengthsFinder DISC KOLBE Dark Triad Love Language natal birth chart astrology",
+    )
+    result_ids = {result.instrument_id for result in results}
+    assert "instr_human_design" in result_ids
+    assert "instr_big_five" in result_ids
+    assert "instr_mbti" in result_ids
+    assert "instr_enneagram" in result_ids
+    assert "instr_love_languages" in result_ids
+    assert "instr_natal_astrology" in result_ids
 
 
 def test_compare_surfaces_shared_values(repo_root):
@@ -195,6 +220,19 @@ def test_result_atom_schema_record_is_available(repo_root):
     assert payload["result_atom_schema"]["id"] == "ras_result_atom_v0_1"
     required_fields = {field["name"] for field in payload["result_atom_schema"]["required_fields"]}
     assert {"framework_id", "construct_id", "output_type", "output_value"} <= required_fields
+
+
+def test_query_cli_returns_concise_error_for_unknown_program(repo_root):
+    completed = subprocess.run(
+        [str(repo_root / ".venv" / "bin" / "python"), "scripts/query_registry.py", "program-pack", "novel"],
+        cwd=repo_root,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    assert completed.returncode == 1
+    assert "Traceback" not in completed.stderr
+    assert "No extension record found for 'novel'" in completed.stderr
 
 
 def test_protocol_pack_expands_scope_for_ilens(repo_root):

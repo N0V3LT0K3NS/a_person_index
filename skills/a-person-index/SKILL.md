@@ -41,6 +41,7 @@ Use this when arriving cold or when another agent needs the current contract.
 
 Prefer:
 - MCP resource `registry://manifest`
+- MCP resource `registry://quickstart`
 - MCP resource `registry://current-state`
 - MCP prompt `registry-arrival`
 
@@ -97,7 +98,22 @@ python3 scripts/query_registry.py program-pack-grammar
 
 Pack rule:
 - if the task matches an existing program, fetch the pack first
+- if you do not know which pack exists, call `list_protocol_packs(featured=true)` before guessing
 - only decompose into individual motif/mapping calls when no pack exists or when auditing the pack itself
+
+### 3a. Ingest user assessment results
+
+Use this when a user pastes a mixed stack of assessments and asks what A Person Index can do with it.
+
+Prefer:
+- MCP resource `registry://assessment-workflow`
+- `find_framework_records` with short `refs`
+- `list_protocol_packs(featured=true)`
+
+Intake rule:
+- do not begin with one giant `text` blob if you can extract likely framework labels first
+- call out missing or unindexed frameworks explicitly
+- only claim a program was executed if you actually used its pack or spec as the basis for the synthesis
 
 ### 4. Format research-safe return traffic
 

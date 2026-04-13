@@ -19,7 +19,8 @@ The MCP surface has been validated in three layers:
 
 1. repo-owned Node SDK smoke and contract tests
 2. Claude Code using an explicit strict MCP config
-3. Hermes on a remote host using a thin wrapper around the same stdio server
+3. Claude Desktop using the app MCP config file
+4. Hermes on a remote host using a thin wrapper around the same stdio server
 
 ## Canonical local checks
 
@@ -63,6 +64,41 @@ Notes:
 - The script does not mutate repo state.
 - If you want a different prompt, pass it as the first argument.
 
+## Claude Desktop
+
+Claude Desktop uses its own MCP config file and does not automatically inherit Claude Code's config.
+
+Default config path on macOS:
+
+```bash
+~/Library/Application\ Support/Claude/claude_desktop_config.json
+```
+
+Write or update the desktop config entry safely:
+
+```bash
+./scripts/write_claude_desktop_mcp_config.sh
+```
+
+What the script does:
+
+1. resolves the repo root
+2. resolves an absolute `node` path
+3. backs up the existing Claude desktop config if present
+4. adds or updates the `a-person-index` MCP entry
+5. preserves other MCP servers and preferences
+
+After running it:
+
+1. fully quit Claude Desktop with `Cmd-Q`
+2. reopen Claude
+3. start a new chat
+4. ask which MCP servers are available
+
+Template example:
+
+- [examples/mcp/claude-desktop-config.json.example](/Users/noveltokens/a_person_index/examples/mcp/claude-desktop-config.json.example)
+
 ## Hermes
 
 Hermes is also proven with this MCP, including a real tool-using comparison query.
@@ -92,6 +128,7 @@ Hermes-specific assumptions:
 Template examples:
 
 - [examples/mcp/claude-code.mcp.json.example](/Users/noveltokens/a_person_index/examples/mcp/claude-code.mcp.json.example)
+- [examples/mcp/claude-desktop-config.json.example](/Users/noveltokens/a_person_index/examples/mcp/claude-desktop-config.json.example)
 - [examples/mcp/hermes-wrapper.sh.example](/Users/noveltokens/a_person_index/examples/mcp/hermes-wrapper.sh.example)
 
 ## Consumer-facing recommendation

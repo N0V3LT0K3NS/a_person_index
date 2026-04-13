@@ -7,7 +7,9 @@
       "CQS",
       "Cultural Intelligence Scale"
     ],
-    "aliases": [],
+    "aliases": [
+      "Cultural Intelligence"
+    ],
     "status": "active",
     "family": [
       "cultural_intercultural"

@@ -6,7 +6,10 @@
     "short_names": [
       "Human Design"
     ],
-    "aliases": [],
+    "aliases": [
+      "Human Design System",
+      "Bodygraph"
+    ],
     "status": "active",
     "family": [
       "symbolic_archetypal_spiritual",

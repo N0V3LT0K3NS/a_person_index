@@ -60,6 +60,7 @@ As of the current branch state, the repo includes:
 - read-only MCP adapter
 - repo-owned MCP smoke and contract tests
 - tested Claude Code MCP path
+- documented Claude Desktop MCP path
 - tested Hermes MCP path
 - Deterministic generated outputs
 - Static documentation site

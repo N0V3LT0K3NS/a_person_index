@@ -19,3 +19,4 @@ node_modules/
 output/
 temp_notepad/
 .claude/
+.DS_Store
