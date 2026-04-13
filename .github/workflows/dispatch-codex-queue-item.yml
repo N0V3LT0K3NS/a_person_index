@@ -65,6 +65,16 @@ jobs:
           MATCHES="$(gh issue list --state open --search "\"${TITLE}\" in:title" --json title --jq 'map(select(.title == "'"${TITLE}"'")) | length')"
           echo "OPEN_MATCHES=${MATCHES}" >> "$GITHUB_ENV"
 
+      - name: Ensure codex-task label exists
+        if: ${{ !inputs.dry_run && env.OPEN_MATCHES == '0' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create codex-task \
+            --color 5319E7 \
+            --description "Request a scoped Codex-driven repo change" \
+            || true
+
       - name: Create issue
         if: ${{ !inputs.dry_run && env.OPEN_MATCHES == '0' }}
         env:
