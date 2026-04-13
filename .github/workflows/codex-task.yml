@@ -226,6 +226,7 @@ jobs:
           working-directory: ${{ github.workspace }}
           sandbox: workspace-write
           safety-strategy: drop-sudo
+          allow-bots: true
           codex-args: '["--skip-git-repo-check","--search"]'
 
       - name: Run verification
