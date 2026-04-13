@@ -227,7 +227,7 @@ jobs:
           sandbox: workspace-write
           safety-strategy: drop-sudo
           allow-bots: true
-          codex-args: '["--skip-git-repo-check","--search"]'
+          codex-args: '["--search"]'
 
       - name: Run verification
         run: |
