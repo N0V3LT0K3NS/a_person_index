@@ -29,6 +29,16 @@ Add these repository secrets before enabling the workflow:
 
 - `OPENAI_API_KEY`
 
+That secret must be a real OpenAI Platform API key, not the repo's placeholder string and not just a ChatGPT app login context.
+
+Practical rules:
+
+- use a key that starts with `sk-` or `sk-proj-`
+- make sure it belongs to a Platform project/account with active billing or credits
+- do not paste `your-api-key-here` from a local shell profile into GitHub secrets
+
+The `codex-task.yml` workflow now fails fast if the secret is empty, still set to a placeholder, or malformed. That is intentional: it is better to stop immediately than to burn runner time and then fail deep inside the Codex action.
+
 The workflow uses the default `GITHUB_TOKEN` for checkout, branch creation, PR creation, and optional issue comments.
 
 The `codex-task.yml` workflow should use the official [`openai/codex-action`](https://github.com/openai/codex-action) rather than shelling directly into a raw `codex exec` install on the runner. That action handles installing the CLI and configuring a secure Responses API proxy for GitHub Actions.
