@@ -1,0 +1,66 @@
+resources:
+- id: res_divergent_association_task_home
+  instrument_id: instr_divergent_association_task
+  version_id: ver_divergent_association_task_general
+  resource_type: official_site
+  title: Divergent Association Task
+  url: https://www.datcreativity.com/
+  author: null
+  publication_date: null
+  publisher: DAT Creativity
+  language: en
+  access_status: public
+  officiality: official
+  notes: Public DAT surface and task access point.
+- id: res_divergent_association_task_about
+  instrument_id: instr_divergent_association_task
+  version_id: ver_divergent_association_task_general
+  resource_type: official_overview
+  title: About The Divergent Association Task
+  url: https://www.datcreativity.com/about
+  author: null
+  publication_date: null
+  publisher: DAT Creativity
+  language: en
+  access_status: public
+  officiality: official
+  notes: Public explanation page describing task purpose and links to supporting research.
+- id: res_divergent_association_task_pnas
+  instrument_id: instr_divergent_association_task
+  version_id: ver_divergent_association_task_general
+  resource_type: peer_reviewed_paper
+  title: Naming unrelated words predicts creativity
+  url: https://doi.org/10.1073/pnas.2022340118
+  author: Jay A. Olson; Johnny Nahas; Denis Chmoulevitch; Simon J. Cropper; Margaret E. Webb
+  publication_date: '2021-06-17'
+  publisher: Proceedings of the National Academy of Sciences
+  language: en
+  access_status: public
+  officiality: official
+  notes: Primary validation paper introducing the Divergent Association Task and its scoring approach.
+- id: res_divergent_association_task_pubmed
+  instrument_id: instr_divergent_association_task
+  version_id: ver_divergent_association_task_general
+  resource_type: abstract_index
+  title: PubMed Record - Naming unrelated words predicts creativity
+  url: https://pubmed.ncbi.nlm.nih.gov/34140408/
+  author: National Library of Medicine
+  publication_date: '2021-06-19'
+  publisher: PubMed
+  language: en
+  access_status: public
+  officiality: secondary
+  notes: Independent index record used as an accessible source for abstract-level administration and validity details.
+- id: res_divergent_association_task_semdis
+  instrument_id: instr_divergent_association_task
+  version_id: ver_divergent_association_task_general
+  resource_type: methods_reference
+  title: "Automating creativity assessment with SemDis: An open platform for computing semantic distance"
+  url: https://doi.org/10.3758/s13428-020-01453-w
+  author: Roger E. Beaty; Dan R. Johnson
+  publication_date: '2020-10-20'
+  publisher: Behavior Research Methods
+  language: en
+  access_status: public
+  officiality: secondary
+  notes: Independent computational-scoring reference relevant to semantic-distance-based creativity measurement.

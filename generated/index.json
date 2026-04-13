@@ -427,11 +427,11 @@
   },
   "product_layers": {
     "canonical_registry": {
-      "instrument_count": 15
+      "instrument_count": 16
     },
     "house_synthesis": {
       "motif_count": 11,
-      "mapping_count": 16,
+      "mapping_count": 18,
       "interaction_hypothesis_count": 7
     },
     "protocol_library": {
@@ -1175,6 +1175,95 @@
         ],
         "overlap_mode": [
           "workplace_family_resemblance"
+        ]
+      }
+    },
+    {
+      "slug": "divergent-association-task",
+      "id": "instr_divergent_association_task",
+      "canonical_name": "Divergent Association Task",
+      "short_names": [
+        "DAT",
+        "Divergent Association Task"
+      ],
+      "aliases": [
+        "Divergent Associations Task"
+      ],
+      "family": [
+        "cognitive_style"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "cognitive_style"
+        ],
+        "primary_measurement_target": [
+          "cognitive_preferences"
+        ],
+        "representational_form": [
+          "continuous_dimensional"
+        ],
+        "temporal_stance": [
+          "semi_stable_patterns",
+          "situational_state"
+        ],
+        "person_ontology": [
+          "dynamic_strategy_system"
+        ],
+        "administration_mode": [
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "sum_or_average_scale_scoring"
+        ],
+        "epistemic_basis": [
+          "mixed_psychometric_and_theoretical"
+        ],
+        "interpretive_burden": [
+          "medium"
+        ],
+        "granularity": [
+          "low"
+        ],
+        "context_sensitivity": [
+          "high"
+        ],
+        "change_model": [
+          "situational_expression",
+          "skills_trainability"
+        ],
+        "distortion_risk": [
+          "false_precision",
+          "overinterpretation",
+          "reductionism"
+        ],
+        "deployment_context": [
+          "education",
+          "research",
+          "self_reflection"
+        ],
+        "utility_profile": [
+          "developmental_reflection",
+          "research_baseline"
+        ],
+        "identity_adhesion_risk": [
+          "low"
+        ],
+        "worldview_load": [
+          "very_low"
+        ],
+        "synthesis_value": [
+          "medium"
+        ],
+        "evidence_profile": [
+          "extensive_peer_review",
+          "mixed_evidence"
+        ],
+        "target_population": [
+          "general_adult_population",
+          "students"
+        ],
+        "norming_status": [
+          "limited_norms"
         ]
       }
     },

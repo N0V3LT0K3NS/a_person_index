@@ -44,6 +44,27 @@
       "shared_dimension_count": 13
     },
     {
+      "slug": "big-five--divergent-association-task",
+      "left": {
+        "slug": "big-five",
+        "id": "instr_big_five",
+        "canonical_name": "Big Five Personality Model",
+        "family": [
+          "trait_personality"
+        ]
+      },
+      "right": {
+        "slug": "divergent-association-task",
+        "id": "instr_divergent_association_task",
+        "canonical_name": "Divergent Association Task",
+        "family": [
+          "cognitive_style"
+        ]
+      },
+      "crosswalk_count": 1,
+      "shared_dimension_count": 11
+    },
+    {
       "slug": "big-five--enneagram",
       "left": {
         "slug": "big-five",
@@ -201,6 +222,29 @@
       },
       "crosswalk_count": 5,
       "shared_dimension_count": 16
+    },
+    {
+      "slug": "divergent-association-task--mbti",
+      "left": {
+        "slug": "divergent-association-task",
+        "id": "instr_divergent_association_task",
+        "canonical_name": "Divergent Association Task",
+        "family": [
+          "cognitive_style"
+        ]
+      },
+      "right": {
+        "slug": "mbti",
+        "id": "instr_mbti",
+        "canonical_name": "Myers-Briggs Type Indicator",
+        "family": [
+          "typology",
+          "cognitive_style",
+          "identity_self_concept"
+        ]
+      },
+      "crosswalk_count": 1,
+      "shared_dimension_count": 12
     },
     {
       "slug": "human-design--natal-astrology",

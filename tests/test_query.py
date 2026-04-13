@@ -110,14 +110,14 @@ def test_compare_disc_and_culture_index_includes_construct_crosswalks(repo_root)
 def test_audit_summary_reflects_seed_coverage(repo_root):
     repository = load_repository_strict(repo_root)
     payload = audit_repository(repository)
-    assert payload["summary"]["instrument_count"] == 15
-    assert payload["summary"]["instruments_with_crosswalks"] == 15
-    assert payload["summary"]["instruments_with_multiple_resources"] == 15
-    assert payload["summary"]["instruments_with_multiple_constructs"] == 15
-    assert payload["summary"]["instruments_with_multiple_claims"] == 15
-    assert payload["summary"]["instruments_with_multiple_inferences"] == 15
-    assert payload["summary"]["instruments_with_multiple_risks"] == 15
-    assert payload["summary"]["instruments_with_multiple_use_cases"] == 15
+    assert payload["summary"]["instrument_count"] == 16
+    assert payload["summary"]["instruments_with_crosswalks"] == 16
+    assert payload["summary"]["instruments_with_multiple_resources"] == 16
+    assert payload["summary"]["instruments_with_multiple_constructs"] == 16
+    assert payload["summary"]["instruments_with_multiple_claims"] == 16
+    assert payload["summary"]["instruments_with_multiple_inferences"] == 16
+    assert payload["summary"]["instruments_with_multiple_risks"] == 16
+    assert payload["summary"]["instruments_with_multiple_use_cases"] == 16
 
 
 def test_audit_filter_surfaces_missing_official_resources(repo_root):

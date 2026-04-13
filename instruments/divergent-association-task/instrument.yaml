@@ -1,0 +1,29 @@
+instrument:
+  id: instr_divergent_association_task
+  canonical_name: Divergent Association Task
+  short_names:
+  - DAT
+  - Divergent Association Task
+  aliases:
+  - Divergent Associations Task
+  status: active
+  family:
+  - cognitive_style
+  short_description: A brief divergent-thinking task that scores how semantically distant a participant's generated words are from one another.
+  creators:
+  - Jay A. Olson
+  - Johnny Nahas
+  - Denis Chmoulevitch
+  - Simon J. Cropper
+  - Margaret E. Webb
+  publisher_or_owner: none_decentralized
+  original_release_year: 2021
+  official_websites:
+  - https://www.datcreativity.com/
+  licensing_model: mixed_public_and_research
+  primary_domain: creativity_measurement_framework
+  country_or_origin_context:
+  - united_states
+  - canada
+  - australia
+  notes: This record treats DAT as a creativity-task framework for divergent-thinking performance, not a stable personality typology.

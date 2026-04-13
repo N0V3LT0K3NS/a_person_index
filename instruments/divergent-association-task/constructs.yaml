@@ -1,0 +1,38 @@
+constructs:
+- id: con_divergent_association_task_semantic_distance
+  instrument_id: instr_divergent_association_task
+  version_ids:
+  - ver_divergent_association_task_general
+  name: Divergent Association Semantic Distance Score
+  short_name: DAT semantic distance
+  construct_kind:
+  - task_performance
+  - divergent_thinking
+  official_definition: A transformed average of pairwise semantic distances among the participant's first valid generated words, intended as an objective indicator of divergent-association performance.
+  scoring_type: continuous
+  polarity:
+    low_label: lower_divergent_association_distance
+    high_label: higher_divergent_association_distance
+  value_range:
+    type: theoretical_bounded_scale
+    min: 0
+    max: 200
+  parent_construct_id: null
+- id: con_divergent_association_task_instruction_compliance
+  instrument_id: instr_divergent_association_task
+  version_ids:
+  - ver_divergent_association_task_general
+  name: Instruction-Compliance Quality Signal
+  short_name: DAT instruction compliance
+  construct_kind:
+  - response_quality
+  official_definition: A quality-control signal indicating whether generated words and strategies appear to follow DAT instructions closely enough for stable interpretation.
+  scoring_type: mixed_heuristic
+  polarity:
+    low_label: likely_instruction_mismatch
+    high_label: likely_instruction_adherence
+  value_range:
+    type: implementation_dependent
+    min: null
+    max: null
+  parent_construct_id: null

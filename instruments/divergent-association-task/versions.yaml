@@ -1,0 +1,12 @@
+versions:
+- id: ver_divergent_association_task_general
+  instrument_id: instr_divergent_association_task
+  version_label: standard_dat_record
+  release_date: '2021-06-17'
+  retired_date: null
+  current: true
+  change_summary: Canonical DAT record based on the public DAT surface and the initial PNAS validation paper.
+  scoring_changes: null
+  construct_changes: null
+  norming_changes: null
+  administration_changes: null

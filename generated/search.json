@@ -735,6 +735,94 @@
       "text": "DISC\nDISC\nA workplace-friendly behavioral style framework organized around four broad interaction styles.\n# DISC\n\n## What it is\nA behavioral style family organized around four broad style labels: Dominance, Influence, Steadiness, and Conscientiousness.\n\n## Why it matters\nDISC matters because it remains one of the most portable workplace personality languages. It is easy to teach, easy to remember, and widely used in training and team settings, even though the broader DISC ecosystem is fragmented across implementations.\n\n## What it is good for\n- communication shorthand\n- workplace training\n- team discussion\n- lightweight behavioral style reflection\n\n## What it is weaker at\n- deep motive language\n- construct precision across vendors\n- high-stakes personnel decisions\n- whole-person modeling\n\n## Common misuse\nUsing DISC profiles as rigid boxes for hiring, role assignment, or simplified judgments about capability.\n\nDISC claims to describe observable behavior through four broad styles commonly labeled Dominance, Influence, Steadiness, and Conscientiousness.\nContemporary DiSC materials frame behavior as patterned combinations of Dominance, Influence, Steadiness, and Conscientiousness rather than as rigid one-box types.\nEverything DiSC positions the model as a tool for communication, teamwork, conflict discussion, and other workplace interaction workflows.\nDISC stays sticky in organizations because it offers a low-friction language for interpersonal style, even though the broader DISC ecosystem varies substantially in psychometric rigor and implementation.\nDISC is strongest as a lightweight conversation starter about interaction style and weakest when it is stretched into motive analysis, deep personality theory, or selection logic.\nDirect, forceful, and results-focused behavioral style oriented toward challenge and control.\nOutgoing, persuasive, and socially expressive behavioral style oriented toward enthusiasm and interaction.\nPatient, accommodating, and cooperative behavioral style oriented toward consistency and support.\nCareful, systematic, and quality-focused behavioral style oriented toward standards and accuracy."
     },
     {
+      "slug": "divergent-association-task",
+      "instrument_id": "instr_divergent_association_task",
+      "canonical_name": "Divergent Association Task",
+      "short_names": [
+        "DAT",
+        "Divergent Association Task"
+      ],
+      "aliases": [
+        "Divergent Associations Task"
+      ],
+      "annotation_index": {
+        "instrument_family": [
+          "cognitive_style"
+        ],
+        "primary_measurement_target": [
+          "cognitive_preferences"
+        ],
+        "representational_form": [
+          "continuous_dimensional"
+        ],
+        "temporal_stance": [
+          "semi_stable_patterns",
+          "situational_state"
+        ],
+        "person_ontology": [
+          "dynamic_strategy_system"
+        ],
+        "administration_mode": [
+          "self_report_questionnaire"
+        ],
+        "scoring_logic": [
+          "sum_or_average_scale_scoring"
+        ],
+        "epistemic_basis": [
+          "mixed_psychometric_and_theoretical"
+        ],
+        "interpretive_burden": [
+          "medium"
+        ],
+        "granularity": [
+          "low"
+        ],
+        "context_sensitivity": [
+          "high"
+        ],
+        "change_model": [
+          "situational_expression",
+          "skills_trainability"
+        ],
+        "distortion_risk": [
+          "false_precision",
+          "overinterpretation",
+          "reductionism"
+        ],
+        "deployment_context": [
+          "education",
+          "research",
+          "self_reflection"
+        ],
+        "utility_profile": [
+          "developmental_reflection",
+          "research_baseline"
+        ],
+        "identity_adhesion_risk": [
+          "low"
+        ],
+        "worldview_load": [
+          "very_low"
+        ],
+        "synthesis_value": [
+          "medium"
+        ],
+        "evidence_profile": [
+          "extensive_peer_review",
+          "mixed_evidence"
+        ],
+        "target_population": [
+          "general_adult_population",
+          "students"
+        ],
+        "norming_status": [
+          "limited_norms"
+        ]
+      },
+      "related_instruments": [],
+      "text": "Divergent Association Task\nDAT\nDivergent Association Task\nDivergent Associations Task\nA brief divergent-thinking task that scores how semantically distant a participant's generated words are from one another.\n# Divergent Association Task\n\n## What it is\nA brief creativity task where participants generate words that should be as unrelated as possible, then receive a score based on the average semantic distance among those words.\n\n## Why it matters\nDAT adds a modern, automation-friendly divergent-thinking measure to the canonical registry. It contributes a narrow but useful creativity-performance seam that complements broader trait frameworks and symbolic systems.\n\n## How it is administered and scored\n- participants provide 10 words intended to be maximally different\n- implementations keep the first valid subset of responses for scoring\n- semantic distance is computed pairwise across the retained words\n- the DAT score is a transformed average distance score, where higher values indicate more remote association structure in responses\n\n## Validity and limits\nInitial studies report convergent validity with established creativity tasks and meaningful short-term test-retest reliability. At the same time, DAT remains a constrained task measure: strategy choice, language factors, and instruction adherence can shift scores.\n\n## What it is good for\n- scalable divergent-thinking measurement in research contexts\n- low-overhead creativity-task baselining\n- complementing broader multi-framework synthesis when used conservatively\n\n## What it is weaker at\n- stable personality interpretation\n- whole-person creativity diagnosis\n- high-stakes standalone screening decisions\n\n## Common misuse\nTreating DAT as equivalent to a broad personality trait or as a complete measure of creativity rather than a narrow divergent-association task signal.\n\nDAT instructs participants to generate words that are as different from one another as possible, framing performance as divergent association.\nDAT scoring computes semantic distances between generated words and uses a transformed average as the task score, enabling automated and objective scoring.\nDAT scores show positive correlations with established creativity tasks and demonstrated substantial short-term test-retest reliability in initial validation studies.\nDAT is positioned as a brief alternative to manually scored divergent-thinking tasks by reducing sample-dependent scoring and rater burden.\nDAT is best treated as a narrow divergent-thinking performance signal that can inform creativity analysis without being promoted to a stable personality-type interpretation.\nDAT's automated semantic-distance scoring is a methodological strength for scale and consistency, but interpretive scope should remain constrained because strategy effects and language/context factors can influence scores.\nA transformed average of pairwise semantic distances among the participant's first valid generated words, intended as an objective indicator of divergent-association performance.\nA quality-control signal indicating whether generated words and strategies appear to follow DAT instructions closely enough for stable interpretation."
+    },
+    {
       "slug": "enneagram",
       "instrument_id": "instr_enneagram",
       "canonical_name": "Enneagram of Personality",

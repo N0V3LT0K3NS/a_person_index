@@ -1,0 +1,21 @@
+crosswalks:
+- id: xwk_divergent_association_task_big_five_openness
+  source_entity_type: construct
+  source_entity_id: con_divergent_association_task_semantic_distance
+  target_entity_type: construct
+  target_entity_id: con_big_five_openness
+  relationship_type: loose_overlap
+  relationship_strength: medium
+  rationale: Higher divergent-association performance is plausibly adjacent to novelty and ideational exploration tendencies often captured by Big Five Openness, but DAT does not directly measure a stable broad trait.
+  confidence: medium
+  notes: Use as an adjacent seam, not a trait-equivalence mapping.
+- id: xwk_divergent_association_task_mbti_sensing_intuition
+  source_entity_type: construct
+  source_entity_id: con_divergent_association_task_semantic_distance
+  target_entity_type: construct
+  target_entity_id: con_mbti_sensing_intuition
+  relationship_type: methodologically_different
+  relationship_strength: medium
+  rationale: DAT captures measured task performance, whereas MBTI Sensing-Intuition encodes self-reported preference language; both can touch abstraction style but operate at different methodological layers.
+  confidence: high
+  notes: Deliberate non-equivalence edge to prevent typology overread.
