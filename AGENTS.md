@@ -2,6 +2,8 @@
 
 This repository is A Person Index (API), an agent-readable knowledge substrate for personhood frameworks.
 
+If Codex is the host and the companion skill is installed, prefer `$a-person-index` for comparative work, program-pack use, and research-safe return formatting. The skill is an operating layer on top of this repo's MCP and CLI surfaces, not a second source of truth.
+
 If you are arriving cold, start here in this order:
 
 1. [README.md](/Users/noveltokens/a_person_index/README.md)
@@ -129,3 +131,11 @@ It should provide:
 - the result atom schema
 
 It should not perform full person-level inference itself.
+
+## Companion skill
+
+Optional Codex companion skill:
+
+- name: `$a-person-index`
+- expected local path: `$CODEX_HOME/skills/a-person-index`
+- job: help Codex use the MCP and CLI surfaces in the right order and preserve source vs house vs research boundaries

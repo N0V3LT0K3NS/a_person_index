@@ -218,6 +218,18 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "research_ops_layer": "A later evidence pipeline can collect, aggregate, and review structured contributions before proposals come back here.",
             },
         },
+        "agent_companion_skill": {
+            "name": "a-person-index",
+            "host": "codex",
+            "path_hint": "$CODEX_HOME/skills/a-person-index",
+            "purpose": "Teach Codex how to use A Person Index through MCP first, CLI second, and preserve source, house, and research boundaries.",
+            "recommended_for": [
+                "framework comparison",
+                "motif tracing",
+                "program pack use",
+                "research-safe return formatting",
+            ],
+        },
         "canonical_sources": {
             "instrument_root": "instruments/",
             "ontology_root": "ontology/",

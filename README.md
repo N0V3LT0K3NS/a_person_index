@@ -6,6 +6,8 @@ Live site: [a-person-index.netlify.app](https://a-person-index.netlify.app)
 
 Landing directions: [site/landing-options.html](/Users/noveltokens/a_person_index/site/landing-options.html) and [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
 
+Companion Codex skill: `$a-person-index` can sit above the MCP and CLI surfaces to help Codex compare frameworks, fetch program packs, and keep source, house, and research layers distinct.
+
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
 1. Canonical registry
@@ -67,6 +69,12 @@ This repo now distinguishes between:
 
 These layers should collaborate, but they should not be conflated.
 This repo is a shared substrate for multiple downstream consumers. `GNOMY` is a lead consumer, not the only one.
+
+For Codex specifically, the companion skill is an optional usage layer on top of the substrate:
+
+- skill name: `$a-person-index`
+- local path when installed: `$CODEX_HOME/skills/a-person-index`
+- role: teach Codex how to use MCP resources, tools, prompts, and CLI fallbacks without blurring the repo's layers
 
 ## Repository shape
 
@@ -207,6 +215,20 @@ python3 scripts/query_registry.py audit --needs-official-resource
 python3 scripts/query_registry.py audit --needs-multiple-claims
 python3 -m pytest
 ```
+
+## Codex Companion Skill
+
+If Codex is the host, use the companion skill when the task is specifically about operating A Person Index rather than just reading a file in the repo.
+
+Use `$a-person-index` for:
+
+- framework comparison
+- motif tracing
+- program-pack retrieval
+- ILENS or Paradox Finder prep
+- research-safe return formatting
+
+The skill does not replace the MCP. It teaches Codex how to use the MCP and CLI surfaces correctly.
 
 ## Add a new instrument
 

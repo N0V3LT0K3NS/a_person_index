@@ -14,6 +14,19 @@ The MCP adapter solves that by exposing the existing registry primitives through
 
 The MCP layer is an adapter, not a second source of truth.
 
+## Companion Codex skill
+
+If Codex is the host, the recommended companion skill is `$a-person-index`.
+
+That skill should:
+
+- prefer MCP when it is configured
+- fall back to the query CLI when MCP is unavailable
+- choose program packs before rebuilding a workflow manually
+- preserve the boundary between canonical records, house synthesis, index programs, and research contributions
+
+The skill is a host-specific operator guide. The MCP remains the actual interface surface.
+
 ## Implementation stance
 
 - Transport: stdio
