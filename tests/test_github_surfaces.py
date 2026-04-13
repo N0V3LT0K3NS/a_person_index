@@ -51,3 +51,11 @@ def test_codex_automation_doc_covers_repo_workflow_permissions(repo_root):
     text = path.read_text(encoding="utf-8")
     assert "Workflow permissions must be set to `Read and write permissions`" in text
     assert "not permitted to create or approve pull requests" in text
+
+
+def test_netlify_workflow_handles_missing_secrets_gracefully(repo_root):
+    path = repo_root / ".github" / "workflows" / "netlify-deploy.yml"
+    text = path.read_text(encoding="utf-8")
+    assert "Check Netlify configuration" in text
+    assert "Skipping Netlify deploy because required secrets are missing." in text
+    assert "steps.netlify.outputs.can_deploy == 'true'" in text
