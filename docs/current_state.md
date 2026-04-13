@@ -14,9 +14,9 @@ Release status: [docs/release_status.md](/Users/noveltokens/a_person_index/docs/
 
 As of the current branch state, the repo includes:
 
-- 15 seeded canonical instrument records
+- 16 seeded canonical instrument records
 - 11 house motifs
-- 16 construct or instrument mappings into motifs
+- 18 construct or instrument mappings into motifs
 - 7 interaction hypotheses
 - 6 reusable techniques
 - 4 index program specs

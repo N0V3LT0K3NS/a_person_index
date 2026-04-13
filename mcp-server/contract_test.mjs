@@ -103,7 +103,7 @@ const orientation = await client.callTool({
 expect(!orientation.isError, "Expected orient_agent tool to succeed.");
 expect(
   Array.isArray(orientation.structuredContent?.available_framework_refs) &&
-    orientation.structuredContent.available_framework_refs.length >= 15,
+    orientation.structuredContent.available_framework_refs.length >= 16,
   "Expected orientation framework refs.",
 );
 expect(

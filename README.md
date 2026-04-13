@@ -164,7 +164,7 @@ These are implementation and compatibility surfaces, not the product’s preferr
 
 ## Seed corpus
 
-The repository currently ships with 15 source-backed seed instruments spanning psychometric, workplace, relational, and symbolic systems:
+The repository currently ships with 16 source-backed seed instruments spanning psychometric, workplace, relational, and symbolic systems:
 
 - Big Five / OCEAN
 - MBTI
