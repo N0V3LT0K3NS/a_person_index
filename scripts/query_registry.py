@@ -8,6 +8,7 @@ from _bootstrap import bootstrap
 root = bootstrap()
 
 from personality_registry.query import (
+    agent_orientation,
     audit_repository,
     compare_instruments,
     contribution_model_record,
@@ -26,6 +27,7 @@ from personality_registry.query import (
     motif_record,
     promotion_pathway_record,
     protocol_pack,
+    protocol_pack_summary,
     protocol_pack_grammar,
     protocol_record,
     query_results,
@@ -76,6 +78,11 @@ def _render_compare_text(payload):
             )
     else:
         lines.append("  none")
+    if payload.get("suggested_next_queries"):
+        lines.append("")
+        lines.append("Suggested next queries:")
+        for item in payload["suggested_next_queries"]:
+            lines.append(f"  - {item['tool']}: {item['purpose']}")
     return "\n".join(lines)
 
 
@@ -535,6 +542,47 @@ def _render_result_atom_schema_text(payload):
     return "\n".join(lines)
 
 
+def _render_orientation_text(payload):
+    lines = [
+        payload["summary"],
+        "",
+        "Recommended sequence:",
+    ]
+    for step in payload["recommended_sequence"]:
+        lines.append(f"  - {step}")
+    lines.append("")
+    lines.append("Featured program packs:")
+    for item in payload["featured_program_packs"]:
+        lines.append(f"  - {item['id']}: {item['title']} [{item['status']}]")
+    lines.append("")
+    lines.append("Framework refs:")
+    for item in payload["available_framework_refs"]:
+        aliases = f" aliases: {', '.join(item['aliases'])}" if item["aliases"] else ""
+        lines.append(f"  - {item['canonical_name']} ({item['slug']}){aliases}")
+    return "\n".join(lines)
+
+
+def _render_protocol_pack_summary_text(payload):
+    summary = payload["summary"]
+    lines = [
+        f"{summary['protocol_name']} [{payload['pack']['id']}]",
+        f"targets: {', '.join(summary['target_labels']) if summary['target_labels'] else '(none)'}",
+        f"techniques: {', '.join(summary['technique_names']) if summary['technique_names'] else '(none)'}",
+        f"components: {', '.join(summary['component_program_names']) if summary['component_program_names'] else '(none)'}",
+        f"motifs: {summary['motif_count']}",
+        f"interaction hypotheses: {summary['interaction_hypothesis_count']}",
+        "",
+        "Execution order:",
+    ]
+    for step in summary["execution_order"]:
+        lines.append(f"  - {step}")
+    lines.append("")
+    lines.append("Primary outputs:")
+    for item in summary["primary_outputs"]:
+        lines.append(f"  - {item}")
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Query A Person Index.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -746,6 +794,29 @@ def main() -> int:
         "result-atom-schema", help="Show the downstream result atom contract."
     )
     result_atom_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    orient_parser = subparsers.add_parser(
+        "orient", help="Return a compact onboarding payload for agents arriving cold."
+    )
+    orient_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    protocol_pack_summary_parser = subparsers.add_parser(
+        "protocol-pack-summary",
+        aliases=["program-pack-summary"],
+        help="Return a compact summary of a runtime pack before fetching the full pack.",
+    )
+    protocol_pack_summary_parser.add_argument("ref", help="Protocol ID or name.")
+    protocol_pack_summary_parser.add_argument(
+        "--framework",
+        action="append",
+        help="Framework or instrument reference to scope the pack. Repeatable.",
+    )
+    protocol_pack_summary_parser.add_argument(
+        "--construct",
+        action="append",
+        help="Construct reference to scope the pack. Repeatable.",
+    )
+    protocol_pack_summary_parser.add_argument("--format", choices=("text", "json"), default="text")
 
     args = parser.parse_args()
     repository = load_repository_for_query(root)
@@ -973,6 +1044,28 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_result_atom_schema_text(payload))
+        return 0
+
+    if args.command == "orient":
+        payload = agent_orientation(repository, extensions)
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_orientation_text(payload))
+        return 0
+
+    if args.command in {"protocol-pack-summary", "program-pack-summary"}:
+        payload = protocol_pack_summary(
+            repository,
+            extensions,
+            args.ref,
+            framework_refs=args.framework,
+            construct_refs=args.construct,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_protocol_pack_summary_text(payload))
         return 0
 
     payload = compare_instruments(repository, args.left, args.right)

@@ -18,10 +18,12 @@ The MCP layer is an adapter, not a second source of truth.
 
 For a newly arrived agent, the fastest reliable sequence is:
 
-1. `registry://manifest`
+1. `orient_agent`
 2. `registry://quickstart`
 3. `registry://current-state`
 4. `list_protocol_packs(featured=true)`
+
+If the task is specifically an ILENS-style pass, read `registry://ilens-walkthrough` or use the `ilens-walkthrough` prompt before expanding a full pack.
 
 If the task involves pasted user assessment results, then use [docs/assessment_workflow.md](/Users/noveltokens/a_person_index/docs/assessment_workflow.md) before improvising with motif or pack calls.
 
@@ -98,6 +100,7 @@ npm run mcp:test
 - `registry://current-state`
 - `registry://roadmap`
 - `registry://assessment-workflow`
+- `registry://ilens-walkthrough`
 - `registry://research-promotion`
 - `registry://protocol-packs`
 - `registry://protocol-pack/{pack_id}`
@@ -106,6 +109,7 @@ npm run mcp:test
 
 ## Exposed tools
 
+- `orient_agent`
 - `find_framework_records`
 - `compare_frameworks`
 - `trace_to_motifs`
@@ -114,6 +118,7 @@ npm run mcp:test
 - `fetch_protocol_spec`
 - `list_protocol_packs`
 - `fetch_curated_protocol_pack`
+- `fetch_protocol_pack_summary`
 - `fetch_protocol_pack`
 - `fetch_protocol_pack_grammar`
 - `fetch_result_atom_schema`
@@ -124,6 +129,7 @@ npm run mcp:test
 
 - `registry-arrival`
 - `assessment-results-intake`
+- `ilens-walkthrough`
 - `protocol-pack-authoring`
 
 ## Maintenance rule

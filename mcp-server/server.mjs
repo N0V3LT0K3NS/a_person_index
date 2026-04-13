@@ -202,6 +202,24 @@ async function buildServer() {
   );
 
   server.registerResource(
+    "ilens-walkthrough",
+    "registry://ilens-walkthrough",
+    {
+      title: "ILENS Walkthrough",
+      description: "Worked example of the recommended MCP sequence for an ILENS-style pass on mixed assessment results.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/ilens_walkthrough.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
     "research-promotion",
     "registry://research-promotion",
     {
@@ -354,6 +372,41 @@ async function buildServer() {
           },
         ],
       };
+    },
+  );
+
+  server.registerPrompt(
+    "ilens-walkthrough",
+    {
+      title: "ILENS Walkthrough",
+      description: "Load the worked example for matching results, selecting a pack, tracing motifs, and keeping runtime boundaries clear.",
+    },
+    async () => ({
+      messages: [
+        {
+          role: "user",
+          content: {
+            type: "text",
+            text: await readRepoText("docs/ilens_walkthrough.md"),
+          },
+        },
+      ],
+    }),
+  );
+
+  server.registerTool(
+    "orient_agent",
+    {
+      title: "Orient Agent",
+      description: "Return a compact onboarding payload with framework refs, featured program packs, common mistakes, and recommended first steps.",
+      inputSchema: {},
+    },
+    async () => {
+      try {
+        return jsonResult(await runRegistryQuery(["orient"], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
     },
   );
 
@@ -527,6 +580,29 @@ async function buildServer() {
     async ({ ref }) => {
       try {
         return jsonResult(await runRegistryQuery(["protocol-packs", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_protocol_pack_summary",
+    {
+      title: "Fetch Protocol Pack Summary",
+      description: "Return a compact summary of a runtime pack before fetching the full pack. Use this when you want execution order, techniques, and outputs without the full nested payload.",
+      inputSchema: {
+        ref: z.string(),
+        frameworks: z.array(z.string()).optional(),
+        constructs: z.array(z.string()).optional(),
+      },
+    },
+    async ({ ref, frameworks, constructs }) => {
+      try {
+        const args = ["protocol-pack-summary", ref];
+        for (const framework of frameworks ?? []) args.push("--framework", framework);
+        for (const construct of constructs ?? []) args.push("--construct", construct);
+        return jsonResult(await runRegistryQuery(args, pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }

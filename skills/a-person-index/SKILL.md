@@ -40,14 +40,18 @@ npm run mcp:serve
 Use this when arriving cold or when another agent needs the current contract.
 
 Prefer:
+- `orient_agent`
 - MCP resource `registry://manifest`
 - MCP resource `registry://quickstart`
+- MCP resource `registry://assessment-workflow`
+- MCP resource `registry://ilens-walkthrough`
 - MCP resource `registry://current-state`
 - MCP prompt `registry-arrival`
 
 CLI fallback:
 
 ```bash
+python3 scripts/query_registry.py orient
 python3 scripts/query_registry.py audit --format json
 cat generated/manifest.json
 ```
@@ -84,6 +88,7 @@ Prefer:
 - `fetch_protocol_spec`
 - `list_protocol_packs`
 - `fetch_curated_protocol_pack`
+- `fetch_protocol_pack_summary`
 - `fetch_protocol_pack`
 - `fetch_protocol_pack_grammar`
 
@@ -99,6 +104,7 @@ python3 scripts/query_registry.py program-pack-grammar
 Pack rule:
 - if the task matches an existing program, fetch the pack first
 - if you do not know which pack exists, call `list_protocol_packs(featured=true)` before guessing
+- prefer the pack summary before the full pack when you only need execution order, techniques, inputs, and outputs
 - only decompose into individual motif/mapping calls when no pack exists or when auditing the pack itself
 
 ### 3a. Ingest user assessment results
@@ -107,12 +113,14 @@ Use this when a user pastes a mixed stack of assessments and asks what A Person 
 
 Prefer:
 - MCP resource `registry://assessment-workflow`
+- MCP prompt `assessment-results-intake`
 - `find_framework_records` with short `refs`
 - `list_protocol_packs(featured=true)`
 
 Intake rule:
 - do not begin with one giant `text` blob if you can extract likely framework labels first
 - call out missing or unindexed frameworks explicitly
+- prefer `fetch_protocol_pack_summary` before `fetch_protocol_pack` when choosing a program path
 - only claim a program was executed if you actually used its pack or spec as the basis for the synthesis
 
 ### 4. Format research-safe return traffic

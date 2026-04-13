@@ -5,6 +5,7 @@ import subprocess
 from personality_registry.extensions import load_extensions_strict
 from personality_registry.loader import load_repository_strict
 from personality_registry.query import (
+    agent_orientation,
     audit_repository,
     compare_instruments,
     find_contribution_models,
@@ -20,6 +21,7 @@ from personality_registry.query import (
     instrument_record,
     motif_record,
     protocol_pack,
+    protocol_pack_summary,
     protocol_pack_grammar,
     protocol_record,
     query_results,
@@ -87,6 +89,9 @@ def test_compare_includes_construct_crosswalks(repo_root):
     repository = load_repository_strict(repo_root)
     payload = compare_instruments(repository, "Big Five", "MBTI")
     assert payload["crosswalks"]
+    next_query_tools = {item["tool"] for item in payload["suggested_next_queries"]}
+    assert "trace_to_motifs" in next_query_tools
+    assert "list_interaction_hypotheses" in next_query_tools
 
 
 def test_compare_hexaco_and_big_five_includes_multiple_construct_crosswalks(repo_root):
@@ -175,6 +180,34 @@ def test_protocol_record_expands_techniques(repo_root):
     assert len(payload["techniques"]) >= 3
     component_ids = {item["id"] for item in payload["component_programs"]}
     assert {"proto_paradox_finder", "proto_translation_memo"} <= component_ids
+
+
+def test_agent_orientation_surfaces_featured_packs_and_resources(repo_root):
+    repository = load_repository_strict(repo_root)
+    extensions = load_extensions_strict(repo_root)
+    payload = agent_orientation(repository, extensions)
+    pack_ids = {item["id"] for item in payload["featured_program_packs"]}
+    assert "ppk_ilens_core_trait_motive_stack" in pack_ids
+    assert "registry://quickstart" in payload["recommended_resources"]
+    assert "registry://ilens-walkthrough" in payload["recommended_resources"]
+    assert "assessment-results-intake" in payload["recommended_prompts"]
+    assert "ilens-walkthrough" in payload["recommended_prompts"]
+
+
+def test_protocol_pack_summary_is_compact_and_scoped(repo_root):
+    repository = load_repository_strict(repo_root)
+    extensions = load_extensions_strict(repo_root)
+    payload = protocol_pack_summary(
+        repository,
+        extensions,
+        "ILENS",
+        framework_refs=["Big Five", "MBTI", "Enneagram"],
+    )
+    assert payload["pack"]["protocol_id"] == "proto_ilens"
+    assert payload["summary"]["protocol_name"] == "ILENS"
+    assert "Cross-Framework Translation" in payload["summary"]["technique_names"]
+    assert payload["summary"]["motif_count"] >= 1
+    assert payload["summary"]["result_atom_schema_id"] == "ras_result_atom_v0_1"
 
 
 def test_extension_finders_return_expected_records(repo_root):

@@ -4,8 +4,8 @@
 
 ### Understand the substrate
 
-- MCP: `registry://manifest`, `registry://current-state`
-- CLI: `python3 scripts/query_registry.py audit --format json`
+- MCP: `orient_agent`, `registry://quickstart`, `registry://current-state`
+- CLI: `python3 scripts/query_registry.py orient`
 
 ### Compare frameworks
 
@@ -22,12 +22,26 @@
 ### Run a named method
 
 - MCP tools:
+  - `fetch_protocol_pack_summary`
   - `fetch_protocol_spec`
   - `list_protocol_packs`
   - `fetch_protocol_pack`
 - CLI:
   - `python3 scripts/query_registry.py programs ILENS`
   - `python3 scripts/query_registry.py program-pack ILENS --framework MBTI --framework Enneagram`
+  - `python3 scripts/query_registry.py program-pack-summary ILENS --framework "Big Five" --framework MBTI --framework Enneagram`
+
+### Ingest assessment stacks
+
+- MCP:
+  - `assessment-results-intake`
+  - `find_framework_records`
+  - `list_protocol_packs`
+  - `fetch_protocol_pack_summary`
+- CLI:
+  - `python3 scripts/query_registry.py find --ref "Big Five" --ref MBTI --ref Enneagram`
+  - `python3 scripts/query_registry.py program-packs --featured`
+  - `python3 scripts/query_registry.py program-pack-summary ILENS --framework "Big Five" --framework MBTI --framework Enneagram`
 
 ### Prepare research-safe returns
 
