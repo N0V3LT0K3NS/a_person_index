@@ -189,6 +189,8 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
         "start_here": [
             "AGENTS.md",
             "README.md",
+            "CHANGELOG.md",
+            "docs/release_status.md",
             "CONTRIBUTING.md",
             "docs/current_state.md",
             "docs/roadmap.md",
@@ -276,6 +278,8 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
         "governance": {
             "contributing_doc": "CONTRIBUTING.md",
             "security_doc": "SECURITY.md",
+            "changelog_doc": "CHANGELOG.md",
+            "release_status_doc": "docs/release_status.md",
             "codeowners": ".github/CODEOWNERS",
             "codex_automation_doc": "docs/codex_automation.md",
             "codex_automation_context": ".github/codex/automation_context.md",
@@ -382,6 +386,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "contract_test": "npm run mcp:contract",
                 "backend": "Python query CLI delegation",
                 "client_setup_doc": "docs/mcp_clients.md",
+                "example_root": "examples/mcp/",
                 "setup_helpers": [
                     "scripts/write_claude_mcp_config.sh",
                     "scripts/test_claude_code_mcp.sh",

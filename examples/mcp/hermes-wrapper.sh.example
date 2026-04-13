@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_ROOT="/absolute/path/to/a_person_index"
+
+cd "$REPO_ROOT"
+exec node mcp-server/server.mjs

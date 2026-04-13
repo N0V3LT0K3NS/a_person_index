@@ -89,6 +89,11 @@ Hermes-specific assumptions:
 - Hermes keeps its bundled Node runtime at `~/.hermes/node/bin`
 - the remote user has permission to clone the GitHub repo and write to `~/workspace` and `~/bin`
 
+Template examples:
+
+- [examples/mcp/claude-code.mcp.json.example](/Users/noveltokens/a_person_index/examples/mcp/claude-code.mcp.json.example)
+- [examples/mcp/hermes-wrapper.sh.example](/Users/noveltokens/a_person_index/examples/mcp/hermes-wrapper.sh.example)
+
 ## Consumer-facing recommendation
 
 For real downstream consumers:

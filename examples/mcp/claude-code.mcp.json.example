@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "a-person-index": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["mcp-server/server.mjs"],
+      "cwd": "/absolute/path/to/a_person_index"
+    }
+  }
+}

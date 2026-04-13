@@ -8,6 +8,8 @@ The repo is now A Person Index: a working personhood-framework index plus a firs
 
 Public landing page: [a-person-index.netlify.app](https://a-person-index.netlify.app)
 
+Release status: [docs/release_status.md](/Users/noveltokens/a_person_index/docs/release_status.md)
+
 ## Current shipped scope
 
 As of the current branch state, the repo includes:

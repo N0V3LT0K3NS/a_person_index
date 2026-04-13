@@ -23,23 +23,25 @@ Canonical source data still lives in structured YAML files, is validated with ty
 If you are arriving fresh, read these in order:
 
 1. [AGENTS.md](/Users/noveltokens/a_person_index/AGENTS.md)
-2. [CONTRIBUTING.md](/Users/noveltokens/a_person_index/CONTRIBUTING.md)
-3. [SECURITY.md](/Users/noveltokens/a_person_index/SECURITY.md)
-4. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
-5. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
-6. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
-7. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
-8. [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md)
-9. [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
-10. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
-11. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
-12. [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md)
-13. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-14. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-15. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-16. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-17. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-18. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+2. [CHANGELOG.md](/Users/noveltokens/a_person_index/CHANGELOG.md)
+3. [docs/release_status.md](/Users/noveltokens/a_person_index/docs/release_status.md)
+4. [CONTRIBUTING.md](/Users/noveltokens/a_person_index/CONTRIBUTING.md)
+5. [SECURITY.md](/Users/noveltokens/a_person_index/SECURITY.md)
+6. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
+7. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
+8. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
+9. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
+10. [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md)
+11. [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
+12. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+13. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
+14. [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md)
+15. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+16. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+17. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+18. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+19. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+20. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 Those files together explain what the repo is, what layer you are editing, how downstream systems should use it, and what is next.
 
@@ -227,6 +229,7 @@ Tested client setup paths:
 - [scripts/write_claude_mcp_config.sh](/Users/noveltokens/a_person_index/scripts/write_claude_mcp_config.sh)
 - [scripts/test_claude_code_mcp.sh](/Users/noveltokens/a_person_index/scripts/test_claude_code_mcp.sh)
 - [scripts/test_hermes_remote_mcp.sh](/Users/noveltokens/a_person_index/scripts/test_hermes_remote_mcp.sh)
+- [examples/mcp](/Users/noveltokens/a_person_index/examples/mcp)
 
 ## Codex Companion Skill
 
