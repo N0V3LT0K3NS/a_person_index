@@ -44,8 +44,9 @@ The workflow uses the default `GITHUB_TOKEN` for checkout, branch creation, PR c
 Repository setting requirement:
 
 - GitHub repo Settings -> Actions -> General -> Workflow permissions must be set to `Read and write permissions`
+- GitHub repo Settings -> Actions -> General -> `Allow GitHub Actions to create and approve pull requests` must also be enabled
 
-If that repo-level setting remains on `Read repository contents permission`, the workflow can still check out the repo, run Codex, and pass verification, but it will fail at the PR step with GitHub's `not permitted to create or approve pull requests` error. The YAML `permissions:` block does not override that repository-level cap.
+If either repo-level setting is too restrictive, the workflow can still check out the repo, run Codex, and pass verification, but it will fail at the PR step with GitHub's `not permitted to create or approve pull requests` error. The YAML `permissions:` block does not override those repository-level caps.
 
 The `codex-task.yml` workflow should use the official [`openai/codex-action`](https://github.com/openai/codex-action) rather than shelling directly into a raw `codex exec` install on the runner. That action handles installing the CLI and configuring a secure Responses API proxy for GitHub Actions.
 

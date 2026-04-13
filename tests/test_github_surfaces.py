@@ -50,6 +50,7 @@ def test_codex_automation_doc_covers_repo_workflow_permissions(repo_root):
     path = repo_root / "docs" / "codex_automation.md"
     text = path.read_text(encoding="utf-8")
     assert "Workflow permissions must be set to `Read and write permissions`" in text
+    assert "Allow GitHub Actions to create and approve pull requests" in text
     assert "not permitted to create or approve pull requests" in text
 
 
