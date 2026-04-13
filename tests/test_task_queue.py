@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from personality_registry.task_queue import (
     get_task_record,
+    list_task_records,
     load_task_queue,
     render_codex_issue_payload,
 )
@@ -33,3 +34,12 @@ def test_get_task_record_raises_for_unknown_task(repo_root):
         assert "does_not_exist" in str(error)
     else:
         raise AssertionError("Expected KeyError for unknown task queue item")
+
+
+def test_list_task_records_filters_and_sorts_by_priority(repo_root):
+    queue = load_task_queue(repo_root)
+    payload = list_task_records(queue, statuses={"ready"}, priorities={"highest", "high"}, limit=3)
+    assert payload
+    assert payload[0]["priority"] == "highest"
+    assert all(task["status"] == "ready" for task in payload)
+    assert all(task["priority"] in {"highest", "high"} for task in payload)

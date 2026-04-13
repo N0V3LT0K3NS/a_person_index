@@ -2,6 +2,8 @@
 
 This document sets the quality bar for framework expansion, source deepening, crosswalk densification, and related documentation work in A Person Index.
 
+Use it with [docs/source_landscape.md](/Users/noveltokens/a_person_index/docs/source_landscape.md) when the work depends on external source surfaces or candidate-framework scouting.
+
 ## Purpose
 
 The repo should scale by adding reviewed shared knowledge objects, not by accumulating loosely sourced notes.
@@ -233,6 +235,19 @@ Split into separate PRs when:
 - a framework addition also requires ontology expansion
 - crosswalk work spans unrelated families
 - site polish and corpus changes would make review harder
+- one "family" idea actually hides multiple different measures with different source lineages
+
+## PR anatomy
+
+Every research-expansion PR should make these visible in the PR body:
+
+- queue task id or bounded manual scope
+- source bundle by role and class
+- epistemic posture changes, if any
+- crosswalk or interaction density changes, if any
+- verification path actually run
+
+Use the repo PR template and fill the source-bundle section explicitly.
 
 ## Verification
 

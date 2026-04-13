@@ -3,9 +3,20 @@
 - what changed
 - why it changed
 
+## Source bundle
+
+- primary sources added or strengthened
+- independent or critical sources added or strengthened
+- ecosystem or implementation sources added or strengthened
+
 ## Layers touched
 
 - canonical registry / house synthesis / programs / research / docs / site / automation
+
+## Queue / task context
+
+- queue task id, issue, or manual scope
+- why this PR is bounded correctly
 
 ## Verification
 
@@ -22,3 +33,4 @@
 - generated outputs rebuilt
 - follow-up work, if any
 - source-quality or evidence-tier changes, if any
+- crosswalk or interaction density changes, if any

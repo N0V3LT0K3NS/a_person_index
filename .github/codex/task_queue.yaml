@@ -110,7 +110,7 @@ tasks:
       - Add independent critique if one is needed to support stronger evidence claims.
 
   - id: task_add_creativity_family_frameworks
-    status: ready
+    status: superseded
     priority: high
     primary_layer: canonical registry
     title: Add a creativity-measures family starting with divergent and associative tasks
@@ -139,8 +139,109 @@ tasks:
         source_class: canonical_or_primary
         role: task explanation and research links
     notes:
-      - Use the DAT sources as the initial anchor.
-      - For Remote Associates or Alternative Uses, locate and cite the primary academic sources before making them canonical.
+      - This task is now better handled as separate queue items for DAT, Remote Associates, and Alternative Uses.
+      - Keep this task closed unless a deliberately broad creativity-family PR is desired.
+
+  - id: task_add_divergent_association_task
+    status: ready
+    priority: high
+    primary_layer: canonical registry
+    title: Add the Divergent Association Task as a creativity-measure framework with explicit scoring and validity notes
+    objective: >-
+      Add the Divergent Association Task as a canonical framework record with clear explanation of what it measures,
+      how it is administered and scored, how it relates to divergent thinking and semantic distance, and what its
+      limits are when compared with broader personality traits or symbolic frameworks.
+    acceptance_criteria:
+      - A Divergent Association Task framework record exists with constructs, claims, resources, and notes.
+      - Notes clearly separate creativity-task performance from stable personality interpretation.
+      - Initial motif mappings or crosswalks connect the task to openness, abstraction, ideation, or adjacent seams without overstating equivalence.
+      - Docs and generated outputs reflect the new framework.
+    context_paths:
+      - docs/research_authoring_standard.md
+      - docs/source_landscape.md
+      - instruments/
+      - motifs/registry.yaml
+      - mappings/construct_to_motif.yaml
+      - scripts/scaffold_instrument.py
+    suggested_sources:
+      - label: Divergent Association Task home
+        url: https://www.datcreativity.com/
+        source_class: canonical_or_primary
+        role: public task surface
+      - label: Divergent Association Task about
+        url: https://www.datcreativity.com/about
+        source_class: canonical_or_primary
+        role: task explanation and research links
+      - label: Divergent Association Task PNAS paper
+        url: https://doi.org/10.1073/pnas.2022340118
+        source_class: canonical_or_primary
+        role: primary academic source
+    notes:
+      - Keep trait interpretation conservative.
+      - Prefer construct-level linkage over broad narrative inference.
+
+  - id: task_add_remote_associates_framework
+    status: ready
+    priority: high
+    primary_layer: canonical registry
+    title: Add the Remote Associates Test as an associative-creativity framework with primary academic sourcing
+    objective: >-
+      Add the Remote Associates Test or the closest canonical creative-association task record using primary academic
+      sourcing, then connect it conservatively to existing abstraction, ideation, and openness-adjacent seams.
+    acceptance_criteria:
+      - A Remote Associates or clearly named associative-creativity framework record exists with explicit source lineage.
+      - Notes explain what the task is useful for and what it should not be collapsed into.
+      - Initial mappings or crosswalks connect the record to the current substrate without overstating equivalence.
+      - Docs and generated outputs reflect the new framework.
+    context_paths:
+      - docs/research_authoring_standard.md
+      - docs/source_landscape.md
+      - instruments/
+      - motifs/registry.yaml
+      - mappings/construct_to_motif.yaml
+      - scripts/scaffold_instrument.py
+    suggested_sources:
+      - label: The associative basis of the creative process
+        url: https://doi.org/10.1037/h0048850
+        source_class: canonical_or_primary
+        role: primary academic source for the Remote Associates paradigm
+    notes:
+      - If the phrase creative association test is ambiguous in the source bundle, resolve the naming explicitly in notes.
+      - Prefer Mednick-lineage primary sourcing over tertiary summaries.
+
+  - id: task_add_alternative_uses_framework
+    status: ready
+    priority: medium
+    primary_layer: canonical registry
+    title: Add the Alternative Uses Task as a divergent-thinking framework with clear scoring cautions
+    objective: >-
+      Add the Alternative Uses Task as a canonical divergent-thinking framework, with clear explanation of fluency,
+      flexibility, originality, and elaboration style scoring, plus conservative crosswalks into existing openness
+      and ideation-adjacent seams.
+    acceptance_criteria:
+      - An Alternative Uses Task framework record exists with primary academic sourcing and notes.
+      - The record distinguishes creativity-task scoring from broad trait claims.
+      - Initial mappings or crosswalks make the task queryable and comparable.
+      - Docs and generated outputs reflect the new framework.
+    context_paths:
+      - docs/research_authoring_standard.md
+      - docs/source_landscape.md
+      - instruments/
+      - motifs/registry.yaml
+      - mappings/construct_to_motif.yaml
+      - scripts/scaffold_instrument.py
+    suggested_sources:
+      - label: The Nature of Human Intelligence
+        url: https://archive.org/details/natureofhumanint00guil
+        source_class: canonical_or_primary
+        role: Guilford's primary source context for divergent production
+      - label: Alternate uses task
+        url: https://doi.org/10.1002/j.2162-6057.1967.tb00002.x
+        source_class: canonical_or_primary
+        role: primary academic source for the Alternate Uses scoring task
+    notes:
+      - Use conservative house language.
+      - Keep the bridge to trait personality as analogy or adjacent seam, not equivalence.
 
   - id: task_crosswalk_densification_core
     status: ready

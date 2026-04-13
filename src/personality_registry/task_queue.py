@@ -6,12 +6,43 @@ from typing import Any
 import yaml
 
 
+PRIORITY_RANK = {
+    "highest": 0,
+    "high": 1,
+    "medium": 2,
+    "low": 3,
+}
+
+
 def load_task_queue(root: Path, queue_path: str = ".github/codex/task_queue.yaml") -> dict[str, Any]:
     path = root / queue_path
     payload = yaml.safe_load(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
         raise ValueError(f"Task queue did not parse into a mapping: {path}")
     return payload
+
+
+def list_task_records(
+    queue: dict[str, Any],
+    *,
+    statuses: set[str] | None = None,
+    priorities: set[str] | None = None,
+    limit: int | None = None,
+) -> list[dict[str, Any]]:
+    tasks = list(queue.get("tasks", []))
+    if statuses:
+        tasks = [task for task in tasks if task.get("status", "ready") in statuses]
+    if priorities:
+        tasks = [task for task in tasks if task.get("priority", "unspecified") in priorities]
+    tasks.sort(
+        key=lambda task: (
+            PRIORITY_RANK.get(task.get("priority", "medium"), len(PRIORITY_RANK)),
+            task.get("id", ""),
+        )
+    )
+    if limit is not None:
+        tasks = tasks[:limit]
+    return tasks
 
 
 def get_task_record(queue: dict[str, Any], task_id: str) -> dict[str, Any]:

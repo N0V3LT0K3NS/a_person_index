@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import subprocess
+import sys
 
 from personality_registry.extensions import load_extensions_strict
 from personality_registry.loader import load_repository_strict
@@ -257,7 +258,7 @@ def test_result_atom_schema_record_is_available(repo_root):
 
 def test_query_cli_returns_concise_error_for_unknown_program(repo_root):
     completed = subprocess.run(
-        [str(repo_root / ".venv" / "bin" / "python"), "scripts/query_registry.py", "program-pack", "novel"],
+        [sys.executable, "scripts/query_registry.py", "program-pack", "novel"],
         cwd=repo_root,
         text=True,
         capture_output=True,

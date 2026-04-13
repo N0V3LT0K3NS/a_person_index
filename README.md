@@ -40,13 +40,14 @@ If you are arriving fresh, read these in order:
 16. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
 17. [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md)
 18. [docs/research_authoring_standard.md](/Users/noveltokens/a_person_index/docs/research_authoring_standard.md)
-19. [docs/expansion_program.md](/Users/noveltokens/a_person_index/docs/expansion_program.md)
-20. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-21. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-22. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-23. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-24. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-25. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+19. [docs/source_landscape.md](/Users/noveltokens/a_person_index/docs/source_landscape.md)
+20. [docs/expansion_program.md](/Users/noveltokens/a_person_index/docs/expansion_program.md)
+21. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+22. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+23. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+24. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+25. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+26. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 Those files together explain what the repo is, what layer you are editing, how downstream systems should use it, and what is next.
 
@@ -222,6 +223,7 @@ npm run mcp:serve
 npm run mcp:smoke
 npm run mcp:contract
 npm run mcp:test
+python3 scripts/list_codex_queue_tasks.py --status ready --format ids
 ./scripts/test_claude_code_mcp.sh
 python3 scripts/query_registry.py audit --needs-official-resource
 python3 scripts/query_registry.py audit --needs-multiple-claims

@@ -107,6 +107,7 @@
     "docs/mcp.md",
     "docs/mcp_clients.md",
     "docs/research_authoring_standard.md",
+    "docs/source_landscape.md",
     "docs/expansion_program.md",
     "docs/protocol_pack_grammar.md",
     "docs/protocol_packs.md",
@@ -190,6 +191,7 @@
     "codeowners": ".github/CODEOWNERS",
     "codex_automation_doc": "docs/codex_automation.md",
     "research_authoring_standard_doc": "docs/research_authoring_standard.md",
+    "source_landscape_doc": "docs/source_landscape.md",
     "codex_automation_context": ".github/codex/automation_context.md",
     "codex_task_queue": ".github/codex/task_queue.yaml",
     "issue_templates": [
@@ -208,7 +210,8 @@
       ".github/workflows/ci.yml",
       ".github/workflows/netlify-deploy.yml",
       ".github/workflows/codex-task.yml",
-      ".github/workflows/dispatch-codex-queue-item.yml"
+      ".github/workflows/dispatch-codex-queue-item.yml",
+      ".github/workflows/dispatch-ready-codex-queue.yml"
     ]
   },
   "service_primitives": [
@@ -371,7 +374,9 @@
     "automation": {
       "task_queue": ".github/codex/task_queue.yaml",
       "renderer": "scripts/render_codex_task_from_queue.py",
+      "lister": "scripts/list_codex_queue_tasks.py",
       "dispatch_workflow": ".github/workflows/dispatch-codex-queue-item.yml",
+      "batch_dispatch_workflow": ".github/workflows/dispatch-ready-codex-queue.yml",
       "task_issue_template": ".github/ISSUE_TEMPLATE/codex_task.yml"
     }
   },
