@@ -117,18 +117,19 @@ Queue item:
 
 - `task_add_political_compass_framework`
 
-### 4. Divergent Association Task
+### Already landed: Divergent Association Task
 
-Why next:
+What this changed:
 
-- it adds a modern creativity-task anchor with clearer public sourcing
-- it opens a useful axis adjacent to openness, abstraction, ideation, and novelty
+- it added a modern creativity-task anchor with clearer public sourcing
+- it opened a useful axis adjacent to openness, abstraction, ideation, and novelty
+- it gives the repo a real seed record for creativity-task comparison before the broader family is expanded
 
-Queue item:
+Reference:
 
-- `task_add_divergent_association_task`
+- [instruments/divergent-association-task](/Users/noveltokens/a_person_index/instruments/divergent-association-task)
 
-### 5. Remote Associates / creative association task
+### 4. Remote Associates / creative association task
 
 Why next:
 
@@ -139,7 +140,7 @@ Queue item:
 
 - `task_add_remote_associates_framework`
 
-### 6. Alternative Uses Task
+### 5. Alternative Uses Task
 
 Why next:
 
@@ -150,7 +151,7 @@ Queue item:
 
 - `task_add_alternative_uses_framework`
 
-### 7. Crosswalk and interaction densification
+### 6. Crosswalk and interaction densification
 
 Why after those:
 
@@ -161,7 +162,7 @@ Queue item:
 
 - `task_crosswalk_densification_core`
 
-### 8. True Colors cleanup
+### 7. True Colors cleanup
 
 Why lower priority:
 

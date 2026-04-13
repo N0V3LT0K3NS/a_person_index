@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from personality_registry.task_queue import get_task_record, load_task_queue
+
 
 def test_onboarding_docs_exist(repo_root):
     required_paths = [
@@ -69,3 +71,27 @@ def test_readme_links_to_onboarding_surface(repo_root):
     assert "docs/phase_3_4_plan.md" in readme
     assert "examples/mcp" in readme
     assert "generated/manifest.json" in readme
+
+
+def test_readme_seed_corpus_mentions_current_creativity_anchor(repo_root):
+    readme = (repo_root / "README.md").read_text(encoding="utf-8")
+    assert "16 source-backed seed framework records" in readme
+    assert "Divergent Association Task" in readme
+
+
+def test_mcp_clients_doc_lists_four_validation_layers(repo_root):
+    text = (repo_root / "docs" / "mcp_clients.md").read_text(encoding="utf-8")
+    assert "validated in four layers" in text
+    assert "4. Hermes on a remote host" in text
+
+
+def test_changelog_tracks_unreleased_post_release_work(repo_root):
+    text = (repo_root / "CHANGELOG.md").read_text(encoding="utf-8")
+    assert "## Unreleased" in text
+    assert "Divergent Association Task as the 16th seeded framework record" in text
+
+
+def test_task_queue_marks_dat_as_completed(repo_root):
+    queue = load_task_queue(repo_root)
+    task = get_task_record(queue, "task_add_divergent_association_task")
+    assert task["status"] == "done"

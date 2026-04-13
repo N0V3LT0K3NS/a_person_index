@@ -28,6 +28,7 @@ def test_codex_automation_context_exists(repo_root):
     text = path.read_text(encoding="utf-8")
     assert "A Person Index (API)" in text
     assert "generated/manifest.json" in text
+    assert "npm run mcp:test" in text
 
 
 def test_codeowners_exists(repo_root):
@@ -42,6 +43,7 @@ def test_codex_task_workflow_validates_openai_api_key(repo_root):
     assert "Validate OpenAI API key configuration" in text
     assert "your-api-key-here" in text
     assert "sk-proj-" in text
+    assert "npm run mcp:test" in text
     assert "Remove workflow scratch artifacts" in text
     assert "codex-last-message.txt" in text
 
@@ -52,6 +54,7 @@ def test_codex_automation_doc_covers_repo_workflow_permissions(repo_root):
     assert "Workflow permissions must be set to `Read and write permissions`" in text
     assert "Allow GitHub Actions to create and approve pull requests" in text
     assert "not permitted to create or approve pull requests" in text
+    assert "npm run mcp:test" in text
 
 
 def test_netlify_workflow_handles_missing_secrets_gracefully(repo_root):

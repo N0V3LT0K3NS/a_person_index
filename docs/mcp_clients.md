@@ -15,7 +15,7 @@ It is not yet a hosted remote MCP service with auth, rate limiting, or multi-ten
 
 ## What is already proven
 
-The MCP surface has been validated in three layers:
+The MCP surface has been validated in four layers:
 
 1. repo-owned Node SDK smoke and contract tests
 2. Claude Code using an explicit strict MCP config

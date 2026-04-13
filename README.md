@@ -57,9 +57,9 @@ If you need the deeper map after that:
   [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md),
   [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
-## Three-layer model
+## Per-record layers
 
-Each instrument is represented in three distinct layers:
+Each framework record in the current instrument-centered schema is represented in three distinct layers:
 
 1. Source-truth layer: what the instrument or its source materials say about itself.
 2. Meta-ontology layer: standardized house annotations applied through the shared ontology.
@@ -164,7 +164,7 @@ These are implementation and compatibility surfaces, not the product’s preferr
 
 ## Seed corpus
 
-The repository currently ships with 16 source-backed seed instruments spanning psychometric, workplace, relational, and symbolic systems:
+The repository currently ships with 16 source-backed seed framework records spanning psychometric, workplace, relational, symbolic, and creativity-task systems:
 
 - Big Five / OCEAN
 - MBTI
@@ -178,11 +178,12 @@ The repository currently ships with 16 source-backed seed instruments spanning p
 - Culture Index
 - Human Design
 - Natal Astrology
+- Divergent Association Task
 - Attachment Style Frameworks
 - VIA Character Strengths
 - HEXACO
 
-Each seed instrument is expected to carry at least two resources and at least one outgoing crosswalk. Systems with stable major outputs should also carry multiple top-level constructs so the starter corpus remains comparative, not just descriptive.
+Each seed framework record is expected to carry at least two resources and at least one outgoing crosswalk. Systems with stable major outputs should also carry multiple top-level constructs so the starter corpus remains comparative, not just descriptive.
 
 ## What This Is Not
 
@@ -333,7 +334,7 @@ python3 scripts/export_schemas.py
 python3 scripts/validate.py
 python3 scripts/build_index.py
 python3 scripts/generate_docs.py
-npm run mcp:smoke
+npm run mcp:test
 python3 -m pytest
 ```
 
@@ -362,7 +363,6 @@ Generated outputs are written to:
 - `generated/index.json`: aggregate API summary
 - `generated/search.json`: search-oriented flattened records
 - `generated/audit.json`: curation-depth and coverage summary per instrument
-- `generated/index.json`: aggregate API summary plus product-layer counts
 - `generated/instruments/*.json`: per-instrument exports
 - `generated/manifest.json`: machine-readable onboarding and service-primitives manifest for agents
 - `generated/protocol_packs/index.json`: curated program-pack catalog for stable downstream retrieval
