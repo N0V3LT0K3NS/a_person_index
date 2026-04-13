@@ -283,6 +283,17 @@ class QueryResult:
         }
 
 
+def _framework_reference_payload(bundle: InstrumentBundle) -> dict[str, Any]:
+    return {
+        "slug": bundle.slug,
+        "instrument_id": bundle.instrument.id,
+        "canonical_name": bundle.instrument.canonical_name,
+        "short_names": bundle.instrument.short_names,
+        "aliases": bundle.instrument.aliases,
+        "family": bundle.instrument.family,
+    }
+
+
 def _resolve_extension_item(items: list[Any], ref: str, label_fields: tuple[str, ...]) -> Any:
     normalized = _normalize(ref)
     candidates = []
@@ -336,6 +347,51 @@ def resolve_promotion_pathway(extensions: ExtensionRegistryData, ref: str):
 
 def resolve_interaction_hypothesis(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.interaction_hypotheses, ref, ("summary",))
+
+
+def agent_orientation(
+    repository: RepositoryData,
+    extensions: ExtensionRegistryData,
+) -> dict[str, Any]:
+    featured_packs = find_protocol_packs(repository, extensions, featured_only=True)
+    framework_refs = [
+        _framework_reference_payload(bundle)
+        for bundle in sorted(repository.instruments.values(), key=lambda item: item.instrument.canonical_name.lower())
+    ]
+    return {
+        "summary": (
+            "A Person Index is a comparative substrate for personhood frameworks. "
+            "Match frameworks first, then inspect featured program packs, then trace motifs and interactions."
+        ),
+        "recommended_sequence": [
+            "Use find_framework_records with short refs for distinct framework labels.",
+            "Call out unmatched or unindexed frameworks explicitly.",
+            "Use list_protocol_packs with featured_only=true before guessing at pack refs.",
+            "Use fetch_protocol_pack_summary before fetch_protocol_pack when you need a named program.",
+            "Use compare_frameworks, trace_to_motifs, and list_interaction_hypotheses after the framework layer is stable.",
+        ],
+        "available_framework_refs": framework_refs,
+        "featured_program_packs": featured_packs,
+        "common_mistakes": [
+            "Using one giant text blob as the only framework matching step.",
+            "Treating motifs as source truth rather than house synthesis.",
+            "Calling fetch_protocol_pack with a vague ref instead of a real program name or ID.",
+            "Claiming the repo itself performed person-level inference.",
+            "Flattening symbolic systems into empirical claims.",
+        ],
+        "recommended_resources": [
+            "registry://manifest",
+            "registry://quickstart",
+            "registry://current-state",
+            "registry://assessment-workflow",
+            "registry://ilens-walkthrough",
+        ],
+        "recommended_prompts": [
+            "registry-arrival",
+            "assessment-results-intake",
+            "ilens-walkthrough",
+        ],
+    }
 
 
 def _extended_entity_ref(
@@ -867,6 +923,34 @@ def _pack_id(protocol_id: str, targets: list[dict[str, str]]) -> str:
     return f"pack_{protocol_id}__{scope}"
 
 
+def _protocol_pack_summary_from_payload(payload: dict[str, Any]) -> dict[str, Any]:
+    protocol = payload["protocol"]
+    return {
+        "pack": payload["pack"],
+        "summary": {
+            "protocol_name": protocol["name"],
+            "protocol_kind": protocol["program_kind"],
+            "target_labels": payload["pack"]["target_labels"],
+            "target_framework_ids": payload["pack"]["target_framework_ids"],
+            "target_construct_ids": payload["pack"]["target_construct_ids"],
+            "technique_names": [item["name"] for item in payload["techniques"]],
+            "component_program_names": [item["name"] for item in payload["component_programs"]],
+            "primary_outputs": payload["output_contract"]["primary_outputs"],
+            "required_inputs": payload["input_contract"]["required_inputs"],
+            "optional_inputs": payload["input_contract"]["optional_inputs"],
+            "execution_order": payload["execution_order"],
+            "motif_count": len(payload["motif_summary"]),
+            "interaction_hypothesis_count": len(payload["interaction_hypotheses"]),
+            "preferred_contribution_model_ids": payload["return_contract"]["preferred_contribution_model_ids"],
+            "result_atom_schema_id": (
+                payload["return_contract"]["result_atom_schema"]["id"]
+                if payload["return_contract"]["result_atom_schema"]
+                else None
+            ),
+        },
+    }
+
+
 def protocol_pack(
     repository: RepositoryData,
     extensions: ExtensionRegistryData,
@@ -1028,6 +1112,25 @@ def protocol_pack(
             ),
         },
     }
+
+
+def protocol_pack_summary(
+    repository: RepositoryData,
+    extensions: ExtensionRegistryData,
+    ref: str,
+    *,
+    framework_refs: Iterable[str] | None = None,
+    construct_refs: Iterable[str] | None = None,
+) -> dict[str, Any]:
+    return _protocol_pack_summary_from_payload(
+        protocol_pack(
+            repository,
+            extensions,
+            ref,
+            framework_refs=framework_refs,
+            construct_refs=construct_refs,
+        )
+    )
 
 
 def curated_protocol_pack_record(
@@ -1455,6 +1558,29 @@ def compare_instruments(repository: RepositoryData, left: str, right: str) -> di
             } == {left_bundle.instrument.id, right_bundle.instrument.id}:
                 crosswalks.append(crosswalk.model_dump(mode="json"))
 
+    suggested_next_queries = [
+        {
+            "tool": "trace_to_motifs",
+            "args": {"ref": left_bundle.slug},
+            "purpose": f"Trace {left_bundle.instrument.canonical_name} into the motif layer.",
+        },
+        {
+            "tool": "trace_to_motifs",
+            "args": {"ref": right_bundle.slug},
+            "purpose": f"Trace {right_bundle.instrument.canonical_name} into the motif layer.",
+        },
+        {
+            "tool": "list_interaction_hypotheses",
+            "args": {"related_to": left_bundle.slug},
+            "purpose": f"Inspect interaction hypotheses related to {left_bundle.instrument.canonical_name}.",
+        },
+        {
+            "tool": "list_interaction_hypotheses",
+            "args": {"related_to": right_bundle.slug},
+            "purpose": f"Inspect interaction hypotheses related to {right_bundle.instrument.canonical_name}.",
+        },
+    ]
+
     return {
         "left": {
             "id": left_bundle.instrument.id,
@@ -1472,6 +1598,7 @@ def compare_instruments(repository: RepositoryData, left: str, right: str) -> di
         },
         "shared_annotation_values": overlaps,
         "crosswalks": crosswalks,
+        "suggested_next_queries": suggested_next_queries,
     }
 
 

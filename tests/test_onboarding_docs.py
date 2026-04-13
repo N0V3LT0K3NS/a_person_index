@@ -13,6 +13,7 @@ def test_onboarding_docs_exist(repo_root):
         repo_root / "docs" / "release_status.md",
         repo_root / "docs" / "agent_quickstart.md",
         repo_root / "docs" / "assessment_workflow.md",
+        repo_root / "docs" / "ilens_walkthrough.md",
         repo_root / "docs" / "current_state.md",
         repo_root / "docs" / "index_programs.md",
         repo_root / "docs" / "codex_automation.md",
@@ -44,6 +45,7 @@ def test_readme_links_to_onboarding_surface(repo_root):
     assert "SECURITY.md" in readme
     assert "docs/agent_quickstart.md" in readme
     assert "docs/assessment_workflow.md" in readme
+    assert "docs/ilens_walkthrough.md" in readme
     assert "docs/release_status.md" in readme
     assert "docs/current_state.md" in readme
     assert "docs/index_programs.md" in readme

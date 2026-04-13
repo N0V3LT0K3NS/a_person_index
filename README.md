@@ -25,25 +25,26 @@ If you are arriving fresh, read these in order:
 1. [AGENTS.md](/Users/noveltokens/a_person_index/AGENTS.md)
 2. [docs/agent_quickstart.md](/Users/noveltokens/a_person_index/docs/agent_quickstart.md)
 3. [docs/assessment_workflow.md](/Users/noveltokens/a_person_index/docs/assessment_workflow.md)
-4. [CHANGELOG.md](/Users/noveltokens/a_person_index/CHANGELOG.md)
-5. [docs/release_status.md](/Users/noveltokens/a_person_index/docs/release_status.md)
-6. [CONTRIBUTING.md](/Users/noveltokens/a_person_index/CONTRIBUTING.md)
-7. [SECURITY.md](/Users/noveltokens/a_person_index/SECURITY.md)
-8. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
-9. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
-10. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
-11. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
-12. [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md)
-13. [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
-14. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
-15. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
-16. [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md)
-17. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-18. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-19. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-20. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-21. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-22. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+4. [docs/ilens_walkthrough.md](/Users/noveltokens/a_person_index/docs/ilens_walkthrough.md)
+5. [CHANGELOG.md](/Users/noveltokens/a_person_index/CHANGELOG.md)
+6. [docs/release_status.md](/Users/noveltokens/a_person_index/docs/release_status.md)
+7. [CONTRIBUTING.md](/Users/noveltokens/a_person_index/CONTRIBUTING.md)
+8. [SECURITY.md](/Users/noveltokens/a_person_index/SECURITY.md)
+9. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
+10. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
+11. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
+12. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
+13. [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md)
+14. [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
+15. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+16. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
+17. [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md)
+18. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+19. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+20. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+21. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+22. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+23. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 Those files together explain what the repo is, what layer you are editing, how downstream systems should use it, and what is next.
 
@@ -252,6 +253,15 @@ Canonical repo copy:
 
 - [skills/a-person-index/SKILL.md](/Users/noveltokens/a_person_index/skills/a-person-index/SKILL.md)
 - [skills/a-person-index/references/workflows.md](/Users/noveltokens/a_person_index/skills/a-person-index/references/workflows.md)
+
+For a cold-start MCP session, the intended flow is:
+
+```bash
+python3 scripts/query_registry.py orient
+python3 scripts/query_registry.py find --ref "Big Five" --ref MBTI --ref Enneagram
+python3 scripts/query_registry.py program-packs --featured
+python3 scripts/query_registry.py program-pack-summary ILENS --framework "Big Five" --framework MBTI --framework Enneagram
+```
 
 ## Add a new instrument
 

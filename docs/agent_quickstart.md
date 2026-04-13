@@ -18,7 +18,7 @@ Keep these layers separate:
 
 If you are using MCP, prefer this order:
 
-1. read `registry://manifest`
+1. call `orient_agent`
 2. read `registry://quickstart`
 3. read `registry://current-state`
 4. list featured program packs
@@ -29,6 +29,7 @@ If you need the repo docs, start with:
 2. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
 3. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
 4. [docs/assessment_workflow.md](/Users/noveltokens/a_person_index/docs/assessment_workflow.md)
+5. [docs/ilens_walkthrough.md](/Users/noveltokens/a_person_index/docs/ilens_walkthrough.md)
 
 ## Best-practice tool order
 
@@ -37,9 +38,10 @@ For user-supplied assessment results:
 1. resolve framework matches first with `find_framework_records`
 2. explicitly note what is unmatched or not yet indexed
 3. inspect `list_protocol_packs(featured=true)` before improvising
-4. prefer `fetch_curated_protocol_pack` when a reviewed pack fits
-5. use `trace_to_motifs` and `list_interaction_hypotheses` after the framework layer is stable
-6. use `fetch_protocol_spec` to understand a program, not to claim it already executed
+4. prefer `fetch_protocol_pack_summary` before `fetch_protocol_pack`
+5. prefer `fetch_curated_protocol_pack` when a reviewed pack fits
+6. use `trace_to_motifs` and `list_interaction_hypotheses` after the framework layer is stable
+7. use `fetch_protocol_spec` to understand a program, not to claim it already executed
 
 ## Important usage rules
 

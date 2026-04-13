@@ -37,10 +37,12 @@ await client.connect(transport);
 const tools = await client.listTools();
 const toolNames = new Set(tools.tools.map((tool) => tool.name));
 for (const requiredTool of [
+  "orient_agent",
   "compare_frameworks",
   "trace_to_motifs",
   "fetch_protocol_spec",
   "list_protocol_packs",
+  "fetch_protocol_pack_summary",
   "fetch_protocol_pack",
   "fetch_result_atom_schema",
   "fetch_research_models",
@@ -58,6 +60,12 @@ expect(currentState.contents?.[0]?.text?.includes("read-only MCP adapter"), "Exp
 
 const quickstart = await client.readResource({ uri: "registry://quickstart" });
 expect(quickstart.contents?.[0]?.text?.includes("First moves"), "Expected quickstart resource content.");
+
+const ilensWalkthrough = await client.readResource({ uri: "registry://ilens-walkthrough" });
+expect(
+  ilensWalkthrough.contents?.[0]?.text?.includes("Recommended MCP sequence"),
+  "Expected ILENS walkthrough resource content.",
+);
 
 const mbtiResource = await client.readResource({ uri: "registry://instrument/mbti" });
 const mbtiPayload = JSON.parse(mbtiResource.contents?.[0]?.text ?? "{}");
@@ -82,6 +90,26 @@ const compare = await client.callTool({
 expect(!compare.isError, "Expected compare_frameworks tool to succeed.");
 expect(compare.structuredContent?.left?.id === "instr_mbti", "Expected compare left instrument.");
 expect(compare.structuredContent?.right?.id === "instr_big_five", "Expected compare right instrument.");
+expect(
+  Array.isArray(compare.structuredContent?.suggested_next_queries) &&
+    compare.structuredContent.suggested_next_queries.length >= 2,
+  "Expected compare to include suggested next queries.",
+);
+
+const orientation = await client.callTool({
+  name: "orient_agent",
+  arguments: {},
+});
+expect(!orientation.isError, "Expected orient_agent tool to succeed.");
+expect(
+  Array.isArray(orientation.structuredContent?.available_framework_refs) &&
+    orientation.structuredContent.available_framework_refs.length >= 15,
+  "Expected orientation framework refs.",
+);
+expect(
+  orientation.structuredContent?.recommended_resources?.includes("registry://ilens-walkthrough"),
+  "Expected orientation to include ILENS walkthrough resource.",
+);
 
 const trace = await client.callTool({
   name: "trace_to_motifs",
@@ -119,6 +147,21 @@ expect(
   Array.isArray(packList.structuredContent?.protocol_packs) &&
     packList.structuredContent.protocol_packs.some((pack) => pack.id === "ppk_ilens_core_trait_motive_stack"),
   "Expected featured pack listing.",
+);
+
+const packSummary = await client.callTool({
+  name: "fetch_protocol_pack_summary",
+  arguments: {
+    ref: "ILENS",
+    frameworks: ["Big Five", "MBTI", "Enneagram"],
+  },
+});
+expect(!packSummary.isError, "Expected fetch_protocol_pack_summary tool to succeed.");
+expect(packSummary.structuredContent?.summary?.protocol_name === "ILENS", "Expected ILENS pack summary.");
+expect(
+  Array.isArray(packSummary.structuredContent?.summary?.execution_order) &&
+    packSummary.structuredContent.summary.execution_order.length >= 3,
+  "Expected pack summary execution order.",
 );
 
 const resultAtom = await client.callTool({

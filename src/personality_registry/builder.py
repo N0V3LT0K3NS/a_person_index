@@ -191,6 +191,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "README.md",
             "docs/agent_quickstart.md",
             "docs/assessment_workflow.md",
+            "docs/ilens_walkthrough.md",
             "CHANGELOG.md",
             "docs/release_status.md",
             "CONTRIBUTING.md",
@@ -305,6 +306,11 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
         },
         "service_primitives": [
             {
+                "id": "orient_agent",
+                "command": "python3 scripts/query_registry.py orient",
+                "purpose": "Return a compact onboarding payload with framework refs, featured packs, and common mistakes for cold-start agents.",
+            },
+            {
                 "id": "find_framework_records",
                 "command": "python3 scripts/query_registry.py find --ref \"Big Five\"",
                 "purpose": "Resolve canonical framework records by ID, name, alias, or filters.",
@@ -343,6 +349,11 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "id": "fetch_curated_protocol_pack",
                 "command": "python3 scripts/query_registry.py program-packs ppk_ilens_core_trait_motive_stack",
                 "purpose": "Return a curated runtime pack catalog entry plus its generated bundle.",
+            },
+            {
+                "id": "fetch_protocol_pack_summary",
+                "command": "python3 scripts/query_registry.py program-pack-summary ILENS --framework MBTI --framework Enneagram",
+                "purpose": "Return a compact summary of a runtime pack before fetching the full nested pack payload.",
             },
             {
                 "id": "fetch_protocol_pack",
@@ -413,6 +424,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                     },
                 ],
                 "tool_ids": [
+                    "orient_agent",
                     "find_framework_records",
                     "compare_frameworks",
                     "trace_to_motifs",
@@ -421,6 +433,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                     "fetch_protocol_spec",
                     "list_protocol_packs",
                     "fetch_curated_protocol_pack",
+                    "fetch_protocol_pack_summary",
                     "fetch_protocol_pack",
                     "fetch_protocol_pack_grammar",
                     "fetch_result_atom_schema",
@@ -433,6 +446,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                     "registry://current-state",
                     "registry://roadmap",
                     "registry://assessment-workflow",
+                    "registry://ilens-walkthrough",
                     "registry://research-promotion",
                     "registry://protocol-packs",
                     "registry://protocol-pack/{pack_id}",
@@ -442,6 +456,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "prompt_ids": [
                     "registry-arrival",
                     "assessment-results-intake",
+                    "ilens-walkthrough",
                     "protocol-pack-authoring",
                 ],
                 "doc_path": "docs/mcp.md",
