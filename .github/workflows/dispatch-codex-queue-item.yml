@@ -113,6 +113,7 @@ jobs:
               workflow_id: "codex-task.yml",
               ref: "main",
               inputs: {
+                task_id: "${{ inputs.task_id }}",
                 task_title: taskTitle,
                 task_body: taskBody,
                 issue_number: process.env.ISSUE_NUMBER,

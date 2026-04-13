@@ -18,6 +18,7 @@ def test_onboarding_docs_exist(repo_root):
         repo_root / "docs" / "index_programs.md",
         repo_root / "docs" / "codex_automation.md",
         repo_root / "docs" / "research_authoring_standard.md",
+        repo_root / "docs" / "source_landscape.md",
         repo_root / "docs" / "expansion_program.md",
         repo_root / "docs" / "site_design_options.md",
         repo_root / "docs" / "mcp.md",
@@ -34,6 +35,7 @@ def test_onboarding_docs_exist(repo_root):
         repo_root / ".github" / "ISSUE_TEMPLATE" / "codex_task.yml",
         repo_root / ".github" / "pull_request_template.md",
         repo_root / ".github" / "workflows" / "codex-task.yml",
+        repo_root / ".github" / "workflows" / "dispatch-ready-codex-queue.yml",
     ]
     for path in required_paths:
         assert path.exists(), f"Missing onboarding document: {path}"
@@ -53,6 +55,7 @@ def test_readme_links_to_onboarding_surface(repo_root):
     assert "docs/index_programs.md" in readme
     assert "docs/codex_automation.md" in readme
     assert "docs/research_authoring_standard.md" in readme
+    assert "docs/source_landscape.md" in readme
     assert "docs/expansion_program.md" in readme
     assert "docs/site_design_options.md" in readme
     assert "docs/mcp.md" in readme

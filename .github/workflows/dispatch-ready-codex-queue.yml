@@ -1,0 +1,86 @@
+name: Dispatch Ready Codex Queue Tasks
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: Maximum number of ready tasks to dispatch
+        required: false
+        default: "3"
+        type: string
+      priority:
+        description: Optional comma-separated priority filter (for example highest,high)
+        required: false
+        default: ""
+        type: string
+      dry_run:
+        description: Show which tasks would dispatch without opening issues or PR workflows
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  actions: write
+  contents: read
+  issues: write
+
+jobs:
+  dispatch-ready:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install queue tooling
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+
+      - name: Select ready tasks
+        env:
+          PRIORITY_FILTER: ${{ inputs.priority }}
+          TASK_LIMIT: ${{ inputs.limit }}
+        run: |
+          PRIORITY_ARGS=()
+          if [ -n "$PRIORITY_FILTER" ]; then
+            IFS=',' read -r -a PRIORITIES <<< "$PRIORITY_FILTER"
+            for priority in "${PRIORITIES[@]}"; do
+              [ -z "$priority" ] && continue
+              PRIORITY_ARGS+=(--priority "$priority")
+            done
+          fi
+          python scripts/list_codex_queue_tasks.py \
+            --status ready \
+            --limit "$TASK_LIMIT" \
+            --format ids \
+            "${PRIORITY_ARGS[@]}" > task-ids.txt
+
+      - name: Show selected tasks
+        run: |
+          if [ ! -s task-ids.txt ]; then
+            echo "No matching ready tasks."
+            exit 0
+          fi
+          echo "Dispatching these queue items:"
+          cat task-ids.txt
+
+      - name: Dispatch queue items
+        if: ${{ !inputs.dry_run }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -s task-ids.txt ]; then
+            echo "No matching ready tasks."
+            exit 0
+          fi
+          while IFS= read -r task_id; do
+            [ -z "$task_id" ] && continue
+            echo "Dispatching $task_id"
+            gh workflow run dispatch-codex-queue-item.yml -f task_id="$task_id"
+          done < task-ids.txt

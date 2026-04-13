@@ -5,6 +5,7 @@ This document summarizes the next bounded expansion PRs for A Person Index and h
 Use it with:
 
 - [docs/research_authoring_standard.md](/Users/noveltokens/a_person_index/docs/research_authoring_standard.md)
+- [docs/source_landscape.md](/Users/noveltokens/a_person_index/docs/source_landscape.md)
 - [.github/codex/task_queue.yaml](/Users/noveltokens/a_person_index/.github/codex/task_queue.yaml)
 - [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md)
 
@@ -76,6 +77,8 @@ Reference:
 - [DAT home](https://www.datcreativity.com/)
 - [DAT about](https://www.datcreativity.com/about)
 
+For the broader source map, including associative-creativity and divergent-thinking follow-ons, use [docs/source_landscape.md](/Users/noveltokens/a_person_index/docs/source_landscape.md).
+
 ## Priority order
 
 ### 1. Seed source enrichment
@@ -114,18 +117,40 @@ Queue item:
 
 - `task_add_political_compass_framework`
 
-### 4. Creativity-measures family
+### 4. Divergent Association Task
 
 Why next:
 
+- it adds a modern creativity-task anchor with clearer public sourcing
 - it opens a useful axis adjacent to openness, abstraction, ideation, and novelty
-- it gives the repo more cognitive-process instrumentation instead of only person-type systems
 
 Queue item:
 
-- `task_add_creativity_family_frameworks`
+- `task_add_divergent_association_task`
 
-### 5. Crosswalk and interaction densification
+### 5. Remote Associates / creative association task
+
+Why next:
+
+- it addresses the associative-creativity seam directly
+- it is a cleaner answer to the user phrase "creative association test" than leaving that family implicit
+
+Queue item:
+
+- `task_add_remote_associates_framework`
+
+### 6. Alternative Uses Task
+
+Why next:
+
+- it gives the creativity family a classic divergent-thinking anchor
+- it prevents the creativity lane from collapsing into one test or one paper
+
+Queue item:
+
+- `task_add_alternative_uses_framework`
+
+### 7. Crosswalk and interaction densification
 
 Why after those:
 
@@ -136,7 +161,7 @@ Queue item:
 
 - `task_crosswalk_densification_core`
 
-### 6. True Colors cleanup
+### 8. True Colors cleanup
 
 Why lower priority:
 
@@ -162,6 +187,14 @@ Use the manual workflow:
 - `.github/workflows/dispatch-codex-queue-item.yml`
 
 That workflow opens a `codex-task` issue from the queue item, and the existing Codex automation turns that issue into a PR.
+
+### Batched dispatch
+
+For bounded multi-PR bursts, use:
+
+- `.github/workflows/dispatch-ready-codex-queue.yml`
+
+That workflow selects a limited set of `ready` tasks and fans them into the single-item dispatch workflow. Use a small limit so review load stays real.
 
 ## Operating rule
 

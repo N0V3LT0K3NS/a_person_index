@@ -94,6 +94,7 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert manifest_payload["repository"]["homepage_url"] == "https://a-person-index.netlify.app"
     assert manifest_payload["repository"]["current_phase"] == "phase_3_downstream_consumer_integration"
     assert "docs/research_authoring_standard.md" in manifest_payload["start_here"]
+    assert "docs/source_landscape.md" in manifest_payload["start_here"]
     assert "docs/expansion_program.md" in manifest_payload["start_here"]
     assert len(manifest_payload["site_variants"]) == 3
     assert any(item["id"] == "atlas" and item["recommended"] for item in manifest_payload["site_variants"])
@@ -109,9 +110,11 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert manifest_payload["governance"]["codeowners"] == ".github/CODEOWNERS"
     assert manifest_payload["governance"]["codex_automation_doc"] == "docs/codex_automation.md"
     assert manifest_payload["governance"]["research_authoring_standard_doc"] == "docs/research_authoring_standard.md"
+    assert manifest_payload["governance"]["source_landscape_doc"] == "docs/source_landscape.md"
     assert manifest_payload["governance"]["codex_task_queue"] == ".github/codex/task_queue.yaml"
     assert ".github/workflows/codex-task.yml" in manifest_payload["governance"]["automation_workflows"]
     assert ".github/workflows/dispatch-codex-queue-item.yml" in manifest_payload["governance"]["automation_workflows"]
+    assert ".github/workflows/dispatch-ready-codex-queue.yml" in manifest_payload["governance"]["automation_workflows"]
     assert manifest_payload["next_priorities"]
     assert manifest_payload["service_primitives"]
     assert any(item["id"] == "list_protocol_packs" for item in manifest_payload["service_primitives"])
@@ -125,6 +128,11 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert "fetch_research_promotion_policy" in manifest_payload["interfaces"]["mcp"]["tool_ids"]
     assert manifest_payload["interfaces"]["automation"]["task_queue"] == ".github/codex/task_queue.yaml"
     assert manifest_payload["interfaces"]["automation"]["renderer"] == "scripts/render_codex_task_from_queue.py"
+    assert manifest_payload["interfaces"]["automation"]["lister"] == "scripts/list_codex_queue_tasks.py"
+    assert (
+        manifest_payload["interfaces"]["automation"]["batch_dispatch_workflow"]
+        == ".github/workflows/dispatch-ready-codex-queue.yml"
+    )
     assert protocol_pack_index_payload["protocol_packs"]
     assert protocol_pack_index_payload["protocol_packs"][0]["id"].startswith("ppk_")
     assert len(site_variants_payload["variants"]) == 3

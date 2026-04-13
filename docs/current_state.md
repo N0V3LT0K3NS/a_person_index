@@ -69,6 +69,7 @@ As of the current branch state, the repo includes:
 - GitHub issue and PR templates
 - Codex task workflow scaffold
 - queue-driven Codex task dispatch for bounded expansion PRs
+- batched ready-queue dispatch for bounded multi-PR expansion bursts
 - CI workflow
 - Netlify deployment workflow
 

@@ -60,8 +60,11 @@
   - `.github/codex/task_queue.yaml`
 - Renderer:
   - `python3 scripts/render_codex_task_from_queue.py task_add_rdrive_framework`
+- Lister:
+  - `python3 scripts/list_codex_queue_tasks.py --status ready --priority highest --format ids`
 - GitHub workflow:
   - `.github/workflows/dispatch-codex-queue-item.yml`
+  - `.github/workflows/dispatch-ready-codex-queue.yml`
 
 ## Output patterns
 

@@ -26,13 +26,14 @@ If you are arriving cold, start here in this order:
 16. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
 17. [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md)
 18. [docs/research_authoring_standard.md](/Users/noveltokens/a_person_index/docs/research_authoring_standard.md)
-19. [docs/expansion_program.md](/Users/noveltokens/a_person_index/docs/expansion_program.md)
-20. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-21. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-22. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-23. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-24. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-25. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+19. [docs/source_landscape.md](/Users/noveltokens/a_person_index/docs/source_landscape.md)
+20. [docs/expansion_program.md](/Users/noveltokens/a_person_index/docs/expansion_program.md)
+21. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+22. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+23. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+24. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+25. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+26. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 ## What this repo is
 
@@ -165,6 +166,8 @@ For recurring framework, crosswalk, and source-enrichment work, prefer queue-dri
 
 - queue: [.github/codex/task_queue.yaml](/Users/noveltokens/a_person_index/.github/codex/task_queue.yaml)
 - renderer: [scripts/render_codex_task_from_queue.py](/Users/noveltokens/a_person_index/scripts/render_codex_task_from_queue.py)
+- lister: [scripts/list_codex_queue_tasks.py](/Users/noveltokens/a_person_index/scripts/list_codex_queue_tasks.py)
 - dispatch workflow: [.github/workflows/dispatch-codex-queue-item.yml](/Users/noveltokens/a_person_index/.github/workflows/dispatch-codex-queue-item.yml)
+- batch dispatch workflow: [.github/workflows/dispatch-ready-codex-queue.yml](/Users/noveltokens/a_person_index/.github/workflows/dispatch-ready-codex-queue.yml)
 
 That path keeps the source bundle, acceptance criteria, and verification path versioned in Git before a PR is attempted.

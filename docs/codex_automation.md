@@ -21,6 +21,7 @@ For larger recurring research or corpus-expansion work, the repo now also suppor
 
 3. Manual queue dispatch through `.github/workflows/dispatch-codex-queue-item.yml`
 4. Machine-readable queue items in `.github/codex/task_queue.yaml`
+5. Batched queue dispatch through `.github/workflows/dispatch-ready-codex-queue.yml`
 
 ## Required secrets
 
@@ -87,12 +88,31 @@ The queue renderer is:
 python3 scripts/render_codex_task_from_queue.py task_add_rdrive_framework
 ```
 
+The queue lister is:
+
+```bash
+python3 scripts/list_codex_queue_tasks.py --status ready --priority highest --format ids
+```
+
 This is the preferred path for repeatable research-expansion work because it keeps:
 
 - the task spec in Git
 - the source bundle visible
 - the verification path explicit
 - the resulting PR bounded
+
+Queue-dispatched `codex-task` runs now rerender the canonical task spec from `.github/codex/task_queue.yaml` on the GitHub runner using `task_id`. They do not rely on an issue body surviving GitHub workflow input plumbing perfectly.
+
+## Batch dispatch
+
+Use `.github/workflows/dispatch-ready-codex-queue.yml` when you want a small burst of bounded expansion PR attempts from the ready queue.
+
+Guidelines:
+
+- keep the batch limit small
+- prefer `highest` and `high` first
+- do not dispatch the whole queue just because it exists
+- review PR load like a human editor, not a job queue
 
 ## Recommended use
 
