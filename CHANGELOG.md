@@ -2,13 +2,23 @@
 
 All notable changes to A Person Index are documented here.
 
+## Unreleased
+
+Post-`v0.1.0` changes currently on `main`:
+
+- added Divergent Association Task as the 16th seeded framework record
+- tightened DAT ontology, source grounding, and caution language
+- hardened onboarding and MCP arrival docs for Claude Code, Claude Desktop, and Hermes
+- proved queue-driven Codex automation end to end with real PR creation
+- synced corpus counts, queue state, and expansion docs after DAT landed
+
 ## v0.1.0 - 2026-04-13
 
 First public release of A Person Index as a shareable Git-native substrate.
 
 Included in this release:
 
-- canonical instrument-centered corpus with 15 seeded framework records
+- canonical instrument-centered corpus with 15 seeded framework records at release time
 - house synthesis layer with motifs, construct mappings, and interaction hypotheses
 - technique library and first index programs, including `ILENS`, `Human Model Card`, `Translation Memo`, and `Paradox Finder`
 - curated runtime packs and machine-readable pack grammar

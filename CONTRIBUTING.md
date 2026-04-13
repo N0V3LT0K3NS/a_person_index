@@ -62,7 +62,7 @@ python3 scripts/export_schemas.py
 python3 scripts/validate.py
 python3 scripts/build_index.py
 python3 scripts/generate_docs.py
-npm run mcp:smoke
+npm run mcp:test
 python3 -m pytest
 ```
 

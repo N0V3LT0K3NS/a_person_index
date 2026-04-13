@@ -145,7 +145,7 @@ References:
 1. strengthen sources and internal linking across the seeded corpus
 2. add R-Drive because it is already a real missing consumer input
 3. add Political Compass to broaden worldview coverage
-4. add creativity tasks as separate bounded PRs, not one diffuse family dump
+4. add the next creativity tasks as separate bounded PRs, not one diffuse family dump
 5. densify crosswalks and interaction hypotheses after the source objects exist
 
 ## Operating rule

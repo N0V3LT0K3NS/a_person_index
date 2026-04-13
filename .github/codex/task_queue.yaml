@@ -143,7 +143,7 @@ tasks:
       - Keep this task closed unless a deliberately broad creativity-family PR is desired.
 
   - id: task_add_divergent_association_task
-    status: ready
+    status: done
     priority: high
     primary_layer: canonical registry
     title: Add the Divergent Association Task as a creativity-measure framework with explicit scoring and validity notes
@@ -179,6 +179,7 @@ tasks:
     notes:
       - Keep trait interpretation conservative.
       - Prefer construct-level linkage over broad narrative inference.
+      - Completed and merged via PR #25; keep this item for traceability, not for redispatch.
 
   - id: task_add_remote_associates_framework
     status: ready
