@@ -242,7 +242,7 @@ async function buildServer() {
     "registry://protocol-packs",
     {
       title: "Program Pack Catalog",
-      description: "Curated protocol-pack catalog and summary index.",
+      description: "Curated program-pack catalog and summary index.",
       mimeType: "application/json",
     },
     async (uri) => ({
@@ -259,8 +259,8 @@ async function buildServer() {
     "protocol-pack",
     new ResourceTemplate("registry://protocol-pack/{pack_id}", { list: undefined }),
     {
-      title: "Curated Protocol Pack",
-      description: "Generated curated protocol-pack artifact by pack ID.",
+      title: "Curated Program Pack",
+      description: "Generated curated program-pack artifact by pack ID.",
       mimeType: "application/json",
     },
     async (uri, { pack_id }) => ({
@@ -278,7 +278,7 @@ async function buildServer() {
     "registry://protocol-pack-grammar",
     {
       title: "Program Pack Grammar",
-      description: "Canonical grammar for generated protocol packs.",
+      description: "Canonical grammar for generated program packs.",
       mimeType: "application/json",
     },
     async (uri) => ({
@@ -350,8 +350,8 @@ async function buildServer() {
   server.registerPrompt(
     "protocol-pack-authoring",
     {
-      title: "Protocol Pack Authoring",
-      description: "Load the canonical grammar and constraints for creating future protocol packs.",
+      title: "Program Pack Authoring",
+      description: "Load the canonical grammar and constraints for creating future program packs.",
       argsSchema: {
         protocol_name: z.string().optional(),
       },
@@ -543,8 +543,8 @@ async function buildServer() {
   server.registerTool(
     "list_protocol_packs",
     {
-      title: "List Protocol Packs",
-      description: "Return curated protocol-pack catalog entries with optional filters. Use featured=true first when you need the most likely reviewed starting points.",
+      title: "List Program Packs",
+      description: "Return curated program-pack catalog entries with optional filters. Use featured=true first when you need the most likely reviewed starting points.",
       inputSchema: {
         text: z.string().optional(),
         consumer: z.string().optional(),
@@ -571,8 +571,8 @@ async function buildServer() {
   server.registerTool(
     "fetch_curated_protocol_pack",
     {
-      title: "Fetch Curated Protocol Pack",
-      description: "Return a curated protocol-pack catalog entry plus its generated runtime bundle.",
+      title: "Fetch Curated Program Pack",
+      description: "Return a curated program-pack catalog entry plus its generated runtime bundle.",
       inputSchema: {
         ref: z.string(),
       },
@@ -589,7 +589,7 @@ async function buildServer() {
   server.registerTool(
     "fetch_protocol_pack_summary",
     {
-      title: "Fetch Protocol Pack Summary",
+      title: "Fetch Program Pack Summary",
       description: "Return a compact summary of a runtime pack before fetching the full pack. Use this when you want execution order, techniques, and outputs without the full nested payload.",
       inputSchema: {
         ref: z.string(),
@@ -612,8 +612,8 @@ async function buildServer() {
   server.registerTool(
     "fetch_protocol_pack",
     {
-      title: "Fetch Protocol Pack",
-      description: "Assemble a downstream-ready protocol pack scoped to selected frameworks or constructs. The ref must be a real program name or ID such as ILENS, Human Model Card, Translation Memo, or Paradox Finder.",
+      title: "Fetch Program Pack",
+      description: "Assemble a downstream-ready program pack scoped to selected frameworks or constructs. The ref must be a real program name or ID such as ILENS, Human Model Card, Translation Memo, or Paradox Finder.",
       inputSchema: {
         ref: z.string(),
         frameworks: z.array(z.string()).optional(),
@@ -635,8 +635,8 @@ async function buildServer() {
   server.registerTool(
     "fetch_protocol_pack_grammar",
     {
-      title: "Fetch Protocol Pack Grammar",
-      description: "Return the canonical grammar for generated protocol packs.",
+      title: "Fetch Program Pack Grammar",
+      description: "Return the canonical grammar for generated program packs.",
       inputSchema: {},
     },
     async () => {

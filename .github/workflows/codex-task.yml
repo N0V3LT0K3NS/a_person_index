@@ -262,6 +262,16 @@ jobs:
             bash -lc "$command"
           done <<< "$VERIFICATION_COMMANDS"
 
+      - name: Remove workflow scratch artifacts
+        run: |
+          rm -f \
+            codex-last-message.txt \
+            codex-task.prompt \
+            task-body.md \
+            task-title.txt \
+            task.json \
+            verification-commands.txt
+
       - name: Create pull request
         id: cpr
         uses: peter-evans/create-pull-request@v7

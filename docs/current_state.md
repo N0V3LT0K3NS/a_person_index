@@ -20,7 +20,7 @@ As of the current branch state, the repo includes:
 - 7 interaction hypotheses
 - 6 reusable techniques
 - 4 index program specs
-- 4 curated protocol packs
+- 4 curated program packs
 - 5 research contribution models
 - 5 research promotion pathways
 - 1 result atom schema
@@ -46,7 +46,7 @@ As of the current branch state, the repo includes:
 - Techniques are first-class records rather than scattered prompt fragments
 - Index programs such as `Paradox Finder`, `ILENS`, `Human Model Card`, and `Translation Memo` are explicitly modeled as consumers of the index
 - Runtime packs are now a callable bundle shape rather than an implicit orchestration task left to downstream agents
-- Curated protocol packs now have a source catalog, generated artifacts, and stable discovery surfaces for downstream agents
+- Curated program packs now have a source catalog, generated artifacts, and stable discovery surfaces for downstream agents
 
 ### Research stream
 

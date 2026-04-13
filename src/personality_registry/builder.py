@@ -1228,7 +1228,7 @@ def _protocols_html(extensions: ExtensionRegistryData) -> str:
 def _protocol_packs_html(repository, extensions: ExtensionRegistryData) -> str:
     cards = "\n".join(
         _extension_card(
-            eyebrow="Protocol Pack",
+            eyebrow="Program Pack",
             title=item["title"],
             body=f"{item['summary']} Targets: {', '.join(item['target_labels'])}.",
             tags=[
@@ -1248,8 +1248,8 @@ def _protocol_packs_html(repository, extensions: ExtensionRegistryData) -> str:
     <main>
       {_nav_html("", "protocol-packs")}
       <section class="hero-panel">
-        <p class="eyebrow">Protocol Packs</p>
-        <h1>Curated Protocol Packs</h1>
+        <p class="eyebrow">Program Packs</p>
+        <h1>Curated Program Packs</h1>
         <p class="page-lead">Stable, reviewed runtime bundles generated from cataloged scopes, index program specs, technique bundles, motif traces, mappings, and interaction hypotheses.</p>
       </section>
       <section class="stats">

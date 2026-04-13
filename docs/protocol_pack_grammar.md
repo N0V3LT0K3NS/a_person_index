@@ -1,10 +1,10 @@
-# Protocol Pack Grammar
+# Program Pack Grammar
 
-This document defines the canonical syntax for generated protocol packs.
+This document defines the canonical syntax for generated program packs.
 
-## What a protocol pack is
+## What a program pack is
 
-A protocol pack is a downstream-ready bundle assembled from existing registry primitives.
+A program pack is a downstream-ready bundle assembled from existing registry primitives.
 
 The internal `protocol_pack` naming remains in the grammar and generated artifacts for compatibility, even as the public product language increasingly refers to these as `program packs`.
 
@@ -34,7 +34,7 @@ With packs, the repo can supply a pre-assembled operational bundle for a defined
 
 ## Canonical section order
 
-Every protocol pack should follow this section order:
+Every program pack should follow this section order:
 
 1. `pack`
 2. `protocol`

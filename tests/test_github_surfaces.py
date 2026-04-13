@@ -42,3 +42,12 @@ def test_codex_task_workflow_validates_openai_api_key(repo_root):
     assert "Validate OpenAI API key configuration" in text
     assert "your-api-key-here" in text
     assert "sk-proj-" in text
+    assert "Remove workflow scratch artifacts" in text
+    assert "codex-last-message.txt" in text
+
+
+def test_codex_automation_doc_covers_repo_workflow_permissions(repo_root):
+    path = repo_root / "docs" / "codex_automation.md"
+    text = path.read_text(encoding="utf-8")
+    assert "Workflow permissions must be set to `Read and write permissions`" in text
+    assert "not permitted to create or approve pull requests" in text

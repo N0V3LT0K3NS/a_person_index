@@ -20,3 +20,9 @@ output/
 temp_notepad/
 .claude/
 .DS_Store
+codex-last-message.txt
+codex-task.prompt
+task-body.md
+task-title.txt
+task.json
+verification-commands.txt

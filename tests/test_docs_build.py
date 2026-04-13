@@ -98,7 +98,7 @@ def test_build_docs_renders_audit_and_registry_sections(repo_root):
     assert "House Motifs" in motifs_html
     assert "Interaction Hypotheses" in interactions_html
     assert "Index Programs" in protocols_html
-    assert "Curated Protocol Packs" in protocol_packs_html
+    assert "Curated Program Packs" in protocol_packs_html
     assert "Stable, reviewed runtime bundles" in protocol_packs_html
     assert "Research Contribution Models" in research_html
     assert "Promotion Pathways" in research_html

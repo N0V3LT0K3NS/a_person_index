@@ -41,6 +41,12 @@ The `codex-task.yml` workflow now fails fast if the secret is empty, still set t
 
 The workflow uses the default `GITHUB_TOKEN` for checkout, branch creation, PR creation, and optional issue comments.
 
+Repository setting requirement:
+
+- GitHub repo Settings -> Actions -> General -> Workflow permissions must be set to `Read and write permissions`
+
+If that repo-level setting remains on `Read repository contents permission`, the workflow can still check out the repo, run Codex, and pass verification, but it will fail at the PR step with GitHub's `not permitted to create or approve pull requests` error. The YAML `permissions:` block does not override that repository-level cap.
+
 The `codex-task.yml` workflow should use the official [`openai/codex-action`](https://github.com/openai/codex-action) rather than shelling directly into a raw `codex exec` install on the runner. That action handles installing the CLI and configuring a secure Responses API proxy for GitHub Actions.
 
 For bounded research-expansion work, the workflow currently runs Codex with:
@@ -121,6 +127,8 @@ This is the preferred path for repeatable research-expansion work because it kee
 - the resulting PR bounded
 
 Queue-dispatched `codex-task` runs now rerender the canonical task spec from `.github/codex/task_queue.yaml` on the GitHub runner using `task_id`. They do not rely on an issue body surviving GitHub workflow input plumbing perfectly.
+
+The workflow also removes its own temporary task files before PR creation so automation artifacts do not leak into the resulting branch.
 
 ## Batch dispatch
 
