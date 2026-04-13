@@ -14,6 +14,17 @@ The MCP adapter solves that by exposing the existing registry primitives through
 
 The MCP layer is an adapter, not a second source of truth.
 
+## Fastest safe onboarding
+
+For a newly arrived agent, the fastest reliable sequence is:
+
+1. `registry://manifest`
+2. `registry://quickstart`
+3. `registry://current-state`
+4. `list_protocol_packs(featured=true)`
+
+If the task involves pasted user assessment results, then use [docs/assessment_workflow.md](/Users/noveltokens/a_person_index/docs/assessment_workflow.md) before improvising with motif or pack calls.
+
 ## Ready-to-share status
 
 The MCP surface is now ready for serious local and nearby-agent use.
@@ -22,6 +33,7 @@ What is currently proven:
 
 - repo-owned smoke and contract tests
 - Claude Code via explicit strict MCP config
+- Claude Desktop via the app MCP config file
 - Hermes via a remote wrapper around the same stdio server
 
 Client setup and tested commands live in [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md).
@@ -82,8 +94,10 @@ npm run mcp:test
 ## Exposed resources
 
 - `registry://manifest`
+- `registry://quickstart`
 - `registry://current-state`
 - `registry://roadmap`
+- `registry://assessment-workflow`
 - `registry://research-promotion`
 - `registry://protocol-packs`
 - `registry://protocol-pack/{pack_id}`
@@ -109,6 +123,7 @@ npm run mcp:test
 ## Exposed prompts
 
 - `registry-arrival`
+- `assessment-results-intake`
 - `protocol-pack-authoring`
 
 ## Maintenance rule

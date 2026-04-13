@@ -2833,7 +2833,9 @@
           "CQS",
           "Cultural Intelligence Scale"
         ],
-        "aliases": [],
+        "aliases": [
+          "Cultural Intelligence"
+        ],
         "status": "active",
         "family": [
           "cultural_intercultural"
@@ -3591,7 +3593,9 @@
         "short_names": [
           "Culture Index"
         ],
-        "aliases": [],
+        "aliases": [
+          "Culture Index Personality Test"
+        ],
         "status": "active",
         "family": [
           "leadership_workplace",
@@ -4419,7 +4423,9 @@
         "short_names": [
           "Dark Triad"
         ],
-        "aliases": [],
+        "aliases": [
+          "Dark Triad Test"
+        ],
         "status": "active",
         "family": [
           "trait_personality",
@@ -7793,7 +7799,10 @@
         "short_names": [
           "Human Design"
         ],
-        "aliases": [],
+        "aliases": [
+          "Human Design System",
+          "Bodygraph"
+        ],
         "status": "active",
         "family": [
           "symbolic_archetypal_spiritual",
@@ -9318,7 +9327,11 @@
         "short_names": [
           "Love Languages"
         ],
-        "aliases": [],
+        "aliases": [
+          "Love Language",
+          "Five Love Languages",
+          "5 Love Languages"
+        ],
         "status": "active",
         "family": [
           "attachment_relational",
@@ -10921,7 +10934,9 @@
           "Birth Chart Astrology"
         ],
         "aliases": [
-          "Birth Chart"
+          "Birth Chart",
+          "Natal Chart",
+          "Astrology"
         ],
         "status": "active",
         "family": [

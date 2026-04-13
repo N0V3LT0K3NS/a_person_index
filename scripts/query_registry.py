@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import sys
 
 from _bootstrap import bootstrap
 
@@ -983,4 +984,9 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except KeyError as error:
+        message = error.args[0] if error.args else str(error)
+        print(message, file=sys.stderr)
+        raise SystemExit(1)

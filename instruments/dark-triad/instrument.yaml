@@ -3,7 +3,8 @@ instrument:
   canonical_name: Dark Triad
   short_names:
   - Dark Triad
-  aliases: []
+  aliases:
+  - Dark Triad Test
   status: active
   family:
   - trait_personality

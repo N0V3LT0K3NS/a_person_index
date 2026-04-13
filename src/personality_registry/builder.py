@@ -189,6 +189,8 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
         "start_here": [
             "AGENTS.md",
             "README.md",
+            "docs/agent_quickstart.md",
+            "docs/assessment_workflow.md",
             "CHANGELOG.md",
             "docs/release_status.md",
             "CONTRIBUTING.md",
@@ -389,6 +391,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "example_root": "examples/mcp/",
                 "setup_helpers": [
                     "scripts/write_claude_mcp_config.sh",
+                    "scripts/write_claude_desktop_mcp_config.sh",
                     "scripts/test_claude_code_mcp.sh",
                     "scripts/test_hermes_remote_mcp.sh",
                 ],
@@ -397,6 +400,11 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                         "name": "Claude Code",
                         "mode": "local_strict_config",
                         "verification": "./scripts/test_claude_code_mcp.sh",
+                    },
+                    {
+                        "name": "Claude Desktop",
+                        "mode": "desktop_app_config",
+                        "verification": "./scripts/write_claude_desktop_mcp_config.sh",
                     },
                     {
                         "name": "Hermes",
@@ -421,8 +429,10 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 ],
                 "resource_uris": [
                     "registry://manifest",
+                    "registry://quickstart",
                     "registry://current-state",
                     "registry://roadmap",
+                    "registry://assessment-workflow",
                     "registry://research-promotion",
                     "registry://protocol-packs",
                     "registry://protocol-pack/{pack_id}",
@@ -431,6 +441,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 ],
                 "prompt_ids": [
                     "registry-arrival",
+                    "assessment-results-intake",
                     "protocol-pack-authoring",
                 ],
                 "doc_path": "docs/mcp.md",

@@ -108,7 +108,7 @@ async function buildServer() {
     name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, and research contribution models from A Person Index. Keep canonical data, house synthesis, index programs, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, and research contribution models from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. Keep canonical data, house synthesis, index programs, and research evidence clearly separated.",
   });
 
   server.registerResource(
@@ -124,6 +124,24 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("generated/manifest.json"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "quickstart",
+    "registry://quickstart",
+    {
+      title: "Agent Quickstart",
+      description: "Shortest safe arrival path for agents using A Person Index.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/agent_quickstart.md"),
         },
       ],
     }),
@@ -160,6 +178,24 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/roadmap.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "assessment-workflow",
+    "registry://assessment-workflow",
+    {
+      title: "Assessment Workflow",
+      description: "Recommended workflow for turning user assessment results into matched frameworks, packs, motifs, and bounded synthesis.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/assessment_workflow.md"),
         },
       ],
     }),
@@ -267,7 +303,26 @@ async function buildServer() {
           role: "user",
           content: {
             type: "text",
-            text: await readRepoText("AGENTS.md"),
+            text: await readRepoText("docs/agent_quickstart.md"),
+          },
+        },
+      ],
+    }),
+  );
+
+  server.registerPrompt(
+    "assessment-results-intake",
+    {
+      title: "Assessment Results Intake",
+      description: "Load the preferred workflow for matching user assessment results into frameworks, packs, motifs, and caveats.",
+    },
+    async () => ({
+      messages: [
+        {
+          role: "user",
+          content: {
+            type: "text",
+            text: await readRepoText("docs/assessment_workflow.md"),
           },
         },
       ],
@@ -306,7 +361,7 @@ async function buildServer() {
     "find_framework_records",
     {
       title: "Find Framework Records",
-      description: "Resolve canonical framework records by name, alias, family, text, or related framework.",
+      description: "Resolve canonical framework records by name, alias, family, text, or related framework. Prefer refs for distinct labels and use text for short fuzzy recovery, not as a blind full-report dump.",
       inputSchema: {
         refs: z.array(z.string()).optional(),
         families: z.array(z.string()).optional(),
@@ -418,7 +473,7 @@ async function buildServer() {
     "fetch_protocol_spec",
     {
       title: "Fetch Protocol Spec",
-      description: "Return a protocol spec and its technique bundle.",
+      description: "Return an index program spec and its technique bundle. Use this to understand a program such as ILENS or Human Model Card, not to claim it already executed.",
       inputSchema: {
         ref: z.string(),
       },
@@ -436,7 +491,7 @@ async function buildServer() {
     "list_protocol_packs",
     {
       title: "List Protocol Packs",
-      description: "Return curated protocol-pack catalog entries with optional filters.",
+      description: "Return curated protocol-pack catalog entries with optional filters. Use featured=true first when you need the most likely reviewed starting points.",
       inputSchema: {
         text: z.string().optional(),
         consumer: z.string().optional(),
@@ -482,7 +537,7 @@ async function buildServer() {
     "fetch_protocol_pack",
     {
       title: "Fetch Protocol Pack",
-      description: "Assemble a downstream-ready protocol pack scoped to selected frameworks or constructs.",
+      description: "Assemble a downstream-ready protocol pack scoped to selected frameworks or constructs. The ref must be a real program name or ID such as ILENS, Human Model Card, Translation Memo, or Paradox Finder.",
       inputSchema: {
         ref: z.string(),
         frameworks: z.array(z.string()).optional(),

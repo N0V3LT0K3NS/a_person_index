@@ -6,7 +6,11 @@
     "short_names": [
       "Love Languages"
     ],
-    "aliases": [],
+    "aliases": [
+      "Love Language",
+      "Five Love Languages",
+      "5 Love Languages"
+    ],
     "status": "active",
     "family": [
       "attachment_relational",

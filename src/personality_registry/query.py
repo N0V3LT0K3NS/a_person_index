@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+from difflib import get_close_matches
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
@@ -15,6 +16,61 @@ def _normalize(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
 
 
+SEARCH_STOPWORDS = {
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "assessment",
+    "assessments",
+    "average",
+    "by",
+    "for",
+    "from",
+    "high",
+    "in",
+    "is",
+    "low",
+    "medium",
+    "moderately",
+    "of",
+    "or",
+    "personality",
+    "profile",
+    "results",
+    "score",
+    "scores",
+    "system",
+    "test",
+    "tests",
+    "the",
+    "to",
+    "type",
+    "very",
+    "with",
+}
+
+
+def _tokenize_search_terms(text: str) -> set[str]:
+    tokens = set(re.findall(r"[a-z0-9]+", text.lower()))
+    return {
+        token
+        for token in tokens
+        if token not in SEARCH_STOPWORDS and (token.isdigit() or len(token) >= 2)
+    }
+
+
+def _instrument_identity_names(bundle: InstrumentBundle) -> list[str]:
+    return [
+        bundle.instrument.id,
+        bundle.slug,
+        bundle.instrument.canonical_name,
+        *bundle.instrument.short_names,
+        *bundle.instrument.aliases,
+    ]
+
+
 def _annotation_index(bundle: InstrumentBundle) -> dict[str, list[str]]:
     index: dict[str, list[str]] = {}
     for annotation in bundle.annotations:
@@ -25,11 +81,7 @@ def _annotation_index(bundle: InstrumentBundle) -> dict[str, list[str]]:
 
 def _search_blob(bundle: InstrumentBundle) -> str:
     parts = [
-        bundle.instrument.id,
-        bundle.slug,
-        bundle.instrument.canonical_name,
-        *bundle.instrument.short_names,
-        *bundle.instrument.aliases,
+        *_instrument_identity_names(bundle),
         bundle.instrument.short_description,
         bundle.notes,
         *(claim.claim_text for claim in bundle.claims),
@@ -41,7 +93,43 @@ def _search_blob(bundle: InstrumentBundle) -> str:
 
 
 def _match_text(bundle: InstrumentBundle, query: str) -> bool:
-    return _normalize(query) in _search_blob(bundle)
+    query_normalized = _normalize(query)
+    search_blob = _search_blob(bundle)
+    if query_normalized in search_blob:
+        return True
+
+    identity_names = [_normalize(name) for name in _instrument_identity_names(bundle) if name]
+    if any(name and name in query_normalized for name in identity_names):
+        return True
+
+    query_tokens = _tokenize_search_terms(query)
+    if not query_tokens:
+        return False
+
+    identity_tokens = _tokenize_search_terms(" ".join(identity_names))
+    identity_overlap = query_tokens & identity_tokens
+    if identity_overlap:
+        if identity_tokens and identity_tokens.issubset(query_tokens):
+            return True
+        if len(identity_overlap) >= 2:
+            return True
+        if any(token in query_tokens for token in identity_tokens if len(token) >= 4):
+            return True
+
+    if len(query_tokens) > 4:
+        return False
+
+    search_tokens = _tokenize_search_terms(search_blob)
+    minimum_overlap = 1 if len(query_tokens) == 1 else 2
+    return len(query_tokens & search_tokens) >= minimum_overlap
+
+
+def _format_suggestions(ref: str, names: Iterable[str]) -> str:
+    unique_names = sorted({name for name in names if name})
+    close_matches = get_close_matches(ref, unique_names, n=4, cutoff=0.45)
+    if not close_matches:
+        return ""
+    return f". Try one of: {', '.join(close_matches)}"
 
 
 def _entity_to_instrument_map(repository: RepositoryData) -> dict[str, str]:
@@ -110,6 +198,7 @@ def _relationship_bundle_ids(repository: RepositoryData, ref_id: str) -> set[str
 def resolve_instrument(repository: RepositoryData, ref: str) -> InstrumentBundle:
     normalized = _normalize(ref)
     candidates: list[InstrumentBundle] = []
+    candidate_names: list[str] = []
     for bundle in repository.instruments.values():
         names = {
             bundle.instrument.id,
@@ -118,10 +207,12 @@ def resolve_instrument(repository: RepositoryData, ref: str) -> InstrumentBundle
             *bundle.instrument.short_names,
             *bundle.instrument.aliases,
         }
+        candidate_names.extend(name for name in names if name)
         if normalized in {_normalize(name) for name in names if name}:
             candidates.append(bundle)
     if not candidates:
-        raise KeyError(f"No instrument found for '{ref}'")
+        suggestions = _format_suggestions(ref, candidate_names)
+        raise KeyError(f"No framework record found for '{ref}'{suggestions}")
     if len(candidates) > 1:
         raise KeyError(f"Reference '{ref}' is ambiguous across {[bundle.instrument.id for bundle in candidates]}")
     return candidates[0]
@@ -130,6 +221,7 @@ def resolve_instrument(repository: RepositoryData, ref: str) -> InstrumentBundle
 def resolve_construct(repository: RepositoryData, ref: str):
     normalized = _normalize(ref)
     candidates = []
+    candidate_names: list[str] = []
     for bundle in repository.instruments.values():
         for construct in bundle.constructs:
             names = {
@@ -137,10 +229,12 @@ def resolve_construct(repository: RepositoryData, ref: str):
                 construct.name,
                 construct.short_name or "",
             }
+            candidate_names.extend(name for name in names if name)
             if normalized in {_normalize(name) for name in names if name}:
                 candidates.append((bundle, construct))
     if not candidates:
-        raise KeyError(f"No construct found for '{ref}'")
+        suggestions = _format_suggestions(ref, candidate_names)
+        raise KeyError(f"No construct found for '{ref}'{suggestions}")
     if len(candidates) > 1:
         raise KeyError(
             f"Reference '{ref}' is ambiguous across {[construct.id for _, construct in candidates]}"
@@ -192,16 +286,19 @@ class QueryResult:
 def _resolve_extension_item(items: list[Any], ref: str, label_fields: tuple[str, ...]) -> Any:
     normalized = _normalize(ref)
     candidates = []
+    candidate_names: list[str] = []
     for item in items:
         names = {getattr(item, "id", "")}
         for field_name in label_fields:
             value = getattr(item, field_name, None)
             if isinstance(value, str):
                 names.add(value)
+        candidate_names.extend(name for name in names if name)
         if normalized in {_normalize(name) for name in names if name}:
             candidates.append(item)
     if not candidates:
-        raise KeyError(f"No extension record found for '{ref}'")
+        suggestions = _format_suggestions(ref, candidate_names)
+        raise KeyError(f"No extension record found for '{ref}'{suggestions}")
     if len(candidates) > 1:
         raise KeyError(
             f"Reference '{ref}' is ambiguous across {[getattr(item, 'id', '(no id)') for item in candidates]}"
