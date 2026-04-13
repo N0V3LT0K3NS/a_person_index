@@ -2,6 +2,8 @@
 
 This document compresses the next implementation sequence after the current substrate build-out.
 
+For the fuller standing backlog and preserved idea set, also use [docs/strategic_backlog.md](/Users/noveltokens/a_person_index/docs/strategic_backlog.md).
+
 ## Planning stance
 
 The next priority is not more abstract ontology work.

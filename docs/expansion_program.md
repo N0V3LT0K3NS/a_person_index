@@ -6,6 +6,7 @@ Use it with:
 
 - [docs/research_authoring_standard.md](/Users/noveltokens/a_person_index/docs/research_authoring_standard.md)
 - [docs/source_landscape.md](/Users/noveltokens/a_person_index/docs/source_landscape.md)
+- [docs/strategic_backlog.md](/Users/noveltokens/a_person_index/docs/strategic_backlog.md)
 - [.github/codex/task_queue.yaml](/Users/noveltokens/a_person_index/.github/codex/task_queue.yaml)
 - [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md)
 

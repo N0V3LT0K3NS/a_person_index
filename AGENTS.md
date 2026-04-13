@@ -19,6 +19,7 @@ Only then deepen as needed:
 - Status and direction:
   [docs/release_status.md](/Users/noveltokens/a_person_index/docs/release_status.md),
   [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md),
+  [docs/strategic_backlog.md](/Users/noveltokens/a_person_index/docs/strategic_backlog.md),
   [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md),
   [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md),
   [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)

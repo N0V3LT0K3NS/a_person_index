@@ -13,6 +13,7 @@ def test_onboarding_docs_exist(repo_root):
         repo_root / "skills" / "a-person-index" / "agents" / "openai.yaml",
         repo_root / "skills" / "a-person-index" / "references" / "workflows.md",
         repo_root / "docs" / "release_status.md",
+        repo_root / "docs" / "strategic_backlog.md",
         repo_root / "docs" / "agent_quickstart.md",
         repo_root / "docs" / "assessment_workflow.md",
         repo_root / "docs" / "ilens_walkthrough.md",
@@ -55,6 +56,7 @@ def test_readme_links_to_onboarding_surface(repo_root):
     assert "docs/assessment_workflow.md" in readme
     assert "docs/ilens_walkthrough.md" in readme
     assert "docs/release_status.md" in readme
+    assert "docs/strategic_backlog.md" in readme
     assert "docs/current_state.md" in readme
     assert "docs/index_programs.md" in readme
     assert "docs/codex_automation.md" in readme

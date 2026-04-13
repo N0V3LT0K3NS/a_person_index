@@ -10,6 +10,8 @@ Public landing page: [a-person-index.netlify.app](https://a-person-index.netlify
 
 Release status: [docs/release_status.md](/Users/noveltokens/a_person_index/docs/release_status.md)
 
+Standing planning memo: [docs/strategic_backlog.md](/Users/noveltokens/a_person_index/docs/strategic_backlog.md)
+
 ## Current shipped scope
 
 As of the current branch state, the repo includes:
