@@ -34,3 +34,11 @@ def test_codeowners_exists(repo_root):
     path = repo_root / ".github" / "CODEOWNERS"
     assert path.exists()
     assert "@N0V3LT0K3NS" in path.read_text(encoding="utf-8")
+
+
+def test_codex_task_workflow_validates_openai_api_key(repo_root):
+    path = repo_root / ".github" / "workflows" / "codex-task.yml"
+    text = path.read_text(encoding="utf-8")
+    assert "Validate OpenAI API key configuration" in text
+    assert "your-api-key-here" in text
+    assert "sk-proj-" in text

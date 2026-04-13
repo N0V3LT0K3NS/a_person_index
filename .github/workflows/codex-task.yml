@@ -216,6 +216,32 @@ jobs:
             echo "- If a verification command is intentionally not applicable, explain that in the PR body."
           } > codex-task.prompt
 
+      - name: Validate OpenAI API key configuration
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "${OPENAI_API_KEY}" ]; then
+            echo "::error::Missing OPENAI_API_KEY repository secret."
+            echo "::error::Add a real OpenAI Platform API key in GitHub repo settings before running codex-task."
+            exit 1
+          fi
+
+          if [ "${OPENAI_API_KEY}" = "your-api-key-here" ] || [ "${OPENAI_API_KEY}" = "your-api-key" ]; then
+            echo "::error::OPENAI_API_KEY is still set to a placeholder value."
+            echo "::error::Replace it with a real OpenAI Platform API key. ChatGPT app access or credits alone are not enough."
+            exit 1
+          fi
+
+          case "${OPENAI_API_KEY}" in
+            sk-*|sk-proj-*)
+              ;;
+            *)
+              echo "::error::OPENAI_API_KEY does not look like an OpenAI Platform API key."
+              echo "::error::Expected a key starting with 'sk-' or 'sk-proj-'."
+              exit 1
+              ;;
+          esac
+
       - name: Run Codex
         id: run_codex
         uses: openai/codex-action@v1
