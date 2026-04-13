@@ -18,7 +18,7 @@ Goal:
 ### Repo work
 
 - stabilize the MCP and CLI consumer contract
-- expand protocol packs where repeated use reveals real demand
+- expand program packs where repeated use reveals real demand
 - fill motif and interaction gaps exposed during runtime usage
 - tighten manifest and onboarding around consumer integration
 - sharpen the public docs and site so consumers understand the substrate on arrival
@@ -26,7 +26,7 @@ Goal:
 ### GNOMY work
 
 - connect to the repo through MCP or CLI
-- fetch curated or dynamic protocol packs
+- fetch curated or dynamic program packs
 - normalize runtime outputs into result atoms
 - use motifs, mappings, and interactions during synthesis
 - return only approved research contribution shapes
@@ -71,7 +71,7 @@ A broader `framework` model should be designed after Phase 3 reveals where the c
 
 ## Open questions to carry through Phase 3
 
-- Which protocol packs become heavily used enough to deserve curated support?
+- Which program packs become heavily used enough to deserve curated support?
 - Which result-atom shapes recur across consumers besides `GNOMY`?
 - Where does the current instrument-centered model feel too narrow in real use?
 - What research contributions are actually worth collecting, rather than merely possible to collect?

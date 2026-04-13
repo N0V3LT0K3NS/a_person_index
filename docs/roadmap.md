@@ -35,8 +35,8 @@ Delivered so far:
 - interaction hypotheses
 - technique registry
 - first index programs in the protocol registry
-- protocol-pack query surface and grammar
-- curated protocol-pack catalog and generated pack artifacts
+- program-pack query surface and grammar
+- curated program-pack catalog and generated pack artifacts
 - read-only MCP adapter over the Python query surface
 - research contribution models
 - research promotion registry
@@ -56,7 +56,7 @@ Target deliverables:
 - stable consumer contract across MCP, CLI, manifest, and generated artifacts
 - successful `GNOMY` use of index programs, program packs, result atoms, motifs, and interaction hypotheses
 - contract hardening based on real runtime pressure
-- richer protocol-pack coverage where repeated use justifies it
+- richer program-pack coverage where repeated use justifies it
 - cleaner consumer-facing documentation and site surfaces
 
 ## Phase 4: Research Ops And Evidence Review

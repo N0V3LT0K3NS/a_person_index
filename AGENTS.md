@@ -4,36 +4,42 @@ This repository is A Person Index (API), an agent-readable knowledge substrate f
 
 If Codex is the host and the companion skill is installed, prefer `$a-person-index` for comparative work, program-pack use, and research-safe return formatting. The skill is an operating layer on top of this repo's MCP and CLI surfaces, not a second source of truth.
 
-If you only need the fast arrival path, prefer [docs/agent_quickstart.md](/Users/noveltokens/a_person_index/docs/agent_quickstart.md) and [docs/assessment_workflow.md](/Users/noveltokens/a_person_index/docs/assessment_workflow.md) before reading the full repo.
+If you only need the fast arrival path, prefer [docs/agent_quickstart.md](/Users/noveltokens/a_person_index/docs/agent_quickstart.md) and [docs/assessment_workflow.md](/Users/noveltokens/a_person_index/docs/assessment_workflow.md) before reading the deeper repo map.
 
-If you are arriving cold, start here in this order:
+If you are arriving cold, do this first:
 
 1. [README.md](/Users/noveltokens/a_person_index/README.md)
 2. [docs/agent_quickstart.md](/Users/noveltokens/a_person_index/docs/agent_quickstart.md)
-3. [docs/assessment_workflow.md](/Users/noveltokens/a_person_index/docs/assessment_workflow.md)
-4. [docs/ilens_walkthrough.md](/Users/noveltokens/a_person_index/docs/ilens_walkthrough.md)
-5. [CHANGELOG.md](/Users/noveltokens/a_person_index/CHANGELOG.md)
-6. [docs/release_status.md](/Users/noveltokens/a_person_index/docs/release_status.md)
-7. [CONTRIBUTING.md](/Users/noveltokens/a_person_index/CONTRIBUTING.md)
-8. [SECURITY.md](/Users/noveltokens/a_person_index/SECURITY.md)
-9. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
-10. [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md)
-11. [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md)
-12. [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
-13. [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md)
-14. [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
-15. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
-16. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
-17. [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md)
-18. [docs/research_authoring_standard.md](/Users/noveltokens/a_person_index/docs/research_authoring_standard.md)
-19. [docs/source_landscape.md](/Users/noveltokens/a_person_index/docs/source_landscape.md)
-20. [docs/expansion_program.md](/Users/noveltokens/a_person_index/docs/expansion_program.md)
-21. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-22. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-23. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-24. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-25. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-26. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+3. [docs/current_state.md](/Users/noveltokens/a_person_index/docs/current_state.md)
+4. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
+5. [docs/assessment_workflow.md](/Users/noveltokens/a_person_index/docs/assessment_workflow.md)
+
+Only then deepen as needed:
+
+- Status and direction:
+  [docs/release_status.md](/Users/noveltokens/a_person_index/docs/release_status.md),
+  [docs/roadmap.md](/Users/noveltokens/a_person_index/docs/roadmap.md),
+  [docs/architecture.md](/Users/noveltokens/a_person_index/docs/architecture.md),
+  [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md),
+  [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+- Programs, packs, and runtime use:
+  [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md),
+  [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md),
+  [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md),
+  [docs/ilens_walkthrough.md](/Users/noveltokens/a_person_index/docs/ilens_walkthrough.md),
+  [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+- Clients and operations:
+  [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md),
+  [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md),
+  [CONTRIBUTING.md](/Users/noveltokens/a_person_index/CONTRIBUTING.md),
+  [SECURITY.md](/Users/noveltokens/a_person_index/SECURITY.md),
+  [CHANGELOG.md](/Users/noveltokens/a_person_index/CHANGELOG.md)
+- Research and expansion:
+  [docs/research_authoring_standard.md](/Users/noveltokens/a_person_index/docs/research_authoring_standard.md),
+  [docs/source_landscape.md](/Users/noveltokens/a_person_index/docs/source_landscape.md),
+  [docs/expansion_program.md](/Users/noveltokens/a_person_index/docs/expansion_program.md),
+  [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md),
+  [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 ## What this repo is
 

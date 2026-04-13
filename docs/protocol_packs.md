@@ -1,10 +1,10 @@
-# Curated Protocol Packs
+# Curated Program Packs
 
-This document defines the curated protocol-pack layer for A Person Index.
+This document defines the curated program-pack layer for A Person Index.
 
 ## What it is
 
-Curated protocol packs are stable, reviewed runtime bundles built from:
+Curated program packs are stable, reviewed runtime bundles built from:
 
 - a source catalog entry in [protocol_packs/catalog.yaml](/Users/noveltokens/a_person_index/protocol_packs/catalog.yaml)
 - an existing protocol spec
@@ -16,9 +16,9 @@ They sit between raw index program specs and fully ad hoc downstream assembly.
 
 ## Why they exist
 
-Dynamic protocol packs are useful when an agent already knows its task and scope.
+Dynamic program packs are useful when an agent already knows its task and scope.
 
-Curated protocol packs exist for repeated, important workflows where the repo should offer:
+Curated program packs exist for repeated, important workflows where the repo should offer:
 
 - a stable name
 - a reviewed scope
@@ -110,7 +110,7 @@ python3 scripts/query_registry.py program-pack ILENS --framework MBTI --framewor
 
 ## Relationship to MCP
 
-The read-only MCP surface exposes curated pack discovery and retrieval through:
+The read-only MCP surface exposes curated pack discovery and retrieval through stable compatibility names:
 
 - `registry://protocol-packs`
 - `registry://protocol-pack/{pack_id}`

@@ -89,7 +89,7 @@ The near-term callable surface for downstream agents should center on a few dura
 - trace an instrument or construct to house motifs
 - fetch house interaction hypotheses for motifs, constructs, or frameworks
 - fetch index program specs and their required techniques
-- fetch a scoped protocol pack when the downstream task is already known
+- fetch a scoped program pack when the downstream task is already known
 - fetch research contribution models and the result-atom schema for safe return traffic
 
 These are intentionally smaller than full person-level synthesis. They make the repo useful to runtimes like GNOMY without moving person-level inference into this codebase.

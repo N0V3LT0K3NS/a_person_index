@@ -25,7 +25,7 @@ This repo owns:
 - house motifs, mappings, and interaction hypotheses
 - comparative techniques
 - downstream index program specs
-- curated protocol packs
+- curated program packs
 - research contribution schemas
 - research promotion policy
 - agent-facing access surfaces such as CLI, generated artifacts, and MCP
@@ -58,7 +58,7 @@ Those are adjacent systems, not this repository.
 `GNOMY` should call this repo for:
 
 - canonical records
-- protocol packs
+- program packs
 - motif traces
 - interaction hypotheses
 - result-atom schema

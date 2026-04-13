@@ -43,6 +43,8 @@ def test_onboarding_docs_exist(repo_root):
 
 def test_readme_links_to_onboarding_surface(repo_root):
     readme = (repo_root / "README.md").read_text(encoding="utf-8")
+    assert "Fast arrival path" in readme
+    assert "If you need the deeper map after that" in readme
     assert "AGENTS.md" in readme
     assert "CHANGELOG.md" in readme
     assert "CONTRIBUTING.md" in readme
