@@ -151,6 +151,7 @@ Return rule:
 - Do not assume a framework label is equivalent to a person-level truth.
 - Do not rebuild pack choreography by hand if a pack already exists.
 - Do not treat research contributions as promoted truth.
+- For recurring expansion work, prefer the queue-driven task path instead of inventing a fresh Codex task prompt every time.
 
 ## References
 

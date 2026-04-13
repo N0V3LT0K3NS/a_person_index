@@ -39,12 +39,14 @@ If you are arriving fresh, read these in order:
 15. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
 16. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
 17. [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md)
-18. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-19. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-20. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-21. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-22. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-23. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+18. [docs/research_authoring_standard.md](/Users/noveltokens/a_person_index/docs/research_authoring_standard.md)
+19. [docs/expansion_program.md](/Users/noveltokens/a_person_index/docs/expansion_program.md)
+20. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+21. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+22. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+23. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+24. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+25. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 Those files together explain what the repo is, what layer you are editing, how downstream systems should use it, and what is next.
 
@@ -262,6 +264,12 @@ python3 scripts/query_registry.py find --ref "Big Five" --ref MBTI --ref Enneagr
 python3 scripts/query_registry.py program-packs --featured
 python3 scripts/query_registry.py program-pack-summary ILENS --framework "Big Five" --framework MBTI --framework Enneagram
 ```
+
+For bounded expansion work, the repo also carries:
+
+- queue: [.github/codex/task_queue.yaml](/Users/noveltokens/a_person_index/.github/codex/task_queue.yaml)
+- renderer: [scripts/render_codex_task_from_queue.py](/Users/noveltokens/a_person_index/scripts/render_codex_task_from_queue.py)
+- workflow: [.github/workflows/dispatch-codex-queue-item.yml](/Users/noveltokens/a_person_index/.github/workflows/dispatch-codex-queue-item.yml)
 
 ## Add a new instrument
 

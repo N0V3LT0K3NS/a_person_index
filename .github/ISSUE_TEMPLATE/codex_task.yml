@@ -9,6 +9,7 @@ body:
       value: |
         Use this form when you want Codex to prepare a PR against A Person Index.
         Keep the request bounded and include the acceptance criteria and verification expectations.
+        If the work is part of the longer framework or crosswalk expansion program, prefer a queue item in `.github/codex/task_queue.yaml` plus the queue-dispatch workflow.
 
   - type: textarea
     id: objective

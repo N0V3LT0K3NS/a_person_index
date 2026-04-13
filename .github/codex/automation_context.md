@@ -21,7 +21,9 @@ You are working inside A Person Index (API).
 6. `docs/index_programs.md`
 7. `docs/system_boundaries.md`
 8. `docs/phase_3_4_plan.md`
-9. `generated/manifest.json`
+9. `docs/research_authoring_standard.md`
+10. `docs/expansion_program.md`
+11. `generated/manifest.json`
 
 ## Hard rules
 
@@ -30,6 +32,7 @@ You are working inside A Person Index (API).
 - Do not move person-level inference into this repo.
 - Respect compatibility surfaces such as `registry://...` URIs and `protocols/registry.yaml`.
 - Keep Git changes scoped and PR-ready.
+- Keep one queue item to one primary seam when working from `.github/codex/task_queue.yaml`.
 
 ## Required verification
 

@@ -204,6 +204,8 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "docs/gnomy_integration.md",
             "docs/mcp.md",
             "docs/mcp_clients.md",
+            "docs/research_authoring_standard.md",
+            "docs/expansion_program.md",
             "docs/protocol_pack_grammar.md",
             "docs/protocol_packs.md",
             "docs/research_promotion.md",
@@ -285,7 +287,9 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "release_status_doc": "docs/release_status.md",
             "codeowners": ".github/CODEOWNERS",
             "codex_automation_doc": "docs/codex_automation.md",
+            "research_authoring_standard_doc": "docs/research_authoring_standard.md",
             "codex_automation_context": ".github/codex/automation_context.md",
+            "codex_task_queue": ".github/codex/task_queue.yaml",
             "issue_templates": [
                 ".github/ISSUE_TEMPLATE/codex_task.yml",
             ],
@@ -302,6 +306,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 ".github/workflows/ci.yml",
                 ".github/workflows/netlify-deploy.yml",
                 ".github/workflows/codex-task.yml",
+                ".github/workflows/dispatch-codex-queue-item.yml",
             ],
         },
         "service_primitives": [
@@ -460,6 +465,12 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                     "protocol-pack-authoring",
                 ],
                 "doc_path": "docs/mcp.md",
+            },
+            "automation": {
+                "task_queue": ".github/codex/task_queue.yaml",
+                "renderer": "scripts/render_codex_task_from_queue.py",
+                "dispatch_workflow": ".github/workflows/dispatch-codex-queue-item.yml",
+                "task_issue_template": ".github/ISSUE_TEMPLATE/codex_task.yml",
             },
         },
         "downstream_contract": {

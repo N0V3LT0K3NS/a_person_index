@@ -21,3 +21,4 @@
 - downstream consumer impact
 - generated outputs rebuilt
 - follow-up work, if any
+- source-quality or evidence-tier changes, if any

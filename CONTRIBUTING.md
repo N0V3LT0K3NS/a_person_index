@@ -51,6 +51,7 @@ Read these first:
 6. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
 7. [SECURITY.md](/Users/noveltokens/a_person_index/SECURITY.md)
 8. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+9. [docs/research_authoring_standard.md](/Users/noveltokens/a_person_index/docs/research_authoring_standard.md)
 
 ## Local verification
 
@@ -102,9 +103,17 @@ Every PR should make clear:
 
 Use the PR template in `.github/pull_request_template.md`.
 
+For recurring framework, crosswalk, and source-enrichment work, prefer a queue item in [.github/codex/task_queue.yaml](/Users/noveltokens/a_person_index/.github/codex/task_queue.yaml) plus the queue-dispatch workflow over writing the whole task from scratch each time.
+
 ## Codex automation
 
 If you want GitHub-triggered Codex work, use the Codex task issue template or the manual workflow described in [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md).
+
+If the work is part of the longer expansion program, use the queue renderer:
+
+```bash
+python3 scripts/render_codex_task_from_queue.py task_seed_source_enrichment
+```
 
 ## Security
 

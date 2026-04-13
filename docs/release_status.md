@@ -17,6 +17,7 @@ This document states the current release posture of A Person Index in compact op
 - CLI-based querying and validation
 - read-only MCP consumption for local and nearby agents
 - companion skill usage for Codex-class hosts
+- queue-driven Codex expansion-task dispatch
 - downstream runtime use by systems such as `GNOMY`
 
 ## Explicit non-goals of this release
@@ -34,7 +35,9 @@ This document states the current release posture of A Person Index in compact op
 3. `docs/mcp.md`
 4. `docs/mcp_clients.md`
 5. `scripts/query_registry.py`
-6. `npm run mcp:serve`
+6. `.github/codex/task_queue.yaml`
+7. `.github/workflows/dispatch-codex-queue-item.yml`
+8. `npm run mcp:serve`
 
 ## Release quality bar met
 
