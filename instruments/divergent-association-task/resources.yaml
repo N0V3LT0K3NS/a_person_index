@@ -25,6 +25,32 @@ resources:
   access_status: public
   officiality: official
   notes: Public explanation page describing task purpose and links to supporting research.
+- id: res_divergent_association_task_task
+  instrument_id: instr_divergent_association_task
+  version_id: ver_divergent_association_task_general
+  resource_type: assessment_page
+  title: Divergent Association Task - Task Page
+  url: https://www.datcreativity.com/task
+  author: null
+  publication_date: null
+  publisher: DAT Creativity
+  language: en
+  access_status: public
+  officiality: official
+  notes: Live task page showing the timed 10-response noun-entry format used for the public DAT.
+- id: res_divergent_association_task_faq
+  instrument_id: instr_divergent_association_task
+  version_id: ver_divergent_association_task_general
+  resource_type: faq
+  title: Divergent Association Task FAQ
+  url: https://www.datcreativity.com/faq
+  author: null
+  publication_date: null
+  publisher: DAT Creativity
+  language: en
+  access_status: public
+  officiality: official
+  notes: Official FAQ covering scoring interpretation, task limits, and common misconceptions.
 - id: res_divergent_association_task_pnas
   instrument_id: instr_divergent_association_task
   version_id: ver_divergent_association_task_general

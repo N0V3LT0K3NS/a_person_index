@@ -110,7 +110,20 @@
       "claim_type": "construct_claim",
       "claim_text": "DAT instructs participants to generate words that are as different from one another as possible, framing performance as divergent association.",
       "source_resource_ids": [
+        "res_divergent_association_task_task",
         "res_divergent_association_task_pnas"
+      ],
+      "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_divergent_association_task_response_format",
+      "instrument_id": "instr_divergent_association_task",
+      "version_id": "ver_divergent_association_task_general",
+      "claim_type": "administration_claim",
+      "claim_text": "Public DAT administration uses a brief timed task where participants enter 10 single nouns intended to be maximally unrelated.",
+      "source_resource_ids": [
+        "res_divergent_association_task_home",
+        "res_divergent_association_task_task"
       ],
       "quotation_status": "paraphrase"
     },
@@ -148,6 +161,18 @@
         "res_divergent_association_task_pnas"
       ],
       "quotation_status": "paraphrase"
+    },
+    {
+      "id": "clm_divergent_association_task_scope_limit",
+      "instrument_id": "instr_divergent_association_task",
+      "version_id": "ver_divergent_association_task_general",
+      "claim_type": "limitation_claim",
+      "claim_text": "DAT is presented as one narrow slice of creativity rather than a complete measure of creative ability or real-world creative accomplishment.",
+      "source_resource_ids": [
+        "res_divergent_association_task_faq",
+        "res_divergent_association_task_pnas"
+      ],
+      "quotation_status": "paraphrase"
     }
   ],
   "resources": [
@@ -180,6 +205,36 @@
       "access_status": "public",
       "officiality": "official",
       "notes": "Public explanation page describing task purpose and links to supporting research."
+    },
+    {
+      "id": "res_divergent_association_task_task",
+      "instrument_id": "instr_divergent_association_task",
+      "version_id": "ver_divergent_association_task_general",
+      "resource_type": "assessment_page",
+      "title": "Divergent Association Task - Task Page",
+      "url": "https://www.datcreativity.com/task",
+      "author": null,
+      "publication_date": null,
+      "publisher": "DAT Creativity",
+      "language": "en",
+      "access_status": "public",
+      "officiality": "official",
+      "notes": "Live task page showing the timed 10-response noun-entry format used for the public DAT."
+    },
+    {
+      "id": "res_divergent_association_task_faq",
+      "instrument_id": "instr_divergent_association_task",
+      "version_id": "ver_divergent_association_task_general",
+      "resource_type": "faq",
+      "title": "Divergent Association Task FAQ",
+      "url": "https://www.datcreativity.com/faq",
+      "author": null,
+      "publication_date": null,
+      "publisher": "DAT Creativity",
+      "language": "en",
+      "access_status": "public",
+      "officiality": "official",
+      "notes": "Official FAQ covering scoring interpretation, task limits, and common misconceptions."
     },
     {
       "id": "res_divergent_association_task_pnas",
@@ -249,12 +304,13 @@
       "target_entity_id": "instr_divergent_association_task",
       "ontology_dimension": "primary_measurement_target",
       "ontology_values": [
-        "cognitive_preferences"
+        "cognitive_performance"
       ],
       "annotation_status": "inferred",
-      "confidence": "low",
-      "rationale": "The ontology lacks a dedicated divergent-thinking performance value, so cognitive-preference adjacency is used conservatively as a nearest fit.",
+      "confidence": "medium",
+      "rationale": "DAT measures bounded divergent-thinking performance on a timed verbal task rather than a self-described cognitive preference.",
       "evidence_links": [
+        "res_divergent_association_task_task",
         "res_divergent_association_task_pnas"
       ]
     },
@@ -310,13 +366,13 @@
       "target_entity_id": "instr_divergent_association_task",
       "ontology_dimension": "administration_mode",
       "ontology_values": [
-        "self_report_questionnaire"
+        "performance_task"
       ],
       "annotation_status": "inferred",
-      "confidence": "low",
-      "rationale": "DAT is self-administered through written responses; ontology does not yet include a dedicated behavioral task mode.",
+      "confidence": "high",
+      "rationale": "DAT is administered as a timed response task with generated noun inputs, not as a questionnaire about attitudes or self-description.",
       "evidence_links": [
-        "res_divergent_association_task_home"
+        "res_divergent_association_task_task"
       ]
     },
     {
@@ -511,12 +567,11 @@
       "target_entity_id": "instr_divergent_association_task",
       "ontology_dimension": "evidence_profile",
       "ontology_values": [
-        "extensive_peer_review",
         "mixed_evidence"
       ],
       "annotation_status": "inferred",
       "confidence": "medium",
-      "rationale": "Initial peer-reviewed validation exists, but broader criterion and discriminant validity expansion is still ongoing.",
+      "rationale": "Initial peer-reviewed validation exists and the task is promising, but this record currently encodes a limited source bundle and should stay conservative until broader validation literature is incorporated.",
       "evidence_links": [
         "res_divergent_association_task_pnas"
       ]
@@ -558,7 +613,7 @@
       "cognitive_style"
     ],
     "primary_measurement_target": [
-      "cognitive_preferences"
+      "cognitive_performance"
     ],
     "representational_form": [
       "continuous_dimensional"
@@ -571,7 +626,7 @@
       "dynamic_strategy_system"
     ],
     "administration_mode": [
-      "self_report_questionnaire"
+      "performance_task"
     ],
     "scoring_logic": [
       "sum_or_average_scale_scoring"
@@ -616,7 +671,6 @@
       "medium"
     ],
     "evidence_profile": [
-      "extensive_peer_review",
       "mixed_evidence"
     ],
     "target_population": [
@@ -734,5 +788,5 @@
       "cautions": "Frame results as momentary task performance influenced by context and strategy."
     }
   ],
-  "notes": "# Divergent Association Task\n\n## What it is\nA brief creativity task where participants generate words that should be as unrelated as possible, then receive a score based on the average semantic distance among those words.\n\n## Why it matters\nDAT adds a modern, automation-friendly divergent-thinking measure to the canonical registry. It contributes a narrow but useful creativity-performance seam that complements broader trait frameworks and symbolic systems.\n\n## How it is administered and scored\n- participants provide 10 words intended to be maximally different\n- implementations keep the first valid subset of responses for scoring\n- semantic distance is computed pairwise across the retained words\n- the DAT score is a transformed average distance score, where higher values indicate more remote association structure in responses\n\n## Validity and limits\nInitial studies report convergent validity with established creativity tasks and meaningful short-term test-retest reliability. At the same time, DAT remains a constrained task measure: strategy choice, language factors, and instruction adherence can shift scores.\n\n## What it is good for\n- scalable divergent-thinking measurement in research contexts\n- low-overhead creativity-task baselining\n- complementing broader multi-framework synthesis when used conservatively\n\n## What it is weaker at\n- stable personality interpretation\n- whole-person creativity diagnosis\n- high-stakes standalone screening decisions\n\n## Common misuse\nTreating DAT as equivalent to a broad personality trait or as a complete measure of creativity rather than a narrow divergent-association task signal.\n"
+  "notes": "# Divergent Association Task\n\n## What it is\nA brief creativity task where participants generate words that should be as unrelated as possible, then receive a score based on the average semantic distance among those words.\n\n## Why it matters\nDAT adds a modern, automation-friendly divergent-thinking measure to the canonical registry. It contributes a narrow but useful creativity-performance seam that complements broader trait frameworks and symbolic systems.\n\n## How it is administered and scored\n- participants provide 10 single nouns intended to be maximally different\n- public scoring retains the first seven valid responses for the core semantic-distance calculation\n- semantic distance is computed pairwise across the retained words\n- the DAT score is a transformed average distance score, where higher values indicate more remote association structure in responses\n\n## Validity and limits\nInitial studies report convergent validity with established creativity tasks and meaningful short-term test-retest reliability. At the same time, DAT remains a constrained task measure: strategy choice, language factors, verbal fluency, and instruction adherence can shift scores.\n\n## What it is good for\n- scalable divergent-thinking measurement in research contexts\n- low-overhead creativity-task baselining\n- complementing broader multi-framework synthesis when used conservatively\n\n## What it is weaker at\n- stable personality interpretation\n- whole-person creativity diagnosis\n- high-stakes standalone screening decisions\n\n## Common misuse\nTreating DAT as equivalent to a broad personality trait or as a complete measure of creativity rather than a narrow divergent-association task signal.\n\nThe DAT FAQ is explicit that the task captures only one sliver of creativity. That boundary should remain visible anywhere the score is brought into broader person-model synthesis.\n"
 }

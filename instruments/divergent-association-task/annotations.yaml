@@ -15,11 +15,12 @@ annotations:
   target_entity_id: instr_divergent_association_task
   ontology_dimension: primary_measurement_target
   ontology_values:
-  - cognitive_preferences
+  - cognitive_performance
   annotation_status: inferred
-  confidence: low
-  rationale: The ontology lacks a dedicated divergent-thinking performance value, so cognitive-preference adjacency is used conservatively as a nearest fit.
+  confidence: medium
+  rationale: DAT measures bounded divergent-thinking performance on a timed verbal task rather than a self-described cognitive preference.
   evidence_links:
+  - res_divergent_association_task_task
   - res_divergent_association_task_pnas
 - id: ann_divergent_association_task_representational_form
   target_entity_type: instrument
@@ -60,12 +61,12 @@ annotations:
   target_entity_id: instr_divergent_association_task
   ontology_dimension: administration_mode
   ontology_values:
-  - self_report_questionnaire
+  - performance_task
   annotation_status: inferred
-  confidence: low
-  rationale: DAT is self-administered through written responses; ontology does not yet include a dedicated behavioral task mode.
+  confidence: high
+  rationale: DAT is administered as a timed response task with generated noun inputs, not as a questionnaire about attitudes or self-description.
   evidence_links:
-  - res_divergent_association_task_home
+  - res_divergent_association_task_task
 - id: ann_divergent_association_task_scoring_logic
   target_entity_type: instrument
   target_entity_id: instr_divergent_association_task
@@ -209,11 +210,10 @@ annotations:
   target_entity_id: instr_divergent_association_task
   ontology_dimension: evidence_profile
   ontology_values:
-  - extensive_peer_review
   - mixed_evidence
   annotation_status: inferred
   confidence: medium
-  rationale: Initial peer-reviewed validation exists, but broader criterion and discriminant validity expansion is still ongoing.
+  rationale: Initial peer-reviewed validation exists and the task is promising, but this record currently encodes a limited source bundle and should stay conservative until broader validation literature is incorporated.
   evidence_links:
   - res_divergent_association_task_pnas
 - id: ann_divergent_association_task_target_population

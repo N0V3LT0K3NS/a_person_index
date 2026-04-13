@@ -206,6 +206,7 @@
         "moral_character",
         "dark_personality_features",
         "cognitive_preferences",
+        "cognitive_performance",
         "communication_preferences",
         "values_orientation",
         "relational_needs",
@@ -246,6 +247,7 @@
       ],
       "administration_mode": [
         "self_report_questionnaire",
+        "performance_task",
         "observer_report",
         "practitioner_interview",
         "practitioner_interpretation",
@@ -1197,7 +1199,7 @@
           "cognitive_style"
         ],
         "primary_measurement_target": [
-          "cognitive_preferences"
+          "cognitive_performance"
         ],
         "representational_form": [
           "continuous_dimensional"
@@ -1210,7 +1212,7 @@
           "dynamic_strategy_system"
         ],
         "administration_mode": [
-          "self_report_questionnaire"
+          "performance_task"
         ],
         "scoring_logic": [
           "sum_or_average_scale_scoring"
@@ -1255,7 +1257,6 @@
           "medium"
         ],
         "evidence_profile": [
-          "extensive_peer_review",
           "mixed_evidence"
         ],
         "target_population": [

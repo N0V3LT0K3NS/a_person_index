@@ -222,8 +222,8 @@
       "counts": {
         "versions": 1,
         "constructs": 2,
-        "claims": 4,
-        "resources": 5,
+        "claims": 6,
+        "resources": 7,
         "annotations": 21,
         "inferences": 2,
         "crosswalks": 2,
@@ -231,7 +231,7 @@
         "use_cases": 3
       },
       "resource_officiality": {
-        "official": 3,
+        "official": 5,
         "secondary": 2
       },
       "coverage": {

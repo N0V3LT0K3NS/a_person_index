@@ -62,7 +62,7 @@
         ]
       },
       "crosswalk_count": 1,
-      "shared_dimension_count": 11
+      "shared_dimension_count": 9
     },
     {
       "slug": "big-five--enneagram",
@@ -244,7 +244,7 @@
         ]
       },
       "crosswalk_count": 1,
-      "shared_dimension_count": 12
+      "shared_dimension_count": 10
     },
     {
       "slug": "human-design--natal-astrology",
