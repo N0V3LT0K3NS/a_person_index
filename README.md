@@ -6,7 +6,7 @@ Live site: [a-person-index.netlify.app](https://a-person-index.netlify.app)
 
 Landing directions: [site/landing-options.html](/Users/noveltokens/a_person_index/site/landing-options.html) and [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
 
-Companion Codex skill: `$a-person-index` can sit above the MCP and CLI surfaces to help Codex compare frameworks, fetch program packs, and keep source, house, and research layers distinct.
+Companion Codex skill: `$a-person-index` can sit above the MCP and CLI surfaces to help Codex compare frameworks, fetch program packs, and keep source, house, and research layers distinct. The canonical repo copy lives at [skills/a-person-index](/Users/noveltokens/a_person_index/skills/a-person-index).
 
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
@@ -73,7 +73,8 @@ This repo is a shared substrate for multiple downstream consumers. `GNOMY` is a 
 For Codex specifically, the companion skill is an optional usage layer on top of the substrate:
 
 - skill name: `$a-person-index`
-- local path when installed: `$CODEX_HOME/skills/a-person-index`
+- canonical repo path: `skills/a-person-index`
+- local install target: `$CODEX_HOME/skills/a-person-index`
 - role: teach Codex how to use MCP resources, tools, prompts, and CLI fallbacks without blurring the repo's layers
 
 ## Repository shape
@@ -229,6 +230,11 @@ Use `$a-person-index` for:
 - research-safe return formatting
 
 The skill does not replace the MCP. It teaches Codex how to use the MCP and CLI surfaces correctly.
+
+Canonical repo copy:
+
+- [skills/a-person-index/SKILL.md](/Users/noveltokens/a_person_index/skills/a-person-index/SKILL.md)
+- [skills/a-person-index/references/workflows.md](/Users/noveltokens/a_person_index/skills/a-person-index/references/workflows.md)
 
 ## Add a new instrument
 

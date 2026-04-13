@@ -137,5 +137,6 @@ It should not perform full person-level inference itself.
 Optional Codex companion skill:
 
 - name: `$a-person-index`
-- expected local path: `$CODEX_HOME/skills/a-person-index`
+- canonical repo path: [skills/a-person-index](/Users/noveltokens/a_person_index/skills/a-person-index)
+- expected local install path: `$CODEX_HOME/skills/a-person-index`
 - job: help Codex use the MCP and CLI surfaces in the right order and preserve source vs house vs research boundaries

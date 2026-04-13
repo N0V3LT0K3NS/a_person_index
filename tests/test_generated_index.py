@@ -100,6 +100,7 @@ def test_build_outputs_creates_expected_payloads(repo_root):
     assert manifest_payload["consumer_model"]["consumer_agnostic"] is True
     assert manifest_payload["agent_companion_skill"]["name"] == "a-person-index"
     assert manifest_payload["agent_companion_skill"]["host"] == "codex"
+    assert manifest_payload["agent_companion_skill"]["repo_path"] == "skills/a-person-index/"
     assert manifest_payload["compatibility_surfaces"]["uri_scheme"] == "registry://"
     assert manifest_payload["governance"]["contributing_doc"] == "CONTRIBUTING.md"
     assert manifest_payload["governance"]["security_doc"] == "SECURITY.md"

@@ -221,6 +221,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
         "agent_companion_skill": {
             "name": "a-person-index",
             "host": "codex",
+            "repo_path": "skills/a-person-index/",
             "path_hint": "$CODEX_HOME/skills/a-person-index",
             "purpose": "Teach Codex how to use A Person Index through MCP first, CLI second, and preserve source, house, and research boundaries.",
             "recommended_for": [

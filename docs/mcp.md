@@ -18,6 +18,11 @@ The MCP layer is an adapter, not a second source of truth.
 
 If Codex is the host, the recommended companion skill is `$a-person-index`.
 
+Canonical repo copy:
+
+- [skills/a-person-index/SKILL.md](/Users/noveltokens/a_person_index/skills/a-person-index/SKILL.md)
+- local install target: `$CODEX_HOME/skills/a-person-index`
+
 That skill should:
 
 - prefer MCP when it is configured

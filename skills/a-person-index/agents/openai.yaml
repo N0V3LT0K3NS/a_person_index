@@ -1,0 +1,4 @@
+interface:
+  display_name: "A Person Index"
+  short_description: "Use API through MCP and packs"
+  default_prompt: "Use $a-person-index to compare frameworks, fetch program packs, and keep source, house, and research layers distinct."
