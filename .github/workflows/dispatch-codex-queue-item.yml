@@ -81,13 +81,15 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh issue create \
+          ISSUE_URL="$(gh issue create \
             --title "$(cat task-title.txt)" \
             --body-file task-body.md \
-            --label codex-task
+            --label codex-task)"
+          echo "ISSUE_URL=${ISSUE_URL}" >> "$GITHUB_ENV"
+          echo "ISSUE_NUMBER=${ISSUE_URL##*/}" >> "$GITHUB_ENV"
 
       - name: Resolve issue number
-        if: ${{ !inputs.dry_run }}
+        if: ${{ !inputs.dry_run && env.OPEN_MATCHES != '0' }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
