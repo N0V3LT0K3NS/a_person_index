@@ -33,12 +33,13 @@ If you are arriving fresh, read these in order:
 9. [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
 10. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
 11. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
-12. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-13. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-14. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-15. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-16. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-17. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+12. [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md)
+13. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+14. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+15. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+16. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+17. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+18. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 Those files together explain what the repo is, what layer you are editing, how downstream systems should use it, and what is next.
 
@@ -212,10 +213,20 @@ python3 scripts/query_registry.py result-atom-schema
 python3 scripts/query_registry.py research-models
 npm run mcp:serve
 npm run mcp:smoke
+npm run mcp:contract
+npm run mcp:test
+./scripts/test_claude_code_mcp.sh
 python3 scripts/query_registry.py audit --needs-official-resource
 python3 scripts/query_registry.py audit --needs-multiple-claims
 python3 -m pytest
 ```
+
+Tested client setup paths:
+
+- [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md)
+- [scripts/write_claude_mcp_config.sh](/Users/noveltokens/a_person_index/scripts/write_claude_mcp_config.sh)
+- [scripts/test_claude_code_mcp.sh](/Users/noveltokens/a_person_index/scripts/test_claude_code_mcp.sh)
+- [scripts/test_hermes_remote_mcp.sh](/Users/noveltokens/a_person_index/scripts/test_hermes_remote_mcp.sh)
 
 ## Codex Companion Skill
 

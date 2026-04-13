@@ -14,6 +14,18 @@ The MCP adapter solves that by exposing the existing registry primitives through
 
 The MCP layer is an adapter, not a second source of truth.
 
+## Ready-to-share status
+
+The MCP surface is now ready for serious local and nearby-agent use.
+
+What is currently proven:
+
+- repo-owned smoke and contract tests
+- Claude Code via explicit strict MCP config
+- Hermes via a remote wrapper around the same stdio server
+
+Client setup and tested commands live in [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md).
+
 ## Companion Codex skill
 
 If Codex is the host, the recommended companion skill is `$a-person-index`.
@@ -53,6 +65,18 @@ Run the smoke test:
 
 ```bash
 npm run mcp:smoke
+```
+
+Run the deeper contract test:
+
+```bash
+npm run mcp:contract
+```
+
+Run both:
+
+```bash
+npm run mcp:test
 ```
 
 ## Exposed resources
@@ -112,3 +136,4 @@ That scheme names the access surface, not the entire product. The product is A P
 - The MCP layer is currently read-only.
 - The MCP adapter depends on Node, not Python MCP, because the official Python MCP SDK requires Python 3.10+ while this repo currently targets Python 3.9+.
 - If the Python runtime baseline rises later, the adapter can be reconsidered.
+- The strongest current production claim is local and nearby-agent readiness, not hosted remote service readiness.

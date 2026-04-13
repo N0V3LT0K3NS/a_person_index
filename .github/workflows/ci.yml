@@ -48,5 +48,8 @@ jobs:
       - name: Generate docs
         run: python scripts/generate_docs.py
 
+      - name: Run MCP tests
+        run: npm run mcp:test
+
       - name: Run tests
         run: python -m pytest

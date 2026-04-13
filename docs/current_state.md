@@ -56,6 +56,9 @@ As of the current branch state, the repo includes:
 
 - CLI query surface
 - read-only MCP adapter
+- repo-owned MCP smoke and contract tests
+- tested Claude Code MCP path
+- tested Hermes MCP path
 - Deterministic generated outputs
 - Static documentation site
 - Three generated landing-page directions for the public site
@@ -70,6 +73,7 @@ As of the current branch state, the repo includes:
 - Not yet a generalized top-level `framework` registry beyond the current instrument-centered canonical corpus
 - Not yet a full HTTP API
 - Not yet a person-level inference engine
+- Not yet a hosted remote MCP service
 - Not yet a full research operations pipeline with storage, aggregation, review queues, and promotion logs
 
 ## Highest-value current use

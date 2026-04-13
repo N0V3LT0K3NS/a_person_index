@@ -17,12 +17,13 @@ If you are arriving cold, start here in this order:
 9. [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
 10. [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
 11. [docs/mcp.md](/Users/noveltokens/a_person_index/docs/mcp.md)
-12. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
-13. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
-14. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
-15. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
-16. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
-17. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
+12. [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md)
+13. [docs/protocol_pack_grammar.md](/Users/noveltokens/a_person_index/docs/protocol_pack_grammar.md)
+14. [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md)
+15. [docs/research_promotion.md](/Users/noveltokens/a_person_index/docs/research_promotion.md)
+16. [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
+17. [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+18. [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 ## What this repo is
 
@@ -112,6 +113,8 @@ python3 scripts/query_registry.py result-atom-schema
 python3 scripts/query_registry.py research-models
 python3 scripts/query_registry.py audit --needs-official-resource
 npm run mcp:serve
+npm run mcp:test
+./scripts/test_claude_code_mcp.sh
 ```
 
 ## Downstream role

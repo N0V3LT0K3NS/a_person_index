@@ -13,7 +13,9 @@
     "seed": "python3 scripts/seed_registry.py",
     "test": "python3 -m pytest",
     "mcp:serve": "node mcp-server/server.mjs",
-    "mcp:smoke": "node mcp-server/smoke_test.mjs"
+    "mcp:smoke": "node mcp-server/smoke_test.mjs",
+    "mcp:contract": "node mcp-server/contract_test.mjs",
+    "mcp:test": "npm run mcp:smoke && npm run mcp:contract"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",

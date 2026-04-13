@@ -198,6 +198,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "docs/site_design_options.md",
             "docs/gnomy_integration.md",
             "docs/mcp.md",
+            "docs/mcp_clients.md",
             "docs/protocol_pack_grammar.md",
             "docs/protocol_packs.md",
             "docs/research_promotion.md",
@@ -287,7 +288,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "python3 scripts/validate.py",
                 "python3 scripts/build_index.py",
                 "python3 scripts/generate_docs.py",
-                "npm run mcp:smoke",
+                "npm run mcp:test",
                 "python3 -m pytest",
             ],
             "automation_workflows": [
@@ -378,7 +379,26 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "entrypoint": "npm run mcp:serve",
                 "implementation": "mcp-server/server.mjs",
                 "smoke_test": "npm run mcp:smoke",
+                "contract_test": "npm run mcp:contract",
                 "backend": "Python query CLI delegation",
+                "client_setup_doc": "docs/mcp_clients.md",
+                "setup_helpers": [
+                    "scripts/write_claude_mcp_config.sh",
+                    "scripts/test_claude_code_mcp.sh",
+                    "scripts/test_hermes_remote_mcp.sh",
+                ],
+                "tested_clients": [
+                    {
+                        "name": "Claude Code",
+                        "mode": "local_strict_config",
+                        "verification": "./scripts/test_claude_code_mcp.sh",
+                    },
+                    {
+                        "name": "Hermes",
+                        "mode": "remote_wrapper",
+                        "verification": "./scripts/test_hermes_remote_mcp.sh <user@host>",
+                    },
+                ],
                 "tool_ids": [
                     "find_framework_records",
                     "compare_frameworks",

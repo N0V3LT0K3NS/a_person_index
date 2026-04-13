@@ -18,3 +18,4 @@ node_modules/
 .playwright-cli/
 output/
 temp_notepad/
+.claude/
