@@ -73,7 +73,6 @@ jobs:
           npm ci
           python -m pip install --upgrade pip
           pip install -e '.[dev]'
-          npm install -g @openai/codex
 
       - name: Configure Git author
         run: |
@@ -162,12 +161,15 @@ jobs:
           {
             echo "TASK_TITLE<<EOF"
             cat task-title.txt
+            printf '\n'
             echo "EOF"
             echo "TASK_BODY<<EOF"
             cat task-body.md
+            printf '\n'
             echo "EOF"
             echo "VERIFICATION_COMMANDS<<EOF"
             cat verification-commands.txt
+            printf '\n'
             echo "EOF"
           } >> "$GITHUB_ENV"
 
@@ -215,16 +217,16 @@ jobs:
           } > codex-task.prompt
 
       - name: Run Codex
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          CODEX_QUIET_MODE: "1"
-        run: |
-          codex exec \
-            --dangerously-bypass-approvals-and-sandbox \
-            --skip-git-repo-check \
-            --cd "$PWD" \
-            --output-last-message codex-last-message.txt \
-            "$(cat codex-task.prompt)"
+        id: run_codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt-file: codex-task.prompt
+          output-file: codex-last-message.txt
+          working-directory: ${{ github.workspace }}
+          sandbox: workspace-write
+          safety-strategy: drop-sudo
+          codex-args: '["--skip-git-repo-check","--search"]'
 
       - name: Run verification
         run: |
