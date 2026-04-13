@@ -1,14 +1,14 @@
 {
   "summary": {
-    "instrument_count": 15,
-    "instruments_with_crosswalks": 15,
-    "instruments_with_multiple_resources": 15,
-    "instruments_with_multiple_constructs": 15,
-    "instruments_with_multiple_claims": 15,
-    "instruments_with_multiple_inferences": 15,
-    "instruments_with_multiple_risks": 15,
-    "instruments_with_multiple_use_cases": 15,
-    "instruments_with_official_or_semi_official_resource": 12
+    "instrument_count": 16,
+    "instruments_with_crosswalks": 16,
+    "instruments_with_multiple_resources": 16,
+    "instruments_with_multiple_constructs": 16,
+    "instruments_with_multiple_claims": 16,
+    "instruments_with_multiple_inferences": 16,
+    "instruments_with_multiple_risks": 16,
+    "instruments_with_multiple_use_cases": 16,
+    "instruments_with_official_or_semi_official_resource": 13
   },
   "instruments": [
     {
@@ -203,6 +203,36 @@
       },
       "resource_officiality": {
         "semi_official": 2
+      },
+      "coverage": {
+        "has_crosswalks": true,
+        "has_multiple_resources": true,
+        "has_multiple_constructs": true,
+        "has_multiple_claims": true,
+        "has_multiple_inferences": true,
+        "has_multiple_risks": true,
+        "has_multiple_use_cases": true,
+        "has_official_or_semi_official_resource": true
+      }
+    },
+    {
+      "slug": "divergent-association-task",
+      "instrument_id": "instr_divergent_association_task",
+      "canonical_name": "Divergent Association Task",
+      "counts": {
+        "versions": 1,
+        "constructs": 2,
+        "claims": 6,
+        "resources": 7,
+        "annotations": 21,
+        "inferences": 2,
+        "crosswalks": 2,
+        "risks": 3,
+        "use_cases": 3
+      },
+      "resource_officiality": {
+        "official": 5,
+        "secondary": 2
       },
       "coverage": {
         "has_crosswalks": true,

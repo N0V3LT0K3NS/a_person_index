@@ -206,3 +206,31 @@ mappings:
     rationale: >
       MBTI functions widely as a social identity and shorthand self-description
       language even when used outside formal assessment contexts.
+
+  - id: map_dat_semantic_distance_exploratory_openness
+    source_entity_type: construct
+    source_entity_id: con_divergent_association_task_semantic_distance
+    target_entity_type: motif
+    target_entity_id: mtf_exploratory_openness
+    relationship_type: partial_signal
+    relationship_strength: medium
+    confidence: medium
+    status: provisional
+    rationale: >
+      Higher DAT semantic distance can signal ideational novelty and exploratory
+      association behavior, but DAT is a bounded performance task rather than a
+      direct trait-openness measure.
+
+  - id: map_dat_semantic_distance_pattern_abstraction
+    source_entity_type: construct
+    source_entity_id: con_divergent_association_task_semantic_distance
+    target_entity_type: motif
+    target_entity_id: mtf_pattern_abstraction_preference
+    relationship_type: partial_signal
+    relationship_strength: low
+    confidence: low
+    status: provisional
+    rationale: >
+      The ability to generate semantically remote words may weakly overlap with
+      abstraction-oriented pattern movement, but DAT does not directly encode
+      stable abstraction preference.

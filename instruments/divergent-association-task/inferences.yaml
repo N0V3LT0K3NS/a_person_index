@@ -1,0 +1,22 @@
+inferences:
+- id: inf_divergent_association_task_creativity_signal_not_personality_type
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  inference_type: synthesis_position
+  text: DAT is best treated as a narrow divergent-thinking performance signal that can inform creativity analysis without being promoted to a stable personality-type interpretation.
+  confidence: high
+  linked_entities:
+  - instr_big_five
+  - instr_mbti
+  author: house
+  timestamp: '2026-04-13'
+- id: inf_divergent_association_task_algorithmic_strength_and_scope_limit
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  inference_type: practical_limit
+  text: DAT's automated semantic-distance scoring is a methodological strength for scale and consistency, but interpretive scope should remain constrained because strategy effects and language/context factors can influence scores.
+  confidence: high
+  linked_entities:
+  - instr_big_five
+  author: house
+  timestamp: '2026-04-13'

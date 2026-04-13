@@ -1,0 +1,19 @@
+use_cases:
+- id: use_divergent_association_task_research_baseline
+  instrument_id: instr_divergent_association_task
+  use_context: research
+  utility_type: research_baseline
+  suitability_level: high
+  cautions: Best used as one convergent signal in multi-measure creativity designs.
+- id: use_divergent_association_task_education_reflection
+  instrument_id: instr_divergent_association_task
+  use_context: education
+  utility_type: developmental_reflection
+  suitability_level: medium
+  cautions: Useful for discussing divergent-association strategy, not for assigning fixed ability labels.
+- id: use_divergent_association_task_self_reflection
+  instrument_id: instr_divergent_association_task
+  use_context: self_reflection
+  utility_type: self_understanding
+  suitability_level: medium
+  cautions: Frame results as momentary task performance influenced by context and strategy.

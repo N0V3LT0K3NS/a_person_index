@@ -38,11 +38,11 @@
   ],
   "product_layers": {
     "canonical_registry": {
-      "instrument_count": 15
+      "instrument_count": 16
     },
     "house_synthesis": {
       "motif_count": 11,
-      "mapping_count": 16,
+      "mapping_count": 18,
       "interaction_hypothesis_count": 7
     },
     "protocol_library": {

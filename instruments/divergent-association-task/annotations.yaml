@@ -1,0 +1,241 @@
+annotations:
+- id: ann_divergent_association_task_instrument_family
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: instrument_family
+  ontology_values:
+  - cognitive_style
+  annotation_status: inferred
+  confidence: medium
+  rationale: DAT is best treated as a cognitive-performance framework focused on divergent association behavior.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_primary_measurement_target
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: primary_measurement_target
+  ontology_values:
+  - cognitive_performance
+  annotation_status: inferred
+  confidence: medium
+  rationale: DAT measures bounded divergent-thinking performance on a timed verbal task rather than a self-described cognitive preference.
+  evidence_links:
+  - res_divergent_association_task_task
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_representational_form
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: representational_form
+  ontology_values:
+  - continuous_dimensional
+  annotation_status: inferred
+  confidence: high
+  rationale: The primary DAT output is a continuous semantic-distance score.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_temporal_stance
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: temporal_stance
+  ontology_values:
+  - situational_state
+  - semi_stable_patterns
+  annotation_status: inferred
+  confidence: medium
+  rationale: Scores reflect immediate task performance while still showing measurable short-term stability.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_person_ontology
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: person_ontology
+  ontology_values:
+  - dynamic_strategy_system
+  annotation_status: inferred
+  confidence: medium
+  rationale: Performance depends on generative strategy and control over obvious associations rather than a fixed typological identity.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_administration_mode
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: administration_mode
+  ontology_values:
+  - performance_task
+  annotation_status: inferred
+  confidence: high
+  rationale: DAT is administered as a timed response task with generated noun inputs, not as a questionnaire about attitudes or self-description.
+  evidence_links:
+  - res_divergent_association_task_task
+- id: ann_divergent_association_task_scoring_logic
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: scoring_logic
+  ontology_values:
+  - sum_or_average_scale_scoring
+  annotation_status: inferred
+  confidence: high
+  rationale: Score derives from transformed average pairwise semantic distance across valid response words.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_epistemic_basis
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: epistemic_basis
+  ontology_values:
+  - mixed_psychometric_and_theoretical
+  annotation_status: inferred
+  confidence: high
+  rationale: DAT combines theory-driven divergent-thinking assumptions with empirical validation against other creativity measures.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_interpretive_burden
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: interpretive_burden
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: Numerical scoring is objective, but substantive interpretation still requires careful task-bound framing.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_granularity
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: granularity
+  ontology_values:
+  - low
+  annotation_status: inferred
+  confidence: high
+  rationale: DAT yields a relatively compact output profile centered on one primary score.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_context_sensitivity
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: context_sensitivity
+  ontology_values:
+  - high
+  annotation_status: inferred
+  confidence: high
+  rationale: Performance can shift with language proficiency, strategy choices, and instruction adherence.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_change_model
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: change_model
+  ontology_values:
+  - situational_expression
+  - skills_trainability
+  annotation_status: inferred
+  confidence: medium
+  rationale: Scores reflect situational performance and plausibly change with practice or strategic adaptation.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_distortion_risk
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: distortion_risk
+  ontology_values:
+  - overinterpretation
+  - false_precision
+  - reductionism
+  annotation_status: inferred
+  confidence: high
+  rationale: DAT can be misused by reading one task score as a total creativity or personality verdict.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_deployment_context
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: deployment_context
+  ontology_values:
+  - research
+  - education
+  - self_reflection
+  annotation_status: inferred
+  confidence: medium
+  rationale: DAT is primarily a research creativity measure with possible use in educational or reflective settings.
+  evidence_links:
+  - res_divergent_association_task_about
+- id: ann_divergent_association_task_utility_profile
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: utility_profile
+  ontology_values:
+  - research_baseline
+  - developmental_reflection
+  annotation_status: inferred
+  confidence: medium
+  rationale: DAT is most useful as a concise divergent-thinking baseline rather than as an identity framework.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_identity_adhesion_risk
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: identity_adhesion_risk
+  ontology_values:
+  - low
+  annotation_status: inferred
+  confidence: medium
+  rationale: DAT is task-centered and generally less identity-sticky than typology frameworks.
+  evidence_links:
+  - res_divergent_association_task_about
+- id: ann_divergent_association_task_worldview_load
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: worldview_load
+  ontology_values:
+  - very_low
+  annotation_status: inferred
+  confidence: high
+  rationale: DAT does not embed a symbolic worldview or cosmology.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_synthesis_value
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: synthesis_value
+  ontology_values:
+  - medium
+  annotation_status: inferred
+  confidence: medium
+  rationale: DAT adds a useful divergent-thinking signal but should remain a narrow adjunct layer in broader synthesis.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_evidence_profile
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: evidence_profile
+  ontology_values:
+  - mixed_evidence
+  annotation_status: inferred
+  confidence: medium
+  rationale: Initial peer-reviewed validation exists and the task is promising, but this record currently encodes a limited source bundle and should stay conservative until broader validation literature is incorporated.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_target_population
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: target_population
+  ontology_values:
+  - general_adult_population
+  - students
+  annotation_status: inferred
+  confidence: medium
+  rationale: Initial studies included student and broader adult populations across multiple countries.
+  evidence_links:
+  - res_divergent_association_task_pnas
+- id: ann_divergent_association_task_norming_status
+  target_entity_type: instrument
+  target_entity_id: instr_divergent_association_task
+  ontology_dimension: norming_status
+  ontology_values:
+  - limited_norms
+  annotation_status: inferred
+  confidence: medium
+  rationale: DAT has published sample distributions but not a mature lifelong normative system.
+  evidence_links:
+  - res_divergent_association_task_pnas

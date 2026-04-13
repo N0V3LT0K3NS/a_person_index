@@ -1,0 +1,54 @@
+claims:
+- id: clm_divergent_association_task_core_prompt
+  instrument_id: instr_divergent_association_task
+  version_id: ver_divergent_association_task_general
+  claim_type: construct_claim
+  claim_text: DAT instructs participants to generate words that are as different from one another as possible, framing performance as divergent association.
+  source_resource_ids:
+  - res_divergent_association_task_task
+  - res_divergent_association_task_pnas
+  quotation_status: paraphrase
+- id: clm_divergent_association_task_response_format
+  instrument_id: instr_divergent_association_task
+  version_id: ver_divergent_association_task_general
+  claim_type: administration_claim
+  claim_text: Public DAT administration uses a brief timed task where participants enter 10 single nouns intended to be maximally unrelated.
+  source_resource_ids:
+  - res_divergent_association_task_home
+  - res_divergent_association_task_task
+  quotation_status: paraphrase
+- id: clm_divergent_association_task_scoring_model
+  instrument_id: instr_divergent_association_task
+  version_id: ver_divergent_association_task_general
+  claim_type: scoring_claim
+  claim_text: DAT scoring computes semantic distances between generated words and uses a transformed average as the task score, enabling automated and objective scoring.
+  source_resource_ids:
+  - res_divergent_association_task_pnas
+  quotation_status: paraphrase
+- id: clm_divergent_association_task_convergent_validity
+  instrument_id: instr_divergent_association_task
+  version_id: ver_divergent_association_task_general
+  claim_type: evidence_claim
+  claim_text: DAT scores show positive correlations with established creativity tasks and demonstrated substantial short-term test-retest reliability in initial validation studies.
+  source_resource_ids:
+  - res_divergent_association_task_pnas
+  - res_divergent_association_task_pubmed
+  quotation_status: paraphrase
+- id: clm_divergent_association_task_objective_scoring_advantage
+  instrument_id: instr_divergent_association_task
+  version_id: ver_divergent_association_task_general
+  claim_type: implementation_claim
+  claim_text: DAT is positioned as a brief alternative to manually scored divergent-thinking tasks by reducing sample-dependent scoring and rater burden.
+  source_resource_ids:
+  - res_divergent_association_task_about
+  - res_divergent_association_task_pnas
+  quotation_status: paraphrase
+- id: clm_divergent_association_task_scope_limit
+  instrument_id: instr_divergent_association_task
+  version_id: ver_divergent_association_task_general
+  claim_type: limitation_claim
+  claim_text: DAT is presented as one narrow slice of creativity rather than a complete measure of creative ability or real-world creative accomplishment.
+  source_resource_ids:
+  - res_divergent_association_task_faq
+  - res_divergent_association_task_pnas
+  quotation_status: paraphrase

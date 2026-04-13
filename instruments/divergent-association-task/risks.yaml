@@ -1,0 +1,19 @@
+risks:
+- id: rsk_divergent_association_task_trait_overread
+  instrument_id: instr_divergent_association_task
+  risk_type: overinterpretation
+  severity: high
+  description: A single DAT score may be incorrectly treated as a stable global creativity trait or personality diagnosis.
+  mitigation: Keep interpretation task-bound and triangulate with broader creativity, trait, and contextual evidence.
+- id: rsk_divergent_association_task_strategy_sensitivity
+  instrument_id: instr_divergent_association_task
+  risk_type: false_precision
+  severity: medium
+  description: Scores can be modulated by language fluency, deliberate response strategies, or misunderstanding instructions, creating false confidence in precision.
+  mitigation: Use instruction checks, response-quality filters, and repeated or complementary measures when higher-stakes interpretation is needed.
+- id: rsk_divergent_association_task_reductive_screening
+  instrument_id: instr_divergent_association_task
+  risk_type: reductionism
+  severity: high
+  description: DAT can be misused as a standalone screening gate for educational, workplace, or talent decisions without domain-specific validity support.
+  mitigation: Avoid standalone gatekeeping use and document that DAT is a narrow divergent-thinking indicator.

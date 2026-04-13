@@ -1,5 +1,6 @@
 values:
 - self_report_questionnaire
+- performance_task
 - observer_report
 - practitioner_interview
 - practitioner_interpretation
