@@ -85,7 +85,35 @@ jobs:
             --body-file task-body.md \
             --label codex-task
 
+      - name: Resolve issue number
+        if: ${{ !inputs.dry_run }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="$(cat task-title.txt)"
+          ISSUE_NUMBER="$(gh issue list --state open --search "\"${TITLE}\" in:title" --json number,title --jq 'map(select(.title == "'"${TITLE}"'")) | .[0].number // ""')"
+          echo "ISSUE_NUMBER=${ISSUE_NUMBER}" >> "$GITHUB_ENV"
+
       - name: Skip duplicate issue
         if: ${{ !inputs.dry_run && env.OPEN_MATCHES != '0' }}
         run: |
           echo "An open issue with this exact title already exists. Skipping creation."
+
+      - name: Dispatch codex-task workflow
+        if: ${{ !inputs.dry_run && env.ISSUE_NUMBER != '' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const taskTitle = fs.readFileSync("task-title.txt", "utf8").trim();
+            const taskBody = fs.readFileSync("task-body.md", "utf8");
+            await github.rest.actions.createWorkflowDispatch({
+              ...context.repo,
+              workflow_id: "codex-task.yml",
+              ref: "main",
+              inputs: {
+                task_title: taskTitle,
+                task_body: taskBody,
+                issue_number: process.env.ISSUE_NUMBER,
+              },
+            });
