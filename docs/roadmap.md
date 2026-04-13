@@ -16,7 +16,7 @@ Goal:
 Delivered:
 - instrument-centered data model
 - ontology and enum system
-- 15 seeded framework records
+- 16 seeded framework records
 - claims, resources, annotations, inferences, crosswalks, risks, use cases, and notes
 - generated JSON exports
 - static docs site

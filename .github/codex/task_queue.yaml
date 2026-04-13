@@ -13,7 +13,7 @@ tasks:
     primary_layer: canonical registry
     title: Deepen source, reference, and linking coverage across the seeded framework corpus
     objective: >-
-      Improve the 15 seeded framework records by adding stronger primary and independent sources where useful,
+      Improve the 16 current seeded framework records by adding stronger primary and independent sources where useful,
       adding source-role notes, tightening resource rationales, and enriching internal linking between related records.
     acceptance_criteria:
       - Existing seeded frameworks gain stronger or clearer resource coverage without blurring epistemic limits.
