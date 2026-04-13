@@ -33,6 +33,13 @@ The workflow uses the default `GITHUB_TOKEN` for checkout, branch creation, PR c
 
 The `codex-task.yml` workflow should use the official [`openai/codex-action`](https://github.com/openai/codex-action) rather than shelling directly into a raw `codex exec` install on the runner. That action handles installing the CLI and configuring a secure Responses API proxy for GitHub Actions.
 
+For bounded research-expansion work, the workflow currently runs Codex with:
+
+- `safety-strategy: drop-sudo`
+- `sandbox: danger-full-access`
+
+That combination keeps the GitHub-hosted runner non-root while still allowing Codex to fetch source material and use normal shell/network access during expansion tasks.
+
 ## Context bundle
 
 Codex automation should read this context first:
