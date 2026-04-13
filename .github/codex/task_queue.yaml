@@ -1,0 +1,206 @@
+version: 1
+default_verification:
+  - python3 scripts/export_schemas.py
+  - python3 scripts/validate.py
+  - python3 scripts/build_index.py
+  - python3 scripts/generate_docs.py
+  - npm run mcp:test
+  - python3 -m pytest
+tasks:
+  - id: task_seed_source_enrichment
+    status: ready
+    priority: high
+    primary_layer: canonical registry
+    title: Deepen source, reference, and linking coverage across the seeded framework corpus
+    objective: >-
+      Improve the 15 seeded framework records by adding stronger primary and independent sources where useful,
+      adding source-role notes, tightening resource rationales, and enriching internal linking between related records.
+    acceptance_criteria:
+      - Existing seeded frameworks gain stronger or clearer resource coverage without blurring epistemic limits.
+      - Resource notes explain why each source matters.
+      - Notes pages and cross references link to adjacent framework records where useful.
+      - Tests and generated outputs remain green.
+    context_paths:
+      - docs/research_authoring_standard.md
+      - docs/editorial_style_guide.md
+      - instruments/
+      - tests/test_seed_completeness.py
+      - scripts/scaffold_instrument.py
+    suggested_sources:
+      - label: Open Source Psychometrics Project about page
+        url: https://openpsychometrics.org/about/
+        source_class: implementation_or_ecosystem
+        role: open implementation and data ecosystem reference
+      - label: Open Jungian Type Scales
+        url: https://openpsychometrics.org/tests/OJTS/
+        source_class: implementation_or_ecosystem
+        role: open MBTI-adjacent implementation reference
+      - label: SimilarMinds archive
+        url: https://similarminds.com/index.html
+        source_class: implementation_or_ecosystem
+        role: discovery surface for folk and internet-circulating frameworks
+    notes:
+      - Prefer better references and link density over adding many new speculative inferences.
+      - Do not weaken existing evidence-profile annotations.
+
+  - id: task_add_rdrive_framework
+    status: ready
+    priority: highest
+    primary_layer: canonical registry
+    title: Add R-Drive as a contested exploratory framework with explicit caution and motif mapping
+    objective: >-
+      Add a canonical framework record for the SimilarMinds R-Drive Personality System with its construct set,
+      conservative evidence framing, baseline motif mappings, and enough crosswalks to make it usable in downstream synthesis.
+    acceptance_criteria:
+      - A new R-Drive framework record exists with typed source files and notes.
+      - The record carries explicit caution about evidence quality and self-published origin.
+      - Core constructs are present and mapped into existing motifs where plausible.
+      - At least one or two realistic crosswalk seams are added to existing frameworks.
+      - Docs and generated outputs reflect the new framework.
+    context_paths:
+      - docs/research_authoring_standard.md
+      - instruments/
+      - motifs/registry.yaml
+      - mappings/construct_to_motif.yaml
+      - interactions/registry.yaml
+      - scripts/scaffold_instrument.py
+    suggested_sources:
+      - label: SimilarMinds home
+        url: https://similarminds.com/index.html
+        source_class: implementation_or_ecosystem
+        role: framework discovery and ecosystem context
+      - label: R-Drive info page
+        url: https://similarminds.com/rdrive_nfo.html
+        source_class: canonical_or_primary
+        role: primary framework description
+    notes:
+      - Keep the evidence profile conservative.
+      - Make the notes page especially explicit about why the framework is included despite weak empirical standing.
+
+  - id: task_add_political_compass_framework
+    status: ready
+    priority: high
+    primary_layer: canonical registry
+    title: Add Political Compass as a political-worldview framework with explicit methodology cautions
+    objective: >-
+      Add a canonical framework record for Political Compass, including its two-axis model, question-based administration,
+      explicit worldview and methodology cautions, and initial crosswalks into house motifs or adjacent worldview constructs.
+    acceptance_criteria:
+      - A Political Compass framework record exists with clear ontology and caution language.
+      - The record states what the framework is useful for and what it should not be used for.
+      - Initial crosswalks or motif mappings make the record queryable and comparable.
+      - Docs and generated outputs reflect the new framework.
+    context_paths:
+      - docs/research_authoring_standard.md
+      - instruments/
+      - ontology/
+      - motifs/registry.yaml
+      - scripts/scaffold_instrument.py
+    suggested_sources:
+      - label: Political Compass test
+        url: https://www.politicalcompass.org/test
+        source_class: canonical_or_primary
+        role: test surface and question framing
+      - label: Political Compass about
+        url: https://www.politicalcompass.org/about
+        source_class: canonical_or_primary
+        role: framework self-description
+    notes:
+      - If ontology expansion is required, keep it minimal and explicit.
+      - Add independent critique if one is needed to support stronger evidence claims.
+
+  - id: task_add_creativity_family_frameworks
+    status: ready
+    priority: high
+    primary_layer: canonical registry
+    title: Add a creativity-measures family starting with divergent and associative tasks
+    objective: >-
+      Add a small creativity-measures family focused on divergent and associative ideation, using primary sources for
+      at least one divergent task and one associative or convergent creativity task, then connect them to existing openness,
+      abstraction, and execution motifs where appropriate.
+    acceptance_criteria:
+      - At least one divergent-thinking task and one associative creativity task are added or clearly scaffolded with strong sourcing.
+      - Notes and annotations clearly separate creativity measurement from personality-trait interpretation.
+      - Initial motif mappings and crosswalks connect the family to the existing substrate.
+      - Docs and generated outputs reflect the new family.
+    context_paths:
+      - docs/research_authoring_standard.md
+      - instruments/
+      - motifs/registry.yaml
+      - mappings/construct_to_motif.yaml
+      - scripts/scaffold_instrument.py
+    suggested_sources:
+      - label: Divergent Association Task
+        url: https://www.datcreativity.com/
+        source_class: canonical_or_primary
+        role: divergent-thinking task source
+      - label: Divergent Association Task about
+        url: https://www.datcreativity.com/about
+        source_class: canonical_or_primary
+        role: task explanation and research links
+    notes:
+      - Use the DAT sources as the initial anchor.
+      - For Remote Associates or Alternative Uses, locate and cite the primary academic sources before making them canonical.
+
+  - id: task_crosswalk_densification_core
+    status: ready
+    priority: highest
+    primary_layer: house synthesis
+    title: Densify construct crosswalks and interaction hypotheses across the core synthesis seams
+    objective: >-
+      Increase crosswalk and interaction density where synthesis quality is currently thinnest: trait-to-typology seams,
+      attachment/care seams, symbolic-meaning seams, strategic-social seams, and any new seams introduced by R-Drive,
+      political worldview, or creativity measures.
+    acceptance_criteria:
+      - New crosswalks are added with clear rationales and conservative relationship typing.
+      - Interaction hypotheses increase around recurring real-use synthesis seams.
+      - Existing motifs are reused where possible before inventing new ones.
+      - Queries and packs surface the new density cleanly.
+    context_paths:
+      - docs/research_authoring_standard.md
+      - docs/protocol_packs.md
+      - motifs/registry.yaml
+      - mappings/construct_to_motif.yaml
+      - interactions/registry.yaml
+      - protocols/registry.yaml
+    suggested_sources:
+      - label: SimilarMinds archive
+        url: https://similarminds.com/index.html
+        source_class: implementation_or_ecosystem
+        role: discovery of recurring folk-framework seams
+      - label: Open Source Psychometrics Project about page
+        url: https://openpsychometrics.org/about/
+        source_class: implementation_or_ecosystem
+        role: open-measure ecosystem context
+      - label: Political Compass test
+        url: https://www.politicalcompass.org/test
+        source_class: canonical_or_primary
+        role: political worldview seam input
+    notes:
+      - Prefer real synthesis seams over broad speculative mesh-building.
+      - Favor construct-level edges when the source material supports them.
+
+  - id: task_add_true_colors_framework
+    status: ready
+    priority: medium
+    primary_layer: canonical registry
+    title: Add True Colors as a low-depth workplace-pop framework with explicit limits
+    objective: >-
+      Add True Colors as a lightweight workplace and communication framework so common user result stacks stop failing on it,
+      while keeping the record explicit about its low depth and likely overlap with existing workplace typologies.
+    acceptance_criteria:
+      - A True Colors framework record exists with conservative evidence framing.
+      - The notes page explains where it overlaps with DISC or other workplace frameworks and where that overlap should not be overstated.
+      - Initial crosswalks and motif mappings make it minimally queryable.
+    context_paths:
+      - docs/research_authoring_standard.md
+      - instruments/
+      - mappings/construct_to_motif.yaml
+      - scripts/scaffold_instrument.py
+    suggested_sources:
+      - label: SimilarMinds archive
+        url: https://similarminds.com/index.html
+        source_class: implementation_or_ecosystem
+        role: discovery context only
+    notes:
+      - This is a lower-priority cleanup item, not a research anchor.

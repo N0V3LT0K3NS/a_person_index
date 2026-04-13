@@ -17,6 +17,11 @@ The repo supports two GitHub-triggered paths:
 
 Both routes converge on the same context bundle and verification path.
 
+For larger recurring research or corpus-expansion work, the repo now also supports a queue-driven path:
+
+3. Manual queue dispatch through `.github/workflows/dispatch-codex-queue-item.yml`
+4. Machine-readable queue items in `.github/codex/task_queue.yaml`
+
 ## Required secrets
 
 Add these repository secrets before enabling the workflow:
@@ -37,6 +42,8 @@ Codex automation should read this context first:
 - [docs/index_programs.md](/Users/noveltokens/a_person_index/docs/index_programs.md)
 - [docs/system_boundaries.md](/Users/noveltokens/a_person_index/docs/system_boundaries.md)
 - [docs/phase_3_4_plan.md](/Users/noveltokens/a_person_index/docs/phase_3_4_plan.md)
+- [docs/research_authoring_standard.md](/Users/noveltokens/a_person_index/docs/research_authoring_standard.md)
+- [docs/expansion_program.md](/Users/noveltokens/a_person_index/docs/expansion_program.md)
 - [generated/manifest.json](/Users/noveltokens/a_person_index/generated/manifest.json)
 
 The workflow also stores a compact execution context in `.github/codex/automation_context.md`.
@@ -63,6 +70,29 @@ If a task intentionally does not require part of the path, that exception should
 - Prefer creating a PR over pushing directly to `main`.
 - Keep the branch prefix `codex/`.
 - Keep source truth, house synthesis, programs, and research evidence clearly separated.
+- Keep one queue item to one primary seam so PRs stay reviewable.
+
+## Queue-driven expansion work
+
+For recurring framework, source, crosswalk, and interaction work:
+
+1. define a bounded task in `.github/codex/task_queue.yaml`
+2. make sure the task names its objective, acceptance criteria, context paths, sources, and verification path
+3. dispatch it through `.github/workflows/dispatch-codex-queue-item.yml`
+4. let the resulting `codex-task` issue trigger the existing PR workflow
+
+The queue renderer is:
+
+```bash
+python3 scripts/render_codex_task_from_queue.py task_add_rdrive_framework
+```
+
+This is the preferred path for repeatable research-expansion work because it keeps:
+
+- the task spec in Git
+- the source bundle visible
+- the verification path explicit
+- the resulting PR bounded
 
 ## Recommended use
 
@@ -73,6 +103,7 @@ Use the Codex workflow for:
 - doc and site hardening
 - generated-surface maintenance
 - structured follow-up work from issue templates
+- queue-driven framework and crosswalk expansion
 
 Do not use it for:
 
@@ -87,3 +118,4 @@ The Codex workflow complements CI. It does not replace it.
 - `ci.yml` verifies repo health
 - `netlify-deploy.yml` publishes the static site
 - `codex-task.yml` prepares a scoped implementation PR
+- `dispatch-codex-queue-item.yml` turns queue items into issue-triggered Codex PR runs

@@ -10,8 +10,10 @@ def test_github_workflows_and_issue_templates_parse(repo_root):
         repo_root / ".github" / "workflows" / "ci.yml",
         repo_root / ".github" / "workflows" / "netlify-deploy.yml",
         repo_root / ".github" / "workflows" / "codex-task.yml",
+        repo_root / ".github" / "workflows" / "dispatch-codex-queue-item.yml",
         repo_root / ".github" / "ISSUE_TEMPLATE" / "codex_task.yml",
         repo_root / ".github" / "ISSUE_TEMPLATE" / "config.yml",
+        repo_root / ".github" / "codex" / "task_queue.yaml",
     ]
     for path in paths:
         assert path.exists(), f"Missing GitHub surface: {path}"

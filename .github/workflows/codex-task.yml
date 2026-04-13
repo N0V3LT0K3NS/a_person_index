@@ -135,6 +135,8 @@ jobs:
             echo "- docs/architecture.md"
             echo "- docs/index_programs.md"
             echo "- docs/codex_automation.md"
+            echo "- docs/research_authoring_standard.md"
+            echo "- docs/expansion_program.md"
             echo "- docs/system_boundaries.md"
             echo "- docs/phase_3_4_plan.md"
             echo "- generated/manifest.json"

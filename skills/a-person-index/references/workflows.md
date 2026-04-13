@@ -54,6 +54,15 @@
   - `python3 scripts/query_registry.py research-models`
   - `python3 scripts/query_registry.py research-promotion`
 
+### Dispatch bounded expansion work
+
+- Repo queue:
+  - `.github/codex/task_queue.yaml`
+- Renderer:
+  - `python3 scripts/render_codex_task_from_queue.py task_add_rdrive_framework`
+- GitHub workflow:
+  - `.github/workflows/dispatch-codex-queue-item.yml`
+
 ## Output patterns
 
 ### Comparative memo
