@@ -1,5 +1,5 @@
 $defs:
-  Protocol:
+  ActualizationProtocol:
     additionalProperties: false
     properties:
       id:
@@ -15,51 +15,43 @@ $defs:
         - active
         title: Status
         type: string
-      program_kind:
-        enum:
-        - micro_program
-        - comparison_program
-        - translation_program
-        - synthesis_program
-        - artifact_program
-        - research_program
-        title: Program Kind
-        type: string
-      purpose:
-        title: Purpose
-        type: string
       summary:
         title: Summary
         type: string
-      downstream_consumers:
+      run_mode_ids:
         items:
           type: string
-        title: Downstream Consumers
+        title: Run Mode Ids
         type: array
-      required_inputs:
+      protocol_ids:
         items:
           type: string
-        title: Required Inputs
+        title: Protocol Ids
         type: array
-      optional_inputs:
+      target_artifact_class_ids:
         items:
           type: string
-        title: Optional Inputs
+        title: Target Artifact Class Ids
         type: array
-      technique_ids:
+      required_capability_ids:
         items:
           type: string
-        title: Technique Ids
+        title: Required Capability Ids
         type: array
-      component_program_ids:
+      optional_capability_ids:
         items:
           type: string
-        title: Component Program Ids
+        title: Optional Capability Ids
         type: array
-      primary_outputs:
+      steps:
         items:
           type: string
-        title: Primary Outputs
+        title: Steps
+        type: array
+      cautions:
+        items:
+          type: string
+        title: Cautions
         type: array
       notes:
         anyOf:
@@ -71,19 +63,17 @@ $defs:
     - id
     - name
     - status
-    - program_kind
-    - purpose
     - summary
-    title: Protocol
+    title: ActualizationProtocol
     type: object
 additionalProperties: false
 properties:
-  protocols:
+  actualization_protocols:
     items:
-      $ref: '#/$defs/Protocol'
-    title: Protocols
+      $ref: '#/$defs/ActualizationProtocol'
+    title: Actualization Protocols
     type: array
 required:
-- protocols
-title: ProtocolsDocument
+- actualization_protocols
+title: ActualizationProtocolsDocument
 type: object

@@ -41,6 +41,9 @@ if (!tools.tools.some((tool) => tool.name === "fetch_research_promotion_policy")
 if (!tools.tools.some((tool) => tool.name === "list_actualization_protocols")) {
   throw new Error("Expected list_actualization_protocols tool in MCP surface.");
 }
+if (!tools.tools.some((tool) => tool.name === "list_comparison_shapes")) {
+  throw new Error("Expected list_comparison_shapes tool in MCP surface.");
+}
 if (!tools.tools.some((tool) => tool.name === "list_capabilities")) {
   throw new Error("Expected list_capabilities tool in MCP surface.");
 }
@@ -73,6 +76,11 @@ if (!researchPromotion.contents?.[0]?.text?.includes("research_promotion_v0_1"))
 const actualizationResource = await client.readResource({ uri: "registry://actualization-protocols" });
 if (!actualizationResource.contents?.[0]?.text?.includes("A Person Index is often most powerful")) {
   throw new Error("Expected actualization protocol resource content.");
+}
+
+const comparisonShapeResource = await client.readResource({ uri: "registry://comparison-shapes" });
+if (!comparisonShapeResource.contents?.[0]?.text?.includes("Comparison Shapes")) {
+  throw new Error("Expected comparison shapes resource content.");
 }
 
 const capabilityResource = await client.readResource({ uri: "registry://capability-model" });

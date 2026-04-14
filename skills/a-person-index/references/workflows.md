@@ -34,9 +34,11 @@
 ### Move from recommendation to execution
 
 - MCP tools:
+  - `list_comparison_shapes`
   - `recommend_next_path`
   - `fetch_workflow_recipe`
 - CLI:
+  - `python3 scripts/query_registry.py comparison-shapes --text "compare me across time"`
   - `python3 scripts/query_registry.py recommend-path --mode "Artifact Actualization" --capability "Markdown Write"`
   - `python3 scripts/query_registry.py workflows --artifact "Comparative Memo"`
 

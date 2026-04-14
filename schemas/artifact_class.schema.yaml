@@ -1,5 +1,5 @@
 $defs:
-  Protocol:
+  ArtifactClass:
     additionalProperties: false
     properties:
       id:
@@ -15,51 +15,46 @@ $defs:
         - active
         title: Status
         type: string
-      program_kind:
-        enum:
-        - micro_program
-        - comparison_program
-        - translation_program
-        - synthesis_program
-        - artifact_program
-        - research_program
-        title: Program Kind
-        type: string
-      purpose:
-        title: Purpose
-        type: string
       summary:
         title: Summary
         type: string
-      downstream_consumers:
+      audience_modes:
         items:
           type: string
-        title: Downstream Consumers
+        title: Audience Modes
         type: array
-      required_inputs:
+      default_expression_mode:
+        enum:
+        - tacit
+        - explanatory
+        - technical
+        - mixed
+        title: Default Expression Mode
+        type: string
+      suitable_mode_ids:
         items:
           type: string
-        title: Required Inputs
+        title: Suitable Mode Ids
         type: array
-      optional_inputs:
+      required_evidence_partitions:
         items:
           type: string
-        title: Optional Inputs
+        title: Required Evidence Partitions
         type: array
-      technique_ids:
+      required_capability_ids:
         items:
           type: string
-        title: Technique Ids
+        title: Required Capability Ids
         type: array
-      component_program_ids:
+      optional_capability_ids:
         items:
           type: string
-        title: Component Program Ids
+        title: Optional Capability Ids
         type: array
-      primary_outputs:
+      typical_forms:
         items:
           type: string
-        title: Primary Outputs
+        title: Typical Forms
         type: array
       notes:
         anyOf:
@@ -71,19 +66,18 @@ $defs:
     - id
     - name
     - status
-    - program_kind
-    - purpose
     - summary
-    title: Protocol
+    - default_expression_mode
+    title: ArtifactClass
     type: object
 additionalProperties: false
 properties:
-  protocols:
+  artifact_classes:
     items:
-      $ref: '#/$defs/Protocol'
-    title: Protocols
+      $ref: '#/$defs/ArtifactClass'
+    title: Artifact Classes
     type: array
 required:
-- protocols
-title: ProtocolsDocument
+- artifact_classes
+title: ArtifactClassesDocument
 type: object

@@ -31,6 +31,7 @@ Only then deepen as needed:
   [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
 - Advanced and downstream-facing use:
   [docs/advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md),
+  [docs/comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md),
   [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
   [docs/expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md),
   [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
@@ -76,6 +77,7 @@ Canonical sources:
 - [ontology](/Users/noveltokens/a_person_index/ontology)
 - [motifs/registry.yaml](/Users/noveltokens/a_person_index/motifs/registry.yaml)
 - [modes/registry.yaml](/Users/noveltokens/a_person_index/modes/registry.yaml)
+- [comparison_shapes/registry.yaml](/Users/noveltokens/a_person_index/comparison_shapes/registry.yaml)
 - [capabilities/registry.yaml](/Users/noveltokens/a_person_index/capabilities/registry.yaml)
 - [expression/registry.yaml](/Users/noveltokens/a_person_index/expression/registry.yaml)
 - [artifacts/registry.yaml](/Users/noveltokens/a_person_index/artifacts/registry.yaml)

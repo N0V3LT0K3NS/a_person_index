@@ -1,5 +1,5 @@
 $defs:
-  Protocol:
+  ExpressionProfile:
     additionalProperties: false
     properties:
       id:
@@ -15,51 +15,44 @@ $defs:
         - active
         title: Status
         type: string
-      program_kind:
+      expression_mode:
         enum:
-        - micro_program
-        - comparison_program
-        - translation_program
-        - synthesis_program
-        - artifact_program
-        - research_program
-        title: Program Kind
-        type: string
-      purpose:
-        title: Purpose
+        - tacit
+        - explanatory
+        - technical
+        - mixed
+        title: Expression Mode
         type: string
       summary:
         title: Summary
         type: string
-      downstream_consumers:
+      purpose:
+        title: Purpose
+        type: string
+      audience_modes:
         items:
           type: string
-        title: Downstream Consumers
+        title: Audience Modes
         type: array
-      required_inputs:
+      visible_by_default:
         items:
           type: string
-        title: Required Inputs
+        title: Visible By Default
         type: array
-      optional_inputs:
+      keep_implicit_by_default:
         items:
           type: string
-        title: Optional Inputs
+        title: Keep Implicit By Default
         type: array
-      technique_ids:
+      good_for:
         items:
           type: string
-        title: Technique Ids
+        title: Good For
         type: array
-      component_program_ids:
+      cautions:
         items:
           type: string
-        title: Component Program Ids
-        type: array
-      primary_outputs:
-        items:
-          type: string
-        title: Primary Outputs
+        title: Cautions
         type: array
       notes:
         anyOf:
@@ -71,19 +64,19 @@ $defs:
     - id
     - name
     - status
-    - program_kind
-    - purpose
+    - expression_mode
     - summary
-    title: Protocol
+    - purpose
+    title: ExpressionProfile
     type: object
 additionalProperties: false
 properties:
-  protocols:
+  expression_profiles:
     items:
-      $ref: '#/$defs/Protocol'
-    title: Protocols
+      $ref: '#/$defs/ExpressionProfile'
+    title: Expression Profiles
     type: array
 required:
-- protocols
-title: ProtocolsDocument
+- expression_profiles
+title: ExpressionProfilesDocument
 type: object

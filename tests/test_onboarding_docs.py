@@ -25,6 +25,7 @@ def test_onboarding_docs_exist(repo_root):
         repo_root / "docs" / "ilens_walkthrough.md",
         repo_root / "docs" / "current_state.md",
         repo_root / "docs" / "advanced_modes.md",
+        repo_root / "docs" / "comparison_shapes.md",
         repo_root / "docs" / "capability_model.md",
         repo_root / "docs" / "expression_model.md",
         repo_root / "docs" / "actualization_protocols.md",
@@ -72,6 +73,7 @@ def test_readme_links_to_onboarding_surface(repo_root):
     assert "docs/strategic_backlog.md" in readme
     assert "docs/current_state.md" in readme
     assert "docs/advanced_modes.md" in readme
+    assert "docs/comparison_shapes.md" in readme
     assert "docs/capability_model.md" in readme
     assert "docs/expression_model.md" in readme
     assert "docs/actualization_protocols.md" in readme

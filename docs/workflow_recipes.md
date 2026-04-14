@@ -44,10 +44,11 @@ without inventing that path ad hoc every time.
 Use the layers in this order:
 
 1. analysis mode says what kind of run this is
-2. capabilities say what the host can actually do
-3. recommendation says what artifact, expression, and protocol fit
-4. workflow recipe says how to execute that path here
-5. host tools realize the final output
+2. comparison shape makes the contextual or pairwise scaffold explicit when relevant
+3. capabilities say what the host can actually do
+4. recommendation says what artifact, expression, and protocol fit
+5. workflow recipe says how to execute that path here
+6. host tools realize the final output
 
 ## Boundary rule
 

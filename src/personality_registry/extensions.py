@@ -12,6 +12,7 @@ from personality_registry.models import StrictModel
 
 EXTENSION_FILE_MODELS = {
     "modes/registry.yaml": "analysis_modes",
+    "comparison_shapes/registry.yaml": "comparison_shapes",
     "capabilities/registry.yaml": "capabilities",
     "expression/registry.yaml": "expression_profiles",
     "artifacts/registry.yaml": "artifact_classes",
@@ -44,6 +45,26 @@ class AnalysisMode(StrictModel):
 
 class AnalysisModesDocument(StrictModel):
     analysis_modes: list[AnalysisMode]
+
+
+class ComparisonShape(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    summary: str
+    purpose: str
+    mode_ids: list[str] = Field(default_factory=list)
+    intent_signals: list[str] = Field(default_factory=list)
+    required_declarations: list[str] = Field(default_factory=list)
+    optional_declarations: list[str] = Field(default_factory=list)
+    suitable_artifact_class_ids: list[str] = Field(default_factory=list)
+    recommended_protocol_ids: list[str] = Field(default_factory=list)
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class ComparisonShapesDocument(StrictModel):
+    comparison_shapes: list[ComparisonShape]
 
 
 class Capability(StrictModel):
@@ -393,6 +414,7 @@ class ResultAtomSchemaDocument(StrictModel):
 
 DOCUMENT_MODEL_BY_FILE = {
     "modes/registry.yaml": AnalysisModesDocument,
+    "comparison_shapes/registry.yaml": ComparisonShapesDocument,
     "capabilities/registry.yaml": CapabilitiesDocument,
     "expression/registry.yaml": ExpressionProfilesDocument,
     "artifacts/registry.yaml": ArtifactClassesDocument,
@@ -413,6 +435,7 @@ DOCUMENT_MODEL_BY_FILE = {
 @dataclass
 class ExtensionRegistryData:
     analysis_modes: list[AnalysisMode]
+    comparison_shapes: list[ComparisonShape]
     capabilities: list[Capability]
     expression_profiles: list[ExpressionProfile]
     artifact_classes: list[ArtifactClass]
@@ -467,6 +490,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
         return ExtensionLoadResult(data=None, errors=errors)
 
     analysis_modes_doc = documents["modes/registry.yaml"]
+    comparison_shapes_doc = documents["comparison_shapes/registry.yaml"]
     capabilities_doc = documents["capabilities/registry.yaml"]
     expression_profiles_doc = documents["expression/registry.yaml"]
     artifact_classes_doc = documents["artifacts/registry.yaml"]
@@ -484,6 +508,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
 
     data = ExtensionRegistryData(
         analysis_modes=analysis_modes_doc.analysis_modes,
+        comparison_shapes=comparison_shapes_doc.comparison_shapes,
         capabilities=capabilities_doc.capabilities,
         expression_profiles=expression_profiles_doc.expression_profiles,
         artifact_classes=artifact_classes_doc.artifact_classes,

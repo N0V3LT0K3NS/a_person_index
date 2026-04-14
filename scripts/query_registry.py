@@ -14,6 +14,7 @@ from personality_registry.query import (
     artifact_class_record,
     audit_repository,
     capability_record,
+    comparison_shape_record,
     compare_instruments,
     contribution_model_record,
     curated_protocol_pack_record,
@@ -23,6 +24,7 @@ from personality_registry.query import (
     find_analysis_modes,
     find_artifact_classes,
     find_capabilities,
+    find_comparison_shapes,
     find_contribution_models,
     find_expression_profiles,
     find_interaction_hypotheses,
@@ -669,6 +671,44 @@ def _render_capability_record_text(payload):
     return "\n".join(lines)
 
 
+def _render_comparison_shapes_text(results):
+    if not results:
+        return "No matching comparison shapes."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  status={item['status']} modes={', '.join(item['mode_ids'])}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_comparison_shape_record_text(payload):
+    item = payload["comparison_shape"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        item["summary"],
+        "",
+        "Required declarations:",
+    ]
+    for entry in item["required_declarations"]:
+        lines.append(f"  - {entry}")
+    if item["optional_declarations"]:
+        lines.append("")
+        lines.append("Optional declarations:")
+        for entry in item["optional_declarations"]:
+            lines.append(f"  - {entry}")
+    lines.append("")
+    lines.append("Suitable artifact classes:")
+    for artifact in payload["suitable_artifact_classes"]:
+        lines.append(f"  - {artifact['name']} ({artifact['id']})")
+    lines.append("")
+    lines.append("Recommended protocols:")
+    for protocol in payload["recommended_protocols"]:
+        lines.append(f"  - {protocol['name']} ({protocol['id']})")
+    return "\n".join(lines)
+
+
 def _render_expression_profiles_text(results):
     if not results:
         return "No matching expression profiles."
@@ -854,6 +894,14 @@ def _render_recommendation_text(payload):
             lines.append(f"  - {item['name']} ({item['id']})")
     else:
         lines.append("Capabilities: none declared")
+
+    lines.append("")
+    lines.append("Recommended comparison shape:")
+    if payload.get("recommended_comparison_shape"):
+        shape = payload["recommended_comparison_shape"]
+        lines.append(f"  {shape['name']} ({shape['id']})")
+    else:
+        lines.append("  none")
 
     lines.append("")
     lines.append("Recommended artifact:")
@@ -1179,6 +1227,19 @@ def main() -> int:
     )
     capabilities_parser.add_argument("--text", help="Substring search across capability fields.")
     capabilities_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    comparison_shapes_parser = subparsers.add_parser(
+        "comparison-shapes",
+        help="List or show structured comparison shapes for contextual or pairwise work.",
+    )
+    comparison_shapes_parser.add_argument(
+        "ref", nargs="?", help="Optional comparison shape ID or name for a detailed record."
+    )
+    comparison_shapes_parser.add_argument("--mode", help="Filter comparison shapes by analysis mode.")
+    comparison_shapes_parser.add_argument("--artifact", help="Filter comparison shapes by artifact class.")
+    comparison_shapes_parser.add_argument("--protocol", help="Filter comparison shapes by protocol.")
+    comparison_shapes_parser.add_argument("--text", help="Substring search across comparison shape fields.")
+    comparison_shapes_parser.add_argument("--format", choices=("text", "json"), default="text")
 
     expressions_parser = subparsers.add_parser("expressions", help="List or show expression profiles.")
     expressions_parser.add_argument(
@@ -1510,6 +1571,27 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_capabilities_text(payload))
+        return 0
+
+    if args.command == "comparison-shapes":
+        if args.ref:
+            payload = comparison_shape_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_comparison_shape_record_text(payload))
+            return 0
+        payload = find_comparison_shapes(
+            extensions,
+            mode=args.mode,
+            artifact_class=args.artifact,
+            protocol=args.protocol,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_comparison_shapes_text(payload))
         return 0
 
     if args.command == "expressions":

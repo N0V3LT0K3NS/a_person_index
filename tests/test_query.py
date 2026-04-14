@@ -18,6 +18,7 @@ from personality_registry.query import (
     find_analysis_modes,
     find_artifact_classes,
     find_capabilities,
+    find_comparison_shapes,
     find_expression_profiles,
     find_interaction_hypotheses,
     find_motifs,
@@ -28,6 +29,7 @@ from personality_registry.query import (
     find_instruments,
     find_workflow_recipes,
     curated_protocol_pack_record,
+    comparison_shape_record,
     expression_profile_record,
     interaction_hypothesis_record,
     instrument_record,
@@ -261,6 +263,14 @@ def test_contextual_and_pairwise_packs_are_discoverable(repo_root):
 def test_extension_finders_return_expected_records(repo_root):
     extensions = load_extensions_strict(repo_root)
     mode_ids = {item["id"] for item in find_analysis_modes(extensions, text="plan")}
+    comparison_shape_ids = {
+        item["id"]
+        for item in find_comparison_shapes(
+            extensions,
+            artifact_class="Context Matrix",
+            text="compare me across time",
+        )
+    }
     capability_ids = {
         item["id"]
         for item in find_capabilities(
@@ -290,6 +300,7 @@ def test_extension_finders_return_expected_records(repo_root):
     technique_ids = {item["id"] for item in find_techniques(extensions, text="paradox")}
     contribution_ids = {item["id"] for item in find_contribution_models(extensions, text="normalized")}
     assert "mode_run_planning" in mode_ids
+    assert "cmp_contextual_time_slices" in comparison_shape_ids
     assert {"cap_table_render", "cap_markdown_write"} <= capability_ids
     assert "art_agent_markdown_handoff" in artifact_ids
     assert "actx_single_subject_comparative_memo" in actualization_ids
@@ -302,11 +313,13 @@ def test_extension_finders_return_expected_records(repo_root):
 def test_analysis_mode_and_artifact_records_are_available(repo_root):
     extensions = load_extensions_strict(repo_root)
     mode_payload = analysis_mode_record(extensions, "Run Planning")
+    comparison_shape_payload = comparison_shape_record(extensions, "Contextual Time Slices")
     capability_payload = capability_record(extensions, "Markdown Write")
     expression_payload = expression_profile_record(extensions, "Explanatory Scaffolded")
     artifact_payload = artifact_class_record(extensions, "Context Matrix")
     actualization_payload = actualization_protocol_record(extensions, "Pairwise Relational Sheet")
     assert mode_payload["analysis_mode"]["id"] == "mode_run_planning"
+    assert comparison_shape_payload["comparison_shape"]["id"] == "cmp_contextual_time_slices"
     assert capability_payload["capability"]["id"] == "cap_markdown_write"
     assert expression_payload["expression_profile"]["id"] == "expr_explanatory"
     used_by_artifact_ids = {item["id"] for item in capability_payload["used_by_artifact_classes"]}
@@ -316,6 +329,8 @@ def test_analysis_mode_and_artifact_records_are_available(repo_root):
     assert "cap_spreadsheet_render" in artifact_payload["artifact_class"]["optional_capability_ids"]
     assert actualization_payload["actualization_protocol"]["id"] == "actx_pairwise_relational_sheet"
     assert "cap_diagram_render" in actualization_payload["actualization_protocol"]["optional_capability_ids"]
+    related_artifact_ids = {item["id"] for item in comparison_shape_payload["suitable_artifact_classes"]}
+    assert "art_context_matrix" in related_artifact_ids
 
 
 def test_find_expression_profiles_for_artifact(repo_root):
@@ -347,11 +362,23 @@ def test_recommend_next_path_prefers_context_matrix_when_capabilities_fit(repo_r
         text="compare me across time and make a matrix",
     )
     assert payload["run_mode"]["id"] == "mode_contextual_comparison"
+    assert payload["recommended_comparison_shape"]["id"] == "cmp_contextual_time_slices"
     assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_context_matrix"
     assert payload["recommended_expression_profile"]["id"] == "expr_explanatory"
     assert payload["recommended_workflow_recipe"]["workflow_recipe"]["id"] == "wfr_context_matrix_explanatory"
     assert payload["recommended_actualization_protocol"]["actualization_protocol"]["id"] == "actx_context_matrix_render"
     assert payload["recommended_artifact"]["fit_status"] == "ready"
+    assert "fetch_comparison_shape" in payload["recommended_tools"]
+
+
+def test_find_pairwise_comparison_shapes_from_relational_text(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = find_comparison_shapes(
+        extensions,
+        text="compare us in relationship and show where the seams are",
+    )
+    shape_ids = {item["id"] for item in payload}
+    assert "cmp_pairwise_relational_question" in shape_ids
 
 
 def test_workflow_recipe_record_expands_related_surfaces(repo_root):

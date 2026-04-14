@@ -110,5 +110,6 @@ For most end users, the answer should usually describe the lived pattern more th
 See also:
 
 - [advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md)
+- [comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md)
 - [expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md)
 - [multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)

@@ -93,6 +93,7 @@ improvising.
 Use the deeper docs:
 
 - [advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md)
+- [comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md)
 - [capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md)
 - [expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md)
 - [actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md)

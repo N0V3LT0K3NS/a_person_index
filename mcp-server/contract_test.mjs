@@ -39,6 +39,8 @@ const toolNames = new Set(tools.tools.map((tool) => tool.name));
 for (const requiredTool of [
   "orient_agent",
   "list_analysis_modes",
+  "list_comparison_shapes",
+  "fetch_comparison_shape",
   "list_capabilities",
   "list_expression_profiles",
   "fetch_expression_profile",
@@ -80,6 +82,12 @@ const advancedModes = await client.readResource({ uri: "registry://advanced-mode
 expect(
   advancedModes.contents?.[0]?.text?.includes("Mode 1: orientation and sync"),
   "Expected advanced modes resource content.",
+);
+
+const comparisonShapes = await client.readResource({ uri: "registry://comparison-shapes" });
+expect(
+  comparisonShapes.contents?.[0]?.text?.includes("Comparison Shapes"),
+  "Expected comparison shapes resource content.",
 );
 
 const capabilityModel = await client.readResource({ uri: "registry://capability-model" });
@@ -166,6 +174,21 @@ expect(
   "Expected capability list for context matrix artifact.",
 );
 
+const comparisonShapeList = await client.callTool({
+  name: "list_comparison_shapes",
+  arguments: {
+    text: "compare me across time",
+  },
+});
+expect(!comparisonShapeList.isError, "Expected list_comparison_shapes tool to succeed.");
+expect(
+  Array.isArray(comparisonShapeList.structuredContent?.comparison_shapes) &&
+    comparisonShapeList.structuredContent.comparison_shapes.some(
+      (item) => item.id === "cmp_contextual_time_slices",
+    ),
+  "Expected comparison shape list to include time-slice comparison.",
+);
+
 const expressions = await client.callTool({
   name: "list_expression_profiles",
   arguments: {
@@ -201,6 +224,10 @@ const recommendation = await client.callTool({
   },
 });
 expect(!recommendation.isError, "Expected recommend_next_path tool to succeed.");
+expect(
+  recommendation.structuredContent?.recommended_comparison_shape?.id === "cmp_contextual_time_slices",
+  "Expected recommended comparison shape for contextual matrix path.",
+);
 expect(
   recommendation.structuredContent?.recommended_artifact?.artifact_class?.id === "art_context_matrix",
   "Expected recommended artifact for contextual matrix path.",

@@ -1,5 +1,5 @@
 $defs:
-  Protocol:
+  WorkflowRecipe:
     additionalProperties: false
     properties:
       id:
@@ -15,51 +15,42 @@ $defs:
         - active
         title: Status
         type: string
-      program_kind:
-        enum:
-        - micro_program
-        - comparison_program
-        - translation_program
-        - synthesis_program
-        - artifact_program
-        - research_program
-        title: Program Kind
-        type: string
-      purpose:
-        title: Purpose
-        type: string
       summary:
         title: Summary
         type: string
-      downstream_consumers:
+      run_mode_ids:
         items:
           type: string
-        title: Downstream Consumers
+        title: Run Mode Ids
         type: array
-      required_inputs:
+      artifact_class_id:
+        title: Artifact Class Id
+        type: string
+      expression_profile_id:
+        title: Expression Profile Id
+        type: string
+      actualization_protocol_id:
+        title: Actualization Protocol Id
+        type: string
+      required_capability_ids:
         items:
           type: string
-        title: Required Inputs
+        title: Required Capability Ids
         type: array
-      optional_inputs:
+      recipe_steps:
         items:
           type: string
-        title: Optional Inputs
+        title: Recipe Steps
         type: array
-      technique_ids:
+      deliverables:
         items:
           type: string
-        title: Technique Ids
+        title: Deliverables
         type: array
-      component_program_ids:
+      cautions:
         items:
           type: string
-        title: Component Program Ids
-        type: array
-      primary_outputs:
-        items:
-          type: string
-        title: Primary Outputs
+        title: Cautions
         type: array
       notes:
         anyOf:
@@ -71,19 +62,20 @@ $defs:
     - id
     - name
     - status
-    - program_kind
-    - purpose
     - summary
-    title: Protocol
+    - artifact_class_id
+    - expression_profile_id
+    - actualization_protocol_id
+    title: WorkflowRecipe
     type: object
 additionalProperties: false
 properties:
-  protocols:
+  workflow_recipes:
     items:
-      $ref: '#/$defs/Protocol'
-    title: Protocols
+      $ref: '#/$defs/WorkflowRecipe'
+    title: Workflow Recipes
     type: array
 required:
-- protocols
-title: ProtocolsDocument
+- workflow_recipes
+title: WorkflowRecipesDocument
 type: object

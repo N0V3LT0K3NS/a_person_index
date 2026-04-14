@@ -108,7 +108,7 @@ async function buildServer() {
     name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, capability records, expression profiles, artifact classes, actualization protocols, and workflow recipes from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, capability, expression, actualization, and workflow surfaces before improvising. Use recommend_next_path when you already know the host capabilities and need the smallest disciplined next step. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, capability records, expression profiles, artifact classes, actualization protocols, and workflow recipes from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, comparison-shape, capability, expression, actualization, and workflow surfaces before improvising. Use recommend_next_path when you already know the host capabilities and need the smallest disciplined next step. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
   });
 
   server.registerResource(
@@ -232,6 +232,24 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/advanced_modes.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "comparison-shapes",
+    "registry://comparison-shapes",
+    {
+      title: "Comparison Shapes",
+      description: "Structured contextual and pairwise comparison shapes that make required declarations explicit before execution.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/comparison_shapes.md"),
         },
       ],
     }),
@@ -568,6 +586,50 @@ async function buildServer() {
     async ({ ref }) => {
       try {
         return jsonResult(await runRegistryQuery(["modes", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_comparison_shapes",
+    {
+      title: "List Comparison Shapes",
+      description: "Return contextual or pairwise comparison shapes with their required declarations and recommended protocol fit.",
+      inputSchema: {
+        mode: z.string().optional(),
+        artifact: z.string().optional(),
+        protocol: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ mode, artifact, protocol, text }) => {
+      try {
+        const args = ["comparison-shapes"];
+        if (mode) args.push("--mode", mode);
+        if (artifact) args.push("--artifact", artifact);
+        if (protocol) args.push("--protocol", protocol);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("comparison_shapes", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_comparison_shape",
+    {
+      title: "Fetch Comparison Shape",
+      description: "Return the full record for a named comparison shape including its required declarations, suitable artifacts, and recommended protocols.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["comparison-shapes", ref], pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }

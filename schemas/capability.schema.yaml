@@ -1,0 +1,75 @@
+$defs:
+  Capability:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      name:
+        title: Name
+        type: string
+      status:
+        enum:
+        - draft
+        - experimental
+        - active
+        title: Status
+        type: string
+      capability_kind:
+        enum:
+        - input
+        - execution
+        - rendering
+        - visualization
+        - network
+        - persistence
+        - packaging
+        title: Capability Kind
+        type: string
+      summary:
+        title: Summary
+        type: string
+      purpose:
+        title: Purpose
+        type: string
+      detection_questions:
+        items:
+          type: string
+        title: Detection Questions
+        type: array
+      typical_tool_signals:
+        items:
+          type: string
+        title: Typical Tool Signals
+        type: array
+      cautions:
+        items:
+          type: string
+        title: Cautions
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - name
+    - status
+    - capability_kind
+    - summary
+    - purpose
+    title: Capability
+    type: object
+additionalProperties: false
+properties:
+  capabilities:
+    items:
+      $ref: '#/$defs/Capability'
+    title: Capabilities
+    type: array
+required:
+- capabilities
+title: CapabilitiesDocument
+type: object

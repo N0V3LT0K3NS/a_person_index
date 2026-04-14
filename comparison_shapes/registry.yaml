@@ -1,0 +1,124 @@
+comparison_shapes:
+  - id: cmp_contextual_time_slices
+    name: Contextual Time Slices
+    status: active
+    summary: Compare one subject across explicitly declared time slices without confusing sparse deltas for deep baseline change.
+    purpose: Give contextual comparison work a disciplined temporal scaffold before artifact realization begins.
+    mode_ids:
+      - mode_contextual_comparison
+    intent_signals:
+      - compare me across time
+      - over time
+      - 2013 versus 2020
+      - earlier self versus current self
+    required_declarations:
+      - explicit time-slice labels
+      - comparable framework coverage or declared comparison limits
+      - stated comparison question
+    optional_declarations:
+      - longitudinal notes
+      - major life transition markers
+      - confidence notes for sparse slices
+    suitable_artifact_class_ids:
+      - art_context_matrix
+      - art_comparative_memo
+      - art_result_bundle
+    recommended_protocol_ids:
+      - proto_contextual_comparison
+      - proto_paradox_finder
+    cautions:
+      - Time-slice comparison should not imply developmental causality by default.
+      - Uneven framework coverage should remain visible in the result.
+
+  - id: cmp_contextual_role_context
+    name: Contextual Role or Self-State
+    status: active
+    summary: Compare one subject across roles, self-states, or environments while keeping the same comparative axes visible.
+    purpose: Support side-by-side contextual comparison that is not primarily temporal.
+    mode_ids:
+      - mode_contextual_comparison
+    intent_signals:
+      - work self versus relational self
+      - compare me across contexts
+      - role A versus role B
+      - different self states
+    required_declarations:
+      - explicit context or role labels
+      - declared comparison question
+      - comparable axes, motifs, or frameworks
+    optional_declarations:
+      - role descriptions
+      - environmental context
+      - observed shifts in behavior or regulation
+    suitable_artifact_class_ids:
+      - art_context_matrix
+      - art_comparative_memo
+      - art_result_bundle
+    recommended_protocol_ids:
+      - proto_contextual_comparison
+      - proto_paradox_finder
+    cautions:
+      - Role-based variation should not be treated as inconsistency by default.
+      - The same label may hide different context loads unless declared explicitly.
+
+  - id: cmp_pairwise_parallel_stacks
+    name: Pairwise Parallel Stacks
+    status: experimental
+    summary: Compare two separated subject stacks side by side without assuming a relationship-specific framing.
+    purpose: Support disciplined two-stack comparison when the main goal is structured contrast rather than relational interpretation.
+    mode_ids:
+      - mode_contextual_comparison
+    intent_signals:
+      - compare these two people
+      - side by side
+      - compare two stacks
+      - compare person A and person B
+    required_declarations:
+      - two explicitly separated stacks
+      - declared comparison question
+      - framework-level scope for the comparison
+    optional_declarations:
+      - known areas of asymmetry
+      - notes about missing frameworks on one side
+    suitable_artifact_class_ids:
+      - art_pairwise_relational_sheet
+      - art_comparative_memo
+      - art_result_bundle
+    recommended_protocol_ids:
+      - proto_pairwise_relational_comparison
+      - proto_translation_memo
+    cautions:
+      - Parallel comparison should preserve orthogonality and missing seams rather than forcing symmetry.
+      - This is not a compatibility score path.
+
+  - id: cmp_pairwise_relational_question
+    name: Pairwise Relational Question
+    status: experimental
+    summary: Compare two subject stacks through an explicitly declared relational question or context.
+    purpose: Support relationship-adjacent pairwise work while keeping scope, evidence, and missingness visible.
+    mode_ids:
+      - mode_contextual_comparison
+    intent_signals:
+      - compare us in relationship
+      - romantic compatibility
+      - how do these two people fit
+      - relational comparison
+    required_declarations:
+      - two explicitly separated stacks
+      - declared relationship or comparison question
+      - scope limits for what the comparison may and may not claim
+    optional_declarations:
+      - attachment or care-signaling context
+      - relational history notes
+      - behavioral observations
+    suitable_artifact_class_ids:
+      - art_pairwise_relational_sheet
+      - art_comparative_memo
+      - art_result_bundle
+    recommended_protocol_ids:
+      - proto_pairwise_relational_comparison
+      - proto_translation_memo
+      - proto_paradox_finder
+    cautions:
+      - Relationship framing should not silently become deterministic compatibility language.
+      - Unsupported relational claims should remain clearly unsupported.

@@ -26,6 +26,10 @@ Workflow recipes now sit beneath that recommendation layer, so the system can
 also name the smallest repeatable execution sequence that fits the run,
 artifact, expression, and capability shape.
 
+Contextual and pairwise work now also has first-class comparison shapes, so the
+system can name the comparison scaffold itself before it chooses artifacts or
+execution paths.
+
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
 1. Canonical registry
@@ -65,6 +69,7 @@ If you need the deeper map after that:
   [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
 - Advanced and downstream-facing use:
   [docs/advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md),
+  [docs/comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md),
   [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
   [docs/expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md),
   [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
@@ -134,6 +139,7 @@ For Codex specifically, the companion skill is an optional usage layer on top of
 ├── actualization/
 ├── artifacts/
 ├── capabilities/
+├── comparison_shapes/
 ├── docs/
 ├── generated/
 ├── interactions/
@@ -168,6 +174,7 @@ Key conventions:
 - `notes.md` stores human-readable narrative context.
 - `motifs/registry.yaml` stores provisional house translation motifs.
 - `modes/registry.yaml` stores named run modes for advanced comparative work.
+- `comparison_shapes/registry.yaml` stores explicit scaffolds for contextual and pairwise comparison before artifact or protocol selection begins.
 - `capabilities/registry.yaml` stores the abstract host capability model used by the meta-skill and actualization layer.
 - `artifacts/registry.yaml` stores artifact classes and their evidence and capability expectations.
 - `actualization/registry.yaml` stores downstream actualization protocols that use A Person Index as the comparative core.

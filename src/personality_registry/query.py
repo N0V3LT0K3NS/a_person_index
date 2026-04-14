@@ -353,6 +353,14 @@ def resolve_analysis_mode(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.analysis_modes, ref, ("name", "summary"))
 
 
+def resolve_comparison_shape(extensions: ExtensionRegistryData, ref: str):
+    return _resolve_extension_item(
+        extensions.comparison_shapes,
+        ref,
+        ("name", "summary", "purpose"),
+    )
+
+
 def resolve_capability(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.capabilities, ref, ("name", "summary", "purpose"))
 
@@ -421,6 +429,7 @@ def agent_orientation(
         ],
         "advanced_docs": [
             "docs/advanced_modes.md",
+            "docs/comparison_shapes.md",
             "docs/capability_model.md",
             "docs/expression_model.md",
             "docs/actualization_protocols.md",
@@ -1359,6 +1368,73 @@ def analysis_mode_record(extensions: ExtensionRegistryData, ref: str) -> dict[st
     return {"analysis_mode": item.model_dump(mode="json")}
 
 
+def find_comparison_shapes(
+    extensions: ExtensionRegistryData,
+    *,
+    mode: str | None = None,
+    artifact_class: str | None = None,
+    protocol: str | None = None,
+    text: str | None = None,
+) -> list[dict[str, Any]]:
+    mode_id = resolve_analysis_mode(extensions, mode).id if mode else None
+    artifact_id = resolve_artifact_class(extensions, artifact_class).id if artifact_class else None
+    protocol_id = resolve_protocol(extensions, protocol).id if protocol else None
+    scored_results: list[tuple[int, dict[str, Any]]] = []
+    for item in extensions.comparison_shapes:
+        if mode_id and mode_id not in item.mode_ids:
+            continue
+        if artifact_id and artifact_id not in item.suitable_artifact_class_ids:
+            continue
+        if protocol_id and protocol_id not in item.recommended_protocol_ids:
+            continue
+        score = 0
+        if text:
+            score = _text_signal_score(
+                text,
+                [
+                    item.id,
+                    item.name,
+                    item.summary,
+                    item.purpose,
+                    *item.mode_ids,
+                    *item.intent_signals,
+                    *item.required_declarations,
+                    *item.optional_declarations,
+                    *item.suitable_artifact_class_ids,
+                    *item.recommended_protocol_ids,
+                    *item.cautions,
+                ],
+            )
+            if score <= 0:
+                continue
+        scored_results.append((score, item.model_dump(mode="json")))
+
+    if text:
+        scored_results.sort(key=lambda entry: (-entry[0], entry[1]["name"].lower()))
+    else:
+        scored_results.sort(key=lambda entry: entry[1]["name"].lower())
+    return [item for _, item in scored_results]
+
+
+def comparison_shape_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, Any]:
+    item = resolve_comparison_shape(extensions, ref)
+    suitable_artifact_classes = [
+        artifact.model_dump(mode="json")
+        for artifact in extensions.artifact_classes
+        if artifact.id in item.suitable_artifact_class_ids
+    ]
+    recommended_protocols = [
+        protocol.model_dump(mode="json")
+        for protocol in extensions.protocols
+        if protocol.id in item.recommended_protocol_ids
+    ]
+    return {
+        "comparison_shape": item.model_dump(mode="json"),
+        "suitable_artifact_classes": suitable_artifact_classes,
+        "recommended_protocols": recommended_protocols,
+    }
+
+
 def find_capabilities(
     extensions: ExtensionRegistryData,
     *,
@@ -1717,6 +1793,32 @@ def _recommended_mode_candidates(
     return [item for _, item in scored]
 
 
+def _recommended_comparison_shape_candidates(
+    extensions: ExtensionRegistryData,
+    mode_id: str,
+    text: str,
+) -> list[dict[str, Any]]:
+    scored: list[tuple[int, dict[str, Any]]] = []
+    for item in extensions.comparison_shapes:
+        if mode_id not in item.mode_ids:
+            continue
+        score = _text_signal_score(
+            text,
+            [
+                item.name,
+                item.summary,
+                item.purpose,
+                *item.intent_signals,
+                *item.required_declarations,
+            ],
+        )
+        if score <= 0:
+            continue
+        scored.append((score, item.model_dump(mode="json")))
+    scored.sort(key=lambda entry: (-entry[0], entry[1]["name"].lower()))
+    return [item for _, item in scored]
+
+
 def recommend_next_path(
     extensions: ExtensionRegistryData,
     *,
@@ -1749,6 +1851,16 @@ def recommend_next_path(
         mode_item = resolve_analysis_mode(extensions, "Run Planning")
         inferred_mode = True
         notes.append("No run mode was provided, so the recommendation defaults to Run Planning.")
+
+    comparison_shape_candidates: list[dict[str, Any]] = []
+    if text and mode_item.id == "mode_contextual_comparison":
+        comparison_shape_candidates = _recommended_comparison_shape_candidates(
+            extensions,
+            mode_item.id,
+            text,
+        )
+        if comparison_shape_candidates:
+            notes.append("Comparison shape was inferred from the provided text.")
 
     explicit_artifact = resolve_artifact_class(extensions, artifact_class) if artifact_class else None
 
@@ -1896,6 +2008,8 @@ def recommend_next_path(
         recommended_tools.append("list_capabilities")
     if recommended_artifact is not None:
         recommended_tools.append("fetch_artifact_class")
+    if comparison_shape_candidates:
+        recommended_tools.append("fetch_comparison_shape")
     if expression_candidates:
         recommended_tools.append("fetch_expression_profile")
     if actualization_candidates:
@@ -1905,6 +2019,7 @@ def recommend_next_path(
 
     recommended_resources = [
         "registry://advanced-modes",
+        "registry://comparison-shapes",
         "registry://capability-model",
         "registry://expression-model",
         "registry://workflow-recipes",
@@ -1916,6 +2031,8 @@ def recommend_next_path(
         "run_mode": mode_item.model_dump(mode="json"),
         "run_mode_inferred": inferred_mode,
         "mode_candidates": mode_candidates[:3],
+        "recommended_comparison_shape": comparison_shape_candidates[0] if comparison_shape_candidates else None,
+        "comparison_shape_candidates": comparison_shape_candidates[:3],
         "declared_capabilities": [item.model_dump(mode="json") for item in capability_items],
         "recommended_artifact": recommended_artifact,
         "artifact_candidates": artifact_candidates[:3],

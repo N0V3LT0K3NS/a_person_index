@@ -96,6 +96,9 @@ Use this when the task involves:
 - two or more people in relation
 - multiple people compared side by side
 
+Start with [comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md)
+before choosing artifacts, protocols, or workflow recipes.
+
 See [multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md).
 
 ## Mode 7: trace review
