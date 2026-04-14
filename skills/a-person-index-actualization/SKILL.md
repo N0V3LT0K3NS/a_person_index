@@ -10,6 +10,9 @@ Use this skill when the task is no longer only "understand the stack" and is now
 
 This skill sits above `$a-person-index`.
 
+If the main task is still deciding what kind of run this is or what the host
+can do, start with `$a-person-index-meta` first.
+
 It does not replace the comparative core. It helps the host:
 
 - inspect available capabilities

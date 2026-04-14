@@ -638,10 +638,11 @@
         "house_synthesis",
         "downstream_judgment"
       ],
-      "capability_tags": [
-        "markdown_write",
-        "structured_text_render"
+      "required_capability_ids": [
+        "cap_markdown_write",
+        "cap_structured_text_render"
       ],
+      "optional_capability_ids": [],
       "typical_forms": [
         "markdown memo",
         "long-form message"
@@ -669,10 +670,12 @@
         "program_behavior",
         "downstream_judgment"
       ],
-      "capability_tags": [
-        "markdown_write",
-        "structured_text_render",
-        "optional_pdf_render"
+      "required_capability_ids": [
+        "cap_markdown_write",
+        "cap_structured_text_render"
+      ],
+      "optional_capability_ids": [
+        "cap_pdf_render"
       ],
       "typical_forms": [
         "markdown card",
@@ -701,10 +704,11 @@
         "downstream_judgment",
         "external_realization_notes"
       ],
-      "capability_tags": [
-        "markdown_write",
-        "file_write"
+      "required_capability_ids": [
+        "cap_markdown_write",
+        "cap_file_write"
       ],
+      "optional_capability_ids": [],
       "typical_forms": [
         "markdown handoff",
         "repo artifact"
@@ -731,10 +735,12 @@
         "house_synthesis",
         "downstream_judgment"
       ],
-      "capability_tags": [
-        "table_render",
-        "markdown_write",
-        "optional_spreadsheet_render"
+      "required_capability_ids": [
+        "cap_table_render",
+        "cap_markdown_write"
+      ],
+      "optional_capability_ids": [
+        "cap_spreadsheet_render"
       ],
       "typical_forms": [
         "markdown table",
@@ -762,10 +768,12 @@
         "house_synthesis",
         "downstream_judgment"
       ],
-      "capability_tags": [
-        "table_render",
-        "markdown_write",
-        "optional_diagram_render"
+      "required_capability_ids": [
+        "cap_table_render",
+        "cap_markdown_write"
+      ],
+      "optional_capability_ids": [
+        "cap_diagram_render"
       ],
       "typical_forms": [
         "side-by-side sheet",
@@ -794,10 +802,11 @@
         "house_synthesis",
         "program_behavior"
       ],
-      "capability_tags": [
-        "json_emit",
-        "file_write"
+      "required_capability_ids": [
+        "cap_json_emit",
+        "cap_file_write"
       ],
+      "optional_capability_ids": [],
       "typical_forms": [
         "JSON bundle",
         "structured markdown plus JSON"
@@ -824,10 +833,11 @@
         "art_comparative_memo",
         "art_result_bundle"
       ],
-      "required_capability_tags": [
-        "markdown_write",
-        "structured_text_render"
+      "required_capability_ids": [
+        "cap_markdown_write",
+        "cap_structured_text_render"
       ],
+      "optional_capability_ids": [],
       "steps": [
         "Match frameworks and call out unindexed items before synthesis.",
         "Choose the right reviewed program or pack before improvising.",
@@ -857,10 +867,12 @@
         "art_human_model_card",
         "art_agent_markdown_handoff"
       ],
-      "required_capability_tags": [
-        "markdown_write",
-        "structured_text_render",
-        "optional_pdf_render"
+      "required_capability_ids": [
+        "cap_markdown_write",
+        "cap_structured_text_render"
+      ],
+      "optional_capability_ids": [
+        "cap_pdf_render"
       ],
       "steps": [
         "Use the Human Model Card frame to organize provenance, paradoxes, and deployment conditions.",
@@ -890,9 +902,12 @@
         "art_context_matrix",
         "art_result_bundle"
       ],
-      "required_capability_tags": [
-        "table_render",
-        "markdown_write"
+      "required_capability_ids": [
+        "cap_table_render",
+        "cap_markdown_write"
+      ],
+      "optional_capability_ids": [
+        "cap_spreadsheet_render"
       ],
       "steps": [
         "Declare the context slices explicitly before comparison begins.",
@@ -923,10 +938,12 @@
         "art_pairwise_relational_sheet",
         "art_comparative_memo"
       ],
-      "required_capability_tags": [
-        "table_render",
-        "markdown_write",
-        "optional_diagram_render"
+      "required_capability_ids": [
+        "cap_table_render",
+        "cap_markdown_write"
+      ],
+      "optional_capability_ids": [
+        "cap_diagram_render"
       ],
       "steps": [
         "Keep each subject's stack legible before making pairwise claims.",

@@ -265,6 +265,7 @@ def collect_validation_errors(root: Path) -> list[str]:
 
     if extensions is not None:
         analysis_mode_ids = {mode.id for mode in extensions.analysis_modes}
+        capability_ids = {capability.id for capability in extensions.capabilities}
         artifact_class_ids = {artifact.id for artifact in extensions.artifact_classes}
         motif_ids = {motif.id for motif in extensions.motifs}
         technique_ids = {technique.id for technique in extensions.techniques}
@@ -272,6 +273,7 @@ def collect_validation_errors(root: Path) -> list[str]:
 
         extension_groups = {
             "analysis_mode": extensions.analysis_modes,
+            "capability": extensions.capabilities,
             "artifact_class": extensions.artifact_classes,
             "actualization_protocol": extensions.actualization_protocols,
             "motif": extensions.motifs,
@@ -309,6 +311,16 @@ def collect_validation_errors(root: Path) -> list[str]:
                 if mode_id not in analysis_mode_ids:
                     errors.append(
                         f"artifacts/registry.yaml: artifact class '{artifact_class.id}' references missing analysis mode '{mode_id}'"
+                    )
+            for capability_id in artifact_class.required_capability_ids:
+                if capability_id not in capability_ids:
+                    errors.append(
+                        f"artifacts/registry.yaml: artifact class '{artifact_class.id}' references missing required capability '{capability_id}'"
+                    )
+            for capability_id in artifact_class.optional_capability_ids:
+                if capability_id not in capability_ids:
+                    errors.append(
+                        f"artifacts/registry.yaml: artifact class '{artifact_class.id}' references missing optional capability '{capability_id}'"
                     )
 
         for mapping in extensions.mappings:
@@ -382,6 +394,16 @@ def collect_validation_errors(root: Path) -> list[str]:
                 if artifact_id not in artifact_class_ids:
                     errors.append(
                         f"actualization/registry.yaml: actualization protocol '{actualization_protocol.id}' references missing artifact class '{artifact_id}'"
+                    )
+            for capability_id in actualization_protocol.required_capability_ids:
+                if capability_id not in capability_ids:
+                    errors.append(
+                        f"actualization/registry.yaml: actualization protocol '{actualization_protocol.id}' references missing required capability '{capability_id}'"
+                    )
+            for capability_id in actualization_protocol.optional_capability_ids:
+                if capability_id not in capability_ids:
+                    errors.append(
+                        f"actualization/registry.yaml: actualization protocol '{actualization_protocol.id}' references missing optional capability '{capability_id}'"
                     )
 
         contribution_model_ids = {item.id for item in extensions.contribution_models}

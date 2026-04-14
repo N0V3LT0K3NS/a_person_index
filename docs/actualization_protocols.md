@@ -29,6 +29,10 @@ Use other tools only for adjacent work such as:
 The important thing is not tool purity. The important thing is semantic
 discipline.
 
+See [capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md)
+for the abstract capability layer that helps hosts decide what realization path
+is actually available.
+
 ## Why "actualization" matters
 
 Sometimes the user does not merely want a bounded analysis.

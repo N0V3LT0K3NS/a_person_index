@@ -13,6 +13,7 @@ from personality_registry.query import (
     analysis_mode_record,
     artifact_class_record,
     audit_repository,
+    capability_record,
     compare_instruments,
     contribution_model_record,
     curated_protocol_pack_record,
@@ -20,6 +21,7 @@ from personality_registry.query import (
     find_actualization_protocols,
     find_analysis_modes,
     find_artifact_classes,
+    find_capabilities,
     find_contribution_models,
     find_interaction_hypotheses,
     find_motifs,
@@ -618,6 +620,50 @@ def _render_analysis_mode_record_text(payload):
     return "\n".join(lines)
 
 
+def _render_capabilities_text(results):
+    if not results:
+        return "No matching capabilities."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  status={item['status']} kind={item['capability_kind']}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_capability_record_text(payload):
+    item = payload["capability"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        f"kind: {item['capability_kind']}",
+        item["summary"],
+        "",
+        "Detection questions:",
+    ]
+    for question in item["detection_questions"]:
+        lines.append(f"  - {question}")
+    lines.append("")
+    lines.append("Typical tool signals:")
+    for signal in item["typical_tool_signals"]:
+        lines.append(f"  - {signal}")
+    lines.append("")
+    lines.append("Used by artifact classes:")
+    if payload["used_by_artifact_classes"]:
+        for artifact in payload["used_by_artifact_classes"]:
+            lines.append(f"  - {artifact['name']} ({artifact['id']})")
+    else:
+        lines.append("  none")
+    lines.append("")
+    lines.append("Used by actualization protocols:")
+    if payload["used_by_actualization_protocols"]:
+        for protocol in payload["used_by_actualization_protocols"]:
+            lines.append(f"  - {protocol['name']} ({protocol['id']})")
+    else:
+        lines.append("  none")
+    return "\n".join(lines)
+
+
 def _render_artifact_classes_text(results):
     if not results:
         return "No matching artifact classes."
@@ -644,9 +690,14 @@ def _render_artifact_class_record_text(payload):
     for partition in item["required_evidence_partitions"]:
         lines.append(f"  - {partition}")
     lines.append("")
-    lines.append("Capability tags:")
-    for tag in item["capability_tags"]:
-        lines.append(f"  - {tag}")
+    lines.append("Required capabilities:")
+    for capability_id in item["required_capability_ids"]:
+        lines.append(f"  - {capability_id}")
+    if item["optional_capability_ids"]:
+        lines.append("")
+        lines.append("Optional capabilities:")
+        for capability_id in item["optional_capability_ids"]:
+            lines.append(f"  - {capability_id}")
     return "\n".join(lines)
 
 
@@ -678,8 +729,13 @@ def _render_actualization_protocol_record_text(payload):
         lines.append(f"  - {artifact_id}")
     lines.append("")
     lines.append("Required capabilities:")
-    for capability in item["required_capability_tags"]:
+    for capability in item["required_capability_ids"]:
         lines.append(f"  - {capability}")
+    if item["optional_capability_ids"]:
+        lines.append("")
+        lines.append("Optional capabilities:")
+        for capability in item["optional_capability_ids"]:
+            lines.append(f"  - {capability}")
     lines.append("")
     lines.append("Steps:")
     for step in item["steps"]:
@@ -927,9 +983,30 @@ def main() -> int:
     modes_parser.add_argument("--text", help="Substring search across analysis mode fields.")
     modes_parser.add_argument("--format", choices=("text", "json"), default="text")
 
+    capabilities_parser = subparsers.add_parser(
+        "capabilities",
+        help="List or show host capabilities used by the meta-skill and actualization layer.",
+    )
+    capabilities_parser.add_argument("ref", nargs="?", help="Optional capability ID or name for a detailed record.")
+    capabilities_parser.add_argument(
+        "--kind",
+        choices=("input", "execution", "rendering", "visualization", "network", "persistence", "packaging"),
+        help="Filter capabilities by capability kind.",
+    )
+    capabilities_parser.add_argument("--artifact", help="Filter capabilities by artifact class.")
+    capabilities_parser.add_argument("--actualization", help="Filter capabilities by actualization protocol.")
+    capabilities_parser.add_argument(
+        "--required-only",
+        action="store_true",
+        help="When filtering by artifact or actualization protocol, exclude optional capabilities.",
+    )
+    capabilities_parser.add_argument("--text", help="Substring search across capability fields.")
+    capabilities_parser.add_argument("--format", choices=("text", "json"), default="text")
+
     artifacts_parser = subparsers.add_parser("artifacts", help="List or show artifact classes.")
     artifacts_parser.add_argument("ref", nargs="?", help="Optional artifact class ID or name for a detailed record.")
     artifacts_parser.add_argument("--mode", help="Filter artifact classes by analysis mode ID or name.")
+    artifacts_parser.add_argument("--capability", help="Filter artifact classes by capability.")
     artifacts_parser.add_argument("--text", help="Substring search across artifact class fields.")
     artifacts_parser.add_argument("--format", choices=("text", "json"), default="text")
 
@@ -942,6 +1019,7 @@ def main() -> int:
     )
     actualization_parser.add_argument("--mode", help="Filter actualization protocols by analysis mode ID or name.")
     actualization_parser.add_argument("--artifact", help="Filter actualization protocols by artifact class.")
+    actualization_parser.add_argument("--capability", help="Filter actualization protocols by capability.")
     actualization_parser.add_argument("--text", help="Substring search across actualization protocol fields.")
     actualization_parser.add_argument("--format", choices=("text", "json"), default="text")
 
@@ -1196,6 +1274,28 @@ def main() -> int:
             print(_render_analysis_modes_text(payload))
         return 0
 
+    if args.command == "capabilities":
+        if args.ref:
+            payload = capability_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_capability_record_text(payload))
+            return 0
+        payload = find_capabilities(
+            extensions,
+            kind=args.kind,
+            artifact_class=args.artifact,
+            actualization_protocol=args.actualization,
+            include_optional=not args.required_only,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_capabilities_text(payload))
+        return 0
+
     if args.command == "artifacts":
         if args.ref:
             payload = artifact_class_record(extensions, args.ref)
@@ -1204,7 +1304,12 @@ def main() -> int:
             else:
                 print(_render_artifact_class_record_text(payload))
             return 0
-        payload = find_artifact_classes(extensions, mode=args.mode, text=args.text)
+        payload = find_artifact_classes(
+            extensions,
+            mode=args.mode,
+            capability=args.capability,
+            text=args.text,
+        )
         if args.format == "json":
             print(dumps_json(payload))
         else:
@@ -1223,6 +1328,7 @@ def main() -> int:
             extensions,
             run_mode=args.mode,
             artifact_class=args.artifact,
+            capability=args.capability,
             text=args.text,
         )
         if args.format == "json":

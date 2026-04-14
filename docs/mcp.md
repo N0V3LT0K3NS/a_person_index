@@ -132,6 +132,7 @@ npm run mcp:test
 - `registry://assessment-workflow`
 - `registry://ilens-walkthrough`
 - `registry://advanced-modes`
+- `registry://capability-model`
 - `registry://actualization-protocols`
 - `registry://expression-and-artifacts`
 - `registry://multi-subject-comparison`
@@ -146,6 +147,8 @@ npm run mcp:test
 - `orient_agent`
 - `list_analysis_modes`
 - `fetch_analysis_mode`
+- `list_capabilities`
+- `fetch_capability`
 - `list_artifact_classes`
 - `fetch_artifact_class`
 - `list_actualization_protocols`
@@ -199,3 +202,4 @@ That scheme names the access surface, not the entire product. The product is A P
 - If the Python runtime baseline rises later, the adapter can be reconsidered.
 - The strongest current production claim is local and nearby-agent readiness, not hosted remote service readiness.
 - The MCP surface currently supports the comparative core. Artifact rendering, multi-subject persistence, and broader application logic remain downstream concerns.
+- The capability model helps hosts plan those downstream concerns abstractly without turning the MCP surface into a renderer or app runtime.

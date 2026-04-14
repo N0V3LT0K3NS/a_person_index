@@ -39,6 +39,7 @@ const toolNames = new Set(tools.tools.map((tool) => tool.name));
 for (const requiredTool of [
   "orient_agent",
   "list_analysis_modes",
+  "list_capabilities",
   "list_artifact_classes",
   "list_actualization_protocols",
   "compare_frameworks",
@@ -74,6 +75,12 @@ const advancedModes = await client.readResource({ uri: "registry://advanced-mode
 expect(
   advancedModes.contents?.[0]?.text?.includes("Mode 1: orientation and sync"),
   "Expected advanced modes resource content.",
+);
+
+const capabilityModel = await client.readResource({ uri: "registry://capability-model" });
+expect(
+  capabilityModel.contents?.[0]?.text?.includes("Capability Model"),
+  "Expected capability model resource content.",
 );
 
 const mbtiResource = await client.readResource({ uri: "registry://instrument/mbti" });
@@ -123,6 +130,23 @@ expect(
   Array.isArray(orientation.structuredContent?.advanced_docs) &&
     orientation.structuredContent.advanced_docs.includes("docs/advanced_modes.md"),
   "Expected orientation to include advanced docs.",
+);
+expect(
+  orientation.structuredContent?.advanced_docs?.includes("docs/capability_model.md"),
+  "Expected orientation to include capability model doc.",
+);
+
+const capabilities = await client.callTool({
+  name: "list_capabilities",
+  arguments: {
+    artifact: "Context Matrix",
+  },
+});
+expect(!capabilities.isError, "Expected list_capabilities tool to succeed.");
+expect(
+  Array.isArray(capabilities.structuredContent?.capabilities) &&
+    capabilities.structuredContent.capabilities.some((item) => item.id === "cap_table_render"),
+  "Expected capability list for context matrix artifact.",
 );
 
 const actualizationProtocols = await client.callTool({

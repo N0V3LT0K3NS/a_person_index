@@ -108,7 +108,7 @@ async function buildServer() {
     name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, artifact classes, and actualization protocols from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode and actualization surfaces before improvising. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, capability records, artifact classes, and actualization protocols from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, capability, and actualization surfaces before improvising. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
   });
 
   server.registerResource(
@@ -232,6 +232,24 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/advanced_modes.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "capability-model",
+    "registry://capability-model",
+    {
+      title: "Capability Model",
+      description: "Abstract capability taxonomy for host-aware planning, actualization, and meta-skill behavior.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/capability_model.md"),
         },
       ],
     }),
@@ -521,19 +539,65 @@ async function buildServer() {
   );
 
   server.registerTool(
+    "list_capabilities",
+    {
+      title: "List Capabilities",
+      description: "Return abstract host capabilities for meta-skill planning and artifact actualization.",
+      inputSchema: {
+        kind: z.string().optional(),
+        artifact: z.string().optional(),
+        actualization: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ kind, artifact, actualization, text }) => {
+      try {
+        const args = ["capabilities"];
+        if (kind) args.push("--kind", kind);
+        if (artifact) args.push("--artifact", artifact);
+        if (actualization) args.push("--actualization", actualization);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("capabilities", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_capability",
+    {
+      title: "Fetch Capability",
+      description: "Return the full record for a named host capability including the artifact classes and actualization protocols that depend on it.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["capabilities", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
     "list_artifact_classes",
     {
       title: "List Artifact Classes",
       description: "Return downstream artifact classes that A Person Index can semantically support.",
       inputSchema: {
         mode: z.string().optional(),
+        capability: z.string().optional(),
         text: z.string().optional(),
       },
     },
-    async ({ mode, text }) => {
+    async ({ mode, capability, text }) => {
       try {
         const args = ["artifacts"];
         if (mode) args.push("--mode", mode);
+        if (capability) args.push("--capability", capability);
         if (text) args.push("--text", text);
         return jsonCollectionResult("artifact_classes", await runRegistryQuery(args, pythonBin));
       } catch (error) {
@@ -568,14 +632,16 @@ async function buildServer() {
       inputSchema: {
         mode: z.string().optional(),
         artifact: z.string().optional(),
+        capability: z.string().optional(),
         text: z.string().optional(),
       },
     },
-    async ({ mode, artifact, text }) => {
+    async ({ mode, artifact, capability, text }) => {
       try {
         const args = ["actualization"];
         if (mode) args.push("--mode", mode);
         if (artifact) args.push("--artifact", artifact);
+        if (capability) args.push("--capability", capability);
         if (text) args.push("--text", text);
         return jsonCollectionResult("actualization_protocols", await runRegistryQuery(args, pythonBin));
       } catch (error) {

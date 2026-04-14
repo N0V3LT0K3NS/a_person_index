@@ -12,6 +12,7 @@ from personality_registry.models import StrictModel
 
 EXTENSION_FILE_MODELS = {
     "modes/registry.yaml": "analysis_modes",
+    "capabilities/registry.yaml": "capabilities",
     "artifacts/registry.yaml": "artifact_classes",
     "actualization/registry.yaml": "actualization_protocols",
     "motifs/registry.yaml": "motifs",
@@ -43,6 +44,31 @@ class AnalysisModesDocument(StrictModel):
     analysis_modes: list[AnalysisMode]
 
 
+class Capability(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    capability_kind: Literal[
+        "input",
+        "execution",
+        "rendering",
+        "visualization",
+        "network",
+        "persistence",
+        "packaging",
+    ]
+    summary: str
+    purpose: str
+    detection_questions: list[str] = Field(default_factory=list)
+    typical_tool_signals: list[str] = Field(default_factory=list)
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class CapabilitiesDocument(StrictModel):
+    capabilities: list[Capability]
+
+
 class ArtifactClass(StrictModel):
     id: str
     name: str
@@ -52,7 +78,8 @@ class ArtifactClass(StrictModel):
     default_expression_mode: Literal["tacit", "explanatory", "technical", "mixed"]
     suitable_mode_ids: list[str] = Field(default_factory=list)
     required_evidence_partitions: list[str] = Field(default_factory=list)
-    capability_tags: list[str] = Field(default_factory=list)
+    required_capability_ids: list[str] = Field(default_factory=list)
+    optional_capability_ids: list[str] = Field(default_factory=list)
     typical_forms: list[str] = Field(default_factory=list)
     notes: Optional[str] = None
 
@@ -69,7 +96,8 @@ class ActualizationProtocol(StrictModel):
     run_mode_ids: list[str] = Field(default_factory=list)
     protocol_ids: list[str] = Field(default_factory=list)
     target_artifact_class_ids: list[str] = Field(default_factory=list)
-    required_capability_tags: list[str] = Field(default_factory=list)
+    required_capability_ids: list[str] = Field(default_factory=list)
+    optional_capability_ids: list[str] = Field(default_factory=list)
     steps: list[str] = Field(default_factory=list)
     cautions: list[str] = Field(default_factory=list)
     notes: Optional[str] = None
@@ -324,6 +352,7 @@ class ResultAtomSchemaDocument(StrictModel):
 
 DOCUMENT_MODEL_BY_FILE = {
     "modes/registry.yaml": AnalysisModesDocument,
+    "capabilities/registry.yaml": CapabilitiesDocument,
     "artifacts/registry.yaml": ArtifactClassesDocument,
     "actualization/registry.yaml": ActualizationProtocolsDocument,
     "motifs/registry.yaml": MotifsDocument,
@@ -341,6 +370,7 @@ DOCUMENT_MODEL_BY_FILE = {
 @dataclass
 class ExtensionRegistryData:
     analysis_modes: list[AnalysisMode]
+    capabilities: list[Capability]
     artifact_classes: list[ArtifactClass]
     actualization_protocols: list[ActualizationProtocol]
     motifs: list[Motif]
@@ -392,6 +422,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
         return ExtensionLoadResult(data=None, errors=errors)
 
     analysis_modes_doc = documents["modes/registry.yaml"]
+    capabilities_doc = documents["capabilities/registry.yaml"]
     artifact_classes_doc = documents["artifacts/registry.yaml"]
     actualization_protocols_doc = documents["actualization/registry.yaml"]
     motifs_doc = documents["motifs/registry.yaml"]
@@ -406,6 +437,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
 
     data = ExtensionRegistryData(
         analysis_modes=analysis_modes_doc.analysis_modes,
+        capabilities=capabilities_doc.capabilities,
         artifact_classes=artifact_classes_doc.artifact_classes,
         actualization_protocols=actualization_protocols_doc.actualization_protocols,
         motifs=motifs_doc.motifs,

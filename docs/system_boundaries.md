@@ -34,6 +34,7 @@ It may also define:
 
 - artifact semantics and artifact classes
 - advanced comparative modes
+- capability taxonomy and actualization-planning grammar
 - multi-subject comparison grammar
 - downstream protocol constraints
 

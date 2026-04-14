@@ -34,6 +34,10 @@ Real use already reaches beyond the five core layers into three adjacent concern
 3. Contextual and multi-subject comparison
    Applying the comparative grammar across time, role, relationship, or multiple people without confusing that runtime work with canonical records.
 
+4. Capability-aware orchestration
+   Using an abstract capability model so hosts can inspect what they can do here
+   before they choose a downstream actualization path.
+
 These adjacent layers are important, but they should not silently collapse back into the ontology or canonical corpus.
 
 ## Why this split matters
@@ -61,6 +65,7 @@ The simplest accurate way to think about the whole system is:
 
 - A Person Index is the comparative core
 - downstream protocols actualize that core
+- capability-aware planning determines what downstream path is actually available here
 - downstream expression layers render it for specific audiences or artifacts
 - contextual and multi-subject workflows apply the same grammar across more than one slice of personhood evidence
 

@@ -11,11 +11,13 @@ from personality_registry.query import (
     analysis_mode_record,
     artifact_class_record,
     audit_repository,
+    capability_record,
     compare_instruments,
     find_contribution_models,
     find_actualization_protocols,
     find_analysis_modes,
     find_artifact_classes,
+    find_capabilities,
     find_interaction_hypotheses,
     find_motifs,
     find_promotion_pathways,
@@ -254,14 +256,36 @@ def test_contextual_and_pairwise_packs_are_discoverable(repo_root):
 def test_extension_finders_return_expected_records(repo_root):
     extensions = load_extensions_strict(repo_root)
     mode_ids = {item["id"] for item in find_analysis_modes(extensions, text="plan")}
-    artifact_ids = {item["id"] for item in find_artifact_classes(extensions, text="markdown")}
+    capability_ids = {
+        item["id"]
+        for item in find_capabilities(
+            extensions,
+            artifact_class="Context Matrix",
+            include_optional=False,
+            text="render",
+        )
+    }
+    artifact_ids = {
+        item["id"]
+        for item in find_artifact_classes(
+            extensions,
+            capability="Markdown Write",
+            text="markdown",
+        )
+    }
     actualization_ids = {
-        item["id"] for item in find_actualization_protocols(extensions, artifact_class="Comparative Memo")
+        item["id"]
+        for item in find_actualization_protocols(
+            extensions,
+            artifact_class="Comparative Memo",
+            capability="Structured Text Render",
+        )
     }
     protocol_ids = {item["id"] for item in find_protocols(extensions, consumer="GNOMY")}
     technique_ids = {item["id"] for item in find_techniques(extensions, text="paradox")}
     contribution_ids = {item["id"] for item in find_contribution_models(extensions, text="normalized")}
     assert "mode_run_planning" in mode_ids
+    assert {"cap_table_render", "cap_markdown_write"} <= capability_ids
     assert "art_agent_markdown_handoff" in artifact_ids
     assert "actx_single_subject_comparative_memo" in actualization_ids
     assert "proto_ilens" in protocol_ids
@@ -273,11 +297,17 @@ def test_extension_finders_return_expected_records(repo_root):
 def test_analysis_mode_and_artifact_records_are_available(repo_root):
     extensions = load_extensions_strict(repo_root)
     mode_payload = analysis_mode_record(extensions, "Run Planning")
+    capability_payload = capability_record(extensions, "Markdown Write")
     artifact_payload = artifact_class_record(extensions, "Context Matrix")
     actualization_payload = actualization_protocol_record(extensions, "Pairwise Relational Sheet")
     assert mode_payload["analysis_mode"]["id"] == "mode_run_planning"
+    assert capability_payload["capability"]["id"] == "cap_markdown_write"
+    used_by_artifact_ids = {item["id"] for item in capability_payload["used_by_artifact_classes"]}
+    assert "art_comparative_memo" in used_by_artifact_ids
     assert artifact_payload["artifact_class"]["id"] == "art_context_matrix"
+    assert "cap_spreadsheet_render" in artifact_payload["artifact_class"]["optional_capability_ids"]
     assert actualization_payload["actualization_protocol"]["id"] == "actx_pairwise_relational_sheet"
+    assert "cap_diagram_render" in actualization_payload["actualization_protocol"]["optional_capability_ids"]
 
 
 def test_find_interaction_hypotheses_related_to_attachment(repo_root):

@@ -16,9 +16,10 @@ artifact_classes:
       - canonical_framework_content
       - house_synthesis
       - downstream_judgment
-    capability_tags:
-      - markdown_write
-      - structured_text_render
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_structured_text_render
+    optional_capability_ids: []
     typical_forms:
       - markdown memo
       - long-form message
@@ -41,10 +42,11 @@ artifact_classes:
       - house_synthesis
       - program_behavior
       - downstream_judgment
-    capability_tags:
-      - markdown_write
-      - structured_text_render
-      - optional_pdf_render
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_structured_text_render
+    optional_capability_ids:
+      - cap_pdf_render
     typical_forms:
       - markdown card
       - PDF-style export
@@ -67,9 +69,10 @@ artifact_classes:
       - house_synthesis
       - downstream_judgment
       - external_realization_notes
-    capability_tags:
-      - markdown_write
-      - file_write
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_file_write
+    optional_capability_ids: []
     typical_forms:
       - markdown handoff
       - repo artifact
@@ -91,10 +94,11 @@ artifact_classes:
       - canonical_framework_content
       - house_synthesis
       - downstream_judgment
-    capability_tags:
-      - table_render
-      - markdown_write
-      - optional_spreadsheet_render
+    required_capability_ids:
+      - cap_table_render
+      - cap_markdown_write
+    optional_capability_ids:
+      - cap_spreadsheet_render
     typical_forms:
       - markdown table
       - spreadsheet
@@ -116,10 +120,11 @@ artifact_classes:
       - canonical_framework_content
       - house_synthesis
       - downstream_judgment
-    capability_tags:
-      - table_render
-      - markdown_write
-      - optional_diagram_render
+    required_capability_ids:
+      - cap_table_render
+      - cap_markdown_write
+    optional_capability_ids:
+      - cap_diagram_render
     typical_forms:
       - side-by-side sheet
       - relational matrix
@@ -142,9 +147,10 @@ artifact_classes:
       - canonical_framework_content
       - house_synthesis
       - program_behavior
-    capability_tags:
-      - json_emit
-      - file_write
+    required_capability_ids:
+      - cap_json_emit
+      - cap_file_write
+    optional_capability_ids: []
     typical_forms:
       - JSON bundle
       - structured markdown plus JSON

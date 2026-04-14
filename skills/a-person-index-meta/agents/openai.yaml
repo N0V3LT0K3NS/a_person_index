@@ -1,0 +1,4 @@
+interface:
+  display_name: "A Person Index Meta"
+  short_description: "Inspect host capabilities and choose the path"
+  default_prompt: "Use $a-person-index-meta to inspect the current host capabilities, classify the run, and choose the next A Person Index path before doing deeper comparative or artifact work."

@@ -161,6 +161,7 @@ Prefer:
 Mode rule:
 - if the user wants a bounded pass, stay with the basic workflow
 - if the user wants planning, artifact generation, contextual comparison, or trace review, name the mode explicitly before doing more work
+- if the main question is what the host can do here or what path to take next, start with `$a-person-index-meta`
 
 Artifact rule:
 - treat artifact classes and actualization protocols as downstream guides, not as proof that an artifact has already been rendered
@@ -183,6 +184,7 @@ Expression rule:
 - For compact command and task mappings, read [references/workflows.md](references/workflows.md).
 - For advanced comparative, artifact, and downstream realization context, read:
   [../../docs/advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md),
+  [../../docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
   [../../docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
   [../../docs/expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md),
   [../../docs/multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)

@@ -4,6 +4,7 @@
 
 ### Inspect capabilities, then classify the run
 
+- `python3 scripts/query_registry.py capabilities`
 - `python3 scripts/query_registry.py modes`
 - look for capability categories such as file read, file write, code execution, markdown rendering, table rendering, diagram rendering, and structured bundle emission
 

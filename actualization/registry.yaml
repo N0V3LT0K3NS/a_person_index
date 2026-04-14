@@ -13,9 +13,10 @@ actualization_protocols:
     target_artifact_class_ids:
       - art_comparative_memo
       - art_result_bundle
-    required_capability_tags:
-      - markdown_write
-      - structured_text_render
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_structured_text_render
+    optional_capability_ids: []
     steps:
       - Match frameworks and call out unindexed items before synthesis.
       - Choose the right reviewed program or pack before improvising.
@@ -38,10 +39,11 @@ actualization_protocols:
     target_artifact_class_ids:
       - art_human_model_card
       - art_agent_markdown_handoff
-    required_capability_tags:
-      - markdown_write
-      - structured_text_render
-      - optional_pdf_render
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_structured_text_render
+    optional_capability_ids:
+      - cap_pdf_render
     steps:
       - Use the Human Model Card frame to organize provenance, paradoxes, and deployment conditions.
       - Preserve the evidence partitions explicitly in the rendered artifact.
@@ -63,9 +65,11 @@ actualization_protocols:
     target_artifact_class_ids:
       - art_context_matrix
       - art_result_bundle
-    required_capability_tags:
-      - table_render
-      - markdown_write
+    required_capability_ids:
+      - cap_table_render
+      - cap_markdown_write
+    optional_capability_ids:
+      - cap_spreadsheet_render
     steps:
       - Declare the context slices explicitly before comparison begins.
       - Keep the same comparative axes visible across all slices.
@@ -88,10 +92,11 @@ actualization_protocols:
     target_artifact_class_ids:
       - art_pairwise_relational_sheet
       - art_comparative_memo
-    required_capability_tags:
-      - table_render
-      - markdown_write
-      - optional_diagram_render
+    required_capability_ids:
+      - cap_table_render
+      - cap_markdown_write
+    optional_capability_ids:
+      - cap_diagram_render
     steps:
       - Keep each subject's stack legible before making pairwise claims.
       - Compare convergence, tension, and orthogonality without collapsing them into a single score.

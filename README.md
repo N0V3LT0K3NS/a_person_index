@@ -12,6 +12,8 @@ Companion Codex skill: `$a-person-index` can sit above the MCP and CLI surfaces 
 
 Companion actualization skill: `$a-person-index-actualization` can sit above the comparative core when the task is to inspect available host capabilities, choose a run mode, and materialize an artifact or handoff without losing provenance. The repo copy lives at [skills/a-person-index-actualization](/Users/noveltokens/a_person_index/skills/a-person-index-actualization).
 
+Companion meta skill: `$a-person-index-meta` can inspect the current host environment abstractly, map available tools into capability records, classify the run, and choose the next A Person Index path before deeper work begins. The repo copy lives at [skills/a-person-index-meta](/Users/noveltokens/a_person_index/skills/a-person-index-meta).
+
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
 1. Canonical registry
@@ -51,6 +53,7 @@ If you need the deeper map after that:
   [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
 - Advanced and downstream-facing use:
   [docs/advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md),
+  [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
   [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
   [docs/expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md),
   [docs/multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)
@@ -116,6 +119,7 @@ For Codex specifically, the companion skill is an optional usage layer on top of
 .
 ├── actualization/
 ├── artifacts/
+├── capabilities/
 ├── docs/
 ├── generated/
 ├── interactions/
@@ -150,6 +154,7 @@ Key conventions:
 - `notes.md` stores human-readable narrative context.
 - `motifs/registry.yaml` stores provisional house translation motifs.
 - `modes/registry.yaml` stores named run modes for advanced comparative work.
+- `capabilities/registry.yaml` stores the abstract host capability model used by the meta-skill and actualization layer.
 - `artifacts/registry.yaml` stores artifact classes and their evidence and capability expectations.
 - `actualization/registry.yaml` stores downstream actualization protocols that use A Person Index as the comparative core.
 - `mappings/construct_to_motif.yaml` stores provisional construct-to-motif and instrument-to-motif mappings.

@@ -353,6 +353,10 @@ def resolve_analysis_mode(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.analysis_modes, ref, ("name", "summary"))
 
 
+def resolve_capability(extensions: ExtensionRegistryData, ref: str):
+    return _resolve_extension_item(extensions.capabilities, ref, ("name", "summary", "purpose"))
+
+
 def resolve_artifact_class(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.artifact_classes, ref, ("name", "summary"))
 
@@ -405,6 +409,7 @@ def agent_orientation(
         ],
         "advanced_docs": [
             "docs/advanced_modes.md",
+            "docs/capability_model.md",
             "docs/actualization_protocols.md",
             "docs/expression_and_artifacts.md",
             "docs/multi_subject_comparison.md",
@@ -1340,16 +1345,108 @@ def analysis_mode_record(extensions: ExtensionRegistryData, ref: str) -> dict[st
     return {"analysis_mode": item.model_dump(mode="json")}
 
 
+def find_capabilities(
+    extensions: ExtensionRegistryData,
+    *,
+    kind: str | None = None,
+    artifact_class: str | None = None,
+    actualization_protocol: str | None = None,
+    include_optional: bool = True,
+    text: str | None = None,
+) -> list[dict[str, Any]]:
+    artifact_id = resolve_artifact_class(extensions, artifact_class).id if artifact_class else None
+    actualization_id = (
+        resolve_actualization_protocol(extensions, actualization_protocol).id
+        if actualization_protocol
+        else None
+    )
+    results = []
+    for item in extensions.capabilities:
+        if kind and _normalize(kind) != _normalize(item.capability_kind):
+            continue
+        if artifact_id:
+            matching_artifact = next(
+                (artifact for artifact in extensions.artifact_classes if artifact.id == artifact_id),
+                None,
+            )
+            if matching_artifact is None:
+                continue
+            capability_ids = list(matching_artifact.required_capability_ids)
+            if include_optional:
+                capability_ids.extend(matching_artifact.optional_capability_ids)
+            if item.id not in capability_ids:
+                continue
+        if actualization_id:
+            matching_actualization = next(
+                (
+                    protocol
+                    for protocol in extensions.actualization_protocols
+                    if protocol.id == actualization_id
+                ),
+                None,
+            )
+            if matching_actualization is None:
+                continue
+            capability_ids = list(matching_actualization.required_capability_ids)
+            if include_optional:
+                capability_ids.extend(matching_actualization.optional_capability_ids)
+            if item.id not in capability_ids:
+                continue
+        if text:
+            blob = "\n".join(
+                [
+                    item.id,
+                    item.name,
+                    item.capability_kind,
+                    item.summary,
+                    item.purpose,
+                    *item.detection_questions,
+                    *item.typical_tool_signals,
+                    *item.cautions,
+                ]
+            )
+            if _normalize(text) not in _normalize(blob):
+                continue
+        results.append(item.model_dump(mode="json"))
+    return sorted(results, key=lambda entry: entry["name"].lower())
+
+
+def capability_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, Any]:
+    item = resolve_capability(extensions, ref)
+    used_by_artifact_classes = [
+        artifact.model_dump(mode="json")
+        for artifact in extensions.artifact_classes
+        if item.id in {*artifact.required_capability_ids, *artifact.optional_capability_ids}
+    ]
+    used_by_actualization_protocols = [
+        protocol.model_dump(mode="json")
+        for protocol in extensions.actualization_protocols
+        if item.id in {*protocol.required_capability_ids, *protocol.optional_capability_ids}
+    ]
+    return {
+        "capability": item.model_dump(mode="json"),
+        "used_by_artifact_classes": used_by_artifact_classes,
+        "used_by_actualization_protocols": used_by_actualization_protocols,
+    }
+
+
 def find_artifact_classes(
     extensions: ExtensionRegistryData,
     *,
     mode: str | None = None,
+    capability: str | None = None,
     text: str | None = None,
 ) -> list[dict[str, Any]]:
     mode_id = resolve_analysis_mode(extensions, mode).id if mode else None
+    capability_id = resolve_capability(extensions, capability).id if capability else None
     results = []
     for item in extensions.artifact_classes:
         if mode_id and mode_id not in item.suitable_mode_ids:
+            continue
+        if capability_id and capability_id not in {
+            *item.required_capability_ids,
+            *item.optional_capability_ids,
+        }:
             continue
         if text:
             blob = "\n".join(
@@ -1361,7 +1458,8 @@ def find_artifact_classes(
                     *item.audience_modes,
                     *item.suitable_mode_ids,
                     *item.required_evidence_partitions,
-                    *item.capability_tags,
+                    *item.required_capability_ids,
+                    *item.optional_capability_ids,
                     *item.typical_forms,
                 ]
             )
@@ -1381,15 +1479,22 @@ def find_actualization_protocols(
     *,
     run_mode: str | None = None,
     artifact_class: str | None = None,
+    capability: str | None = None,
     text: str | None = None,
 ) -> list[dict[str, Any]]:
     mode_id = resolve_analysis_mode(extensions, run_mode).id if run_mode else None
     artifact_id = resolve_artifact_class(extensions, artifact_class).id if artifact_class else None
+    capability_id = resolve_capability(extensions, capability).id if capability else None
     results = []
     for item in extensions.actualization_protocols:
         if mode_id and mode_id not in item.run_mode_ids:
             continue
         if artifact_id and artifact_id not in item.target_artifact_class_ids:
+            continue
+        if capability_id and capability_id not in {
+            *item.required_capability_ids,
+            *item.optional_capability_ids,
+        }:
             continue
         if text:
             blob = "\n".join(
@@ -1400,7 +1505,8 @@ def find_actualization_protocols(
                     *item.run_mode_ids,
                     *item.protocol_ids,
                     *item.target_artifact_class_ids,
-                    *item.required_capability_tags,
+                    *item.required_capability_ids,
+                    *item.optional_capability_ids,
                     *item.steps,
                     *item.cautions,
                 ]

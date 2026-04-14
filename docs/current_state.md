@@ -18,6 +18,7 @@ As of the current branch state, the repo includes:
 
 - 16 seeded canonical framework records in the current instrument-centered schema
 - 7 named analysis modes
+- 11 host capability records
 - 6 artifact classes
 - 4 actualization protocols
 - 11 house motifs
@@ -67,6 +68,7 @@ As of the current branch state, the repo includes:
 - tested Claude Code MCP path
 - documented Claude Desktop MCP path
 - documented Hermes MCP path with environment-specific remote assumptions
+- capability-aware meta-skill plus actualization skill for Codex-class hosts
 - Deterministic generated outputs
 - Static documentation site
 - Three generated landing-page directions for the public site

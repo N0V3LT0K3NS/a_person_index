@@ -7,6 +7,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
     extensions = load_extensions_strict(repo_root)
 
     assert len(extensions.analysis_modes) >= 5
+    assert len(extensions.capabilities) >= 8
     assert len(extensions.artifact_classes) >= 4
     assert len(extensions.actualization_protocols) >= 3
     assert len(extensions.motifs) >= 10
@@ -19,6 +20,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
     assert len(extensions.promotion_registry.promotion_pathways) >= 5
 
     analysis_mode_ids = {mode.id for mode in extensions.analysis_modes}
+    capability_ids = {capability.id for capability in extensions.capabilities}
     artifact_class_ids = {artifact.id for artifact in extensions.artifact_classes}
     motif_ids = {motif.id for motif in extensions.motifs}
     technique_ids = {technique.id for technique in extensions.techniques}
@@ -27,6 +29,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
     stage_ids = {stage.id for stage in extensions.promotion_registry.stages}
 
     assert "mode_bounded_single_subject" in analysis_mode_ids
+    assert "cap_markdown_write" in capability_ids
     assert "art_comparative_memo" in artifact_class_ids
     assert "mtf_social_energy_orientation" in motif_ids
     assert "tech_paradox_scan" in technique_ids
@@ -42,6 +45,8 @@ def test_extension_registries_load_and_cross_reference(repo_root):
 
     for artifact_class in extensions.artifact_classes:
         assert set(artifact_class.suitable_mode_ids).issubset(analysis_mode_ids)
+        assert set(artifact_class.required_capability_ids).issubset(capability_ids)
+        assert set(artifact_class.optional_capability_ids).issubset(capability_ids)
 
     for mapping in extensions.mappings:
         assert mapping.target_entity_id in motif_ids
@@ -57,6 +62,8 @@ def test_extension_registries_load_and_cross_reference(repo_root):
         assert set(actualization_protocol.run_mode_ids).issubset(analysis_mode_ids)
         assert set(actualization_protocol.protocol_ids).issubset(protocol_ids)
         assert set(actualization_protocol.target_artifact_class_ids).issubset(artifact_class_ids)
+        assert set(actualization_protocol.required_capability_ids).issubset(capability_ids)
+        assert set(actualization_protocol.optional_capability_ids).issubset(capability_ids)
 
     for contribution_model in extensions.contribution_models:
         assert set(contribution_model.promotion_path).issubset(stage_ids)
