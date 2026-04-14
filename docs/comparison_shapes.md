@@ -32,9 +32,18 @@ A comparison shape can make explicit:
 
 - the scope of the comparison
 - the declarations the user or host must provide
+- the declaration fields that can be checked before execution
 - the artifact classes that usually fit
 - the protocols that usually fit
 - the cautions that matter before execution begins
+
+## Comparison preflight
+
+Once a comparison shape is chosen, use comparison preflight to check whether the
+necessary declarations have actually been provided.
+
+That is the layer that keeps contextual and pairwise work from moving into
+artifact or workflow selection while the scaffold is still underspecified.
 
 ## Recommended order
 
@@ -42,9 +51,10 @@ For contextual or pairwise work, the clean order is:
 
 1. identify the run mode
 2. identify the comparison shape
-3. inspect capabilities
-4. choose the artifact, expression, workflow recipe, and actualization path
-5. execute
+3. run comparison preflight with explicit declarations
+4. inspect capabilities
+5. choose the artifact, expression, workflow recipe, and actualization path
+6. execute
 
 ## Boundary rule
 

@@ -156,6 +156,7 @@ to decide:
 Prefer:
 - `python3 scripts/query_registry.py modes`
 - `python3 scripts/query_registry.py comparison-shapes`
+- `python3 scripts/query_registry.py comparison-preflight "Contextual Time Slices" --declare slice_labels="earlier,later" --declare comparison_question="What changed?"`
 - `python3 scripts/query_registry.py recommend-path --mode "Run Planning"`
 - `python3 scripts/query_registry.py artifacts`
 - `python3 scripts/query_registry.py expressions`
@@ -165,7 +166,7 @@ Prefer:
 Mode rule:
 - if the user wants a bounded pass, stay with the basic workflow
 - if the user wants planning, artifact generation, contextual comparison, or trace review, name the mode explicitly before doing more work
-- if the work is contextual or pairwise, choose a comparison shape before choosing artifacts or actualization paths
+- if the work is contextual or pairwise, choose a comparison shape and run comparison preflight before choosing artifacts or actualization paths
 - if the main question is what the host can do here or what path to take next, start with `$a-person-index-meta`
 - when capabilities are already clear and the next step is the real question, use `recommend-path` or `recommend_next_path` before manually choosing an artifact
 
@@ -193,6 +194,7 @@ Expression rule:
 - For advanced comparative, artifact, and downstream realization context, read:
   [../../docs/advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md),
   [../../docs/comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md),
+  [../../docs/comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md),
   [../../docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
   [../../docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
   [../../docs/expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md),

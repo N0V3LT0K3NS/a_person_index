@@ -108,7 +108,7 @@ async function buildServer() {
     name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, capability records, expression profiles, artifact classes, actualization protocols, and workflow recipes from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, comparison-shape, capability, expression, actualization, and workflow surfaces before improvising. Use recommend_next_path when you already know the host capabilities and need the smallest disciplined next step. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, comparison preflight guidance, capability records, expression profiles, artifact classes, actualization protocols, and workflow recipes from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, comparison-shape, comparison-preflight, capability, expression, actualization, and workflow surfaces before improvising. Use prepare_comparison_run once a contextual or pairwise shape is chosen and you need to check whether the run is actually declared well enough to proceed. Use recommend_next_path when you already know the host capabilities and need the smallest disciplined next step. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
   });
 
   server.registerResource(
@@ -250,6 +250,24 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/comparison_shapes.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "comparison-preflight",
+    "registry://comparison-preflight",
+    {
+      title: "Comparison Preflight",
+      description: "How to validate declared contextual or pairwise comparison inputs before artifact selection and execution.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/comparison_preflight.md"),
         },
       ],
     }),
@@ -637,6 +655,33 @@ async function buildServer() {
   );
 
   server.registerTool(
+    "prepare_comparison_run",
+    {
+      title: "Prepare Comparison Run",
+      description: "Validate whether a contextual or pairwise comparison run is adequately declared before artifact selection and execution begins.",
+      inputSchema: {
+        comparison_shape: z.string(),
+        declarations: z
+          .record(z.string(), z.union([z.string(), z.array(z.string())]))
+          .optional(),
+        capabilities: z.array(z.string()).optional(),
+      },
+    },
+    async ({ comparison_shape, declarations, capabilities }) => {
+      try {
+        const args = ["comparison-preflight", comparison_shape];
+        if (declarations) {
+          args.push("--declarations-json", JSON.stringify(declarations));
+        }
+        for (const capability of capabilities ?? []) args.push("--capability", capability);
+        return jsonResult(await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
     "list_capabilities",
     {
       title: "List Capabilities",
@@ -779,15 +824,17 @@ async function buildServer() {
       description: "Recommend the next A Person Index path from the current run shape and declared host capabilities.",
       inputSchema: {
         mode: z.string().optional(),
+        comparison_shape: z.string().optional(),
         capabilities: z.array(z.string()).optional(),
         artifact: z.string().optional(),
         text: z.string().optional(),
       },
     },
-    async ({ mode, capabilities, artifact, text }) => {
+    async ({ mode, comparison_shape, capabilities, artifact, text }) => {
       try {
         const args = ["recommend-path"];
         if (mode) args.push("--mode", mode);
+        if (comparison_shape) args.push("--comparison-shape", comparison_shape);
         for (const capability of capabilities ?? []) args.push("--capability", capability);
         if (artifact) args.push("--artifact", artifact);
         if (text) args.push("--text", text);

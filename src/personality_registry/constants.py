@@ -29,9 +29,12 @@ ROOT_DOCUMENTS = {
 
 ENTITY_PREFIXES = {
     "analysis_mode": "mode_",
+    "comparison_shape": "cmp_",
     "capability": "cap_",
+    "expression_profile": "expr_",
     "artifact_class": "art_",
     "actualization_protocol": "actx_",
+    "workflow_recipe": "wfr_",
     "instrument": "instr_",
     "version": "ver_",
     "construct": "con_",

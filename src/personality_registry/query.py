@@ -1435,6 +1435,152 @@ def comparison_shape_record(extensions: ExtensionRegistryData, ref: str) -> dict
     }
 
 
+def _normalize_declaration_value(value: Any, value_kind: str) -> tuple[Any | None, str | None]:
+    if value_kind == "string":
+        if not isinstance(value, str):
+            return None, "Expected a string value."
+        normalized = value.strip()
+        if not normalized:
+            return None, "Expected a non-empty string value."
+        return normalized, None
+
+    if value_kind == "string_list":
+        if isinstance(value, str):
+            normalized_items = [
+                item.strip()
+                for item in re.split(r"\s*\|\s*|,", value)
+                if item.strip()
+            ]
+        elif isinstance(value, list):
+            normalized_items = [
+                item.strip()
+                for item in value
+                if isinstance(item, str) and item.strip()
+            ]
+            if len(normalized_items) != len(value):
+                return None, "Expected a list of non-empty strings."
+        else:
+            return None, "Expected a string or list of strings."
+
+        if not normalized_items:
+            return None, "Expected at least one non-empty string."
+        return normalized_items, None
+
+    return None, f"Unsupported declaration value kind '{value_kind}'."
+
+
+def prepare_comparison_run(
+    extensions: ExtensionRegistryData,
+    *,
+    comparison_shape: str,
+    declarations: dict[str, Any] | None = None,
+    capability_refs: Iterable[str] | None = None,
+) -> dict[str, Any]:
+    shape = resolve_comparison_shape(extensions, comparison_shape)
+    declarations = declarations or {}
+
+    normalized_declarations: dict[str, Any] = {}
+    invalid_fields: list[dict[str, str]] = []
+    missing_required_fields: list[dict[str, Any]] = []
+    unexpected_fields = sorted(
+        key for key in declarations if key not in {field.id for field in shape.declaration_fields}
+    )
+
+    for field in shape.declaration_fields:
+        if field.id not in declarations:
+            if field.required:
+                missing_required_fields.append(field.model_dump(mode="json"))
+            continue
+        normalized_value, error = _normalize_declaration_value(
+            declarations[field.id],
+            field.value_kind,
+        )
+        if error:
+            invalid_fields.append(
+                {
+                    "field_id": field.id,
+                    "label": field.label,
+                    "reason": error,
+                }
+            )
+            continue
+        normalized_declarations[field.id] = normalized_value
+
+    if invalid_fields:
+        readiness_status = "invalid"
+    elif missing_required_fields:
+        readiness_status = "needs_declarations"
+    else:
+        readiness_status = "ready"
+
+    path_recommendation = None
+    if readiness_status == "ready":
+        primary_mode_ref = shape.mode_ids[0] if shape.mode_ids else None
+        path_recommendation = recommend_next_path(
+            extensions,
+            run_mode=primary_mode_ref,
+            comparison_shape=shape.id,
+            capability_refs=capability_refs,
+        )
+
+    next_steps: list[str] = []
+    if missing_required_fields:
+        labels = ", ".join(field["label"] for field in missing_required_fields)
+        next_steps.append(f"Declare the missing required comparison fields: {labels}.")
+    if invalid_fields:
+        labels = ", ".join(item["label"] for item in invalid_fields)
+        next_steps.append(f"Fix invalid comparison field values: {labels}.")
+    if unexpected_fields:
+        next_steps.append(
+            "Remove or rename declarations that are not part of this comparison shape: "
+            + ", ".join(unexpected_fields)
+            + "."
+        )
+    if readiness_status == "ready" and not capability_refs:
+        next_steps.append("Declare host capabilities before choosing the final artifact and workflow path.")
+    elif readiness_status == "ready":
+        next_steps.append("Use the recommended artifact, expression, workflow, and actualization path for execution.")
+
+    suitable_artifact_classes = [
+        artifact.model_dump(mode="json")
+        for artifact in extensions.artifact_classes
+        if artifact.id in shape.suitable_artifact_class_ids
+    ]
+    recommended_protocols = [
+        protocol.model_dump(mode="json")
+        for protocol in extensions.protocols
+        if protocol.id in shape.recommended_protocol_ids
+    ]
+
+    return {
+        "comparison_shape": shape.model_dump(mode="json"),
+        "readiness_status": readiness_status,
+        "declaration_fields": [field.model_dump(mode="json") for field in shape.declaration_fields],
+        "provided_declarations": normalized_declarations,
+        "missing_required_fields": missing_required_fields,
+        "invalid_fields": invalid_fields,
+        "unexpected_fields": unexpected_fields,
+        "declared_capabilities": [
+            resolve_capability(extensions, ref).model_dump(mode="json")
+            for ref in capability_refs or []
+        ],
+        "suitable_artifact_classes": suitable_artifact_classes,
+        "recommended_protocols": recommended_protocols,
+        "path_recommendation": path_recommendation,
+        "recommended_tools": [
+            "fetch_comparison_shape",
+            "list_capabilities",
+            "recommend_next_path",
+        ],
+        "recommended_resources": [
+            "registry://comparison-shapes",
+            "registry://comparison-preflight",
+            "registry://capability-model",
+        ],
+        "next_steps": next_steps,
+    }
+
+
 def find_capabilities(
     extensions: ExtensionRegistryData,
     *,
@@ -1809,6 +1955,9 @@ def _recommended_comparison_shape_candidates(
                 item.summary,
                 item.purpose,
                 *item.intent_signals,
+                *(field.label for field in item.declaration_fields),
+                *(field.summary for field in item.declaration_fields),
+                *(example for field in item.declaration_fields for example in field.examples),
                 *item.required_declarations,
             ],
         )
@@ -1823,6 +1972,7 @@ def recommend_next_path(
     extensions: ExtensionRegistryData,
     *,
     run_mode: str | None = None,
+    comparison_shape: str | None = None,
     capability_refs: Iterable[str] | None = None,
     artifact_class: str | None = None,
     text: str | None = None,
@@ -1836,11 +1986,22 @@ def recommend_next_path(
 
     notes: list[str] = []
     inferred_mode = False
+    inferred_comparison_shape = False
     mode_item = None
     mode_candidates: list[dict[str, Any]] = []
+    explicit_comparison_shape = (
+        resolve_comparison_shape(extensions, comparison_shape)
+        if comparison_shape
+        else None
+    )
     if run_mode:
         mode_item = resolve_analysis_mode(extensions, run_mode)
         mode_candidates = [mode_item.model_dump(mode="json")]
+    elif explicit_comparison_shape and explicit_comparison_shape.mode_ids:
+        mode_item = resolve_analysis_mode(extensions, explicit_comparison_shape.mode_ids[0])
+        mode_candidates = [mode_item.model_dump(mode="json")]
+        inferred_mode = True
+        notes.append("Run mode was derived from the declared comparison shape.")
     elif text:
         mode_candidates = _recommended_mode_candidates(extensions, text)
         if mode_candidates:
@@ -1853,13 +2014,19 @@ def recommend_next_path(
         notes.append("No run mode was provided, so the recommendation defaults to Run Planning.")
 
     comparison_shape_candidates: list[dict[str, Any]] = []
-    if text and mode_item.id == "mode_contextual_comparison":
+    comparison_shape_item = None
+    if explicit_comparison_shape is not None:
+        comparison_shape_item = explicit_comparison_shape
+        comparison_shape_candidates = [comparison_shape_item.model_dump(mode="json")]
+    elif text and mode_item.id == "mode_contextual_comparison":
         comparison_shape_candidates = _recommended_comparison_shape_candidates(
             extensions,
             mode_item.id,
             text,
         )
         if comparison_shape_candidates:
+            comparison_shape_item = resolve_comparison_shape(extensions, comparison_shape_candidates[0]["id"])
+            inferred_comparison_shape = True
             notes.append("Comparison shape was inferred from the provided text.")
 
     explicit_artifact = resolve_artifact_class(extensions, artifact_class) if artifact_class else None
@@ -1867,6 +2034,8 @@ def recommend_next_path(
     artifact_candidates = []
     for item in extensions.artifact_classes:
         if mode_item.id not in item.suitable_mode_ids:
+            continue
+        if comparison_shape_item and item.id not in comparison_shape_item.suitable_artifact_class_ids:
             continue
         if explicit_artifact and item.id != explicit_artifact.id:
             continue
@@ -1923,6 +2092,10 @@ def recommend_next_path(
     if recommended_artifact is not None:
         for item in extensions.actualization_protocols:
             if mode_item.id not in item.run_mode_ids:
+                continue
+            if comparison_shape_item and not (
+                set(item.protocol_ids) & set(comparison_shape_item.recommended_protocol_ids)
+            ):
                 continue
             if recommended_artifact["artifact_class"]["id"] not in item.target_artifact_class_ids:
                 continue
@@ -1995,6 +2168,8 @@ def recommend_next_path(
         notes.append("No capabilities were declared, so readiness is conservative.")
     elif recommended_artifact and recommended_artifact["missing_required_capability_ids"]:
         notes.append("The top artifact recommendation is only partial with the currently declared capabilities.")
+    if comparison_shape_item and mode_item.id not in comparison_shape_item.mode_ids:
+        notes.append("The declared comparison shape does not naturally fit the current run mode.")
 
     recommended_tools = []
     if inferred_mode:
@@ -2010,6 +2185,7 @@ def recommend_next_path(
         recommended_tools.append("fetch_artifact_class")
     if comparison_shape_candidates:
         recommended_tools.append("fetch_comparison_shape")
+        recommended_tools.append("prepare_comparison_run")
     if expression_candidates:
         recommended_tools.append("fetch_expression_profile")
     if actualization_candidates:
@@ -2024,6 +2200,8 @@ def recommend_next_path(
         "registry://expression-model",
         "registry://workflow-recipes",
     ]
+    if comparison_shape_item is not None:
+        recommended_resources.append("registry://comparison-preflight")
     if recommended_artifact is not None:
         recommended_resources.append("registry://actualization-protocols")
 
@@ -2031,7 +2209,8 @@ def recommend_next_path(
         "run_mode": mode_item.model_dump(mode="json"),
         "run_mode_inferred": inferred_mode,
         "mode_candidates": mode_candidates[:3],
-        "recommended_comparison_shape": comparison_shape_candidates[0] if comparison_shape_candidates else None,
+        "recommended_comparison_shape": comparison_shape_item.model_dump(mode="json") if comparison_shape_item else None,
+        "comparison_shape_inferred": inferred_comparison_shape,
         "comparison_shape_candidates": comparison_shape_candidates[:3],
         "declared_capabilities": [item.model_dump(mode="json") for item in capability_items],
         "recommended_artifact": recommended_artifact,

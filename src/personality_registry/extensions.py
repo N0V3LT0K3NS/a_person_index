@@ -47,6 +47,15 @@ class AnalysisModesDocument(StrictModel):
     analysis_modes: list[AnalysisMode]
 
 
+class ComparisonDeclarationField(StrictModel):
+    id: str
+    label: str
+    value_kind: Literal["string", "string_list"]
+    required: bool
+    summary: str
+    examples: list[str] = Field(default_factory=list)
+
+
 class ComparisonShape(StrictModel):
     id: str
     name: str
@@ -55,6 +64,7 @@ class ComparisonShape(StrictModel):
     purpose: str
     mode_ids: list[str] = Field(default_factory=list)
     intent_signals: list[str] = Field(default_factory=list)
+    declaration_fields: list[ComparisonDeclarationField] = Field(default_factory=list)
     required_declarations: list[str] = Field(default_factory=list)
     optional_declarations: list[str] = Field(default_factory=list)
     suitable_artifact_class_ids: list[str] = Field(default_factory=list)

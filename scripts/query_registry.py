@@ -38,6 +38,7 @@ from personality_registry.query import (
     load_extensions_for_query,
     load_repository_for_query,
     motif_record,
+    prepare_comparison_run,
     promotion_pathway_record,
     protocol_pack,
     protocol_pack_summary,
@@ -689,8 +690,21 @@ def _render_comparison_shape_record_text(payload):
         f"status: {item['status']}",
         item["summary"],
         "",
-        "Required declarations:",
+        "Declaration fields:",
     ]
+    if item["declaration_fields"]:
+        for field in item["declaration_fields"]:
+            requirement = "required" if field["required"] else "optional"
+            lines.append(
+                f"  - {field['label']} ({field['id']}) [{field['value_kind']}; {requirement}]"
+            )
+            lines.append(f"    {field['summary']}")
+    else:
+        lines.append("  none")
+    lines.extend([
+        "",
+        "Required declarations:",
+    ])
     for entry in item["required_declarations"]:
         lines.append(f"  - {entry}")
     if item["optional_declarations"]:
@@ -706,6 +720,59 @@ def _render_comparison_shape_record_text(payload):
     lines.append("Recommended protocols:")
     for protocol in payload["recommended_protocols"]:
         lines.append(f"  - {protocol['name']} ({protocol['id']})")
+    return "\n".join(lines)
+
+
+def _render_comparison_preflight_text(payload):
+    shape = payload["comparison_shape"]
+    lines = [
+        f"Comparison shape: {shape['name']} ({shape['id']})",
+        f"Readiness: {payload['readiness_status']}",
+        "",
+        "Provided declarations:",
+    ]
+    if payload["provided_declarations"]:
+        for key, value in payload["provided_declarations"].items():
+            if isinstance(value, list):
+                rendered = ", ".join(value)
+            else:
+                rendered = value
+            lines.append(f"  - {key}: {rendered}")
+    else:
+        lines.append("  none")
+
+    lines.append("")
+    lines.append("Missing required fields:")
+    if payload["missing_required_fields"]:
+        for field in payload["missing_required_fields"]:
+            lines.append(f"  - {field['label']} ({field['id']})")
+    else:
+        lines.append("  none")
+
+    lines.append("")
+    lines.append("Invalid fields:")
+    if payload["invalid_fields"]:
+        for field in payload["invalid_fields"]:
+            lines.append(f"  - {field['label']} ({field['field_id']}): {field['reason']}")
+    else:
+        lines.append("  none")
+
+    if payload["unexpected_fields"]:
+        lines.append("")
+        lines.append("Unexpected fields:")
+        for field in payload["unexpected_fields"]:
+            lines.append(f"  - {field}")
+
+    if payload["path_recommendation"]:
+        lines.append("")
+        lines.append("Recommended path:")
+        lines.append(_render_recommendation_text(payload["path_recommendation"]))
+
+    if payload["next_steps"]:
+        lines.append("")
+        lines.append("Next steps:")
+        for step in payload["next_steps"]:
+            lines.append(f"  - {step}")
     return "\n".join(lines)
 
 
@@ -1241,6 +1308,27 @@ def main() -> int:
     comparison_shapes_parser.add_argument("--text", help="Substring search across comparison shape fields.")
     comparison_shapes_parser.add_argument("--format", choices=("text", "json"), default="text")
 
+    comparison_preflight_parser = subparsers.add_parser(
+        "comparison-preflight",
+        help="Validate whether a contextual or pairwise comparison run is ready from a named comparison shape and declared fields.",
+    )
+    comparison_preflight_parser.add_argument("shape", help="Comparison shape ID or name.")
+    comparison_preflight_parser.add_argument(
+        "--declare",
+        action="append",
+        help="Declaration field as key=value. Repeatable. For list fields, use comma-separated values.",
+    )
+    comparison_preflight_parser.add_argument(
+        "--declarations-json",
+        help="Optional JSON object of declarations for the comparison shape.",
+    )
+    comparison_preflight_parser.add_argument(
+        "--capability",
+        action="append",
+        help="Declared host capability ID or name. Repeatable.",
+    )
+    comparison_preflight_parser.add_argument("--format", choices=("text", "json"), default="text")
+
     expressions_parser = subparsers.add_parser("expressions", help="List or show expression profiles.")
     expressions_parser.add_argument(
         "ref", nargs="?", help="Optional expression profile ID or name for a detailed record."
@@ -1291,6 +1379,7 @@ def main() -> int:
         help="Recommend the next A Person Index path from the current run shape and declared capabilities.",
     )
     recommend_parser.add_argument("--mode", help="Explicit run mode ID or name.")
+    recommend_parser.add_argument("--comparison-shape", help="Optional comparison shape ID or name.")
     recommend_parser.add_argument(
         "--capability",
         action="append",
@@ -1594,6 +1683,32 @@ def main() -> int:
             print(_render_comparison_shapes_text(payload))
         return 0
 
+    if args.command == "comparison-preflight":
+        declarations: dict[str, str] = {}
+        if args.declarations_json:
+            import json
+
+            loaded = json.loads(args.declarations_json)
+            if not isinstance(loaded, dict):
+                raise SystemExit("--declarations-json must decode to an object.")
+            declarations.update(loaded)
+        for raw_declaration in args.declare or []:
+            if "=" not in raw_declaration:
+                raise SystemExit(f"Invalid --declare '{raw_declaration}'. Expected key=value.")
+            key, value = raw_declaration.split("=", 1)
+            declarations[key.strip()] = value.strip()
+        payload = prepare_comparison_run(
+            extensions,
+            comparison_shape=args.shape,
+            declarations=declarations,
+            capability_refs=args.capability,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_comparison_preflight_text(payload))
+        return 0
+
     if args.command == "expressions":
         if args.ref:
             payload = expression_profile_record(extensions, args.ref)
@@ -1683,6 +1798,7 @@ def main() -> int:
         payload = recommend_next_path(
             extensions,
             run_mode=args.mode,
+            comparison_shape=args.comparison_shape,
             capability_refs=args.capability,
             artifact_class=args.artifact,
             text=args.text,

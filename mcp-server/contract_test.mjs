@@ -41,6 +41,7 @@ for (const requiredTool of [
   "list_analysis_modes",
   "list_comparison_shapes",
   "fetch_comparison_shape",
+  "prepare_comparison_run",
   "list_capabilities",
   "list_expression_profiles",
   "fetch_expression_profile",
@@ -88,6 +89,12 @@ const comparisonShapes = await client.readResource({ uri: "registry://comparison
 expect(
   comparisonShapes.contents?.[0]?.text?.includes("Comparison Shapes"),
   "Expected comparison shapes resource content.",
+);
+
+const comparisonPreflight = await client.readResource({ uri: "registry://comparison-preflight" });
+expect(
+  comparisonPreflight.contents?.[0]?.text?.includes("Comparison Preflight"),
+  "Expected comparison preflight resource content.",
 );
 
 const capabilityModel = await client.readResource({ uri: "registry://capability-model" });
@@ -189,6 +196,27 @@ expect(
   "Expected comparison shape list to include time-slice comparison.",
 );
 
+const comparisonRun = await client.callTool({
+  name: "prepare_comparison_run",
+  arguments: {
+    comparison_shape: "Contextual Time Slices",
+    declarations: {
+      slice_labels: ["earlier self", "later self"],
+      comparison_question: "What changed in a meaningful way?",
+    },
+    capabilities: ["Markdown Write", "Table Render"],
+  },
+});
+expect(!comparisonRun.isError, "Expected prepare_comparison_run tool to succeed.");
+expect(
+  comparisonRun.structuredContent?.readiness_status === "ready",
+  "Expected comparison preflight readiness to be ready.",
+);
+expect(
+  comparisonRun.structuredContent?.path_recommendation?.recommended_artifact?.artifact_class?.id === "art_context_matrix",
+  "Expected preflight to recommend context matrix artifact path.",
+);
+
 const expressions = await client.callTool({
   name: "list_expression_profiles",
   arguments: {
@@ -219,6 +247,7 @@ const recommendation = await client.callTool({
   name: "recommend_next_path",
   arguments: {
     mode: "Contextual and Multi-Subject Comparison",
+    comparison_shape: "Contextual Time Slices",
     capabilities: ["Markdown Write", "Table Render"],
     text: "compare me across time and make a matrix",
   },

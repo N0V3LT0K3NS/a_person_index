@@ -44,6 +44,9 @@ if (!tools.tools.some((tool) => tool.name === "list_actualization_protocols")) {
 if (!tools.tools.some((tool) => tool.name === "list_comparison_shapes")) {
   throw new Error("Expected list_comparison_shapes tool in MCP surface.");
 }
+if (!tools.tools.some((tool) => tool.name === "prepare_comparison_run")) {
+  throw new Error("Expected prepare_comparison_run tool in MCP surface.");
+}
 if (!tools.tools.some((tool) => tool.name === "list_capabilities")) {
   throw new Error("Expected list_capabilities tool in MCP surface.");
 }
@@ -83,6 +86,11 @@ if (!comparisonShapeResource.contents?.[0]?.text?.includes("Comparison Shapes"))
   throw new Error("Expected comparison shapes resource content.");
 }
 
+const comparisonPreflightResource = await client.readResource({ uri: "registry://comparison-preflight" });
+if (!comparisonPreflightResource.contents?.[0]?.text?.includes("Comparison Preflight")) {
+  throw new Error("Expected comparison preflight resource content.");
+}
+
 const capabilityResource = await client.readResource({ uri: "registry://capability-model" });
 if (!capabilityResource.contents?.[0]?.text?.includes("capabilities")) {
   throw new Error("Expected capability model resource content.");
@@ -96,6 +104,32 @@ if (!expressionResource.contents?.[0]?.text?.includes("Expression Model")) {
 const workflowResource = await client.readResource({ uri: "registry://workflow-recipes" });
 if (!workflowResource.contents?.[0]?.text?.includes("Workflow Recipes")) {
   throw new Error("Expected workflow recipes resource content.");
+}
+
+const comparisonPreflight = await client.callTool({
+  name: "prepare_comparison_run",
+  arguments: {
+    comparison_shape: "Contextual Time Slices",
+    declarations: {
+      slice_labels: ["earlier self", "later self"],
+      comparison_question: "What changed in a meaningful way?",
+    },
+    capabilities: ["Markdown Write", "Table Render"],
+  },
+});
+
+if (comparisonPreflight.isError) {
+  throw new Error(
+    `Comparison preflight tool returned error: ${comparisonPreflight.content?.[0]?.text ?? "unknown error"}`,
+  );
+}
+
+if (comparisonPreflight.structuredContent?.readiness_status !== "ready") {
+  throw new Error("Expected comparison preflight readiness to be ready.");
+}
+
+if (comparisonPreflight.structuredContent?.path_recommendation?.recommended_artifact?.artifact_class?.id !== "art_context_matrix") {
+  throw new Error("Expected comparison preflight to recommend the context matrix path.");
 }
 
 const prompt = await client.getPrompt({ name: "registry-arrival" });

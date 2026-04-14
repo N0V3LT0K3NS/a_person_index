@@ -90,7 +90,24 @@ before falling back to a single-subject program:
 - `proto_contextual_comparison`
 - `proto_pairwise_relational_comparison`
 
-### 4. Pull the comparative core from A Person Index
+### 4. Run comparison preflight when the work is contextual or pairwise
+
+Do not move from comparison shape directly to artifact choice if the comparison
+is still underspecified.
+
+Use:
+
+```bash
+python3 scripts/query_registry.py comparison-preflight "Pairwise Relational Question" \
+  --declare left_stack_label="person a" \
+  --declare right_stack_label="person b" \
+  --declare relationship_context="friends" \
+  --declare comparison_question="Where do their motives align or strain?" \
+  --capability "Markdown Write" \
+  --capability "Table Render"
+```
+
+### 5. Pull the comparative core from A Person Index
 
 Use `$a-person-index` surfaces for:
 
@@ -101,7 +118,7 @@ Use `$a-person-index` surfaces for:
 
 The artifact should be downstream of that work, not a substitute for it.
 
-### 5. Realize the output with the tools actually available
+### 6. Realize the output with the tools actually available
 
 Examples:
 
@@ -110,7 +127,7 @@ Examples:
 - if you can generate diagrams, add a visual only when it clarifies rather than decorates
 - if you can emit structured data, package a result bundle for downstream use
 
-### 6. Preserve provenance and expression fit
+### 7. Preserve provenance and expression fit
 
 Always preserve the difference between:
 

@@ -33,6 +33,10 @@ If the task shifts from framework use into run planning, artifact generation, or
 contextual comparison, call `recommend_next_path` once you know the host
 capabilities and need the smallest disciplined next move.
 
+If a contextual or pairwise comparison shape is already chosen, use
+`prepare_comparison_run` before downstream recommendation so the comparison
+scaffold itself is declared clearly enough to proceed.
+
 If the next question becomes how the same result should be voiced for this
 audience, inspect the expression profile surfaces before defaulting to a
 technical rendering.
@@ -97,6 +101,7 @@ The important rule is that A Person Index remains the semantic authority for:
 See:
 
 - [expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md)
+- [comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md)
 - [actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md)
 - [workflow_recipes.md](/Users/noveltokens/a_person_index/docs/workflow_recipes.md)
 - [expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md)
@@ -146,6 +151,8 @@ npm run mcp:test
 - `registry://assessment-workflow`
 - `registry://ilens-walkthrough`
 - `registry://advanced-modes`
+- `registry://comparison-shapes`
+- `registry://comparison-preflight`
 - `registry://capability-model`
 - `registry://expression-model`
 - `registry://actualization-protocols`
@@ -163,6 +170,9 @@ npm run mcp:test
 - `orient_agent`
 - `list_analysis_modes`
 - `fetch_analysis_mode`
+- `prepare_comparison_run`
+- `list_comparison_shapes`
+- `fetch_comparison_shape`
 - `list_capabilities`
 - `fetch_capability`
 - `list_expression_profiles`

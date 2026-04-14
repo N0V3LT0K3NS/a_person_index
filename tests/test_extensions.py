@@ -61,6 +61,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
         assert set(comparison_shape.mode_ids).issubset(analysis_mode_ids)
         assert set(comparison_shape.suitable_artifact_class_ids).issubset(artifact_class_ids)
         assert set(comparison_shape.recommended_protocol_ids).issubset(protocol_ids)
+        assert comparison_shape.declaration_fields
 
     for mapping in extensions.mappings:
         assert mapping.target_entity_id in motif_ids

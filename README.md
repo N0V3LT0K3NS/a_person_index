@@ -30,6 +30,10 @@ Contextual and pairwise work now also has first-class comparison shapes, so the
 system can name the comparison scaffold itself before it chooses artifacts or
 execution paths.
 
+Comparison preflight now sits beneath that too, so a host can verify whether
+the chosen contextual or pairwise scaffold is actually declared well enough to
+proceed before it recommends or renders downstream work.
+
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
 1. Canonical registry
@@ -70,6 +74,7 @@ If you need the deeper map after that:
 - Advanced and downstream-facing use:
   [docs/advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md),
   [docs/comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md),
+  [docs/comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md),
   [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
   [docs/expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md),
   [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
@@ -175,6 +180,7 @@ Key conventions:
 - `motifs/registry.yaml` stores provisional house translation motifs.
 - `modes/registry.yaml` stores named run modes for advanced comparative work.
 - `comparison_shapes/registry.yaml` stores explicit scaffolds for contextual and pairwise comparison before artifact or protocol selection begins.
+- `docs/comparison_preflight.md` explains how contextual and pairwise runs are checked for readiness before recommendation or execution.
 - `capabilities/registry.yaml` stores the abstract host capability model used by the meta-skill and actualization layer.
 - `artifacts/registry.yaml` stores artifact classes and their evidence and capability expectations.
 - `actualization/registry.yaml` stores downstream actualization protocols that use A Person Index as the comparative core.

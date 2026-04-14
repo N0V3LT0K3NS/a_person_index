@@ -38,6 +38,7 @@ from personality_registry.query import (
     protocol_pack_summary,
     protocol_pack_grammar,
     protocol_record,
+    prepare_comparison_run,
     query_results,
     promotion_pathway_record,
     recommend_next_path,
@@ -331,6 +332,10 @@ def test_analysis_mode_and_artifact_records_are_available(repo_root):
     assert "cap_diagram_render" in actualization_payload["actualization_protocol"]["optional_capability_ids"]
     related_artifact_ids = {item["id"] for item in comparison_shape_payload["suitable_artifact_classes"]}
     assert "art_context_matrix" in related_artifact_ids
+    declaration_field_ids = {
+        item["id"] for item in comparison_shape_payload["comparison_shape"]["declaration_fields"]
+    }
+    assert {"slice_labels", "comparison_question"} <= declaration_field_ids
 
 
 def test_find_expression_profiles_for_artifact(repo_root):
@@ -369,6 +374,37 @@ def test_recommend_next_path_prefers_context_matrix_when_capabilities_fit(repo_r
     assert payload["recommended_actualization_protocol"]["actualization_protocol"]["id"] == "actx_context_matrix_render"
     assert payload["recommended_artifact"]["fit_status"] == "ready"
     assert "fetch_comparison_shape" in payload["recommended_tools"]
+    assert "prepare_comparison_run" in payload["recommended_tools"]
+    assert "registry://comparison-preflight" in payload["recommended_resources"]
+
+
+def test_prepare_comparison_run_surfaces_missing_time_slice_fields(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = prepare_comparison_run(
+        extensions,
+        comparison_shape="Contextual Time Slices",
+        declarations={"comparison_question": "What changed in a meaningful way?"},
+    )
+    assert payload["readiness_status"] == "needs_declarations"
+    missing_ids = {item["id"] for item in payload["missing_required_fields"]}
+    assert "slice_labels" in missing_ids
+    assert payload["path_recommendation"] is None
+
+
+def test_prepare_comparison_run_returns_ready_path_when_declared(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = prepare_comparison_run(
+        extensions,
+        comparison_shape="Contextual Time Slices",
+        declarations={
+            "slice_labels": ["2013 self", "2020 self"],
+            "comparison_question": "What changed in a meaningful way?",
+        },
+        capability_refs=["Markdown Write", "Table Render"],
+    )
+    assert payload["readiness_status"] == "ready"
+    assert payload["path_recommendation"]["recommended_comparison_shape"]["id"] == "cmp_contextual_time_slices"
+    assert payload["path_recommendation"]["recommended_artifact"]["artifact_class"]["id"] == "art_context_matrix"
 
 
 def test_find_pairwise_comparison_shapes_from_relational_text(repo_root):
@@ -402,6 +438,23 @@ def test_recommend_next_path_infers_contextual_mode_from_text(repo_root):
     assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_context_matrix"
     assert payload["recommended_actualization_protocol"]["actualization_protocol"]["id"] == "actx_context_matrix_render"
     assert "list_capabilities" not in payload["recommended_tools"]
+
+
+def test_recommend_next_path_respects_explicit_pairwise_shape(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = recommend_next_path(
+        extensions,
+        run_mode="Contextual and Multi-Subject Comparison",
+        comparison_shape="Pairwise Relational Question",
+        capability_refs=["Markdown Write", "Table Render"],
+    )
+    assert payload["recommended_comparison_shape"]["id"] == "cmp_pairwise_relational_question"
+    assert payload["comparison_shape_inferred"] is False
+    assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_pairwise_relational_sheet"
+    assert (
+        payload["recommended_actualization_protocol"]["actualization_protocol"]["id"]
+        == "actx_pairwise_relational_sheet"
+    )
 
 
 def test_find_interaction_hypotheses_related_to_attachment(repo_root):

@@ -13,6 +13,11 @@
 - `python3 scripts/query_registry.py artifacts`
 - `python3 scripts/query_registry.py artifacts --mode "Contextual and Multi-Subject Comparison"`
 
+### Run comparison preflight when comparison shape is explicit
+
+- `python3 scripts/query_registry.py comparison-preflight "Contextual Time Slices" --declare slice_labels="earlier,later" --declare comparison_question="What changed?" --capability "Markdown Write"`
+- `python3 scripts/query_registry.py comparison-preflight "Pairwise Relational Question" --declare left_stack_label="person a" --declare right_stack_label="person b" --declare relationship_context="partners" --declare comparison_question="Where do they align or strain?" --capability "Markdown Write" --capability "Table Render"`
+
 ### Choose an actualization protocol
 
 - `python3 scripts/query_registry.py actualization`

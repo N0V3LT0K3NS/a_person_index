@@ -80,11 +80,22 @@ After capability inspection and run classification:
 If the path is almost clear but not yet explicit, prefer `recommend-path` or
 `recommend_next_path` before making the choice by hand.
 
+If the work is contextual or pairwise and a comparison shape is already clear,
+run comparison preflight before you treat the path as execution-ready:
+
+```bash
+python3 scripts/query_registry.py comparison-preflight "Contextual Time Slices" \
+  --declare slice_labels="earlier self,later self" \
+  --declare comparison_question="What meaningfully changed?" \
+  --capability "Markdown Write"
+```
+
 ### 4. Say the path before taking it
 
 Before deeper work, name:
 
 - the inferred run mode
+- the comparison shape and whether preflight is still needed
 - the important capabilities available here
 - the next A Person Index surface you will use
 

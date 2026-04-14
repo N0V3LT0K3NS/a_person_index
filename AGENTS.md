@@ -32,6 +32,7 @@ Only then deepen as needed:
 - Advanced and downstream-facing use:
   [docs/advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md),
   [docs/comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md),
+  [docs/comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md),
   [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
   [docs/expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md),
   [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
@@ -78,6 +79,7 @@ Canonical sources:
 - [motifs/registry.yaml](/Users/noveltokens/a_person_index/motifs/registry.yaml)
 - [modes/registry.yaml](/Users/noveltokens/a_person_index/modes/registry.yaml)
 - [comparison_shapes/registry.yaml](/Users/noveltokens/a_person_index/comparison_shapes/registry.yaml)
+- [docs/comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md)
 - [capabilities/registry.yaml](/Users/noveltokens/a_person_index/capabilities/registry.yaml)
 - [expression/registry.yaml](/Users/noveltokens/a_person_index/expression/registry.yaml)
 - [artifacts/registry.yaml](/Users/noveltokens/a_person_index/artifacts/registry.yaml)

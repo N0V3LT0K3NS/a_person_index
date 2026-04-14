@@ -1,4 +1,38 @@
 $defs:
+  ComparisonDeclarationField:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      label:
+        title: Label
+        type: string
+      value_kind:
+        enum:
+        - string
+        - string_list
+        title: Value Kind
+        type: string
+      required:
+        title: Required
+        type: boolean
+      summary:
+        title: Summary
+        type: string
+      examples:
+        items:
+          type: string
+        title: Examples
+        type: array
+    required:
+    - id
+    - label
+    - value_kind
+    - required
+    - summary
+    title: ComparisonDeclarationField
+    type: object
   ComparisonShape:
     additionalProperties: false
     properties:
@@ -30,6 +64,11 @@ $defs:
         items:
           type: string
         title: Intent Signals
+        type: array
+      declaration_fields:
+        items:
+          $ref: '#/$defs/ComparisonDeclarationField'
+        title: Declaration Fields
         type: array
       required_declarations:
         items:

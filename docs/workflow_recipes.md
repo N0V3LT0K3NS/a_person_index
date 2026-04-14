@@ -45,10 +45,11 @@ Use the layers in this order:
 
 1. analysis mode says what kind of run this is
 2. comparison shape makes the contextual or pairwise scaffold explicit when relevant
-3. capabilities say what the host can actually do
-4. recommendation says what artifact, expression, and protocol fit
-5. workflow recipe says how to execute that path here
-6. host tools realize the final output
+3. comparison preflight checks that the declared scaffold is actually ready
+4. capabilities say what the host can actually do
+5. recommendation says what artifact, expression, and protocol fit
+6. workflow recipe says how to execute that path here
+7. host tools realize the final output
 
 ## Boundary rule
 
