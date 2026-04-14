@@ -40,6 +40,7 @@ for (const requiredTool of [
   "orient_agent",
   "list_analysis_modes",
   "list_capabilities",
+  "recommend_next_path",
   "list_artifact_classes",
   "list_actualization_protocols",
   "compare_frameworks",
@@ -147,6 +148,20 @@ expect(
   Array.isArray(capabilities.structuredContent?.capabilities) &&
     capabilities.structuredContent.capabilities.some((item) => item.id === "cap_table_render"),
   "Expected capability list for context matrix artifact.",
+);
+
+const recommendation = await client.callTool({
+  name: "recommend_next_path",
+  arguments: {
+    mode: "Contextual and Multi-Subject Comparison",
+    capabilities: ["Markdown Write", "Table Render"],
+    text: "compare me across time and make a matrix",
+  },
+});
+expect(!recommendation.isError, "Expected recommend_next_path tool to succeed.");
+expect(
+  recommendation.structuredContent?.recommended_artifact?.artifact_class?.id === "art_context_matrix",
+  "Expected recommended artifact for contextual matrix path.",
 );
 
 const actualizationProtocols = await client.callTool({

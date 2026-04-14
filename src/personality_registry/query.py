@@ -1522,6 +1522,210 @@ def actualization_protocol_record(extensions: ExtensionRegistryData, ref: str) -
     return {"actualization_protocol": item.model_dump(mode="json")}
 
 
+def _text_signal_score(text: str, parts: Iterable[str]) -> int:
+    normalized_text = _normalize(text)
+    text_tokens = _tokenize_search_terms(text)
+    score = 0
+    for raw_part in parts:
+        part = raw_part.strip()
+        if not part:
+            continue
+        normalized_part = _normalize(part)
+        if not normalized_part:
+            continue
+        if normalized_part in normalized_text or normalized_text in normalized_part:
+            score += 100
+            continue
+        part_tokens = _tokenize_search_terms(part)
+        overlap = text_tokens & part_tokens
+        if overlap:
+            score += len(overlap) * 10
+    return score
+
+
+def _recommended_mode_candidates(
+    extensions: ExtensionRegistryData,
+    text: str,
+) -> list[dict[str, Any]]:
+    scored: list[tuple[int, dict[str, Any]]] = []
+    for item in extensions.analysis_modes:
+        score = _text_signal_score(
+            text,
+            [
+                item.name,
+                item.summary,
+                item.purpose,
+                *item.intent_signals,
+                *item.typical_outputs,
+            ],
+        )
+        if score <= 0:
+            continue
+        scored.append((score, item.model_dump(mode="json")))
+    scored.sort(key=lambda entry: (-entry[0], entry[1]["name"].lower()))
+    return [item for _, item in scored]
+
+
+def recommend_next_path(
+    extensions: ExtensionRegistryData,
+    *,
+    run_mode: str | None = None,
+    capability_refs: Iterable[str] | None = None,
+    artifact_class: str | None = None,
+    text: str | None = None,
+) -> dict[str, Any]:
+    capability_items = (
+        [resolve_capability(extensions, ref) for ref in capability_refs]
+        if capability_refs
+        else []
+    )
+    capability_id_set = {item.id for item in capability_items}
+
+    notes: list[str] = []
+    inferred_mode = False
+    mode_item = None
+    mode_candidates: list[dict[str, Any]] = []
+    if run_mode:
+        mode_item = resolve_analysis_mode(extensions, run_mode)
+        mode_candidates = [mode_item.model_dump(mode="json")]
+    elif text:
+        mode_candidates = _recommended_mode_candidates(extensions, text)
+        if mode_candidates:
+            mode_item = resolve_analysis_mode(extensions, mode_candidates[0]["id"])
+            inferred_mode = True
+            notes.append("Run mode was inferred from the provided text rather than explicitly declared.")
+    if mode_item is None:
+        mode_item = resolve_analysis_mode(extensions, "Run Planning")
+        inferred_mode = True
+        notes.append("No run mode was provided, so the recommendation defaults to Run Planning.")
+
+    explicit_artifact = resolve_artifact_class(extensions, artifact_class) if artifact_class else None
+
+    artifact_candidates = []
+    for item in extensions.artifact_classes:
+        if mode_item.id not in item.suitable_mode_ids:
+            continue
+        if explicit_artifact and item.id != explicit_artifact.id:
+            continue
+        if text:
+            text_bonus = _text_signal_score(
+                text,
+                [
+                    item.id,
+                    item.name,
+                    item.summary,
+                    *item.typical_forms,
+                    *item.notes.splitlines(),
+                ],
+            )
+        else:
+            text_bonus = 0
+        missing_required = sorted(set(item.required_capability_ids) - capability_id_set)
+        satisfied_required = sorted(set(item.required_capability_ids) & capability_id_set)
+        satisfied_optional = sorted(set(item.optional_capability_ids) & capability_id_set)
+        score = (
+            (100 if not missing_required else 0)
+            + len(satisfied_required) * 10
+            + len(satisfied_optional) * 3
+            + text_bonus
+            + (25 if explicit_artifact and item.id == explicit_artifact.id else 0)
+        )
+        artifact_candidates.append(
+            {
+                "artifact_class": item.model_dump(mode="json"),
+                "fit_status": "ready" if not missing_required else "partial",
+                "missing_required_capability_ids": missing_required,
+                "satisfied_capability_ids": satisfied_required,
+                "satisfied_optional_capability_ids": satisfied_optional,
+                "score": score,
+            }
+        )
+    artifact_candidates.sort(
+        key=lambda item: (
+            0 if item["fit_status"] == "ready" else 1,
+            len(item["missing_required_capability_ids"]),
+            -item["score"],
+            item["artifact_class"]["name"].lower(),
+        )
+    )
+    recommended_artifact = artifact_candidates[0] if artifact_candidates else None
+
+    actualization_candidates = []
+    if recommended_artifact is not None:
+        for item in extensions.actualization_protocols:
+            if mode_item.id not in item.run_mode_ids:
+                continue
+            if recommended_artifact["artifact_class"]["id"] not in item.target_artifact_class_ids:
+                continue
+            missing_required = sorted(set(item.required_capability_ids) - capability_id_set)
+            satisfied_required = sorted(set(item.required_capability_ids) & capability_id_set)
+            satisfied_optional = sorted(set(item.optional_capability_ids) & capability_id_set)
+            score = (
+                (100 if not missing_required else 0)
+                + len(satisfied_required) * 10
+                + len(satisfied_optional) * 3
+            )
+            actualization_candidates.append(
+                {
+                    "actualization_protocol": item.model_dump(mode="json"),
+                    "fit_status": "ready" if not missing_required else "partial",
+                    "missing_required_capability_ids": missing_required,
+                    "satisfied_capability_ids": satisfied_required,
+                    "satisfied_optional_capability_ids": satisfied_optional,
+                    "score": score,
+                }
+            )
+        actualization_candidates.sort(
+            key=lambda item: (
+                0 if item["fit_status"] == "ready" else 1,
+                len(item["missing_required_capability_ids"]),
+                -item["score"],
+                item["actualization_protocol"]["name"].lower(),
+            )
+        )
+
+    if not capability_items:
+        notes.append("No capabilities were declared, so readiness is conservative.")
+    elif recommended_artifact and recommended_artifact["missing_required_capability_ids"]:
+        notes.append("The top artifact recommendation is only partial with the currently declared capabilities.")
+
+    recommended_tools = []
+    if inferred_mode:
+        recommended_tools.append("fetch_analysis_mode")
+    if (
+        not capability_items
+        or recommended_artifact is None
+        or (recommended_artifact and recommended_artifact["missing_required_capability_ids"])
+        or not actualization_candidates
+    ):
+        recommended_tools.append("list_capabilities")
+    if recommended_artifact is not None:
+        recommended_tools.append("fetch_artifact_class")
+    if actualization_candidates:
+        recommended_tools.append("fetch_actualization_protocol")
+
+    recommended_resources = [
+        "registry://advanced-modes",
+        "registry://capability-model",
+    ]
+    if recommended_artifact is not None:
+        recommended_resources.append("registry://actualization-protocols")
+
+    return {
+        "run_mode": mode_item.model_dump(mode="json"),
+        "run_mode_inferred": inferred_mode,
+        "mode_candidates": mode_candidates[:3],
+        "declared_capabilities": [item.model_dump(mode="json") for item in capability_items],
+        "recommended_artifact": recommended_artifact,
+        "artifact_candidates": artifact_candidates[:3],
+        "recommended_actualization_protocol": actualization_candidates[0] if actualization_candidates else None,
+        "actualization_candidates": actualization_candidates[:3],
+        "recommended_tools": recommended_tools,
+        "recommended_resources": recommended_resources,
+        "notes": notes,
+    }
+
+
 def _related_interaction_entity_ids(
     repository: RepositoryData,
     extensions: ExtensionRegistryData,

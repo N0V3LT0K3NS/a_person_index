@@ -44,6 +44,9 @@ if (!tools.tools.some((tool) => tool.name === "list_actualization_protocols")) {
 if (!tools.tools.some((tool) => tool.name === "list_capabilities")) {
   throw new Error("Expected list_capabilities tool in MCP surface.");
 }
+if (!tools.tools.some((tool) => tool.name === "recommend_next_path")) {
+  throw new Error("Expected recommend_next_path tool in MCP surface.");
+}
 
 const manifest = await client.readResource({ uri: "registry://manifest" });
 const manifestPayload = JSON.parse(manifest.contents?.[0]?.text ?? "{}");

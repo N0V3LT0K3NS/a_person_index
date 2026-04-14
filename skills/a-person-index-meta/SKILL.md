@@ -45,6 +45,7 @@ Use the capability registry when needed:
 python3 scripts/query_registry.py capabilities
 python3 scripts/query_registry.py capabilities --artifact "Context Matrix"
 python3 scripts/query_registry.py capabilities --actualization "Pairwise Relational Sheet"
+python3 scripts/query_registry.py recommend-path --text "compare me across time" --capability "Markdown Write"
 ```
 
 ### 2. Classify the run
@@ -73,6 +74,9 @@ After capability inspection and run classification:
 - use `$a-person-index` for the comparative core
 - use `$a-person-index-actualization` when the task should become an artifact or handoff
 - stay in planning mode if the path is not stable yet
+
+If the path is almost clear but not yet explicit, prefer `recommend-path` or
+`recommend_next_path` before making the choice by hand.
 
 ### 4. Say the path before taking it
 

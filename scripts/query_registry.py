@@ -39,6 +39,7 @@ from personality_registry.query import (
     protocol_pack_grammar,
     protocol_record,
     query_results,
+    recommend_next_path,
     research_promotion_registry_record,
     resolve_instrument,
     result_atom_schema_record,
@@ -743,6 +744,65 @@ def _render_actualization_protocol_record_text(payload):
     return "\n".join(lines)
 
 
+def _render_recommendation_text(payload):
+    mode = payload["run_mode"]
+    lines = [
+        f"Run mode: {mode['name']} ({mode['id']})",
+    ]
+    if payload["run_mode_inferred"]:
+        lines.append("Mode status: inferred")
+    if payload["declared_capabilities"]:
+        lines.append("Capabilities:")
+        for item in payload["declared_capabilities"]:
+            lines.append(f"  - {item['name']} ({item['id']})")
+    else:
+        lines.append("Capabilities: none declared")
+
+    lines.append("")
+    lines.append("Recommended artifact:")
+    if payload["recommended_artifact"]:
+        artifact = payload["recommended_artifact"]
+        lines.append(
+            f"  {artifact['artifact_class']['name']} ({artifact['artifact_class']['id']}) [{artifact['fit_status']}]"
+        )
+        if artifact["missing_required_capability_ids"]:
+            lines.append(
+                f"  missing required capabilities: {', '.join(artifact['missing_required_capability_ids'])}"
+            )
+    else:
+        lines.append("  none")
+
+    lines.append("")
+    lines.append("Recommended actualization protocol:")
+    if payload["recommended_actualization_protocol"]:
+        protocol = payload["recommended_actualization_protocol"]
+        lines.append(
+            f"  {protocol['actualization_protocol']['name']} ({protocol['actualization_protocol']['id']}) [{protocol['fit_status']}]"
+        )
+        if protocol["missing_required_capability_ids"]:
+            lines.append(
+                f"  missing required capabilities: {', '.join(protocol['missing_required_capability_ids'])}"
+            )
+    else:
+        lines.append("  none")
+
+    lines.append("")
+    lines.append("Recommended next tools:")
+    for tool_name in payload["recommended_tools"]:
+        lines.append(f"  - {tool_name}")
+    if payload["recommended_resources"]:
+        lines.append("")
+        lines.append("Recommended resources:")
+        for uri in payload["recommended_resources"]:
+            lines.append(f"  - {uri}")
+    if payload["notes"]:
+        lines.append("")
+        lines.append("Notes:")
+        for note in payload["notes"]:
+            lines.append(f"  - {note}")
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Query A Person Index.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -1022,6 +1082,20 @@ def main() -> int:
     actualization_parser.add_argument("--capability", help="Filter actualization protocols by capability.")
     actualization_parser.add_argument("--text", help="Substring search across actualization protocol fields.")
     actualization_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    recommend_parser = subparsers.add_parser(
+        "recommend-path",
+        help="Recommend the next A Person Index path from the current run shape and declared capabilities.",
+    )
+    recommend_parser.add_argument("--mode", help="Explicit run mode ID or name.")
+    recommend_parser.add_argument(
+        "--capability",
+        action="append",
+        help="Declared host capability ID or name. Repeatable.",
+    )
+    recommend_parser.add_argument("--artifact", help="Optional artifact class to target explicitly.")
+    recommend_parser.add_argument("--text", help="Optional task hint for mode or artifact inference.")
+    recommend_parser.add_argument("--format", choices=("text", "json"), default="text")
 
     args = parser.parse_args()
     repository = load_repository_for_query(root)
@@ -1335,6 +1409,20 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_actualization_protocols_text(payload))
+        return 0
+
+    if args.command == "recommend-path":
+        payload = recommend_next_path(
+            extensions,
+            run_mode=args.mode,
+            capability_refs=args.capability,
+            artifact_class=args.artifact,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_recommendation_text(payload))
         return 0
 
     if args.command in {"protocol-pack-summary", "program-pack-summary"}:

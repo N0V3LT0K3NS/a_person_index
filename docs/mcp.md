@@ -29,6 +29,10 @@ If the task is specifically an ILENS-style pass, read `registry://ilens-walkthro
 
 If the task involves pasted user assessment results, then use [docs/assessment_workflow.md](/Users/noveltokens/a_person_index/docs/assessment_workflow.md) before improvising with motif or pack calls.
 
+If the task shifts from framework use into run planning, artifact generation, or
+contextual comparison, call `recommend_next_path` once you know the host
+capabilities and need the smallest disciplined next move.
+
 ## Ready-to-share status
 
 The MCP surface is now ready for serious local and nearby-agent use.
@@ -149,6 +153,7 @@ npm run mcp:test
 - `fetch_analysis_mode`
 - `list_capabilities`
 - `fetch_capability`
+- `recommend_next_path`
 - `list_artifact_classes`
 - `fetch_artifact_class`
 - `list_actualization_protocols`

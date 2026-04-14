@@ -63,9 +63,10 @@ The recommended order is:
 
 1. inspect available capabilities abstractly
 2. classify the run
-3. choose the analysis mode
-4. choose the artifact class or actualization protocol if needed
-5. use the host's actual tools only after the semantic path is clear
+3. use `recommend_next_path` if you need the smallest disciplined recommendation
+4. choose the analysis mode
+5. choose the artifact class or actualization protocol if needed
+6. use the host's actual tools only after the semantic path is clear
 
 ## Important caution
 

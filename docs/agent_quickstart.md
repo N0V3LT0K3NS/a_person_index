@@ -86,6 +86,10 @@ If the user is really asking for:
 
 do not force that back into a plain intake workflow.
 
+If the host capabilities are already known and you need the next disciplined
+step rather than a full execution, use `recommend_next_path` before you start
+improvising.
+
 Use the deeper docs:
 
 - [advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md)

@@ -35,6 +35,7 @@ from personality_registry.query import (
     protocol_record,
     query_results,
     promotion_pathway_record,
+    recommend_next_path,
     research_promotion_registry_record,
     result_atom_schema_record,
     resolve_instrument,
@@ -308,6 +309,34 @@ def test_analysis_mode_and_artifact_records_are_available(repo_root):
     assert "cap_spreadsheet_render" in artifact_payload["artifact_class"]["optional_capability_ids"]
     assert actualization_payload["actualization_protocol"]["id"] == "actx_pairwise_relational_sheet"
     assert "cap_diagram_render" in actualization_payload["actualization_protocol"]["optional_capability_ids"]
+
+
+def test_recommend_next_path_prefers_context_matrix_when_capabilities_fit(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = recommend_next_path(
+        extensions,
+        run_mode="Contextual and Multi-Subject Comparison",
+        capability_refs=["Markdown Write", "Table Render"],
+        text="compare me across time and make a matrix",
+    )
+    assert payload["run_mode"]["id"] == "mode_contextual_comparison"
+    assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_context_matrix"
+    assert payload["recommended_actualization_protocol"]["actualization_protocol"]["id"] == "actx_context_matrix_render"
+    assert payload["recommended_artifact"]["fit_status"] == "ready"
+    assert "list_capabilities" not in payload["recommended_tools"]
+
+
+def test_recommend_next_path_infers_contextual_mode_from_text(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = recommend_next_path(
+        extensions,
+        capability_refs=["Markdown Write", "Table Render"],
+        text="compare me across time and make a matrix",
+    )
+    assert payload["run_mode"]["id"] == "mode_contextual_comparison"
+    assert payload["run_mode_inferred"] is True
+    assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_context_matrix"
+    assert payload["recommended_actualization_protocol"]["actualization_protocol"]["id"] == "actx_context_matrix_render"
 
 
 def test_find_interaction_hypotheses_related_to_attachment(repo_root):

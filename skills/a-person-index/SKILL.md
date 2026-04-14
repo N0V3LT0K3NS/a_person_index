@@ -155,6 +155,7 @@ to decide:
 
 Prefer:
 - `python3 scripts/query_registry.py modes`
+- `python3 scripts/query_registry.py recommend-path --mode "Run Planning"`
 - `python3 scripts/query_registry.py artifacts`
 - `python3 scripts/query_registry.py actualization`
 
@@ -162,6 +163,7 @@ Mode rule:
 - if the user wants a bounded pass, stay with the basic workflow
 - if the user wants planning, artifact generation, contextual comparison, or trace review, name the mode explicitly before doing more work
 - if the main question is what the host can do here or what path to take next, start with `$a-person-index-meta`
+- when capabilities are already clear and the next step is the real question, use `recommend-path` or `recommend_next_path` before manually choosing an artifact
 
 Artifact rule:
 - treat artifact classes and actualization protocols as downstream guides, not as proof that an artifact has already been rendered

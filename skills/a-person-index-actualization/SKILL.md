@@ -75,6 +75,7 @@ Use:
 ```bash
 python3 scripts/query_registry.py artifacts
 python3 scripts/query_registry.py actualization
+python3 scripts/query_registry.py recommend-path --mode "Artifact Actualization" --capability "Markdown Write"
 python3 scripts/query_registry.py actualization --mode "Artifact Actualization"
 ```
 

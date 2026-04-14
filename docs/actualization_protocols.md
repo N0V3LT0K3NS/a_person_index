@@ -67,10 +67,11 @@ One strong general pattern is:
 1. declare the run shape
 2. match and scope the framework layer
 3. choose the right program or pack
-4. run the A Person Index comparative work
-5. decide whether the output should remain conversational or become an artifact
-6. if an artifact is needed, use external tools only after the comparative core is stable
-7. preserve provenance and layer boundaries in the final output
+4. if the path is still unclear, use `recommend_next_path` with declared capabilities
+5. run the A Person Index comparative work
+6. decide whether the output should remain conversational or become an artifact
+7. if an artifact is needed, use external tools only after the comparative core is stable
+8. preserve provenance and layer boundaries in the final output
 
 ## Provenance rule
 

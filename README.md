@@ -14,6 +14,10 @@ Companion actualization skill: `$a-person-index-actualization` can sit above the
 
 Companion meta skill: `$a-person-index-meta` can inspect the current host environment abstractly, map available tools into capability records, classify the run, and choose the next A Person Index path before deeper work begins. The repo copy lives at [skills/a-person-index-meta](/Users/noveltokens/a_person_index/skills/a-person-index-meta).
 
+The recommendation surface can now take a run hint plus declared capabilities
+and suggest the next disciplined artifact and actualization path rather than
+forcing hosts to reconstruct that logic ad hoc each time.
+
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
 1. Canonical registry

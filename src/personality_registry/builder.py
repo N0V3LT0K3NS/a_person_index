@@ -484,6 +484,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                     "fetch_analysis_mode",
                     "list_capabilities",
                     "fetch_capability",
+                    "recommend_next_path",
                     "list_artifact_classes",
                     "fetch_artifact_class",
                     "list_actualization_protocols",
