@@ -157,6 +157,7 @@ Prefer:
 - `python3 scripts/query_registry.py modes`
 - `python3 scripts/query_registry.py recommend-path --mode "Run Planning"`
 - `python3 scripts/query_registry.py artifacts`
+- `python3 scripts/query_registry.py expressions`
 - `python3 scripts/query_registry.py actualization`
 
 Mode rule:
@@ -167,6 +168,7 @@ Mode rule:
 
 Artifact rule:
 - treat artifact classes and actualization protocols as downstream guides, not as proof that an artifact has already been rendered
+- when the audience fit matters, choose an expression profile explicitly instead of defaulting to the most technical voice
 
 Expression rule:
 - keep technical scaffolding implicit by default for end users

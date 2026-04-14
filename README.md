@@ -18,6 +18,10 @@ The recommendation surface can now take a run hint plus declared capabilities
 and suggest the next disciplined artifact and actualization path rather than
 forcing hosts to reconstruct that logic ad hoc each time.
 
+Expression profiles are now first-class too, so the system can explicitly say
+how visible the scaffolding should be when the same comparative result is
+rendered for different audiences.
+
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
 1. Canonical registry
@@ -58,6 +62,7 @@ If you need the deeper map after that:
 - Advanced and downstream-facing use:
   [docs/advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md),
   [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
+  [docs/expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md),
   [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
   [docs/expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md),
   [docs/multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)

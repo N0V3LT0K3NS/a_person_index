@@ -125,6 +125,12 @@ Also choose the right expression depth:
 - explanatory when the user wants some scaffold
 - technical for contributor or debugging contexts
 
+If expression fit is part of the uncertainty, inspect the structured surface:
+
+```bash
+python3 scripts/query_registry.py expressions --artifact "Comparative Memo"
+```
+
 ## Anti-patterns
 
 - Do not use external tools to improvise semantics that A Person Index did not supply.

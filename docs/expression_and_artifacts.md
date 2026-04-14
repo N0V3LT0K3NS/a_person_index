@@ -26,6 +26,9 @@ Expression decides how much of that scaffolding becomes visible.
 
 The default should not always sound like a variable dump.
 
+For the structured profile layer that now sits underneath these choices, see
+[expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md).
+
 ## Default conversational posture
 
 For most end users, the strongest default is:

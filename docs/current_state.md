@@ -19,6 +19,7 @@ As of the current branch state, the repo includes:
 - 16 seeded canonical framework records in the current instrument-centered schema
 - 7 named analysis modes
 - 11 host capability records
+- 4 expression profiles
 - 6 artifact classes
 - 4 actualization protocols
 - 11 house motifs

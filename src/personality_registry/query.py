@@ -357,6 +357,14 @@ def resolve_capability(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.capabilities, ref, ("name", "summary", "purpose"))
 
 
+def resolve_expression_profile(extensions: ExtensionRegistryData, ref: str):
+    return _resolve_extension_item(
+        extensions.expression_profiles,
+        ref,
+        ("name", "summary", "purpose", "expression_mode"),
+    )
+
+
 def resolve_artifact_class(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.artifact_classes, ref, ("name", "summary"))
 
@@ -410,6 +418,7 @@ def agent_orientation(
         "advanced_docs": [
             "docs/advanced_modes.md",
             "docs/capability_model.md",
+            "docs/expression_model.md",
             "docs/actualization_protocols.md",
             "docs/expression_and_artifacts.md",
             "docs/multi_subject_comparison.md",
@@ -1430,6 +1439,62 @@ def capability_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, 
     }
 
 
+def find_expression_profiles(
+    extensions: ExtensionRegistryData,
+    *,
+    mode: str | None = None,
+    audience: str | None = None,
+    artifact_class: str | None = None,
+    text: str | None = None,
+) -> list[dict[str, Any]]:
+    artifact = resolve_artifact_class(extensions, artifact_class) if artifact_class else None
+    requested_mode = _normalize(mode) if mode else None
+    results = []
+    for item in extensions.expression_profiles:
+        if requested_mode and requested_mode not in {
+            _normalize(item.expression_mode),
+            _normalize(item.id),
+            _normalize(item.name),
+        }:
+            continue
+        if audience and _normalize(audience) not in {_normalize(entry) for entry in item.audience_modes}:
+            continue
+        if artifact and item.expression_mode != artifact.default_expression_mode:
+            continue
+        if text:
+            blob = "\n".join(
+                [
+                    item.id,
+                    item.name,
+                    item.expression_mode,
+                    item.summary,
+                    item.purpose,
+                    *item.audience_modes,
+                    *item.visible_by_default,
+                    *item.keep_implicit_by_default,
+                    *item.good_for,
+                    *item.cautions,
+                ]
+            )
+            if _normalize(text) not in _normalize(blob):
+                continue
+        results.append(item.model_dump(mode="json"))
+    return sorted(results, key=lambda entry: (entry["expression_mode"], entry["name"].lower()))
+
+
+def expression_profile_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, Any]:
+    item = resolve_expression_profile(extensions, ref)
+    default_for_artifact_classes = [
+        artifact.model_dump(mode="json")
+        for artifact in extensions.artifact_classes
+        if artifact.default_expression_mode == item.expression_mode
+    ]
+    return {
+        "expression_profile": item.model_dump(mode="json"),
+        "default_for_artifact_classes": default_for_artifact_classes,
+    }
+
+
 def find_artifact_classes(
     extensions: ExtensionRegistryData,
     *,
@@ -1471,7 +1536,18 @@ def find_artifact_classes(
 
 def artifact_class_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, Any]:
     item = resolve_artifact_class(extensions, ref)
-    return {"artifact_class": item.model_dump(mode="json")}
+    default_expression_profile = next(
+        (
+            profile.model_dump(mode="json")
+            for profile in extensions.expression_profiles
+            if profile.expression_mode == item.default_expression_mode
+        ),
+        None,
+    )
+    return {
+        "artifact_class": item.model_dump(mode="json"),
+        "default_expression_profile": default_expression_profile,
+    }
 
 
 def find_actualization_protocols(
@@ -1649,6 +1725,12 @@ def recommend_next_path(
         )
     )
     recommended_artifact = artifact_candidates[0] if artifact_candidates else None
+    expression_candidates = []
+    if recommended_artifact is not None:
+        expression_candidates = find_expression_profiles(
+            extensions,
+            mode=recommended_artifact["artifact_class"]["default_expression_mode"],
+        )
 
     actualization_candidates = []
     if recommended_artifact is not None:
@@ -1701,12 +1783,15 @@ def recommend_next_path(
         recommended_tools.append("list_capabilities")
     if recommended_artifact is not None:
         recommended_tools.append("fetch_artifact_class")
+    if expression_candidates:
+        recommended_tools.append("fetch_expression_profile")
     if actualization_candidates:
         recommended_tools.append("fetch_actualization_protocol")
 
     recommended_resources = [
         "registry://advanced-modes",
         "registry://capability-model",
+        "registry://expression-model",
     ]
     if recommended_artifact is not None:
         recommended_resources.append("registry://actualization-protocols")
@@ -1718,6 +1803,8 @@ def recommend_next_path(
         "declared_capabilities": [item.model_dump(mode="json") for item in capability_items],
         "recommended_artifact": recommended_artifact,
         "artifact_candidates": artifact_candidates[:3],
+        "recommended_expression_profile": expression_candidates[0] if expression_candidates else None,
+        "expression_candidates": expression_candidates[:3],
         "recommended_actualization_protocol": actualization_candidates[0] if actualization_candidates else None,
         "actualization_candidates": actualization_candidates[:3],
         "recommended_tools": recommended_tools,

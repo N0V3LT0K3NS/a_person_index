@@ -40,6 +40,8 @@ for (const requiredTool of [
   "orient_agent",
   "list_analysis_modes",
   "list_capabilities",
+  "list_expression_profiles",
+  "fetch_expression_profile",
   "recommend_next_path",
   "list_artifact_classes",
   "list_actualization_protocols",
@@ -82,6 +84,12 @@ const capabilityModel = await client.readResource({ uri: "registry://capability-
 expect(
   capabilityModel.contents?.[0]?.text?.includes("Capability Model"),
   "Expected capability model resource content.",
+);
+
+const expressionModel = await client.readResource({ uri: "registry://expression-model" });
+expect(
+  expressionModel.contents?.[0]?.text?.includes("Expression Model"),
+  "Expected expression model resource content.",
 );
 
 const mbtiResource = await client.readResource({ uri: "registry://instrument/mbti" });
@@ -150,6 +158,19 @@ expect(
   "Expected capability list for context matrix artifact.",
 );
 
+const expressions = await client.callTool({
+  name: "list_expression_profiles",
+  arguments: {
+    artifact: "Context Matrix",
+  },
+});
+expect(!expressions.isError, "Expected list_expression_profiles tool to succeed.");
+expect(
+  Array.isArray(expressions.structuredContent?.expression_profiles) &&
+    expressions.structuredContent.expression_profiles.some((item) => item.id === "expr_explanatory"),
+  "Expected explanatory expression profile for context matrix artifact.",
+);
+
 const recommendation = await client.callTool({
   name: "recommend_next_path",
   arguments: {
@@ -162,6 +183,10 @@ expect(!recommendation.isError, "Expected recommend_next_path tool to succeed.")
 expect(
   recommendation.structuredContent?.recommended_artifact?.artifact_class?.id === "art_context_matrix",
   "Expected recommended artifact for contextual matrix path.",
+);
+expect(
+  recommendation.structuredContent?.recommended_expression_profile?.id === "expr_explanatory",
+  "Expected recommended expression profile for contextual matrix path.",
 );
 
 const actualizationProtocols = await client.callTool({

@@ -33,6 +33,10 @@ If the task shifts from framework use into run planning, artifact generation, or
 contextual comparison, call `recommend_next_path` once you know the host
 capabilities and need the smallest disciplined next move.
 
+If the next question becomes how the same result should be voiced for this
+audience, inspect the expression profile surfaces before defaulting to a
+technical rendering.
+
 ## Ready-to-share status
 
 The MCP surface is now ready for serious local and nearby-agent use.
@@ -88,6 +92,7 @@ The important rule is that A Person Index remains the semantic authority for:
 
 See:
 
+- [expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md)
 - [actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md)
 - [expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md)
 - [multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)
@@ -137,6 +142,7 @@ npm run mcp:test
 - `registry://ilens-walkthrough`
 - `registry://advanced-modes`
 - `registry://capability-model`
+- `registry://expression-model`
 - `registry://actualization-protocols`
 - `registry://expression-and-artifacts`
 - `registry://multi-subject-comparison`
@@ -153,6 +159,8 @@ npm run mcp:test
 - `fetch_analysis_mode`
 - `list_capabilities`
 - `fetch_capability`
+- `list_expression_profiles`
+- `fetch_expression_profile`
 - `recommend_next_path`
 - `list_artifact_classes`
 - `fetch_artifact_class`

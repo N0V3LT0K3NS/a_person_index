@@ -13,6 +13,7 @@ from personality_registry.models import StrictModel
 EXTENSION_FILE_MODELS = {
     "modes/registry.yaml": "analysis_modes",
     "capabilities/registry.yaml": "capabilities",
+    "expression/registry.yaml": "expression_profiles",
     "artifacts/registry.yaml": "artifact_classes",
     "actualization/registry.yaml": "actualization_protocols",
     "motifs/registry.yaml": "motifs",
@@ -67,6 +68,25 @@ class Capability(StrictModel):
 
 class CapabilitiesDocument(StrictModel):
     capabilities: list[Capability]
+
+
+class ExpressionProfile(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    expression_mode: Literal["tacit", "explanatory", "technical", "mixed"]
+    summary: str
+    purpose: str
+    audience_modes: list[str] = Field(default_factory=list)
+    visible_by_default: list[str] = Field(default_factory=list)
+    keep_implicit_by_default: list[str] = Field(default_factory=list)
+    good_for: list[str] = Field(default_factory=list)
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class ExpressionProfilesDocument(StrictModel):
+    expression_profiles: list[ExpressionProfile]
 
 
 class ArtifactClass(StrictModel):
@@ -353,6 +373,7 @@ class ResultAtomSchemaDocument(StrictModel):
 DOCUMENT_MODEL_BY_FILE = {
     "modes/registry.yaml": AnalysisModesDocument,
     "capabilities/registry.yaml": CapabilitiesDocument,
+    "expression/registry.yaml": ExpressionProfilesDocument,
     "artifacts/registry.yaml": ArtifactClassesDocument,
     "actualization/registry.yaml": ActualizationProtocolsDocument,
     "motifs/registry.yaml": MotifsDocument,
@@ -371,6 +392,7 @@ DOCUMENT_MODEL_BY_FILE = {
 class ExtensionRegistryData:
     analysis_modes: list[AnalysisMode]
     capabilities: list[Capability]
+    expression_profiles: list[ExpressionProfile]
     artifact_classes: list[ArtifactClass]
     actualization_protocols: list[ActualizationProtocol]
     motifs: list[Motif]
@@ -423,6 +445,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
 
     analysis_modes_doc = documents["modes/registry.yaml"]
     capabilities_doc = documents["capabilities/registry.yaml"]
+    expression_profiles_doc = documents["expression/registry.yaml"]
     artifact_classes_doc = documents["artifacts/registry.yaml"]
     actualization_protocols_doc = documents["actualization/registry.yaml"]
     motifs_doc = documents["motifs/registry.yaml"]
@@ -438,6 +461,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
     data = ExtensionRegistryData(
         analysis_modes=analysis_modes_doc.analysis_modes,
         capabilities=capabilities_doc.capabilities,
+        expression_profiles=expression_profiles_doc.expression_profiles,
         artifact_classes=artifact_classes_doc.artifact_classes,
         actualization_protocols=actualization_protocols_doc.actualization_protocols,
         motifs=motifs_doc.motifs,

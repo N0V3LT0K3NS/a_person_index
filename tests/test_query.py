@@ -18,6 +18,7 @@ from personality_registry.query import (
     find_analysis_modes,
     find_artifact_classes,
     find_capabilities,
+    find_expression_profiles,
     find_interaction_hypotheses,
     find_motifs,
     find_promotion_pathways,
@@ -26,6 +27,7 @@ from personality_registry.query import (
     find_techniques,
     find_instruments,
     curated_protocol_pack_record,
+    expression_profile_record,
     interaction_hypothesis_record,
     instrument_record,
     motif_record,
@@ -299,16 +301,29 @@ def test_analysis_mode_and_artifact_records_are_available(repo_root):
     extensions = load_extensions_strict(repo_root)
     mode_payload = analysis_mode_record(extensions, "Run Planning")
     capability_payload = capability_record(extensions, "Markdown Write")
+    expression_payload = expression_profile_record(extensions, "Explanatory Scaffolded")
     artifact_payload = artifact_class_record(extensions, "Context Matrix")
     actualization_payload = actualization_protocol_record(extensions, "Pairwise Relational Sheet")
     assert mode_payload["analysis_mode"]["id"] == "mode_run_planning"
     assert capability_payload["capability"]["id"] == "cap_markdown_write"
+    assert expression_payload["expression_profile"]["id"] == "expr_explanatory"
     used_by_artifact_ids = {item["id"] for item in capability_payload["used_by_artifact_classes"]}
     assert "art_comparative_memo" in used_by_artifact_ids
     assert artifact_payload["artifact_class"]["id"] == "art_context_matrix"
+    assert artifact_payload["default_expression_profile"]["id"] == "expr_explanatory"
     assert "cap_spreadsheet_render" in artifact_payload["artifact_class"]["optional_capability_ids"]
     assert actualization_payload["actualization_protocol"]["id"] == "actx_pairwise_relational_sheet"
     assert "cap_diagram_render" in actualization_payload["actualization_protocol"]["optional_capability_ids"]
+
+
+def test_find_expression_profiles_for_artifact(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = find_expression_profiles(
+        extensions,
+        artifact_class="Agent Markdown Handoff",
+    )
+    profile_ids = {item["id"] for item in payload}
+    assert profile_ids == {"expr_technical"}
 
 
 def test_recommend_next_path_prefers_context_matrix_when_capabilities_fit(repo_root):
@@ -321,6 +336,7 @@ def test_recommend_next_path_prefers_context_matrix_when_capabilities_fit(repo_r
     )
     assert payload["run_mode"]["id"] == "mode_contextual_comparison"
     assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_context_matrix"
+    assert payload["recommended_expression_profile"]["id"] == "expr_explanatory"
     assert payload["recommended_actualization_protocol"]["actualization_protocol"]["id"] == "actx_context_matrix_render"
     assert payload["recommended_artifact"]["fit_status"] == "ready"
     assert "list_capabilities" not in payload["recommended_tools"]

@@ -8,6 +8,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
 
     assert len(extensions.analysis_modes) >= 5
     assert len(extensions.capabilities) >= 8
+    assert len(extensions.expression_profiles) >= 4
     assert len(extensions.artifact_classes) >= 4
     assert len(extensions.actualization_protocols) >= 3
     assert len(extensions.motifs) >= 10
@@ -21,6 +22,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
 
     analysis_mode_ids = {mode.id for mode in extensions.analysis_modes}
     capability_ids = {capability.id for capability in extensions.capabilities}
+    expression_profile_ids = {profile.id for profile in extensions.expression_profiles}
     artifact_class_ids = {artifact.id for artifact in extensions.artifact_classes}
     motif_ids = {motif.id for motif in extensions.motifs}
     technique_ids = {technique.id for technique in extensions.techniques}
@@ -30,6 +32,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
 
     assert "mode_bounded_single_subject" in analysis_mode_ids
     assert "cap_markdown_write" in capability_ids
+    assert "expr_explanatory" in expression_profile_ids
     assert "art_comparative_memo" in artifact_class_ids
     assert "mtf_social_energy_orientation" in motif_ids
     assert "tech_paradox_scan" in technique_ids

@@ -44,6 +44,9 @@ if (!tools.tools.some((tool) => tool.name === "list_actualization_protocols")) {
 if (!tools.tools.some((tool) => tool.name === "list_capabilities")) {
   throw new Error("Expected list_capabilities tool in MCP surface.");
 }
+if (!tools.tools.some((tool) => tool.name === "list_expression_profiles")) {
+  throw new Error("Expected list_expression_profiles tool in MCP surface.");
+}
 if (!tools.tools.some((tool) => tool.name === "recommend_next_path")) {
   throw new Error("Expected recommend_next_path tool in MCP surface.");
 }
@@ -72,6 +75,11 @@ if (!actualizationResource.contents?.[0]?.text?.includes("A Person Index is ofte
 const capabilityResource = await client.readResource({ uri: "registry://capability-model" });
 if (!capabilityResource.contents?.[0]?.text?.includes("capabilities")) {
   throw new Error("Expected capability model resource content.");
+}
+
+const expressionResource = await client.readResource({ uri: "registry://expression-model" });
+if (!expressionResource.contents?.[0]?.text?.includes("Expression Model")) {
+  throw new Error("Expected expression model resource content.");
 }
 
 const prompt = await client.getPrompt({ name: "registry-arrival" });

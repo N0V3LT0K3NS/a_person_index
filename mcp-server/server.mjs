@@ -108,7 +108,7 @@ async function buildServer() {
     name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, capability records, artifact classes, and actualization protocols from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, capability, and actualization surfaces before improvising. Use recommend_next_path when you already know the host capabilities and need the smallest disciplined next step. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, capability records, expression profiles, artifact classes, and actualization protocols from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, capability, expression, and actualization surfaces before improvising. Use recommend_next_path when you already know the host capabilities and need the smallest disciplined next step. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
   });
 
   server.registerResource(
@@ -250,6 +250,24 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/capability_model.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "expression-model",
+    "registry://expression-model",
+    {
+      title: "Expression Model",
+      description: "Structured expression profiles for tacit, explanatory, technical, and mixed downstream rendering.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/expression_model.md"),
         },
       ],
     }),
@@ -576,6 +594,50 @@ async function buildServer() {
     async ({ ref }) => {
       try {
         return jsonResult(await runRegistryQuery(["capabilities", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_expression_profiles",
+    {
+      title: "List Expression Profiles",
+      description: "Return structured expression profiles for tacit, explanatory, technical, or mixed downstream rendering.",
+      inputSchema: {
+        mode: z.string().optional(),
+        audience: z.string().optional(),
+        artifact: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ mode, audience, artifact, text }) => {
+      try {
+        const args = ["expressions"];
+        if (mode) args.push("--mode", mode);
+        if (audience) args.push("--audience", audience);
+        if (artifact) args.push("--artifact", artifact);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("expression_profiles", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_expression_profile",
+    {
+      title: "Fetch Expression Profile",
+      description: "Return the full record for a named expression profile and the artifact classes that default to it.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["expressions", ref], pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }

@@ -18,11 +18,13 @@ from personality_registry.query import (
     contribution_model_record,
     curated_protocol_pack_record,
     dumps_json,
+    expression_profile_record,
     find_actualization_protocols,
     find_analysis_modes,
     find_artifact_classes,
     find_capabilities,
     find_contribution_models,
+    find_expression_profiles,
     find_interaction_hypotheses,
     find_motifs,
     find_promotion_pathways,
@@ -665,6 +667,48 @@ def _render_capability_record_text(payload):
     return "\n".join(lines)
 
 
+def _render_expression_profiles_text(results):
+    if not results:
+        return "No matching expression profiles."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(
+            f"  status={item['status']} mode={item['expression_mode']} audience={', '.join(item['audience_modes'])}"
+        )
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_expression_profile_record_text(payload):
+    item = payload["expression_profile"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        f"expression mode: {item['expression_mode']}",
+        item["summary"],
+        "",
+        "Visible by default:",
+    ]
+    for entry in item["visible_by_default"]:
+        lines.append(f"  - {entry}")
+    lines.append("")
+    lines.append("Keep implicit by default:")
+    if item["keep_implicit_by_default"]:
+        for entry in item["keep_implicit_by_default"]:
+            lines.append(f"  - {entry}")
+    else:
+        lines.append("  none")
+    lines.append("")
+    lines.append("Default for artifact classes:")
+    if payload["default_for_artifact_classes"]:
+        for artifact in payload["default_for_artifact_classes"]:
+            lines.append(f"  - {artifact['name']} ({artifact['id']})")
+    else:
+        lines.append("  none")
+    return "\n".join(lines)
+
+
 def _render_artifact_classes_text(results):
     if not results:
         return "No matching artifact classes."
@@ -685,9 +729,22 @@ def _render_artifact_class_record_text(payload):
         f"status: {item['status']}",
         f"default expression: {item['default_expression_mode']}",
         item["summary"],
-        "",
-        "Required evidence partitions:",
     ]
+    if payload.get("default_expression_profile"):
+        expression = payload["default_expression_profile"]
+        lines.extend(
+            [
+                "",
+                f"Default expression profile: {expression['name']} ({expression['id']})",
+                f"  {expression['summary']}",
+            ]
+        )
+    lines.extend(
+        [
+            "",
+            "Required evidence partitions:",
+        ]
+    )
     for partition in item["required_evidence_partitions"]:
         lines.append(f"  - {partition}")
     lines.append("")
@@ -769,6 +826,16 @@ def _render_recommendation_text(payload):
             lines.append(
                 f"  missing required capabilities: {', '.join(artifact['missing_required_capability_ids'])}"
             )
+    else:
+        lines.append("  none")
+
+    lines.append("")
+    lines.append("Recommended expression profile:")
+    if payload.get("recommended_expression_profile"):
+        expression = payload["recommended_expression_profile"]
+        lines.append(
+            f"  {expression['name']} ({expression['id']}) [{expression['expression_mode']}]"
+        )
     else:
         lines.append("  none")
 
@@ -1062,6 +1129,16 @@ def main() -> int:
     )
     capabilities_parser.add_argument("--text", help="Substring search across capability fields.")
     capabilities_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    expressions_parser = subparsers.add_parser("expressions", help="List or show expression profiles.")
+    expressions_parser.add_argument(
+        "ref", nargs="?", help="Optional expression profile ID or name for a detailed record."
+    )
+    expressions_parser.add_argument("--mode", help="Filter expression profiles by expression mode.")
+    expressions_parser.add_argument("--audience", help="Filter expression profiles by audience mode.")
+    expressions_parser.add_argument("--artifact", help="Filter expression profiles by artifact class.")
+    expressions_parser.add_argument("--text", help="Substring search across expression profile fields.")
+    expressions_parser.add_argument("--format", choices=("text", "json"), default="text")
 
     artifacts_parser = subparsers.add_parser("artifacts", help="List or show artifact classes.")
     artifacts_parser.add_argument("ref", nargs="?", help="Optional artifact class ID or name for a detailed record.")
@@ -1368,6 +1445,27 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_capabilities_text(payload))
+        return 0
+
+    if args.command == "expressions":
+        if args.ref:
+            payload = expression_profile_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_expression_profile_record_text(payload))
+            return 0
+        payload = find_expression_profiles(
+            extensions,
+            mode=args.mode,
+            audience=args.audience,
+            artifact_class=args.artifact,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_expression_profiles_text(payload))
         return 0
 
     if args.command == "artifacts":

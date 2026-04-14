@@ -94,5 +94,7 @@ Use the deeper docs:
 
 - [advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md)
 - [capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md)
+- [expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md)
 - [actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md)
+- [expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md)
 - [multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)

@@ -66,7 +66,8 @@ The recommended order is:
 3. use `recommend_next_path` if you need the smallest disciplined recommendation
 4. choose the analysis mode
 5. choose the artifact class or actualization protocol if needed
-6. use the host's actual tools only after the semantic path is clear
+6. choose the expression profile that fits the audience
+7. use the host's actual tools only after the semantic path is clear
 
 ## Important caution
 

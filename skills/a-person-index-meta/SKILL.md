@@ -45,6 +45,7 @@ Use the capability registry when needed:
 python3 scripts/query_registry.py capabilities
 python3 scripts/query_registry.py capabilities --artifact "Context Matrix"
 python3 scripts/query_registry.py capabilities --actualization "Pairwise Relational Sheet"
+python3 scripts/query_registry.py expressions --artifact "Context Matrix"
 python3 scripts/query_registry.py recommend-path --text "compare me across time" --capability "Markdown Write"
 ```
 

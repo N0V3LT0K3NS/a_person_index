@@ -1,0 +1,100 @@
+expression_profiles:
+  - id: expr_tacit
+    name: Tacit Phenomenological
+    status: active
+    expression_mode: tacit
+    summary: Speak from the lived pattern first while keeping most internal scaffolding implicit.
+    purpose: Help ordinary users understand the phenomenon without being forced into ontology-heavy language.
+    audience_modes:
+      - end_user
+      - collaborator
+    visible_by_default:
+      - recurring patterns
+      - tensions
+      - cautions that matter to interpretation
+    keep_implicit_by_default:
+      - internal ontology labels
+      - program names
+      - capability and rendering scaffolding
+    good_for:
+      - ordinary self-understanding questions
+      - reflective conversation
+      - first-pass explanation before deeper technical unpacking
+    cautions:
+      - Do not hide uncertainty just because the tone is softer.
+      - Keep evidence partitions available if the user asks where a claim came from.
+
+  - id: expr_explanatory
+    name: Explanatory Scaffolded
+    status: active
+    expression_mode: explanatory
+    summary: Reveal enough scaffolding for the reader to understand how the conclusion was built without drowning them in internal machinery.
+    purpose: Bridge ordinary user-facing explanation and more technical contributor-facing analysis.
+    audience_modes:
+      - end_user
+      - collaborator
+      - analyst
+    visible_by_default:
+      - major comparative axes
+      - provenance partitions
+      - why the chosen artifact or program fits
+    keep_implicit_by_default:
+      - low-level registry internals
+      - implementation trivia
+    good_for:
+      - comparative memos
+      - contextual matrices
+      - most deliberate downstream artifacts
+    cautions:
+      - Do not let explanatory structure turn into variable recital.
+      - Preserve missingness and caveats alongside the explanation.
+
+  - id: expr_technical
+    name: Technical Contributor
+    status: active
+    expression_mode: technical
+    summary: Make the internal comparative scaffolding explicit for debugging, contribution, or meta-analysis work.
+    purpose: Support builders, maintainers, and technically curious users who need direct access to the underlying structure.
+    audience_modes:
+      - contributor
+      - maintainer
+      - agent
+      - research_ops
+    visible_by_default:
+      - registry and ontology labels
+      - program and pack names
+      - capability assumptions
+      - evidence partitions
+    keep_implicit_by_default: []
+    good_for:
+      - debugging
+      - protocol extension work
+      - trace review
+      - machine-facing handoffs
+    cautions:
+      - Do not default to this voice when the user mainly wants the phenomenon.
+      - Technical precision should still preserve uncertainty rather than overstating it.
+
+  - id: expr_mixed
+    name: Mixed Bridge
+    status: experimental
+    expression_mode: mixed
+    summary: Alternate between phenomenological and technical language when the artifact must serve more than one audience at once.
+    purpose: Support artifacts that need to feel readable to humans while still being precise enough for builders or downstream agents.
+    audience_modes:
+      - collaborator
+      - contributor
+      - agent
+    visible_by_default:
+      - phenomenon-first framing
+      - explicit provenance partitions
+      - selective technical terms when they add real clarity
+    keep_implicit_by_default:
+      - unnecessary low-level implementation detail
+    good_for:
+      - human model cards
+      - mixed human-plus-agent handoffs
+      - contributor-facing artifacts that may also be shared with end users
+    cautions:
+      - Mixed voice is not a license to alternate randomly between jargon and intuition.
+      - Use this only when the artifact genuinely serves more than one audience.
