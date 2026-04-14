@@ -26,6 +26,7 @@ from personality_registry.query import (
     find_protocols,
     find_techniques,
     find_instruments,
+    find_workflow_recipes,
     curated_protocol_pack_record,
     expression_profile_record,
     interaction_hypothesis_record,
@@ -43,6 +44,7 @@ from personality_registry.query import (
     resolve_instrument,
     show_instrument,
     trace_entity_to_motifs,
+    workflow_recipe_record,
 )
 
 
@@ -326,6 +328,16 @@ def test_find_expression_profiles_for_artifact(repo_root):
     assert profile_ids == {"expr_technical"}
 
 
+def test_find_workflow_recipes_for_context_matrix(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = find_workflow_recipes(
+        extensions,
+        artifact_class="Context Matrix",
+    )
+    recipe_ids = {item["id"] for item in payload}
+    assert recipe_ids == {"wfr_context_matrix_explanatory"}
+
+
 def test_recommend_next_path_prefers_context_matrix_when_capabilities_fit(repo_root):
     extensions = load_extensions_strict(repo_root)
     payload = recommend_next_path(
@@ -337,9 +349,18 @@ def test_recommend_next_path_prefers_context_matrix_when_capabilities_fit(repo_r
     assert payload["run_mode"]["id"] == "mode_contextual_comparison"
     assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_context_matrix"
     assert payload["recommended_expression_profile"]["id"] == "expr_explanatory"
+    assert payload["recommended_workflow_recipe"]["workflow_recipe"]["id"] == "wfr_context_matrix_explanatory"
     assert payload["recommended_actualization_protocol"]["actualization_protocol"]["id"] == "actx_context_matrix_render"
     assert payload["recommended_artifact"]["fit_status"] == "ready"
-    assert "list_capabilities" not in payload["recommended_tools"]
+
+
+def test_workflow_recipe_record_expands_related_surfaces(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = workflow_recipe_record(extensions, "Context Matrix Explanatory")
+    assert payload["workflow_recipe"]["id"] == "wfr_context_matrix_explanatory"
+    assert payload["artifact_class"]["id"] == "art_context_matrix"
+    assert payload["expression_profile"]["id"] == "expr_explanatory"
+    assert payload["actualization_protocol"]["id"] == "actx_context_matrix_render"
 
 
 def test_recommend_next_path_infers_contextual_mode_from_text(repo_root):
@@ -353,6 +374,7 @@ def test_recommend_next_path_infers_contextual_mode_from_text(repo_root):
     assert payload["run_mode_inferred"] is True
     assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_context_matrix"
     assert payload["recommended_actualization_protocol"]["actualization_protocol"]["id"] == "actx_context_matrix_render"
+    assert "list_capabilities" not in payload["recommended_tools"]
 
 
 def test_find_interaction_hypotheses_related_to_attachment(repo_root):

@@ -19,6 +19,12 @@
 - `python3 scripts/query_registry.py actualization --mode "Artifact Actualization"`
 - `python3 scripts/query_registry.py actualization --artifact "Comparative Memo"`
 
+### Choose a workflow recipe
+
+- `python3 scripts/query_registry.py workflows`
+- `python3 scripts/query_registry.py workflows --artifact "Context Matrix"`
+- `python3 scripts/query_registry.py workflows --actualization "Context Matrix Render"`
+
 ### Pull the comparative core
 
 - use `$a-person-index` for framework matching, motifs, interactions, and program or pack choice

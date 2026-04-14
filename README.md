@@ -22,6 +22,10 @@ Expression profiles are now first-class too, so the system can explicitly say
 how visible the scaffolding should be when the same comparative result is
 rendered for different audiences.
 
+Workflow recipes now sit beneath that recommendation layer, so the system can
+also name the smallest repeatable execution sequence that fits the run,
+artifact, expression, and capability shape.
+
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
 1. Canonical registry
@@ -64,6 +68,7 @@ If you need the deeper map after that:
   [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
   [docs/expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md),
   [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
+  [docs/workflow_recipes.md](/Users/noveltokens/a_person_index/docs/workflow_recipes.md),
   [docs/expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md),
   [docs/multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)
 - Clients and operations:

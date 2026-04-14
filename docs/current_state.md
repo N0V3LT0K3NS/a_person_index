@@ -22,6 +22,7 @@ As of the current branch state, the repo includes:
 - 4 expression profiles
 - 6 artifact classes
 - 4 actualization protocols
+- 4 workflow recipes
 - 11 house motifs
 - 18 construct or instrument mappings into motifs
 - 7 interaction hypotheses

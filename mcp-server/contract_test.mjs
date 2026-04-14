@@ -42,6 +42,8 @@ for (const requiredTool of [
   "list_capabilities",
   "list_expression_profiles",
   "fetch_expression_profile",
+  "list_workflow_recipes",
+  "fetch_workflow_recipe",
   "recommend_next_path",
   "list_artifact_classes",
   "list_actualization_protocols",
@@ -90,6 +92,12 @@ const expressionModel = await client.readResource({ uri: "registry://expression-
 expect(
   expressionModel.contents?.[0]?.text?.includes("Expression Model"),
   "Expected expression model resource content.",
+);
+
+const workflowRecipes = await client.readResource({ uri: "registry://workflow-recipes" });
+expect(
+  workflowRecipes.contents?.[0]?.text?.includes("Workflow Recipes"),
+  "Expected workflow recipes resource content.",
 );
 
 const mbtiResource = await client.readResource({ uri: "registry://instrument/mbti" });
@@ -171,6 +179,19 @@ expect(
   "Expected explanatory expression profile for context matrix artifact.",
 );
 
+const workflows = await client.callTool({
+  name: "list_workflow_recipes",
+  arguments: {
+    artifact: "Context Matrix",
+  },
+});
+expect(!workflows.isError, "Expected list_workflow_recipes tool to succeed.");
+expect(
+  Array.isArray(workflows.structuredContent?.workflow_recipes) &&
+    workflows.structuredContent.workflow_recipes.some((item) => item.id === "wfr_context_matrix_explanatory"),
+  "Expected workflow recipe for context matrix artifact.",
+);
+
 const recommendation = await client.callTool({
   name: "recommend_next_path",
   arguments: {
@@ -187,6 +208,10 @@ expect(
 expect(
   recommendation.structuredContent?.recommended_expression_profile?.id === "expr_explanatory",
   "Expected recommended expression profile for contextual matrix path.",
+);
+expect(
+  recommendation.structuredContent?.recommended_workflow_recipe?.workflow_recipe?.id === "wfr_context_matrix_explanatory",
+  "Expected recommended workflow recipe for contextual matrix path.",
 );
 
 const actualizationProtocols = await client.callTool({

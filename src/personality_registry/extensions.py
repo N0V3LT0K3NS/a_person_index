@@ -16,6 +16,7 @@ EXTENSION_FILE_MODELS = {
     "expression/registry.yaml": "expression_profiles",
     "artifacts/registry.yaml": "artifact_classes",
     "actualization/registry.yaml": "actualization_protocols",
+    "workflow_recipes/registry.yaml": "workflow_recipes",
     "motifs/registry.yaml": "motifs",
     "mappings/construct_to_motif.yaml": "mappings",
     "interactions/registry.yaml": "interaction_hypotheses",
@@ -125,6 +126,26 @@ class ActualizationProtocol(StrictModel):
 
 class ActualizationProtocolsDocument(StrictModel):
     actualization_protocols: list[ActualizationProtocol]
+
+
+class WorkflowRecipe(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    summary: str
+    run_mode_ids: list[str] = Field(default_factory=list)
+    artifact_class_id: str
+    expression_profile_id: str
+    actualization_protocol_id: str
+    required_capability_ids: list[str] = Field(default_factory=list)
+    recipe_steps: list[str] = Field(default_factory=list)
+    deliverables: list[str] = Field(default_factory=list)
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class WorkflowRecipesDocument(StrictModel):
+    workflow_recipes: list[WorkflowRecipe]
 
 
 class Motif(StrictModel):
@@ -376,6 +397,7 @@ DOCUMENT_MODEL_BY_FILE = {
     "expression/registry.yaml": ExpressionProfilesDocument,
     "artifacts/registry.yaml": ArtifactClassesDocument,
     "actualization/registry.yaml": ActualizationProtocolsDocument,
+    "workflow_recipes/registry.yaml": WorkflowRecipesDocument,
     "motifs/registry.yaml": MotifsDocument,
     "mappings/construct_to_motif.yaml": ConstructMappingsDocument,
     "interactions/registry.yaml": InteractionHypothesesDocument,
@@ -395,6 +417,7 @@ class ExtensionRegistryData:
     expression_profiles: list[ExpressionProfile]
     artifact_classes: list[ArtifactClass]
     actualization_protocols: list[ActualizationProtocol]
+    workflow_recipes: list[WorkflowRecipe]
     motifs: list[Motif]
     mappings: list[ConstructMapping]
     interaction_hypotheses: list[InteractionHypothesis]
@@ -448,6 +471,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
     expression_profiles_doc = documents["expression/registry.yaml"]
     artifact_classes_doc = documents["artifacts/registry.yaml"]
     actualization_protocols_doc = documents["actualization/registry.yaml"]
+    workflow_recipes_doc = documents["workflow_recipes/registry.yaml"]
     motifs_doc = documents["motifs/registry.yaml"]
     mappings_doc = documents["mappings/construct_to_motif.yaml"]
     interaction_hypotheses_doc = documents["interactions/registry.yaml"]
@@ -464,6 +488,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
         expression_profiles=expression_profiles_doc.expression_profiles,
         artifact_classes=artifact_classes_doc.artifact_classes,
         actualization_protocols=actualization_protocols_doc.actualization_protocols,
+        workflow_recipes=workflow_recipes_doc.workflow_recipes,
         motifs=motifs_doc.motifs,
         mappings=mappings_doc.mappings,
         interaction_hypotheses=interaction_hypotheses_doc.interaction_hypotheses,

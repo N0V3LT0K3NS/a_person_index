@@ -373,6 +373,10 @@ def resolve_actualization_protocol(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.actualization_protocols, ref, ("name", "summary"))
 
 
+def resolve_workflow_recipe(extensions: ExtensionRegistryData, ref: str):
+    return _resolve_extension_item(extensions.workflow_recipes, ref, ("name", "summary"))
+
+
 def agent_orientation(
     repository: RepositoryData,
     extensions: ExtensionRegistryData,
@@ -420,6 +424,7 @@ def agent_orientation(
             "docs/capability_model.md",
             "docs/expression_model.md",
             "docs/actualization_protocols.md",
+            "docs/workflow_recipes.md",
             "docs/expression_and_artifacts.md",
             "docs/multi_subject_comparison.md",
         ],
@@ -1598,6 +1603,76 @@ def actualization_protocol_record(extensions: ExtensionRegistryData, ref: str) -
     return {"actualization_protocol": item.model_dump(mode="json")}
 
 
+def find_workflow_recipes(
+    extensions: ExtensionRegistryData,
+    *,
+    run_mode: str | None = None,
+    artifact_class: str | None = None,
+    actualization_protocol: str | None = None,
+    expression_profile: str | None = None,
+    capability: str | None = None,
+    text: str | None = None,
+) -> list[dict[str, Any]]:
+    mode_id = resolve_analysis_mode(extensions, run_mode).id if run_mode else None
+    artifact_id = resolve_artifact_class(extensions, artifact_class).id if artifact_class else None
+    actualization_id = (
+        resolve_actualization_protocol(extensions, actualization_protocol).id
+        if actualization_protocol
+        else None
+    )
+    expression_id = (
+        resolve_expression_profile(extensions, expression_profile).id
+        if expression_profile
+        else None
+    )
+    capability_id = resolve_capability(extensions, capability).id if capability else None
+    results = []
+    for item in extensions.workflow_recipes:
+        if mode_id and mode_id not in item.run_mode_ids:
+            continue
+        if artifact_id and item.artifact_class_id != artifact_id:
+            continue
+        if actualization_id and item.actualization_protocol_id != actualization_id:
+            continue
+        if expression_id and item.expression_profile_id != expression_id:
+            continue
+        if capability_id and capability_id not in item.required_capability_ids:
+            continue
+        if text:
+            blob = "\n".join(
+                [
+                    item.id,
+                    item.name,
+                    item.summary,
+                    item.artifact_class_id,
+                    item.expression_profile_id,
+                    item.actualization_protocol_id,
+                    *item.run_mode_ids,
+                    *item.required_capability_ids,
+                    *item.recipe_steps,
+                    *item.deliverables,
+                    *item.cautions,
+                ]
+            )
+            if _normalize(text) not in _normalize(blob):
+                continue
+        results.append(item.model_dump(mode="json"))
+    return sorted(results, key=lambda entry: entry["name"].lower())
+
+
+def workflow_recipe_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, Any]:
+    item = resolve_workflow_recipe(extensions, ref)
+    artifact = resolve_artifact_class(extensions, item.artifact_class_id)
+    expression = resolve_expression_profile(extensions, item.expression_profile_id)
+    actualization = resolve_actualization_protocol(extensions, item.actualization_protocol_id)
+    return {
+        "workflow_recipe": item.model_dump(mode="json"),
+        "artifact_class": artifact.model_dump(mode="json"),
+        "expression_profile": expression.model_dump(mode="json"),
+        "actualization_protocol": actualization.model_dump(mode="json"),
+    }
+
+
 def _text_signal_score(text: str, parts: Iterable[str]) -> int:
     normalized_text = _normalize(text)
     text_tokens = _tokenize_search_terms(text)
@@ -1766,6 +1841,44 @@ def recommend_next_path(
             )
         )
 
+    recommended_expression = expression_candidates[0] if expression_candidates else None
+    recommended_actualization = actualization_candidates[0] if actualization_candidates else None
+    workflow_candidates = []
+    if (
+        recommended_artifact is not None
+        and recommended_expression is not None
+        and recommended_actualization is not None
+    ):
+        for item in extensions.workflow_recipes:
+            if mode_item.id not in item.run_mode_ids:
+                continue
+            if item.artifact_class_id != recommended_artifact["artifact_class"]["id"]:
+                continue
+            if item.expression_profile_id != recommended_expression["id"]:
+                continue
+            if item.actualization_protocol_id != recommended_actualization["actualization_protocol"]["id"]:
+                continue
+            missing_required = sorted(set(item.required_capability_ids) - capability_id_set)
+            satisfied_required = sorted(set(item.required_capability_ids) & capability_id_set)
+            score = (100 if not missing_required else 0) + len(satisfied_required) * 10
+            workflow_candidates.append(
+                {
+                    "workflow_recipe": item.model_dump(mode="json"),
+                    "fit_status": "ready" if not missing_required else "partial",
+                    "missing_required_capability_ids": missing_required,
+                    "satisfied_capability_ids": satisfied_required,
+                    "score": score,
+                }
+            )
+        workflow_candidates.sort(
+            key=lambda item: (
+                0 if item["fit_status"] == "ready" else 1,
+                len(item["missing_required_capability_ids"]),
+                -item["score"],
+                item["workflow_recipe"]["name"].lower(),
+            )
+        )
+
     if not capability_items:
         notes.append("No capabilities were declared, so readiness is conservative.")
     elif recommended_artifact and recommended_artifact["missing_required_capability_ids"]:
@@ -1787,11 +1900,14 @@ def recommend_next_path(
         recommended_tools.append("fetch_expression_profile")
     if actualization_candidates:
         recommended_tools.append("fetch_actualization_protocol")
+    if workflow_candidates:
+        recommended_tools.append("fetch_workflow_recipe")
 
     recommended_resources = [
         "registry://advanced-modes",
         "registry://capability-model",
         "registry://expression-model",
+        "registry://workflow-recipes",
     ]
     if recommended_artifact is not None:
         recommended_resources.append("registry://actualization-protocols")
@@ -1807,6 +1923,8 @@ def recommend_next_path(
         "expression_candidates": expression_candidates[:3],
         "recommended_actualization_protocol": actualization_candidates[0] if actualization_candidates else None,
         "actualization_candidates": actualization_candidates[:3],
+        "recommended_workflow_recipe": workflow_candidates[0] if workflow_candidates else None,
+        "workflow_candidates": workflow_candidates[:3],
         "recommended_tools": recommended_tools,
         "recommended_resources": recommended_resources,
         "notes": notes,

@@ -37,6 +37,10 @@ If the next question becomes how the same result should be voiced for this
 audience, inspect the expression profile surfaces before defaulting to a
 technical rendering.
 
+If the path is already chosen and the host now needs the smallest operational
+sequence, inspect the workflow recipe surfaces rather than rebuilding the steps
+from scratch.
+
 ## Ready-to-share status
 
 The MCP surface is now ready for serious local and nearby-agent use.
@@ -94,6 +98,7 @@ See:
 
 - [expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md)
 - [actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md)
+- [workflow_recipes.md](/Users/noveltokens/a_person_index/docs/workflow_recipes.md)
 - [expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md)
 - [multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)
 
@@ -144,6 +149,7 @@ npm run mcp:test
 - `registry://capability-model`
 - `registry://expression-model`
 - `registry://actualization-protocols`
+- `registry://workflow-recipes`
 - `registry://expression-and-artifacts`
 - `registry://multi-subject-comparison`
 - `registry://research-promotion`
@@ -161,6 +167,8 @@ npm run mcp:test
 - `fetch_capability`
 - `list_expression_profiles`
 - `fetch_expression_profile`
+- `list_workflow_recipes`
+- `fetch_workflow_recipe`
 - `recommend_next_path`
 - `list_artifact_classes`
 - `fetch_artifact_class`

@@ -1,0 +1,100 @@
+workflow_recipes:
+  - id: wfr_single_subject_comparative_memo
+    name: Single-Subject Comparative Memo
+    status: active
+    summary: Run a bounded single-subject pass and materialize it as an explanatory comparative memo in markdown.
+    run_mode_ids:
+      - mode_bounded_single_subject
+      - mode_artifact_actualization
+    artifact_class_id: art_comparative_memo
+    expression_profile_id: expr_explanatory
+    actualization_protocol_id: actx_single_subject_comparative_memo
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_structured_text_render
+    recipe_steps:
+      - Match frameworks and call out anything unindexed before comparative synthesis begins.
+      - Fetch the right named program or pack instead of rebuilding the method from scratch.
+      - Separate canonical framework content, house synthesis, and downstream judgment in the memo structure.
+      - Render the final memo in explanatory voice unless the audience clearly calls for tacit or technical rendering.
+    deliverables:
+      - markdown memo
+      - structured downstream explanation
+    cautions:
+      - Do not smooth over missing coverage for the sake of narrative flow.
+      - Do not let explanatory rendering collapse symbolic and psychometric signals into one bucket.
+
+  - id: wfr_context_matrix_explanatory
+    name: Context Matrix Explanatory
+    status: experimental
+    summary: Compare one subject across contexts, roles, or time slices and realize the result as an explanatory matrix.
+    run_mode_ids:
+      - mode_contextual_comparison
+      - mode_artifact_actualization
+    artifact_class_id: art_context_matrix
+    expression_profile_id: expr_explanatory
+    actualization_protocol_id: actx_context_matrix_render
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_table_render
+    recipe_steps:
+      - Declare the context slices explicitly before the comparison begins.
+      - Keep the same comparative axes visible across all rows or columns.
+      - Mark missing or weakly comparable regions instead of hiding them.
+      - Add short explanatory notes around the matrix so readers understand what changed, what stayed stable, and what remains uncertain.
+    deliverables:
+      - markdown table
+      - context comparison memo
+    cautions:
+      - A context delta is not automatically a personality change.
+      - The matrix should show missingness rather than implying false symmetry.
+
+  - id: wfr_pairwise_relational_sheet_explanatory
+    name: Pairwise Relational Sheet Explanatory
+    status: experimental
+    summary: Compare two stacks side by side and produce a relational sheet that keeps convergence, friction, and orthogonality legible.
+    run_mode_ids:
+      - mode_contextual_comparison
+      - mode_artifact_actualization
+    artifact_class_id: art_pairwise_relational_sheet
+    expression_profile_id: expr_explanatory
+    actualization_protocol_id: actx_pairwise_relational_sheet
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_table_render
+    recipe_steps:
+      - Keep each subject or stack legible on its own before making pairwise claims.
+      - Compare convergence, tension, and orthogonality without collapsing them into one score.
+      - Use the matrix or sheet structure to preserve parallelism across both sides.
+      - Add explanatory framing so the reader knows which seams are grounded, inferred, or still missing.
+    deliverables:
+      - relational sheet
+      - side-by-side comparison memo
+    cautions:
+      - Do not force reciprocity where the two stacks speak to different layers.
+      - Missing overlap is informative and should remain visible.
+
+  - id: wfr_agent_markdown_handoff_technical
+    name: Agent Markdown Handoff Technical
+    status: experimental
+    summary: Turn comparative work into a technical markdown handoff for another agent or system.
+    run_mode_ids:
+      - mode_artifact_actualization
+      - mode_trace_review
+    artifact_class_id: art_agent_markdown_handoff
+    expression_profile_id: expr_technical
+    actualization_protocol_id: actx_human_model_card_realization
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_file_write
+    recipe_steps:
+      - Preserve canonical, house, and downstream layers explicitly in the handoff file.
+      - Include the named programs or packs that shaped the artifact.
+      - Keep the file structured enough for another agent to resume work without guessing at provenance.
+      - Use technical voice because the primary audience is another builder or runtime.
+    deliverables:
+      - agent markdown handoff
+      - repo artifact
+    cautions:
+      - Technical handoff is not an excuse to overstate certainty.
+      - The handoff should clarify what remains to be rendered or decided downstream.

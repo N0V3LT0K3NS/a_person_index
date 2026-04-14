@@ -31,6 +31,15 @@
   - `python3 scripts/query_registry.py program-pack ILENS --framework MBTI --framework Enneagram`
   - `python3 scripts/query_registry.py program-pack-summary ILENS --framework "Big Five" --framework MBTI --framework Enneagram`
 
+### Move from recommendation to execution
+
+- MCP tools:
+  - `recommend_next_path`
+  - `fetch_workflow_recipe`
+- CLI:
+  - `python3 scripts/query_registry.py recommend-path --mode "Artifact Actualization" --capability "Markdown Write"`
+  - `python3 scripts/query_registry.py workflows --artifact "Comparative Memo"`
+
 ### Ingest assessment stacks
 
 - MCP:

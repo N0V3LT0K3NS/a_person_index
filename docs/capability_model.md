@@ -67,7 +67,8 @@ The recommended order is:
 4. choose the analysis mode
 5. choose the artifact class or actualization protocol if needed
 6. choose the expression profile that fits the audience
-7. use the host's actual tools only after the semantic path is clear
+7. choose the workflow recipe that operationalizes the path
+8. use the host's actual tools only after the semantic path is clear
 
 ## Important caution
 

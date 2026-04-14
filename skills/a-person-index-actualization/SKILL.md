@@ -75,6 +75,7 @@ Use:
 ```bash
 python3 scripts/query_registry.py artifacts
 python3 scripts/query_registry.py actualization
+python3 scripts/query_registry.py workflows
 python3 scripts/query_registry.py recommend-path --mode "Artifact Actualization" --capability "Markdown Write"
 python3 scripts/query_registry.py actualization --mode "Artifact Actualization"
 ```
@@ -129,6 +130,7 @@ If expression fit is part of the uncertainty, inspect the structured surface:
 
 ```bash
 python3 scripts/query_registry.py expressions --artifact "Comparative Memo"
+python3 scripts/query_registry.py workflows --artifact "Comparative Memo"
 ```
 
 ## Anti-patterns

@@ -108,7 +108,7 @@ async function buildServer() {
     name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, capability records, expression profiles, artifact classes, and actualization protocols from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, capability, expression, and actualization surfaces before improvising. Use recommend_next_path when you already know the host capabilities and need the smallest disciplined next step. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, capability records, expression profiles, artifact classes, actualization protocols, and workflow recipes from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, capability, expression, actualization, and workflow surfaces before improvising. Use recommend_next_path when you already know the host capabilities and need the smallest disciplined next step. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
   });
 
   server.registerResource(
@@ -286,6 +286,24 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/actualization_protocols.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "workflow-recipes",
+    "registry://workflow-recipes",
+    {
+      title: "Workflow Recipes",
+      description: "Operational recipes that bind recommendation, actualization, expression, and capability fit into a concrete next sequence.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/workflow_recipes.md"),
         },
       ],
     }),
@@ -638,6 +656,54 @@ async function buildServer() {
     async ({ ref }) => {
       try {
         return jsonResult(await runRegistryQuery(["expressions", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_workflow_recipes",
+    {
+      title: "List Workflow Recipes",
+      description: "Return workflow recipes that operationalize a specific artifact path in a host environment.",
+      inputSchema: {
+        mode: z.string().optional(),
+        artifact: z.string().optional(),
+        actualization: z.string().optional(),
+        expression: z.string().optional(),
+        capability: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ mode, artifact, actualization, expression, capability, text }) => {
+      try {
+        const args = ["workflows"];
+        if (mode) args.push("--mode", mode);
+        if (artifact) args.push("--artifact", artifact);
+        if (actualization) args.push("--actualization", actualization);
+        if (expression) args.push("--expression", expression);
+        if (capability) args.push("--capability", capability);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("workflow_recipes", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_workflow_recipe",
+    {
+      title: "Fetch Workflow Recipe",
+      description: "Return a concrete workflow recipe tying run mode, artifact class, expression profile, and actualization protocol into one operational sequence.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["workflows", ref], pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }

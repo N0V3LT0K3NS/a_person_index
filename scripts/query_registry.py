@@ -31,6 +31,7 @@ from personality_registry.query import (
     find_protocol_packs,
     find_protocols,
     find_techniques,
+    find_workflow_recipes,
     interaction_hypothesis_record,
     load_extensions_for_query,
     load_repository_for_query,
@@ -48,6 +49,7 @@ from personality_registry.query import (
     show_instrument,
     technique_record,
     trace_entity_to_motifs,
+    workflow_recipe_record,
 )
 
 
@@ -801,6 +803,44 @@ def _render_actualization_protocol_record_text(payload):
     return "\n".join(lines)
 
 
+def _render_workflow_recipes_text(results):
+    if not results:
+        return "No matching workflow recipes."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  status={item['status']} artifact={item['artifact_class_id']} expression={item['expression_profile_id']}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_workflow_recipe_record_text(payload):
+    item = payload["workflow_recipe"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        item["summary"],
+        "",
+        f"Artifact class: {payload['artifact_class']['name']} ({payload['artifact_class']['id']})",
+        f"Expression profile: {payload['expression_profile']['name']} ({payload['expression_profile']['id']})",
+        f"Actualization protocol: {payload['actualization_protocol']['name']} ({payload['actualization_protocol']['id']})",
+        "",
+        "Required capabilities:",
+    ]
+    for capability in item["required_capability_ids"]:
+        lines.append(f"  - {capability}")
+    lines.append("")
+    lines.append("Recipe steps:")
+    for step in item["recipe_steps"]:
+        lines.append(f"  - {step}")
+    if item["deliverables"]:
+        lines.append("")
+        lines.append("Deliverables:")
+        for deliverable in item["deliverables"]:
+            lines.append(f"  - {deliverable}")
+    return "\n".join(lines)
+
+
 def _render_recommendation_text(payload):
     mode = payload["run_mode"]
     lines = [
@@ -835,6 +875,16 @@ def _render_recommendation_text(payload):
         expression = payload["recommended_expression_profile"]
         lines.append(
             f"  {expression['name']} ({expression['id']}) [{expression['expression_mode']}]"
+        )
+    else:
+        lines.append("  none")
+
+    lines.append("")
+    lines.append("Recommended workflow recipe:")
+    if payload.get("recommended_workflow_recipe"):
+        workflow = payload["recommended_workflow_recipe"]
+        lines.append(
+            f"  {workflow['workflow_recipe']['name']} ({workflow['workflow_recipe']['id']}) [{workflow['fit_status']}]"
         )
     else:
         lines.append("  none")
@@ -1159,6 +1209,21 @@ def main() -> int:
     actualization_parser.add_argument("--capability", help="Filter actualization protocols by capability.")
     actualization_parser.add_argument("--text", help="Substring search across actualization protocol fields.")
     actualization_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    workflow_parser = subparsers.add_parser(
+        "workflows",
+        help="List or show workflow recipes that operationalize an artifact path in a host environment.",
+    )
+    workflow_parser.add_argument(
+        "ref", nargs="?", help="Optional workflow recipe ID or name for a detailed record."
+    )
+    workflow_parser.add_argument("--mode", help="Filter workflow recipes by analysis mode.")
+    workflow_parser.add_argument("--artifact", help="Filter workflow recipes by artifact class.")
+    workflow_parser.add_argument("--actualization", help="Filter workflow recipes by actualization protocol.")
+    workflow_parser.add_argument("--expression", help="Filter workflow recipes by expression profile.")
+    workflow_parser.add_argument("--capability", help="Filter workflow recipes by required capability.")
+    workflow_parser.add_argument("--text", help="Substring search across workflow recipe fields.")
+    workflow_parser.add_argument("--format", choices=("text", "json"), default="text")
 
     recommend_parser = subparsers.add_parser(
         "recommend-path",
@@ -1507,6 +1572,29 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_actualization_protocols_text(payload))
+        return 0
+
+    if args.command == "workflows":
+        if args.ref:
+            payload = workflow_recipe_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_workflow_recipe_record_text(payload))
+            return 0
+        payload = find_workflow_recipes(
+            extensions,
+            run_mode=args.mode,
+            artifact_class=args.artifact,
+            actualization_protocol=args.actualization,
+            expression_profile=args.expression,
+            capability=args.capability,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_workflow_recipes_text(payload))
         return 0
 
     if args.command == "recommend-path":

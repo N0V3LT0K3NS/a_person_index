@@ -47,6 +47,9 @@ if (!tools.tools.some((tool) => tool.name === "list_capabilities")) {
 if (!tools.tools.some((tool) => tool.name === "list_expression_profiles")) {
   throw new Error("Expected list_expression_profiles tool in MCP surface.");
 }
+if (!tools.tools.some((tool) => tool.name === "list_workflow_recipes")) {
+  throw new Error("Expected list_workflow_recipes tool in MCP surface.");
+}
 if (!tools.tools.some((tool) => tool.name === "recommend_next_path")) {
   throw new Error("Expected recommend_next_path tool in MCP surface.");
 }
@@ -80,6 +83,11 @@ if (!capabilityResource.contents?.[0]?.text?.includes("capabilities")) {
 const expressionResource = await client.readResource({ uri: "registry://expression-model" });
 if (!expressionResource.contents?.[0]?.text?.includes("Expression Model")) {
   throw new Error("Expected expression model resource content.");
+}
+
+const workflowResource = await client.readResource({ uri: "registry://workflow-recipes" });
+if (!workflowResource.contents?.[0]?.text?.includes("Workflow Recipes")) {
+  throw new Error("Expected workflow recipes resource content.");
 }
 
 const prompt = await client.getPrompt({ name: "registry-arrival" });
