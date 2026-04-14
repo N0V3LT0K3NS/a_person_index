@@ -38,6 +38,7 @@ from personality_registry.query import (
     load_extensions_for_query,
     load_repository_for_query,
     motif_record,
+    prepare_artifact_realization,
     prepare_comparison_run,
     promotion_pathway_record,
     protocol_pack,
@@ -937,6 +938,14 @@ def _render_workflow_recipe_record_text(payload):
     for capability in item["required_capability_ids"]:
         lines.append(f"  - {capability}")
     lines.append("")
+    lines.append("Realization blocks:")
+    for block in item["realization_blocks"]:
+        requirement = "required" if block["required"] else "optional"
+        lines.append(
+            f"  - {block['label']} ({block['id']}) [{block['block_kind']}; {requirement}]"
+        )
+        lines.append(f"    {block['summary']}")
+    lines.append("")
     lines.append("Recipe steps:")
     for step in item["recipe_steps"]:
         lines.append(f"  - {step}")
@@ -945,6 +954,43 @@ def _render_workflow_recipe_record_text(payload):
         lines.append("Deliverables:")
         for deliverable in item["deliverables"]:
             lines.append(f"  - {deliverable}")
+    return "\n".join(lines)
+
+
+def _render_artifact_realization_text(payload):
+    lines = [
+        f"Workflow recipe: {payload['workflow_recipe']['name']} ({payload['workflow_recipe']['id']})",
+        f"Readiness: {payload['readiness_status']}",
+        "",
+        f"Artifact class: {payload['artifact_class']['name']} ({payload['artifact_class']['id']})",
+        f"Expression profile: {payload['expression_profile']['name']} ({payload['expression_profile']['id']})",
+        f"Actualization protocol: {payload['actualization_protocol']['name']} ({payload['actualization_protocol']['id']})",
+    ]
+    if payload["selected_realization_form"]:
+        lines.extend(["", f"Selected realization form: {payload['selected_realization_form']}"])
+    if payload["missing_required_capability_ids"]:
+        lines.extend(
+            [
+                "",
+                "Missing required capabilities:",
+            ]
+        )
+        for capability_id in payload["missing_required_capability_ids"]:
+            lines.append(f"  - {capability_id}")
+    lines.extend(["", "Realization blocks:"])
+    for block in payload["realization_blocks"]:
+        requirement = "required" if block["required"] else "optional"
+        lines.append(
+            f"  - {block['label']} ({block['id']}) [{block['block_kind']}; {requirement}]"
+        )
+        lines.append(f"    {block['summary']}")
+    lines.extend(["", "Required evidence partitions:"])
+    for partition in payload["required_evidence_partitions"]:
+        lines.append(f"  - {partition}")
+    if payload["next_steps"]:
+        lines.extend(["", "Next steps:"])
+        for step in payload["next_steps"]:
+            lines.append(f"  - {step}")
     return "\n".join(lines)
 
 
@@ -1374,6 +1420,18 @@ def main() -> int:
     workflow_parser.add_argument("--text", help="Substring search across workflow recipe fields.")
     workflow_parser.add_argument("--format", choices=("text", "json"), default="text")
 
+    artifact_realization_parser = subparsers.add_parser(
+        "artifact-realization",
+        help="Prepare a concrete artifact scaffold from a workflow recipe and declared host capabilities.",
+    )
+    artifact_realization_parser.add_argument("workflow", help="Workflow recipe ID or name.")
+    artifact_realization_parser.add_argument(
+        "--capability",
+        action="append",
+        help="Declared host capability ID or name. Repeatable.",
+    )
+    artifact_realization_parser.add_argument("--format", choices=("text", "json"), default="text")
+
     recommend_parser = subparsers.add_parser(
         "recommend-path",
         help="Recommend the next A Person Index path from the current run shape and declared capabilities.",
@@ -1792,6 +1850,18 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_workflow_recipes_text(payload))
+        return 0
+
+    if args.command == "artifact-realization":
+        payload = prepare_artifact_realization(
+            extensions,
+            workflow_recipe=args.workflow,
+            capability_refs=args.capability,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_artifact_realization_text(payload))
         return 0
 
     if args.command == "recommend-path":

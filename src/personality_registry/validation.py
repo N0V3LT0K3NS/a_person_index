@@ -456,6 +456,15 @@ def collect_validation_errors(root: Path) -> list[str]:
                     errors.append(
                         f"workflow_recipes/registry.yaml: workflow recipe '{workflow_recipe.id}' references missing capability '{capability_id}'"
                     )
+            block_ids = [block.id for block in workflow_recipe.realization_blocks]
+            if not block_ids:
+                errors.append(
+                    f"workflow_recipes/registry.yaml: workflow recipe '{workflow_recipe.id}' must declare at least one realization block"
+                )
+            elif len(block_ids) != len(set(block_ids)):
+                errors.append(
+                    f"workflow_recipes/registry.yaml: workflow recipe '{workflow_recipe.id}' has duplicate realization block IDs"
+                )
 
         contribution_model_ids = {item.id for item in extensions.contribution_models}
         stage_ids = [stage.id for stage in extensions.promotion_registry.stages]

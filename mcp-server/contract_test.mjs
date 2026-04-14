@@ -47,6 +47,7 @@ for (const requiredTool of [
   "fetch_expression_profile",
   "list_workflow_recipes",
   "fetch_workflow_recipe",
+  "prepare_artifact_realization",
   "recommend_next_path",
   "list_artifact_classes",
   "list_actualization_protocols",
@@ -113,6 +114,12 @@ const workflowRecipes = await client.readResource({ uri: "registry://workflow-re
 expect(
   workflowRecipes.contents?.[0]?.text?.includes("Workflow Recipes"),
   "Expected workflow recipes resource content.",
+);
+
+const artifactRealization = await client.readResource({ uri: "registry://artifact-realization" });
+expect(
+  artifactRealization.contents?.[0]?.text?.includes("Artifact Realization"),
+  "Expected artifact realization resource content.",
 );
 
 const mbtiResource = await client.readResource({ uri: "registry://instrument/mbti" });
@@ -243,6 +250,23 @@ expect(
   "Expected workflow recipe for context matrix artifact.",
 );
 
+const artifactRealizationPlan = await client.callTool({
+  name: "prepare_artifact_realization",
+  arguments: {
+    workflow_recipe: "Context Matrix Explanatory",
+    capabilities: ["Markdown Write", "Table Render"],
+  },
+});
+expect(!artifactRealizationPlan.isError, "Expected prepare_artifact_realization tool to succeed.");
+expect(
+  artifactRealizationPlan.structuredContent?.readiness_status === "ready",
+  "Expected artifact realization readiness to be ready.",
+);
+expect(
+  artifactRealizationPlan.structuredContent?.selected_realization_form === "markdown table",
+  "Expected artifact realization to choose markdown table.",
+);
+
 const recommendation = await client.callTool({
   name: "recommend_next_path",
   arguments: {
@@ -268,6 +292,10 @@ expect(
 expect(
   recommendation.structuredContent?.recommended_workflow_recipe?.workflow_recipe?.id === "wfr_context_matrix_explanatory",
   "Expected recommended workflow recipe for contextual matrix path.",
+);
+expect(
+  recommendation.structuredContent?.recommended_tools?.includes("prepare_artifact_realization"),
+  "Expected recommendation to point to artifact realization.",
 );
 
 const actualizationProtocols = await client.callTool({

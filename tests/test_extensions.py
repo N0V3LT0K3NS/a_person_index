@@ -12,7 +12,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
     assert len(extensions.expression_profiles) >= 4
     assert len(extensions.artifact_classes) >= 4
     assert len(extensions.actualization_protocols) >= 3
-    assert len(extensions.workflow_recipes) >= 4
+    assert len(extensions.workflow_recipes) >= 5
     assert len(extensions.motifs) >= 10
     assert len(extensions.mappings) >= 10
     assert len(extensions.interaction_hypotheses) >= 5
@@ -40,6 +40,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
     assert "expr_explanatory" in expression_profile_ids
     assert "art_comparative_memo" in artifact_class_ids
     assert "wfr_context_matrix_explanatory" in workflow_recipe_ids
+    assert "wfr_human_model_card_mixed" in workflow_recipe_ids
     assert "mtf_social_energy_orientation" in motif_ids
     assert "tech_paradox_scan" in technique_ids
     assert "proto_paradox_finder" in protocol_ids
@@ -88,6 +89,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
             protocol.id for protocol in extensions.actualization_protocols
         }
         assert set(workflow_recipe.required_capability_ids).issubset(capability_ids)
+        assert workflow_recipe.realization_blocks
 
     for contribution_model in extensions.contribution_models:
         assert set(contribution_model.promotion_path).issubset(stage_ids)

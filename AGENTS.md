@@ -34,6 +34,7 @@ Only then deepen as needed:
   [docs/comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md),
   [docs/comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md),
   [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
+  [docs/artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md),
   [docs/expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md),
   [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
   [docs/workflow_recipes.md](/Users/noveltokens/a_person_index/docs/workflow_recipes.md),
@@ -81,6 +82,7 @@ Canonical sources:
 - [comparison_shapes/registry.yaml](/Users/noveltokens/a_person_index/comparison_shapes/registry.yaml)
 - [docs/comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md)
 - [capabilities/registry.yaml](/Users/noveltokens/a_person_index/capabilities/registry.yaml)
+- [docs/artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md)
 - [expression/registry.yaml](/Users/noveltokens/a_person_index/expression/registry.yaml)
 - [artifacts/registry.yaml](/Users/noveltokens/a_person_index/artifacts/registry.yaml)
 - [actualization/registry.yaml](/Users/noveltokens/a_person_index/actualization/registry.yaml)

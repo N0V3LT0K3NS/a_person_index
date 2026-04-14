@@ -159,6 +159,23 @@ class ActualizationProtocolsDocument(StrictModel):
     actualization_protocols: list[ActualizationProtocol]
 
 
+class RealizationBlock(StrictModel):
+    id: str
+    label: str
+    block_kind: Literal[
+        "metadata",
+        "narrative",
+        "list",
+        "table",
+        "matrix",
+        "provenance",
+        "caveat",
+        "bundle",
+    ]
+    required: bool
+    summary: str
+
+
 class WorkflowRecipe(StrictModel):
     id: str
     name: str
@@ -169,6 +186,7 @@ class WorkflowRecipe(StrictModel):
     expression_profile_id: str
     actualization_protocol_id: str
     required_capability_ids: list[str] = Field(default_factory=list)
+    realization_blocks: list[RealizationBlock] = Field(default_factory=list)
     recipe_steps: list[str] = Field(default_factory=list)
     deliverables: list[str] = Field(default_factory=list)
     cautions: list[str] = Field(default_factory=list)

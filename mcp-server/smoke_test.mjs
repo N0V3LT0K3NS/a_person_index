@@ -56,6 +56,9 @@ if (!tools.tools.some((tool) => tool.name === "list_expression_profiles")) {
 if (!tools.tools.some((tool) => tool.name === "list_workflow_recipes")) {
   throw new Error("Expected list_workflow_recipes tool in MCP surface.");
 }
+if (!tools.tools.some((tool) => tool.name === "prepare_artifact_realization")) {
+  throw new Error("Expected prepare_artifact_realization tool in MCP surface.");
+}
 if (!tools.tools.some((tool) => tool.name === "recommend_next_path")) {
   throw new Error("Expected recommend_next_path tool in MCP surface.");
 }
@@ -106,6 +109,11 @@ if (!workflowResource.contents?.[0]?.text?.includes("Workflow Recipes")) {
   throw new Error("Expected workflow recipes resource content.");
 }
 
+const artifactRealizationResource = await client.readResource({ uri: "registry://artifact-realization" });
+if (!artifactRealizationResource.contents?.[0]?.text?.includes("Artifact Realization")) {
+  throw new Error("Expected artifact realization resource content.");
+}
+
 const comparisonPreflight = await client.callTool({
   name: "prepare_comparison_run",
   arguments: {
@@ -130,6 +138,28 @@ if (comparisonPreflight.structuredContent?.readiness_status !== "ready") {
 
 if (comparisonPreflight.structuredContent?.path_recommendation?.recommended_artifact?.artifact_class?.id !== "art_context_matrix") {
   throw new Error("Expected comparison preflight to recommend the context matrix path.");
+}
+
+const artifactRealization = await client.callTool({
+  name: "prepare_artifact_realization",
+  arguments: {
+    workflow_recipe: "Context Matrix Explanatory",
+    capabilities: ["Markdown Write", "Table Render"],
+  },
+});
+
+if (artifactRealization.isError) {
+  throw new Error(
+    `Artifact realization tool returned error: ${artifactRealization.content?.[0]?.text ?? "unknown error"}`,
+  );
+}
+
+if (artifactRealization.structuredContent?.readiness_status !== "ready") {
+  throw new Error("Expected artifact realization readiness to be ready.");
+}
+
+if (artifactRealization.structuredContent?.selected_realization_form !== "markdown table") {
+  throw new Error("Expected artifact realization to select the markdown table form.");
 }
 
 const prompt = await client.getPrompt({ name: "registry-arrival" });

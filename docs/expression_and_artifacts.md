@@ -107,6 +107,11 @@ A useful artifact usually has to answer these questions:
 
 That is the beginning of an artifact grammar.
 
+Workflow recipes and artifact realization now provide the first structured path
+from artifact class to concrete scaffold. They still do not define every final
+renderer, but they do define what blocks a host should preserve when building
+the artifact.
+
 ## Contribution and extension
 
 Artifact classes should be extendable.

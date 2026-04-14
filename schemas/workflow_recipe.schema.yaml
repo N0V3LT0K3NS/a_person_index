@@ -1,4 +1,39 @@
 $defs:
+  RealizationBlock:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      label:
+        title: Label
+        type: string
+      block_kind:
+        enum:
+        - metadata
+        - narrative
+        - list
+        - table
+        - matrix
+        - provenance
+        - caveat
+        - bundle
+        title: Block Kind
+        type: string
+      required:
+        title: Required
+        type: boolean
+      summary:
+        title: Summary
+        type: string
+    required:
+    - id
+    - label
+    - block_kind
+    - required
+    - summary
+    title: RealizationBlock
+    type: object
   WorkflowRecipe:
     additionalProperties: false
     properties:
@@ -36,6 +71,11 @@ $defs:
         items:
           type: string
         title: Required Capability Ids
+        type: array
+      realization_blocks:
+        items:
+          $ref: '#/$defs/RealizationBlock'
+        title: Realization Blocks
         type: array
       recipe_steps:
         items:

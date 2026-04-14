@@ -34,6 +34,10 @@ Comparison preflight now sits beneath that too, so a host can verify whether
 the chosen contextual or pairwise scaffold is actually declared well enough to
 proceed before it recommends or renders downstream work.
 
+Artifact realization now sits beneath workflow recipes, so a host can turn a
+chosen path into a concrete artifact scaffold without treating A Person Index
+itself as the renderer.
+
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
 1. Canonical registry
@@ -76,6 +80,7 @@ If you need the deeper map after that:
   [docs/comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md),
   [docs/comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md),
   [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
+  [docs/artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md),
   [docs/expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md),
   [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
   [docs/workflow_recipes.md](/Users/noveltokens/a_person_index/docs/workflow_recipes.md),
@@ -181,6 +186,7 @@ Key conventions:
 - `modes/registry.yaml` stores named run modes for advanced comparative work.
 - `comparison_shapes/registry.yaml` stores explicit scaffolds for contextual and pairwise comparison before artifact or protocol selection begins.
 - `docs/comparison_preflight.md` explains how contextual and pairwise runs are checked for readiness before recommendation or execution.
+- `docs/artifact_realization.md` explains how a chosen workflow recipe becomes a concrete artifact scaffold before host rendering begins.
 - `capabilities/registry.yaml` stores the abstract host capability model used by the meta-skill and actualization layer.
 - `artifacts/registry.yaml` stores artifact classes and their evidence and capability expectations.
 - `actualization/registry.yaml` stores downstream actualization protocols that use A Person Index as the comparative core.

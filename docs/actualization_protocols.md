@@ -72,9 +72,10 @@ One strong general pattern is:
 6. if the path is still unclear, use `recommend_next_path` with declared capabilities
 7. run the A Person Index comparative work
 8. choose the workflow recipe that fits the recommended artifact, expression, and capability shape
-9. decide whether the output should remain conversational or become an artifact
-10. if an artifact is needed, use external tools only after the comparative core is stable
-11. preserve provenance and layer boundaries in the final output
+9. use artifact realization to get the concrete scaffold of the chosen artifact
+10. decide whether the output should remain conversational or become an artifact
+11. if an artifact is needed, use external tools only after the comparative core is stable
+12. preserve provenance and layer boundaries in the final output
 
 ## Provenance rule
 

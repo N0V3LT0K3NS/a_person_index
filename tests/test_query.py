@@ -39,6 +39,7 @@ from personality_registry.query import (
     protocol_pack_grammar,
     protocol_record,
     prepare_comparison_run,
+    prepare_artifact_realization,
     query_results,
     promotion_pathway_record,
     recommend_next_path,
@@ -358,6 +359,16 @@ def test_find_workflow_recipes_for_context_matrix(repo_root):
     assert recipe_ids == {"wfr_context_matrix_explanatory"}
 
 
+def test_find_workflow_recipes_for_human_model_card(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = find_workflow_recipes(
+        extensions,
+        artifact_class="Human Model Card",
+    )
+    recipe_ids = {item["id"] for item in payload}
+    assert "wfr_human_model_card_mixed" in recipe_ids
+
+
 def test_recommend_next_path_prefers_context_matrix_when_capabilities_fit(repo_root):
     extensions = load_extensions_strict(repo_root)
     payload = recommend_next_path(
@@ -424,6 +435,32 @@ def test_workflow_recipe_record_expands_related_surfaces(repo_root):
     assert payload["artifact_class"]["id"] == "art_context_matrix"
     assert payload["expression_profile"]["id"] == "expr_explanatory"
     assert payload["actualization_protocol"]["id"] == "actx_context_matrix_render"
+    block_ids = {item["id"] for item in payload["workflow_recipe"]["realization_blocks"]}
+    assert {"slice_declaration", "context_matrix"} <= block_ids
+
+
+def test_prepare_artifact_realization_returns_context_matrix_scaffold(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = prepare_artifact_realization(
+        extensions,
+        workflow_recipe="Context Matrix Explanatory",
+        capability_refs=["Markdown Write", "Table Render"],
+    )
+    assert payload["readiness_status"] == "ready"
+    assert payload["selected_realization_form"] == "markdown table"
+    block_ids = {item["id"] for item in payload["realization_blocks"]}
+    assert {"slice_declaration", "comparison_axes", "context_matrix"} <= block_ids
+
+
+def test_prepare_artifact_realization_surfaces_missing_capabilities(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = prepare_artifact_realization(
+        extensions,
+        workflow_recipe="Agent Markdown Handoff Technical",
+        capability_refs=["Markdown Write"],
+    )
+    assert payload["readiness_status"] == "partial"
+    assert payload["missing_required_capability_ids"] == ["cap_file_write"]
 
 
 def test_recommend_next_path_infers_contextual_mode_from_text(repo_root):
@@ -438,6 +475,7 @@ def test_recommend_next_path_infers_contextual_mode_from_text(repo_root):
     assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_context_matrix"
     assert payload["recommended_actualization_protocol"]["actualization_protocol"]["id"] == "actx_context_matrix_render"
     assert "list_capabilities" not in payload["recommended_tools"]
+    assert "prepare_artifact_realization" in payload["recommended_tools"]
 
 
 def test_recommend_next_path_respects_explicit_pairwise_shape(repo_root):
@@ -455,6 +493,18 @@ def test_recommend_next_path_respects_explicit_pairwise_shape(repo_root):
         payload["recommended_actualization_protocol"]["actualization_protocol"]["id"]
         == "actx_pairwise_relational_sheet"
     )
+
+
+def test_recommend_next_path_can_target_human_model_card(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = recommend_next_path(
+        extensions,
+        run_mode="Artifact Actualization",
+        capability_refs=["Markdown Write", "Structured Text Render"],
+        text="make a human model card",
+    )
+    assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_human_model_card"
+    assert payload["recommended_workflow_recipe"]["workflow_recipe"]["id"] == "wfr_human_model_card_mixed"
 
 
 def test_find_interaction_hypotheses_related_to_attachment(repo_root):

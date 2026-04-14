@@ -93,12 +93,17 @@ improvising.
 If the work is contextual or pairwise and the comparison shape is already
 chosen, run comparison preflight before you treat the path as execution-ready.
 
+If the workflow recipe is already chosen and the next question is what the
+finished artifact should actually contain, use artifact realization before you
+start rendering.
+
 Use the deeper docs:
 
 - [advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md)
 - [comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md)
 - [comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md)
 - [capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md)
+- [artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md)
 - [expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md)
 - [actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md)
 - [workflow_recipes.md](/Users/noveltokens/a_person_index/docs/workflow_recipes.md)

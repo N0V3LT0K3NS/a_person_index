@@ -8,7 +8,12 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from personality_registry.audit import audit_summary, bundle_audit_entry
-from personality_registry.extensions import ExtensionRegistryData, load_extensions_strict
+from personality_registry.extensions import (
+    ArtifactClass,
+    ExtensionRegistryData,
+    WorkflowRecipe,
+    load_extensions_strict,
+)
 from personality_registry.loader import InstrumentBundle, RepositoryData, load_repository_strict
 
 
@@ -1539,7 +1544,9 @@ def prepare_comparison_run(
     if readiness_status == "ready" and not capability_refs:
         next_steps.append("Declare host capabilities before choosing the final artifact and workflow path.")
     elif readiness_status == "ready":
-        next_steps.append("Use the recommended artifact, expression, workflow, and actualization path for execution.")
+        next_steps.append(
+            "Use the recommended artifact, expression, workflow, and actualization path, then prepare the concrete artifact realization scaffold."
+        )
 
     suitable_artifact_classes = [
         artifact.model_dump(mode="json")
@@ -1871,6 +1878,8 @@ def find_workflow_recipes(
                     item.actualization_protocol_id,
                     *item.run_mode_ids,
                     *item.required_capability_ids,
+                    *(block.label for block in item.realization_blocks),
+                    *(block.summary for block in item.realization_blocks),
                     *item.recipe_steps,
                     *item.deliverables,
                     *item.cautions,
@@ -1892,6 +1901,117 @@ def workflow_recipe_record(extensions: ExtensionRegistryData, ref: str) -> dict[
         "artifact_class": artifact.model_dump(mode="json"),
         "expression_profile": expression.model_dump(mode="json"),
         "actualization_protocol": actualization.model_dump(mode="json"),
+    }
+
+
+def _select_realization_form(
+    artifact: ArtifactClass,
+    recipe: WorkflowRecipe,
+    capability_ids: set[str],
+) -> str | None:
+    candidate_forms: list[str] = []
+    for value in [*recipe.deliverables, *artifact.typical_forms]:
+        if value not in candidate_forms:
+            candidate_forms.append(value)
+
+    def _first_matching(*needles: str) -> str | None:
+        for item in candidate_forms:
+            normalized = _normalize(item)
+            if any(needle in normalized for needle in needles):
+                return item
+        return None
+
+    if "cap_json_emit" in capability_ids:
+        match = _first_matching("json", "bundle")
+        if match:
+            return match
+    if "cap_spreadsheet_render" in capability_ids:
+        match = _first_matching("spreadsheet")
+        if match:
+            return match
+    if "cap_pdf_render" in capability_ids:
+        match = _first_matching("pdf")
+        if match:
+            return match
+    if "cap_table_render" in capability_ids:
+        match = _first_matching("table", "matrix", "sheet")
+        if match:
+            return match
+    if "cap_file_write" in capability_ids:
+        match = _first_matching("handoff", "repo artifact", "markdown handoff")
+        if match:
+            return match
+    if "cap_markdown_write" in capability_ids:
+        match = _first_matching("markdown", "memo", "card")
+        if match:
+            return match
+    return candidate_forms[0] if candidate_forms else None
+
+
+def prepare_artifact_realization(
+    extensions: ExtensionRegistryData,
+    *,
+    workflow_recipe: str,
+    capability_refs: Iterable[str] | None = None,
+) -> dict[str, Any]:
+    recipe = resolve_workflow_recipe(extensions, workflow_recipe)
+    artifact = resolve_artifact_class(extensions, recipe.artifact_class_id)
+    expression = resolve_expression_profile(extensions, recipe.expression_profile_id)
+    actualization = resolve_actualization_protocol(extensions, recipe.actualization_protocol_id)
+    capability_items = [resolve_capability(extensions, ref) for ref in capability_refs or []]
+    capability_id_set = {item.id for item in capability_items}
+    missing_required_capability_ids = sorted(
+        capability_id
+        for capability_id in recipe.required_capability_ids
+        if capability_id not in capability_id_set
+    )
+    if not capability_items:
+        readiness_status = "needs_capabilities"
+    elif missing_required_capability_ids:
+        readiness_status = "partial"
+    else:
+        readiness_status = "ready"
+
+    selected_realization_form = _select_realization_form(artifact, recipe, capability_id_set)
+    next_steps: list[str] = []
+    if missing_required_capability_ids:
+        missing_labels = ", ".join(
+            resolve_capability(extensions, capability_id).name
+            for capability_id in missing_required_capability_ids
+        )
+        next_steps.append(
+            f"Declare or acquire the missing workflow capabilities before full realization: {missing_labels}."
+        )
+    else:
+        next_steps.append("Populate the required realization blocks in order before polishing the final output.")
+    if selected_realization_form:
+        next_steps.append(f"Use {selected_realization_form} as the primary realization form in this host.")
+
+    return {
+        "workflow_recipe": recipe.model_dump(mode="json"),
+        "artifact_class": artifact.model_dump(mode="json"),
+        "expression_profile": expression.model_dump(mode="json"),
+        "actualization_protocol": actualization.model_dump(mode="json"),
+        "declared_capabilities": [item.model_dump(mode="json") for item in capability_items],
+        "readiness_status": readiness_status,
+        "missing_required_capability_ids": missing_required_capability_ids,
+        "selected_realization_form": selected_realization_form,
+        "realization_blocks": [block.model_dump(mode="json") for block in recipe.realization_blocks],
+        "required_evidence_partitions": artifact.required_evidence_partitions,
+        "deliverables": recipe.deliverables,
+        "recommended_tools": [
+            "fetch_workflow_recipe",
+            "fetch_artifact_class",
+            "fetch_expression_profile",
+            "fetch_actualization_protocol",
+        ],
+        "recommended_resources": [
+            "registry://workflow-recipes",
+            "registry://artifact-realization",
+            "registry://expression-and-artifacts",
+            "registry://actualization-protocols",
+        ],
+        "next_steps": next_steps,
     }
 
 
@@ -2192,6 +2312,7 @@ def recommend_next_path(
         recommended_tools.append("fetch_actualization_protocol")
     if workflow_candidates:
         recommended_tools.append("fetch_workflow_recipe")
+        recommended_tools.append("prepare_artifact_realization")
 
     recommended_resources = [
         "registry://advanced-modes",
@@ -2204,6 +2325,8 @@ def recommend_next_path(
         recommended_resources.append("registry://comparison-preflight")
     if recommended_artifact is not None:
         recommended_resources.append("registry://actualization-protocols")
+    if workflow_candidates:
+        recommended_resources.append("registry://artifact-realization")
 
     return {
         "run_mode": mode_item.model_dump(mode="json"),

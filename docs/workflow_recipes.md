@@ -39,6 +39,10 @@ into:
 
 without inventing that path ad hoc every time.
 
+Workflow recipes now also carry realization blocks, so the host can move from
+"what is the path?" to "what should the finished artifact actually contain?"
+without inventing that structure from memory.
+
 ## Relationship to other layers
 
 Use the layers in this order:
@@ -49,7 +53,8 @@ Use the layers in this order:
 4. capabilities say what the host can actually do
 5. recommendation says what artifact, expression, and protocol fit
 6. workflow recipe says how to execute that path here
-7. host tools realize the final output
+7. artifact realization turns the chosen recipe into a concrete scaffold
+8. host tools realize the final output
 
 ## Boundary rule
 

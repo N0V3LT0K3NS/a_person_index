@@ -162,6 +162,7 @@ Prefer:
 - `python3 scripts/query_registry.py expressions`
 - `python3 scripts/query_registry.py actualization`
 - `python3 scripts/query_registry.py workflows`
+- `python3 scripts/query_registry.py artifact-realization "Context Matrix Explanatory" --capability "Markdown Write" --capability "Table Render"`
 
 Mode rule:
 - if the user wants a bounded pass, stay with the basic workflow
@@ -169,6 +170,7 @@ Mode rule:
 - if the work is contextual or pairwise, choose a comparison shape and run comparison preflight before choosing artifacts or actualization paths
 - if the main question is what the host can do here or what path to take next, start with `$a-person-index-meta`
 - when capabilities are already clear and the next step is the real question, use `recommend-path` or `recommend_next_path` before manually choosing an artifact
+- once the workflow recipe is chosen and the question becomes what the finished artifact should contain, use `artifact-realization` before writing or rendering by hand
 
 Artifact rule:
 - treat artifact classes and actualization protocols as downstream guides, not as proof that an artifact has already been rendered
@@ -196,6 +198,7 @@ Expression rule:
   [../../docs/comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md),
   [../../docs/comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md),
   [../../docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
+  [../../docs/artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md),
   [../../docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
   [../../docs/expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md),
   [../../docs/multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)

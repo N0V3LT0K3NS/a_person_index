@@ -108,7 +108,7 @@ async function buildServer() {
     name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, comparison preflight guidance, capability records, expression profiles, artifact classes, actualization protocols, and workflow recipes from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, comparison-shape, comparison-preflight, capability, expression, actualization, and workflow surfaces before improvising. Use prepare_comparison_run once a contextual or pairwise shape is chosen and you need to check whether the run is actually declared well enough to proceed. Use recommend_next_path when you already know the host capabilities and need the smallest disciplined next step. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, comparison preflight guidance, capability records, expression profiles, artifact classes, actualization protocols, workflow recipes, and artifact realization guidance from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, comparison-shape, comparison-preflight, capability, expression, actualization, workflow, and artifact-realization surfaces before improvising. Use prepare_comparison_run once a contextual or pairwise shape is chosen and you need to check whether the run is actually declared well enough to proceed. Use recommend_next_path when you already know the host capabilities and need the smallest disciplined next step. Use prepare_artifact_realization once a workflow recipe is chosen and you need a concrete scaffold for the finished artifact. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
   });
 
   server.registerResource(
@@ -268,6 +268,24 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/comparison_preflight.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "artifact-realization",
+    "registry://artifact-realization",
+    {
+      title: "Artifact Realization",
+      description: "How to turn a chosen workflow recipe into a concrete artifact scaffold without turning A Person Index into a renderer.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/artifact_realization.md"),
         },
       ],
     }),
@@ -811,6 +829,27 @@ async function buildServer() {
     async ({ ref }) => {
       try {
         return jsonResult(await runRegistryQuery(["workflows", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "prepare_artifact_realization",
+    {
+      title: "Prepare Artifact Realization",
+      description: "Turn a chosen workflow recipe and declared host capabilities into a concrete artifact scaffold, preferred form, and next steps.",
+      inputSchema: {
+        workflow_recipe: z.string(),
+        capabilities: z.array(z.string()).optional(),
+      },
+    },
+    async ({ workflow_recipe, capabilities }) => {
+      try {
+        const args = ["artifact-realization", workflow_recipe];
+        for (const capability of capabilities ?? []) args.push("--capability", capability);
+        return jsonResult(await runRegistryQuery(args, pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }

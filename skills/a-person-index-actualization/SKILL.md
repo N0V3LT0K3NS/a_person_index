@@ -127,6 +127,18 @@ Examples:
 - if you can generate diagrams, add a visual only when it clarifies rather than decorates
 - if you can emit structured data, package a result bundle for downstream use
 
+Before you start writing or rendering, turn the chosen workflow recipe into a
+concrete scaffold:
+
+```bash
+python3 scripts/query_registry.py artifact-realization "Context Matrix Explanatory" \
+  --capability "Markdown Write" \
+  --capability "Table Render"
+```
+
+That surface tells you the selected realization form, the required blocks the
+artifact should contain, and what evidence partitions must remain visible.
+
 ### 7. Preserve provenance and expression fit
 
 Always preserve the difference between:

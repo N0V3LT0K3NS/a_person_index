@@ -30,6 +30,11 @@
 - `python3 scripts/query_registry.py workflows --artifact "Context Matrix"`
 - `python3 scripts/query_registry.py workflows --actualization "Context Matrix Render"`
 
+### Turn the workflow recipe into a concrete artifact scaffold
+
+- `python3 scripts/query_registry.py artifact-realization "Context Matrix Explanatory" --capability "Markdown Write" --capability "Table Render"`
+- `python3 scripts/query_registry.py artifact-realization "Human Model Card Mixed" --capability "Markdown Write" --capability "Structured Text Render"`
+
 ### Pull the comparative core
 
 - use `$a-person-index` for framework matching, motifs, interactions, and program or pack choice
