@@ -27,6 +27,8 @@ This document states the current release posture of A Person Index in compact op
 - raw personal-data storage
 - hosted remote MCP service
 - research operations backend with intake, aggregation, and review queues
+- full artifact-rendering system
+- multi-subject persistence or account-linking system
 
 ## Best current interfaces
 
@@ -48,7 +50,7 @@ This document states the current release posture of A Person Index in compact op
 - MCP smoke and contract tests pass
 - Claude Code client path tested
 - Claude Desktop client path scripted and documented
-- Hermes client path tested
+- Hermes client path documented and partially environment-checked
 
 ## What comes next
 

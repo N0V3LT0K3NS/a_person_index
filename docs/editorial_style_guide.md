@@ -10,6 +10,8 @@ This registry is not a marketing site and not a fandom wiki. The writing standar
 - Treat weak-evidence but culturally important systems seriously without pretending they are stronger than they are.
 - Keep canonical registry content, house synthesis content, index program specs, and research intake language clearly separated.
 
+For end-user-facing downstream explanations, prefer phenomenon-first language over internal variable recital unless the user explicitly wants technical detail.
+
 ## Notes template
 
 Each `notes.md` file should use this section order:
@@ -64,3 +66,15 @@ Notes should stay concise and legible. The goal is high-signal orientation, not 
 - Generated docs should expose constructs, resources, crosswalks, risks, and use cases in a consistent order.
 - Count labels and section labels should read naturally.
 - If a new docs surface is added, keep it aligned with the existing muted/neutral visual language rather than introducing a new visual system.
+
+## Expression layers
+
+Different surfaces can speak at different depths, but they should do so deliberately.
+
+- Repo docs and canonical records should remain sober, explicit, and structurally clear.
+- Default user-facing downstream renderings should usually keep technical scaffolding implicit and describe the pattern in human terms.
+- Technical or contributor-facing renderings may expose ontology labels, pack names, and method details more directly.
+
+Expression is not merely decoration. It changes what part of the system becomes legible to the reader.
+
+See [expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md).

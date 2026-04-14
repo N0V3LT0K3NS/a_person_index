@@ -12,12 +12,19 @@ def test_onboarding_docs_exist(repo_root):
         repo_root / "skills" / "a-person-index" / "SKILL.md",
         repo_root / "skills" / "a-person-index" / "agents" / "openai.yaml",
         repo_root / "skills" / "a-person-index" / "references" / "workflows.md",
+        repo_root / "skills" / "a-person-index-actualization" / "SKILL.md",
+        repo_root / "skills" / "a-person-index-actualization" / "agents" / "openai.yaml",
+        repo_root / "skills" / "a-person-index-actualization" / "references" / "workflows.md",
         repo_root / "docs" / "release_status.md",
         repo_root / "docs" / "strategic_backlog.md",
         repo_root / "docs" / "agent_quickstart.md",
         repo_root / "docs" / "assessment_workflow.md",
         repo_root / "docs" / "ilens_walkthrough.md",
         repo_root / "docs" / "current_state.md",
+        repo_root / "docs" / "advanced_modes.md",
+        repo_root / "docs" / "actualization_protocols.md",
+        repo_root / "docs" / "expression_and_artifacts.md",
+        repo_root / "docs" / "multi_subject_comparison.md",
         repo_root / "docs" / "index_programs.md",
         repo_root / "docs" / "codex_automation.md",
         repo_root / "docs" / "research_authoring_standard.md",
@@ -58,6 +65,10 @@ def test_readme_links_to_onboarding_surface(repo_root):
     assert "docs/release_status.md" in readme
     assert "docs/strategic_backlog.md" in readme
     assert "docs/current_state.md" in readme
+    assert "docs/advanced_modes.md" in readme
+    assert "docs/actualization_protocols.md" in readme
+    assert "docs/expression_and_artifacts.md" in readme
+    assert "docs/multi_subject_comparison.md" in readme
     assert "docs/index_programs.md" in readme
     assert "docs/codex_automation.md" in readme
     assert "docs/research_authoring_standard.md" in readme
@@ -84,7 +95,7 @@ def test_readme_seed_corpus_mentions_current_creativity_anchor(repo_root):
 def test_mcp_clients_doc_lists_four_validation_layers(repo_root):
     text = (repo_root / "docs" / "mcp_clients.md").read_text(encoding="utf-8")
     assert "validated in four layers" in text
-    assert "4. Hermes on a remote host" in text
+    assert "4. Hermes remote-host assumptions and wrapper path checked" in text
 
 
 def test_changelog_tracks_unreleased_post_release_work(repo_root):

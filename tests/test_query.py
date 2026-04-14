@@ -6,10 +6,16 @@ import sys
 from personality_registry.extensions import load_extensions_strict
 from personality_registry.loader import load_repository_strict
 from personality_registry.query import (
+    actualization_protocol_record,
     agent_orientation,
+    analysis_mode_record,
+    artifact_class_record,
     audit_repository,
     compare_instruments,
     find_contribution_models,
+    find_actualization_protocols,
+    find_analysis_modes,
+    find_artifact_classes,
     find_interaction_hypotheses,
     find_motifs,
     find_promotion_pathways,
@@ -183,6 +189,18 @@ def test_protocol_record_expands_techniques(repo_root):
     assert {"proto_paradox_finder", "proto_translation_memo"} <= component_ids
 
 
+def test_contextual_and_pairwise_protocol_records_are_available(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    contextual_payload = protocol_record(extensions, "Contextual Comparison Memo")
+    pairwise_payload = protocol_record(extensions, "Pairwise Relational Comparison")
+    assert contextual_payload["protocol"]["program_kind"] == "comparison_program"
+    assert pairwise_payload["protocol"]["program_kind"] == "comparison_program"
+    contextual_component_ids = {item["id"] for item in contextual_payload["component_programs"]}
+    pairwise_component_ids = {item["id"] for item in pairwise_payload["component_programs"]}
+    assert "proto_paradox_finder" in contextual_component_ids
+    assert {"proto_translation_memo", "proto_paradox_finder"} <= pairwise_component_ids
+
+
 def test_agent_orientation_surfaces_featured_packs_and_resources(repo_root):
     repository = load_repository_strict(repo_root)
     extensions = load_extensions_strict(repo_root)
@@ -211,15 +229,55 @@ def test_protocol_pack_summary_is_compact_and_scoped(repo_root):
     assert payload["summary"]["result_atom_schema_id"] == "ras_result_atom_v0_1"
 
 
+def test_contextual_and_pairwise_packs_are_discoverable(repo_root):
+    repository = load_repository_strict(repo_root)
+    extensions = load_extensions_strict(repo_root)
+    pack_ids = {
+        item["id"] for item in find_protocol_packs(
+            repository,
+            extensions,
+            protocol="Contextual Comparison Memo",
+        )
+    }
+    assert "ppk_contextual_core_trait_motive_stack" in pack_ids
+    pairwise_pack_ids = {
+        item["id"]
+        for item in find_protocol_packs(
+            repository,
+            extensions,
+            protocol="Pairwise Relational Comparison",
+        )
+    }
+    assert "ppk_pairwise_relational_baseline" in pairwise_pack_ids
+
+
 def test_extension_finders_return_expected_records(repo_root):
     extensions = load_extensions_strict(repo_root)
+    mode_ids = {item["id"] for item in find_analysis_modes(extensions, text="plan")}
+    artifact_ids = {item["id"] for item in find_artifact_classes(extensions, text="markdown")}
+    actualization_ids = {
+        item["id"] for item in find_actualization_protocols(extensions, artifact_class="Comparative Memo")
+    }
     protocol_ids = {item["id"] for item in find_protocols(extensions, consumer="GNOMY")}
     technique_ids = {item["id"] for item in find_techniques(extensions, text="paradox")}
     contribution_ids = {item["id"] for item in find_contribution_models(extensions, text="normalized")}
+    assert "mode_run_planning" in mode_ids
+    assert "art_agent_markdown_handoff" in artifact_ids
+    assert "actx_single_subject_comparative_memo" in actualization_ids
     assert "proto_ilens" in protocol_ids
     assert "proto_paradox_finder" in protocol_ids
     assert "tech_paradox_scan" in technique_ids
     assert "rcm_result_atom_bundle" in contribution_ids
+
+
+def test_analysis_mode_and_artifact_records_are_available(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    mode_payload = analysis_mode_record(extensions, "Run Planning")
+    artifact_payload = artifact_class_record(extensions, "Context Matrix")
+    actualization_payload = actualization_protocol_record(extensions, "Pairwise Relational Sheet")
+    assert mode_payload["analysis_mode"]["id"] == "mode_run_planning"
+    assert artifact_payload["artifact_class"]["id"] == "art_context_matrix"
+    assert actualization_payload["actualization_protocol"]["id"] == "actx_pairwise_relational_sheet"
 
 
 def test_find_interaction_hypotheses_related_to_attachment(repo_root):

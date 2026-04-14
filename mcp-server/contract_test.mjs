@@ -38,6 +38,9 @@ const tools = await client.listTools();
 const toolNames = new Set(tools.tools.map((tool) => tool.name));
 for (const requiredTool of [
   "orient_agent",
+  "list_analysis_modes",
+  "list_artifact_classes",
+  "list_actualization_protocols",
   "compare_frameworks",
   "trace_to_motifs",
   "fetch_protocol_spec",
@@ -65,6 +68,12 @@ const ilensWalkthrough = await client.readResource({ uri: "registry://ilens-walk
 expect(
   ilensWalkthrough.contents?.[0]?.text?.includes("Recommended MCP sequence"),
   "Expected ILENS walkthrough resource content.",
+);
+
+const advancedModes = await client.readResource({ uri: "registry://advanced-modes" });
+expect(
+  advancedModes.contents?.[0]?.text?.includes("Mode 1: orientation and sync"),
+  "Expected advanced modes resource content.",
 );
 
 const mbtiResource = await client.readResource({ uri: "registry://instrument/mbti" });
@@ -109,6 +118,26 @@ expect(
 expect(
   orientation.structuredContent?.recommended_resources?.includes("registry://ilens-walkthrough"),
   "Expected orientation to include ILENS walkthrough resource.",
+);
+expect(
+  Array.isArray(orientation.structuredContent?.advanced_docs) &&
+    orientation.structuredContent.advanced_docs.includes("docs/advanced_modes.md"),
+  "Expected orientation to include advanced docs.",
+);
+
+const actualizationProtocols = await client.callTool({
+  name: "list_actualization_protocols",
+  arguments: {
+    mode: "Artifact Actualization",
+  },
+});
+expect(!actualizationProtocols.isError, "Expected list_actualization_protocols tool to succeed.");
+expect(
+  Array.isArray(actualizationProtocols.structuredContent?.actualization_protocols) &&
+    actualizationProtocols.structuredContent.actualization_protocols.some(
+      (item) => item.id === "actx_single_subject_comparative_memo",
+    ),
+  "Expected actualization protocols for artifact mode.",
 );
 
 const trace = await client.callTool({

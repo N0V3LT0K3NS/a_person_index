@@ -30,6 +30,13 @@ This repo owns:
 - research promotion policy
 - agent-facing access surfaces such as CLI, generated artifacts, and MCP
 
+It may also define:
+
+- artifact semantics and artifact classes
+- advanced comparative modes
+- multi-subject comparison grammar
+- downstream protocol constraints
+
 This repo is the map, the method library, and the governance layer.
 
 ## What does not belong here
@@ -41,6 +48,9 @@ This repo should not become:
 - the consumer UI
 - the scoring runtime for every framework
 - the operational research database
+- the heavy rendering stack for every output artifact
+- the multi-user account or identity-linking system
+- the persistent collaboration layer across live users
 
 Those are adjacent systems, not this repository.
 
@@ -54,6 +64,8 @@ Those are adjacent systems, not this repository.
 - report generation
 - protocol execution on real people using techniques, programs, and packs supplied by this repo
 - adaptation to context, history, and interaction
+- user-facing rendering choices
+- artifact realization and presentation
 
 `GNOMY` should call this repo for:
 
@@ -111,3 +123,9 @@ If yes, it probably belongs here.
 Is it specific to a live person, a runtime execution, or an operational evidence pipeline?
 
 If yes, it probably belongs elsewhere.
+
+Additional boundary rule:
+
+If it defines comparative meaning, protocol grammar, or artifact semantics, it may belong here.
+
+If it defines heavy rendering implementation, user persistence, or delivery mechanics, it probably belongs in an adjacent repo or runtime.

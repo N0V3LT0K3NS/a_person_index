@@ -25,7 +25,8 @@ Think of the system as legos at three scales:
 
 2. Index programs
    Named composed analyses or synthesis workflows built from techniques, and sometimes from smaller programs.
-   Examples: `Paradox Finder`, `Translation Memo`, `ILENS`, `Human Model Card`.
+   Examples: `Paradox Finder`, `Translation Memo`, `ILENS`, `Human Model Card`,
+   `Contextual Comparison Memo`, `Pairwise Relational Comparison`.
 
 3. Program packs
    Scoped runtime bundles that hydrate an index program with frameworks, motifs, mappings, interaction hypotheses, and return contracts.
@@ -61,6 +62,8 @@ Examples:
 - `proto_translation_memo`
 - `proto_ilens`
 - `proto_human_model_card`
+- `proto_contextual_comparison`
+- `proto_pairwise_relational_comparison`
 
 Programs are stored in [protocols/registry.yaml](/Users/noveltokens/a_person_index/protocols/registry.yaml). The internal registry path still says `protocols`, but the public product concept is `index programs`.
 
@@ -88,6 +91,17 @@ One clean example is:
 4. `ppk_ilens_core_trait_motive_stack`
    Hydrate `ILENS` with a reviewed scope and return contract for repeated downstream use.
 
+Another clean example is:
+
+1. `tech_stable_vs_adaptive_split`
+   Keep baseline versus context-driven behavior distinct.
+2. `proto_contextual_comparison`
+   Compare repeated or context-tagged slices without forcing every delta into a
+   story of permanent personality change.
+3. `ppk_contextual_core_trait_motive_stack`
+   Hydrate that comparison frame with a reviewed Big Five / MBTI / Enneagram
+   scope for repeated contextual work.
+
 ## Practical rule
 
 When deciding where a new thing belongs, ask:
@@ -112,3 +126,36 @@ It can:
 - return only approved research shapes
 
 It should not have to reinvent the comparative grammar of the repo every time it runs.
+
+## Programs versus actualization protocols
+
+An index program is still inside the comparative core of A Person Index.
+
+An actualization protocol is a downstream workflow that uses an index program as
+its semantic anchor while also using other tools for things like:
+
+- file or corpus handling
+- visualization
+- document rendering
+- graph generation
+- context-aware delivery
+
+This distinction matters.
+
+A Person Index should define:
+
+- what the comparison means
+- what the named workflow is
+- what boundaries and caveats must be preserved
+- what artifact semantics are valid
+
+Downstream agents or adjacent repos may define:
+
+- how the artifact is rendered
+- where it is stored
+- how the user interacts with it
+
+See:
+
+- [actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md)
+- [expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md)

@@ -14,6 +14,8 @@ Keep these layers separate:
 4. runtime packs
 5. research contribution and promotion policy
 
+It can also act as the comparative core inside richer downstream workflows, but that does not change the layer boundaries above.
+
 ## First moves
 
 If you are using MCP, prefer this order:
@@ -51,6 +53,19 @@ For user-supplied assessment results:
 - If a framework is symbolic, say so explicitly instead of flattening it into empirical language.
 - If a framework is missing, say it is unindexed rather than inventing coverage.
 
+## Expression rule
+
+For most end users, keep the technical scaffolding implicit unless they ask for it.
+
+Explain the phenomenon before the variable names.
+
+Reserve fully technical, ontology-heavy language for contributor, debugging, or meta-analysis contexts.
+
+See:
+
+- [expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md)
+- [advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md)
+
 ## Common mistakes
 
 - treating house motifs as source truth
@@ -58,3 +73,21 @@ For user-supplied assessment results:
 - calling `fetch_protocol_pack` with a vague ref like `novel`
 - claiming the repo itself performed person-level inference
 - failing to mark symbolic systems as symbolic
+
+## If the task becomes more than a basic pass
+
+If the user is really asking for:
+
+- run planning
+- architecture analysis
+- artifact generation
+- contextual comparison
+- or multi-subject comparison
+
+do not force that back into a plain intake workflow.
+
+Use the deeper docs:
+
+- [advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md)
+- [actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md)
+- [multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)

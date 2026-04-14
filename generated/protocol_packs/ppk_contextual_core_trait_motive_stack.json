@@ -1,0 +1,632 @@
+{
+  "catalog_entry": {
+    "id": "ppk_contextual_core_trait_motive_stack",
+    "protocol_id": "proto_contextual_comparison",
+    "status": "experimental",
+    "title": "Contextual Core Trait-Motive Stack",
+    "summary": "A contextual comparison pack for repeated Big Five, MBTI, and Enneagram slices across time, role, or self-state while keeping stable-versus- adaptive interpretation explicit.\n",
+    "intended_consumers": [
+      "analyst agents",
+      "actualization agents"
+    ],
+    "target_framework_ids": [
+      "instr_big_five",
+      "instr_mbti",
+      "instr_enneagram"
+    ],
+    "target_construct_ids": [],
+    "featured": false,
+    "notes": "Use when the same comparative axes appear across more than one slice of a single subject. This pack is not a general pairwise or compatibility pack.\n",
+    "protocol_name": "Contextual Comparison Memo",
+    "target_labels": [
+      "Big Five Personality Model",
+      "Myers-Briggs Type Indicator",
+      "Enneagram of Personality"
+    ]
+  },
+  "protocol_pack": {
+    "pack": {
+      "id": "pack_proto_contextual_comparison__instr_big_five__instr_enneagram__instr_mbti",
+      "grammar_id": "protocol_pack_grammar_v0_1",
+      "protocol_id": "proto_contextual_comparison",
+      "protocol_name": "Contextual Comparison Memo",
+      "target_count": 3,
+      "target_framework_ids": [
+        "instr_big_five",
+        "instr_enneagram",
+        "instr_mbti"
+      ],
+      "target_construct_ids": [],
+      "target_labels": [
+        "Big Five Personality Model",
+        "Myers-Briggs Type Indicator",
+        "Enneagram of Personality"
+      ]
+    },
+    "protocol": {
+      "id": "proto_contextual_comparison",
+      "name": "Contextual Comparison Memo",
+      "status": "experimental",
+      "program_kind": "comparison_program",
+      "purpose": "Compare one subject across time slices, roles, or contexts without confusing sparse deltas, adaptive overlays, and genuine baseline change.\n",
+      "summary": "A comparison program for repeated or context-tagged personhood evidence that keeps stable-versus-adaptive framing, paradox preservation, and missingness explicit rather than smoothing them into one narrative arc.\n",
+      "downstream_consumers": [
+        "analyst agents",
+        "actualization agents",
+        "contextual comparison workflows"
+      ],
+      "required_inputs": [
+        "context-tagged result atoms or comparable structured outputs",
+        "declared context or time slices",
+        "consistent comparative axes or motif traces"
+      ],
+      "optional_inputs": [
+        "longitudinal notes",
+        "role descriptions",
+        "behavioral observations"
+      ],
+      "technique_ids": [
+        "tech_result_atom_decomposition",
+        "tech_stable_vs_adaptive_split",
+        "tech_paradox_scan",
+        "tech_contradiction_preservation"
+      ],
+      "component_program_ids": [
+        "proto_paradox_finder"
+      ],
+      "primary_outputs": [
+        "contextual comparison memo",
+        "baseline versus adaptive split notes",
+        "delta caution map"
+      ],
+      "notes": "Best used when the same or comparable frameworks have been collected for more than one context, role, or time slice. Sparse coverage should reduce the density and confidence of the output rather than forcing a narrative.\n"
+    },
+    "techniques": [
+      {
+        "id": "tech_result_atom_decomposition",
+        "name": "Result Atom Decomposition",
+        "purpose": "Break whole-test outputs into smaller reasoning units that can be recombined across systems.",
+        "summary": "Normalize a result into source framework, construct, output type, value, confidence, and mapped motifs so agents can reason across parts rather than only whole labels.\n",
+        "input_types": [
+          "assessment outputs",
+          "construct mappings",
+          "source metadata"
+        ],
+        "output_types": [
+          "result atoms",
+          "motif traces",
+          "interaction hypotheses"
+        ],
+        "steps": [
+          "Extract construct-level outputs.",
+          "Attach evidence and confidence.",
+          "Map to house motifs without deleting source provenance."
+        ],
+        "cautions": [
+          "Do not infer person-level truth from one atom in isolation."
+        ],
+        "notes": null
+      },
+      {
+        "id": "tech_stable_vs_adaptive_split",
+        "name": "Stable vs Adaptive Split",
+        "purpose": "Separate baseline pattern from adaptation, coping, or context-driven behavior.",
+        "summary": "Distinguish persistent structure from role performance, learned compensation, stress modes, or situational masking.\n",
+        "input_types": [
+          "longitudinal observations",
+          "repeated assessments",
+          "comparative synthesis notes"
+        ],
+        "output_types": [
+          "baseline hypotheses",
+          "adaptive overlays",
+          "context conditions"
+        ],
+        "steps": [
+          "Identify recurring signals across time.",
+          "Flag signals that only appear under specific conditions.",
+          "Keep baseline and adaptive explanations side by side."
+        ],
+        "cautions": [
+          "Do not claim essence when the evidence is situational."
+        ],
+        "notes": null
+      },
+      {
+        "id": "tech_paradox_scan",
+        "name": "Paradox Scan",
+        "purpose": "Surface load-bearing contradictions rather than averaging them away.",
+        "summary": "Detect tensions across frameworks, constructs, and observations that may indicate adaptation, context splits, or multi-layer organization.\n",
+        "input_types": [
+          "result atoms",
+          "construct mappings",
+          "comparison outputs"
+        ],
+        "output_types": [
+          "paradox candidates",
+          "unresolved tensions",
+          "synthesis notes"
+        ],
+        "steps": [
+          "List apparently conflicting signals.",
+          "Check whether the signals operate on different layers.",
+          "Preserve contradiction when it remains explanatorily useful."
+        ],
+        "cautions": [
+          "Contradiction is not automatically error.",
+          "Do not turn every mismatch into pathology."
+        ],
+        "notes": null
+      },
+      {
+        "id": "tech_contradiction_preservation",
+        "name": "Contradiction Preservation",
+        "purpose": "Keep the system from over-compressing a person or a framework into false coherence.",
+        "summary": "Treat unresolved conflict, multiplicity, and context-dependence as data instead of noise to be smoothed out.\n",
+        "input_types": [
+          "source claims",
+          "house inferences",
+          "downstream results"
+        ],
+        "output_types": [
+          "preserved tension notes",
+          "caveats",
+          "competing hypotheses"
+        ],
+        "steps": [
+          "Track incompatible but supported readings.",
+          "Label scope, context, and confidence.",
+          "Delay forced synthesis until one reading clearly dominates."
+        ],
+        "cautions": [
+          "Avoid rhetorical neatness when the material is genuinely split."
+        ],
+        "notes": null
+      }
+    ],
+    "component_programs": [
+      {
+        "id": "proto_paradox_finder",
+        "name": "Paradox Finder",
+        "status": "active",
+        "program_kind": "micro_program",
+        "purpose": "Surface load-bearing contradictions, layer mismatches, and unresolved tensions across frameworks, constructs, motifs, or result atoms without averaging them away.\n",
+        "summary": "A compact index program that packages paradox scanning and contradiction preservation into a reusable analysis pass. It can stand alone or serve as a component program inside larger synthesis workflows.\n",
+        "downstream_consumers": [
+          "GNOMY",
+          "synthesis agents",
+          "curation agents"
+        ],
+        "required_inputs": [
+          "result atoms or comparable comparative signals",
+          "construct mappings",
+          "motif traces or comparison outputs"
+        ],
+        "optional_inputs": [
+          "behavioral observations",
+          "longitudinal notes",
+          "house interaction hypotheses"
+        ],
+        "technique_ids": [
+          "tech_paradox_scan",
+          "tech_contradiction_preservation",
+          "tech_stable_vs_adaptive_split"
+        ],
+        "component_program_ids": [],
+        "primary_outputs": [
+          "paradox candidate memo",
+          "tension map",
+          "unresolved contradiction notes"
+        ],
+        "notes": "Useful both as a standalone analysis program and as a reusable component inside larger synthesis programs such as ILENS or Human Model Card.\n"
+      }
+    ],
+    "targets": [
+      {
+        "entity_type": "instrument",
+        "entity_id": "instr_big_five",
+        "label": "Big Five Personality Model",
+        "instrument_id": "instr_big_five",
+        "instrument_label": "Big Five Personality Model",
+        "slug": "big-five"
+      },
+      {
+        "entity_type": "instrument",
+        "entity_id": "instr_mbti",
+        "label": "Myers-Briggs Type Indicator",
+        "instrument_id": "instr_mbti",
+        "instrument_label": "Myers-Briggs Type Indicator",
+        "slug": "mbti"
+      },
+      {
+        "entity_type": "instrument",
+        "entity_id": "instr_enneagram",
+        "label": "Enneagram of Personality",
+        "instrument_id": "instr_enneagram",
+        "instrument_label": "Enneagram of Personality",
+        "slug": "enneagram"
+      }
+    ],
+    "canonical_records": [
+      {
+        "instrument_id": "instr_big_five",
+        "canonical_name": "Big Five Personality Model",
+        "slug": "big-five",
+        "family": [
+          "trait_personality"
+        ],
+        "short_description": "A dimensional trait personality framework typically organized around Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism."
+      },
+      {
+        "instrument_id": "instr_enneagram",
+        "canonical_name": "Enneagram of Personality",
+        "slug": "enneagram",
+        "family": [
+          "typology",
+          "motivational",
+          "identity_self_concept",
+          "worldview_meaning_making"
+        ],
+        "short_description": "A typological framework centered on nine core personality strategies often described in terms of motivation, fear, desire, fixation, defense, and growth/stress patterns."
+      },
+      {
+        "instrument_id": "instr_mbti",
+        "canonical_name": "Myers-Briggs Type Indicator",
+        "slug": "mbti",
+        "family": [
+          "typology",
+          "cognitive_style",
+          "identity_self_concept"
+        ],
+        "short_description": "A widely used typology framework built around four preference pairs that combine into sixteen type codes."
+      }
+    ],
+    "motif_summary": [
+      {
+        "motif": {
+          "id": "mtf_affective_reactivity",
+          "name": "Affective Reactivity",
+          "status": "provisional",
+          "motif_kind": "circuit_motif",
+          "summary": "Sensitivity to stress, threat, volatility, and emotional perturbation.",
+          "description": "A recurrent motif spanning trait, attachment, shadow, and stress-oriented systems that speak to reactivity, anxiety, emotional load, or instability.\n",
+          "tags": [
+            "emotion",
+            "stress",
+            "reactivity"
+          ],
+          "related_dimensions": [
+            "temporal_stance",
+            "distortion_risk"
+          ]
+        },
+        "mapping_count": 1,
+        "source_labels": [
+          "Neuroticism"
+        ],
+        "relationship_types": [
+          "direct_signal"
+        ]
+      },
+      {
+        "motif": {
+          "id": "mtf_exploratory_openness",
+          "name": "Exploratory Openness",
+          "status": "provisional",
+          "motif_kind": "translation_axis",
+          "summary": "Appetite for novelty, imagination, curiosity, and experiential exploration.",
+          "description": "A recurring motif across trait, style, and symbolic systems that captures interest in novelty, complexity, imagination, and expansion beyond routine.\n",
+          "tags": [
+            "novelty",
+            "exploration",
+            "imagination"
+          ],
+          "related_dimensions": [
+            "primary_measurement_target",
+            "temporal_stance"
+          ]
+        },
+        "mapping_count": 1,
+        "source_labels": [
+          "Openness to Experience"
+        ],
+        "relationship_types": [
+          "direct_signal"
+        ]
+      },
+      {
+        "motif": {
+          "id": "mtf_identity_adhesion",
+          "name": "Identity Adhesion",
+          "status": "provisional",
+          "motif_kind": "social_function",
+          "summary": "Likelihood that outputs become fused with stable self-story or social identity.",
+          "description": "A house motif for comparing how strongly frameworks become identity languages rather than only descriptive or operational tools.\n",
+          "tags": [
+            "identity",
+            "self-concept",
+            "labeling"
+          ],
+          "related_dimensions": [
+            "identity_adhesion_risk",
+            "cultural_symbolic_role"
+          ]
+        },
+        "mapping_count": 2,
+        "source_labels": [
+          "Enneagram of Personality",
+          "Myers-Briggs Type Indicator"
+        ],
+        "relationship_types": [
+          "direct_signal"
+        ]
+      },
+      {
+        "motif": {
+          "id": "mtf_pattern_abstraction_preference",
+          "name": "Pattern Abstraction Preference",
+          "status": "provisional",
+          "motif_kind": "translation_axis",
+          "summary": "Preference for pattern-level abstraction versus concrete detail.",
+          "description": "A motif for systems that distinguish concrete sensing, intuitive patterning, symbolic interpretation, or abstraction-heavy sense making.\n",
+          "tags": [
+            "cognition",
+            "abstraction",
+            "patterning"
+          ],
+          "related_dimensions": [
+            "person_ontology",
+            "worldview_load"
+          ]
+        },
+        "mapping_count": 1,
+        "source_labels": [
+          "Sensing / Intuition"
+        ],
+        "relationship_types": [
+          "partial_signal"
+        ]
+      },
+      {
+        "motif": {
+          "id": "mtf_social_energy_orientation",
+          "name": "Social Energy Orientation",
+          "status": "provisional",
+          "motif_kind": "translation_axis",
+          "summary": "How a framework encodes social activation, outward engagement, and inward recharge.",
+          "description": "A house translation axis for frameworks that speak about extraversion, introversion, social charge, or preferred outward intensity without assuming they all mean the same thing.\n",
+          "tags": [
+            "sociality",
+            "energy",
+            "interaction"
+          ],
+          "related_dimensions": [
+            "primary_measurement_target",
+            "representational_form"
+          ]
+        },
+        "mapping_count": 2,
+        "source_labels": [
+          "Extraversion",
+          "Extraversion / Introversion"
+        ],
+        "relationship_types": [
+          "direct_signal",
+          "partial_signal"
+        ]
+      },
+      {
+        "motif": {
+          "id": "mtf_structure_and_closure_preference",
+          "name": "Structure and Closure Preference",
+          "status": "provisional",
+          "motif_kind": "translation_axis",
+          "summary": "Preference for closure, planning, and constraint versus openness and flexibility.",
+          "description": "A house bridge for constructs that describe orderliness, planning, decisiveness, structure seeking, or resistance to imposed closure.\n",
+          "tags": [
+            "planning",
+            "order",
+            "closure"
+          ],
+          "related_dimensions": [
+            "scoring_logic",
+            "context_sensitivity"
+          ]
+        },
+        "mapping_count": 1,
+        "source_labels": [
+          "Judging / Perceiving"
+        ],
+        "relationship_types": [
+          "partial_signal"
+        ]
+      }
+    ],
+    "relevant_mappings": [
+      {
+        "id": "map_big_five_extraversion_social_energy",
+        "source_entity_type": "construct",
+        "source_entity_id": "con_big_five_extraversion",
+        "source_label": "Extraversion",
+        "source_instrument_id": "instr_big_five",
+        "source_instrument_label": "Big Five Personality Model",
+        "target_entity_id": "mtf_social_energy_orientation",
+        "target_label": "Social Energy Orientation",
+        "relationship_type": "direct_signal",
+        "relationship_strength": "high",
+        "confidence": "high",
+        "status": "provisional",
+        "rationale": "Big Five extraversion is one of the clearest direct encodings of outward social activation and engagement in the current corpus.\n",
+        "notes": null
+      },
+      {
+        "id": "map_big_five_neuroticism_affective_reactivity",
+        "source_entity_type": "construct",
+        "source_entity_id": "con_big_five_neuroticism",
+        "source_label": "Neuroticism",
+        "source_instrument_id": "instr_big_five",
+        "source_instrument_label": "Big Five Personality Model",
+        "target_entity_id": "mtf_affective_reactivity",
+        "target_label": "Affective Reactivity",
+        "relationship_type": "direct_signal",
+        "relationship_strength": "high",
+        "confidence": "high",
+        "status": "provisional",
+        "rationale": "Neuroticism is one of the strongest direct trait-language anchors for stress sensitivity and negative affect reactivity.\n",
+        "notes": null
+      },
+      {
+        "id": "map_big_five_openness_exploratory_openness",
+        "source_entity_type": "construct",
+        "source_entity_id": "con_big_five_openness",
+        "source_label": "Openness to Experience",
+        "source_instrument_id": "instr_big_five",
+        "source_instrument_label": "Big Five Personality Model",
+        "target_entity_id": "mtf_exploratory_openness",
+        "target_label": "Exploratory Openness",
+        "relationship_type": "direct_signal",
+        "relationship_strength": "high",
+        "confidence": "high",
+        "status": "provisional",
+        "rationale": "Openness to Experience is one of the strongest direct house anchors for novelty, imagination, and exploratory appetite.\n",
+        "notes": null
+      },
+      {
+        "id": "map_enneagram_identity_adhesion",
+        "source_entity_type": "instrument",
+        "source_entity_id": "instr_enneagram",
+        "source_label": "Enneagram of Personality",
+        "source_instrument_id": "instr_enneagram",
+        "source_instrument_label": "Enneagram of Personality",
+        "target_entity_id": "mtf_identity_adhesion",
+        "target_label": "Identity Adhesion",
+        "relationship_type": "direct_signal",
+        "relationship_strength": "high",
+        "confidence": "high",
+        "status": "provisional",
+        "rationale": "The Enneagram frequently functions as durable self-story and community identity, not only as a descriptive typology.\n",
+        "notes": null
+      },
+      {
+        "id": "map_mbti_ei_social_energy",
+        "source_entity_type": "construct",
+        "source_entity_id": "con_mbti_extraversion_introversion",
+        "source_label": "Extraversion / Introversion",
+        "source_instrument_id": "instr_mbti",
+        "source_instrument_label": "Myers-Briggs Type Indicator",
+        "target_entity_id": "mtf_social_energy_orientation",
+        "target_label": "Social Energy Orientation",
+        "relationship_type": "partial_signal",
+        "relationship_strength": "medium",
+        "confidence": "medium",
+        "status": "provisional",
+        "rationale": "MBTI E/I clearly touches social-energy orientation, but it does so in preference language rather than a trait-intensity frame.\n",
+        "notes": null
+      },
+      {
+        "id": "map_mbti_identity_adhesion",
+        "source_entity_type": "instrument",
+        "source_entity_id": "instr_mbti",
+        "source_label": "Myers-Briggs Type Indicator",
+        "source_instrument_id": "instr_mbti",
+        "source_instrument_label": "Myers-Briggs Type Indicator",
+        "target_entity_id": "mtf_identity_adhesion",
+        "target_label": "Identity Adhesion",
+        "relationship_type": "direct_signal",
+        "relationship_strength": "high",
+        "confidence": "medium",
+        "status": "provisional",
+        "rationale": "MBTI functions widely as a social identity and shorthand self-description language even when used outside formal assessment contexts.\n",
+        "notes": null
+      },
+      {
+        "id": "map_mbti_jp_structure_closure",
+        "source_entity_type": "construct",
+        "source_entity_id": "con_mbti_judging_perceiving",
+        "source_label": "Judging / Perceiving",
+        "source_instrument_id": "instr_mbti",
+        "source_instrument_label": "Myers-Briggs Type Indicator",
+        "target_entity_id": "mtf_structure_and_closure_preference",
+        "target_label": "Structure and Closure Preference",
+        "relationship_type": "partial_signal",
+        "relationship_strength": "medium",
+        "confidence": "medium",
+        "status": "provisional",
+        "rationale": "Judging versus perceiving is one of the cleaner typology-language handles for closure, planning, structure, and openness to emergent process.\n",
+        "notes": null
+      },
+      {
+        "id": "map_mbti_sn_pattern_abstraction",
+        "source_entity_type": "construct",
+        "source_entity_id": "con_mbti_sensing_intuition",
+        "source_label": "Sensing / Intuition",
+        "source_instrument_id": "instr_mbti",
+        "source_instrument_label": "Myers-Briggs Type Indicator",
+        "target_entity_id": "mtf_pattern_abstraction_preference",
+        "target_label": "Pattern Abstraction Preference",
+        "relationship_type": "partial_signal",
+        "relationship_strength": "high",
+        "confidence": "medium",
+        "status": "provisional",
+        "rationale": "Sensing versus intuition is not equivalent to general openness, but it is a strong preference-language signal for concrete detail versus pattern abstraction.\n",
+        "notes": null
+      }
+    ],
+    "interaction_hypotheses": [],
+    "input_contract": {
+      "required_inputs": [
+        "context-tagged result atoms or comparable structured outputs",
+        "declared context or time slices",
+        "consistent comparative axes or motif traces"
+      ],
+      "optional_inputs": [
+        "longitudinal notes",
+        "role descriptions",
+        "behavioral observations"
+      ]
+    },
+    "execution_order": [
+      "Resolve canonical framework records for the current target scope.",
+      "Trace target frameworks or constructs through the motif layer.",
+      "Expand interaction hypotheses relevant to the scoped targets and selected protocol.",
+      "Load the protocol's technique bundle and preserve cautions.",
+      "Return structured feedback through the preferred research contribution models."
+    ],
+    "output_contract": {
+      "primary_outputs": [
+        "contextual comparison memo",
+        "baseline versus adaptive split notes",
+        "delta caution map"
+      ]
+    },
+    "return_contract": {
+      "preferred_contribution_model_ids": [
+        "rcm_protocol_feedback"
+      ],
+      "contribution_models": [
+        {
+          "id": "rcm_protocol_feedback",
+          "name": "Protocol Feedback",
+          "purpose": "Capture whether a downstream protocol produced useful, misleading, or incomplete synthesis.",
+          "privacy_posture": "Evaluate the protocol output rather than the person's raw life material.",
+          "required_fields": [
+            "protocol_id",
+            "usefulness_rating",
+            "failure_or_success_note"
+          ],
+          "optional_fields": [
+            "missing_input_types",
+            "suggested_revision"
+          ],
+          "promotion_path": [
+            "feedback_log",
+            "reviewed",
+            "protocol_revision"
+          ],
+          "notes": "Keeps downstream promptcraft and runtime behavior connected back to the repository without polluting canonical framework records.\n"
+        }
+      ],
+      "result_atom_schema": null
+    }
+  }
+}

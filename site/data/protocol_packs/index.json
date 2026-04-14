@@ -51,6 +51,32 @@
       ]
     },
     {
+      "id": "ppk_contextual_core_trait_motive_stack",
+      "protocol_id": "proto_contextual_comparison",
+      "status": "experimental",
+      "title": "Contextual Core Trait-Motive Stack",
+      "summary": "A contextual comparison pack for repeated Big Five, MBTI, and Enneagram slices across time, role, or self-state while keeping stable-versus- adaptive interpretation explicit.\n",
+      "intended_consumers": [
+        "analyst agents",
+        "actualization agents"
+      ],
+      "target_framework_ids": [
+        "instr_big_five",
+        "instr_mbti",
+        "instr_enneagram"
+      ],
+      "target_construct_ids": [],
+      "featured": false,
+      "notes": "Use when the same comparative axes appear across more than one slice of a single subject. This pack is not a general pairwise or compatibility pack.\n",
+      "protocol_name": "Contextual Comparison Memo",
+      "target_count": 3,
+      "target_labels": [
+        "Big Five Personality Model",
+        "Myers-Briggs Type Indicator",
+        "Enneagram of Personality"
+      ]
+    },
+    {
       "id": "ppk_human_model_card_personality_baseline",
       "protocol_id": "proto_human_model_card",
       "status": "experimental",
@@ -75,6 +101,32 @@
         "Big Five Personality Model",
         "Myers-Briggs Type Indicator",
         "Enneagram of Personality"
+      ]
+    },
+    {
+      "id": "ppk_pairwise_relational_baseline",
+      "protocol_id": "proto_pairwise_relational_comparison",
+      "status": "experimental",
+      "title": "Pairwise Relational Baseline",
+      "summary": "A pairwise comparison pack that centers attachment, relational care signaling, and broad trait scaffold without collapsing them into one score.\n",
+      "intended_consumers": [
+        "analyst agents",
+        "actualization agents"
+      ],
+      "target_framework_ids": [
+        "instr_attachment_styles",
+        "instr_love_languages",
+        "instr_big_five"
+      ],
+      "target_construct_ids": [],
+      "featured": false,
+      "notes": "This is a disciplined baseline for pairwise or relationship-oriented work. It emphasizes regulation, care signaling, and broad trait context while keeping unsupported relational claims visible.\n",
+      "protocol_name": "Pairwise Relational Comparison",
+      "target_count": 3,
+      "target_labels": [
+        "Attachment Style Frameworks",
+        "The Five Love Languages",
+        "Big Five Personality Model"
       ]
     },
     {

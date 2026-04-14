@@ -108,7 +108,7 @@ async function buildServer() {
     name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, and research contribution models from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. Keep canonical data, house synthesis, index programs, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, artifact classes, and actualization protocols from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode and actualization surfaces before improvising. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
   });
 
   server.registerResource(
@@ -214,6 +214,78 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/ilens_walkthrough.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "advanced-modes",
+    "registry://advanced-modes",
+    {
+      title: "Advanced Modes",
+      description: "Named higher-order run shapes such as planning, actualization, contextual comparison, and trace review.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/advanced_modes.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "actualization-protocols",
+    "registry://actualization-protocols",
+    {
+      title: "Actualization Protocols",
+      description: "How A Person Index acts as comparative core inside richer downstream workflows and artifacts.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/actualization_protocols.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "expression-and-artifacts",
+    "registry://expression-and-artifacts",
+    {
+      title: "Expression and Artifacts",
+      description: "Voice modes, artifact classes, and output-grammar guidance for downstream realization.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/expression_and_artifacts.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "multi-subject-comparison",
+    "registry://multi-subject-comparison",
+    {
+      title: "Multi-Subject Comparison",
+      description: "Contextual, temporal, and pairwise comparison guidance beyond a single mixed stack.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/multi_subject_comparison.md"),
         },
       ],
     }),
@@ -404,6 +476,126 @@ async function buildServer() {
     async () => {
       try {
         return jsonResult(await runRegistryQuery(["orient"], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_analysis_modes",
+    {
+      title: "List Analysis Modes",
+      description: "Return named run modes such as bounded analysis, planning, actualization, contextual comparison, or trace review.",
+      inputSchema: {
+        text: z.string().optional(),
+      },
+    },
+    async ({ text }) => {
+      try {
+        const args = ["modes"];
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("analysis_modes", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_analysis_mode",
+    {
+      title: "Fetch Analysis Mode",
+      description: "Return the full record for a named analysis mode.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["modes", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_artifact_classes",
+    {
+      title: "List Artifact Classes",
+      description: "Return downstream artifact classes that A Person Index can semantically support.",
+      inputSchema: {
+        mode: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ mode, text }) => {
+      try {
+        const args = ["artifacts"];
+        if (mode) args.push("--mode", mode);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("artifact_classes", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_artifact_class",
+    {
+      title: "Fetch Artifact Class",
+      description: "Return the full record for a named artifact class including evidence and capability expectations.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["artifacts", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_actualization_protocols",
+    {
+      title: "List Actualization Protocols",
+      description: "Return downstream actualization protocols that turn A Person Index comparative work into artifacts or handoffs.",
+      inputSchema: {
+        mode: z.string().optional(),
+        artifact: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ mode, artifact, text }) => {
+      try {
+        const args = ["actualization"];
+        if (mode) args.push("--mode", mode);
+        if (artifact) args.push("--artifact", artifact);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("actualization_protocols", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_actualization_protocol",
+    {
+      title: "Fetch Actualization Protocol",
+      description: "Return the full record for a named actualization protocol.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["actualization", ref], pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }

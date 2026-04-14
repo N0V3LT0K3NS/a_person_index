@@ -28,6 +28,9 @@ ROOT_DOCUMENTS = {
 }
 
 ENTITY_PREFIXES = {
+    "analysis_mode": "mode_",
+    "artifact_class": "art_",
+    "actualization_protocol": "actx_",
     "instrument": "instr_",
     "version": "ver_",
     "construct": "con_",

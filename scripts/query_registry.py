@@ -8,12 +8,18 @@ from _bootstrap import bootstrap
 root = bootstrap()
 
 from personality_registry.query import (
+    actualization_protocol_record,
     agent_orientation,
+    analysis_mode_record,
+    artifact_class_record,
     audit_repository,
     compare_instruments,
     contribution_model_record,
     curated_protocol_pack_record,
     dumps_json,
+    find_actualization_protocols,
+    find_analysis_modes,
+    find_artifact_classes,
     find_contribution_models,
     find_interaction_hypotheses,
     find_motifs,
@@ -583,6 +589,104 @@ def _render_protocol_pack_summary_text(payload):
     return "\n".join(lines)
 
 
+def _render_analysis_modes_text(results):
+    if not results:
+        return "No matching analysis modes."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  status={item['status']}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_analysis_mode_record_text(payload):
+    item = payload["analysis_mode"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        item["summary"],
+        "",
+        "Intent signals:",
+    ]
+    for signal in item["intent_signals"]:
+        lines.append(f"  - {signal}")
+    lines.append("")
+    lines.append("Preferred entrypoints:")
+    for entry in item["preferred_entrypoints"]:
+        lines.append(f"  - {entry}")
+    return "\n".join(lines)
+
+
+def _render_artifact_classes_text(results):
+    if not results:
+        return "No matching artifact classes."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(
+            f"  status={item['status']} expression={item['default_expression_mode']} audience={', '.join(item['audience_modes'])}"
+        )
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_artifact_class_record_text(payload):
+    item = payload["artifact_class"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        f"default expression: {item['default_expression_mode']}",
+        item["summary"],
+        "",
+        "Required evidence partitions:",
+    ]
+    for partition in item["required_evidence_partitions"]:
+        lines.append(f"  - {partition}")
+    lines.append("")
+    lines.append("Capability tags:")
+    for tag in item["capability_tags"]:
+        lines.append(f"  - {tag}")
+    return "\n".join(lines)
+
+
+def _render_actualization_protocols_text(results):
+    if not results:
+        return "No matching actualization protocols."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  status={item['status']} modes={', '.join(item['run_mode_ids'])}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_actualization_protocol_record_text(payload):
+    item = payload["actualization_protocol"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        item["summary"],
+        "",
+        "Run modes:",
+    ]
+    for mode_id in item["run_mode_ids"]:
+        lines.append(f"  - {mode_id}")
+    lines.append("")
+    lines.append("Target artifact classes:")
+    for artifact_id in item["target_artifact_class_ids"]:
+        lines.append(f"  - {artifact_id}")
+    lines.append("")
+    lines.append("Required capabilities:")
+    for capability in item["required_capability_tags"]:
+        lines.append(f"  - {capability}")
+    lines.append("")
+    lines.append("Steps:")
+    for step in item["steps"]:
+        lines.append(f"  - {step}")
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Query A Person Index.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -818,6 +922,29 @@ def main() -> int:
     )
     protocol_pack_summary_parser.add_argument("--format", choices=("text", "json"), default="text")
 
+    modes_parser = subparsers.add_parser("modes", help="List or show advanced analysis modes.")
+    modes_parser.add_argument("ref", nargs="?", help="Optional analysis mode ID or name for a detailed record.")
+    modes_parser.add_argument("--text", help="Substring search across analysis mode fields.")
+    modes_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    artifacts_parser = subparsers.add_parser("artifacts", help="List or show artifact classes.")
+    artifacts_parser.add_argument("ref", nargs="?", help="Optional artifact class ID or name for a detailed record.")
+    artifacts_parser.add_argument("--mode", help="Filter artifact classes by analysis mode ID or name.")
+    artifacts_parser.add_argument("--text", help="Substring search across artifact class fields.")
+    artifacts_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    actualization_parser = subparsers.add_parser(
+        "actualization",
+        help="List or show actualization protocols that turn comparative work into downstream artifacts.",
+    )
+    actualization_parser.add_argument(
+        "ref", nargs="?", help="Optional actualization protocol ID or name for a detailed record."
+    )
+    actualization_parser.add_argument("--mode", help="Filter actualization protocols by analysis mode ID or name.")
+    actualization_parser.add_argument("--artifact", help="Filter actualization protocols by artifact class.")
+    actualization_parser.add_argument("--text", help="Substring search across actualization protocol fields.")
+    actualization_parser.add_argument("--format", choices=("text", "json"), default="text")
+
     args = parser.parse_args()
     repository = load_repository_for_query(root)
     extensions = load_extensions_for_query(root)
@@ -1052,6 +1179,56 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_orientation_text(payload))
+        return 0
+
+    if args.command == "modes":
+        if args.ref:
+            payload = analysis_mode_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_analysis_mode_record_text(payload))
+            return 0
+        payload = find_analysis_modes(extensions, text=args.text)
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_analysis_modes_text(payload))
+        return 0
+
+    if args.command == "artifacts":
+        if args.ref:
+            payload = artifact_class_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_artifact_class_record_text(payload))
+            return 0
+        payload = find_artifact_classes(extensions, mode=args.mode, text=args.text)
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_artifact_classes_text(payload))
+        return 0
+
+    if args.command == "actualization":
+        if args.ref:
+            payload = actualization_protocol_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_actualization_protocol_record_text(payload))
+            return 0
+        payload = find_actualization_protocols(
+            extensions,
+            run_mode=args.mode,
+            artifact_class=args.artifact,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_actualization_protocols_text(payload))
         return 0
 
     if args.command in {"protocol-pack-summary", "program-pack-summary"}:

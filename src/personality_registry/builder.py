@@ -144,6 +144,11 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "canonical_registry": {
                 "instrument_count": len(repository.instruments),
             },
+            "analysis_and_actualization": {
+                "analysis_mode_count": len(extensions.analysis_modes),
+                "artifact_class_count": len(extensions.artifact_classes),
+                "actualization_protocol_count": len(extensions.actualization_protocols),
+            },
             "house_synthesis": {
                 "motif_count": len(extensions.motifs),
                 "mapping_count": len(extensions.mappings),
@@ -198,6 +203,10 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "docs/current_state.md",
             "docs/roadmap.md",
             "docs/architecture.md",
+            "docs/advanced_modes.md",
+            "docs/actualization_protocols.md",
+            "docs/expression_and_artifacts.md",
+            "docs/multi_subject_comparison.md",
             "docs/index_programs.md",
             "docs/codex_automation.md",
             "docs/site_design_options.md",
@@ -225,6 +234,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "adjacent_layers": {
                 "runtime_layer": "Systems such as GNOMY perform person-level synthesis using this repo as a dependency.",
                 "research_ops_layer": "A later evidence pipeline can collect, aggregate, and review structured contributions before proposals come back here.",
+                "actualization_layer": "Host-aware skills and runtime protocols can use A Person Index as the comparative core while relying on external tools for rendering and delivery.",
             },
         },
         "agent_companion_skill": {
@@ -240,10 +250,26 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "research-safe return formatting",
             ],
         },
+        "agent_actualization_skill": {
+            "name": "a-person-index-actualization",
+            "host": "codex",
+            "repo_path": "skills/a-person-index-actualization/",
+            "path_hint": "$CODEX_HOME/skills/a-person-index-actualization",
+            "purpose": "Inspect host capabilities, classify the run, choose artifact classes or actualization protocols, and materialize outputs without losing A Person Index provenance.",
+            "recommended_for": [
+                "artifact generation",
+                "run planning",
+                "host-aware orchestration",
+                "contextual comparison handoffs",
+            ],
+        },
         "canonical_sources": {
             "instrument_root": "instruments/",
             "ontology_root": "ontology/",
             "extension_roots": [
+                "modes/",
+                "artifacts/",
+                "actualization/",
                 "motifs/",
                 "mappings/",
                 "interactions/",
@@ -289,6 +315,10 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "codeowners": ".github/CODEOWNERS",
             "codex_automation_doc": "docs/codex_automation.md",
             "research_authoring_standard_doc": "docs/research_authoring_standard.md",
+            "advanced_modes_doc": "docs/advanced_modes.md",
+            "actualization_protocols_doc": "docs/actualization_protocols.md",
+            "expression_and_artifacts_doc": "docs/expression_and_artifacts.md",
+            "multi_subject_comparison_doc": "docs/multi_subject_comparison.md",
             "source_landscape_doc": "docs/source_landscape.md",
             "codex_automation_context": ".github/codex/automation_context.md",
             "codex_task_queue": ".github/codex/task_queue.yaml",
@@ -433,6 +463,12 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 ],
                 "tool_ids": [
                     "orient_agent",
+                    "list_analysis_modes",
+                    "fetch_analysis_mode",
+                    "list_artifact_classes",
+                    "fetch_artifact_class",
+                    "list_actualization_protocols",
+                    "fetch_actualization_protocol",
                     "find_framework_records",
                     "compare_frameworks",
                     "trace_to_motifs",
@@ -455,6 +491,10 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                     "registry://roadmap",
                     "registry://assessment-workflow",
                     "registry://ilens-walkthrough",
+                    "registry://advanced-modes",
+                    "registry://actualization-protocols",
+                    "registry://expression-and-artifacts",
+                    "registry://multi-subject-comparison",
                     "registry://research-promotion",
                     "registry://protocol-packs",
                     "registry://protocol-pack/{pack_id}",
@@ -920,6 +960,11 @@ def build_outputs(root: Path) -> dict:
         "house_synthesis": {
             "motifs": [item.model_dump(mode="json") for item in extensions.motifs],
             "mappings": [item.model_dump(mode="json") for item in extensions.mappings],
+            "analysis_modes": [item.model_dump(mode="json") for item in extensions.analysis_modes],
+            "artifact_classes": [item.model_dump(mode="json") for item in extensions.artifact_classes],
+            "actualization_protocols": [
+                item.model_dump(mode="json") for item in extensions.actualization_protocols
+            ],
             "interaction_hypotheses": [
                 item.model_dump(mode="json") for item in extensions.interaction_hypotheses
             ],
@@ -1651,6 +1696,11 @@ def build_docs(root: Path) -> None:
     extension_payload = {
         "motifs": [item.model_dump(mode="json") for item in extensions.motifs],
         "mappings": [item.model_dump(mode="json") for item in extensions.mappings],
+        "analysis_modes": [item.model_dump(mode="json") for item in extensions.analysis_modes],
+        "artifact_classes": [item.model_dump(mode="json") for item in extensions.artifact_classes],
+        "actualization_protocols": [
+            item.model_dump(mode="json") for item in extensions.actualization_protocols
+        ],
         "interaction_hypotheses": [
             item.model_dump(mode="json") for item in extensions.interaction_hypotheses
         ],

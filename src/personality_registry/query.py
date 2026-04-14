@@ -349,6 +349,18 @@ def resolve_interaction_hypothesis(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.interaction_hypotheses, ref, ("summary",))
 
 
+def resolve_analysis_mode(extensions: ExtensionRegistryData, ref: str):
+    return _resolve_extension_item(extensions.analysis_modes, ref, ("name", "summary"))
+
+
+def resolve_artifact_class(extensions: ExtensionRegistryData, ref: str):
+    return _resolve_extension_item(extensions.artifact_classes, ref, ("name", "summary"))
+
+
+def resolve_actualization_protocol(extensions: ExtensionRegistryData, ref: str):
+    return _resolve_extension_item(extensions.actualization_protocols, ref, ("name", "summary"))
+
+
 def agent_orientation(
     repository: RepositoryData,
     extensions: ExtensionRegistryData,
@@ -390,6 +402,12 @@ def agent_orientation(
             "registry-arrival",
             "assessment-results-intake",
             "ilens-walkthrough",
+        ],
+        "advanced_docs": [
+            "docs/advanced_modes.md",
+            "docs/actualization_protocols.md",
+            "docs/expression_and_artifacts.md",
+            "docs/multi_subject_comparison.md",
         ],
     }
 
@@ -1289,6 +1307,113 @@ def promotion_pathway_record(extensions: ExtensionRegistryData, ref: str) -> dic
 
 def result_atom_schema_record(extensions: ExtensionRegistryData) -> dict[str, Any]:
     return {"result_atom_schema": extensions.result_atom_schema.model_dump(mode="json")}
+
+
+def find_analysis_modes(
+    extensions: ExtensionRegistryData,
+    *,
+    text: str | None = None,
+) -> list[dict[str, Any]]:
+    results = []
+    for item in extensions.analysis_modes:
+        if text:
+            blob = "\n".join(
+                [
+                    item.id,
+                    item.name,
+                    item.summary,
+                    item.purpose,
+                    *item.intent_signals,
+                    *item.preferred_entrypoints,
+                    *item.typical_outputs,
+                    *item.cautions,
+                ]
+            )
+            if _normalize(text) not in _normalize(blob):
+                continue
+        results.append(item.model_dump(mode="json"))
+    return sorted(results, key=lambda entry: entry["name"].lower())
+
+
+def analysis_mode_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, Any]:
+    item = resolve_analysis_mode(extensions, ref)
+    return {"analysis_mode": item.model_dump(mode="json")}
+
+
+def find_artifact_classes(
+    extensions: ExtensionRegistryData,
+    *,
+    mode: str | None = None,
+    text: str | None = None,
+) -> list[dict[str, Any]]:
+    mode_id = resolve_analysis_mode(extensions, mode).id if mode else None
+    results = []
+    for item in extensions.artifact_classes:
+        if mode_id and mode_id not in item.suitable_mode_ids:
+            continue
+        if text:
+            blob = "\n".join(
+                [
+                    item.id,
+                    item.name,
+                    item.summary,
+                    item.default_expression_mode,
+                    *item.audience_modes,
+                    *item.suitable_mode_ids,
+                    *item.required_evidence_partitions,
+                    *item.capability_tags,
+                    *item.typical_forms,
+                ]
+            )
+            if _normalize(text) not in _normalize(blob):
+                continue
+        results.append(item.model_dump(mode="json"))
+    return sorted(results, key=lambda entry: entry["name"].lower())
+
+
+def artifact_class_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, Any]:
+    item = resolve_artifact_class(extensions, ref)
+    return {"artifact_class": item.model_dump(mode="json")}
+
+
+def find_actualization_protocols(
+    extensions: ExtensionRegistryData,
+    *,
+    run_mode: str | None = None,
+    artifact_class: str | None = None,
+    text: str | None = None,
+) -> list[dict[str, Any]]:
+    mode_id = resolve_analysis_mode(extensions, run_mode).id if run_mode else None
+    artifact_id = resolve_artifact_class(extensions, artifact_class).id if artifact_class else None
+    results = []
+    for item in extensions.actualization_protocols:
+        if mode_id and mode_id not in item.run_mode_ids:
+            continue
+        if artifact_id and artifact_id not in item.target_artifact_class_ids:
+            continue
+        if text:
+            blob = "\n".join(
+                [
+                    item.id,
+                    item.name,
+                    item.summary,
+                    *item.run_mode_ids,
+                    *item.protocol_ids,
+                    *item.target_artifact_class_ids,
+                    *item.required_capability_tags,
+                    *item.steps,
+                    *item.cautions,
+                ]
+            )
+            if _normalize(text) not in _normalize(blob):
+                continue
+        results.append(item.model_dump(mode="json"))
+    return sorted(results, key=lambda entry: entry["name"].lower())
+
+
+def actualization_protocol_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, Any]:
+    item = resolve_actualization_protocol(extensions, ref)
+    return {"actualization_protocol": item.model_dump(mode="json")}
 
 
 def _related_interaction_entity_ids(

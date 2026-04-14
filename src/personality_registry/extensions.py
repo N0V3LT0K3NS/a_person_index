@@ -11,6 +11,9 @@ from personality_registry.models import StrictModel
 
 
 EXTENSION_FILE_MODELS = {
+    "modes/registry.yaml": "analysis_modes",
+    "artifacts/registry.yaml": "artifact_classes",
+    "actualization/registry.yaml": "actualization_protocols",
     "motifs/registry.yaml": "motifs",
     "mappings/construct_to_motif.yaml": "mappings",
     "interactions/registry.yaml": "interaction_hypotheses",
@@ -21,6 +24,59 @@ EXTENSION_FILE_MODELS = {
     "research/contribution_models.yaml": "contribution_models",
     "research/result_atom_schema.yaml": "result_atom_schema",
 }
+
+
+class AnalysisMode(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    summary: str
+    purpose: str
+    intent_signals: list[str] = Field(default_factory=list)
+    preferred_entrypoints: list[str] = Field(default_factory=list)
+    typical_outputs: list[str] = Field(default_factory=list)
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class AnalysisModesDocument(StrictModel):
+    analysis_modes: list[AnalysisMode]
+
+
+class ArtifactClass(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    summary: str
+    audience_modes: list[str] = Field(default_factory=list)
+    default_expression_mode: Literal["tacit", "explanatory", "technical", "mixed"]
+    suitable_mode_ids: list[str] = Field(default_factory=list)
+    required_evidence_partitions: list[str] = Field(default_factory=list)
+    capability_tags: list[str] = Field(default_factory=list)
+    typical_forms: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class ArtifactClassesDocument(StrictModel):
+    artifact_classes: list[ArtifactClass]
+
+
+class ActualizationProtocol(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    summary: str
+    run_mode_ids: list[str] = Field(default_factory=list)
+    protocol_ids: list[str] = Field(default_factory=list)
+    target_artifact_class_ids: list[str] = Field(default_factory=list)
+    required_capability_tags: list[str] = Field(default_factory=list)
+    steps: list[str] = Field(default_factory=list)
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class ActualizationProtocolsDocument(StrictModel):
+    actualization_protocols: list[ActualizationProtocol]
 
 
 class Motif(StrictModel):
@@ -133,6 +189,7 @@ class Protocol(StrictModel):
     status: Literal["draft", "experimental", "active"]
     program_kind: Literal[
         "micro_program",
+        "comparison_program",
         "translation_program",
         "synthesis_program",
         "artifact_program",
@@ -266,6 +323,9 @@ class ResultAtomSchemaDocument(StrictModel):
 
 
 DOCUMENT_MODEL_BY_FILE = {
+    "modes/registry.yaml": AnalysisModesDocument,
+    "artifacts/registry.yaml": ArtifactClassesDocument,
+    "actualization/registry.yaml": ActualizationProtocolsDocument,
     "motifs/registry.yaml": MotifsDocument,
     "mappings/construct_to_motif.yaml": ConstructMappingsDocument,
     "interactions/registry.yaml": InteractionHypothesesDocument,
@@ -280,6 +340,9 @@ DOCUMENT_MODEL_BY_FILE = {
 
 @dataclass
 class ExtensionRegistryData:
+    analysis_modes: list[AnalysisMode]
+    artifact_classes: list[ArtifactClass]
+    actualization_protocols: list[ActualizationProtocol]
     motifs: list[Motif]
     mappings: list[ConstructMapping]
     interaction_hypotheses: list[InteractionHypothesis]
@@ -328,6 +391,9 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
     if errors:
         return ExtensionLoadResult(data=None, errors=errors)
 
+    analysis_modes_doc = documents["modes/registry.yaml"]
+    artifact_classes_doc = documents["artifacts/registry.yaml"]
+    actualization_protocols_doc = documents["actualization/registry.yaml"]
     motifs_doc = documents["motifs/registry.yaml"]
     mappings_doc = documents["mappings/construct_to_motif.yaml"]
     interaction_hypotheses_doc = documents["interactions/registry.yaml"]
@@ -339,6 +405,9 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
     result_atom_schema_doc = documents["research/result_atom_schema.yaml"]
 
     data = ExtensionRegistryData(
+        analysis_modes=analysis_modes_doc.analysis_modes,
+        artifact_classes=artifact_classes_doc.artifact_classes,
+        actualization_protocols=actualization_protocols_doc.actualization_protocols,
         motifs=motifs_doc.motifs,
         mappings=mappings_doc.mappings,
         interaction_hypotheses=interaction_hypotheses_doc.interaction_hypotheses,

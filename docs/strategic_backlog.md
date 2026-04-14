@@ -44,7 +44,7 @@ These are not speculative goals anymore:
 - the repo is framed coherently as **A Person Index (API)**
 - the five product layers are explicit
 - the MCP surface is real, read-only, and tested
-- Claude Code, Claude Desktop, and Hermes setup paths are documented and proven
+- Claude Code is tested, and Claude Desktop plus Hermes setup paths are documented
 - the companion skill exists in-repo
 - the site exists and is deployed
 - queue-driven Codex PR automation is working end to end

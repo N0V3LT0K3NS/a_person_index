@@ -1,12 +1,16 @@
 # A Person Index (API)
 
-A Person Index (API) is a Git-native, agent-readable comparative substrate for personhood frameworks, house synthesis motifs, composable analysis techniques, index programs, runtime packs, and privacy-minimizing research intake.
+A Person Index (API) is a Git-native, agent-readable comparative core for personhood frameworks, house synthesis motifs, composable analysis techniques, index programs, runtime packs, and privacy-minimizing research intake.
+
+It is not only a catalog of frameworks. It is also the semantic and methodological center that downstream agents can use for richer protocol work, artifact generation, and contextual comparison without collapsing those things back into canonical truth.
 
 Live site: [a-person-index.netlify.app](https://a-person-index.netlify.app)
 
 Landing directions: [site/landing-options.html](/Users/noveltokens/a_person_index/site/landing-options.html) and [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
 
 Companion Codex skill: `$a-person-index` can sit above the MCP and CLI surfaces to help Codex compare frameworks, fetch program packs, and keep source, house, and research layers distinct. The canonical repo copy lives at [skills/a-person-index](/Users/noveltokens/a_person_index/skills/a-person-index).
+
+Companion actualization skill: `$a-person-index-actualization` can sit above the comparative core when the task is to inspect available host capabilities, choose a run mode, and materialize an artifact or handoff without losing provenance. The repo copy lives at [skills/a-person-index-actualization](/Users/noveltokens/a_person_index/skills/a-person-index-actualization).
 
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
@@ -45,6 +49,11 @@ If you need the deeper map after that:
   [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md),
   [docs/ilens_walkthrough.md](/Users/noveltokens/a_person_index/docs/ilens_walkthrough.md),
   [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+- Advanced and downstream-facing use:
+  [docs/advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md),
+  [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
+  [docs/expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md),
+  [docs/multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)
 - Clients and operations:
   [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md),
   [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md),
@@ -86,6 +95,14 @@ This repo now distinguishes between:
 These layers should collaborate, but they should not be conflated.
 This repo is a shared substrate for multiple downstream consumers. `GNOMY` is a lead consumer, not the only one.
 
+Around that core, there are adjacent downstream concerns that matter but should not be silently folded into ontology:
+
+- actualization and orchestration protocols
+- user-facing expression and artifact rendering
+- contextual and multi-subject comparison
+
+The repo increasingly defines the grammar for those layers even when their runtime implementation lives elsewhere.
+
 For Codex specifically, the companion skill is an optional usage layer on top of the substrate:
 
 - skill name: `$a-person-index`
@@ -97,10 +114,13 @@ For Codex specifically, the companion skill is an optional usage layer on top of
 
 ```text
 .
+├── actualization/
+├── artifacts/
 ├── docs/
 ├── generated/
 ├── interactions/
 ├── instruments/
+├── modes/
 ├── mappings/
 ├── motifs/
 ├── ontology/
@@ -129,6 +149,9 @@ Key conventions:
 - `use_cases.yaml` stores practical fit and utility.
 - `notes.md` stores human-readable narrative context.
 - `motifs/registry.yaml` stores provisional house translation motifs.
+- `modes/registry.yaml` stores named run modes for advanced comparative work.
+- `artifacts/registry.yaml` stores artifact classes and their evidence and capability expectations.
+- `actualization/registry.yaml` stores downstream actualization protocols that use A Person Index as the comparative core.
 - `mappings/construct_to_motif.yaml` stores provisional construct-to-motif and instrument-to-motif mappings.
 - `interactions/registry.yaml` stores house interaction hypotheses across motifs and constructs.
 - `techniques/registry.yaml` stores reusable comparative methods.

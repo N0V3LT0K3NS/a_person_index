@@ -264,11 +264,16 @@ def collect_validation_errors(root: Path) -> list[str]:
             errors.append(f"duplicate ID '{entity_id}' appears in {', '.join(sorted(locations))}")
 
     if extensions is not None:
+        analysis_mode_ids = {mode.id for mode in extensions.analysis_modes}
+        artifact_class_ids = {artifact.id for artifact in extensions.artifact_classes}
         motif_ids = {motif.id for motif in extensions.motifs}
         technique_ids = {technique.id for technique in extensions.techniques}
         dimension_ids = {dimension.id for dimension in repository.ontology_dimensions.dimensions}
 
         extension_groups = {
+            "analysis_mode": extensions.analysis_modes,
+            "artifact_class": extensions.artifact_classes,
+            "actualization_protocol": extensions.actualization_protocols,
             "motif": extensions.motifs,
             "mapping": extensions.mappings,
             "interaction_hypothesis": extensions.interaction_hypotheses,
@@ -297,6 +302,13 @@ def collect_validation_errors(root: Path) -> list[str]:
                 if dimension not in dimension_ids:
                     errors.append(
                         f"motifs/registry.yaml: motif '{motif.id}' references unknown ontology dimension '{dimension}'"
+                    )
+
+        for artifact_class in extensions.artifact_classes:
+            for mode_id in artifact_class.suitable_mode_ids:
+                if mode_id not in analysis_mode_ids:
+                    errors.append(
+                        f"artifacts/registry.yaml: artifact class '{artifact_class.id}' references missing analysis mode '{mode_id}'"
                     )
 
         for mapping in extensions.mappings:
@@ -353,6 +365,23 @@ def collect_validation_errors(root: Path) -> list[str]:
                     errors.append(
                         f"protocols/registry.yaml: protocol '{protocol.id}' references missing component program "
                         f"'{component_program_id}'"
+                    )
+
+        for actualization_protocol in extensions.actualization_protocols:
+            for mode_id in actualization_protocol.run_mode_ids:
+                if mode_id not in analysis_mode_ids:
+                    errors.append(
+                        f"actualization/registry.yaml: actualization protocol '{actualization_protocol.id}' references missing analysis mode '{mode_id}'"
+                    )
+            for protocol_id in actualization_protocol.protocol_ids:
+                if protocol_id not in protocol_ids:
+                    errors.append(
+                        f"actualization/registry.yaml: actualization protocol '{actualization_protocol.id}' references missing protocol '{protocol_id}'"
+                    )
+            for artifact_id in actualization_protocol.target_artifact_class_ids:
+                if artifact_id not in artifact_class_ids:
+                    errors.append(
+                        f"actualization/registry.yaml: actualization protocol '{actualization_protocol.id}' references missing artifact class '{artifact_id}'"
                     )
 
         contribution_model_ids = {item.id for item in extensions.contribution_models}

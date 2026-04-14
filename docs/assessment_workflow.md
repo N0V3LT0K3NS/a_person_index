@@ -2,6 +2,8 @@
 
 Use this workflow when a user pastes multiple assessment results and asks A Person Index to "use what it can."
 
+This is the default workflow for a single mixed stack. It is not the whole story for contextual, relational, or multi-subject comparison.
+
 ## Goal
 
 Turn raw assessment names and outputs into:
@@ -95,6 +97,8 @@ For `Human Design` and `Natal Astrology`:
 5. interaction hypotheses
 6. limits and caveats
 
+For most end users, the answer should usually describe the lived pattern more than the internal variable names. The technical scaffold should remain available, not dominant.
+
 ## Anti-patterns
 
 - using `find_framework_records(text=<entire report>)` as the only match step
@@ -102,3 +106,9 @@ For `Human Design` and `Natal Astrology`:
 - assuming `fetch_protocol_spec` means the protocol has been run
 - hiding missing coverage
 - flattening symbolic systems into trait claims
+
+See also:
+
+- [advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md)
+- [expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md)
+- [multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)

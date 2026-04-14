@@ -148,3 +148,82 @@ protocols:
     notes: >
       Translation memos are useful baseline artifacts for both curation and
       downstream synthesis.
+
+  - id: proto_contextual_comparison
+    name: Contextual Comparison Memo
+    status: experimental
+    program_kind: comparison_program
+    purpose: >
+      Compare one subject across time slices, roles, or contexts without
+      confusing sparse deltas, adaptive overlays, and genuine baseline change.
+    summary: >
+      A comparison program for repeated or context-tagged personhood evidence
+      that keeps stable-versus-adaptive framing, paradox preservation, and
+      missingness explicit rather than smoothing them into one narrative arc.
+    downstream_consumers:
+      - analyst agents
+      - actualization agents
+      - contextual comparison workflows
+    required_inputs:
+      - context-tagged result atoms or comparable structured outputs
+      - declared context or time slices
+      - consistent comparative axes or motif traces
+    optional_inputs:
+      - longitudinal notes
+      - role descriptions
+      - behavioral observations
+    technique_ids:
+      - tech_result_atom_decomposition
+      - tech_stable_vs_adaptive_split
+      - tech_paradox_scan
+      - tech_contradiction_preservation
+    component_program_ids:
+      - proto_paradox_finder
+    primary_outputs:
+      - contextual comparison memo
+      - baseline versus adaptive split notes
+      - delta caution map
+    notes: >
+      Best used when the same or comparable frameworks have been collected for
+      more than one context, role, or time slice. Sparse coverage should reduce
+      the density and confidence of the output rather than forcing a narrative.
+
+  - id: proto_pairwise_relational_comparison
+    name: Pairwise Relational Comparison
+    status: experimental
+    program_kind: comparison_program
+    purpose: >
+      Compare two subject stacks side by side without collapsing convergence,
+      friction, orthogonality, and missingness into one compatibility score.
+    summary: >
+      A comparison program for pairwise or relationship-adjacent work that uses
+      translation, paradox preservation, and evidence bracketing to keep
+      relational claims scoped to what the inputs can actually support.
+    downstream_consumers:
+      - analyst agents
+      - actualization agents
+      - relational comparison workflows
+    required_inputs:
+      - two explicitly separated stacks or structured result bundles
+      - framework records for any compared systems
+      - declared comparison question or relationship context
+    optional_inputs:
+      - relational history notes
+      - attachment or care-signaling context
+      - behavioral observations
+    technique_ids:
+      - tech_cross_framework_translation
+      - tech_paradox_scan
+      - tech_contradiction_preservation
+      - tech_symbolic_vs_empirical_bracketing
+    component_program_ids:
+      - proto_translation_memo
+      - proto_paradox_finder
+    primary_outputs:
+      - pairwise relational sheet
+      - convergence and friction memo
+      - missing-seam notes
+    notes: >
+      This program is for disciplined pairwise comparison, not deterministic
+      compatibility scoring. It should preserve asymmetry and leave unsupported
+      seams visible.

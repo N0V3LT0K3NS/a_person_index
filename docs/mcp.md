@@ -14,6 +14,8 @@ The MCP adapter solves that by exposing the existing registry primitives through
 
 The MCP layer is an adapter, not a second source of truth.
 
+It is also the cleanest way to let host agents use A Person Index as a comparative core inside richer workflows without moving that richer workflow itself into the canonical repo.
+
 ## Fastest safe onboarding
 
 For a newly arrived agent, the fastest reliable sequence is:
@@ -58,6 +60,34 @@ That skill should:
 
 The skill is a host-specific operator guide. The MCP remains the actual interface surface.
 
+## MCP as comparative core
+
+In many real uses, the MCP server will not be the only tool surface available to
+the host.
+
+That is fine.
+
+The intended pattern is:
+
+- use A Person Index MCP for comparative meaning, boundary discipline, named methods, and research-safe return contracts
+- use other tools only for adjacent work such as file handling, visualization, rendering, storage, or delivery
+
+The important rule is not "only one tool exists."
+
+The important rule is that A Person Index remains the semantic authority for:
+
+- what the frameworks are
+- how they compare
+- what the motifs and interactions mean
+- what a named program or pack is
+- what kind of research return is allowed
+
+See:
+
+- [actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md)
+- [expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md)
+- [multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)
+
 ## Implementation stance
 
 - Transport: stdio
@@ -101,6 +131,10 @@ npm run mcp:test
 - `registry://roadmap`
 - `registry://assessment-workflow`
 - `registry://ilens-walkthrough`
+- `registry://advanced-modes`
+- `registry://actualization-protocols`
+- `registry://expression-and-artifacts`
+- `registry://multi-subject-comparison`
 - `registry://research-promotion`
 - `registry://protocol-packs`
 - `registry://protocol-pack/{pack_id}`
@@ -110,6 +144,12 @@ npm run mcp:test
 ## Exposed tools
 
 - `orient_agent`
+- `list_analysis_modes`
+- `fetch_analysis_mode`
+- `list_artifact_classes`
+- `fetch_artifact_class`
+- `list_actualization_protocols`
+- `fetch_actualization_protocol`
 - `find_framework_records`
 - `compare_frameworks`
 - `trace_to_motifs`
@@ -158,3 +198,4 @@ That scheme names the access surface, not the entire product. The product is A P
 - The MCP adapter depends on Node, not Python MCP, because the official Python MCP SDK requires Python 3.10+ while this repo currently targets Python 3.9+.
 - If the Python runtime baseline rises later, the adapter can be reconsidered.
 - The strongest current production claim is local and nearby-agent readiness, not hosted remote service readiness.
+- The MCP surface currently supports the comparative core. Artifact rendering, multi-subject persistence, and broader application logic remain downstream concerns.

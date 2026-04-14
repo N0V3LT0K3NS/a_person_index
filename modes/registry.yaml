@@ -1,0 +1,148 @@
+analysis_modes:
+  - id: mode_orient_and_sync
+    name: Orientation and Sync
+    status: active
+    summary: Establish what A Person Index currently contains, what surfaces are available, and what changed before deeper work begins.
+    purpose: Reduce avoidable drift by making current state explicit before substantive use.
+    intent_signals:
+      - "make sure you are up to date"
+      - "orient yourself to the repo or MCP"
+      - "what changed"
+      - "what is current now"
+    preferred_entrypoints:
+      - orient_agent
+      - registry://quickstart
+      - registry://current-state
+      - registry-arrival
+    typical_outputs:
+      - current-state snapshot
+      - recommended next sequence
+      - changed-surface summary
+    cautions:
+      - Do not imply that orientation is the same thing as framework use.
+      - Keep repo status separate from person-level findings.
+
+  - id: mode_bounded_single_subject
+    name: Bounded Single-Subject Mixed Stack
+    status: active
+    summary: Match and compare one person's mixed assessment stack while preserving indexed coverage, gaps, and layer boundaries.
+    purpose: Support careful single-subject comparative work without overclaiming runtime inference.
+    intent_signals:
+      - "use these results"
+      - "what can A Person Index do with this stack"
+      - "make sense of my tests"
+    preferred_entrypoints:
+      - registry://assessment-workflow
+      - assessment-results-intake
+      - list_protocol_packs
+    typical_outputs:
+      - matched framework inventory
+      - motif and interaction summary
+      - bounded comparative reading
+    cautions:
+      - Keep unmatched frameworks visible.
+      - Do not flatten symbolic systems into psychometric claims.
+
+  - id: mode_architecture_analysis
+    name: Architecture and Capability Analysis
+    status: experimental
+    summary: Inspect A Person Index itself as a layered comparative system rather than only as a source of person-level outputs.
+    purpose: Support builders and advanced users who want to understand the latent operations, seams, and limits of the substrate.
+    intent_signals:
+      - "what can this system actually do"
+      - "look past the surface lego blocks"
+      - "analyze the architecture"
+      - "what are the seams or gaps"
+    preferred_entrypoints:
+      - registry://manifest
+      - registry://quickstart
+      - programs and pack summaries
+    typical_outputs:
+      - layer map
+      - capability memo
+      - gap analysis
+    cautions:
+      - Do not drift from system analysis into unconstrained person narration.
+      - Keep latent possibilities separate from already shipped capabilities.
+
+  - id: mode_run_planning
+    name: Run Planning
+    status: active
+    summary: Decide what kind of pass should happen, what should stay inside A Person Index, and what downstream realization is appropriate before executing.
+    purpose: Improve mode discipline, tool choice, and artifact fit before the host starts acting.
+    intent_signals:
+      - "don't do it yet"
+      - "let's think through the plan"
+      - "set ourselves up for success"
+    preferred_entrypoints:
+      - registry://assessment-workflow
+      - registry://ilens-walkthrough
+      - program pack summaries
+    typical_outputs:
+      - phased plan
+      - program or pack choice
+      - artifact recommendation
+    cautions:
+      - Distinguish planning from execution clearly.
+      - Name what evidence is still missing before promising an output shape.
+
+  - id: mode_artifact_actualization
+    name: Artifact Actualization
+    status: experimental
+    summary: Use A Person Index as the comparative core while a host agent uses available tools to materialize a deliberate artifact or deliverable.
+    purpose: Turn structured comparative understanding into a usable downstream object without losing provenance.
+    intent_signals:
+      - "make an artifact"
+      - "turn this into a memo or card"
+      - "generate a graph or handoff file"
+    preferred_entrypoints:
+      - actualization protocol registry
+      - artifact class registry
+      - protocol pack summaries
+    typical_outputs:
+      - rendered document
+      - comparison matrix
+      - graph-ready bundle
+    cautions:
+      - External tools may render or package the output, but they should not redefine comparative meaning.
+      - Keep evidence partitions visible in the final artifact.
+
+  - id: mode_contextual_comparison
+    name: Contextual and Multi-Subject Comparison
+    status: experimental
+    summary: Compare one person across contexts or time, or compare multiple people side by side, using the same comparative grammar without collapsing the scopes.
+    purpose: Extend the substrate beyond one mixed stack while keeping semantic discipline.
+    intent_signals:
+      - "compare these two people"
+      - "compare me across time"
+      - "compare work self and relational self"
+    preferred_entrypoints:
+      - multi-subject comparison docs
+      - comparison-oriented actualization protocols
+    typical_outputs:
+      - contextual comparison memo
+      - pairwise matrix
+      - convergence and tension map
+    cautions:
+      - Comparison intensifies the risk of smoothing over missingness.
+      - Avoid turning pairwise work into a single compatibility score.
+
+  - id: mode_trace_review
+    name: Trace Review
+    status: experimental
+    summary: Review another agent's A Person Index run to see what layers were touched, where it drifted, and what support surfaces were missing.
+    purpose: Use run traces as internal learning material without promoting them directly into canonical truth.
+    intent_signals:
+      - "review this run"
+      - "analyze how the agent used A Person Index"
+      - "what happened in this trace"
+    preferred_entrypoints:
+      - internal review packets
+      - advanced mode docs
+    typical_outputs:
+      - mode map
+      - drift and recovery memo
+      - refinement recommendations
+    cautions:
+      - This is primarily an internal or advanced mode.
+      - Do not confuse run-quality review with person-level comparative truth.

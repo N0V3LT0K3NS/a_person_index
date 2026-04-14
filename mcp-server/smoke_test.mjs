@@ -38,6 +38,9 @@ if (!tools.tools.some((tool) => tool.name === "fetch_curated_protocol_pack")) {
 if (!tools.tools.some((tool) => tool.name === "fetch_research_promotion_policy")) {
   throw new Error("Expected fetch_research_promotion_policy tool in MCP surface.");
 }
+if (!tools.tools.some((tool) => tool.name === "list_actualization_protocols")) {
+  throw new Error("Expected list_actualization_protocols tool in MCP surface.");
+}
 
 const manifest = await client.readResource({ uri: "registry://manifest" });
 const manifestPayload = JSON.parse(manifest.contents?.[0]?.text ?? "{}");
@@ -53,6 +56,11 @@ if (!curatedPackIndex.contents?.[0]?.text?.includes("ppk_ilens_core_trait_motive
 const researchPromotion = await client.readResource({ uri: "registry://research-promotion" });
 if (!researchPromotion.contents?.[0]?.text?.includes("research_promotion_v0_1")) {
   throw new Error("Expected research promotion resource content.");
+}
+
+const actualizationResource = await client.readResource({ uri: "registry://actualization-protocols" });
+if (!actualizationResource.contents?.[0]?.text?.includes("A Person Index is often most powerful")) {
+  throw new Error("Expected actualization protocol resource content.");
 }
 
 const prompt = await client.getPrompt({ name: "registry-arrival" });

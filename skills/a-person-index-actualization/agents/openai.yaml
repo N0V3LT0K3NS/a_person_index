@@ -1,0 +1,4 @@
+interface:
+  display_name: "A Person Index Actualization"
+  short_description: "Turn API findings into artifacts"
+  default_prompt: "Use $a-person-index-actualization to inspect available capabilities, classify the run, and turn A Person Index findings into the right artifact without losing provenance."
