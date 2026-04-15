@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from personality_registry.extensions import load_extensions_strict
 
 
@@ -109,3 +111,41 @@ def test_extension_registries_load_and_cross_reference(repo_root):
 
     for interaction in extensions.interaction_hypotheses:
         assert set(interaction.protocol_relevance).issubset(protocol_ids)
+
+
+@pytest.mark.xfail(
+    strict=True,
+    reason=(
+        "Known drift between ComparisonShape.required_declarations (free-text) and "
+        "declaration_fields[].required (machine-enforced). Multiple seeded shapes "
+        "declare more requirements in prose than they enforce in fields, so "
+        "prepare_comparison_run can return readiness_status='ready' for runs the "
+        "shape's own required_declarations list says are under-declared. Flip this "
+        "xfail to a regular assertion once the drift is resolved (by tightening the "
+        "seed, extending the preflight logic, or both)."
+    ),
+)
+def test_comparison_shape_required_declarations_align_with_fields(repo_root):
+    """Guard against silent drift between prose and machine-enforced requirements.
+
+    This test is intentionally xfail(strict=True) right now. It documents a known
+    inconsistency in the seeded comparison shapes and will flip to an unexpected
+    pass (and fail CI, demanding attention) the moment the drift is fixed.
+    """
+    extensions = load_extensions_strict(repo_root)
+
+    drifted: list[tuple[str, int, int]] = []
+    for shape in extensions.comparison_shapes:
+        hard_required = sum(1 for field in shape.declaration_fields if field.required)
+        declared_required = len(shape.required_declarations)
+        if declared_required > hard_required:
+            drifted.append((shape.id, hard_required, declared_required))
+
+    assert not drifted, (
+        "ComparisonShape.required_declarations makes more promises than "
+        "declaration_fields[].required enforces: "
+        + ", ".join(
+            f"{shape_id} (hard={hard}, declared={declared})"
+            for shape_id, hard, declared in drifted
+        )
+    )
