@@ -2889,7 +2889,7 @@ def recommend_next_path(
                     item.name,
                     item.summary,
                     *item.typical_forms,
-                    *item.notes.splitlines(),
+                    *((item.notes or "").splitlines()),
                 ],
             )
         else:
