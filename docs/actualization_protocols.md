@@ -53,6 +53,7 @@ Current examples include:
 
 - `Single-Subject Comparative Memo`
 - `Structured Result Bundle Packaging`
+- `Comparison Result Bundle Packaging`
 - `Human Model Card Realization`
 - `Context Matrix Render`
 - `Pairwise Relational Sheet`

@@ -157,6 +157,67 @@ workflow_recipes:
       - Do not let machine readability erase provenance or uncertainty.
       - Do not emit downstream convenience fields that pretend to be canonical truth.
 
+  - id: wfr_comparison_result_bundle_technical
+    name: Comparison Result Bundle Technical
+    status: experimental
+    summary: Turn a contextual or pairwise comparison into a technical JSON-oriented bundle for downstream agents, maintainers, or research-safe consumers.
+    run_mode_ids:
+      - mode_contextual_comparison
+      - mode_artifact_actualization
+    artifact_class_id: art_result_bundle
+    expression_profile_id: expr_technical
+    actualization_protocol_id: actx_comparison_result_bundle_packaging
+    required_capability_ids:
+      - cap_json_emit
+      - cap_file_write
+    realization_blocks:
+      - id: comparison_bundle_header
+        label: Comparison Bundle Header
+        block_kind: metadata
+        required: true
+        summary: Identify bundle purpose, comparison shape, intended downstream consumer, and version or schema reference.
+      - id: comparison_scope_and_declarations
+        label: Comparison Scope and Declarations
+        block_kind: metadata
+        required: true
+        summary: Record the explicit context slices, subject labels, relationship context, or other declared comparison fields that anchor the run.
+      - id: comparison_axes
+        label: Comparison Axes
+        block_kind: list
+        required: true
+        summary: State the frameworks, motifs, or shared axes kept stable across slices or subjects.
+      - id: structured_comparison_findings
+        label: Structured Comparison Findings
+        block_kind: bundle
+        required: true
+        summary: Package convergence, tension, orthogonality, missing seams, and stable deltas in machine-readable fields rather than prose only.
+      - id: provenance_partitions
+        label: Provenance Partitions
+        block_kind: provenance
+        required: true
+        summary: Preserve canonical framework content, house synthesis, named program behavior, and downstream judgment as explicit partitions.
+      - id: comparison_caveats_and_missingness
+        label: Comparison Caveats and Missingness
+        block_kind: caveat
+        required: true
+        summary: Keep sparse slices, non-overlap, non-reciprocal coverage, and confidence limits visible in the bundle.
+      - id: unresolved_questions
+        label: Unresolved Questions
+        block_kind: list
+        required: true
+        summary: Record deferred judgments, missing declarations, or next research-safe questions for downstream systems.
+    recipe_steps:
+      - Run comparison preflight before generating bundle fields so the declared scaffold is explicit.
+      - Keep the comparison shape and declared scope in bundle metadata rather than only in operator notes.
+      - Serialize grounded comparison seams and missing seams in stable fields so another agent can resume without re-reading prose.
+      - Add a markdown companion only if the host and audience need one after the JSON bundle is stable.
+    deliverables:
+      - JSON bundle
+      - structured markdown plus JSON
+    cautions:
+      - Do not let technical bundle structure imply stronger comparability than the comparison shape supports.
+      - Do not collapse pairwise or contextual work into a single score for downstream convenience.
+
   - id: wfr_pairwise_relational_sheet_explanatory
     name: Pairwise Relational Sheet Explanatory
     status: experimental

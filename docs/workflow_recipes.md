@@ -44,7 +44,8 @@ Workflow recipes now also carry realization blocks, so the host can move from
 without inventing that structure from memory.
 
 Current recipes now cover explanatory memos, context matrices, pairwise sheets,
-technical handoffs, human model cards, and structured result bundles.
+technical handoffs, human model cards, bounded structured result bundles, and
+comparison-oriented structured result bundles.
 
 ## Relationship to other layers
 

@@ -126,6 +126,7 @@ Examples:
 - if you can render tables, produce a context matrix or pairwise sheet
 - if you can generate diagrams, add a visual only when it clarifies rather than decorates
 - if you can emit structured data, package a result bundle for downstream use
+- if the work is contextual or pairwise and you can emit structured data, prefer a comparison-aware result bundle over forcing the output through a table renderer
 
 Before you start writing or rendering, turn the chosen workflow recipe into a
 concrete scaffold:

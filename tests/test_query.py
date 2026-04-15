@@ -377,6 +377,7 @@ def test_find_workflow_recipes_for_result_bundle(repo_root):
     )
     recipe_ids = {item["id"] for item in payload}
     assert "wfr_structured_result_bundle_technical" in recipe_ids
+    assert "wfr_comparison_result_bundle_technical" in recipe_ids
 
 
 def test_recommend_next_path_prefers_context_matrix_when_capabilities_fit(repo_root):
@@ -486,6 +487,19 @@ def test_prepare_artifact_realization_returns_result_bundle_scaffold(repo_root):
     assert {"bundle_header", "structured_findings", "provenance_partitions"} <= block_ids
 
 
+def test_prepare_artifact_realization_returns_comparison_result_bundle_scaffold(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = prepare_artifact_realization(
+        extensions,
+        workflow_recipe="Comparison Result Bundle Technical",
+        capability_refs=["JSON Emit", "File Write"],
+    )
+    assert payload["readiness_status"] == "ready"
+    assert payload["selected_realization_form"] == "JSON bundle"
+    block_ids = {item["id"] for item in payload["realization_blocks"]}
+    assert {"comparison_bundle_header", "structured_comparison_findings", "provenance_partitions"} <= block_ids
+
+
 def test_recommend_next_path_infers_contextual_mode_from_text(repo_root):
     extensions = load_extensions_strict(repo_root)
     payload = recommend_next_path(
@@ -549,6 +563,47 @@ def test_recommend_next_path_can_target_structured_result_bundle(repo_root):
         == "wfr_structured_result_bundle_technical"
     )
     assert "prepare_artifact_realization" in payload["recommended_tools"]
+
+
+def test_recommend_next_path_can_target_contextual_result_bundle(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = recommend_next_path(
+        extensions,
+        run_mode="Contextual and Multi-Subject Comparison",
+        comparison_shape="Contextual Time Slices",
+        capability_refs=["JSON Emit", "File Write"],
+        artifact_class="Structured Result Bundle",
+    )
+    assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_result_bundle"
+    assert payload["recommended_expression_profile"]["id"] == "expr_technical"
+    assert (
+        payload["recommended_actualization_protocol"]["actualization_protocol"]["id"]
+        == "actx_comparison_result_bundle_packaging"
+    )
+    assert (
+        payload["recommended_workflow_recipe"]["workflow_recipe"]["id"]
+        == "wfr_comparison_result_bundle_technical"
+    )
+
+
+def test_recommend_next_path_can_target_pairwise_result_bundle_without_matrix_fallback(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = recommend_next_path(
+        extensions,
+        run_mode="Contextual and Multi-Subject Comparison",
+        comparison_shape="Pairwise Relational Question",
+        capability_refs=["JSON Emit", "File Write"],
+        artifact_class="Structured Result Bundle",
+    )
+    assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_result_bundle"
+    assert (
+        payload["recommended_actualization_protocol"]["actualization_protocol"]["id"]
+        == "actx_comparison_result_bundle_packaging"
+    )
+    assert (
+        payload["recommended_workflow_recipe"]["workflow_recipe"]["id"]
+        == "wfr_comparison_result_bundle_technical"
+    )
 
 
 def test_find_interaction_hypotheses_related_to_attachment(repo_root):
