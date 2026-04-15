@@ -18,6 +18,7 @@ $defs:
       program_kind:
         enum:
         - micro_program
+        - comparison_program
         - translation_program
         - synthesis_program
         - artifact_program

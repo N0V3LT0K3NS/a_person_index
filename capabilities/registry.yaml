@@ -1,0 +1,176 @@
+capabilities:
+  - id: cap_file_read
+    name: File Read
+    status: active
+    capability_kind: input
+    summary: Read local files or artifacts that already exist in the host environment.
+    purpose: Turn existing reports, notes, or structured files into usable input for A Person Index work.
+    detection_questions:
+      - Can I open or inspect local files directly?
+      - Can I read an existing markdown, JSON, CSV, or text artifact?
+    typical_tool_signals:
+      - filesystem read
+      - file open
+      - repo file access
+    cautions:
+      - Reading a file does not mean its contents are already normalized or safe to treat as structured evidence.
+
+  - id: cap_mcp_or_api_call
+    name: MCP or API Call
+    status: active
+    capability_kind: network
+    summary: Call other MCP servers or external APIs as part of a broader actualization workflow.
+    purpose: Let a host combine A Person Index with adjacent systems without moving comparative meaning out of the core.
+    detection_questions:
+      - Can I call another MCP tool or remote API from this host?
+      - Can I fetch structured data from an adjacent service?
+    typical_tool_signals:
+      - MCP tool call
+      - HTTP API call
+      - external service integration
+    cautions:
+      - External services may help transform or render results, but they should not silently redefine the comparison.
+
+  - id: cap_code_execution
+    name: Code Execution
+    status: active
+    capability_kind: execution
+    summary: Run code or scripts to transform data, prepare bundles, or materialize structured outputs.
+    purpose: Allow deterministic reshaping of comparative findings into downstream-ready artifacts or intermediate data.
+    detection_questions:
+      - Can I run Python, Node, or shell code in this environment?
+      - Can I transform JSON, tables, or markdown programmatically?
+    typical_tool_signals:
+      - Python execution
+      - shell command
+      - script runner
+    cautions:
+      - Deterministic transformation is helpful, but code execution does not grant permission to invent missing semantics.
+
+  - id: cap_markdown_write
+    name: Markdown Write
+    status: active
+    capability_kind: rendering
+    summary: Produce markdown artifacts or markdown-shaped outputs that preserve structure clearly.
+    purpose: Support memos, handoffs, and cards in the simplest broadly portable form.
+    detection_questions:
+      - Can I write markdown files or emit stable markdown output?
+      - Can I preserve headings, sections, and lists cleanly?
+    typical_tool_signals:
+      - markdown file write
+      - rich text output
+      - documentation artifact
+    cautions:
+      - Markdown is a transport and expression format, not an artifact class by itself.
+
+  - id: cap_structured_text_render
+    name: Structured Text Render
+    status: active
+    capability_kind: rendering
+    summary: Render a structured memo, card, or narrative output with clear sections and evidence partitions.
+    purpose: Keep comparative meaning legible even when the host cannot produce more elaborate visual outputs.
+    detection_questions:
+      - Can I produce clean, sectioned long-form text rather than only short chat replies?
+      - Can I preserve evidence partitions and caveats clearly in prose?
+    typical_tool_signals:
+      - document rendering
+      - rich text formatting
+      - long-form output support
+    cautions:
+      - A polished narrative can still hide missingness if the evidence partitions are not kept explicit.
+
+  - id: cap_table_render
+    name: Table Render
+    status: active
+    capability_kind: rendering
+    summary: Render comparative outputs as tables or matrices.
+    purpose: Support contextual and pairwise views where the same axes must remain visible across slices or subjects.
+    detection_questions:
+      - Can I output a readable table or matrix here?
+      - Can I keep the same comparative axes visible across rows and columns?
+    typical_tool_signals:
+      - markdown table
+      - spreadsheet export
+      - tabular renderer
+    cautions:
+      - Tables can imply stronger comparability than the evidence actually supports if missing cells are hidden.
+
+  - id: cap_diagram_render
+    name: Diagram Render
+    status: experimental
+    capability_kind: visualization
+    summary: Produce a diagram or graph that clarifies relationships already grounded in the comparative core.
+    purpose: Help hosts materialize seams, tensions, or comparative structure visually when that adds genuine clarity.
+    detection_questions:
+      - Can I generate a diagram, network graph, or flow visualization?
+      - Can I bind labels and relationships clearly enough to preserve provenance?
+    typical_tool_signals:
+      - mermaid
+      - graph tool
+      - diagram renderer
+    cautions:
+      - Visual polish should not outrun semantic precision.
+
+  - id: cap_spreadsheet_render
+    name: Spreadsheet Render
+    status: experimental
+    capability_kind: rendering
+    summary: Materialize structured comparison data into a spreadsheet or workbook.
+    purpose: Support context matrices, relational sheets, or data-heavy review artifacts when tabular manipulation matters.
+    detection_questions:
+      - Can I create or update a spreadsheet or workbook?
+      - Can I preserve comparison structure in cells rather than flattening it into prose?
+    typical_tool_signals:
+      - spreadsheet tool
+      - workbook export
+      - CSV or XLSX generation
+    cautions:
+      - Spreadsheet convenience should not erase uncertainty, notes, or provenance.
+
+  - id: cap_pdf_render
+    name: PDF Render
+    status: experimental
+    capability_kind: packaging
+    summary: Package a finalized artifact into a portable PDF-style document.
+    purpose: Support more formal downstream delivery once the comparative frame is already stable.
+    detection_questions:
+      - Can I export a finalized artifact as PDF?
+      - Can I preserve structure and caveats in the exported layout?
+    typical_tool_signals:
+      - PDF export
+      - print renderer
+      - document packaging
+    cautions:
+      - PDF export should be a last-mile packaging step, not the place where the semantics are decided.
+
+  - id: cap_json_emit
+    name: JSON Emit
+    status: active
+    capability_kind: packaging
+    summary: Emit structured machine-readable bundles for downstream systems or safe research return.
+    purpose: Support agent handoffs, result bundles, and structured comparative outputs that need to be consumed programmatically.
+    detection_questions:
+      - Can I emit valid JSON or another structured machine-readable object?
+      - Can I preserve schema shape rather than only prose?
+    typical_tool_signals:
+      - JSON serialization
+      - structured bundle write
+      - schema-based export
+    cautions:
+      - Machine readability is only useful if provenance and field meaning stay aligned with the core schema.
+
+  - id: cap_file_write
+    name: File Write
+    status: active
+    capability_kind: persistence
+    summary: Persist an artifact, bundle, or handoff file into the local environment.
+    purpose: Support downstream use by other agents, repos, or workflows.
+    detection_questions:
+      - Can I write files into the current workspace?
+      - Can I save the realized output for later use rather than only returning chat text?
+    typical_tool_signals:
+      - filesystem write
+      - artifact export
+      - local persistence
+    cautions:
+      - Persistence changes the lifecycle of an output; saved artifacts should carry enough context to be interpreted later.

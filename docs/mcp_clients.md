@@ -13,6 +13,10 @@ A Person Index is ready for:
 
 It is not yet a hosted remote MCP service with auth, rate limiting, or multi-tenant operations.
 
+The repo now also carries seeded host profiles for the currently documented
+client paths so planning and actualization can start from a known environment
+without hand-declaring every capability every time.
+
 ## What is already proven
 
 The MCP surface has been validated in four layers:
@@ -20,7 +24,7 @@ The MCP surface has been validated in four layers:
 1. repo-owned Node SDK smoke and contract tests
 2. Claude Code using an explicit strict MCP config
 3. Claude Desktop using the app MCP config file
-4. Hermes on a remote host using a thin wrapper around the same stdio server
+4. Hermes remote-host assumptions and wrapper path checked, but live Hermes CLI execution remains environment-dependent
 
 ## Canonical local checks
 
@@ -101,7 +105,9 @@ Template example:
 
 ## Hermes
 
-Hermes is also proven with this MCP, including a real tool-using comparison query.
+Hermes has a documented remote-host path for this MCP, but live execution still
+depends on the actual remote environment having the Hermes CLI installed and on
+PATH.
 
 The shareable path is:
 
@@ -124,6 +130,9 @@ Hermes-specific assumptions:
 - remote host already has the `hermes` CLI installed
 - Hermes keeps its bundled Node runtime at `~/.hermes/node/bin`
 - the remote user has permission to clone the GitHub repo and write to `~/workspace` and `~/bin`
+
+At the moment, treat Hermes as a documented and partially checked path rather
+than as a uniformly proven client path across every environment.
 
 Template examples:
 

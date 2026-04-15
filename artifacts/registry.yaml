@@ -1,0 +1,157 @@
+artifact_classes:
+  - id: art_comparative_memo
+    name: Comparative Memo
+    status: active
+    summary: A narrative artifact that explains convergence, tension, missingness, and limits across a bounded comparative pass.
+    audience_modes:
+      - end_user
+      - collaborator
+      - analyst
+    default_expression_mode: explanatory
+    suitable_mode_ids:
+      - mode_bounded_single_subject
+      - mode_contextual_comparison
+      - mode_trace_review
+    required_evidence_partitions:
+      - canonical_framework_content
+      - house_synthesis
+      - downstream_judgment
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_structured_text_render
+    optional_capability_ids: []
+    typical_forms:
+      - markdown memo
+      - long-form message
+    notes: Good default artifact when the goal is clarity without heavy visualization.
+
+  - id: art_human_model_card
+    name: Human Model Card
+    status: experimental
+    summary: A structured person-model artifact that preserves provenance, paradoxes, deployment conditions, and caveats in a formal frame.
+    audience_modes:
+      - end_user
+      - collaborator
+      - contributor
+    default_expression_mode: mixed
+    suitable_mode_ids:
+      - mode_bounded_single_subject
+      - mode_artifact_actualization
+    required_evidence_partitions:
+      - canonical_framework_content
+      - house_synthesis
+      - program_behavior
+      - downstream_judgment
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_structured_text_render
+    optional_capability_ids:
+      - cap_pdf_render
+    typical_forms:
+      - markdown card
+      - PDF-style export
+    notes: Should make provenance and uncertainty more visible than a plain memo.
+
+  - id: art_agent_markdown_handoff
+    name: Agent Markdown Handoff
+    status: experimental
+    summary: A machine-friendly markdown artifact such as agent.md, soul.md, or another downstream handoff file shaped for future agents or systems.
+    audience_modes:
+      - agent
+      - maintainer
+      - collaborator
+    default_expression_mode: technical
+    suitable_mode_ids:
+      - mode_artifact_actualization
+      - mode_contextual_comparison
+    required_evidence_partitions:
+      - canonical_framework_content
+      - house_synthesis
+      - downstream_judgment
+      - external_realization_notes
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_file_write
+    optional_capability_ids: []
+    typical_forms:
+      - markdown handoff
+      - repo artifact
+    notes: Useful when the output is meant to be consumed by another agent later.
+
+  - id: art_context_matrix
+    name: Context Matrix
+    status: experimental
+    summary: A tabular or matrix artifact comparing the same subject across contexts, roles, or time slices.
+    audience_modes:
+      - end_user
+      - collaborator
+      - analyst
+    default_expression_mode: explanatory
+    suitable_mode_ids:
+      - mode_contextual_comparison
+      - mode_artifact_actualization
+    required_evidence_partitions:
+      - canonical_framework_content
+      - house_synthesis
+      - downstream_judgment
+    required_capability_ids:
+      - cap_table_render
+      - cap_markdown_write
+    optional_capability_ids:
+      - cap_spreadsheet_render
+    typical_forms:
+      - markdown table
+      - spreadsheet
+    notes: Best when the same axes must be shown across more than one context slice.
+
+  - id: art_pairwise_relational_sheet
+    name: Pairwise Relational Sheet
+    status: experimental
+    summary: A side-by-side artifact for two people or two stacks that emphasizes convergence, friction, and orthogonality without collapsing to one score.
+    audience_modes:
+      - end_user
+      - collaborator
+      - analyst
+    default_expression_mode: explanatory
+    suitable_mode_ids:
+      - mode_contextual_comparison
+      - mode_artifact_actualization
+    required_evidence_partitions:
+      - canonical_framework_content
+      - house_synthesis
+      - downstream_judgment
+    required_capability_ids:
+      - cap_table_render
+      - cap_markdown_write
+    optional_capability_ids:
+      - cap_diagram_render
+    typical_forms:
+      - side-by-side sheet
+      - relational matrix
+    notes: Should foreground what is orthogonal or missing, not just what feels resonant.
+
+  - id: art_result_bundle
+    name: Structured Result Bundle
+    status: active
+    summary: A machine-readable output that packages structured comparative findings for downstream systems or safe research return.
+    audience_modes:
+      - agent
+      - maintainer
+      - research_ops
+    default_expression_mode: technical
+    suitable_mode_ids:
+      - mode_bounded_single_subject
+      - mode_artifact_actualization
+      - mode_contextual_comparison
+    required_evidence_partitions:
+      - canonical_framework_content
+      - house_synthesis
+      - program_behavior
+    required_capability_ids:
+      - cap_json_emit
+      - cap_file_write
+    optional_capability_ids: []
+    typical_forms:
+      - JSON bundle
+      - structured markdown plus JSON
+    notes: Useful when another agent or system needs a normalized handoff.

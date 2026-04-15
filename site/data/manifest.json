@@ -40,6 +40,14 @@
     "canonical_registry": {
       "instrument_count": 16
     },
+    "analysis_and_actualization": {
+      "analysis_mode_count": 7,
+      "host_profile_count": 4,
+      "capability_count": 11,
+      "artifact_class_count": 6,
+      "actualization_protocol_count": 6,
+      "workflow_recipe_count": 7
+    },
     "house_synthesis": {
       "motif_count": 11,
       "mapping_count": 18,
@@ -47,8 +55,8 @@
     },
     "protocol_library": {
       "technique_count": 6,
-      "protocol_count": 4,
-      "protocol_pack_count": 4,
+      "protocol_count": 6,
+      "protocol_pack_count": 6,
       "public_label": "index_programs"
     },
     "research_stream": {
@@ -70,7 +78,7 @@
       ]
     },
     "index_programs": {
-      "count": 4,
+      "count": 6,
       "source_path": "protocols/registry.yaml",
       "role": "composed analysis or synthesis programs built from techniques",
       "examples": [
@@ -80,7 +88,7 @@
       ]
     },
     "runtime_packs": {
-      "count": 4,
+      "count": 6,
       "source_path": "protocol_packs/catalog.yaml",
       "role": "scoped bundles that hydrate a program with motifs, mappings, interactions, and return contracts",
       "examples": [
@@ -100,6 +108,17 @@
     "docs/current_state.md",
     "docs/roadmap.md",
     "docs/architecture.md",
+    "docs/advanced_modes.md",
+    "docs/comparison_preflight.md",
+    "docs/host_profiles.md",
+    "docs/capability_model.md",
+    "docs/artifact_realization.md",
+    "docs/artifact_templates.md",
+    "docs/result_shape_discovery.md",
+    "docs/result_atom_normalization.md",
+    "docs/actualization_protocols.md",
+    "docs/expression_and_artifacts.md",
+    "docs/multi_subject_comparison.md",
     "docs/index_programs.md",
     "docs/codex_automation.md",
     "docs/site_design_options.md",
@@ -126,7 +145,8 @@
     ],
     "adjacent_layers": {
       "runtime_layer": "Systems such as GNOMY perform person-level synthesis using this repo as a dependency.",
-      "research_ops_layer": "A later evidence pipeline can collect, aggregate, and review structured contributions before proposals come back here."
+      "research_ops_layer": "A later evidence pipeline can collect, aggregate, and review structured contributions before proposals come back here.",
+      "actualization_layer": "Host-aware skills and runtime protocols can use A Person Index as the comparative core while relying on external tools for rendering and delivery."
     }
   },
   "agent_companion_skill": {
@@ -142,10 +162,43 @@
       "research-safe return formatting"
     ]
   },
+  "agent_actualization_skill": {
+    "name": "a-person-index-actualization",
+    "host": "codex",
+    "repo_path": "skills/a-person-index-actualization/",
+    "path_hint": "$CODEX_HOME/skills/a-person-index-actualization",
+    "purpose": "Inspect host capabilities, classify the run, choose artifact classes or actualization protocols, and materialize outputs without losing A Person Index provenance.",
+    "recommended_for": [
+      "artifact generation",
+      "run planning",
+      "host-aware orchestration",
+      "contextual comparison handoffs"
+    ]
+  },
+  "agent_meta_skill": {
+    "name": "a-person-index-meta",
+    "host": "codex",
+    "repo_path": "skills/a-person-index-meta/",
+    "path_hint": "$CODEX_HOME/skills/a-person-index-meta",
+    "purpose": "Inspect the host environment abstractly, map available tools into capability records, classify the run, and choose the next A Person Index path before deeper work begins.",
+    "recommended_for": [
+      "capability discovery",
+      "run classification",
+      "actualization path selection",
+      "host-aware planning"
+    ]
+  },
   "canonical_sources": {
     "instrument_root": "instruments/",
     "ontology_root": "ontology/",
     "extension_roots": [
+      "modes/",
+      "comparison_shapes/",
+      "capabilities/",
+      "expression/",
+      "artifacts/",
+      "actualization/",
+      "workflow_recipes/",
       "motifs/",
       "mappings/",
       "interactions/",
@@ -191,6 +244,20 @@
     "codeowners": ".github/CODEOWNERS",
     "codex_automation_doc": "docs/codex_automation.md",
     "research_authoring_standard_doc": "docs/research_authoring_standard.md",
+    "advanced_modes_doc": "docs/advanced_modes.md",
+    "comparison_shapes_doc": "docs/comparison_shapes.md",
+    "comparison_preflight_doc": "docs/comparison_preflight.md",
+    "host_profiles_doc": "docs/host_profiles.md",
+    "capability_model_doc": "docs/capability_model.md",
+    "artifact_realization_doc": "docs/artifact_realization.md",
+    "artifact_templates_doc": "docs/artifact_templates.md",
+    "result_shape_discovery_doc": "docs/result_shape_discovery.md",
+    "result_atom_normalization_doc": "docs/result_atom_normalization.md",
+    "expression_model_doc": "docs/expression_model.md",
+    "actualization_protocols_doc": "docs/actualization_protocols.md",
+    "workflow_recipes_doc": "docs/workflow_recipes.md",
+    "expression_and_artifacts_doc": "docs/expression_and_artifacts.md",
+    "multi_subject_comparison_doc": "docs/multi_subject_comparison.md",
     "source_landscape_doc": "docs/source_landscape.md",
     "codex_automation_context": ".github/codex/automation_context.md",
     "codex_task_queue": ".github/codex/task_queue.yaml",
@@ -281,6 +348,16 @@
       "purpose": "Return the normalized downstream result-atom contract."
     },
     {
+      "id": "fetch_framework_result_shape",
+      "command": "python3 scripts/query_registry.py result-shape \"Big Five\"",
+      "purpose": "Return the construct-level result shape, scoring types, motif trace, and starter atom slots for a framework."
+    },
+    {
+      "id": "normalize_result_atom_bundle",
+      "command": "python3 scripts/query_registry.py result-atom-bundle --framework \"Big Five\" --entries-json '[{\"construct\":\"Openness to Experience\",\"output_type\":\"continuous_score\",\"output_value\":\"0.74\"}]'",
+      "purpose": "Normalize construct-level framework outputs into a schema-shaped result atom bundle with motif trace and provenance defaults."
+    },
+    {
       "id": "fetch_research_models",
       "command": "python3 scripts/query_registry.py research-models",
       "purpose": "Return allowed research contribution models for safe return traffic."
@@ -335,6 +412,27 @@
       ],
       "tool_ids": [
         "orient_agent",
+        "list_analysis_modes",
+        "fetch_analysis_mode",
+        "list_comparison_shapes",
+        "fetch_comparison_shape",
+        "prepare_comparison_run",
+        "list_host_profiles",
+        "fetch_host_profile",
+        "list_capabilities",
+        "fetch_capability",
+        "list_expression_profiles",
+        "fetch_expression_profile",
+        "recommend_next_path",
+        "list_artifact_classes",
+        "fetch_artifact_class",
+        "list_actualization_protocols",
+        "fetch_actualization_protocol",
+        "list_workflow_recipes",
+        "fetch_workflow_recipe",
+        "prepare_artifact_realization",
+        "prepare_artifact_template",
+        "fetch_framework_result_shape",
         "find_framework_records",
         "compare_frameworks",
         "trace_to_motifs",
@@ -347,6 +445,8 @@
         "fetch_protocol_pack",
         "fetch_protocol_pack_grammar",
         "fetch_result_atom_schema",
+        "fetch_framework_result_shape",
+        "normalize_result_atom_bundle",
         "fetch_research_models",
         "fetch_research_promotion_policy"
       ],
@@ -357,6 +457,20 @@
         "registry://roadmap",
         "registry://assessment-workflow",
         "registry://ilens-walkthrough",
+        "registry://advanced-modes",
+        "registry://comparison-shapes",
+        "registry://comparison-preflight",
+        "registry://host-profiles",
+        "registry://capability-model",
+        "registry://artifact-realization",
+        "registry://artifact-templates",
+        "registry://result-shape-discovery",
+        "registry://result-atom-normalization",
+        "registry://expression-model",
+        "registry://actualization-protocols",
+        "registry://workflow-recipes",
+        "registry://expression-and-artifacts",
+        "registry://multi-subject-comparison",
         "registry://research-promotion",
         "registry://protocol-packs",
         "registry://protocol-pack/{pack_id}",
@@ -410,7 +524,7 @@
   "protocol_pack_catalog": {
     "source_path": "protocol_packs/catalog.yaml",
     "json_path": "generated/protocol_packs/index.json",
-    "count": 4,
+    "count": 6,
     "featured_ids": [
       "ppk_ilens_core_trait_motive_stack",
       "ppk_translation_attachment_and_care"

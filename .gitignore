@@ -19,6 +19,7 @@ node_modules/
 output/
 temp_notepad/
 .claude/
+internalReview/
 .DS_Store
 codex-last-message.txt
 codex-task.prompt

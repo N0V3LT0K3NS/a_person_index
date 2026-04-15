@@ -1,0 +1,82 @@
+$defs:
+  ExpressionProfile:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      name:
+        title: Name
+        type: string
+      status:
+        enum:
+        - draft
+        - experimental
+        - active
+        title: Status
+        type: string
+      expression_mode:
+        enum:
+        - tacit
+        - explanatory
+        - technical
+        - mixed
+        title: Expression Mode
+        type: string
+      summary:
+        title: Summary
+        type: string
+      purpose:
+        title: Purpose
+        type: string
+      audience_modes:
+        items:
+          type: string
+        title: Audience Modes
+        type: array
+      visible_by_default:
+        items:
+          type: string
+        title: Visible By Default
+        type: array
+      keep_implicit_by_default:
+        items:
+          type: string
+        title: Keep Implicit By Default
+        type: array
+      good_for:
+        items:
+          type: string
+        title: Good For
+        type: array
+      cautions:
+        items:
+          type: string
+        title: Cautions
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - name
+    - status
+    - expression_mode
+    - summary
+    - purpose
+    title: ExpressionProfile
+    type: object
+additionalProperties: false
+properties:
+  expression_profiles:
+    items:
+      $ref: '#/$defs/ExpressionProfile'
+    title: Expression Profiles
+    type: array
+required:
+- expression_profiles
+title: ExpressionProfilesDocument
+type: object

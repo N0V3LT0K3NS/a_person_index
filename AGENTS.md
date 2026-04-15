@@ -29,6 +29,17 @@ Only then deepen as needed:
   [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md),
   [docs/ilens_walkthrough.md](/Users/noveltokens/a_person_index/docs/ilens_walkthrough.md),
   [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+- Advanced and downstream-facing use:
+  [docs/advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md),
+  [docs/comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md),
+  [docs/comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md),
+  [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
+  [docs/artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md),
+  [docs/expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md),
+  [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
+  [docs/workflow_recipes.md](/Users/noveltokens/a_person_index/docs/workflow_recipes.md),
+  [docs/expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md),
+  [docs/multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)
 - Clients and operations:
   [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md),
   [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md),
@@ -67,6 +78,15 @@ Canonical sources:
 - [instruments](/Users/noveltokens/a_person_index/instruments)
 - [ontology](/Users/noveltokens/a_person_index/ontology)
 - [motifs/registry.yaml](/Users/noveltokens/a_person_index/motifs/registry.yaml)
+- [modes/registry.yaml](/Users/noveltokens/a_person_index/modes/registry.yaml)
+- [comparison_shapes/registry.yaml](/Users/noveltokens/a_person_index/comparison_shapes/registry.yaml)
+- [docs/comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md)
+- [capabilities/registry.yaml](/Users/noveltokens/a_person_index/capabilities/registry.yaml)
+- [docs/artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md)
+- [expression/registry.yaml](/Users/noveltokens/a_person_index/expression/registry.yaml)
+- [artifacts/registry.yaml](/Users/noveltokens/a_person_index/artifacts/registry.yaml)
+- [actualization/registry.yaml](/Users/noveltokens/a_person_index/actualization/registry.yaml)
+- [workflow_recipes/registry.yaml](/Users/noveltokens/a_person_index/workflow_recipes/registry.yaml)
 - [mappings/construct_to_motif.yaml](/Users/noveltokens/a_person_index/mappings/construct_to_motif.yaml)
 - [interactions/registry.yaml](/Users/noveltokens/a_person_index/interactions/registry.yaml)
 - [techniques/registry.yaml](/Users/noveltokens/a_person_index/techniques/registry.yaml)

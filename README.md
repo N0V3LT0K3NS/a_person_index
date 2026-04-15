@@ -1,12 +1,60 @@
 # A Person Index (API)
 
-A Person Index (API) is a Git-native, agent-readable comparative substrate for personhood frameworks, house synthesis motifs, composable analysis techniques, index programs, runtime packs, and privacy-minimizing research intake.
+A Person Index (API) is a Git-native, agent-readable comparative core for personhood frameworks, house synthesis motifs, composable analysis techniques, index programs, runtime packs, and privacy-minimizing research intake.
+
+It is not only a catalog of frameworks. It is also the semantic and methodological center that downstream agents can use for richer protocol work, artifact generation, and contextual comparison without collapsing those things back into canonical truth.
 
 Live site: [a-person-index.netlify.app](https://a-person-index.netlify.app)
 
 Landing directions: [site/landing-options.html](/Users/noveltokens/a_person_index/site/landing-options.html) and [docs/site_design_options.md](/Users/noveltokens/a_person_index/docs/site_design_options.md)
 
 Companion Codex skill: `$a-person-index` can sit above the MCP and CLI surfaces to help Codex compare frameworks, fetch program packs, and keep source, house, and research layers distinct. The canonical repo copy lives at [skills/a-person-index](/Users/noveltokens/a_person_index/skills/a-person-index).
+
+Companion actualization skill: `$a-person-index-actualization` can sit above the comparative core when the task is to inspect available host capabilities, choose a run mode, and materialize an artifact or handoff without losing provenance. The repo copy lives at [skills/a-person-index-actualization](/Users/noveltokens/a_person_index/skills/a-person-index-actualization).
+
+Companion meta skill: `$a-person-index-meta` can inspect the current host environment abstractly, map available tools into capability records, classify the run, and choose the next A Person Index path before deeper work begins. The repo copy lives at [skills/a-person-index-meta](/Users/noveltokens/a_person_index/skills/a-person-index-meta).
+
+The recommendation surface can now take a run hint plus declared capabilities
+and suggest the next disciplined artifact and actualization path rather than
+forcing hosts to reconstruct that logic ad hoc each time.
+
+Host profiles now sit above the capability model too, so a known environment
+such as Codex Desktop, Claude Code, Claude Desktop, or the Hermes remote
+wrapper can expand into a conservative capability set before planning and
+actualization begin.
+
+Expression profiles are now first-class too, so the system can explicitly say
+how visible the scaffolding should be when the same comparative result is
+rendered for different audiences.
+
+Workflow recipes now sit beneath that recommendation layer, so the system can
+also name the smallest repeatable execution sequence that fits the run,
+artifact, expression, and capability shape.
+
+Contextual and pairwise work now also has first-class comparison shapes, so the
+system can name the comparison scaffold itself before it chooses artifacts or
+execution paths.
+
+Comparison preflight now sits beneath that too, so a host can verify whether
+the chosen contextual or pairwise scaffold is actually declared well enough to
+proceed before it recommends or renders downstream work.
+
+Artifact realization now sits beneath workflow recipes, so a host can turn a
+chosen path into a concrete artifact scaffold without treating A Person Index
+itself as the renderer.
+
+Artifact templates now sit beneath artifact realization, so a host can also ask
+for a starter markdown or JSON structure derived from the same workflow recipe
+instead of rebuilding the first draft from scratch.
+
+Result atom normalization now sits alongside the research-return layer too, so
+downstream runtimes can turn construct-level outputs into schema-shaped bundles
+without improvising framework IDs, construct IDs, provenance defaults, or motif
+trace.
+
+Result shape discovery now sits just before that normalization layer, so a
+runtime can inspect a framework's construct IDs, scoring types, motif trace
+availability, and starter atom slots before it tries to normalize anything.
 
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
@@ -45,6 +93,21 @@ If you need the deeper map after that:
   [docs/protocol_packs.md](/Users/noveltokens/a_person_index/docs/protocol_packs.md),
   [docs/ilens_walkthrough.md](/Users/noveltokens/a_person_index/docs/ilens_walkthrough.md),
   [docs/gnomy_integration.md](/Users/noveltokens/a_person_index/docs/gnomy_integration.md)
+- Advanced and downstream-facing use:
+  [docs/advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md),
+  [docs/comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md),
+  [docs/comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md),
+  [docs/host_profiles.md](/Users/noveltokens/a_person_index/docs/host_profiles.md),
+  [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
+  [docs/artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md),
+  [docs/artifact_templates.md](/Users/noveltokens/a_person_index/docs/artifact_templates.md),
+  [docs/result_shape_discovery.md](/Users/noveltokens/a_person_index/docs/result_shape_discovery.md),
+  [docs/result_atom_normalization.md](/Users/noveltokens/a_person_index/docs/result_atom_normalization.md),
+  [docs/expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md),
+  [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
+  [docs/workflow_recipes.md](/Users/noveltokens/a_person_index/docs/workflow_recipes.md),
+  [docs/expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md),
+  [docs/multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)
 - Clients and operations:
   [docs/mcp_clients.md](/Users/noveltokens/a_person_index/docs/mcp_clients.md),
   [docs/codex_automation.md](/Users/noveltokens/a_person_index/docs/codex_automation.md),
@@ -86,6 +149,14 @@ This repo now distinguishes between:
 These layers should collaborate, but they should not be conflated.
 This repo is a shared substrate for multiple downstream consumers. `GNOMY` is a lead consumer, not the only one.
 
+Around that core, there are adjacent downstream concerns that matter but should not be silently folded into ontology:
+
+- actualization and orchestration protocols
+- user-facing expression and artifact rendering
+- contextual and multi-subject comparison
+
+The repo increasingly defines the grammar for those layers even when their runtime implementation lives elsewhere.
+
 For Codex specifically, the companion skill is an optional usage layer on top of the substrate:
 
 - skill name: `$a-person-index`
@@ -97,10 +168,15 @@ For Codex specifically, the companion skill is an optional usage layer on top of
 
 ```text
 .
+├── actualization/
+├── artifacts/
+├── capabilities/
+├── comparison_shapes/
 ├── docs/
 ├── generated/
 ├── interactions/
 ├── instruments/
+├── modes/
 ├── mappings/
 ├── motifs/
 ├── ontology/
@@ -129,6 +205,17 @@ Key conventions:
 - `use_cases.yaml` stores practical fit and utility.
 - `notes.md` stores human-readable narrative context.
 - `motifs/registry.yaml` stores provisional house translation motifs.
+- `modes/registry.yaml` stores named run modes for advanced comparative work.
+- `comparison_shapes/registry.yaml` stores explicit scaffolds for contextual and pairwise comparison before artifact or protocol selection begins.
+- `docs/comparison_preflight.md` explains how contextual and pairwise runs are checked for readiness before recommendation or execution.
+- `hosts/registry.yaml` stores known host profiles that expand into conservative capability sets for planning and actualization.
+- `docs/artifact_realization.md` explains how a chosen workflow recipe becomes a concrete artifact scaffold before host rendering begins.
+- `docs/artifact_templates.md` explains how a chosen workflow recipe becomes a starter markdown or JSON structure a host can fill.
+- `docs/result_shape_discovery.md` explains how to inspect a framework's construct-level result shape before normalization.
+- `docs/result_atom_normalization.md` explains how known construct-level outputs become schema-shaped result atom bundles for downstream transport or research return.
+- `capabilities/registry.yaml` stores the abstract host capability model used by the meta-skill and actualization layer.
+- `artifacts/registry.yaml` stores artifact classes and their evidence and capability expectations.
+- `actualization/registry.yaml` stores downstream actualization protocols that use A Person Index as the comparative core.
 - `mappings/construct_to_motif.yaml` stores provisional construct-to-motif and instrument-to-motif mappings.
 - `interactions/registry.yaml` stores house interaction hypotheses across motifs and constructs.
 - `techniques/registry.yaml` stores reusable comparative methods.
@@ -137,6 +224,7 @@ Key conventions:
 - `research/contribution_models.yaml` stores privacy-minimizing contribution models for future research intake.
 - `research/promotion_registry.yaml` stores the staged promotion policy that governs how research can influence house synthesis or protocol revision.
 - `research/result_atom_schema.yaml` stores the normalized downstream result-atom contract for runtime exchange.
+- `docs/result_atom_normalization.md` documents the repo-side helper that turns known construct-level outputs into schema-shaped result atom bundles.
 
 The active, fully populated corpus remains instrument-centered for now. The new top-level directories formalize the broader A Person Index architecture without forcing a premature internal package rename.
 

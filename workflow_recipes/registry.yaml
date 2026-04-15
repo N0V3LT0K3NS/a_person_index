@@ -1,0 +1,377 @@
+workflow_recipes:
+  - id: wfr_single_subject_comparative_memo
+    name: Single-Subject Comparative Memo
+    status: active
+    summary: Run a bounded single-subject pass and materialize it as an explanatory comparative memo in markdown.
+    run_mode_ids:
+      - mode_bounded_single_subject
+      - mode_artifact_actualization
+    artifact_class_id: art_comparative_memo
+    expression_profile_id: expr_explanatory
+    actualization_protocol_id: actx_single_subject_comparative_memo
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_structured_text_render
+    realization_blocks:
+      - id: scope_and_coverage
+        label: Scope and Coverage
+        block_kind: metadata
+        required: true
+        summary: Name the frameworks in play, note unindexed or missing items, and define the bounded scope of the pass.
+      - id: comparative_reading
+        label: Comparative Reading
+        block_kind: narrative
+        required: true
+        summary: Explain the main convergence, tension, and interpretive shape across the bounded stack.
+      - id: paradox_inventory
+        label: Paradoxes and Tensions
+        block_kind: list
+        required: true
+        summary: Surface the contradictions or load-bearing tensions that should remain explicit rather than averaged away.
+      - id: caveats_and_missingness
+        label: Caveats and Missingness
+        block_kind: caveat
+        required: true
+        summary: Keep symbolic versus psychometric limits, thin coverage, and unmatched areas visible.
+      - id: provenance_partitions
+        label: Provenance Partitions
+        block_kind: provenance
+        required: true
+        summary: Keep canonical framework content, house synthesis, and downstream judgment visibly separated.
+    recipe_steps:
+      - Match frameworks and call out anything unindexed before comparative synthesis begins.
+      - Fetch the right named program or pack instead of rebuilding the method from scratch.
+      - Separate canonical framework content, house synthesis, and downstream judgment in the memo structure.
+      - Render the final memo in explanatory voice unless the audience clearly calls for tacit or technical rendering.
+    deliverables:
+      - markdown memo
+      - structured downstream explanation
+    cautions:
+      - Do not smooth over missing coverage for the sake of narrative flow.
+      - Do not let explanatory rendering collapse symbolic and psychometric signals into one bucket.
+
+  - id: wfr_context_matrix_explanatory
+    name: Context Matrix Explanatory
+    status: experimental
+    summary: Compare one subject across contexts, roles, or time slices and realize the result as an explanatory matrix.
+    run_mode_ids:
+      - mode_contextual_comparison
+      - mode_artifact_actualization
+    artifact_class_id: art_context_matrix
+    expression_profile_id: expr_explanatory
+    actualization_protocol_id: actx_context_matrix_render
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_table_render
+    realization_blocks:
+      - id: slice_declaration
+        label: Slice Declaration
+        block_kind: metadata
+        required: true
+        summary: Name the time slices, roles, or contexts being compared and the question that anchors the comparison.
+      - id: comparison_axes
+        label: Comparison Axes
+        block_kind: list
+        required: true
+        summary: State the axes, motifs, or framework surfaces that remain constant across the matrix.
+      - id: context_matrix
+        label: Context Matrix
+        block_kind: matrix
+        required: true
+        summary: Show the same comparative axes across all slices so shifts, stability, and missingness remain visible.
+      - id: explanatory_notes
+        label: Explanatory Notes
+        block_kind: narrative
+        required: true
+        summary: Explain what appears to have changed, what remained stable, and what should not be overread.
+      - id: missingness_and_limits
+        label: Missingness and Limits
+        block_kind: caveat
+        required: true
+        summary: Mark sparse, incomparable, or weakly grounded regions instead of implying false symmetry or developmental certainty.
+    recipe_steps:
+      - Declare the context slices explicitly before the comparison begins.
+      - Keep the same comparative axes visible across all rows or columns.
+      - Mark missing or weakly comparable regions instead of hiding them.
+      - Add short explanatory notes around the matrix so readers understand what changed, what stayed stable, and what remains uncertain.
+    deliverables:
+      - markdown table
+      - context comparison memo
+    cautions:
+      - A context delta is not automatically a personality change.
+      - The matrix should show missingness rather than implying false symmetry.
+
+  - id: wfr_structured_result_bundle_technical
+    name: Structured Result Bundle Technical
+    status: experimental
+    summary: Turn a bounded comparative pass into a technical JSON-oriented bundle for downstream agents, maintainers, or research-safe consumers.
+    run_mode_ids:
+      - mode_bounded_single_subject
+      - mode_artifact_actualization
+    artifact_class_id: art_result_bundle
+    expression_profile_id: expr_technical
+    actualization_protocol_id: actx_structured_result_bundle_packaging
+    required_capability_ids:
+      - cap_json_emit
+      - cap_file_write
+    realization_blocks:
+      - id: bundle_header
+        label: Bundle Header
+        block_kind: metadata
+        required: true
+        summary: Identify bundle purpose, bounded scope, intended downstream consumer, and version or schema reference.
+      - id: source_scope_and_coverage
+        label: Source Scope and Coverage
+        block_kind: metadata
+        required: true
+        summary: Name matched frameworks, unindexed items, bounded scope, and the named program or pack basis for the bundle.
+      - id: structured_findings
+        label: Structured Findings
+        block_kind: bundle
+        required: true
+        summary: Package the main comparative findings in stable machine-readable fields rather than prose only.
+      - id: provenance_partitions
+        label: Provenance Partitions
+        block_kind: provenance
+        required: true
+        summary: Preserve canonical framework content, house synthesis, named program behavior, and downstream judgment as explicit partitions.
+      - id: caveats_and_missingness
+        label: Caveats and Missingness
+        block_kind: caveat
+        required: true
+        summary: Keep unmatched frameworks, thin seams, symbolic limits, and confidence notes visible in the bundle.
+      - id: unresolved_questions
+        label: Unresolved Questions
+        block_kind: list
+        required: true
+        summary: Record deferred judgments, missing declarations, or next research-safe questions for downstream systems.
+    recipe_steps:
+      - Match and scope the bounded stack before generating bundle fields.
+      - Use named programs or packs as the comparative basis and record them explicitly in the bundle metadata.
+      - Serialize findings and caveats in stable fields so another agent can resume without re-reading prose.
+      - Add a markdown companion only if the host and audience need one after the JSON bundle is stable.
+    deliverables:
+      - JSON bundle
+      - structured markdown plus JSON
+    cautions:
+      - Do not let machine readability erase provenance or uncertainty.
+      - Do not emit downstream convenience fields that pretend to be canonical truth.
+
+  - id: wfr_comparison_result_bundle_technical
+    name: Comparison Result Bundle Technical
+    status: experimental
+    summary: Turn a contextual or pairwise comparison into a technical JSON-oriented bundle for downstream agents, maintainers, or research-safe consumers.
+    run_mode_ids:
+      - mode_contextual_comparison
+      - mode_artifact_actualization
+    artifact_class_id: art_result_bundle
+    expression_profile_id: expr_technical
+    actualization_protocol_id: actx_comparison_result_bundle_packaging
+    required_capability_ids:
+      - cap_json_emit
+      - cap_file_write
+    realization_blocks:
+      - id: comparison_bundle_header
+        label: Comparison Bundle Header
+        block_kind: metadata
+        required: true
+        summary: Identify bundle purpose, comparison shape, intended downstream consumer, and version or schema reference.
+      - id: comparison_scope_and_declarations
+        label: Comparison Scope and Declarations
+        block_kind: metadata
+        required: true
+        summary: Record the explicit context slices, subject labels, relationship context, or other declared comparison fields that anchor the run.
+      - id: comparison_axes
+        label: Comparison Axes
+        block_kind: list
+        required: true
+        summary: State the frameworks, motifs, or shared axes kept stable across slices or subjects.
+      - id: structured_comparison_findings
+        label: Structured Comparison Findings
+        block_kind: bundle
+        required: true
+        summary: Package convergence, tension, orthogonality, missing seams, and stable deltas in machine-readable fields rather than prose only.
+      - id: provenance_partitions
+        label: Provenance Partitions
+        block_kind: provenance
+        required: true
+        summary: Preserve canonical framework content, house synthesis, named program behavior, and downstream judgment as explicit partitions.
+      - id: comparison_caveats_and_missingness
+        label: Comparison Caveats and Missingness
+        block_kind: caveat
+        required: true
+        summary: Keep sparse slices, non-overlap, non-reciprocal coverage, and confidence limits visible in the bundle.
+      - id: unresolved_questions
+        label: Unresolved Questions
+        block_kind: list
+        required: true
+        summary: Record deferred judgments, missing declarations, or next research-safe questions for downstream systems.
+    recipe_steps:
+      - Run comparison preflight before generating bundle fields so the declared scaffold is explicit.
+      - Keep the comparison shape and declared scope in bundle metadata rather than only in operator notes.
+      - Serialize grounded comparison seams and missing seams in stable fields so another agent can resume without re-reading prose.
+      - Add a markdown companion only if the host and audience need one after the JSON bundle is stable.
+    deliverables:
+      - JSON bundle
+      - structured markdown plus JSON
+    cautions:
+      - Do not let technical bundle structure imply stronger comparability than the comparison shape supports.
+      - Do not collapse pairwise or contextual work into a single score for downstream convenience.
+
+  - id: wfr_pairwise_relational_sheet_explanatory
+    name: Pairwise Relational Sheet Explanatory
+    status: experimental
+    summary: Compare two stacks side by side and produce a relational sheet that keeps convergence, friction, and orthogonality legible.
+    run_mode_ids:
+      - mode_contextual_comparison
+      - mode_artifact_actualization
+    artifact_class_id: art_pairwise_relational_sheet
+    expression_profile_id: expr_explanatory
+    actualization_protocol_id: actx_pairwise_relational_sheet
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_table_render
+    realization_blocks:
+      - id: subject_scaffold
+        label: Subject Scaffold
+        block_kind: metadata
+        required: true
+        summary: Name each person or stack, the relationship question, and the comparison scope before making any pairwise claim.
+      - id: relational_axes
+        label: Relational Axes
+        block_kind: list
+        required: true
+        summary: State the shared axes used to compare convergence, friction, orthogonality, and missing seams.
+      - id: relational_sheet
+        label: Relational Sheet
+        block_kind: matrix
+        required: true
+        summary: Present both sides in parallel so overlap, mismatch, and asymmetry remain legible.
+      - id: seam_notes
+        label: Seam Notes
+        block_kind: narrative
+        required: true
+        summary: Explain which pairwise readings are grounded, which are house inference, and which remain open.
+      - id: caveats_and_missingness
+        label: Caveats and Missingness
+        block_kind: caveat
+        required: true
+        summary: Keep non-overlap, thin seams, and non-reciprocal coverage explicit rather than collapsing them into one score.
+    recipe_steps:
+      - Keep each subject or stack legible on its own before making pairwise claims.
+      - Compare convergence, tension, and orthogonality without collapsing them into one score.
+      - Use the matrix or sheet structure to preserve parallelism across both sides.
+      - Add explanatory framing so the reader knows which seams are grounded, inferred, or still missing.
+    deliverables:
+      - relational sheet
+      - side-by-side comparison memo
+    cautions:
+      - Do not force reciprocity where the two stacks speak to different layers.
+      - Missing overlap is informative and should remain visible.
+
+  - id: wfr_agent_markdown_handoff_technical
+    name: Agent Markdown Handoff Technical
+    status: experimental
+    summary: Turn comparative work into a technical markdown handoff for another agent or system.
+    run_mode_ids:
+      - mode_artifact_actualization
+      - mode_trace_review
+    artifact_class_id: art_agent_markdown_handoff
+    expression_profile_id: expr_technical
+    actualization_protocol_id: actx_human_model_card_realization
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_file_write
+    realization_blocks:
+      - id: handoff_header
+        label: Handoff Header
+        block_kind: metadata
+        required: true
+        summary: Identify the artifact, intended downstream consumer, and the bounded scope of the handoff.
+      - id: provenance_layers
+        label: Provenance Layers
+        block_kind: provenance
+        required: true
+        summary: Preserve canonical, house, program, and downstream layers as explicit sections for the receiving agent.
+      - id: structured_findings
+        label: Structured Findings
+        block_kind: list
+        required: true
+        summary: Present the main findings in a machine-friendly, resumable structure rather than only in prose.
+      - id: unresolved_questions
+        label: Unresolved Questions
+        block_kind: list
+        required: true
+        summary: Mark what remains undecided, weakly grounded, or intentionally deferred.
+      - id: downstream_notes
+        label: Downstream Notes
+        block_kind: narrative
+        required: true
+        summary: Explain what another agent or runtime should do next without confusing pending work with finished truth.
+    recipe_steps:
+      - Preserve canonical, house, and downstream layers explicitly in the handoff file.
+      - Include the named programs or packs that shaped the artifact.
+      - Keep the file structured enough for another agent to resume work without guessing at provenance.
+      - Use technical voice because the primary audience is another builder or runtime.
+    deliverables:
+      - agent markdown handoff
+      - repo artifact
+    cautions:
+      - Technical handoff is not an excuse to overstate certainty.
+      - The handoff should clarify what remains to be rendered or decided downstream.
+
+  - id: wfr_human_model_card_mixed
+    name: Human Model Card Mixed
+    status: experimental
+    summary: Realize a Human Model Card as a mixed-audience artifact that keeps provenance, paradoxes, deployment conditions, and caveats visible.
+    run_mode_ids:
+      - mode_bounded_single_subject
+      - mode_artifact_actualization
+    artifact_class_id: art_human_model_card
+    expression_profile_id: expr_mixed
+    actualization_protocol_id: actx_human_model_card_realization
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_structured_text_render
+    realization_blocks:
+      - id: card_header
+        label: Card Header
+        block_kind: metadata
+        required: true
+        summary: Name the subject scope, the bounded stack, and the intended use of the card.
+      - id: model_summary
+        label: Model Summary
+        block_kind: narrative
+        required: true
+        summary: Give the main comparative reading in mixed voice so the artifact remains readable while still structurally explicit.
+      - id: provenance_and_inputs
+        label: Provenance and Inputs
+        block_kind: provenance
+        required: true
+        summary: Show what came from canonical records, house synthesis, and named programs or packs.
+      - id: paradoxes_and_conditions
+        label: Paradoxes and Conditions
+        block_kind: list
+        required: true
+        summary: Surface the load-bearing tensions, deployment conditions, and context qualifiers that shape use of the card.
+      - id: caveats_and_limits
+        label: Caveats and Limits
+        block_kind: caveat
+        required: true
+        summary: Keep incompleteness, missingness, symbolic limits, and overread risks visible in the artifact.
+      - id: downstream_use_notes
+        label: Downstream Use Notes
+        block_kind: narrative
+        required: true
+        summary: Explain how another human or agent should use the card without mistaking it for canonical truth.
+    recipe_steps:
+      - Use the Human Model Card frame to organize the artifact before writing prose.
+      - Keep provenance, paradoxes, deployment conditions, and caveats visible rather than hidden in appendices.
+      - Use mixed expression so the card remains readable to a human while staying inspectable to a contributor or agent.
+      - Only escalate to PDF-style export after the markdown card structure is stable.
+    deliverables:
+      - markdown card
+      - PDF-style export
+    cautions:
+      - The card is a downstream artifact, not ontology.
+      - Mixed voice should not blur the line between grounded comparison and later interpretation.

@@ -1,0 +1,160 @@
+actualization_protocols:
+  - id: actx_single_subject_comparative_memo
+    name: Single-Subject Comparative Memo
+    status: active
+    summary: Turn a bounded single-subject mixed-stack pass into a clear comparative memo while preserving matched coverage, motifs, tensions, and caveats.
+    run_mode_ids:
+      - mode_bounded_single_subject
+      - mode_artifact_actualization
+    protocol_ids:
+      - proto_ilens
+      - proto_translation_memo
+      - proto_paradox_finder
+    target_artifact_class_ids:
+      - art_comparative_memo
+      - art_result_bundle
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_structured_text_render
+    optional_capability_ids: []
+    steps:
+      - Match frameworks and call out unindexed items before synthesis.
+      - Choose the right reviewed program or pack before improvising.
+      - Separate canonical framework content, house synthesis, and downstream judgment.
+      - Render the memo in the expression mode appropriate to the audience.
+    cautions:
+      - Do not hide missing coverage for the sake of narrative smoothness.
+      - Keep symbolic, mixed, and psychometric signals distinct when explaining the result.
+
+  - id: actx_human_model_card_realization
+    name: Human Model Card Realization
+    status: experimental
+    summary: Use the Human Model Card program frame plus host rendering tools to produce a structured downstream artifact without confusing the artifact with canonical truth.
+    run_mode_ids:
+      - mode_bounded_single_subject
+      - mode_artifact_actualization
+    protocol_ids:
+      - proto_human_model_card
+      - proto_paradox_finder
+    target_artifact_class_ids:
+      - art_human_model_card
+      - art_agent_markdown_handoff
+    required_capability_ids:
+      - cap_markdown_write
+      - cap_structured_text_render
+    optional_capability_ids:
+      - cap_pdf_render
+    steps:
+      - Use the Human Model Card frame to organize provenance, paradoxes, and deployment conditions.
+      - Preserve the evidence partitions explicitly in the rendered artifact.
+      - Use host rendering tools only after the comparative frame is stable.
+    cautions:
+      - A rendered card is still downstream interpretation, not ontology.
+      - Avoid overstating mechanism or completeness.
+
+  - id: actx_structured_result_bundle_packaging
+    name: Structured Result Bundle Packaging
+    status: experimental
+    summary: Package a bounded comparative pass into a machine-readable result bundle for downstream agents, repos, or research-safe return without confusing the bundle with canonical truth.
+    run_mode_ids:
+      - mode_bounded_single_subject
+      - mode_artifact_actualization
+    protocol_ids:
+      - proto_ilens
+      - proto_translation_memo
+      - proto_paradox_finder
+    target_artifact_class_ids:
+      - art_result_bundle
+    required_capability_ids:
+      - cap_json_emit
+      - cap_file_write
+    optional_capability_ids:
+      - cap_markdown_write
+    steps:
+      - Match frameworks and scope the bounded pass before packaging fields.
+      - Preserve canonical framework content, house synthesis, named program behavior, and downstream judgment as separate sections or objects in the bundle.
+      - Package unresolved questions, missing coverage, and caveats as first-class fields rather than prose only.
+      - Emit the bundle in a stable machine-readable form before any optional human-readable companion output.
+    cautions:
+      - A result bundle is a downstream packaging contract, not canonical ontology.
+      - Do not emit fields whose semantics are not grounded in the comparative work.
+
+  - id: actx_comparison_result_bundle_packaging
+    name: Comparison Result Bundle Packaging
+    status: experimental
+    summary: Package a contextual or pairwise comparison into a machine-readable result bundle while preserving comparison declarations, provenance, and missingness explicitly.
+    run_mode_ids:
+      - mode_contextual_comparison
+      - mode_artifact_actualization
+    protocol_ids:
+      - proto_contextual_comparison
+      - proto_pairwise_relational_comparison
+      - proto_translation_memo
+      - proto_paradox_finder
+    target_artifact_class_ids:
+      - art_result_bundle
+    required_capability_ids:
+      - cap_json_emit
+      - cap_file_write
+    optional_capability_ids:
+      - cap_markdown_write
+    steps:
+      - Run comparison preflight so the shape declarations are explicit before packaging bundle fields.
+      - Preserve comparison scope, declarations, and stable axes as first-class bundle metadata.
+      - Package convergence, tension, orthogonality, and missing seams as structured fields rather than prose-only summary.
+      - Emit a machine-readable bundle before any optional human-readable companion output.
+    cautions:
+      - A comparison bundle is not a compatibility score or deterministic relationship verdict.
+      - Missing overlap or sparse comparison seams should stay visible in the bundle rather than being normalized away.
+
+  - id: actx_context_matrix_render
+    name: Context Matrix Render
+    status: experimental
+    summary: Compare one subject across time or contexts and materialize the result as a matrix or table.
+    run_mode_ids:
+      - mode_contextual_comparison
+      - mode_artifact_actualization
+    protocol_ids:
+      - proto_contextual_comparison
+      - proto_paradox_finder
+    target_artifact_class_ids:
+      - art_context_matrix
+    required_capability_ids:
+      - cap_table_render
+      - cap_markdown_write
+    optional_capability_ids:
+      - cap_spreadsheet_render
+    steps:
+      - Declare the context slices explicitly before comparison begins.
+      - Keep the same comparative axes visible across all slices.
+      - Mark missing or incomparable regions instead of smoothing them over.
+    cautions:
+      - Contextual deltas are not automatically personality change.
+      - Sparse input should reduce confidence and output density.
+
+  - id: actx_pairwise_relational_sheet
+    name: Pairwise Relational Sheet
+    status: experimental
+    summary: Compare two stacks side by side and produce a relational sheet that emphasizes convergence, friction, orthogonality, and missingness.
+    run_mode_ids:
+      - mode_contextual_comparison
+      - mode_artifact_actualization
+    protocol_ids:
+      - proto_pairwise_relational_comparison
+      - proto_translation_memo
+      - proto_paradox_finder
+    target_artifact_class_ids:
+      - art_pairwise_relational_sheet
+      - art_comparative_memo
+    required_capability_ids:
+      - cap_table_render
+      - cap_markdown_write
+    optional_capability_ids:
+      - cap_diagram_render
+    steps:
+      - Keep each subject's stack legible before making pairwise claims.
+      - Compare convergence, tension, and orthogonality without collapsing them into a single score.
+      - Use visual or tabular structure when the host can support it.
+    cautions:
+      - Do not force reciprocal claims where the frameworks touch different layers.
+      - Treat missing comparison seams as informative, not embarrassing.

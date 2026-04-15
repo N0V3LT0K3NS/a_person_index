@@ -108,7 +108,7 @@ async function buildServer() {
     name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, and research contribution models from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. Keep canonical data, house synthesis, index programs, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, comparison preflight guidance, host profiles, capability records, expression profiles, artifact classes, actualization protocols, workflow recipes, artifact realization guidance, artifact template guidance, result-atom normalization support, and framework result-shape discovery from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, contextual comparison, or downstream return traffic, inspect the advanced mode, comparison-shape, comparison-preflight, host-profile, capability, expression, actualization, workflow, artifact-realization, artifact-template, result-shape-discovery, and result-atom-normalization surfaces before improvising. Use prepare_comparison_run once a contextual or pairwise shape is chosen and you need to check whether the run is actually declared well enough to proceed. Use recommend_next_path when you already know either the host profile or the host capabilities and need the smallest disciplined next step. Use prepare_artifact_realization once a workflow recipe is chosen and you need a concrete scaffold for the finished artifact. Use prepare_artifact_template when the host needs a concrete starter markdown or JSON structure to fill rather than only a list of required blocks. Use fetch_framework_result_shape when a runtime needs to see the construct IDs, scoring types, and starter atom slots for a framework before normalization. Use normalize_result_atom_bundle when a downstream runtime already has construct-level outputs and needs a schema-shaped result atom bundle with provenance and motif trace. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
   });
 
   server.registerResource(
@@ -214,6 +214,258 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/ilens_walkthrough.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "advanced-modes",
+    "registry://advanced-modes",
+    {
+      title: "Advanced Modes",
+      description: "Named higher-order run shapes such as planning, actualization, contextual comparison, and trace review.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/advanced_modes.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "comparison-shapes",
+    "registry://comparison-shapes",
+    {
+      title: "Comparison Shapes",
+      description: "Structured contextual and pairwise comparison shapes that make required declarations explicit before execution.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/comparison_shapes.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "comparison-preflight",
+    "registry://comparison-preflight",
+    {
+      title: "Comparison Preflight",
+      description: "How to validate declared contextual or pairwise comparison inputs before artifact selection and execution.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/comparison_preflight.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "host-profiles",
+    "registry://host-profiles",
+    {
+      title: "Host Profiles",
+      description: "Known host profiles that expand into capability sets for planning, comparison preflight, and artifact realization.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/host_profiles.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "artifact-templates",
+    "registry://artifact-templates",
+    {
+      title: "Artifact Templates",
+      description: "Starter markdown or JSON template guidance derived from workflow recipes and artifact realization blocks.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/artifact_templates.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "result-shape-discovery",
+    "registry://result-shape-discovery",
+    {
+      title: "Result Shape Discovery",
+      description: "How to inspect a framework's construct-level result shape and starter atom slots before normalization.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/result_shape_discovery.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "artifact-realization",
+    "registry://artifact-realization",
+    {
+      title: "Artifact Realization",
+      description: "How to turn a chosen workflow recipe into a concrete artifact scaffold without turning A Person Index into a renderer.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/artifact_realization.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "result-atom-normalization",
+    "registry://result-atom-normalization",
+    {
+      title: "Result Atom Normalization",
+      description: "How to turn construct-level framework outputs into a schema-shaped result atom bundle without moving person-level inference into this repo.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/result_atom_normalization.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "capability-model",
+    "registry://capability-model",
+    {
+      title: "Capability Model",
+      description: "Abstract capability taxonomy for host-aware planning, actualization, and meta-skill behavior.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/capability_model.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "expression-model",
+    "registry://expression-model",
+    {
+      title: "Expression Model",
+      description: "Structured expression profiles for tacit, explanatory, technical, and mixed downstream rendering.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/expression_model.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "actualization-protocols",
+    "registry://actualization-protocols",
+    {
+      title: "Actualization Protocols",
+      description: "How A Person Index acts as comparative core inside richer downstream workflows and artifacts.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/actualization_protocols.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "workflow-recipes",
+    "registry://workflow-recipes",
+    {
+      title: "Workflow Recipes",
+      description: "Operational recipes that bind recommendation, actualization, expression, and capability fit into a concrete next sequence.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/workflow_recipes.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "expression-and-artifacts",
+    "registry://expression-and-artifacts",
+    {
+      title: "Expression and Artifacts",
+      description: "Voice modes, artifact classes, and output-grammar guidance for downstream realization.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/expression_and_artifacts.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "multi-subject-comparison",
+    "registry://multi-subject-comparison",
+    {
+      title: "Multi-Subject Comparison",
+      description: "Contextual, temporal, and pairwise comparison guidance beyond a single mixed stack.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/multi_subject_comparison.md"),
         },
       ],
     }),
@@ -404,6 +656,529 @@ async function buildServer() {
     async () => {
       try {
         return jsonResult(await runRegistryQuery(["orient"], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_analysis_modes",
+    {
+      title: "List Analysis Modes",
+      description: "Return named run modes such as bounded analysis, planning, actualization, contextual comparison, or trace review.",
+      inputSchema: {
+        text: z.string().optional(),
+      },
+    },
+    async ({ text }) => {
+      try {
+        const args = ["modes"];
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("analysis_modes", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_analysis_mode",
+    {
+      title: "Fetch Analysis Mode",
+      description: "Return the full record for a named analysis mode.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["modes", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_comparison_shapes",
+    {
+      title: "List Comparison Shapes",
+      description: "Return contextual or pairwise comparison shapes with their required declarations and recommended protocol fit.",
+      inputSchema: {
+        mode: z.string().optional(),
+        artifact: z.string().optional(),
+        protocol: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ mode, artifact, protocol, text }) => {
+      try {
+        const args = ["comparison-shapes"];
+        if (mode) args.push("--mode", mode);
+        if (artifact) args.push("--artifact", artifact);
+        if (protocol) args.push("--protocol", protocol);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("comparison_shapes", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_comparison_shape",
+    {
+      title: "Fetch Comparison Shape",
+      description: "Return the full record for a named comparison shape including its required declarations, suitable artifacts, and recommended protocols.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["comparison-shapes", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_host_profiles",
+    {
+      title: "List Host Profiles",
+      description: "Return known host profiles that expand into capability sets for planning and actualization.",
+      inputSchema: {
+        kind: z.string().optional(),
+        capability: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ kind, capability, text }) => {
+      try {
+        const args = ["hosts"];
+        if (kind) args.push("--kind", kind);
+        if (capability) args.push("--capability", capability);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("host_profiles", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_host_profile",
+    {
+      title: "Fetch Host Profile",
+      description: "Return the full record for a named host profile including its expanded capability set and cautions.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["hosts", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "prepare_comparison_run",
+    {
+      title: "Prepare Comparison Run",
+      description: "Validate whether a contextual or pairwise comparison run is adequately declared before artifact selection and execution begins.",
+      inputSchema: {
+        comparison_shape: z.string(),
+        declarations: z
+          .record(z.string(), z.union([z.string(), z.array(z.string())]))
+          .optional(),
+        hosts: z.array(z.string()).optional(),
+        capabilities: z.array(z.string()).optional(),
+      },
+    },
+    async ({ comparison_shape, declarations, hosts, capabilities }) => {
+      try {
+        const args = ["comparison-preflight", comparison_shape];
+        if (declarations) {
+          args.push("--declarations-json", JSON.stringify(declarations));
+        }
+        for (const host of hosts ?? []) args.push("--host", host);
+        for (const capability of capabilities ?? []) args.push("--capability", capability);
+        return jsonResult(await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_capabilities",
+    {
+      title: "List Capabilities",
+      description: "Return abstract host capabilities for meta-skill planning and artifact actualization.",
+      inputSchema: {
+        kind: z.string().optional(),
+        artifact: z.string().optional(),
+        actualization: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ kind, artifact, actualization, text }) => {
+      try {
+        const args = ["capabilities"];
+        if (kind) args.push("--kind", kind);
+        if (artifact) args.push("--artifact", artifact);
+        if (actualization) args.push("--actualization", actualization);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("capabilities", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_capability",
+    {
+      title: "Fetch Capability",
+      description: "Return the full record for a named host capability including the artifact classes and actualization protocols that depend on it.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["capabilities", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_expression_profiles",
+    {
+      title: "List Expression Profiles",
+      description: "Return structured expression profiles for tacit, explanatory, technical, or mixed downstream rendering.",
+      inputSchema: {
+        mode: z.string().optional(),
+        audience: z.string().optional(),
+        artifact: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ mode, audience, artifact, text }) => {
+      try {
+        const args = ["expressions"];
+        if (mode) args.push("--mode", mode);
+        if (audience) args.push("--audience", audience);
+        if (artifact) args.push("--artifact", artifact);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("expression_profiles", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_expression_profile",
+    {
+      title: "Fetch Expression Profile",
+      description: "Return the full record for a named expression profile and the artifact classes that default to it.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["expressions", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_workflow_recipes",
+    {
+      title: "List Workflow Recipes",
+      description: "Return workflow recipes that operationalize a specific artifact path in a host environment.",
+      inputSchema: {
+        mode: z.string().optional(),
+        artifact: z.string().optional(),
+        actualization: z.string().optional(),
+        expression: z.string().optional(),
+        capability: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ mode, artifact, actualization, expression, capability, text }) => {
+      try {
+        const args = ["workflows"];
+        if (mode) args.push("--mode", mode);
+        if (artifact) args.push("--artifact", artifact);
+        if (actualization) args.push("--actualization", actualization);
+        if (expression) args.push("--expression", expression);
+        if (capability) args.push("--capability", capability);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("workflow_recipes", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_workflow_recipe",
+    {
+      title: "Fetch Workflow Recipe",
+      description: "Return a concrete workflow recipe tying run mode, artifact class, expression profile, and actualization protocol into one operational sequence.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["workflows", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "prepare_artifact_template",
+    {
+      title: "Prepare Artifact Template",
+      description: "Turn a chosen workflow recipe plus declared host profiles or capabilities into a concrete starter markdown or JSON template.",
+      inputSchema: {
+        workflow_recipe: z.string(),
+        hosts: z.array(z.string()).optional(),
+        capabilities: z.array(z.string()).optional(),
+      },
+    },
+    async ({ workflow_recipe, hosts, capabilities }) => {
+      try {
+        const args = ["artifact-template", workflow_recipe];
+        for (const host of hosts ?? []) args.push("--host", host);
+        for (const capability of capabilities ?? []) args.push("--capability", capability);
+        return jsonResult(await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "prepare_artifact_realization",
+    {
+      title: "Prepare Artifact Realization",
+      description: "Turn a chosen workflow recipe plus declared host profiles or capabilities into a concrete artifact scaffold, preferred form, and next steps.",
+      inputSchema: {
+        workflow_recipe: z.string(),
+        hosts: z.array(z.string()).optional(),
+        capabilities: z.array(z.string()).optional(),
+      },
+    },
+    async ({ workflow_recipe, hosts, capabilities }) => {
+      try {
+        const args = ["artifact-realization", workflow_recipe];
+        for (const host of hosts ?? []) args.push("--host", host);
+        for (const capability of capabilities ?? []) args.push("--capability", capability);
+        return jsonResult(await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_framework_result_shape",
+    {
+      title: "Fetch Framework Result Shape",
+      description: "Return the construct-level result shape, scoring types, motif trace, and starter atom slots for a framework.",
+      inputSchema: {
+        framework: z.string(),
+      },
+    },
+    async ({ framework }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["result-shape", framework], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "normalize_result_atom_bundle",
+    {
+      title: "Normalize Result Atom Bundle",
+      description: "Normalize construct-level framework outputs into a schema-shaped result atom bundle with provenance defaults and optional motif trace.",
+      inputSchema: {
+        framework: z.string(),
+        entries: z.array(
+          z.object({
+            construct: z.string(),
+            output_type: z.string(),
+            output_value: z.any(),
+            confidence: z.string().optional(),
+            source_quality: z.string().optional(),
+            timestamp: z.string().optional(),
+            notes: z.string().optional(),
+          })
+        ),
+        comparison_shape: z.string().optional(),
+        bundle_label: z.string().optional(),
+        default_source_quality: z.string().optional(),
+        default_timestamp: z.string().optional(),
+        include_motif_trace: z.boolean().optional(),
+      },
+    },
+    async ({
+      framework,
+      entries,
+      comparison_shape,
+      bundle_label,
+      default_source_quality,
+      default_timestamp,
+      include_motif_trace,
+    }) => {
+      try {
+        const args = [
+          "result-atom-bundle",
+          "--framework",
+          framework,
+          "--entries-json",
+          JSON.stringify(entries),
+        ];
+        if (comparison_shape) args.push("--comparison-shape", comparison_shape);
+        if (bundle_label) args.push("--bundle-label", bundle_label);
+        if (default_source_quality) args.push("--default-source-quality", default_source_quality);
+        if (default_timestamp) args.push("--default-timestamp", default_timestamp);
+        if (include_motif_trace === false) args.push("--no-motif-trace");
+        return jsonResult(await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "recommend_next_path",
+    {
+      title: "Recommend Next Path",
+      description: "Recommend the next A Person Index path from the current run shape and declared host profile or capability context.",
+      inputSchema: {
+        mode: z.string().optional(),
+        comparison_shape: z.string().optional(),
+        hosts: z.array(z.string()).optional(),
+        capabilities: z.array(z.string()).optional(),
+        artifact: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ mode, comparison_shape, hosts, capabilities, artifact, text }) => {
+      try {
+        const args = ["recommend-path"];
+        if (mode) args.push("--mode", mode);
+        if (comparison_shape) args.push("--comparison-shape", comparison_shape);
+        for (const host of hosts ?? []) args.push("--host", host);
+        for (const capability of capabilities ?? []) args.push("--capability", capability);
+        if (artifact) args.push("--artifact", artifact);
+        if (text) args.push("--text", text);
+        return jsonResult(await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_artifact_classes",
+    {
+      title: "List Artifact Classes",
+      description: "Return downstream artifact classes that A Person Index can semantically support.",
+      inputSchema: {
+        mode: z.string().optional(),
+        capability: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ mode, capability, text }) => {
+      try {
+        const args = ["artifacts"];
+        if (mode) args.push("--mode", mode);
+        if (capability) args.push("--capability", capability);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("artifact_classes", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_artifact_class",
+    {
+      title: "Fetch Artifact Class",
+      description: "Return the full record for a named artifact class including evidence and capability expectations.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["artifacts", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_actualization_protocols",
+    {
+      title: "List Actualization Protocols",
+      description: "Return downstream actualization protocols that turn A Person Index comparative work into artifacts or handoffs.",
+      inputSchema: {
+        mode: z.string().optional(),
+        artifact: z.string().optional(),
+        capability: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ mode, artifact, capability, text }) => {
+      try {
+        const args = ["actualization"];
+        if (mode) args.push("--mode", mode);
+        if (artifact) args.push("--artifact", artifact);
+        if (capability) args.push("--capability", capability);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("actualization_protocols", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_actualization_protocol",
+    {
+      title: "Fetch Actualization Protocol",
+      description: "Return the full record for a named actualization protocol.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["actualization", ref], pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }

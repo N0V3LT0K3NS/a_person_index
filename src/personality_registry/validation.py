@@ -264,11 +264,25 @@ def collect_validation_errors(root: Path) -> list[str]:
             errors.append(f"duplicate ID '{entity_id}' appears in {', '.join(sorted(locations))}")
 
     if extensions is not None:
+        analysis_mode_ids = {mode.id for mode in extensions.analysis_modes}
+        capability_ids = {capability.id for capability in extensions.capabilities}
+        expression_profile_ids = {profile.id for profile in extensions.expression_profiles}
+        artifact_class_ids = {artifact.id for artifact in extensions.artifact_classes}
         motif_ids = {motif.id for motif in extensions.motifs}
         technique_ids = {technique.id for technique in extensions.techniques}
+        protocol_ids = {protocol.id for protocol in extensions.protocols}
+        actualization_ids = {item.id for item in extensions.actualization_protocols}
         dimension_ids = {dimension.id for dimension in repository.ontology_dimensions.dimensions}
 
         extension_groups = {
+            "analysis_mode": extensions.analysis_modes,
+            "comparison_shape": extensions.comparison_shapes,
+            "capability": extensions.capabilities,
+            "host_profile": extensions.host_profiles,
+            "expression_profile": extensions.expression_profiles,
+            "artifact_class": extensions.artifact_classes,
+            "actualization_protocol": extensions.actualization_protocols,
+            "workflow_recipe": extensions.workflow_recipes,
             "motif": extensions.motifs,
             "mapping": extensions.mappings,
             "interaction_hypothesis": extensions.interaction_hypotheses,
@@ -298,6 +312,52 @@ def collect_validation_errors(root: Path) -> list[str]:
                     errors.append(
                         f"motifs/registry.yaml: motif '{motif.id}' references unknown ontology dimension '{dimension}'"
                     )
+
+        for artifact_class in extensions.artifact_classes:
+            for mode_id in artifact_class.suitable_mode_ids:
+                if mode_id not in analysis_mode_ids:
+                    errors.append(
+                        f"artifacts/registry.yaml: artifact class '{artifact_class.id}' references missing analysis mode '{mode_id}'"
+                    )
+            for capability_id in artifact_class.required_capability_ids:
+                if capability_id not in capability_ids:
+                    errors.append(
+                        f"artifacts/registry.yaml: artifact class '{artifact_class.id}' references missing required capability '{capability_id}'"
+                    )
+            for capability_id in artifact_class.optional_capability_ids:
+                if capability_id not in capability_ids:
+                    errors.append(
+                        f"artifacts/registry.yaml: artifact class '{artifact_class.id}' references missing optional capability '{capability_id}'"
+                    )
+
+        for host_profile in extensions.host_profiles:
+            for capability_id in host_profile.capability_ids:
+                if capability_id not in capability_ids:
+                    errors.append(
+                        f"hosts/registry.yaml: host profile '{host_profile.id}' references missing capability '{capability_id}'"
+                    )
+
+        for comparison_shape in extensions.comparison_shapes:
+            for mode_id in comparison_shape.mode_ids:
+                if mode_id not in analysis_mode_ids:
+                    errors.append(
+                        f"comparison_shapes/registry.yaml: comparison shape '{comparison_shape.id}' references missing analysis mode '{mode_id}'"
+                    )
+            for artifact_id in comparison_shape.suitable_artifact_class_ids:
+                if artifact_id not in artifact_class_ids:
+                    errors.append(
+                        f"comparison_shapes/registry.yaml: comparison shape '{comparison_shape.id}' references missing artifact class '{artifact_id}'"
+                    )
+            for protocol_id in comparison_shape.recommended_protocol_ids:
+                if protocol_id not in protocol_ids:
+                    errors.append(
+                        f"comparison_shapes/registry.yaml: comparison shape '{comparison_shape.id}' references missing protocol '{protocol_id}'"
+                    )
+            field_ids = [field.id for field in comparison_shape.declaration_fields]
+            if len(field_ids) != len(set(field_ids)):
+                errors.append(
+                    f"comparison_shapes/registry.yaml: comparison shape '{comparison_shape.id}' has duplicate declaration field IDs"
+                )
 
         for mapping in extensions.mappings:
             source_type = mapping.source_entity_type
@@ -337,7 +397,6 @@ def collect_validation_errors(root: Path) -> list[str]:
                         f"is a {target_entity[0]}, not a {target_type}"
                     )
 
-        protocol_ids = {protocol.id for protocol in extensions.protocols}
         for protocol in extensions.protocols:
             for technique_id in protocol.technique_ids:
                 if technique_id not in technique_ids:
@@ -354,6 +413,66 @@ def collect_validation_errors(root: Path) -> list[str]:
                         f"protocols/registry.yaml: protocol '{protocol.id}' references missing component program "
                         f"'{component_program_id}'"
                     )
+
+        for actualization_protocol in extensions.actualization_protocols:
+            for mode_id in actualization_protocol.run_mode_ids:
+                if mode_id not in analysis_mode_ids:
+                    errors.append(
+                        f"actualization/registry.yaml: actualization protocol '{actualization_protocol.id}' references missing analysis mode '{mode_id}'"
+                    )
+            for protocol_id in actualization_protocol.protocol_ids:
+                if protocol_id not in protocol_ids:
+                    errors.append(
+                        f"actualization/registry.yaml: actualization protocol '{actualization_protocol.id}' references missing protocol '{protocol_id}'"
+                    )
+            for artifact_id in actualization_protocol.target_artifact_class_ids:
+                if artifact_id not in artifact_class_ids:
+                    errors.append(
+                        f"actualization/registry.yaml: actualization protocol '{actualization_protocol.id}' references missing artifact class '{artifact_id}'"
+                    )
+            for capability_id in actualization_protocol.required_capability_ids:
+                if capability_id not in capability_ids:
+                    errors.append(
+                        f"actualization/registry.yaml: actualization protocol '{actualization_protocol.id}' references missing required capability '{capability_id}'"
+                    )
+            for capability_id in actualization_protocol.optional_capability_ids:
+                if capability_id not in capability_ids:
+                    errors.append(
+                        f"actualization/registry.yaml: actualization protocol '{actualization_protocol.id}' references missing optional capability '{capability_id}'"
+                    )
+
+        for workflow_recipe in extensions.workflow_recipes:
+            for mode_id in workflow_recipe.run_mode_ids:
+                if mode_id not in analysis_mode_ids:
+                    errors.append(
+                        f"workflow_recipes/registry.yaml: workflow recipe '{workflow_recipe.id}' references missing analysis mode '{mode_id}'"
+                    )
+            if workflow_recipe.artifact_class_id not in artifact_class_ids:
+                errors.append(
+                    f"workflow_recipes/registry.yaml: workflow recipe '{workflow_recipe.id}' references missing artifact class '{workflow_recipe.artifact_class_id}'"
+                )
+            if workflow_recipe.expression_profile_id not in expression_profile_ids:
+                errors.append(
+                    f"workflow_recipes/registry.yaml: workflow recipe '{workflow_recipe.id}' references missing expression profile '{workflow_recipe.expression_profile_id}'"
+                )
+            if workflow_recipe.actualization_protocol_id not in actualization_ids:
+                errors.append(
+                    f"workflow_recipes/registry.yaml: workflow recipe '{workflow_recipe.id}' references missing actualization protocol '{workflow_recipe.actualization_protocol_id}'"
+                )
+            for capability_id in workflow_recipe.required_capability_ids:
+                if capability_id not in capability_ids:
+                    errors.append(
+                        f"workflow_recipes/registry.yaml: workflow recipe '{workflow_recipe.id}' references missing capability '{capability_id}'"
+                    )
+            block_ids = [block.id for block in workflow_recipe.realization_blocks]
+            if not block_ids:
+                errors.append(
+                    f"workflow_recipes/registry.yaml: workflow recipe '{workflow_recipe.id}' must declare at least one realization block"
+                )
+            elif len(block_ids) != len(set(block_ids)):
+                errors.append(
+                    f"workflow_recipes/registry.yaml: workflow recipe '{workflow_recipe.id}' has duplicate realization block IDs"
+                )
 
         contribution_model_ids = {item.id for item in extensions.contribution_models}
         stage_ids = [stage.id for stage in extensions.promotion_registry.stages]

@@ -1,0 +1,252 @@
+comparison_shapes:
+  - id: cmp_contextual_time_slices
+    name: Contextual Time Slices
+    status: active
+    summary: Compare one subject across explicitly declared time slices without confusing sparse deltas for deep baseline change.
+    purpose: Give contextual comparison work a disciplined temporal scaffold before artifact realization begins.
+    mode_ids:
+      - mode_contextual_comparison
+    intent_signals:
+      - compare me across time
+      - over time
+      - 2013 versus 2020
+      - earlier self versus current self
+    declaration_fields:
+      - id: slice_labels
+        label: Time Slice Labels
+        value_kind: string_list
+        required: true
+        summary: Explicit labels for the slices being compared.
+        examples:
+          - 2013 strengths pass
+          - 2020 strengths pass
+      - id: comparison_question
+        label: Comparison Question
+        value_kind: string
+        required: true
+        summary: The declared question the comparison should answer.
+        examples:
+          - What stayed stable versus what changed?
+      - id: framework_scope
+        label: Framework Scope
+        value_kind: string_list
+        required: false
+        summary: Frameworks or comparative axes intended to remain visible across slices.
+        examples:
+          - Big Five
+          - MBTI
+      - id: comparison_limits
+        label: Comparison Limits
+        value_kind: string
+        required: false
+        summary: Notes about uneven coverage, sparse slices, or other declared limits.
+        examples:
+          - Only StrengthsFinder changed between these slices.
+    required_declarations:
+      - explicit time-slice labels
+      - comparable framework coverage or declared comparison limits
+      - stated comparison question
+    optional_declarations:
+      - longitudinal notes
+      - major life transition markers
+      - confidence notes for sparse slices
+    suitable_artifact_class_ids:
+      - art_context_matrix
+      - art_comparative_memo
+      - art_result_bundle
+    recommended_protocol_ids:
+      - proto_contextual_comparison
+      - proto_paradox_finder
+    cautions:
+      - Time-slice comparison should not imply developmental causality by default.
+      - Uneven framework coverage should remain visible in the result.
+
+  - id: cmp_contextual_role_context
+    name: Contextual Role or Self-State
+    status: active
+    summary: Compare one subject across roles, self-states, or environments while keeping the same comparative axes visible.
+    purpose: Support side-by-side contextual comparison that is not primarily temporal.
+    mode_ids:
+      - mode_contextual_comparison
+    intent_signals:
+      - work self versus relational self
+      - compare me across contexts
+      - role A versus role B
+      - different self states
+    declaration_fields:
+      - id: context_labels
+        label: Context or Role Labels
+        value_kind: string_list
+        required: true
+        summary: Explicit labels for the roles, self-states, or contexts being compared.
+        examples:
+          - work self
+          - relational self
+      - id: comparison_question
+        label: Comparison Question
+        value_kind: string
+        required: true
+        summary: The declared question the comparison should answer.
+        examples:
+          - What shifts across these roles without changing the baseline?
+      - id: comparison_axes
+        label: Comparative Axes
+        value_kind: string_list
+        required: false
+        summary: Frameworks, motifs, or other declared axes to keep parallel across contexts.
+        examples:
+          - Big Five
+          - social energy orientation
+      - id: role_descriptions
+        label: Role Descriptions
+        value_kind: string
+        required: false
+        summary: Short notes clarifying what each role or context actually means.
+        examples:
+          - Work self means founder/operator mode.
+    required_declarations:
+      - explicit context or role labels
+      - declared comparison question
+      - comparable axes, motifs, or frameworks
+    optional_declarations:
+      - role descriptions
+      - environmental context
+      - observed shifts in behavior or regulation
+    suitable_artifact_class_ids:
+      - art_context_matrix
+      - art_comparative_memo
+      - art_result_bundle
+    recommended_protocol_ids:
+      - proto_contextual_comparison
+      - proto_paradox_finder
+    cautions:
+      - Role-based variation should not be treated as inconsistency by default.
+      - The same label may hide different context loads unless declared explicitly.
+
+  - id: cmp_pairwise_parallel_stacks
+    name: Pairwise Parallel Stacks
+    status: experimental
+    summary: Compare two separated subject stacks side by side without assuming a relationship-specific framing.
+    purpose: Support disciplined two-stack comparison when the main goal is structured contrast rather than relational interpretation.
+    mode_ids:
+      - mode_contextual_comparison
+    intent_signals:
+      - compare these two people
+      - side by side
+      - compare two stacks
+      - compare person A and person B
+    declaration_fields:
+      - id: left_stack_label
+        label: Left Stack Label
+        value_kind: string
+        required: true
+        summary: The name or label for the first subject or stack.
+        examples:
+          - Person A
+      - id: right_stack_label
+        label: Right Stack Label
+        value_kind: string
+        required: true
+        summary: The name or label for the second subject or stack.
+        examples:
+          - Person B
+      - id: comparison_question
+        label: Comparison Question
+        value_kind: string
+        required: true
+        summary: The declared question the pairwise comparison should answer.
+        examples:
+          - Where do these two stacks converge or stay orthogonal?
+      - id: framework_scope
+        label: Framework Scope
+        value_kind: string_list
+        required: false
+        summary: Frameworks or comparative axes to keep explicit on both sides.
+        examples:
+          - Big Five
+          - Attachment Styles
+    required_declarations:
+      - two explicitly separated stacks
+      - declared comparison question
+      - framework-level scope for the comparison
+    optional_declarations:
+      - known areas of asymmetry
+      - notes about missing frameworks on one side
+    suitable_artifact_class_ids:
+      - art_pairwise_relational_sheet
+      - art_comparative_memo
+      - art_result_bundle
+    recommended_protocol_ids:
+      - proto_pairwise_relational_comparison
+      - proto_translation_memo
+    cautions:
+      - Parallel comparison should preserve orthogonality and missing seams rather than forcing symmetry.
+      - This is not a compatibility score path.
+
+  - id: cmp_pairwise_relational_question
+    name: Pairwise Relational Question
+    status: experimental
+    summary: Compare two subject stacks through an explicitly declared relational question or context.
+    purpose: Support relationship-adjacent pairwise work while keeping scope, evidence, and missingness visible.
+    mode_ids:
+      - mode_contextual_comparison
+    intent_signals:
+      - compare us in relationship
+      - romantic compatibility
+      - how do these two people fit
+      - relational comparison
+    declaration_fields:
+      - id: left_stack_label
+        label: Left Stack Label
+        value_kind: string
+        required: true
+        summary: The name or label for the first subject or stack.
+        examples:
+          - Me
+      - id: right_stack_label
+        label: Right Stack Label
+        value_kind: string
+        required: true
+        summary: The name or label for the second subject or stack.
+        examples:
+          - Partner
+      - id: relationship_context
+        label: Relationship Context
+        value_kind: string
+        required: true
+        summary: The declared relationship or interaction context for the comparison.
+        examples:
+          - romantic relationship
+      - id: comparison_question
+        label: Comparison Question
+        value_kind: string
+        required: true
+        summary: The declared question the relational comparison should answer.
+        examples:
+          - Where do we reinforce, miss, or strain each other?
+      - id: scope_limits
+        label: Scope Limits
+        value_kind: string
+        required: true
+        summary: Explicit limits on what the comparison is allowed to claim.
+        examples:
+          - Do not treat this as a deterministic compatibility score.
+    required_declarations:
+      - two explicitly separated stacks
+      - declared relationship or comparison question
+      - scope limits for what the comparison may and may not claim
+    optional_declarations:
+      - attachment or care-signaling context
+      - relational history notes
+      - behavioral observations
+    suitable_artifact_class_ids:
+      - art_pairwise_relational_sheet
+      - art_comparative_memo
+      - art_result_bundle
+    recommended_protocol_ids:
+      - proto_pairwise_relational_comparison
+      - proto_translation_memo
+      - proto_paradox_finder
+    cautions:
+      - Relationship framing should not silently become deterministic compatibility language.
+      - Unsupported relational claims should remain clearly unsupported.

@@ -31,6 +31,21 @@
   - `python3 scripts/query_registry.py program-pack ILENS --framework MBTI --framework Enneagram`
   - `python3 scripts/query_registry.py program-pack-summary ILENS --framework "Big Five" --framework MBTI --framework Enneagram`
 
+### Move from recommendation to execution
+
+- MCP tools:
+  - `list_comparison_shapes`
+  - `prepare_comparison_run`
+  - `recommend_next_path`
+  - `fetch_workflow_recipe`
+  - `prepare_artifact_realization`
+- CLI:
+  - `python3 scripts/query_registry.py comparison-shapes --text "compare me across time"`
+  - `python3 scripts/query_registry.py comparison-preflight "Contextual Time Slices" --declare slice_labels="earlier,later" --declare comparison_question="What changed?" --capability "Markdown Write"`
+  - `python3 scripts/query_registry.py recommend-path --mode "Artifact Actualization" --capability "Markdown Write"`
+  - `python3 scripts/query_registry.py workflows --artifact "Comparative Memo"`
+  - `python3 scripts/query_registry.py artifact-realization "Single-Subject Comparative Memo" --capability "Markdown Write" --capability "Structured Text Render"`
+
 ### Ingest assessment stacks
 
 - MCP:

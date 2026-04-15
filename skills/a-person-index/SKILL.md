@@ -136,13 +136,54 @@ CLI fallback:
 
 ```bash
 python3 scripts/query_registry.py result-atom-schema
+python3 scripts/query_registry.py result-shape "Big Five"
+python3 scripts/query_registry.py result-atom-bundle --framework "Big Five" --entries-json '[{"construct":"Openness to Experience","output_type":"continuous_score","output_value":"0.74"}]'
 python3 scripts/query_registry.py research-models
 python3 scripts/query_registry.py research-promotion
 ```
 
 Return rule:
+- if the runtime still needs construct IDs or starter atom slots, inspect the framework result-shape surface first
 - prefer `mapping_vote`, `pairwise_relation_judgment`, `result_atom_bundle`, `distilled_observation`, or `protocol_feedback`
+- if the framework is known and the outputs are already construct-level, use the result-atom helper instead of hand-building IDs and provenance
 - do not send raw chats, diaries, or broad narrative corpora as canonical input
+
+### 5. Inspect advanced modes and actualization surfaces
+
+Use this when the task is no longer just a basic comparative pass and you need
+to decide:
+
+- what kind of run this is
+- what artifact class fits
+- what actualization protocol could turn the comparative core into a usable output
+
+Prefer:
+- `python3 scripts/query_registry.py modes`
+- `python3 scripts/query_registry.py comparison-shapes`
+- `python3 scripts/query_registry.py comparison-preflight "Contextual Time Slices" --declare slice_labels="earlier,later" --declare comparison_question="What changed?"`
+- `python3 scripts/query_registry.py recommend-path --mode "Run Planning"`
+- `python3 scripts/query_registry.py artifacts`
+- `python3 scripts/query_registry.py expressions`
+- `python3 scripts/query_registry.py actualization`
+- `python3 scripts/query_registry.py workflows`
+- `python3 scripts/query_registry.py artifact-realization "Context Matrix Explanatory" --capability "Markdown Write" --capability "Table Render"`
+
+Mode rule:
+- if the user wants a bounded pass, stay with the basic workflow
+- if the user wants planning, artifact generation, contextual comparison, or trace review, name the mode explicitly before doing more work
+- if the work is contextual or pairwise, choose a comparison shape and run comparison preflight before choosing artifacts or actualization paths
+- if the main question is what the host can do here or what path to take next, start with `$a-person-index-meta`
+- when capabilities are already clear and the next step is the real question, use `recommend-path` or `recommend_next_path` before manually choosing an artifact
+- once the workflow recipe is chosen and the question becomes what the finished artifact should contain, use `artifact-realization` before writing or rendering by hand
+
+Artifact rule:
+- treat artifact classes and actualization protocols as downstream guides, not as proof that an artifact has already been rendered
+- when the audience fit matters, choose an expression profile explicitly instead of defaulting to the most technical voice
+- when the path is already chosen and you need the concrete execution sequence, choose a workflow recipe rather than improvising the order from memory
+
+Expression rule:
+- keep technical scaffolding implicit by default for end users
+- expose more ontology and program detail only when the audience asks for it or when the context is contributor or debugging oriented
 
 ## Anti-patterns
 
@@ -156,3 +197,12 @@ Return rule:
 ## References
 
 - For compact command and task mappings, read [references/workflows.md](references/workflows.md).
+- For advanced comparative, artifact, and downstream realization context, read:
+  [../../docs/advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md),
+  [../../docs/comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md),
+  [../../docs/comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md),
+  [../../docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
+  [../../docs/artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md),
+  [../../docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
+  [../../docs/expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md),
+  [../../docs/multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)

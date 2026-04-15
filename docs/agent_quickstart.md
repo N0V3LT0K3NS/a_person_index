@@ -14,6 +14,8 @@ Keep these layers separate:
 4. runtime packs
 5. research contribution and promotion policy
 
+It can also act as the comparative core inside richer downstream workflows, but that does not change the layer boundaries above.
+
 ## First moves
 
 If you are using MCP, prefer this order:
@@ -51,6 +53,19 @@ For user-supplied assessment results:
 - If a framework is symbolic, say so explicitly instead of flattening it into empirical language.
 - If a framework is missing, say it is unindexed rather than inventing coverage.
 
+## Expression rule
+
+For most end users, keep the technical scaffolding implicit unless they ask for it.
+
+Explain the phenomenon before the variable names.
+
+Reserve fully technical, ontology-heavy language for contributor, debugging, or meta-analysis contexts.
+
+See:
+
+- [expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md)
+- [advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md)
+
 ## Common mistakes
 
 - treating house motifs as source truth
@@ -58,3 +73,57 @@ For user-supplied assessment results:
 - calling `fetch_protocol_pack` with a vague ref like `novel`
 - claiming the repo itself performed person-level inference
 - failing to mark symbolic systems as symbolic
+
+## If the task becomes more than a basic pass
+
+If the user is really asking for:
+
+- run planning
+- architecture analysis
+- artifact generation
+- contextual comparison
+- or multi-subject comparison
+
+do not force that back into a plain intake workflow.
+
+If the host capabilities are already known and you need the next disciplined
+step rather than a full execution, use `recommend_next_path` before you start
+improvising.
+
+If the host itself is already known, inspect the host profile layer before you
+hand-declare capabilities one by one.
+
+If the work is contextual or pairwise and the comparison shape is already
+chosen, run comparison preflight before you treat the path as execution-ready.
+
+If the workflow recipe is already chosen and the next question is what the
+finished artifact should actually contain, use artifact realization before you
+start rendering.
+
+If the host then needs a starter markdown or JSON structure to fill, use the
+artifact template surface rather than rebuilding that first draft from scratch.
+
+If the runtime still needs to inspect a framework's construct-level result
+slots before normalization, use the result-shape discovery surface first.
+
+If the runtime already has construct-level outputs and the question becomes
+research-safe return traffic or downstream atom-level transport, use the result
+atom normalization surface instead of improvising IDs, provenance, or motif
+attachments.
+
+Use the deeper docs:
+
+- [advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md)
+- [comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md)
+- [comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md)
+- [host_profiles.md](/Users/noveltokens/a_person_index/docs/host_profiles.md)
+- [capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md)
+- [artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md)
+- [artifact_templates.md](/Users/noveltokens/a_person_index/docs/artifact_templates.md)
+- [result_shape_discovery.md](/Users/noveltokens/a_person_index/docs/result_shape_discovery.md)
+- [result_atom_normalization.md](/Users/noveltokens/a_person_index/docs/result_atom_normalization.md)
+- [expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md)
+- [actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md)
+- [workflow_recipes.md](/Users/noveltokens/a_person_index/docs/workflow_recipes.md)
+- [expression_and_artifacts.md](/Users/noveltokens/a_person_index/docs/expression_and_artifacts.md)
+- [multi_subject_comparison.md](/Users/noveltokens/a_person_index/docs/multi_subject_comparison.md)

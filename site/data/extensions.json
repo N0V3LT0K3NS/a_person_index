@@ -424,6 +424,611 @@
       "notes": null
     }
   ],
+  "analysis_modes": [
+    {
+      "id": "mode_orient_and_sync",
+      "name": "Orientation and Sync",
+      "status": "active",
+      "summary": "Establish what A Person Index currently contains, what surfaces are available, and what changed before deeper work begins.",
+      "purpose": "Reduce avoidable drift by making current state explicit before substantive use.",
+      "intent_signals": [
+        "make sure you are up to date",
+        "orient yourself to the repo or MCP",
+        "what changed",
+        "what is current now"
+      ],
+      "preferred_entrypoints": [
+        "orient_agent",
+        "registry://quickstart",
+        "registry://current-state",
+        "registry-arrival"
+      ],
+      "typical_outputs": [
+        "current-state snapshot",
+        "recommended next sequence",
+        "changed-surface summary"
+      ],
+      "cautions": [
+        "Do not imply that orientation is the same thing as framework use.",
+        "Keep repo status separate from person-level findings."
+      ],
+      "notes": null
+    },
+    {
+      "id": "mode_bounded_single_subject",
+      "name": "Bounded Single-Subject Mixed Stack",
+      "status": "active",
+      "summary": "Match and compare one person's mixed assessment stack while preserving indexed coverage, gaps, and layer boundaries.",
+      "purpose": "Support careful single-subject comparative work without overclaiming runtime inference.",
+      "intent_signals": [
+        "use these results",
+        "what can A Person Index do with this stack",
+        "make sense of my tests"
+      ],
+      "preferred_entrypoints": [
+        "registry://assessment-workflow",
+        "assessment-results-intake",
+        "list_protocol_packs"
+      ],
+      "typical_outputs": [
+        "matched framework inventory",
+        "motif and interaction summary",
+        "bounded comparative reading"
+      ],
+      "cautions": [
+        "Keep unmatched frameworks visible.",
+        "Do not flatten symbolic systems into psychometric claims."
+      ],
+      "notes": null
+    },
+    {
+      "id": "mode_architecture_analysis",
+      "name": "Architecture and Capability Analysis",
+      "status": "experimental",
+      "summary": "Inspect A Person Index itself as a layered comparative system rather than only as a source of person-level outputs.",
+      "purpose": "Support builders and advanced users who want to understand the latent operations, seams, and limits of the substrate.",
+      "intent_signals": [
+        "what can this system actually do",
+        "look past the surface lego blocks",
+        "analyze the architecture",
+        "what are the seams or gaps"
+      ],
+      "preferred_entrypoints": [
+        "registry://manifest",
+        "registry://quickstart",
+        "programs and pack summaries"
+      ],
+      "typical_outputs": [
+        "layer map",
+        "capability memo",
+        "gap analysis"
+      ],
+      "cautions": [
+        "Do not drift from system analysis into unconstrained person narration.",
+        "Keep latent possibilities separate from already shipped capabilities."
+      ],
+      "notes": null
+    },
+    {
+      "id": "mode_run_planning",
+      "name": "Run Planning",
+      "status": "active",
+      "summary": "Decide what kind of pass should happen, what should stay inside A Person Index, and what downstream realization is appropriate before executing.",
+      "purpose": "Improve mode discipline, tool choice, and artifact fit before the host starts acting.",
+      "intent_signals": [
+        "don't do it yet",
+        "let's think through the plan",
+        "set ourselves up for success"
+      ],
+      "preferred_entrypoints": [
+        "registry://assessment-workflow",
+        "registry://ilens-walkthrough",
+        "program pack summaries"
+      ],
+      "typical_outputs": [
+        "phased plan",
+        "program or pack choice",
+        "artifact recommendation"
+      ],
+      "cautions": [
+        "Distinguish planning from execution clearly.",
+        "Name what evidence is still missing before promising an output shape."
+      ],
+      "notes": null
+    },
+    {
+      "id": "mode_artifact_actualization",
+      "name": "Artifact Actualization",
+      "status": "experimental",
+      "summary": "Use A Person Index as the comparative core while a host agent uses available tools to materialize a deliberate artifact or deliverable.",
+      "purpose": "Turn structured comparative understanding into a usable downstream object without losing provenance.",
+      "intent_signals": [
+        "make an artifact",
+        "turn this into a memo or card",
+        "generate a graph or handoff file"
+      ],
+      "preferred_entrypoints": [
+        "actualization protocol registry",
+        "artifact class registry",
+        "protocol pack summaries"
+      ],
+      "typical_outputs": [
+        "rendered document",
+        "comparison matrix",
+        "graph-ready bundle"
+      ],
+      "cautions": [
+        "External tools may render or package the output, but they should not redefine comparative meaning.",
+        "Keep evidence partitions visible in the final artifact."
+      ],
+      "notes": null
+    },
+    {
+      "id": "mode_contextual_comparison",
+      "name": "Contextual and Multi-Subject Comparison",
+      "status": "experimental",
+      "summary": "Compare one person across contexts or time, or compare multiple people side by side, using the same comparative grammar without collapsing the scopes.",
+      "purpose": "Extend the substrate beyond one mixed stack while keeping semantic discipline.",
+      "intent_signals": [
+        "compare these two people",
+        "compare me across time",
+        "compare work self and relational self"
+      ],
+      "preferred_entrypoints": [
+        "multi-subject comparison docs",
+        "comparison-oriented actualization protocols"
+      ],
+      "typical_outputs": [
+        "contextual comparison memo",
+        "pairwise matrix",
+        "convergence and tension map"
+      ],
+      "cautions": [
+        "Comparison intensifies the risk of smoothing over missingness.",
+        "Avoid turning pairwise work into a single compatibility score."
+      ],
+      "notes": null
+    },
+    {
+      "id": "mode_trace_review",
+      "name": "Trace Review",
+      "status": "experimental",
+      "summary": "Review another agent's A Person Index run to see what layers were touched, where it drifted, and what support surfaces were missing.",
+      "purpose": "Use run traces as internal learning material without promoting them directly into canonical truth.",
+      "intent_signals": [
+        "review this run",
+        "analyze how the agent used A Person Index",
+        "what happened in this trace"
+      ],
+      "preferred_entrypoints": [
+        "internal review packets",
+        "advanced mode docs"
+      ],
+      "typical_outputs": [
+        "mode map",
+        "drift and recovery memo",
+        "refinement recommendations"
+      ],
+      "cautions": [
+        "This is primarily an internal or advanced mode.",
+        "Do not confuse run-quality review with person-level comparative truth."
+      ],
+      "notes": null
+    }
+  ],
+  "artifact_classes": [
+    {
+      "id": "art_comparative_memo",
+      "name": "Comparative Memo",
+      "status": "active",
+      "summary": "A narrative artifact that explains convergence, tension, missingness, and limits across a bounded comparative pass.",
+      "audience_modes": [
+        "end_user",
+        "collaborator",
+        "analyst"
+      ],
+      "default_expression_mode": "explanatory",
+      "suitable_mode_ids": [
+        "mode_bounded_single_subject",
+        "mode_contextual_comparison",
+        "mode_trace_review"
+      ],
+      "required_evidence_partitions": [
+        "canonical_framework_content",
+        "house_synthesis",
+        "downstream_judgment"
+      ],
+      "required_capability_ids": [
+        "cap_markdown_write",
+        "cap_structured_text_render"
+      ],
+      "optional_capability_ids": [],
+      "typical_forms": [
+        "markdown memo",
+        "long-form message"
+      ],
+      "notes": "Good default artifact when the goal is clarity without heavy visualization."
+    },
+    {
+      "id": "art_human_model_card",
+      "name": "Human Model Card",
+      "status": "experimental",
+      "summary": "A structured person-model artifact that preserves provenance, paradoxes, deployment conditions, and caveats in a formal frame.",
+      "audience_modes": [
+        "end_user",
+        "collaborator",
+        "contributor"
+      ],
+      "default_expression_mode": "mixed",
+      "suitable_mode_ids": [
+        "mode_bounded_single_subject",
+        "mode_artifact_actualization"
+      ],
+      "required_evidence_partitions": [
+        "canonical_framework_content",
+        "house_synthesis",
+        "program_behavior",
+        "downstream_judgment"
+      ],
+      "required_capability_ids": [
+        "cap_markdown_write",
+        "cap_structured_text_render"
+      ],
+      "optional_capability_ids": [
+        "cap_pdf_render"
+      ],
+      "typical_forms": [
+        "markdown card",
+        "PDF-style export"
+      ],
+      "notes": "Should make provenance and uncertainty more visible than a plain memo."
+    },
+    {
+      "id": "art_agent_markdown_handoff",
+      "name": "Agent Markdown Handoff",
+      "status": "experimental",
+      "summary": "A machine-friendly markdown artifact such as agent.md, soul.md, or another downstream handoff file shaped for future agents or systems.",
+      "audience_modes": [
+        "agent",
+        "maintainer",
+        "collaborator"
+      ],
+      "default_expression_mode": "technical",
+      "suitable_mode_ids": [
+        "mode_artifact_actualization",
+        "mode_contextual_comparison"
+      ],
+      "required_evidence_partitions": [
+        "canonical_framework_content",
+        "house_synthesis",
+        "downstream_judgment",
+        "external_realization_notes"
+      ],
+      "required_capability_ids": [
+        "cap_markdown_write",
+        "cap_file_write"
+      ],
+      "optional_capability_ids": [],
+      "typical_forms": [
+        "markdown handoff",
+        "repo artifact"
+      ],
+      "notes": "Useful when the output is meant to be consumed by another agent later."
+    },
+    {
+      "id": "art_context_matrix",
+      "name": "Context Matrix",
+      "status": "experimental",
+      "summary": "A tabular or matrix artifact comparing the same subject across contexts, roles, or time slices.",
+      "audience_modes": [
+        "end_user",
+        "collaborator",
+        "analyst"
+      ],
+      "default_expression_mode": "explanatory",
+      "suitable_mode_ids": [
+        "mode_contextual_comparison",
+        "mode_artifact_actualization"
+      ],
+      "required_evidence_partitions": [
+        "canonical_framework_content",
+        "house_synthesis",
+        "downstream_judgment"
+      ],
+      "required_capability_ids": [
+        "cap_table_render",
+        "cap_markdown_write"
+      ],
+      "optional_capability_ids": [
+        "cap_spreadsheet_render"
+      ],
+      "typical_forms": [
+        "markdown table",
+        "spreadsheet"
+      ],
+      "notes": "Best when the same axes must be shown across more than one context slice."
+    },
+    {
+      "id": "art_pairwise_relational_sheet",
+      "name": "Pairwise Relational Sheet",
+      "status": "experimental",
+      "summary": "A side-by-side artifact for two people or two stacks that emphasizes convergence, friction, and orthogonality without collapsing to one score.",
+      "audience_modes": [
+        "end_user",
+        "collaborator",
+        "analyst"
+      ],
+      "default_expression_mode": "explanatory",
+      "suitable_mode_ids": [
+        "mode_contextual_comparison",
+        "mode_artifact_actualization"
+      ],
+      "required_evidence_partitions": [
+        "canonical_framework_content",
+        "house_synthesis",
+        "downstream_judgment"
+      ],
+      "required_capability_ids": [
+        "cap_table_render",
+        "cap_markdown_write"
+      ],
+      "optional_capability_ids": [
+        "cap_diagram_render"
+      ],
+      "typical_forms": [
+        "side-by-side sheet",
+        "relational matrix"
+      ],
+      "notes": "Should foreground what is orthogonal or missing, not just what feels resonant."
+    },
+    {
+      "id": "art_result_bundle",
+      "name": "Structured Result Bundle",
+      "status": "active",
+      "summary": "A machine-readable output that packages structured comparative findings for downstream systems or safe research return.",
+      "audience_modes": [
+        "agent",
+        "maintainer",
+        "research_ops"
+      ],
+      "default_expression_mode": "technical",
+      "suitable_mode_ids": [
+        "mode_bounded_single_subject",
+        "mode_artifact_actualization",
+        "mode_contextual_comparison"
+      ],
+      "required_evidence_partitions": [
+        "canonical_framework_content",
+        "house_synthesis",
+        "program_behavior"
+      ],
+      "required_capability_ids": [
+        "cap_json_emit",
+        "cap_file_write"
+      ],
+      "optional_capability_ids": [],
+      "typical_forms": [
+        "JSON bundle",
+        "structured markdown plus JSON"
+      ],
+      "notes": "Useful when another agent or system needs a normalized handoff."
+    }
+  ],
+  "actualization_protocols": [
+    {
+      "id": "actx_single_subject_comparative_memo",
+      "name": "Single-Subject Comparative Memo",
+      "status": "active",
+      "summary": "Turn a bounded single-subject mixed-stack pass into a clear comparative memo while preserving matched coverage, motifs, tensions, and caveats.",
+      "run_mode_ids": [
+        "mode_bounded_single_subject",
+        "mode_artifact_actualization"
+      ],
+      "protocol_ids": [
+        "proto_ilens",
+        "proto_translation_memo",
+        "proto_paradox_finder"
+      ],
+      "target_artifact_class_ids": [
+        "art_comparative_memo",
+        "art_result_bundle"
+      ],
+      "required_capability_ids": [
+        "cap_markdown_write",
+        "cap_structured_text_render"
+      ],
+      "optional_capability_ids": [],
+      "steps": [
+        "Match frameworks and call out unindexed items before synthesis.",
+        "Choose the right reviewed program or pack before improvising.",
+        "Separate canonical framework content, house synthesis, and downstream judgment.",
+        "Render the memo in the expression mode appropriate to the audience."
+      ],
+      "cautions": [
+        "Do not hide missing coverage for the sake of narrative smoothness.",
+        "Keep symbolic, mixed, and psychometric signals distinct when explaining the result."
+      ],
+      "notes": null
+    },
+    {
+      "id": "actx_human_model_card_realization",
+      "name": "Human Model Card Realization",
+      "status": "experimental",
+      "summary": "Use the Human Model Card program frame plus host rendering tools to produce a structured downstream artifact without confusing the artifact with canonical truth.",
+      "run_mode_ids": [
+        "mode_bounded_single_subject",
+        "mode_artifact_actualization"
+      ],
+      "protocol_ids": [
+        "proto_human_model_card",
+        "proto_paradox_finder"
+      ],
+      "target_artifact_class_ids": [
+        "art_human_model_card",
+        "art_agent_markdown_handoff"
+      ],
+      "required_capability_ids": [
+        "cap_markdown_write",
+        "cap_structured_text_render"
+      ],
+      "optional_capability_ids": [
+        "cap_pdf_render"
+      ],
+      "steps": [
+        "Use the Human Model Card frame to organize provenance, paradoxes, and deployment conditions.",
+        "Preserve the evidence partitions explicitly in the rendered artifact.",
+        "Use host rendering tools only after the comparative frame is stable."
+      ],
+      "cautions": [
+        "A rendered card is still downstream interpretation, not ontology.",
+        "Avoid overstating mechanism or completeness."
+      ],
+      "notes": null
+    },
+    {
+      "id": "actx_structured_result_bundle_packaging",
+      "name": "Structured Result Bundle Packaging",
+      "status": "experimental",
+      "summary": "Package a bounded comparative pass into a machine-readable result bundle for downstream agents, repos, or research-safe return without confusing the bundle with canonical truth.",
+      "run_mode_ids": [
+        "mode_bounded_single_subject",
+        "mode_artifact_actualization"
+      ],
+      "protocol_ids": [
+        "proto_ilens",
+        "proto_translation_memo",
+        "proto_paradox_finder"
+      ],
+      "target_artifact_class_ids": [
+        "art_result_bundle"
+      ],
+      "required_capability_ids": [
+        "cap_json_emit",
+        "cap_file_write"
+      ],
+      "optional_capability_ids": [
+        "cap_markdown_write"
+      ],
+      "steps": [
+        "Match frameworks and scope the bounded pass before packaging fields.",
+        "Preserve canonical framework content, house synthesis, named program behavior, and downstream judgment as separate sections or objects in the bundle.",
+        "Package unresolved questions, missing coverage, and caveats as first-class fields rather than prose only.",
+        "Emit the bundle in a stable machine-readable form before any optional human-readable companion output."
+      ],
+      "cautions": [
+        "A result bundle is a downstream packaging contract, not canonical ontology.",
+        "Do not emit fields whose semantics are not grounded in the comparative work."
+      ],
+      "notes": null
+    },
+    {
+      "id": "actx_comparison_result_bundle_packaging",
+      "name": "Comparison Result Bundle Packaging",
+      "status": "experimental",
+      "summary": "Package a contextual or pairwise comparison into a machine-readable result bundle while preserving comparison declarations, provenance, and missingness explicitly.",
+      "run_mode_ids": [
+        "mode_contextual_comparison",
+        "mode_artifact_actualization"
+      ],
+      "protocol_ids": [
+        "proto_contextual_comparison",
+        "proto_pairwise_relational_comparison",
+        "proto_translation_memo",
+        "proto_paradox_finder"
+      ],
+      "target_artifact_class_ids": [
+        "art_result_bundle"
+      ],
+      "required_capability_ids": [
+        "cap_json_emit",
+        "cap_file_write"
+      ],
+      "optional_capability_ids": [
+        "cap_markdown_write"
+      ],
+      "steps": [
+        "Run comparison preflight so the shape declarations are explicit before packaging bundle fields.",
+        "Preserve comparison scope, declarations, and stable axes as first-class bundle metadata.",
+        "Package convergence, tension, orthogonality, and missing seams as structured fields rather than prose-only summary.",
+        "Emit a machine-readable bundle before any optional human-readable companion output."
+      ],
+      "cautions": [
+        "A comparison bundle is not a compatibility score or deterministic relationship verdict.",
+        "Missing overlap or sparse comparison seams should stay visible in the bundle rather than being normalized away."
+      ],
+      "notes": null
+    },
+    {
+      "id": "actx_context_matrix_render",
+      "name": "Context Matrix Render",
+      "status": "experimental",
+      "summary": "Compare one subject across time or contexts and materialize the result as a matrix or table.",
+      "run_mode_ids": [
+        "mode_contextual_comparison",
+        "mode_artifact_actualization"
+      ],
+      "protocol_ids": [
+        "proto_contextual_comparison",
+        "proto_paradox_finder"
+      ],
+      "target_artifact_class_ids": [
+        "art_context_matrix"
+      ],
+      "required_capability_ids": [
+        "cap_table_render",
+        "cap_markdown_write"
+      ],
+      "optional_capability_ids": [
+        "cap_spreadsheet_render"
+      ],
+      "steps": [
+        "Declare the context slices explicitly before comparison begins.",
+        "Keep the same comparative axes visible across all slices.",
+        "Mark missing or incomparable regions instead of smoothing them over."
+      ],
+      "cautions": [
+        "Contextual deltas are not automatically personality change.",
+        "Sparse input should reduce confidence and output density."
+      ],
+      "notes": null
+    },
+    {
+      "id": "actx_pairwise_relational_sheet",
+      "name": "Pairwise Relational Sheet",
+      "status": "experimental",
+      "summary": "Compare two stacks side by side and produce a relational sheet that emphasizes convergence, friction, orthogonality, and missingness.",
+      "run_mode_ids": [
+        "mode_contextual_comparison",
+        "mode_artifact_actualization"
+      ],
+      "protocol_ids": [
+        "proto_pairwise_relational_comparison",
+        "proto_translation_memo",
+        "proto_paradox_finder"
+      ],
+      "target_artifact_class_ids": [
+        "art_pairwise_relational_sheet",
+        "art_comparative_memo"
+      ],
+      "required_capability_ids": [
+        "cap_table_render",
+        "cap_markdown_write"
+      ],
+      "optional_capability_ids": [
+        "cap_diagram_render"
+      ],
+      "steps": [
+        "Keep each subject's stack legible before making pairwise claims.",
+        "Compare convergence, tension, and orthogonality without collapsing them into a single score.",
+        "Use visual or tabular structure when the host can support it."
+      ],
+      "cautions": [
+        "Do not force reciprocal claims where the frameworks touch different layers.",
+        "Treat missing comparison seams as informative, not embarrassing."
+      ],
+      "notes": null
+    }
+  ],
   "interaction_hypotheses": [
     {
       "id": "ihp_attachment_anxiety_words_affirmation",
@@ -862,6 +1467,83 @@
         "suggested follow-up mappings"
       ],
       "notes": "Translation memos are useful baseline artifacts for both curation and downstream synthesis.\n"
+    },
+    {
+      "id": "proto_contextual_comparison",
+      "name": "Contextual Comparison Memo",
+      "status": "experimental",
+      "program_kind": "comparison_program",
+      "purpose": "Compare one subject across time slices, roles, or contexts without confusing sparse deltas, adaptive overlays, and genuine baseline change.\n",
+      "summary": "A comparison program for repeated or context-tagged personhood evidence that keeps stable-versus-adaptive framing, paradox preservation, and missingness explicit rather than smoothing them into one narrative arc.\n",
+      "downstream_consumers": [
+        "analyst agents",
+        "actualization agents",
+        "contextual comparison workflows"
+      ],
+      "required_inputs": [
+        "context-tagged result atoms or comparable structured outputs",
+        "declared context or time slices",
+        "consistent comparative axes or motif traces"
+      ],
+      "optional_inputs": [
+        "longitudinal notes",
+        "role descriptions",
+        "behavioral observations"
+      ],
+      "technique_ids": [
+        "tech_result_atom_decomposition",
+        "tech_stable_vs_adaptive_split",
+        "tech_paradox_scan",
+        "tech_contradiction_preservation"
+      ],
+      "component_program_ids": [
+        "proto_paradox_finder"
+      ],
+      "primary_outputs": [
+        "contextual comparison memo",
+        "baseline versus adaptive split notes",
+        "delta caution map"
+      ],
+      "notes": "Best used when the same or comparable frameworks have been collected for more than one context, role, or time slice. Sparse coverage should reduce the density and confidence of the output rather than forcing a narrative.\n"
+    },
+    {
+      "id": "proto_pairwise_relational_comparison",
+      "name": "Pairwise Relational Comparison",
+      "status": "experimental",
+      "program_kind": "comparison_program",
+      "purpose": "Compare two subject stacks side by side without collapsing convergence, friction, orthogonality, and missingness into one compatibility score.\n",
+      "summary": "A comparison program for pairwise or relationship-adjacent work that uses translation, paradox preservation, and evidence bracketing to keep relational claims scoped to what the inputs can actually support.\n",
+      "downstream_consumers": [
+        "analyst agents",
+        "actualization agents",
+        "relational comparison workflows"
+      ],
+      "required_inputs": [
+        "two explicitly separated stacks or structured result bundles",
+        "framework records for any compared systems",
+        "declared comparison question or relationship context"
+      ],
+      "optional_inputs": [
+        "relational history notes",
+        "attachment or care-signaling context",
+        "behavioral observations"
+      ],
+      "technique_ids": [
+        "tech_cross_framework_translation",
+        "tech_paradox_scan",
+        "tech_contradiction_preservation",
+        "tech_symbolic_vs_empirical_bracketing"
+      ],
+      "component_program_ids": [
+        "proto_translation_memo",
+        "proto_paradox_finder"
+      ],
+      "primary_outputs": [
+        "pairwise relational sheet",
+        "convergence and friction memo",
+        "missing-seam notes"
+      ],
+      "notes": "This program is for disciplined pairwise comparison, not deterministic compatibility scoring. It should preserve asymmetry and leave unsupported seams visible.\n"
     }
   ],
   "protocol_packs": [
@@ -939,6 +1621,44 @@
       "target_construct_ids": [],
       "featured": false,
       "notes": "This pack does not replace the need for broader behavioral corpus evidence, but it gives downstream agents a consistent baseline bundle for model-card synthesis work.\n"
+    },
+    {
+      "id": "ppk_contextual_core_trait_motive_stack",
+      "protocol_id": "proto_contextual_comparison",
+      "status": "experimental",
+      "title": "Contextual Core Trait-Motive Stack",
+      "summary": "A contextual comparison pack for repeated Big Five, MBTI, and Enneagram slices across time, role, or self-state while keeping stable-versus- adaptive interpretation explicit.\n",
+      "intended_consumers": [
+        "analyst agents",
+        "actualization agents"
+      ],
+      "target_framework_ids": [
+        "instr_big_five",
+        "instr_mbti",
+        "instr_enneagram"
+      ],
+      "target_construct_ids": [],
+      "featured": false,
+      "notes": "Use when the same comparative axes appear across more than one slice of a single subject. This pack is not a general pairwise or compatibility pack.\n"
+    },
+    {
+      "id": "ppk_pairwise_relational_baseline",
+      "protocol_id": "proto_pairwise_relational_comparison",
+      "status": "experimental",
+      "title": "Pairwise Relational Baseline",
+      "summary": "A pairwise comparison pack that centers attachment, relational care signaling, and broad trait scaffold without collapsing them into one score.\n",
+      "intended_consumers": [
+        "analyst agents",
+        "actualization agents"
+      ],
+      "target_framework_ids": [
+        "instr_attachment_styles",
+        "instr_love_languages",
+        "instr_big_five"
+      ],
+      "target_construct_ids": [],
+      "featured": false,
+      "notes": "This is a disciplined baseline for pairwise or relationship-oriented work. It emphasizes regulation, care signaling, and broad trait context while keeping unsupported relational claims visible.\n"
     }
   ],
   "promotion_registry": {

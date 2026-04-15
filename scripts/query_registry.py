@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 
 from _bootstrap import bootstrap
@@ -8,35 +9,57 @@ from _bootstrap import bootstrap
 root = bootstrap()
 
 from personality_registry.query import (
+    actualization_protocol_record,
     agent_orientation,
+    analysis_mode_record,
+    artifact_class_record,
     audit_repository,
+    capability_record,
+    comparison_shape_record,
     compare_instruments,
     contribution_model_record,
     curated_protocol_pack_record,
     dumps_json,
+    expression_profile_record,
+    find_actualization_protocols,
+    find_analysis_modes,
+    find_artifact_classes,
+    find_capabilities,
+    find_host_profiles,
+    find_comparison_shapes,
     find_contribution_models,
+    find_expression_profiles,
     find_interaction_hypotheses,
     find_motifs,
     find_promotion_pathways,
     find_protocol_packs,
     find_protocols,
     find_techniques,
+    find_workflow_recipes,
     interaction_hypothesis_record,
     load_extensions_for_query,
     load_repository_for_query,
     motif_record,
+    host_profile_record,
+    prepare_artifact_realization,
+    prepare_artifact_template,
+    prepare_comparison_run,
+    framework_result_shape,
+    normalize_result_atom_bundle,
     promotion_pathway_record,
     protocol_pack,
     protocol_pack_summary,
     protocol_pack_grammar,
     protocol_record,
     query_results,
+    recommend_next_path,
     research_promotion_registry_record,
     resolve_instrument,
     result_atom_schema_record,
     show_instrument,
     technique_record,
     trace_entity_to_motifs,
+    workflow_recipe_record,
 )
 
 
@@ -542,6 +565,87 @@ def _render_result_atom_schema_text(payload):
     return "\n".join(lines)
 
 
+def _render_result_atom_bundle_text(payload):
+    framework = payload["framework"]
+    bundle = payload["bundle"]
+    lines = [
+        f"Framework: {framework['canonical_name']} ({framework['instrument_id']})",
+        f"Readiness: {payload['readiness_status']}",
+        f"Entries: {payload['entry_count']}",
+        f"Normalized atoms: {payload['normalized_atom_count']}",
+    ]
+    if payload["comparison_shape"]:
+        lines.append(
+            f"Comparison shape: {payload['comparison_shape']['name']} ({payload['comparison_shape']['id']})"
+        )
+    if payload["bundle_level_defaults"]["bundle_label"]:
+        lines.append(f"Bundle label: {payload['bundle_level_defaults']['bundle_label']}")
+    lines.extend(
+        [
+            "",
+            "Bundle:",
+            f"  contribution model: {bundle['contribution_model_id']}",
+            f"  schema: {bundle['result_atom_schema_id']}",
+            f"  atoms: {bundle['atom_count']}",
+        ]
+    )
+    if payload["normalization_records"]:
+        lines.extend(["", "Atoms:"])
+        for record in payload["normalization_records"]:
+            atom = record["atom"]
+            lines.append(
+                f"  - {record['resolved_construct']['name']} ({record['resolved_construct']['id']}): "
+                f"{atom['output_type']} -> {atom['output_value']}"
+            )
+            if atom.get("mapped_motif_ids"):
+                lines.append(f"    motifs: {', '.join(atom['mapped_motif_ids'])}")
+            if atom.get("source_quality"):
+                lines.append(f"    source_quality: {atom['source_quality']}")
+            if atom.get("timestamp"):
+                lines.append(f"    timestamp: {atom['timestamp']}")
+    if payload["warnings"]:
+        lines.extend(["", "Warnings:"])
+        for item in payload["warnings"]:
+            lines.append(f"  - {item}")
+    if payload["invalid_entries"]:
+        lines.extend(["", "Invalid entries:"])
+        for item in payload["invalid_entries"]:
+            construct = f" ({item['construct']})" if item.get("construct") else ""
+            lines.append(f"  - entry {item['entry_index']}{construct}: {item['reason']}")
+    if payload["next_steps"]:
+        lines.extend(["", "Next steps:"])
+        for step in payload["next_steps"]:
+            lines.append(f"  - {step}")
+    return "\n".join(lines)
+
+
+def _render_result_shape_text(payload):
+    framework = payload["framework"]
+    lines = [
+        f"Framework: {framework['canonical_name']} ({framework['instrument_id']})",
+        f"Constructs: {payload['construct_count']}",
+        f"Scoring types: {', '.join(payload['scoring_types']) if payload['scoring_types'] else '(none)'}",
+        f"Normalization hints: {', '.join(payload['normalization_hints']) if payload['normalization_hints'] else '(none)'}",
+        "",
+        "Constructs:",
+    ]
+    for item in payload["constructs"]:
+        lines.append(
+            f"  - {item['name']} ({item['id']}) [{item['scoring_type']} / {item['normalization_hint']}]"
+        )
+        if item["mapped_motif_ids"]:
+            lines.append(f"    motifs: {', '.join(item['mapped_motif_ids'])}")
+        lines.append(
+            "    starter atom: "
+            f"{item['result_atom_entry_template']['output_type']} -> {item['result_atom_entry_template']['output_value']}"
+        )
+    if payload["cautions"]:
+        lines.extend(["", "Cautions:"])
+        for item in payload["cautions"]:
+            lines.append(f"  - {item}")
+    return "\n".join(lines)
+
+
 def _render_orientation_text(payload):
     lines = [
         payload["summary"],
@@ -580,6 +684,575 @@ def _render_protocol_pack_summary_text(payload):
     lines.append("Primary outputs:")
     for item in summary["primary_outputs"]:
         lines.append(f"  - {item}")
+    return "\n".join(lines)
+
+
+def _render_analysis_modes_text(results):
+    if not results:
+        return "No matching analysis modes."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  status={item['status']}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_analysis_mode_record_text(payload):
+    item = payload["analysis_mode"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        item["summary"],
+        "",
+        "Intent signals:",
+    ]
+    for signal in item["intent_signals"]:
+        lines.append(f"  - {signal}")
+    lines.append("")
+    lines.append("Preferred entrypoints:")
+    for entry in item["preferred_entrypoints"]:
+        lines.append(f"  - {entry}")
+    return "\n".join(lines)
+
+
+def _render_capabilities_text(results):
+    if not results:
+        return "No matching capabilities."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  status={item['status']} kind={item['capability_kind']}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_capability_record_text(payload):
+    item = payload["capability"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        f"kind: {item['capability_kind']}",
+        item["summary"],
+        "",
+        "Detection questions:",
+    ]
+    for question in item["detection_questions"]:
+        lines.append(f"  - {question}")
+    lines.append("")
+    lines.append("Typical tool signals:")
+    for signal in item["typical_tool_signals"]:
+        lines.append(f"  - {signal}")
+    lines.append("")
+    lines.append("Used by host profiles:")
+    if payload["used_by_host_profiles"]:
+        for profile in payload["used_by_host_profiles"]:
+            lines.append(f"  - {profile['name']} ({profile['id']})")
+    else:
+        lines.append("  none")
+    lines.append("")
+    lines.append("Used by artifact classes:")
+    if payload["used_by_artifact_classes"]:
+        for artifact in payload["used_by_artifact_classes"]:
+            lines.append(f"  - {artifact['name']} ({artifact['id']})")
+    else:
+        lines.append("  none")
+    lines.append("")
+    lines.append("Used by actualization protocols:")
+    if payload["used_by_actualization_protocols"]:
+        for protocol in payload["used_by_actualization_protocols"]:
+            lines.append(f"  - {protocol['name']} ({protocol['id']})")
+    else:
+        lines.append("  none")
+    return "\n".join(lines)
+
+
+def _render_comparison_shapes_text(results):
+    if not results:
+        return "No matching comparison shapes."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  status={item['status']} modes={', '.join(item['mode_ids'])}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_comparison_shape_record_text(payload):
+    item = payload["comparison_shape"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        item["summary"],
+        "",
+        "Declaration fields:",
+    ]
+    if item["declaration_fields"]:
+        for field in item["declaration_fields"]:
+            requirement = "required" if field["required"] else "optional"
+            lines.append(
+                f"  - {field['label']} ({field['id']}) [{field['value_kind']}; {requirement}]"
+            )
+            lines.append(f"    {field['summary']}")
+    else:
+        lines.append("  none")
+    lines.extend([
+        "",
+        "Required declarations:",
+    ])
+    for entry in item["required_declarations"]:
+        lines.append(f"  - {entry}")
+    if item["optional_declarations"]:
+        lines.append("")
+        lines.append("Optional declarations:")
+        for entry in item["optional_declarations"]:
+            lines.append(f"  - {entry}")
+    lines.append("")
+    lines.append("Suitable artifact classes:")
+    for artifact in payload["suitable_artifact_classes"]:
+        lines.append(f"  - {artifact['name']} ({artifact['id']})")
+    lines.append("")
+    lines.append("Recommended protocols:")
+    for protocol in payload["recommended_protocols"]:
+        lines.append(f"  - {protocol['name']} ({protocol['id']})")
+    return "\n".join(lines)
+
+
+def _render_comparison_preflight_text(payload):
+    shape = payload["comparison_shape"]
+    lines = [
+        f"Comparison shape: {shape['name']} ({shape['id']})",
+        f"Readiness: {payload['readiness_status']}",
+    ]
+    if payload["declared_host_profiles"]:
+        lines.extend(["", "Declared host profiles:"])
+        for item in payload["declared_host_profiles"]:
+            lines.append(f"  - {item['name']} ({item['id']})")
+    if payload["declared_capabilities"]:
+        lines.extend(["", "Declared capabilities:"])
+        for item in payload["declared_capabilities"]:
+            lines.append(f"  - {item['name']} ({item['id']})")
+    lines.extend(["", "Provided declarations:"])
+    if payload["provided_declarations"]:
+        for key, value in payload["provided_declarations"].items():
+            if isinstance(value, list):
+                rendered = ", ".join(value)
+            else:
+                rendered = value
+            lines.append(f"  - {key}: {rendered}")
+    else:
+        lines.append("  none")
+
+    lines.append("")
+    lines.append("Missing required fields:")
+    if payload["missing_required_fields"]:
+        for field in payload["missing_required_fields"]:
+            lines.append(f"  - {field['label']} ({field['id']})")
+    else:
+        lines.append("  none")
+
+    lines.append("")
+    lines.append("Invalid fields:")
+    if payload["invalid_fields"]:
+        for field in payload["invalid_fields"]:
+            lines.append(f"  - {field['label']} ({field['field_id']}): {field['reason']}")
+    else:
+        lines.append("  none")
+
+    if payload["unexpected_fields"]:
+        lines.append("")
+        lines.append("Unexpected fields:")
+        for field in payload["unexpected_fields"]:
+            lines.append(f"  - {field}")
+
+    if payload["path_recommendation"]:
+        lines.append("")
+        lines.append("Recommended path:")
+        lines.append(_render_recommendation_text(payload["path_recommendation"]))
+
+    if payload["next_steps"]:
+        lines.append("")
+        lines.append("Next steps:")
+        for step in payload["next_steps"]:
+            lines.append(f"  - {step}")
+    return "\n".join(lines)
+
+
+def _render_expression_profiles_text(results):
+    if not results:
+        return "No matching expression profiles."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(
+            f"  status={item['status']} mode={item['expression_mode']} audience={', '.join(item['audience_modes'])}"
+        )
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_host_profiles_text(results):
+    if not results:
+        return "No matching host profiles."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  status={item['status']} kind={item['host_kind']}")
+        lines.append(f"  capabilities={len(item['capability_ids'])}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_host_profile_record_text(payload):
+    item = payload["host_profile"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        f"host kind: {item['host_kind']}",
+        item["summary"],
+        "",
+        "Capabilities:",
+    ]
+    for capability in payload["capabilities"]:
+        lines.append(f"  - {capability['name']} ({capability['id']})")
+    if item["known_tool_signals"]:
+        lines.extend(["", "Known tool signals:"])
+        for signal in item["known_tool_signals"]:
+            lines.append(f"  - {signal}")
+    if item.get("setup_doc"):
+        lines.extend(["", f"Setup doc: {item['setup_doc']}"])
+    if item.get("verification_command"):
+        lines.extend(["", f"Verification command: {item['verification_command']}"])
+    if item["cautions"]:
+        lines.extend(["", "Cautions:"])
+        for caution in item["cautions"]:
+            lines.append(f"  - {caution}")
+    if item["notes"]:
+        lines.extend(["", "Notes:"])
+        for note in item["notes"]:
+            lines.append(f"  - {note}")
+    return "\n".join(lines)
+
+
+def _render_expression_profile_record_text(payload):
+    item = payload["expression_profile"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        f"expression mode: {item['expression_mode']}",
+        item["summary"],
+        "",
+        "Visible by default:",
+    ]
+    for entry in item["visible_by_default"]:
+        lines.append(f"  - {entry}")
+    lines.append("")
+    lines.append("Keep implicit by default:")
+    if item["keep_implicit_by_default"]:
+        for entry in item["keep_implicit_by_default"]:
+            lines.append(f"  - {entry}")
+    else:
+        lines.append("  none")
+    lines.append("")
+    lines.append("Default for artifact classes:")
+    if payload["default_for_artifact_classes"]:
+        for artifact in payload["default_for_artifact_classes"]:
+            lines.append(f"  - {artifact['name']} ({artifact['id']})")
+    else:
+        lines.append("  none")
+    return "\n".join(lines)
+
+
+def _render_artifact_classes_text(results):
+    if not results:
+        return "No matching artifact classes."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(
+            f"  status={item['status']} expression={item['default_expression_mode']} audience={', '.join(item['audience_modes'])}"
+        )
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_artifact_class_record_text(payload):
+    item = payload["artifact_class"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        f"default expression: {item['default_expression_mode']}",
+        item["summary"],
+    ]
+    if payload.get("default_expression_profile"):
+        expression = payload["default_expression_profile"]
+        lines.extend(
+            [
+                "",
+                f"Default expression profile: {expression['name']} ({expression['id']})",
+                f"  {expression['summary']}",
+            ]
+        )
+    lines.extend(
+        [
+            "",
+            "Required evidence partitions:",
+        ]
+    )
+    for partition in item["required_evidence_partitions"]:
+        lines.append(f"  - {partition}")
+    lines.append("")
+    lines.append("Required capabilities:")
+    for capability_id in item["required_capability_ids"]:
+        lines.append(f"  - {capability_id}")
+    if item["optional_capability_ids"]:
+        lines.append("")
+        lines.append("Optional capabilities:")
+        for capability_id in item["optional_capability_ids"]:
+            lines.append(f"  - {capability_id}")
+    return "\n".join(lines)
+
+
+def _render_actualization_protocols_text(results):
+    if not results:
+        return "No matching actualization protocols."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  status={item['status']} modes={', '.join(item['run_mode_ids'])}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_actualization_protocol_record_text(payload):
+    item = payload["actualization_protocol"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        item["summary"],
+        "",
+        "Run modes:",
+    ]
+    for mode_id in item["run_mode_ids"]:
+        lines.append(f"  - {mode_id}")
+    lines.append("")
+    lines.append("Target artifact classes:")
+    for artifact_id in item["target_artifact_class_ids"]:
+        lines.append(f"  - {artifact_id}")
+    lines.append("")
+    lines.append("Required capabilities:")
+    for capability in item["required_capability_ids"]:
+        lines.append(f"  - {capability}")
+    if item["optional_capability_ids"]:
+        lines.append("")
+        lines.append("Optional capabilities:")
+        for capability in item["optional_capability_ids"]:
+            lines.append(f"  - {capability}")
+    lines.append("")
+    lines.append("Steps:")
+    for step in item["steps"]:
+        lines.append(f"  - {step}")
+    return "\n".join(lines)
+
+
+def _render_workflow_recipes_text(results):
+    if not results:
+        return "No matching workflow recipes."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  status={item['status']} artifact={item['artifact_class_id']} expression={item['expression_profile_id']}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_workflow_recipe_record_text(payload):
+    item = payload["workflow_recipe"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        item["summary"],
+        "",
+        f"Artifact class: {payload['artifact_class']['name']} ({payload['artifact_class']['id']})",
+        f"Expression profile: {payload['expression_profile']['name']} ({payload['expression_profile']['id']})",
+        f"Actualization protocol: {payload['actualization_protocol']['name']} ({payload['actualization_protocol']['id']})",
+        "",
+        "Required capabilities:",
+    ]
+    for capability in item["required_capability_ids"]:
+        lines.append(f"  - {capability}")
+    lines.append("")
+    lines.append("Realization blocks:")
+    for block in item["realization_blocks"]:
+        requirement = "required" if block["required"] else "optional"
+        lines.append(
+            f"  - {block['label']} ({block['id']}) [{block['block_kind']}; {requirement}]"
+        )
+        lines.append(f"    {block['summary']}")
+    lines.append("")
+    lines.append("Recipe steps:")
+    for step in item["recipe_steps"]:
+        lines.append(f"  - {step}")
+    if item["deliverables"]:
+        lines.append("")
+        lines.append("Deliverables:")
+        for deliverable in item["deliverables"]:
+            lines.append(f"  - {deliverable}")
+    return "\n".join(lines)
+
+
+def _render_artifact_realization_text(payload):
+    lines = [
+        f"Workflow recipe: {payload['workflow_recipe']['name']} ({payload['workflow_recipe']['id']})",
+        f"Readiness: {payload['readiness_status']}",
+        "",
+        f"Artifact class: {payload['artifact_class']['name']} ({payload['artifact_class']['id']})",
+        f"Expression profile: {payload['expression_profile']['name']} ({payload['expression_profile']['id']})",
+        f"Actualization protocol: {payload['actualization_protocol']['name']} ({payload['actualization_protocol']['id']})",
+    ]
+    if payload["declared_host_profiles"]:
+        lines.extend(["", "Declared host profiles:"])
+        for item in payload["declared_host_profiles"]:
+            lines.append(f"  - {item['name']} ({item['id']})")
+    if payload["declared_capabilities"]:
+        lines.extend(["", "Declared capabilities:"])
+        for item in payload["declared_capabilities"]:
+            lines.append(f"  - {item['name']} ({item['id']})")
+    if payload["selected_realization_form"]:
+        lines.extend(["", f"Selected realization form: {payload['selected_realization_form']}"])
+    if payload["missing_required_capability_ids"]:
+        lines.extend(
+            [
+                "",
+                "Missing required capabilities:",
+            ]
+        )
+        for capability_id in payload["missing_required_capability_ids"]:
+            lines.append(f"  - {capability_id}")
+    lines.extend(["", "Realization blocks:"])
+    for block in payload["realization_blocks"]:
+        requirement = "required" if block["required"] else "optional"
+        lines.append(
+            f"  - {block['label']} ({block['id']}) [{block['block_kind']}; {requirement}]"
+        )
+        lines.append(f"    {block['summary']}")
+    lines.extend(["", "Required evidence partitions:"])
+    for partition in payload["required_evidence_partitions"]:
+        lines.append(f"  - {partition}")
+    if payload["next_steps"]:
+        lines.extend(["", "Next steps:"])
+        for step in payload["next_steps"]:
+            lines.append(f"  - {step}")
+    return "\n".join(lines)
+
+
+def _render_artifact_template_text(payload):
+    lines = [
+        f"Workflow recipe: {payload['workflow_recipe']['name']} ({payload['workflow_recipe']['id']})",
+        f"Template kind: {payload['template_kind']}",
+        f"Filename hint: {payload['template_filename_hint']}",
+    ]
+    if payload["selected_realization_form"]:
+        lines.append(f"Selected realization form: {payload['selected_realization_form']}")
+    lines.append("")
+    if payload["template_text"]:
+        lines.append(payload["template_text"].rstrip())
+        return "\n".join(lines)
+    if payload["template_object"] is not None:
+        lines.append(dumps_json(payload["template_object"]))
+        return "\n".join(lines)
+    lines.append("No template content available.")
+    return "\n".join(lines)
+
+
+def _render_recommendation_text(payload):
+    mode = payload["run_mode"]
+    lines = [
+        f"Run mode: {mode['name']} ({mode['id']})",
+    ]
+    if payload["run_mode_inferred"]:
+        lines.append("Mode status: inferred")
+    if payload["declared_host_profiles"]:
+        lines.append("Host profiles:")
+        for item in payload["declared_host_profiles"]:
+            lines.append(f"  - {item['name']} ({item['id']})")
+    if payload["declared_capabilities"]:
+        lines.append("Capabilities:")
+        for item in payload["declared_capabilities"]:
+            lines.append(f"  - {item['name']} ({item['id']})")
+    else:
+        lines.append("Capabilities: none declared")
+
+    lines.append("")
+    lines.append("Recommended comparison shape:")
+    if payload.get("recommended_comparison_shape"):
+        shape = payload["recommended_comparison_shape"]
+        lines.append(f"  {shape['name']} ({shape['id']})")
+    else:
+        lines.append("  none")
+
+    lines.append("")
+    lines.append("Recommended artifact:")
+    if payload["recommended_artifact"]:
+        artifact = payload["recommended_artifact"]
+        lines.append(
+            f"  {artifact['artifact_class']['name']} ({artifact['artifact_class']['id']}) [{artifact['fit_status']}]"
+        )
+        if artifact["missing_required_capability_ids"]:
+            lines.append(
+                f"  missing required capabilities: {', '.join(artifact['missing_required_capability_ids'])}"
+            )
+    else:
+        lines.append("  none")
+
+    lines.append("")
+    lines.append("Recommended expression profile:")
+    if payload.get("recommended_expression_profile"):
+        expression = payload["recommended_expression_profile"]
+        lines.append(
+            f"  {expression['name']} ({expression['id']}) [{expression['expression_mode']}]"
+        )
+    else:
+        lines.append("  none")
+
+    lines.append("")
+    lines.append("Recommended workflow recipe:")
+    if payload.get("recommended_workflow_recipe"):
+        workflow = payload["recommended_workflow_recipe"]
+        lines.append(
+            f"  {workflow['workflow_recipe']['name']} ({workflow['workflow_recipe']['id']}) [{workflow['fit_status']}]"
+        )
+    else:
+        lines.append("  none")
+
+    lines.append("")
+    lines.append("Recommended actualization protocol:")
+    if payload["recommended_actualization_protocol"]:
+        protocol = payload["recommended_actualization_protocol"]
+        lines.append(
+            f"  {protocol['actualization_protocol']['name']} ({protocol['actualization_protocol']['id']}) [{protocol['fit_status']}]"
+        )
+        if protocol["missing_required_capability_ids"]:
+            lines.append(
+                f"  missing required capabilities: {', '.join(protocol['missing_required_capability_ids'])}"
+            )
+    else:
+        lines.append("  none")
+
+    lines.append("")
+    lines.append("Recommended next tools:")
+    for tool_name in payload["recommended_tools"]:
+        lines.append(f"  - {tool_name}")
+    if payload["recommended_resources"]:
+        lines.append("")
+        lines.append("Recommended resources:")
+        for uri in payload["recommended_resources"]:
+            lines.append(f"  - {uri}")
+    if payload["notes"]:
+        lines.append("")
+        lines.append("Notes:")
+        for note in payload["notes"]:
+            lines.append(f"  - {note}")
     return "\n".join(lines)
 
 
@@ -795,6 +1468,43 @@ def main() -> int:
     )
     result_atom_parser.add_argument("--format", choices=("text", "json"), default="text")
 
+    result_atom_bundle_parser = subparsers.add_parser(
+        "result-atom-bundle",
+        help="Normalize construct-level framework outputs into a schema-shaped result atom bundle.",
+    )
+    result_atom_bundle_parser.add_argument("--framework", required=True, help="Framework or instrument reference.")
+    result_atom_bundle_parser.add_argument(
+        "--entries-json",
+        required=True,
+        help="JSON array of result entries with construct, output_type, and output_value fields.",
+    )
+    result_atom_bundle_parser.add_argument(
+        "--comparison-shape",
+        help="Optional comparison shape to tag on the bundle metadata.",
+    )
+    result_atom_bundle_parser.add_argument("--bundle-label", help="Optional label for the normalized bundle.")
+    result_atom_bundle_parser.add_argument(
+        "--default-source-quality",
+        help="Optional default source quality applied when an entry omits it.",
+    )
+    result_atom_bundle_parser.add_argument(
+        "--default-timestamp",
+        help="Optional default timestamp applied when an entry omits it.",
+    )
+    result_atom_bundle_parser.add_argument(
+        "--no-motif-trace",
+        action="store_true",
+        help="Disable automatic motif attachment from the current mapping layer.",
+    )
+    result_atom_bundle_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    result_shape_parser = subparsers.add_parser(
+        "result-shape",
+        help="Show the construct-level result shape and starter atom slots for a framework.",
+    )
+    result_shape_parser.add_argument("framework", help="Framework or instrument reference.")
+    result_shape_parser.add_argument("--format", choices=("text", "json"), default="text")
+
     orient_parser = subparsers.add_parser(
         "orient", help="Return a compact onboarding payload for agents arriving cold."
     )
@@ -817,6 +1527,183 @@ def main() -> int:
         help="Construct reference to scope the pack. Repeatable.",
     )
     protocol_pack_summary_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    modes_parser = subparsers.add_parser("modes", help="List or show advanced analysis modes.")
+    modes_parser.add_argument("ref", nargs="?", help="Optional analysis mode ID or name for a detailed record.")
+    modes_parser.add_argument("--text", help="Substring search across analysis mode fields.")
+    modes_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    capabilities_parser = subparsers.add_parser(
+        "capabilities",
+        help="List or show host capabilities used by the meta-skill and actualization layer.",
+    )
+    capabilities_parser.add_argument("ref", nargs="?", help="Optional capability ID or name for a detailed record.")
+    capabilities_parser.add_argument(
+        "--kind",
+        choices=("input", "execution", "rendering", "visualization", "network", "persistence", "packaging"),
+        help="Filter capabilities by capability kind.",
+    )
+    capabilities_parser.add_argument("--artifact", help="Filter capabilities by artifact class.")
+    capabilities_parser.add_argument("--actualization", help="Filter capabilities by actualization protocol.")
+    capabilities_parser.add_argument(
+        "--required-only",
+        action="store_true",
+        help="When filtering by artifact or actualization protocol, exclude optional capabilities.",
+    )
+    capabilities_parser.add_argument("--text", help="Substring search across capability fields.")
+    capabilities_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    hosts_parser = subparsers.add_parser(
+        "hosts",
+        help="List or show known host profiles that expand into capability sets for planning and actualization.",
+    )
+    hosts_parser.add_argument("ref", nargs="?", help="Optional host profile ID or name for a detailed record.")
+    hosts_parser.add_argument(
+        "--kind",
+        choices=("agent_host", "desktop_client", "remote_wrapper", "hosted_client"),
+        help="Filter host profiles by host kind.",
+    )
+    hosts_parser.add_argument("--capability", help="Filter host profiles by capability ID or name.")
+    hosts_parser.add_argument("--text", help="Substring search across host profile fields.")
+    hosts_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    comparison_shapes_parser = subparsers.add_parser(
+        "comparison-shapes",
+        help="List or show structured comparison shapes for contextual or pairwise work.",
+    )
+    comparison_shapes_parser.add_argument(
+        "ref", nargs="?", help="Optional comparison shape ID or name for a detailed record."
+    )
+    comparison_shapes_parser.add_argument("--mode", help="Filter comparison shapes by analysis mode.")
+    comparison_shapes_parser.add_argument("--artifact", help="Filter comparison shapes by artifact class.")
+    comparison_shapes_parser.add_argument("--protocol", help="Filter comparison shapes by protocol.")
+    comparison_shapes_parser.add_argument("--text", help="Substring search across comparison shape fields.")
+    comparison_shapes_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    comparison_preflight_parser = subparsers.add_parser(
+        "comparison-preflight",
+        help="Validate whether a contextual or pairwise comparison run is ready from a named comparison shape and declared fields.",
+    )
+    comparison_preflight_parser.add_argument("shape", help="Comparison shape ID or name.")
+    comparison_preflight_parser.add_argument(
+        "--declare",
+        action="append",
+        help="Declaration field as key=value. Repeatable. For list fields, use comma-separated values.",
+    )
+    comparison_preflight_parser.add_argument(
+        "--declarations-json",
+        help="Optional JSON object of declarations for the comparison shape.",
+    )
+    comparison_preflight_parser.add_argument(
+        "--capability",
+        action="append",
+        help="Declared host capability ID or name. Repeatable.",
+    )
+    comparison_preflight_parser.add_argument(
+        "--host",
+        action="append",
+        help="Declared host profile ID or name. Repeatable.",
+    )
+    comparison_preflight_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    expressions_parser = subparsers.add_parser("expressions", help="List or show expression profiles.")
+    expressions_parser.add_argument(
+        "ref", nargs="?", help="Optional expression profile ID or name for a detailed record."
+    )
+    expressions_parser.add_argument("--mode", help="Filter expression profiles by expression mode.")
+    expressions_parser.add_argument("--audience", help="Filter expression profiles by audience mode.")
+    expressions_parser.add_argument("--artifact", help="Filter expression profiles by artifact class.")
+    expressions_parser.add_argument("--text", help="Substring search across expression profile fields.")
+    expressions_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    artifacts_parser = subparsers.add_parser("artifacts", help="List or show artifact classes.")
+    artifacts_parser.add_argument("ref", nargs="?", help="Optional artifact class ID or name for a detailed record.")
+    artifacts_parser.add_argument("--mode", help="Filter artifact classes by analysis mode ID or name.")
+    artifacts_parser.add_argument("--capability", help="Filter artifact classes by capability.")
+    artifacts_parser.add_argument("--text", help="Substring search across artifact class fields.")
+    artifacts_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    actualization_parser = subparsers.add_parser(
+        "actualization",
+        help="List or show actualization protocols that turn comparative work into downstream artifacts.",
+    )
+    actualization_parser.add_argument(
+        "ref", nargs="?", help="Optional actualization protocol ID or name for a detailed record."
+    )
+    actualization_parser.add_argument("--mode", help="Filter actualization protocols by analysis mode ID or name.")
+    actualization_parser.add_argument("--artifact", help="Filter actualization protocols by artifact class.")
+    actualization_parser.add_argument("--capability", help="Filter actualization protocols by capability.")
+    actualization_parser.add_argument("--text", help="Substring search across actualization protocol fields.")
+    actualization_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    workflow_parser = subparsers.add_parser(
+        "workflows",
+        help="List or show workflow recipes that operationalize an artifact path in a host environment.",
+    )
+    workflow_parser.add_argument(
+        "ref", nargs="?", help="Optional workflow recipe ID or name for a detailed record."
+    )
+    workflow_parser.add_argument("--mode", help="Filter workflow recipes by analysis mode.")
+    workflow_parser.add_argument("--artifact", help="Filter workflow recipes by artifact class.")
+    workflow_parser.add_argument("--actualization", help="Filter workflow recipes by actualization protocol.")
+    workflow_parser.add_argument("--expression", help="Filter workflow recipes by expression profile.")
+    workflow_parser.add_argument("--capability", help="Filter workflow recipes by required capability.")
+    workflow_parser.add_argument("--text", help="Substring search across workflow recipe fields.")
+    workflow_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    artifact_realization_parser = subparsers.add_parser(
+        "artifact-realization",
+        help="Prepare a concrete artifact scaffold from a workflow recipe and declared host capabilities.",
+    )
+    artifact_realization_parser.add_argument("workflow", help="Workflow recipe ID or name.")
+    artifact_realization_parser.add_argument(
+        "--capability",
+        action="append",
+        help="Declared host capability ID or name. Repeatable.",
+    )
+    artifact_realization_parser.add_argument(
+        "--host",
+        action="append",
+        help="Declared host profile ID or name. Repeatable.",
+    )
+    artifact_realization_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    artifact_template_parser = subparsers.add_parser(
+        "artifact-template",
+        help="Prepare a starter markdown or JSON template from a workflow recipe and declared host context.",
+    )
+    artifact_template_parser.add_argument("workflow", help="Workflow recipe ID or name.")
+    artifact_template_parser.add_argument(
+        "--capability",
+        action="append",
+        help="Declared host capability ID or name. Repeatable.",
+    )
+    artifact_template_parser.add_argument(
+        "--host",
+        action="append",
+        help="Declared host profile ID or name. Repeatable.",
+    )
+    artifact_template_parser.add_argument("--format", choices=("text", "json"), default="text")
+
+    recommend_parser = subparsers.add_parser(
+        "recommend-path",
+        help="Recommend the next A Person Index path from the current run shape and declared capabilities.",
+    )
+    recommend_parser.add_argument("--mode", help="Explicit run mode ID or name.")
+    recommend_parser.add_argument("--comparison-shape", help="Optional comparison shape ID or name.")
+    recommend_parser.add_argument(
+        "--capability",
+        action="append",
+        help="Declared host capability ID or name. Repeatable.",
+    )
+    recommend_parser.add_argument(
+        "--host",
+        action="append",
+        help="Declared host profile ID or name. Repeatable.",
+    )
+    recommend_parser.add_argument("--artifact", help="Optional artifact class to target explicitly.")
+    recommend_parser.add_argument("--text", help="Optional task hint for mode or artifact inference.")
+    recommend_parser.add_argument("--format", choices=("text", "json"), default="text")
 
     args = parser.parse_args()
     repository = load_repository_for_query(root)
@@ -1046,12 +1933,274 @@ def main() -> int:
             print(_render_result_atom_schema_text(payload))
         return 0
 
+    if args.command == "result-atom-bundle":
+        try:
+            entries = json.loads(args.entries_json)
+        except json.JSONDecodeError as error:
+            raise SystemExit(f"Invalid --entries-json payload: {error}") from error
+        if not isinstance(entries, list):
+            raise SystemExit("Invalid --entries-json payload: expected a JSON array of result entries.")
+        payload = normalize_result_atom_bundle(
+            repository,
+            extensions,
+            framework=args.framework,
+            entries=entries,
+            comparison_shape=args.comparison_shape,
+            bundle_label=args.bundle_label,
+            default_source_quality=args.default_source_quality,
+            default_timestamp=args.default_timestamp,
+            include_motif_trace=not args.no_motif_trace,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_result_atom_bundle_text(payload))
+        return 0
+
+    if args.command == "result-shape":
+        payload = framework_result_shape(repository, extensions, args.framework)
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_result_shape_text(payload))
+        return 0
+
     if args.command == "orient":
         payload = agent_orientation(repository, extensions)
         if args.format == "json":
             print(dumps_json(payload))
         else:
             print(_render_orientation_text(payload))
+        return 0
+
+    if args.command == "modes":
+        if args.ref:
+            payload = analysis_mode_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_analysis_mode_record_text(payload))
+            return 0
+        payload = find_analysis_modes(extensions, text=args.text)
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_analysis_modes_text(payload))
+        return 0
+
+    if args.command == "capabilities":
+        if args.ref:
+            payload = capability_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_capability_record_text(payload))
+            return 0
+        payload = find_capabilities(
+            extensions,
+            kind=args.kind,
+            artifact_class=args.artifact,
+            actualization_protocol=args.actualization,
+            include_optional=not args.required_only,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_capabilities_text(payload))
+        return 0
+
+    if args.command == "hosts":
+        if args.ref:
+            payload = host_profile_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_host_profile_record_text(payload))
+            return 0
+        payload = find_host_profiles(
+            extensions,
+            host_kind=args.kind,
+            capability=args.capability,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_host_profiles_text(payload))
+        return 0
+
+    if args.command == "comparison-shapes":
+        if args.ref:
+            payload = comparison_shape_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_comparison_shape_record_text(payload))
+            return 0
+        payload = find_comparison_shapes(
+            extensions,
+            mode=args.mode,
+            artifact_class=args.artifact,
+            protocol=args.protocol,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_comparison_shapes_text(payload))
+        return 0
+
+    if args.command == "comparison-preflight":
+        declarations: dict[str, str] = {}
+        if args.declarations_json:
+            loaded = json.loads(args.declarations_json)
+            if not isinstance(loaded, dict):
+                raise SystemExit("--declarations-json must decode to an object.")
+            declarations.update(loaded)
+        for raw_declaration in args.declare or []:
+            if "=" not in raw_declaration:
+                raise SystemExit(f"Invalid --declare '{raw_declaration}'. Expected key=value.")
+            key, value = raw_declaration.split("=", 1)
+            declarations[key.strip()] = value.strip()
+        payload = prepare_comparison_run(
+            extensions,
+            comparison_shape=args.shape,
+            declarations=declarations,
+            capability_refs=args.capability,
+            host_profile_refs=args.host,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_comparison_preflight_text(payload))
+        return 0
+
+    if args.command == "expressions":
+        if args.ref:
+            payload = expression_profile_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_expression_profile_record_text(payload))
+            return 0
+        payload = find_expression_profiles(
+            extensions,
+            mode=args.mode,
+            audience=args.audience,
+            artifact_class=args.artifact,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_expression_profiles_text(payload))
+        return 0
+
+    if args.command == "artifacts":
+        if args.ref:
+            payload = artifact_class_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_artifact_class_record_text(payload))
+            return 0
+        payload = find_artifact_classes(
+            extensions,
+            mode=args.mode,
+            capability=args.capability,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_artifact_classes_text(payload))
+        return 0
+
+    if args.command == "actualization":
+        if args.ref:
+            payload = actualization_protocol_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_actualization_protocol_record_text(payload))
+            return 0
+        payload = find_actualization_protocols(
+            extensions,
+            run_mode=args.mode,
+            artifact_class=args.artifact,
+            capability=args.capability,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_actualization_protocols_text(payload))
+        return 0
+
+    if args.command == "workflows":
+        if args.ref:
+            payload = workflow_recipe_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_workflow_recipe_record_text(payload))
+            return 0
+        payload = find_workflow_recipes(
+            extensions,
+            run_mode=args.mode,
+            artifact_class=args.artifact,
+            actualization_protocol=args.actualization,
+            expression_profile=args.expression,
+            capability=args.capability,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_workflow_recipes_text(payload))
+        return 0
+
+    if args.command == "artifact-realization":
+        payload = prepare_artifact_realization(
+            extensions,
+            workflow_recipe=args.workflow,
+            capability_refs=args.capability,
+            host_profile_refs=args.host,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_artifact_realization_text(payload))
+        return 0
+
+    if args.command == "artifact-template":
+        payload = prepare_artifact_template(
+            extensions,
+            workflow_recipe=args.workflow,
+            capability_refs=args.capability,
+            host_profile_refs=args.host,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_artifact_template_text(payload))
+        return 0
+
+    if args.command == "recommend-path":
+        payload = recommend_next_path(
+            extensions,
+            run_mode=args.mode,
+            comparison_shape=args.comparison_shape,
+            capability_refs=args.capability,
+            host_profile_refs=args.host,
+            artifact_class=args.artifact,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_recommendation_text(payload))
         return 0
 
     if args.command in {"protocol-pack-summary", "program-pack-summary"}:

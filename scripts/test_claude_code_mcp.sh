@@ -2,8 +2,9 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-config_path="$(mktemp "${TMPDIR:-/tmp}/a-person-index-claude-mcp.XXXXXX.json")"
-trap 'rm -f "$config_path"' EXIT
+temp_dir="$(mktemp -d "${TMPDIR:-/tmp}/a-person-index-claude-mcp.XXXXXX")"
+config_path="$temp_dir/config.json"
+trap 'rm -rf "$temp_dir"' EXIT
 
 "$repo_root/scripts/write_claude_mcp_config.sh" "$config_path" >/dev/null
 

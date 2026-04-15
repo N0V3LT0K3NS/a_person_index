@@ -1,0 +1,121 @@
+$defs:
+  RealizationBlock:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      label:
+        title: Label
+        type: string
+      block_kind:
+        enum:
+        - metadata
+        - narrative
+        - list
+        - table
+        - matrix
+        - provenance
+        - caveat
+        - bundle
+        title: Block Kind
+        type: string
+      required:
+        title: Required
+        type: boolean
+      summary:
+        title: Summary
+        type: string
+    required:
+    - id
+    - label
+    - block_kind
+    - required
+    - summary
+    title: RealizationBlock
+    type: object
+  WorkflowRecipe:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      name:
+        title: Name
+        type: string
+      status:
+        enum:
+        - draft
+        - experimental
+        - active
+        title: Status
+        type: string
+      summary:
+        title: Summary
+        type: string
+      run_mode_ids:
+        items:
+          type: string
+        title: Run Mode Ids
+        type: array
+      artifact_class_id:
+        title: Artifact Class Id
+        type: string
+      expression_profile_id:
+        title: Expression Profile Id
+        type: string
+      actualization_protocol_id:
+        title: Actualization Protocol Id
+        type: string
+      required_capability_ids:
+        items:
+          type: string
+        title: Required Capability Ids
+        type: array
+      realization_blocks:
+        items:
+          $ref: '#/$defs/RealizationBlock'
+        title: Realization Blocks
+        type: array
+      recipe_steps:
+        items:
+          type: string
+        title: Recipe Steps
+        type: array
+      deliverables:
+        items:
+          type: string
+        title: Deliverables
+        type: array
+      cautions:
+        items:
+          type: string
+        title: Cautions
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - name
+    - status
+    - summary
+    - artifact_class_id
+    - expression_profile_id
+    - actualization_protocol_id
+    title: WorkflowRecipe
+    type: object
+additionalProperties: false
+properties:
+  workflow_recipes:
+    items:
+      $ref: '#/$defs/WorkflowRecipe'
+    title: Workflow Recipes
+    type: array
+required:
+- workflow_recipes
+title: WorkflowRecipesDocument
+type: object

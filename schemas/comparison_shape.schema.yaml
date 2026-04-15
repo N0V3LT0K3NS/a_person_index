@@ -1,0 +1,122 @@
+$defs:
+  ComparisonDeclarationField:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      label:
+        title: Label
+        type: string
+      value_kind:
+        enum:
+        - string
+        - string_list
+        title: Value Kind
+        type: string
+      required:
+        title: Required
+        type: boolean
+      summary:
+        title: Summary
+        type: string
+      examples:
+        items:
+          type: string
+        title: Examples
+        type: array
+    required:
+    - id
+    - label
+    - value_kind
+    - required
+    - summary
+    title: ComparisonDeclarationField
+    type: object
+  ComparisonShape:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      name:
+        title: Name
+        type: string
+      status:
+        enum:
+        - draft
+        - experimental
+        - active
+        title: Status
+        type: string
+      summary:
+        title: Summary
+        type: string
+      purpose:
+        title: Purpose
+        type: string
+      mode_ids:
+        items:
+          type: string
+        title: Mode Ids
+        type: array
+      intent_signals:
+        items:
+          type: string
+        title: Intent Signals
+        type: array
+      declaration_fields:
+        items:
+          $ref: '#/$defs/ComparisonDeclarationField'
+        title: Declaration Fields
+        type: array
+      required_declarations:
+        items:
+          type: string
+        title: Required Declarations
+        type: array
+      optional_declarations:
+        items:
+          type: string
+        title: Optional Declarations
+        type: array
+      suitable_artifact_class_ids:
+        items:
+          type: string
+        title: Suitable Artifact Class Ids
+        type: array
+      recommended_protocol_ids:
+        items:
+          type: string
+        title: Recommended Protocol Ids
+        type: array
+      cautions:
+        items:
+          type: string
+        title: Cautions
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - name
+    - status
+    - summary
+    - purpose
+    title: ComparisonShape
+    type: object
+additionalProperties: false
+properties:
+  comparison_shapes:
+    items:
+      $ref: '#/$defs/ComparisonShape'
+    title: Comparison Shapes
+    type: array
+required:
+- comparison_shapes
+title: ComparisonShapesDocument
+type: object

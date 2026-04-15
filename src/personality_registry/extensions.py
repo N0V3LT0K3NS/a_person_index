@@ -11,6 +11,14 @@ from personality_registry.models import StrictModel
 
 
 EXTENSION_FILE_MODELS = {
+    "modes/registry.yaml": "analysis_modes",
+    "comparison_shapes/registry.yaml": "comparison_shapes",
+    "capabilities/registry.yaml": "capabilities",
+    "hosts/registry.yaml": "host_profiles",
+    "expression/registry.yaml": "expression_profiles",
+    "artifacts/registry.yaml": "artifact_classes",
+    "actualization/registry.yaml": "actualization_protocols",
+    "workflow_recipes/registry.yaml": "workflow_recipes",
     "motifs/registry.yaml": "motifs",
     "mappings/construct_to_motif.yaml": "mappings",
     "interactions/registry.yaml": "interaction_hypotheses",
@@ -21,6 +29,192 @@ EXTENSION_FILE_MODELS = {
     "research/contribution_models.yaml": "contribution_models",
     "research/result_atom_schema.yaml": "result_atom_schema",
 }
+
+
+class AnalysisMode(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    summary: str
+    purpose: str
+    intent_signals: list[str] = Field(default_factory=list)
+    preferred_entrypoints: list[str] = Field(default_factory=list)
+    typical_outputs: list[str] = Field(default_factory=list)
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class AnalysisModesDocument(StrictModel):
+    analysis_modes: list[AnalysisMode]
+
+
+class ComparisonDeclarationField(StrictModel):
+    id: str
+    label: str
+    value_kind: Literal["string", "string_list"]
+    required: bool
+    summary: str
+    examples: list[str] = Field(default_factory=list)
+
+
+class ComparisonShape(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    summary: str
+    purpose: str
+    mode_ids: list[str] = Field(default_factory=list)
+    intent_signals: list[str] = Field(default_factory=list)
+    declaration_fields: list[ComparisonDeclarationField] = Field(default_factory=list)
+    required_declarations: list[str] = Field(default_factory=list)
+    optional_declarations: list[str] = Field(default_factory=list)
+    suitable_artifact_class_ids: list[str] = Field(default_factory=list)
+    recommended_protocol_ids: list[str] = Field(default_factory=list)
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class ComparisonShapesDocument(StrictModel):
+    comparison_shapes: list[ComparisonShape]
+
+
+class Capability(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    capability_kind: Literal[
+        "input",
+        "execution",
+        "rendering",
+        "visualization",
+        "network",
+        "persistence",
+        "packaging",
+    ]
+    summary: str
+    purpose: str
+    detection_questions: list[str] = Field(default_factory=list)
+    typical_tool_signals: list[str] = Field(default_factory=list)
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class CapabilitiesDocument(StrictModel):
+    capabilities: list[Capability]
+
+
+class HostProfile(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    host_kind: Literal["agent_host", "desktop_client", "remote_wrapper", "hosted_client"]
+    summary: str
+    purpose: str
+    capability_ids: list[str] = Field(default_factory=list)
+    known_tool_signals: list[str] = Field(default_factory=list)
+    setup_doc: Optional[str] = None
+    verification_command: Optional[str] = None
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class HostProfilesDocument(StrictModel):
+    host_profiles: list[HostProfile]
+
+
+class ExpressionProfile(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    expression_mode: Literal["tacit", "explanatory", "technical", "mixed"]
+    summary: str
+    purpose: str
+    audience_modes: list[str] = Field(default_factory=list)
+    visible_by_default: list[str] = Field(default_factory=list)
+    keep_implicit_by_default: list[str] = Field(default_factory=list)
+    good_for: list[str] = Field(default_factory=list)
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class ExpressionProfilesDocument(StrictModel):
+    expression_profiles: list[ExpressionProfile]
+
+
+class ArtifactClass(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    summary: str
+    audience_modes: list[str] = Field(default_factory=list)
+    default_expression_mode: Literal["tacit", "explanatory", "technical", "mixed"]
+    suitable_mode_ids: list[str] = Field(default_factory=list)
+    required_evidence_partitions: list[str] = Field(default_factory=list)
+    required_capability_ids: list[str] = Field(default_factory=list)
+    optional_capability_ids: list[str] = Field(default_factory=list)
+    typical_forms: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class ArtifactClassesDocument(StrictModel):
+    artifact_classes: list[ArtifactClass]
+
+
+class ActualizationProtocol(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    summary: str
+    run_mode_ids: list[str] = Field(default_factory=list)
+    protocol_ids: list[str] = Field(default_factory=list)
+    target_artifact_class_ids: list[str] = Field(default_factory=list)
+    required_capability_ids: list[str] = Field(default_factory=list)
+    optional_capability_ids: list[str] = Field(default_factory=list)
+    steps: list[str] = Field(default_factory=list)
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class ActualizationProtocolsDocument(StrictModel):
+    actualization_protocols: list[ActualizationProtocol]
+
+
+class RealizationBlock(StrictModel):
+    id: str
+    label: str
+    block_kind: Literal[
+        "metadata",
+        "narrative",
+        "list",
+        "table",
+        "matrix",
+        "provenance",
+        "caveat",
+        "bundle",
+    ]
+    required: bool
+    summary: str
+
+
+class WorkflowRecipe(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    summary: str
+    run_mode_ids: list[str] = Field(default_factory=list)
+    artifact_class_id: str
+    expression_profile_id: str
+    actualization_protocol_id: str
+    required_capability_ids: list[str] = Field(default_factory=list)
+    realization_blocks: list[RealizationBlock] = Field(default_factory=list)
+    recipe_steps: list[str] = Field(default_factory=list)
+    deliverables: list[str] = Field(default_factory=list)
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class WorkflowRecipesDocument(StrictModel):
+    workflow_recipes: list[WorkflowRecipe]
 
 
 class Motif(StrictModel):
@@ -133,6 +327,7 @@ class Protocol(StrictModel):
     status: Literal["draft", "experimental", "active"]
     program_kind: Literal[
         "micro_program",
+        "comparison_program",
         "translation_program",
         "synthesis_program",
         "artifact_program",
@@ -266,6 +461,14 @@ class ResultAtomSchemaDocument(StrictModel):
 
 
 DOCUMENT_MODEL_BY_FILE = {
+    "modes/registry.yaml": AnalysisModesDocument,
+    "comparison_shapes/registry.yaml": ComparisonShapesDocument,
+    "capabilities/registry.yaml": CapabilitiesDocument,
+    "hosts/registry.yaml": HostProfilesDocument,
+    "expression/registry.yaml": ExpressionProfilesDocument,
+    "artifacts/registry.yaml": ArtifactClassesDocument,
+    "actualization/registry.yaml": ActualizationProtocolsDocument,
+    "workflow_recipes/registry.yaml": WorkflowRecipesDocument,
     "motifs/registry.yaml": MotifsDocument,
     "mappings/construct_to_motif.yaml": ConstructMappingsDocument,
     "interactions/registry.yaml": InteractionHypothesesDocument,
@@ -280,6 +483,14 @@ DOCUMENT_MODEL_BY_FILE = {
 
 @dataclass
 class ExtensionRegistryData:
+    analysis_modes: list[AnalysisMode]
+    comparison_shapes: list[ComparisonShape]
+    capabilities: list[Capability]
+    host_profiles: list[HostProfile]
+    expression_profiles: list[ExpressionProfile]
+    artifact_classes: list[ArtifactClass]
+    actualization_protocols: list[ActualizationProtocol]
+    workflow_recipes: list[WorkflowRecipe]
     motifs: list[Motif]
     mappings: list[ConstructMapping]
     interaction_hypotheses: list[InteractionHypothesis]
@@ -328,6 +539,14 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
     if errors:
         return ExtensionLoadResult(data=None, errors=errors)
 
+    analysis_modes_doc = documents["modes/registry.yaml"]
+    comparison_shapes_doc = documents["comparison_shapes/registry.yaml"]
+    capabilities_doc = documents["capabilities/registry.yaml"]
+    host_profiles_doc = documents["hosts/registry.yaml"]
+    expression_profiles_doc = documents["expression/registry.yaml"]
+    artifact_classes_doc = documents["artifacts/registry.yaml"]
+    actualization_protocols_doc = documents["actualization/registry.yaml"]
+    workflow_recipes_doc = documents["workflow_recipes/registry.yaml"]
     motifs_doc = documents["motifs/registry.yaml"]
     mappings_doc = documents["mappings/construct_to_motif.yaml"]
     interaction_hypotheses_doc = documents["interactions/registry.yaml"]
@@ -339,6 +558,14 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
     result_atom_schema_doc = documents["research/result_atom_schema.yaml"]
 
     data = ExtensionRegistryData(
+        analysis_modes=analysis_modes_doc.analysis_modes,
+        comparison_shapes=comparison_shapes_doc.comparison_shapes,
+        capabilities=capabilities_doc.capabilities,
+        host_profiles=host_profiles_doc.host_profiles,
+        expression_profiles=expression_profiles_doc.expression_profiles,
+        artifact_classes=artifact_classes_doc.artifact_classes,
+        actualization_protocols=actualization_protocols_doc.actualization_protocols,
+        workflow_recipes=workflow_recipes_doc.workflow_recipes,
         motifs=motifs_doc.motifs,
         mappings=mappings_doc.mappings,
         interaction_hypotheses=interaction_hypotheses_doc.interaction_hypotheses,

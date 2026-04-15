@@ -1,0 +1,68 @@
+$defs:
+  AnalysisMode:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      name:
+        title: Name
+        type: string
+      status:
+        enum:
+        - draft
+        - experimental
+        - active
+        title: Status
+        type: string
+      summary:
+        title: Summary
+        type: string
+      purpose:
+        title: Purpose
+        type: string
+      intent_signals:
+        items:
+          type: string
+        title: Intent Signals
+        type: array
+      preferred_entrypoints:
+        items:
+          type: string
+        title: Preferred Entrypoints
+        type: array
+      typical_outputs:
+        items:
+          type: string
+        title: Typical Outputs
+        type: array
+      cautions:
+        items:
+          type: string
+        title: Cautions
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - name
+    - status
+    - summary
+    - purpose
+    title: AnalysisMode
+    type: object
+additionalProperties: false
+properties:
+  analysis_modes:
+    items:
+      $ref: '#/$defs/AnalysisMode'
+    title: Analysis Modes
+    type: array
+required:
+- analysis_modes
+title: AnalysisModesDocument
+type: object

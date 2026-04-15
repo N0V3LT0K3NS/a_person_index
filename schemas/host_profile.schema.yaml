@@ -1,0 +1,84 @@
+$defs:
+  HostProfile:
+    additionalProperties: false
+    properties:
+      id:
+        title: Id
+        type: string
+      name:
+        title: Name
+        type: string
+      status:
+        enum:
+        - draft
+        - experimental
+        - active
+        title: Status
+        type: string
+      host_kind:
+        enum:
+        - agent_host
+        - desktop_client
+        - remote_wrapper
+        - hosted_client
+        title: Host Kind
+        type: string
+      summary:
+        title: Summary
+        type: string
+      purpose:
+        title: Purpose
+        type: string
+      capability_ids:
+        items:
+          type: string
+        title: Capability Ids
+        type: array
+      known_tool_signals:
+        items:
+          type: string
+        title: Known Tool Signals
+        type: array
+      setup_doc:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Setup Doc
+      verification_command:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Verification Command
+      cautions:
+        items:
+          type: string
+        title: Cautions
+        type: array
+      notes:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notes
+    required:
+    - id
+    - name
+    - status
+    - host_kind
+    - summary
+    - purpose
+    title: HostProfile
+    type: object
+additionalProperties: false
+properties:
+  host_profiles:
+    items:
+      $ref: '#/$defs/HostProfile'
+    title: Host Profiles
+    type: array
+required:
+- host_profiles
+title: HostProfilesDocument
+type: object
