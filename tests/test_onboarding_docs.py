@@ -27,6 +27,7 @@ def test_onboarding_docs_exist(repo_root):
         repo_root / "docs" / "advanced_modes.md",
         repo_root / "docs" / "comparison_shapes.md",
         repo_root / "docs" / "comparison_preflight.md",
+        repo_root / "docs" / "host_profiles.md",
         repo_root / "docs" / "capability_model.md",
         repo_root / "docs" / "artifact_realization.md",
         repo_root / "docs" / "expression_model.md",
@@ -77,6 +78,7 @@ def test_readme_links_to_onboarding_surface(repo_root):
     assert "docs/advanced_modes.md" in readme
     assert "docs/comparison_shapes.md" in readme
     assert "docs/comparison_preflight.md" in readme
+    assert "docs/host_profiles.md" in readme
     assert "docs/capability_model.md" in readme
     assert "docs/artifact_realization.md" in readme
     assert "docs/expression_model.md" in readme

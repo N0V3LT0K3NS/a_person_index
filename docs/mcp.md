@@ -31,7 +31,8 @@ If the task involves pasted user assessment results, then use [docs/assessment_w
 
 If the task shifts from framework use into run planning, artifact generation, or
 contextual comparison, call `recommend_next_path` once you know the host
-capabilities and need the smallest disciplined next move.
+capabilities or declared host profile and need the smallest disciplined next
+move.
 
 If a contextual or pairwise comparison shape is already chosen, use
 `prepare_comparison_run` before downstream recommendation so the comparison
@@ -158,6 +159,7 @@ npm run mcp:test
 - `registry://advanced-modes`
 - `registry://comparison-shapes`
 - `registry://comparison-preflight`
+- `registry://host-profiles`
 - `registry://capability-model`
 - `registry://artifact-realization`
 - `registry://expression-model`
@@ -177,6 +179,8 @@ npm run mcp:test
 - `list_analysis_modes`
 - `fetch_analysis_mode`
 - `prepare_comparison_run`
+- `list_host_profiles`
+- `fetch_host_profile`
 - `list_comparison_shapes`
 - `fetch_comparison_shape`
 - `list_capabilities`

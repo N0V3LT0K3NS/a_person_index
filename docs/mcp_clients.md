@@ -13,6 +13,10 @@ A Person Index is ready for:
 
 It is not yet a hosted remote MCP service with auth, rate limiting, or multi-tenant operations.
 
+The repo now also carries seeded host profiles for the currently documented
+client paths so planning and actualization can start from a known environment
+without hand-declaring every capability every time.
+
 ## What is already proven
 
 The MCP surface has been validated in four layers:

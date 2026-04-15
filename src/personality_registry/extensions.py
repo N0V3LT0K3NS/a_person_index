@@ -14,6 +14,7 @@ EXTENSION_FILE_MODELS = {
     "modes/registry.yaml": "analysis_modes",
     "comparison_shapes/registry.yaml": "comparison_shapes",
     "capabilities/registry.yaml": "capabilities",
+    "hosts/registry.yaml": "host_profiles",
     "expression/registry.yaml": "expression_profiles",
     "artifacts/registry.yaml": "artifact_classes",
     "actualization/registry.yaml": "actualization_protocols",
@@ -100,6 +101,25 @@ class Capability(StrictModel):
 
 class CapabilitiesDocument(StrictModel):
     capabilities: list[Capability]
+
+
+class HostProfile(StrictModel):
+    id: str
+    name: str
+    status: Literal["draft", "experimental", "active"]
+    host_kind: Literal["agent_host", "desktop_client", "remote_wrapper", "hosted_client"]
+    summary: str
+    purpose: str
+    capability_ids: list[str] = Field(default_factory=list)
+    known_tool_signals: list[str] = Field(default_factory=list)
+    setup_doc: Optional[str] = None
+    verification_command: Optional[str] = None
+    cautions: list[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class HostProfilesDocument(StrictModel):
+    host_profiles: list[HostProfile]
 
 
 class ExpressionProfile(StrictModel):
@@ -444,6 +464,7 @@ DOCUMENT_MODEL_BY_FILE = {
     "modes/registry.yaml": AnalysisModesDocument,
     "comparison_shapes/registry.yaml": ComparisonShapesDocument,
     "capabilities/registry.yaml": CapabilitiesDocument,
+    "hosts/registry.yaml": HostProfilesDocument,
     "expression/registry.yaml": ExpressionProfilesDocument,
     "artifacts/registry.yaml": ArtifactClassesDocument,
     "actualization/registry.yaml": ActualizationProtocolsDocument,
@@ -465,6 +486,7 @@ class ExtensionRegistryData:
     analysis_modes: list[AnalysisMode]
     comparison_shapes: list[ComparisonShape]
     capabilities: list[Capability]
+    host_profiles: list[HostProfile]
     expression_profiles: list[ExpressionProfile]
     artifact_classes: list[ArtifactClass]
     actualization_protocols: list[ActualizationProtocol]
@@ -520,6 +542,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
     analysis_modes_doc = documents["modes/registry.yaml"]
     comparison_shapes_doc = documents["comparison_shapes/registry.yaml"]
     capabilities_doc = documents["capabilities/registry.yaml"]
+    host_profiles_doc = documents["hosts/registry.yaml"]
     expression_profiles_doc = documents["expression/registry.yaml"]
     artifact_classes_doc = documents["artifacts/registry.yaml"]
     actualization_protocols_doc = documents["actualization/registry.yaml"]
@@ -538,6 +561,7 @@ def load_extensions(root: Path) -> ExtensionLoadResult:
         analysis_modes=analysis_modes_doc.analysis_modes,
         comparison_shapes=comparison_shapes_doc.comparison_shapes,
         capabilities=capabilities_doc.capabilities,
+        host_profiles=host_profiles_doc.host_profiles,
         expression_profiles=expression_profiles_doc.expression_profiles,
         artifact_classes=artifact_classes_doc.artifact_classes,
         actualization_protocols=actualization_protocols_doc.actualization_protocols,

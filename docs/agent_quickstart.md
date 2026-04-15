@@ -90,6 +90,9 @@ If the host capabilities are already known and you need the next disciplined
 step rather than a full execution, use `recommend_next_path` before you start
 improvising.
 
+If the host itself is already known, inspect the host profile layer before you
+hand-declare capabilities one by one.
+
 If the work is contextual or pairwise and the comparison shape is already
 chosen, run comparison preflight before you treat the path as execution-ready.
 
@@ -102,6 +105,7 @@ Use the deeper docs:
 - [advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md)
 - [comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md)
 - [comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md)
+- [host_profiles.md](/Users/noveltokens/a_person_index/docs/host_profiles.md)
 - [capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md)
 - [artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md)
 - [expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md)

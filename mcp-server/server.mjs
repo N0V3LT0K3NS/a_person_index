@@ -108,7 +108,7 @@ async function buildServer() {
     name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, comparison preflight guidance, capability records, expression profiles, artifact classes, actualization protocols, workflow recipes, and artifact realization guidance from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, comparison-shape, comparison-preflight, capability, expression, actualization, workflow, and artifact-realization surfaces before improvising. Use prepare_comparison_run once a contextual or pairwise shape is chosen and you need to check whether the run is actually declared well enough to proceed. Use recommend_next_path when you already know the host capabilities and need the smallest disciplined next step. Use prepare_artifact_realization once a workflow recipe is chosen and you need a concrete scaffold for the finished artifact. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, comparison preflight guidance, host profiles, capability records, expression profiles, artifact classes, actualization protocols, workflow recipes, and artifact realization guidance from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, comparison-shape, comparison-preflight, host-profile, capability, expression, actualization, workflow, and artifact-realization surfaces before improvising. Use prepare_comparison_run once a contextual or pairwise shape is chosen and you need to check whether the run is actually declared well enough to proceed. Use recommend_next_path when you already know either the host profile or the host capabilities and need the smallest disciplined next step. Use prepare_artifact_realization once a workflow recipe is chosen and you need a concrete scaffold for the finished artifact. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
   });
 
   server.registerResource(
@@ -268,6 +268,24 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/comparison_preflight.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "host-profiles",
+    "registry://host-profiles",
+    {
+      title: "Host Profiles",
+      description: "Known host profiles that expand into capability sets for planning, comparison preflight, and artifact realization.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/host_profiles.md"),
         },
       ],
     }),
@@ -673,6 +691,48 @@ async function buildServer() {
   );
 
   server.registerTool(
+    "list_host_profiles",
+    {
+      title: "List Host Profiles",
+      description: "Return known host profiles that expand into capability sets for planning and actualization.",
+      inputSchema: {
+        kind: z.string().optional(),
+        capability: z.string().optional(),
+        text: z.string().optional(),
+      },
+    },
+    async ({ kind, capability, text }) => {
+      try {
+        const args = ["hosts"];
+        if (kind) args.push("--kind", kind);
+        if (capability) args.push("--capability", capability);
+        if (text) args.push("--text", text);
+        return jsonCollectionResult("host_profiles", await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_host_profile",
+    {
+      title: "Fetch Host Profile",
+      description: "Return the full record for a named host profile including its expanded capability set and cautions.",
+      inputSchema: {
+        ref: z.string(),
+      },
+    },
+    async ({ ref }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["hosts", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
     "prepare_comparison_run",
     {
       title: "Prepare Comparison Run",
@@ -682,15 +742,17 @@ async function buildServer() {
         declarations: z
           .record(z.string(), z.union([z.string(), z.array(z.string())]))
           .optional(),
+        hosts: z.array(z.string()).optional(),
         capabilities: z.array(z.string()).optional(),
       },
     },
-    async ({ comparison_shape, declarations, capabilities }) => {
+    async ({ comparison_shape, declarations, hosts, capabilities }) => {
       try {
         const args = ["comparison-preflight", comparison_shape];
         if (declarations) {
           args.push("--declarations-json", JSON.stringify(declarations));
         }
+        for (const host of hosts ?? []) args.push("--host", host);
         for (const capability of capabilities ?? []) args.push("--capability", capability);
         return jsonResult(await runRegistryQuery(args, pythonBin));
       } catch (error) {
@@ -839,15 +901,17 @@ async function buildServer() {
     "prepare_artifact_realization",
     {
       title: "Prepare Artifact Realization",
-      description: "Turn a chosen workflow recipe and declared host capabilities into a concrete artifact scaffold, preferred form, and next steps.",
+      description: "Turn a chosen workflow recipe plus declared host profiles or capabilities into a concrete artifact scaffold, preferred form, and next steps.",
       inputSchema: {
         workflow_recipe: z.string(),
+        hosts: z.array(z.string()).optional(),
         capabilities: z.array(z.string()).optional(),
       },
     },
-    async ({ workflow_recipe, capabilities }) => {
+    async ({ workflow_recipe, hosts, capabilities }) => {
       try {
         const args = ["artifact-realization", workflow_recipe];
+        for (const host of hosts ?? []) args.push("--host", host);
         for (const capability of capabilities ?? []) args.push("--capability", capability);
         return jsonResult(await runRegistryQuery(args, pythonBin));
       } catch (error) {
@@ -860,20 +924,22 @@ async function buildServer() {
     "recommend_next_path",
     {
       title: "Recommend Next Path",
-      description: "Recommend the next A Person Index path from the current run shape and declared host capabilities.",
+      description: "Recommend the next A Person Index path from the current run shape and declared host profile or capability context.",
       inputSchema: {
         mode: z.string().optional(),
         comparison_shape: z.string().optional(),
+        hosts: z.array(z.string()).optional(),
         capabilities: z.array(z.string()).optional(),
         artifact: z.string().optional(),
         text: z.string().optional(),
       },
     },
-    async ({ mode, comparison_shape, capabilities, artifact, text }) => {
+    async ({ mode, comparison_shape, hosts, capabilities, artifact, text }) => {
       try {
         const args = ["recommend-path"];
         if (mode) args.push("--mode", mode);
         if (comparison_shape) args.push("--comparison-shape", comparison_shape);
+        for (const host of hosts ?? []) args.push("--host", host);
         for (const capability of capabilities ?? []) args.push("--capability", capability);
         if (artifact) args.push("--artifact", artifact);
         if (text) args.push("--text", text);

@@ -25,6 +25,16 @@ It does not perform the full comparative pass itself. It chooses the path.
 
 Do not start with tool brands.
 
+If the host is already one of the repo's seeded environments, start with the
+host profile and let it expand into capabilities before you fill the gaps by
+hand:
+
+```bash
+python3 scripts/query_registry.py hosts
+python3 scripts/query_registry.py hosts "Codex Desktop"
+python3 scripts/query_registry.py recommend-path --host "Codex Desktop" --text "compare me across time"
+```
+
 Start with capability categories:
 
 - file read
@@ -87,6 +97,7 @@ run comparison preflight before you treat the path as execution-ready:
 python3 scripts/query_registry.py comparison-preflight "Contextual Time Slices" \
   --declare slice_labels="earlier self,later self" \
   --declare comparison_question="What meaningfully changed?" \
+  --host "Claude Code" \
   --capability "Markdown Write"
 ```
 

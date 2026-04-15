@@ -18,6 +18,11 @@ The recommendation surface can now take a run hint plus declared capabilities
 and suggest the next disciplined artifact and actualization path rather than
 forcing hosts to reconstruct that logic ad hoc each time.
 
+Host profiles now sit above the capability model too, so a known environment
+such as Codex Desktop, Claude Code, Claude Desktop, or the Hermes remote
+wrapper can expand into a conservative capability set before planning and
+actualization begin.
+
 Expression profiles are now first-class too, so the system can explicitly say
 how visible the scaffolding should be when the same comparative result is
 rendered for different audiences.
@@ -79,6 +84,7 @@ If you need the deeper map after that:
   [docs/advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md),
   [docs/comparison_shapes.md](/Users/noveltokens/a_person_index/docs/comparison_shapes.md),
   [docs/comparison_preflight.md](/Users/noveltokens/a_person_index/docs/comparison_preflight.md),
+  [docs/host_profiles.md](/Users/noveltokens/a_person_index/docs/host_profiles.md),
   [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
   [docs/artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md),
   [docs/expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md),
@@ -186,6 +192,7 @@ Key conventions:
 - `modes/registry.yaml` stores named run modes for advanced comparative work.
 - `comparison_shapes/registry.yaml` stores explicit scaffolds for contextual and pairwise comparison before artifact or protocol selection begins.
 - `docs/comparison_preflight.md` explains how contextual and pairwise runs are checked for readiness before recommendation or execution.
+- `hosts/registry.yaml` stores known host profiles that expand into conservative capability sets for planning and actualization.
 - `docs/artifact_realization.md` explains how a chosen workflow recipe becomes a concrete artifact scaffold before host rendering begins.
 - `capabilities/registry.yaml` stores the abstract host capability model used by the meta-skill and actualization layer.
 - `artifacts/registry.yaml` stores artifact classes and their evidence and capability expectations.

@@ -24,6 +24,7 @@ FILE_NAMES = {
     "modes/registry.yaml": "analysis_mode.schema.yaml",
     "comparison_shapes/registry.yaml": "comparison_shape.schema.yaml",
     "capabilities/registry.yaml": "capability.schema.yaml",
+    "hosts/registry.yaml": "host_profile.schema.yaml",
     "expression/registry.yaml": "expression_profile.schema.yaml",
     "artifacts/registry.yaml": "artifact_class.schema.yaml",
     "actualization/registry.yaml": "actualization_protocol.schema.yaml",

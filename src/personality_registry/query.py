@@ -370,6 +370,10 @@ def resolve_capability(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(extensions.capabilities, ref, ("name", "summary", "purpose"))
 
 
+def resolve_host_profile(extensions: ExtensionRegistryData, ref: str):
+    return _resolve_extension_item(extensions.host_profiles, ref, ("name", "summary", "purpose"))
+
+
 def resolve_expression_profile(extensions: ExtensionRegistryData, ref: str):
     return _resolve_extension_item(
         extensions.expression_profiles,
@@ -436,6 +440,7 @@ def agent_orientation(
             "docs/advanced_modes.md",
             "docs/comparison_shapes.md",
             "docs/capability_model.md",
+            "docs/host_profiles.md",
             "docs/expression_model.md",
             "docs/actualization_protocols.md",
             "docs/workflow_recipes.md",
@@ -1480,9 +1485,15 @@ def prepare_comparison_run(
     comparison_shape: str,
     declarations: dict[str, Any] | None = None,
     capability_refs: Iterable[str] | None = None,
+    host_profile_refs: Iterable[str] | None = None,
 ) -> dict[str, Any]:
     shape = resolve_comparison_shape(extensions, comparison_shape)
     declarations = declarations or {}
+    host_profile_items, capability_items = _resolve_declared_host_context(
+        extensions,
+        capability_refs=capability_refs,
+        host_profile_refs=host_profile_refs,
+    )
 
     normalized_declarations: dict[str, Any] = {}
     invalid_fields: list[dict[str, str]] = []
@@ -1525,7 +1536,8 @@ def prepare_comparison_run(
             extensions,
             run_mode=primary_mode_ref,
             comparison_shape=shape.id,
-            capability_refs=capability_refs,
+            capability_refs=[item.id for item in capability_items],
+            host_profile_refs=[item.id for item in host_profile_items],
         )
 
     next_steps: list[str] = []
@@ -1541,7 +1553,7 @@ def prepare_comparison_run(
             + ", ".join(unexpected_fields)
             + "."
         )
-    if readiness_status == "ready" and not capability_refs:
+    if readiness_status == "ready" and not capability_items:
         next_steps.append("Declare host capabilities before choosing the final artifact and workflow path.")
     elif readiness_status == "ready":
         next_steps.append(
@@ -1562,15 +1574,13 @@ def prepare_comparison_run(
     return {
         "comparison_shape": shape.model_dump(mode="json"),
         "readiness_status": readiness_status,
+        "declared_host_profiles": [item.model_dump(mode="json") for item in host_profile_items],
+        "declared_capabilities": [item.model_dump(mode="json") for item in capability_items],
         "declaration_fields": [field.model_dump(mode="json") for field in shape.declaration_fields],
         "provided_declarations": normalized_declarations,
         "missing_required_fields": missing_required_fields,
         "invalid_fields": invalid_fields,
         "unexpected_fields": unexpected_fields,
-        "declared_capabilities": [
-            resolve_capability(extensions, ref).model_dump(mode="json")
-            for ref in capability_refs or []
-        ],
         "suitable_artifact_classes": suitable_artifact_classes,
         "recommended_protocols": recommended_protocols,
         "path_recommendation": path_recommendation,
@@ -1661,6 +1671,11 @@ def capability_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, 
         for artifact in extensions.artifact_classes
         if item.id in {*artifact.required_capability_ids, *artifact.optional_capability_ids}
     ]
+    used_by_host_profiles = [
+        profile.model_dump(mode="json")
+        for profile in extensions.host_profiles
+        if item.id in profile.capability_ids
+    ]
     used_by_actualization_protocols = [
         protocol.model_dump(mode="json")
         for protocol in extensions.actualization_protocols
@@ -1668,9 +1683,83 @@ def capability_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, 
     ]
     return {
         "capability": item.model_dump(mode="json"),
+        "used_by_host_profiles": used_by_host_profiles,
         "used_by_artifact_classes": used_by_artifact_classes,
         "used_by_actualization_protocols": used_by_actualization_protocols,
     }
+
+
+def find_host_profiles(
+    extensions: ExtensionRegistryData,
+    *,
+    host_kind: str | None = None,
+    capability: str | None = None,
+    text: str | None = None,
+) -> list[dict[str, Any]]:
+    capability_id = resolve_capability(extensions, capability).id if capability else None
+    normalized_kind = _normalize(host_kind) if host_kind else None
+    results = []
+    for item in extensions.host_profiles:
+        if normalized_kind and normalized_kind not in {
+            _normalize(item.host_kind),
+            _normalize(item.id),
+            _normalize(item.name),
+        }:
+            continue
+        if capability_id and capability_id not in item.capability_ids:
+            continue
+        if text:
+            blob = "\n".join(
+                [
+                    item.id,
+                    item.name,
+                    item.host_kind,
+                    item.summary,
+                    item.purpose,
+                    *item.capability_ids,
+                    *item.known_tool_signals,
+                    *item.cautions,
+                ]
+            )
+            if _normalize(text) not in _normalize(blob):
+                continue
+        results.append(item.model_dump(mode="json"))
+    return sorted(results, key=lambda entry: entry["name"].lower())
+
+
+def host_profile_record(extensions: ExtensionRegistryData, ref: str) -> dict[str, Any]:
+    item = resolve_host_profile(extensions, ref)
+    capabilities = [
+        resolve_capability(extensions, capability_id).model_dump(mode="json")
+        for capability_id in item.capability_ids
+    ]
+    supported_artifact_classes = [
+        artifact.model_dump(mode="json")
+        for artifact in extensions.artifact_classes
+        if set(artifact.required_capability_ids).issubset(set(item.capability_ids))
+    ]
+    return {
+        "host_profile": item.model_dump(mode="json"),
+        "capabilities": capabilities,
+        "supported_artifact_classes": supported_artifact_classes,
+    }
+
+
+def _resolve_declared_host_context(
+    extensions: ExtensionRegistryData,
+    *,
+    capability_refs: Iterable[str] | None = None,
+    host_profile_refs: Iterable[str] | None = None,
+) -> tuple[list[Any], list[Any]]:
+    host_profile_items = [resolve_host_profile(extensions, ref) for ref in host_profile_refs or []]
+    capability_by_id: dict[str, Any] = {}
+    for profile in host_profile_items:
+        for capability_id in profile.capability_ids:
+            capability_by_id.setdefault(capability_id, resolve_capability(extensions, capability_id))
+    for ref in capability_refs or []:
+        item = resolve_capability(extensions, ref)
+        capability_by_id[item.id] = item
+    return host_profile_items, list(capability_by_id.values())
 
 
 def find_expression_profiles(
@@ -1953,12 +2042,17 @@ def prepare_artifact_realization(
     *,
     workflow_recipe: str,
     capability_refs: Iterable[str] | None = None,
+    host_profile_refs: Iterable[str] | None = None,
 ) -> dict[str, Any]:
     recipe = resolve_workflow_recipe(extensions, workflow_recipe)
     artifact = resolve_artifact_class(extensions, recipe.artifact_class_id)
     expression = resolve_expression_profile(extensions, recipe.expression_profile_id)
     actualization = resolve_actualization_protocol(extensions, recipe.actualization_protocol_id)
-    capability_items = [resolve_capability(extensions, ref) for ref in capability_refs or []]
+    host_profile_items, capability_items = _resolve_declared_host_context(
+        extensions,
+        capability_refs=capability_refs,
+        host_profile_refs=host_profile_refs,
+    )
     capability_id_set = {item.id for item in capability_items}
     missing_required_capability_ids = sorted(
         capability_id
@@ -1992,6 +2086,7 @@ def prepare_artifact_realization(
         "artifact_class": artifact.model_dump(mode="json"),
         "expression_profile": expression.model_dump(mode="json"),
         "actualization_protocol": actualization.model_dump(mode="json"),
+        "declared_host_profiles": [item.model_dump(mode="json") for item in host_profile_items],
         "declared_capabilities": [item.model_dump(mode="json") for item in capability_items],
         "readiness_status": readiness_status,
         "missing_required_capability_ids": missing_required_capability_ids,
@@ -2094,13 +2189,14 @@ def recommend_next_path(
     run_mode: str | None = None,
     comparison_shape: str | None = None,
     capability_refs: Iterable[str] | None = None,
+    host_profile_refs: Iterable[str] | None = None,
     artifact_class: str | None = None,
     text: str | None = None,
 ) -> dict[str, Any]:
-    capability_items = (
-        [resolve_capability(extensions, ref) for ref in capability_refs]
-        if capability_refs
-        else []
+    host_profile_items, capability_items = _resolve_declared_host_context(
+        extensions,
+        capability_refs=capability_refs,
+        host_profile_refs=host_profile_refs,
     )
     capability_id_set = {item.id for item in capability_items}
 
@@ -2284,6 +2380,8 @@ def recommend_next_path(
             )
         )
 
+    if host_profile_items:
+        notes.append("Capabilities were expanded from the declared host profile set.")
     if not capability_items:
         notes.append("No capabilities were declared, so readiness is conservative.")
     elif recommended_artifact and recommended_artifact["missing_required_capability_ids"]:
@@ -2335,6 +2433,7 @@ def recommend_next_path(
         "recommended_comparison_shape": comparison_shape_item.model_dump(mode="json") if comparison_shape_item else None,
         "comparison_shape_inferred": inferred_comparison_shape,
         "comparison_shape_candidates": comparison_shape_candidates[:3],
+        "declared_host_profiles": [item.model_dump(mode="json") for item in host_profile_items],
         "declared_capabilities": [item.model_dump(mode="json") for item in capability_items],
         "recommended_artifact": recommended_artifact,
         "artifact_candidates": artifact_candidates[:3],

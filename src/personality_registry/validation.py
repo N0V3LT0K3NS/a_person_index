@@ -278,6 +278,7 @@ def collect_validation_errors(root: Path) -> list[str]:
             "analysis_mode": extensions.analysis_modes,
             "comparison_shape": extensions.comparison_shapes,
             "capability": extensions.capabilities,
+            "host_profile": extensions.host_profiles,
             "expression_profile": extensions.expression_profiles,
             "artifact_class": extensions.artifact_classes,
             "actualization_protocol": extensions.actualization_protocols,
@@ -327,6 +328,13 @@ def collect_validation_errors(root: Path) -> list[str]:
                 if capability_id not in capability_ids:
                     errors.append(
                         f"artifacts/registry.yaml: artifact class '{artifact_class.id}' references missing optional capability '{capability_id}'"
+                    )
+
+        for host_profile in extensions.host_profiles:
+            for capability_id in host_profile.capability_ids:
+                if capability_id not in capability_ids:
+                    errors.append(
+                        f"hosts/registry.yaml: host profile '{host_profile.id}' references missing capability '{capability_id}'"
                     )
 
         for comparison_shape in extensions.comparison_shapes:

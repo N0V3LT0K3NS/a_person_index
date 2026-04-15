@@ -23,6 +23,12 @@ host can:
 
 The capability model gives the meta-skill a stable vocabulary for that.
 
+Host profiles sit one layer above this.
+
+They expand a known environment such as Codex Desktop or Claude Code into a
+seeded capability set, but the capability records remain the real planning
+primitive.
+
 ## Core rule
 
 Capabilities are downstream execution affordances.
@@ -61,14 +67,15 @@ tool-specific naming.
 
 The recommended order is:
 
-1. inspect available capabilities abstractly
-2. classify the run
-3. use `recommend_next_path` if you need the smallest disciplined recommendation
-4. choose the analysis mode
-5. choose the artifact class or actualization protocol if needed
-6. choose the expression profile that fits the audience
-7. choose the workflow recipe that operationalizes the path
-8. use the host's actual tools only after the semantic path is clear
+1. inspect a known host profile if one already fits the environment
+2. inspect available capabilities abstractly
+3. classify the run
+4. use `recommend_next_path` if you need the smallest disciplined recommendation
+5. choose the analysis mode
+6. choose the artifact class or actualization protocol if needed
+7. choose the expression profile that fits the audience
+8. choose the workflow recipe that operationalizes the path
+9. use the host's actual tools only after the semantic path is clear
 
 ## Important caution
 

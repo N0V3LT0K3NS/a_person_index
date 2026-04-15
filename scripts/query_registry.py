@@ -24,6 +24,7 @@ from personality_registry.query import (
     find_analysis_modes,
     find_artifact_classes,
     find_capabilities,
+    find_host_profiles,
     find_comparison_shapes,
     find_contribution_models,
     find_expression_profiles,
@@ -38,6 +39,7 @@ from personality_registry.query import (
     load_extensions_for_query,
     load_repository_for_query,
     motif_record,
+    host_profile_record,
     prepare_artifact_realization,
     prepare_comparison_run,
     promotion_pathway_record,
@@ -657,6 +659,13 @@ def _render_capability_record_text(payload):
     for signal in item["typical_tool_signals"]:
         lines.append(f"  - {signal}")
     lines.append("")
+    lines.append("Used by host profiles:")
+    if payload["used_by_host_profiles"]:
+        for profile in payload["used_by_host_profiles"]:
+            lines.append(f"  - {profile['name']} ({profile['id']})")
+    else:
+        lines.append("  none")
+    lines.append("")
     lines.append("Used by artifact classes:")
     if payload["used_by_artifact_classes"]:
         for artifact in payload["used_by_artifact_classes"]:
@@ -729,9 +738,16 @@ def _render_comparison_preflight_text(payload):
     lines = [
         f"Comparison shape: {shape['name']} ({shape['id']})",
         f"Readiness: {payload['readiness_status']}",
-        "",
-        "Provided declarations:",
     ]
+    if payload["declared_host_profiles"]:
+        lines.extend(["", "Declared host profiles:"])
+        for item in payload["declared_host_profiles"]:
+            lines.append(f"  - {item['name']} ({item['id']})")
+    if payload["declared_capabilities"]:
+        lines.extend(["", "Declared capabilities:"])
+        for item in payload["declared_capabilities"]:
+            lines.append(f"  - {item['name']} ({item['id']})")
+    lines.extend(["", "Provided declarations:"])
     if payload["provided_declarations"]:
         for key, value in payload["provided_declarations"].items():
             if isinstance(value, list):
@@ -787,6 +803,49 @@ def _render_expression_profiles_text(results):
             f"  status={item['status']} mode={item['expression_mode']} audience={', '.join(item['audience_modes'])}"
         )
         lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_host_profiles_text(results):
+    if not results:
+        return "No matching host profiles."
+    lines = []
+    for item in results:
+        lines.append(f"{item['name']} ({item['id']})")
+        lines.append(f"  status={item['status']} kind={item['host_kind']}")
+        lines.append(f"  capabilities={len(item['capability_ids'])}")
+        lines.append(f"  {item['summary']}")
+    return "\n".join(lines)
+
+
+def _render_host_profile_record_text(payload):
+    item = payload["host_profile"]
+    lines = [
+        f"{item['name']} ({item['id']})",
+        f"status: {item['status']}",
+        f"host kind: {item['host_kind']}",
+        item["summary"],
+        "",
+        "Capabilities:",
+    ]
+    for capability in payload["capabilities"]:
+        lines.append(f"  - {capability['name']} ({capability['id']})")
+    if item["known_tool_signals"]:
+        lines.extend(["", "Known tool signals:"])
+        for signal in item["known_tool_signals"]:
+            lines.append(f"  - {signal}")
+    if item.get("setup_doc"):
+        lines.extend(["", f"Setup doc: {item['setup_doc']}"])
+    if item.get("verification_command"):
+        lines.extend(["", f"Verification command: {item['verification_command']}"])
+    if item["cautions"]:
+        lines.extend(["", "Cautions:"])
+        for caution in item["cautions"]:
+            lines.append(f"  - {caution}")
+    if item["notes"]:
+        lines.extend(["", "Notes:"])
+        for note in item["notes"]:
+            lines.append(f"  - {note}")
     return "\n".join(lines)
 
 
@@ -966,6 +1025,14 @@ def _render_artifact_realization_text(payload):
         f"Expression profile: {payload['expression_profile']['name']} ({payload['expression_profile']['id']})",
         f"Actualization protocol: {payload['actualization_protocol']['name']} ({payload['actualization_protocol']['id']})",
     ]
+    if payload["declared_host_profiles"]:
+        lines.extend(["", "Declared host profiles:"])
+        for item in payload["declared_host_profiles"]:
+            lines.append(f"  - {item['name']} ({item['id']})")
+    if payload["declared_capabilities"]:
+        lines.extend(["", "Declared capabilities:"])
+        for item in payload["declared_capabilities"]:
+            lines.append(f"  - {item['name']} ({item['id']})")
     if payload["selected_realization_form"]:
         lines.extend(["", f"Selected realization form: {payload['selected_realization_form']}"])
     if payload["missing_required_capability_ids"]:
@@ -1001,6 +1068,10 @@ def _render_recommendation_text(payload):
     ]
     if payload["run_mode_inferred"]:
         lines.append("Mode status: inferred")
+    if payload["declared_host_profiles"]:
+        lines.append("Host profiles:")
+        for item in payload["declared_host_profiles"]:
+            lines.append(f"  - {item['name']} ({item['id']})")
     if payload["declared_capabilities"]:
         lines.append("Capabilities:")
         for item in payload["declared_capabilities"]:
@@ -1341,6 +1412,20 @@ def main() -> int:
     capabilities_parser.add_argument("--text", help="Substring search across capability fields.")
     capabilities_parser.add_argument("--format", choices=("text", "json"), default="text")
 
+    hosts_parser = subparsers.add_parser(
+        "hosts",
+        help="List or show known host profiles that expand into capability sets for planning and actualization.",
+    )
+    hosts_parser.add_argument("ref", nargs="?", help="Optional host profile ID or name for a detailed record.")
+    hosts_parser.add_argument(
+        "--kind",
+        choices=("agent_host", "desktop_client", "remote_wrapper", "hosted_client"),
+        help="Filter host profiles by host kind.",
+    )
+    hosts_parser.add_argument("--capability", help="Filter host profiles by capability ID or name.")
+    hosts_parser.add_argument("--text", help="Substring search across host profile fields.")
+    hosts_parser.add_argument("--format", choices=("text", "json"), default="text")
+
     comparison_shapes_parser = subparsers.add_parser(
         "comparison-shapes",
         help="List or show structured comparison shapes for contextual or pairwise work.",
@@ -1372,6 +1457,11 @@ def main() -> int:
         "--capability",
         action="append",
         help="Declared host capability ID or name. Repeatable.",
+    )
+    comparison_preflight_parser.add_argument(
+        "--host",
+        action="append",
+        help="Declared host profile ID or name. Repeatable.",
     )
     comparison_preflight_parser.add_argument("--format", choices=("text", "json"), default="text")
 
@@ -1430,6 +1520,11 @@ def main() -> int:
         action="append",
         help="Declared host capability ID or name. Repeatable.",
     )
+    artifact_realization_parser.add_argument(
+        "--host",
+        action="append",
+        help="Declared host profile ID or name. Repeatable.",
+    )
     artifact_realization_parser.add_argument("--format", choices=("text", "json"), default="text")
 
     recommend_parser = subparsers.add_parser(
@@ -1442,6 +1537,11 @@ def main() -> int:
         "--capability",
         action="append",
         help="Declared host capability ID or name. Repeatable.",
+    )
+    recommend_parser.add_argument(
+        "--host",
+        action="append",
+        help="Declared host profile ID or name. Repeatable.",
     )
     recommend_parser.add_argument("--artifact", help="Optional artifact class to target explicitly.")
     recommend_parser.add_argument("--text", help="Optional task hint for mode or artifact inference.")
@@ -1720,6 +1820,26 @@ def main() -> int:
             print(_render_capabilities_text(payload))
         return 0
 
+    if args.command == "hosts":
+        if args.ref:
+            payload = host_profile_record(extensions, args.ref)
+            if args.format == "json":
+                print(dumps_json(payload))
+            else:
+                print(_render_host_profile_record_text(payload))
+            return 0
+        payload = find_host_profiles(
+            extensions,
+            host_kind=args.kind,
+            capability=args.capability,
+            text=args.text,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_host_profiles_text(payload))
+        return 0
+
     if args.command == "comparison-shapes":
         if args.ref:
             payload = comparison_shape_record(extensions, args.ref)
@@ -1760,6 +1880,7 @@ def main() -> int:
             comparison_shape=args.shape,
             declarations=declarations,
             capability_refs=args.capability,
+            host_profile_refs=args.host,
         )
         if args.format == "json":
             print(dumps_json(payload))
@@ -1857,6 +1978,7 @@ def main() -> int:
             extensions,
             workflow_recipe=args.workflow,
             capability_refs=args.capability,
+            host_profile_refs=args.host,
         )
         if args.format == "json":
             print(dumps_json(payload))
@@ -1870,6 +1992,7 @@ def main() -> int:
             run_mode=args.mode,
             comparison_shape=args.comparison_shape,
             capability_refs=args.capability,
+            host_profile_refs=args.host,
             artifact_class=args.artifact,
             text=args.text,
         )

@@ -35,6 +35,15 @@ It does not replace the comparative core. It helps the host:
 Before choosing an output path, look for capabilities rather than specific tool
 brands.
 
+If the host is already one of the repo's known environments, start with the
+host profile and let it expand into a capability set:
+
+```bash
+python3 scripts/query_registry.py hosts
+python3 scripts/query_registry.py hosts "Codex Desktop"
+python3 scripts/query_registry.py recommend-path --host "Codex Desktop" --text "make a human model card"
+```
+
 Typical capability questions:
 
 - Can I read local files?
@@ -103,6 +112,7 @@ python3 scripts/query_registry.py comparison-preflight "Pairwise Relational Ques
   --declare right_stack_label="person b" \
   --declare relationship_context="friends" \
   --declare comparison_question="Where do their motives align or strain?" \
+  --host "Claude Code" \
   --capability "Markdown Write" \
   --capability "Table Render"
 ```
@@ -133,11 +143,11 @@ concrete scaffold:
 
 ```bash
 python3 scripts/query_registry.py artifact-realization "Context Matrix Explanatory" \
+  --host "Codex Desktop" \
   --capability "Markdown Write" \
   --capability "Table Render"
 python3 scripts/query_registry.py artifact-realization "Structured Result Bundle Technical" \
-  --capability "JSON Emit" \
-  --capability "File Write"
+  --host "Codex Desktop"
 ```
 
 That surface tells you the selected realization form, the required blocks the

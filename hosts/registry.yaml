@@ -1,0 +1,98 @@
+host_profiles:
+  - id: host_codex_desktop
+    name: Codex Desktop
+    status: active
+    host_kind: agent_host
+    summary: A strong local agent host with repo access, code execution, MCP or API calls, file writing, and structured artifact output.
+    purpose: Provide a high-capability default profile for Codex-class hosts using A Person Index locally with skills and repo access.
+    capability_ids:
+      - cap_file_read
+      - cap_mcp_or_api_call
+      - cap_code_execution
+      - cap_markdown_write
+      - cap_structured_text_render
+      - cap_table_render
+      - cap_diagram_render
+      - cap_json_emit
+      - cap_file_write
+    known_tool_signals:
+      - local filesystem access
+      - shell or code execution
+      - MCP tool calling
+      - markdown and mermaid-capable output
+    setup_doc: docs/mcp_clients.md
+    cautions:
+      - High local capability does not increase comparative permission.
+      - Host-specific skills help with orchestration, but A Person Index remains the semantic authority.
+
+  - id: host_claude_code
+    name: Claude Code
+    status: active
+    host_kind: agent_host
+    summary: A code-oriented local agent host with strict MCP use, shell access, file editing, and strong structured text output.
+    purpose: Capture the tested Claude Code path so operators can map it directly to the capability model.
+    capability_ids:
+      - cap_file_read
+      - cap_mcp_or_api_call
+      - cap_code_execution
+      - cap_markdown_write
+      - cap_structured_text_render
+      - cap_table_render
+      - cap_json_emit
+      - cap_file_write
+    known_tool_signals:
+      - strict MCP config
+      - shell execution
+      - repo file editing
+      - markdown and table output
+    setup_doc: docs/mcp_clients.md
+    verification_command: ./scripts/test_claude_code_mcp.sh
+    cautions:
+      - Claude Code is tested as a local strict-config client, not as a hosted shared runtime.
+
+  - id: host_claude_desktop
+    name: Claude Desktop
+    status: experimental
+    host_kind: desktop_client
+    summary: A desktop MCP client with strong conversational output but without the same local file or execution guarantees as code-oriented hosts.
+    purpose: Provide a conservative capability profile for chat-first desktop MCP use.
+    capability_ids:
+      - cap_mcp_or_api_call
+      - cap_markdown_write
+      - cap_structured_text_render
+      - cap_table_render
+      - cap_json_emit
+    known_tool_signals:
+      - desktop MCP config
+      - conversational markdown output
+      - table-friendly replies
+    setup_doc: docs/mcp_clients.md
+    verification_command: ./scripts/write_claude_desktop_mcp_config.sh
+    cautions:
+      - Treat file persistence and code execution as unavailable unless another verified tool layer provides them.
+      - Desktop output may be structurally clear without being a saved artifact.
+
+  - id: host_hermes_remote
+    name: Hermes Remote Wrapper
+    status: experimental
+    host_kind: remote_wrapper
+    summary: A remote-hosted Hermes path with MCP integration, file access, and script execution when the remote environment is configured correctly.
+    purpose: Capture the documented Hermes wrapper path without overstating uniform remote readiness.
+    capability_ids:
+      - cap_file_read
+      - cap_mcp_or_api_call
+      - cap_code_execution
+      - cap_markdown_write
+      - cap_structured_text_render
+      - cap_table_render
+      - cap_json_emit
+      - cap_file_write
+    known_tool_signals:
+      - remote wrapper script
+      - Hermes MCP registration
+      - remote filesystem and shell
+    setup_doc: docs/mcp_clients.md
+    verification_command: ./scripts/test_hermes_remote_mcp.sh user@host
+    cautions:
+      - Remote Hermes behavior still depends on the actual host environment.
+      - Treat this as a documented and partially checked path, not a universal guarantee.

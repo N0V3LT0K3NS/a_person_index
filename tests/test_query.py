@@ -18,6 +18,7 @@ from personality_registry.query import (
     find_analysis_modes,
     find_artifact_classes,
     find_capabilities,
+    find_host_profiles,
     find_comparison_shapes,
     find_expression_profiles,
     find_interaction_hypotheses,
@@ -48,6 +49,7 @@ from personality_registry.query import (
     resolve_instrument,
     show_instrument,
     trace_entity_to_motifs,
+    host_profile_record,
     workflow_recipe_record,
 )
 
@@ -282,6 +284,14 @@ def test_extension_finders_return_expected_records(repo_root):
             text="render",
         )
     }
+    host_profile_ids = {
+        item["id"]
+        for item in find_host_profiles(
+            extensions,
+            capability="Markdown Write",
+            text="codex",
+        )
+    }
     artifact_ids = {
         item["id"]
         for item in find_artifact_classes(
@@ -303,6 +313,7 @@ def test_extension_finders_return_expected_records(repo_root):
     contribution_ids = {item["id"] for item in find_contribution_models(extensions, text="normalized")}
     assert "mode_run_planning" in mode_ids
     assert "cmp_contextual_time_slices" in comparison_shape_ids
+    assert "host_codex_desktop" in host_profile_ids
     assert {"cap_table_render", "cap_markdown_write"} <= capability_ids
     assert "art_agent_markdown_handoff" in artifact_ids
     assert "actx_single_subject_comparative_memo" in actualization_ids
@@ -316,16 +327,22 @@ def test_analysis_mode_and_artifact_records_are_available(repo_root):
     extensions = load_extensions_strict(repo_root)
     mode_payload = analysis_mode_record(extensions, "Run Planning")
     comparison_shape_payload = comparison_shape_record(extensions, "Contextual Time Slices")
+    host_payload = host_profile_record(extensions, "Codex Desktop")
     capability_payload = capability_record(extensions, "Markdown Write")
     expression_payload = expression_profile_record(extensions, "Explanatory Scaffolded")
     artifact_payload = artifact_class_record(extensions, "Context Matrix")
     actualization_payload = actualization_protocol_record(extensions, "Pairwise Relational Sheet")
     assert mode_payload["analysis_mode"]["id"] == "mode_run_planning"
     assert comparison_shape_payload["comparison_shape"]["id"] == "cmp_contextual_time_slices"
+    assert host_payload["host_profile"]["id"] == "host_codex_desktop"
+    host_capability_ids = {item["id"] for item in host_payload["capabilities"]}
+    assert {"cap_markdown_write", "cap_file_write"} <= host_capability_ids
     assert capability_payload["capability"]["id"] == "cap_markdown_write"
     assert expression_payload["expression_profile"]["id"] == "expr_explanatory"
     used_by_artifact_ids = {item["id"] for item in capability_payload["used_by_artifact_classes"]}
+    used_by_host_ids = {item["id"] for item in capability_payload["used_by_host_profiles"]}
     assert "art_comparative_memo" in used_by_artifact_ids
+    assert "host_codex_desktop" in used_by_host_ids
     assert artifact_payload["artifact_class"]["id"] == "art_context_matrix"
     assert artifact_payload["default_expression_profile"]["id"] == "expr_explanatory"
     assert "cap_spreadsheet_render" in artifact_payload["artifact_class"]["optional_capability_ids"]
@@ -429,6 +446,29 @@ def test_prepare_comparison_run_returns_ready_path_when_declared(repo_root):
     assert payload["path_recommendation"]["recommended_artifact"]["artifact_class"]["id"] == "art_context_matrix"
 
 
+def test_prepare_comparison_run_can_expand_host_profile_context(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = prepare_comparison_run(
+        extensions,
+        comparison_shape="Contextual Time Slices",
+        declarations={
+            "slice_labels": ["earlier self", "later self"],
+            "comparison_question": "What meaningfully changed?",
+        },
+        host_profile_refs=["Claude Code"],
+    )
+    assert payload["readiness_status"] == "ready"
+    declared_host_ids = {item["id"] for item in payload["declared_host_profiles"]}
+    declared_capability_ids = {item["id"] for item in payload["declared_capabilities"]}
+    assert declared_host_ids == {"host_claude_code"}
+    assert {"cap_markdown_write", "cap_file_write"} <= declared_capability_ids
+    assert payload["path_recommendation"]["recommended_comparison_shape"]["id"] == "cmp_contextual_time_slices"
+    assert payload["path_recommendation"]["recommended_artifact"]["artifact_class"]["id"] in {
+        "art_comparative_memo",
+        "art_context_matrix",
+    }
+
+
 def test_find_pairwise_comparison_shapes_from_relational_text(repo_root):
     extensions = load_extensions_strict(repo_root)
     payload = find_comparison_shapes(
@@ -461,6 +501,19 @@ def test_prepare_artifact_realization_returns_context_matrix_scaffold(repo_root)
     assert payload["selected_realization_form"] == "markdown table"
     block_ids = {item["id"] for item in payload["realization_blocks"]}
     assert {"slice_declaration", "comparison_axes", "context_matrix"} <= block_ids
+
+
+def test_prepare_artifact_realization_can_expand_host_profile_context(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = prepare_artifact_realization(
+        extensions,
+        workflow_recipe="Human Model Card Mixed",
+        host_profile_refs=["Codex Desktop"],
+    )
+    assert payload["readiness_status"] == "ready"
+    declared_host_ids = {item["id"] for item in payload["declared_host_profiles"]}
+    assert declared_host_ids == {"host_codex_desktop"}
+    assert payload["selected_realization_form"] == "markdown card"
 
 
 def test_prepare_artifact_realization_surfaces_missing_capabilities(repo_root):
@@ -542,6 +595,23 @@ def test_recommend_next_path_can_target_human_model_card(repo_root):
     )
     assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_human_model_card"
     assert payload["recommended_workflow_recipe"]["workflow_recipe"]["id"] == "wfr_human_model_card_mixed"
+
+
+def test_recommend_next_path_can_expand_host_profile_context(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = recommend_next_path(
+        extensions,
+        run_mode="Artifact Actualization",
+        host_profile_refs=["Codex Desktop"],
+        text="make a human model card",
+    )
+    declared_host_ids = {item["id"] for item in payload["declared_host_profiles"]}
+    declared_capability_ids = {item["id"] for item in payload["declared_capabilities"]}
+    assert declared_host_ids == {"host_codex_desktop"}
+    assert {"cap_markdown_write", "cap_structured_text_render"} <= declared_capability_ids
+    assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_human_model_card"
+    assert payload["recommended_workflow_recipe"]["workflow_recipe"]["id"] == "wfr_human_model_card_mixed"
+    assert "Capabilities were expanded from the declared host profile set." in payload["notes"]
 
 
 def test_recommend_next_path_can_target_structured_result_bundle(repo_root):

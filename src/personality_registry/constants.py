@@ -31,6 +31,7 @@ ENTITY_PREFIXES = {
     "analysis_mode": "mode_",
     "comparison_shape": "cmp_",
     "capability": "cap_",
+    "host_profile": "host_",
     "expression_profile": "expr_",
     "artifact_class": "art_",
     "actualization_protocol": "actx_",

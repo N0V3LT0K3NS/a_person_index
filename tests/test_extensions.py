@@ -8,6 +8,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
 
     assert len(extensions.analysis_modes) >= 5
     assert len(extensions.comparison_shapes) >= 4
+    assert len(extensions.host_profiles) >= 4
     assert len(extensions.capabilities) >= 8
     assert len(extensions.expression_profiles) >= 4
     assert len(extensions.artifact_classes) >= 4
@@ -24,6 +25,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
 
     analysis_mode_ids = {mode.id for mode in extensions.analysis_modes}
     comparison_shape_ids = {shape.id for shape in extensions.comparison_shapes}
+    host_profile_ids = {profile.id for profile in extensions.host_profiles}
     capability_ids = {capability.id for capability in extensions.capabilities}
     expression_profile_ids = {profile.id for profile in extensions.expression_profiles}
     artifact_class_ids = {artifact.id for artifact in extensions.artifact_classes}
@@ -36,6 +38,10 @@ def test_extension_registries_load_and_cross_reference(repo_root):
 
     assert "mode_bounded_single_subject" in analysis_mode_ids
     assert "cmp_contextual_time_slices" in comparison_shape_ids
+    assert "host_codex_desktop" in host_profile_ids
+    assert "host_claude_code" in host_profile_ids
+    assert "host_claude_desktop" in host_profile_ids
+    assert "host_hermes_remote" in host_profile_ids
     assert "cap_markdown_write" in capability_ids
     assert "expr_explanatory" in expression_profile_ids
     assert "art_comparative_memo" in artifact_class_ids
@@ -67,6 +73,9 @@ def test_extension_registries_load_and_cross_reference(repo_root):
         assert set(comparison_shape.suitable_artifact_class_ids).issubset(artifact_class_ids)
         assert set(comparison_shape.recommended_protocol_ids).issubset(protocol_ids)
         assert comparison_shape.declaration_fields
+
+    for host_profile in extensions.host_profiles:
+        assert set(host_profile.capability_ids).issubset(capability_ids)
 
     for mapping in extensions.mappings:
         assert mapping.target_entity_id in motif_ids

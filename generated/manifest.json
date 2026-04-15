@@ -42,9 +42,11 @@
     },
     "analysis_and_actualization": {
       "analysis_mode_count": 7,
+      "host_profile_count": 4,
       "capability_count": 11,
       "artifact_class_count": 6,
-      "actualization_protocol_count": 6
+      "actualization_protocol_count": 6,
+      "workflow_recipe_count": 7
     },
     "house_synthesis": {
       "motif_count": 11,
@@ -108,6 +110,7 @@
     "docs/architecture.md",
     "docs/advanced_modes.md",
     "docs/comparison_preflight.md",
+    "docs/host_profiles.md",
     "docs/capability_model.md",
     "docs/artifact_realization.md",
     "docs/actualization_protocols.md",
@@ -241,6 +244,7 @@
     "advanced_modes_doc": "docs/advanced_modes.md",
     "comparison_shapes_doc": "docs/comparison_shapes.md",
     "comparison_preflight_doc": "docs/comparison_preflight.md",
+    "host_profiles_doc": "docs/host_profiles.md",
     "capability_model_doc": "docs/capability_model.md",
     "artifact_realization_doc": "docs/artifact_realization.md",
     "expression_model_doc": "docs/expression_model.md",
@@ -397,6 +401,8 @@
         "list_comparison_shapes",
         "fetch_comparison_shape",
         "prepare_comparison_run",
+        "list_host_profiles",
+        "fetch_host_profile",
         "list_capabilities",
         "fetch_capability",
         "list_expression_profiles",
@@ -434,6 +440,7 @@
         "registry://advanced-modes",
         "registry://comparison-shapes",
         "registry://comparison-preflight",
+        "registry://host-profiles",
         "registry://capability-model",
         "registry://artifact-realization",
         "registry://expression-model",
