@@ -52,6 +52,33 @@ actualization_protocols:
       - A rendered card is still downstream interpretation, not ontology.
       - Avoid overstating mechanism or completeness.
 
+  - id: actx_structured_result_bundle_packaging
+    name: Structured Result Bundle Packaging
+    status: experimental
+    summary: Package a bounded comparative pass into a machine-readable result bundle for downstream agents, repos, or research-safe return without confusing the bundle with canonical truth.
+    run_mode_ids:
+      - mode_bounded_single_subject
+      - mode_artifact_actualization
+    protocol_ids:
+      - proto_ilens
+      - proto_translation_memo
+      - proto_paradox_finder
+    target_artifact_class_ids:
+      - art_result_bundle
+    required_capability_ids:
+      - cap_json_emit
+      - cap_file_write
+    optional_capability_ids:
+      - cap_markdown_write
+    steps:
+      - Match frameworks and scope the bounded pass before packaging fields.
+      - Preserve canonical framework content, house synthesis, named program behavior, and downstream judgment as separate sections or objects in the bundle.
+      - Package unresolved questions, missing coverage, and caveats as first-class fields rather than prose only.
+      - Emit the bundle in a stable machine-readable form before any optional human-readable companion output.
+    cautions:
+      - A result bundle is a downstream packaging contract, not canonical ontology.
+      - Do not emit fields whose semantics are not grounded in the comparative work.
+
   - id: actx_context_matrix_render
     name: Context Matrix Render
     status: experimental

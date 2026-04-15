@@ -369,6 +369,16 @@ def test_find_workflow_recipes_for_human_model_card(repo_root):
     assert "wfr_human_model_card_mixed" in recipe_ids
 
 
+def test_find_workflow_recipes_for_result_bundle(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = find_workflow_recipes(
+        extensions,
+        artifact_class="Structured Result Bundle",
+    )
+    recipe_ids = {item["id"] for item in payload}
+    assert "wfr_structured_result_bundle_technical" in recipe_ids
+
+
 def test_recommend_next_path_prefers_context_matrix_when_capabilities_fit(repo_root):
     extensions = load_extensions_strict(repo_root)
     payload = recommend_next_path(
@@ -463,6 +473,19 @@ def test_prepare_artifact_realization_surfaces_missing_capabilities(repo_root):
     assert payload["missing_required_capability_ids"] == ["cap_file_write"]
 
 
+def test_prepare_artifact_realization_returns_result_bundle_scaffold(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = prepare_artifact_realization(
+        extensions,
+        workflow_recipe="Structured Result Bundle Technical",
+        capability_refs=["JSON Emit", "File Write"],
+    )
+    assert payload["readiness_status"] == "ready"
+    assert payload["selected_realization_form"] == "JSON bundle"
+    block_ids = {item["id"] for item in payload["realization_blocks"]}
+    assert {"bundle_header", "structured_findings", "provenance_partitions"} <= block_ids
+
+
 def test_recommend_next_path_infers_contextual_mode_from_text(repo_root):
     extensions = load_extensions_strict(repo_root)
     payload = recommend_next_path(
@@ -505,6 +528,27 @@ def test_recommend_next_path_can_target_human_model_card(repo_root):
     )
     assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_human_model_card"
     assert payload["recommended_workflow_recipe"]["workflow_recipe"]["id"] == "wfr_human_model_card_mixed"
+
+
+def test_recommend_next_path_can_target_structured_result_bundle(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = recommend_next_path(
+        extensions,
+        run_mode="Bounded Single-Subject Mixed Stack",
+        capability_refs=["JSON Emit", "File Write"],
+        artifact_class="Structured Result Bundle",
+    )
+    assert payload["recommended_artifact"]["artifact_class"]["id"] == "art_result_bundle"
+    assert payload["recommended_expression_profile"]["id"] == "expr_technical"
+    assert (
+        payload["recommended_actualization_protocol"]["actualization_protocol"]["id"]
+        == "actx_structured_result_bundle_packaging"
+    )
+    assert (
+        payload["recommended_workflow_recipe"]["workflow_recipe"]["id"]
+        == "wfr_structured_result_bundle_technical"
+    )
+    assert "prepare_artifact_realization" in payload["recommended_tools"]
 
 
 def test_find_interaction_hypotheses_related_to_attachment(repo_root):

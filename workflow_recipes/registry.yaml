@@ -101,6 +101,62 @@ workflow_recipes:
       - A context delta is not automatically a personality change.
       - The matrix should show missingness rather than implying false symmetry.
 
+  - id: wfr_structured_result_bundle_technical
+    name: Structured Result Bundle Technical
+    status: experimental
+    summary: Turn a bounded comparative pass into a technical JSON-oriented bundle for downstream agents, maintainers, or research-safe consumers.
+    run_mode_ids:
+      - mode_bounded_single_subject
+      - mode_artifact_actualization
+    artifact_class_id: art_result_bundle
+    expression_profile_id: expr_technical
+    actualization_protocol_id: actx_structured_result_bundle_packaging
+    required_capability_ids:
+      - cap_json_emit
+      - cap_file_write
+    realization_blocks:
+      - id: bundle_header
+        label: Bundle Header
+        block_kind: metadata
+        required: true
+        summary: Identify bundle purpose, bounded scope, intended downstream consumer, and version or schema reference.
+      - id: source_scope_and_coverage
+        label: Source Scope and Coverage
+        block_kind: metadata
+        required: true
+        summary: Name matched frameworks, unindexed items, bounded scope, and the named program or pack basis for the bundle.
+      - id: structured_findings
+        label: Structured Findings
+        block_kind: bundle
+        required: true
+        summary: Package the main comparative findings in stable machine-readable fields rather than prose only.
+      - id: provenance_partitions
+        label: Provenance Partitions
+        block_kind: provenance
+        required: true
+        summary: Preserve canonical framework content, house synthesis, named program behavior, and downstream judgment as explicit partitions.
+      - id: caveats_and_missingness
+        label: Caveats and Missingness
+        block_kind: caveat
+        required: true
+        summary: Keep unmatched frameworks, thin seams, symbolic limits, and confidence notes visible in the bundle.
+      - id: unresolved_questions
+        label: Unresolved Questions
+        block_kind: list
+        required: true
+        summary: Record deferred judgments, missing declarations, or next research-safe questions for downstream systems.
+    recipe_steps:
+      - Match and scope the bounded stack before generating bundle fields.
+      - Use named programs or packs as the comparative basis and record them explicitly in the bundle metadata.
+      - Serialize findings and caveats in stable fields so another agent can resume without re-reading prose.
+      - Add a markdown companion only if the host and audience need one after the JSON bundle is stable.
+    deliverables:
+      - JSON bundle
+      - structured markdown plus JSON
+    cautions:
+      - Do not let machine readability erase provenance or uncertainty.
+      - Do not emit downstream convenience fields that pretend to be canonical truth.
+
   - id: wfr_pairwise_relational_sheet_explanatory
     name: Pairwise Relational Sheet Explanatory
     status: experimental

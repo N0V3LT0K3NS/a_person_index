@@ -43,6 +43,9 @@ Workflow recipes now also carry realization blocks, so the host can move from
 "what is the path?" to "what should the finished artifact actually contain?"
 without inventing that structure from memory.
 
+Current recipes now cover explanatory memos, context matrices, pairwise sheets,
+technical handoffs, human model cards, and structured result bundles.
+
 ## Relationship to other layers
 
 Use the layers in this order:

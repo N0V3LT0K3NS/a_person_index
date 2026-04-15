@@ -11,8 +11,8 @@ def test_extension_registries_load_and_cross_reference(repo_root):
     assert len(extensions.capabilities) >= 8
     assert len(extensions.expression_profiles) >= 4
     assert len(extensions.artifact_classes) >= 4
-    assert len(extensions.actualization_protocols) >= 3
-    assert len(extensions.workflow_recipes) >= 5
+    assert len(extensions.actualization_protocols) >= 5
+    assert len(extensions.workflow_recipes) >= 6
     assert len(extensions.motifs) >= 10
     assert len(extensions.mappings) >= 10
     assert len(extensions.interaction_hypotheses) >= 5
@@ -41,6 +41,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
     assert "art_comparative_memo" in artifact_class_ids
     assert "wfr_context_matrix_explanatory" in workflow_recipe_ids
     assert "wfr_human_model_card_mixed" in workflow_recipe_ids
+    assert "wfr_structured_result_bundle_technical" in workflow_recipe_ids
     assert "mtf_social_energy_orientation" in motif_ids
     assert "tech_paradox_scan" in technique_ids
     assert "proto_paradox_finder" in protocol_ids
@@ -49,6 +50,7 @@ def test_extension_registries_load_and_cross_reference(repo_root):
     assert "proto_pairwise_relational_comparison" in protocol_ids
     assert "ppk_contextual_core_trait_motive_stack" in protocol_pack_ids
     assert "ppk_pairwise_relational_baseline" in protocol_pack_ids
+    assert "actx_structured_result_bundle_packaging" in {protocol.id for protocol in extensions.actualization_protocols}
     assert extensions.result_atom_schema.id == "ras_result_atom_v0_1"
     assert extensions.promotion_registry.id == "research_promotion_v0_1"
     assert "reviewed" in stage_ids

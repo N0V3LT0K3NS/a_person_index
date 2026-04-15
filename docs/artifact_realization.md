@@ -21,6 +21,9 @@ artifact should actually be built from.
 Without that layer, the system still stops too early and leaves the host to
 invent the artifact structure ad hoc.
 
+This includes machine-readable outputs such as structured result bundles, not
+only markdown cards, memos, or tables.
+
 ## What it includes
 
 Artifact realization can make explicit:

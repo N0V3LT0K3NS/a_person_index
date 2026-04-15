@@ -134,6 +134,9 @@ concrete scaffold:
 python3 scripts/query_registry.py artifact-realization "Context Matrix Explanatory" \
   --capability "Markdown Write" \
   --capability "Table Render"
+python3 scripts/query_registry.py artifact-realization "Structured Result Bundle Technical" \
+  --capability "JSON Emit" \
+  --capability "File Write"
 ```
 
 That surface tells you the selected realization form, the required blocks the
