@@ -50,6 +50,9 @@ If the workflow recipe is chosen and the host now needs the concrete artifact
 scaffold, use `prepare_artifact_realization` before improvising the finished
 output shape.
 
+If the host needs a starter markdown or JSON structure rather than only the
+block list, use `prepare_artifact_template` next.
+
 ## Ready-to-share status
 
 The MCP surface is now ready for serious local and nearby-agent use.
@@ -162,6 +165,7 @@ npm run mcp:test
 - `registry://host-profiles`
 - `registry://capability-model`
 - `registry://artifact-realization`
+- `registry://artifact-templates`
 - `registry://expression-model`
 - `registry://actualization-protocols`
 - `registry://workflow-recipes`
@@ -190,6 +194,7 @@ npm run mcp:test
 - `list_workflow_recipes`
 - `fetch_workflow_recipe`
 - `prepare_artifact_realization`
+- `prepare_artifact_template`
 - `recommend_next_path`
 - `list_artifact_classes`
 - `fetch_artifact_class`

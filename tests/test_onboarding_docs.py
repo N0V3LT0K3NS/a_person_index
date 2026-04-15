@@ -30,6 +30,7 @@ def test_onboarding_docs_exist(repo_root):
         repo_root / "docs" / "host_profiles.md",
         repo_root / "docs" / "capability_model.md",
         repo_root / "docs" / "artifact_realization.md",
+        repo_root / "docs" / "artifact_templates.md",
         repo_root / "docs" / "expression_model.md",
         repo_root / "docs" / "actualization_protocols.md",
         repo_root / "docs" / "workflow_recipes.md",
@@ -81,6 +82,7 @@ def test_readme_links_to_onboarding_surface(repo_root):
     assert "docs/host_profiles.md" in readme
     assert "docs/capability_model.md" in readme
     assert "docs/artifact_realization.md" in readme
+    assert "docs/artifact_templates.md" in readme
     assert "docs/expression_model.md" in readme
     assert "docs/actualization_protocols.md" in readme
     assert "docs/workflow_recipes.md" in readme

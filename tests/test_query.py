@@ -41,6 +41,7 @@ from personality_registry.query import (
     protocol_record,
     prepare_comparison_run,
     prepare_artifact_realization,
+    prepare_artifact_template,
     query_results,
     promotion_pathway_record,
     recommend_next_path,
@@ -553,6 +554,42 @@ def test_prepare_artifact_realization_returns_comparison_result_bundle_scaffold(
     assert {"comparison_bundle_header", "structured_comparison_findings", "provenance_partitions"} <= block_ids
 
 
+def test_prepare_artifact_template_returns_markdown_card_stub(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = prepare_artifact_template(
+        extensions,
+        workflow_recipe="Human Model Card Mixed",
+        host_profile_refs=["Codex Desktop"],
+    )
+    assert payload["template_kind"] == "markdown_document"
+    assert payload["template_filename_hint"].endswith(".md")
+    assert payload["template_text"].startswith("# Human Model Card Mixed")
+    assert "## Card Header" in payload["template_text"]
+    assert "## Provenance and Inputs" in payload["template_text"]
+    assert payload["template_object"] is None
+
+
+def test_prepare_artifact_template_returns_json_bundle_stub(repo_root):
+    extensions = load_extensions_strict(repo_root)
+    payload = prepare_artifact_template(
+        extensions,
+        workflow_recipe="Structured Result Bundle Technical",
+        host_profile_refs=["Codex Desktop"],
+    )
+    assert payload["template_kind"] == "json_object"
+    assert payload["template_filename_hint"].endswith(".json")
+    assert payload["template_text"] is None
+    assert (
+        payload["template_object"]["template_meta"]["workflow_recipe_id"]
+        == "wfr_structured_result_bundle_technical"
+    )
+    assert "structured_findings" in payload["template_object"]["blocks"]
+    assert (
+        payload["template_object"]["blocks"]["provenance_partitions"]["partitions"]["canonical_framework_content"]
+        == []
+    )
+
+
 def test_recommend_next_path_infers_contextual_mode_from_text(repo_root):
     extensions = load_extensions_strict(repo_root)
     payload = recommend_next_path(
@@ -566,6 +603,7 @@ def test_recommend_next_path_infers_contextual_mode_from_text(repo_root):
     assert payload["recommended_actualization_protocol"]["actualization_protocol"]["id"] == "actx_context_matrix_render"
     assert "list_capabilities" not in payload["recommended_tools"]
     assert "prepare_artifact_realization" in payload["recommended_tools"]
+    assert "prepare_artifact_template" in payload["recommended_tools"]
 
 
 def test_recommend_next_path_respects_explicit_pairwise_shape(repo_root):
@@ -633,6 +671,7 @@ def test_recommend_next_path_can_target_structured_result_bundle(repo_root):
         == "wfr_structured_result_bundle_technical"
     )
     assert "prepare_artifact_realization" in payload["recommended_tools"]
+    assert "prepare_artifact_template" in payload["recommended_tools"]
 
 
 def test_recommend_next_path_can_target_contextual_result_bundle(repo_root):

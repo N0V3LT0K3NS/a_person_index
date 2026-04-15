@@ -100,6 +100,9 @@ If the workflow recipe is already chosen and the next question is what the
 finished artifact should actually contain, use artifact realization before you
 start rendering.
 
+If the host then needs a starter markdown or JSON structure to fill, use the
+artifact template surface rather than rebuilding that first draft from scratch.
+
 Use the deeper docs:
 
 - [advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md)
@@ -108,6 +111,7 @@ Use the deeper docs:
 - [host_profiles.md](/Users/noveltokens/a_person_index/docs/host_profiles.md)
 - [capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md)
 - [artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md)
+- [artifact_templates.md](/Users/noveltokens/a_person_index/docs/artifact_templates.md)
 - [expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md)
 - [actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md)
 - [workflow_recipes.md](/Users/noveltokens/a_person_index/docs/workflow_recipes.md)

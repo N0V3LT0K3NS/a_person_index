@@ -108,7 +108,7 @@ async function buildServer() {
     name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, comparison preflight guidance, host profiles, capability records, expression profiles, artifact classes, actualization protocols, workflow recipes, and artifact realization guidance from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, comparison-shape, comparison-preflight, host-profile, capability, expression, actualization, workflow, and artifact-realization surfaces before improvising. Use prepare_comparison_run once a contextual or pairwise shape is chosen and you need to check whether the run is actually declared well enough to proceed. Use recommend_next_path when you already know either the host profile or the host capabilities and need the smallest disciplined next step. Use prepare_artifact_realization once a workflow recipe is chosen and you need a concrete scaffold for the finished artifact. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, comparison preflight guidance, host profiles, capability records, expression profiles, artifact classes, actualization protocols, workflow recipes, artifact realization guidance, and artifact template guidance from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, comparison-shape, comparison-preflight, host-profile, capability, expression, actualization, workflow, artifact-realization, and artifact-template surfaces before improvising. Use prepare_comparison_run once a contextual or pairwise shape is chosen and you need to check whether the run is actually declared well enough to proceed. Use recommend_next_path when you already know either the host profile or the host capabilities and need the smallest disciplined next step. Use prepare_artifact_realization once a workflow recipe is chosen and you need a concrete scaffold for the finished artifact. Use prepare_artifact_template when the host needs a concrete starter markdown or JSON structure to fill rather than only a list of required blocks. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
   });
 
   server.registerResource(
@@ -286,6 +286,24 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/host_profiles.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "artifact-templates",
+    "registry://artifact-templates",
+    {
+      title: "Artifact Templates",
+      description: "Starter markdown or JSON template guidance derived from workflow recipes and artifact realization blocks.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/artifact_templates.md"),
         },
       ],
     }),
@@ -891,6 +909,29 @@ async function buildServer() {
     async ({ ref }) => {
       try {
         return jsonResult(await runRegistryQuery(["workflows", ref], pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "prepare_artifact_template",
+    {
+      title: "Prepare Artifact Template",
+      description: "Turn a chosen workflow recipe plus declared host profiles or capabilities into a concrete starter markdown or JSON template.",
+      inputSchema: {
+        workflow_recipe: z.string(),
+        hosts: z.array(z.string()).optional(),
+        capabilities: z.array(z.string()).optional(),
+      },
+    },
+    async ({ workflow_recipe, hosts, capabilities }) => {
+      try {
+        const args = ["artifact-template", workflow_recipe];
+        for (const host of hosts ?? []) args.push("--host", host);
+        for (const capability of capabilities ?? []) args.push("--capability", capability);
+        return jsonResult(await runRegistryQuery(args, pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }

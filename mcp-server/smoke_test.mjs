@@ -59,6 +59,9 @@ if (!tools.tools.some((tool) => tool.name === "list_workflow_recipes")) {
 if (!tools.tools.some((tool) => tool.name === "prepare_artifact_realization")) {
   throw new Error("Expected prepare_artifact_realization tool in MCP surface.");
 }
+if (!tools.tools.some((tool) => tool.name === "prepare_artifact_template")) {
+  throw new Error("Expected prepare_artifact_template tool in MCP surface.");
+}
 if (!tools.tools.some((tool) => tool.name === "recommend_next_path")) {
   throw new Error("Expected recommend_next_path tool in MCP surface.");
 }
@@ -114,6 +117,11 @@ if (!artifactRealizationResource.contents?.[0]?.text?.includes("Artifact Realiza
   throw new Error("Expected artifact realization resource content.");
 }
 
+const artifactTemplateResource = await client.readResource({ uri: "registry://artifact-templates" });
+if (!artifactTemplateResource.contents?.[0]?.text?.includes("Artifact Templates")) {
+  throw new Error("Expected artifact template resource content.");
+}
+
 const comparisonPreflight = await client.callTool({
   name: "prepare_comparison_run",
   arguments: {
@@ -160,6 +168,24 @@ if (artifactRealization.structuredContent?.readiness_status !== "ready") {
 
 if (artifactRealization.structuredContent?.selected_realization_form !== "markdown table") {
   throw new Error("Expected artifact realization to select the markdown table form.");
+}
+
+const artifactTemplate = await client.callTool({
+  name: "prepare_artifact_template",
+  arguments: {
+    workflow_recipe: "Human Model Card Mixed",
+    hosts: ["Codex Desktop"],
+  },
+});
+
+if (artifactTemplate.isError) {
+  throw new Error(
+    `Artifact template tool returned error: ${artifactTemplate.content?.[0]?.text ?? "unknown error"}`,
+  );
+}
+
+if (artifactTemplate.structuredContent?.template_kind !== "markdown_document") {
+  throw new Error("Expected artifact template to return a markdown document template.");
 }
 
 const prompt = await client.getPrompt({ name: "registry-arrival" });

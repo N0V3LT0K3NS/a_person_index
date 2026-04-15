@@ -41,6 +41,7 @@ from personality_registry.query import (
     motif_record,
     host_profile_record,
     prepare_artifact_realization,
+    prepare_artifact_template,
     prepare_comparison_run,
     promotion_pathway_record,
     protocol_pack,
@@ -1061,6 +1062,25 @@ def _render_artifact_realization_text(payload):
     return "\n".join(lines)
 
 
+def _render_artifact_template_text(payload):
+    lines = [
+        f"Workflow recipe: {payload['workflow_recipe']['name']} ({payload['workflow_recipe']['id']})",
+        f"Template kind: {payload['template_kind']}",
+        f"Filename hint: {payload['template_filename_hint']}",
+    ]
+    if payload["selected_realization_form"]:
+        lines.append(f"Selected realization form: {payload['selected_realization_form']}")
+    lines.append("")
+    if payload["template_text"]:
+        lines.append(payload["template_text"].rstrip())
+        return "\n".join(lines)
+    if payload["template_object"] is not None:
+        lines.append(dumps_json(payload["template_object"]))
+        return "\n".join(lines)
+    lines.append("No template content available.")
+    return "\n".join(lines)
+
+
 def _render_recommendation_text(payload):
     mode = payload["run_mode"]
     lines = [
@@ -1527,6 +1547,23 @@ def main() -> int:
     )
     artifact_realization_parser.add_argument("--format", choices=("text", "json"), default="text")
 
+    artifact_template_parser = subparsers.add_parser(
+        "artifact-template",
+        help="Prepare a starter markdown or JSON template from a workflow recipe and declared host context.",
+    )
+    artifact_template_parser.add_argument("workflow", help="Workflow recipe ID or name.")
+    artifact_template_parser.add_argument(
+        "--capability",
+        action="append",
+        help="Declared host capability ID or name. Repeatable.",
+    )
+    artifact_template_parser.add_argument(
+        "--host",
+        action="append",
+        help="Declared host profile ID or name. Repeatable.",
+    )
+    artifact_template_parser.add_argument("--format", choices=("text", "json"), default="text")
+
     recommend_parser = subparsers.add_parser(
         "recommend-path",
         help="Recommend the next A Person Index path from the current run shape and declared capabilities.",
@@ -1984,6 +2021,19 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_artifact_realization_text(payload))
+        return 0
+
+    if args.command == "artifact-template":
+        payload = prepare_artifact_template(
+            extensions,
+            workflow_recipe=args.workflow,
+            capability_refs=args.capability,
+            host_profile_refs=args.host,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_artifact_template_text(payload))
         return 0
 
     if args.command == "recommend-path":

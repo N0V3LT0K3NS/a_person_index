@@ -48,6 +48,7 @@ for (const requiredTool of [
   "list_workflow_recipes",
   "fetch_workflow_recipe",
   "prepare_artifact_realization",
+  "prepare_artifact_template",
   "recommend_next_path",
   "list_artifact_classes",
   "list_actualization_protocols",
@@ -120,6 +121,12 @@ const artifactRealization = await client.readResource({ uri: "registry://artifac
 expect(
   artifactRealization.contents?.[0]?.text?.includes("Artifact Realization"),
   "Expected artifact realization resource content.",
+);
+
+const artifactTemplates = await client.readResource({ uri: "registry://artifact-templates" });
+expect(
+  artifactTemplates.contents?.[0]?.text?.includes("Artifact Templates"),
+  "Expected artifact templates resource content.",
 );
 
 const mbtiResource = await client.readResource({ uri: "registry://instrument/mbti" });
@@ -267,6 +274,23 @@ expect(
   "Expected artifact realization to choose markdown table.",
 );
 
+const artifactTemplatePlan = await client.callTool({
+  name: "prepare_artifact_template",
+  arguments: {
+    workflow_recipe: "Structured Result Bundle Technical",
+    hosts: ["Codex Desktop"],
+  },
+});
+expect(!artifactTemplatePlan.isError, "Expected prepare_artifact_template tool to succeed.");
+expect(
+  artifactTemplatePlan.structuredContent?.template_kind === "json_object",
+  "Expected artifact template to return a JSON object template for result bundles.",
+);
+expect(
+  artifactTemplatePlan.structuredContent?.template_object?.template_meta?.workflow_recipe_id === "wfr_structured_result_bundle_technical",
+  "Expected artifact template metadata to reflect the selected workflow recipe.",
+);
+
 const recommendation = await client.callTool({
   name: "recommend_next_path",
   arguments: {
@@ -296,6 +320,10 @@ expect(
 expect(
   recommendation.structuredContent?.recommended_tools?.includes("prepare_artifact_realization"),
   "Expected recommendation to point to artifact realization.",
+);
+expect(
+  recommendation.structuredContent?.recommended_tools?.includes("prepare_artifact_template"),
+  "Expected recommendation to point to artifact template preparation.",
 );
 
 const actualizationProtocols = await client.callTool({

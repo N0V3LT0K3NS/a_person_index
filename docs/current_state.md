@@ -76,6 +76,7 @@ As of the current branch state, the repo includes:
 - capability-aware meta-skill plus actualization skill for Codex-class hosts
 - first-class comparison-shape records for contextual and pairwise setup
 - first-class artifact realization surface for turning workflow recipes into concrete artifact scaffolds
+- first-class artifact template surface for turning workflow recipes into starter markdown or JSON structures
 - Deterministic generated outputs
 - Static documentation site
 - Three generated landing-page directions for the public site

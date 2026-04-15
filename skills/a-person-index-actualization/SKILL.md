@@ -153,6 +153,17 @@ python3 scripts/query_registry.py artifact-realization "Structured Result Bundle
 That surface tells you the selected realization form, the required blocks the
 artifact should contain, and what evidence partitions must remain visible.
 
+If you want a starter markdown or JSON structure after that, ask for the
+artifact template rather than rebuilding the first draft yourself:
+
+```bash
+python3 scripts/query_registry.py artifact-template "Human Model Card Mixed" \
+  --host "Codex Desktop"
+python3 scripts/query_registry.py artifact-template "Structured Result Bundle Technical" \
+  --host "Codex Desktop" \
+  --format json
+```
+
 ### 7. Preserve provenance and expression fit
 
 Always preserve the difference between:

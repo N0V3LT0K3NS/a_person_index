@@ -3,6 +3,9 @@
 Artifact realization is the layer that turns a chosen workflow recipe into a
 concrete scaffold for the finished output.
 
+If the host needs a starter markdown or JSON structure rather than only the
+block list, the next surface is [artifact_templates.md](/Users/noveltokens/a_person_index/docs/artifact_templates.md).
+
 It does not render the artifact by itself.
 
 It tells the host what blocks the artifact should contain, what realization form
@@ -46,7 +49,8 @@ For artifact work, the clean order is:
 5. use `recommend_next_path`
 6. choose the workflow recipe
 7. use artifact realization to get the concrete scaffold
-8. render the finished output with host tools
+8. use artifact templates if the host needs a first-draft structure to fill
+9. render the finished output with host tools
 
 ## Boundary rule
 
@@ -54,3 +58,7 @@ Artifact realization does not make A Person Index a renderer.
 
 It defines the semantic scaffold of the artifact so the host can realize it
 without inventing new meaning or losing provenance.
+
+The template layer sits one step after this. It gives the host a starter
+markdown or JSON structure derived from the same workflow recipe and selected
+realization form.

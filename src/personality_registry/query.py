@@ -2099,12 +2099,239 @@ def prepare_artifact_realization(
             "fetch_artifact_class",
             "fetch_expression_profile",
             "fetch_actualization_protocol",
+            "prepare_artifact_template",
         ],
         "recommended_resources": [
             "registry://workflow-recipes",
             "registry://artifact-realization",
+            "registry://artifact-templates",
             "registry://expression-and-artifacts",
             "registry://actualization-protocols",
+        ],
+        "next_steps": next_steps,
+    }
+
+
+def _template_kind_for_form(selected_realization_form: str | None) -> str:
+    normalized = _normalize(selected_realization_form or "")
+    if "json" in normalized or "bundle" in normalized:
+        return "json_object"
+    return "markdown_document"
+
+
+def _template_filename_hint(recipe: WorkflowRecipe, template_kind: str) -> str:
+    stem = re.sub(r"[^a-z0-9]+", "_", recipe.name.lower()).strip("_")
+    if template_kind == "json_object":
+        return f"{stem}.json"
+    return f"{stem}.md"
+
+
+def _markdown_block_template(
+    block: dict[str, Any],
+    *,
+    required_evidence_partitions: list[str],
+) -> str:
+    label = block["label"]
+    summary = block["summary"]
+    block_kind = block["block_kind"]
+    lines = [f"## {label}", f"<!-- {summary} -->"]
+    if block_kind == "metadata":
+        lines.extend(
+            [
+                "- TODO: scope",
+                "- TODO: intended use",
+                "- TODO: key declarations or labels",
+            ]
+        )
+    elif block_kind == "narrative":
+        lines.append("[Write the grounded narrative for this block here.]")
+    elif block_kind == "list":
+        lines.extend(
+            [
+                "- TODO: item 1",
+                "- TODO: item 2",
+                "- TODO: item 3",
+            ]
+        )
+    elif block_kind == "caveat":
+        lines.extend(
+            [
+                "- TODO: missingness",
+                "- TODO: confidence limits",
+                "- TODO: overread risk",
+            ]
+        )
+    elif block_kind == "provenance":
+        for partition in required_evidence_partitions:
+            lines.append(f"- {partition}: []")
+    elif block_kind == "matrix":
+        lines.extend(
+            [
+                "| Comparative Axis | Slice A | Slice B | Notes |",
+                "| --- | --- | --- | --- |",
+                "| TODO | TODO | TODO | TODO |",
+            ]
+        )
+    elif block_kind == "bundle":
+        lines.extend(
+            [
+                "```json",
+                "{",
+                '  "TODO": "Add the structured machine-readable payload for this block."',
+                "}",
+                "```",
+            ]
+        )
+    else:
+        lines.append("[Populate this block here.]")
+    return "\n".join(lines)
+
+
+def _json_block_template(
+    block: dict[str, Any],
+    *,
+    required_evidence_partitions: list[str],
+) -> Any:
+    block_kind = block["block_kind"]
+    if block_kind == "metadata":
+        return {
+            "label": block["label"],
+            "summary": block["summary"],
+            "value": None,
+        }
+    if block_kind == "narrative":
+        return {
+            "label": block["label"],
+            "summary": block["summary"],
+            "content": "",
+        }
+    if block_kind == "list":
+        return {
+            "label": block["label"],
+            "summary": block["summary"],
+            "items": [],
+        }
+    if block_kind == "caveat":
+        return {
+            "label": block["label"],
+            "summary": block["summary"],
+            "items": [],
+        }
+    if block_kind == "provenance":
+        return {
+            "label": block["label"],
+            "summary": block["summary"],
+            "partitions": {partition: [] for partition in required_evidence_partitions},
+        }
+    if block_kind == "matrix":
+        return {
+            "label": block["label"],
+            "summary": block["summary"],
+            "columns": ["comparative_axis", "left", "right", "notes"],
+            "rows": [],
+        }
+    if block_kind == "bundle":
+        return {
+            "label": block["label"],
+            "summary": block["summary"],
+            "content": {},
+        }
+    return {
+        "label": block["label"],
+        "summary": block["summary"],
+        "content": None,
+    }
+
+
+def prepare_artifact_template(
+    extensions: ExtensionRegistryData,
+    *,
+    workflow_recipe: str,
+    capability_refs: Iterable[str] | None = None,
+    host_profile_refs: Iterable[str] | None = None,
+) -> dict[str, Any]:
+    realization = prepare_artifact_realization(
+        extensions,
+        workflow_recipe=workflow_recipe,
+        capability_refs=capability_refs,
+        host_profile_refs=host_profile_refs,
+    )
+    recipe = realization["workflow_recipe"]
+    template_kind = _template_kind_for_form(realization["selected_realization_form"])
+    filename_hint = _template_filename_hint(
+        resolve_workflow_recipe(extensions, workflow_recipe),
+        template_kind,
+    )
+    template_sections = [
+        {
+            "id": block["id"],
+            "label": block["label"],
+            "block_kind": block["block_kind"],
+            "required": block["required"],
+            "summary": block["summary"],
+        }
+        for block in realization["realization_blocks"]
+    ]
+
+    template_text = None
+    template_object = None
+    if template_kind == "markdown_document":
+        section_text = [
+            f"# {recipe['name']}",
+            "",
+            f"<!-- Selected realization form: {realization['selected_realization_form'] or 'markdown'} -->",
+            f"<!-- Artifact class: {realization['artifact_class']['name']} -->",
+            "",
+        ]
+        for block in realization["realization_blocks"]:
+            section_text.append(
+                _markdown_block_template(
+                    block,
+                    required_evidence_partitions=realization["required_evidence_partitions"],
+                )
+            )
+            section_text.append("")
+        template_text = "\n".join(section_text).rstrip() + "\n"
+    else:
+        template_object = {
+            "template_meta": {
+                "workflow_recipe_id": recipe["id"],
+                "workflow_recipe_name": recipe["name"],
+                "artifact_class_id": realization["artifact_class"]["id"],
+                "expression_profile_id": realization["expression_profile"]["id"],
+                "actualization_protocol_id": realization["actualization_protocol"]["id"],
+                "selected_realization_form": realization["selected_realization_form"],
+            },
+            "required_evidence_partitions": realization["required_evidence_partitions"],
+            "block_order": [block["id"] for block in realization["realization_blocks"]],
+            "blocks": {
+                block["id"]: _json_block_template(
+                    block,
+                    required_evidence_partitions=realization["required_evidence_partitions"],
+                )
+                for block in realization["realization_blocks"]
+            },
+        }
+
+    next_steps = list(realization["next_steps"])
+    next_steps.append("Replace placeholders with grounded comparative content before final delivery.")
+
+    return {
+        **realization,
+        "template_kind": template_kind,
+        "template_filename_hint": filename_hint,
+        "template_sections": template_sections,
+        "template_text": template_text,
+        "template_object": template_object,
+        "recommended_tools": [
+            "prepare_artifact_realization",
+            "fetch_workflow_recipe",
+            "fetch_artifact_class",
+        ],
+        "recommended_resources": [
+            "registry://artifact-realization",
+            "registry://artifact-templates",
+            "registry://expression-and-artifacts",
         ],
         "next_steps": next_steps,
     }
@@ -2411,6 +2638,7 @@ def recommend_next_path(
     if workflow_candidates:
         recommended_tools.append("fetch_workflow_recipe")
         recommended_tools.append("prepare_artifact_realization")
+        recommended_tools.append("prepare_artifact_template")
 
     recommended_resources = [
         "registry://advanced-modes",
@@ -2425,6 +2653,7 @@ def recommend_next_path(
         recommended_resources.append("registry://actualization-protocols")
     if workflow_candidates:
         recommended_resources.append("registry://artifact-realization")
+        recommended_resources.append("registry://artifact-templates")
 
     return {
         "run_mode": mode_item.model_dump(mode="json"),
