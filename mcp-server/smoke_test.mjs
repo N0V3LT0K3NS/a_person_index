@@ -62,6 +62,9 @@ if (!tools.tools.some((tool) => tool.name === "prepare_artifact_realization")) {
 if (!tools.tools.some((tool) => tool.name === "prepare_artifact_template")) {
   throw new Error("Expected prepare_artifact_template tool in MCP surface.");
 }
+if (!tools.tools.some((tool) => tool.name === "normalize_result_atom_bundle")) {
+  throw new Error("Expected normalize_result_atom_bundle tool in MCP surface.");
+}
 if (!tools.tools.some((tool) => tool.name === "recommend_next_path")) {
   throw new Error("Expected recommend_next_path tool in MCP surface.");
 }
@@ -120,6 +123,11 @@ if (!artifactRealizationResource.contents?.[0]?.text?.includes("Artifact Realiza
 const artifactTemplateResource = await client.readResource({ uri: "registry://artifact-templates" });
 if (!artifactTemplateResource.contents?.[0]?.text?.includes("Artifact Templates")) {
   throw new Error("Expected artifact template resource content.");
+}
+
+const resultAtomNormalizationResource = await client.readResource({ uri: "registry://result-atom-normalization" });
+if (!resultAtomNormalizationResource.contents?.[0]?.text?.includes("Result Atom Normalization")) {
+  throw new Error("Expected result atom normalization resource content.");
 }
 
 const comparisonPreflight = await client.callTool({
@@ -186,6 +194,31 @@ if (artifactTemplate.isError) {
 
 if (artifactTemplate.structuredContent?.template_kind !== "markdown_document") {
   throw new Error("Expected artifact template to return a markdown document template.");
+}
+
+const resultAtomBundle = await client.callTool({
+  name: "normalize_result_atom_bundle",
+  arguments: {
+    framework: "Big Five",
+    entries: [
+      {
+        construct: "Openness to Experience",
+        output_type: "continuous_score",
+        output_value: "0.74",
+        source_quality: "self_reported",
+      },
+    ],
+  },
+});
+
+if (resultAtomBundle.isError) {
+  throw new Error(
+    `Result atom normalization tool returned error: ${resultAtomBundle.content?.[0]?.text ?? "unknown error"}`,
+  );
+}
+
+if (resultAtomBundle.structuredContent?.bundle?.atoms?.[0]?.construct_id !== "con_big_five_openness") {
+  throw new Error("Expected result atom normalization to resolve the Big Five openness construct.");
 }
 
 const prompt = await client.getPrompt({ name: "registry-arrival" });

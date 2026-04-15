@@ -59,6 +59,10 @@ Downstream runtimes should use it when they need to return construct-level or at
 - downstream confidence visible
 - motif traces optional rather than forced
 
+When the framework is known and the outputs are already decomposed to
+construct level, use the repo-side normalization helper instead of improvising
+bundle shape by hand.
+
 ## What not to do
 
 - Do not place raw user chats in canonical framework records.

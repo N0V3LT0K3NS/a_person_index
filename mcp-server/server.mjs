@@ -108,7 +108,7 @@ async function buildServer() {
     name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, comparison preflight guidance, host profiles, capability records, expression profiles, artifact classes, actualization protocols, workflow recipes, artifact realization guidance, and artifact template guidance from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, or contextual comparison, inspect the advanced mode, comparison-shape, comparison-preflight, host-profile, capability, expression, actualization, workflow, artifact-realization, and artifact-template surfaces before improvising. Use prepare_comparison_run once a contextual or pairwise shape is chosen and you need to check whether the run is actually declared well enough to proceed. Use recommend_next_path when you already know either the host profile or the host capabilities and need the smallest disciplined next step. Use prepare_artifact_realization once a workflow recipe is chosen and you need a concrete scaffold for the finished artifact. Use prepare_artifact_template when the host needs a concrete starter markdown or JSON structure to fill rather than only a list of required blocks. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, comparison preflight guidance, host profiles, capability records, expression profiles, artifact classes, actualization protocols, workflow recipes, artifact realization guidance, artifact template guidance, and result-atom normalization support from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, contextual comparison, or downstream return traffic, inspect the advanced mode, comparison-shape, comparison-preflight, host-profile, capability, expression, actualization, workflow, artifact-realization, artifact-template, and result-atom-normalization surfaces before improvising. Use prepare_comparison_run once a contextual or pairwise shape is chosen and you need to check whether the run is actually declared well enough to proceed. Use recommend_next_path when you already know either the host profile or the host capabilities and need the smallest disciplined next step. Use prepare_artifact_realization once a workflow recipe is chosen and you need a concrete scaffold for the finished artifact. Use prepare_artifact_template when the host needs a concrete starter markdown or JSON structure to fill rather than only a list of required blocks. Use normalize_result_atom_bundle when a downstream runtime already has construct-level outputs and needs a schema-shaped result atom bundle with provenance and motif trace. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
   });
 
   server.registerResource(
@@ -322,6 +322,24 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/artifact_realization.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "result-atom-normalization",
+    "registry://result-atom-normalization",
+    {
+      title: "Result Atom Normalization",
+      description: "How to turn construct-level framework outputs into a schema-shaped result atom bundle without moving person-level inference into this repo.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/result_atom_normalization.md"),
         },
       ],
     }),
@@ -954,6 +972,60 @@ async function buildServer() {
         const args = ["artifact-realization", workflow_recipe];
         for (const host of hosts ?? []) args.push("--host", host);
         for (const capability of capabilities ?? []) args.push("--capability", capability);
+        return jsonResult(await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "normalize_result_atom_bundle",
+    {
+      title: "Normalize Result Atom Bundle",
+      description: "Normalize construct-level framework outputs into a schema-shaped result atom bundle with provenance defaults and optional motif trace.",
+      inputSchema: {
+        framework: z.string(),
+        entries: z.array(
+          z.object({
+            construct: z.string(),
+            output_type: z.string(),
+            output_value: z.any(),
+            confidence: z.string().optional(),
+            source_quality: z.string().optional(),
+            timestamp: z.string().optional(),
+            notes: z.string().optional(),
+          })
+        ),
+        comparison_shape: z.string().optional(),
+        bundle_label: z.string().optional(),
+        default_source_quality: z.string().optional(),
+        default_timestamp: z.string().optional(),
+        include_motif_trace: z.boolean().optional(),
+      },
+    },
+    async ({
+      framework,
+      entries,
+      comparison_shape,
+      bundle_label,
+      default_source_quality,
+      default_timestamp,
+      include_motif_trace,
+    }) => {
+      try {
+        const args = [
+          "result-atom-bundle",
+          "--framework",
+          framework,
+          "--entries-json",
+          JSON.stringify(entries),
+        ];
+        if (comparison_shape) args.push("--comparison-shape", comparison_shape);
+        if (bundle_label) args.push("--bundle-label", bundle_label);
+        if (default_source_quality) args.push("--default-source-quality", default_source_quality);
+        if (default_timestamp) args.push("--default-timestamp", default_timestamp);
+        if (include_motif_trace === false) args.push("--no-motif-trace");
         return jsonResult(await runRegistryQuery(args, pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));

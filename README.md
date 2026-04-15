@@ -47,6 +47,11 @@ Artifact templates now sit beneath artifact realization, so a host can also ask
 for a starter markdown or JSON structure derived from the same workflow recipe
 instead of rebuilding the first draft from scratch.
 
+Result atom normalization now sits alongside the research-return layer too, so
+downstream runtimes can turn construct-level outputs into schema-shaped bundles
+without improvising framework IDs, construct IDs, provenance defaults, or motif
+trace.
+
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
 1. Canonical registry
@@ -92,6 +97,7 @@ If you need the deeper map after that:
   [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
   [docs/artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md),
   [docs/artifact_templates.md](/Users/noveltokens/a_person_index/docs/artifact_templates.md),
+  [docs/result_atom_normalization.md](/Users/noveltokens/a_person_index/docs/result_atom_normalization.md),
   [docs/expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md),
   [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
   [docs/workflow_recipes.md](/Users/noveltokens/a_person_index/docs/workflow_recipes.md),
@@ -200,6 +206,7 @@ Key conventions:
 - `hosts/registry.yaml` stores known host profiles that expand into conservative capability sets for planning and actualization.
 - `docs/artifact_realization.md` explains how a chosen workflow recipe becomes a concrete artifact scaffold before host rendering begins.
 - `docs/artifact_templates.md` explains how a chosen workflow recipe becomes a starter markdown or JSON structure a host can fill.
+- `docs/result_atom_normalization.md` explains how known construct-level outputs become schema-shaped result atom bundles for downstream transport or research return.
 - `capabilities/registry.yaml` stores the abstract host capability model used by the meta-skill and actualization layer.
 - `artifacts/registry.yaml` stores artifact classes and their evidence and capability expectations.
 - `actualization/registry.yaml` stores downstream actualization protocols that use A Person Index as the comparative core.
@@ -211,6 +218,7 @@ Key conventions:
 - `research/contribution_models.yaml` stores privacy-minimizing contribution models for future research intake.
 - `research/promotion_registry.yaml` stores the staged promotion policy that governs how research can influence house synthesis or protocol revision.
 - `research/result_atom_schema.yaml` stores the normalized downstream result-atom contract for runtime exchange.
+- `docs/result_atom_normalization.md` documents the repo-side helper that turns known construct-level outputs into schema-shaped result atom bundles.
 
 The active, fully populated corpus remains instrument-centered for now. The new top-level directories formalize the broader A Person Index architecture without forcing a premature internal package rename.
 

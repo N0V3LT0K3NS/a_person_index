@@ -149,11 +149,12 @@ We now have:
 - programs
 - packs
 
-But there is still no canonical helper that turns raw framework output into clean result atoms.
+The repo now has a canonical helper for normalizing known construct-level output
+into clean result atoms.
 
 ### Core problem
 
-Agents can retrieve the schema, but they still have to improvise the translation from:
+The remaining gap is that agents still have to improvise the translation from:
 
 - `Openness: Very High`
 - `ENFP`
@@ -163,7 +164,6 @@ into structured result atoms with the right framework and construct IDs.
 
 ### Candidate directions
 
-- a repo-side helper that maps raw assessment output into result atoms when the framework is known
 - a framework-specific construct-list or result-shape discovery surface
 - a maintained examples library showing correct result-atom decomposition for common frameworks
 

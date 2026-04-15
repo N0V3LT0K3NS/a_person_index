@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 
 from _bootstrap import bootstrap
@@ -43,6 +44,7 @@ from personality_registry.query import (
     prepare_artifact_realization,
     prepare_artifact_template,
     prepare_comparison_run,
+    normalize_result_atom_bundle,
     promotion_pathway_record,
     protocol_pack,
     protocol_pack_summary,
@@ -559,6 +561,60 @@ def _render_result_atom_schema_text(payload):
     lines.append("Optional fields:")
     for field in schema["optional_fields"]:
         lines.append(f"  - {field['name']} [{field['field_kind']}]")
+    return "\n".join(lines)
+
+
+def _render_result_atom_bundle_text(payload):
+    framework = payload["framework"]
+    bundle = payload["bundle"]
+    lines = [
+        f"Framework: {framework['canonical_name']} ({framework['instrument_id']})",
+        f"Readiness: {payload['readiness_status']}",
+        f"Entries: {payload['entry_count']}",
+        f"Normalized atoms: {payload['normalized_atom_count']}",
+    ]
+    if payload["comparison_shape"]:
+        lines.append(
+            f"Comparison shape: {payload['comparison_shape']['name']} ({payload['comparison_shape']['id']})"
+        )
+    if payload["bundle_level_defaults"]["bundle_label"]:
+        lines.append(f"Bundle label: {payload['bundle_level_defaults']['bundle_label']}")
+    lines.extend(
+        [
+            "",
+            "Bundle:",
+            f"  contribution model: {bundle['contribution_model_id']}",
+            f"  schema: {bundle['result_atom_schema_id']}",
+            f"  atoms: {bundle['atom_count']}",
+        ]
+    )
+    if payload["normalization_records"]:
+        lines.extend(["", "Atoms:"])
+        for record in payload["normalization_records"]:
+            atom = record["atom"]
+            lines.append(
+                f"  - {record['resolved_construct']['name']} ({record['resolved_construct']['id']}): "
+                f"{atom['output_type']} -> {atom['output_value']}"
+            )
+            if atom.get("mapped_motif_ids"):
+                lines.append(f"    motifs: {', '.join(atom['mapped_motif_ids'])}")
+            if atom.get("source_quality"):
+                lines.append(f"    source_quality: {atom['source_quality']}")
+            if atom.get("timestamp"):
+                lines.append(f"    timestamp: {atom['timestamp']}")
+    if payload["warnings"]:
+        lines.extend(["", "Warnings:"])
+        for item in payload["warnings"]:
+            lines.append(f"  - {item}")
+    if payload["invalid_entries"]:
+        lines.extend(["", "Invalid entries:"])
+        for item in payload["invalid_entries"]:
+            construct = f" ({item['construct']})" if item.get("construct") else ""
+            lines.append(f"  - entry {item['entry_index']}{construct}: {item['reason']}")
+    if payload["next_steps"]:
+        lines.extend(["", "Next steps:"])
+        for step in payload["next_steps"]:
+            lines.append(f"  - {step}")
     return "\n".join(lines)
 
 
@@ -1384,6 +1440,36 @@ def main() -> int:
     )
     result_atom_parser.add_argument("--format", choices=("text", "json"), default="text")
 
+    result_atom_bundle_parser = subparsers.add_parser(
+        "result-atom-bundle",
+        help="Normalize construct-level framework outputs into a schema-shaped result atom bundle.",
+    )
+    result_atom_bundle_parser.add_argument("--framework", required=True, help="Framework or instrument reference.")
+    result_atom_bundle_parser.add_argument(
+        "--entries-json",
+        required=True,
+        help="JSON array of result entries with construct, output_type, and output_value fields.",
+    )
+    result_atom_bundle_parser.add_argument(
+        "--comparison-shape",
+        help="Optional comparison shape to tag on the bundle metadata.",
+    )
+    result_atom_bundle_parser.add_argument("--bundle-label", help="Optional label for the normalized bundle.")
+    result_atom_bundle_parser.add_argument(
+        "--default-source-quality",
+        help="Optional default source quality applied when an entry omits it.",
+    )
+    result_atom_bundle_parser.add_argument(
+        "--default-timestamp",
+        help="Optional default timestamp applied when an entry omits it.",
+    )
+    result_atom_bundle_parser.add_argument(
+        "--no-motif-trace",
+        action="store_true",
+        help="Disable automatic motif attachment from the current mapping layer.",
+    )
+    result_atom_bundle_parser.add_argument("--format", choices=("text", "json"), default="text")
+
     orient_parser = subparsers.add_parser(
         "orient", help="Return a compact onboarding payload for agents arriving cold."
     )
@@ -1812,6 +1898,30 @@ def main() -> int:
             print(_render_result_atom_schema_text(payload))
         return 0
 
+    if args.command == "result-atom-bundle":
+        try:
+            entries = json.loads(args.entries_json)
+        except json.JSONDecodeError as error:
+            raise SystemExit(f"Invalid --entries-json payload: {error}") from error
+        if not isinstance(entries, list):
+            raise SystemExit("Invalid --entries-json payload: expected a JSON array of result entries.")
+        payload = normalize_result_atom_bundle(
+            repository,
+            extensions,
+            framework=args.framework,
+            entries=entries,
+            comparison_shape=args.comparison_shape,
+            bundle_label=args.bundle_label,
+            default_source_quality=args.default_source_quality,
+            default_timestamp=args.default_timestamp,
+            include_motif_trace=not args.no_motif_trace,
+        )
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_result_atom_bundle_text(payload))
+        return 0
+
     if args.command == "orient":
         payload = agent_orientation(repository, extensions)
         if args.format == "json":
@@ -1901,8 +2011,6 @@ def main() -> int:
     if args.command == "comparison-preflight":
         declarations: dict[str, str] = {}
         if args.declarations_json:
-            import json
-
             loaded = json.loads(args.declarations_json)
             if not isinstance(loaded, dict):
                 raise SystemExit("--declarations-json must decode to an object.")

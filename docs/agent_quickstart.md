@@ -103,6 +103,11 @@ start rendering.
 If the host then needs a starter markdown or JSON structure to fill, use the
 artifact template surface rather than rebuilding that first draft from scratch.
 
+If the runtime already has construct-level outputs and the question becomes
+research-safe return traffic or downstream atom-level transport, use the result
+atom normalization surface instead of improvising IDs, provenance, or motif
+attachments.
+
 Use the deeper docs:
 
 - [advanced_modes.md](/Users/noveltokens/a_person_index/docs/advanced_modes.md)
@@ -112,6 +117,7 @@ Use the deeper docs:
 - [capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md)
 - [artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md)
 - [artifact_templates.md](/Users/noveltokens/a_person_index/docs/artifact_templates.md)
+- [result_atom_normalization.md](/Users/noveltokens/a_person_index/docs/result_atom_normalization.md)
 - [expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md)
 - [actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md)
 - [workflow_recipes.md](/Users/noveltokens/a_person_index/docs/workflow_recipes.md)

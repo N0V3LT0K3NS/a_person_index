@@ -53,6 +53,11 @@ output shape.
 If the host needs a starter markdown or JSON structure rather than only the
 block list, use `prepare_artifact_template` next.
 
+If a downstream runtime already has construct-level outputs and needs
+schema-shaped atom transport or research-safe return traffic, use
+`normalize_result_atom_bundle` rather than improvising IDs, provenance fields,
+or motif attachments.
+
 ## Ready-to-share status
 
 The MCP surface is now ready for serious local and nearby-agent use.
@@ -166,6 +171,7 @@ npm run mcp:test
 - `registry://capability-model`
 - `registry://artifact-realization`
 - `registry://artifact-templates`
+- `registry://result-atom-normalization`
 - `registry://expression-model`
 - `registry://actualization-protocols`
 - `registry://workflow-recipes`
@@ -195,6 +201,7 @@ npm run mcp:test
 - `fetch_workflow_recipe`
 - `prepare_artifact_realization`
 - `prepare_artifact_template`
+- `normalize_result_atom_bundle`
 - `recommend_next_path`
 - `list_artifact_classes`
 - `fetch_artifact_class`

@@ -59,6 +59,7 @@ for (const requiredTool of [
   "fetch_protocol_pack_summary",
   "fetch_protocol_pack",
   "fetch_result_atom_schema",
+  "normalize_result_atom_bundle",
   "fetch_research_models",
 ]) {
   expect(toolNames.has(requiredTool), `Expected ${requiredTool} in MCP tool surface.`);
@@ -127,6 +128,12 @@ const artifactTemplates = await client.readResource({ uri: "registry://artifact-
 expect(
   artifactTemplates.contents?.[0]?.text?.includes("Artifact Templates"),
   "Expected artifact templates resource content.",
+);
+
+const resultAtomNormalization = await client.readResource({ uri: "registry://result-atom-normalization" });
+expect(
+  resultAtomNormalization.contents?.[0]?.text?.includes("Result Atom Normalization"),
+  "Expected result atom normalization resource content.",
 );
 
 const mbtiResource = await client.readResource({ uri: "registry://instrument/mbti" });
@@ -255,6 +262,45 @@ expect(
   Array.isArray(workflows.structuredContent?.workflow_recipes) &&
     workflows.structuredContent.workflow_recipes.some((item) => item.id === "wfr_context_matrix_explanatory"),
   "Expected workflow recipe for context matrix artifact.",
+);
+
+const resultAtomBundle = await client.callTool({
+  name: "normalize_result_atom_bundle",
+  arguments: {
+    framework: "Big Five",
+    comparison_shape: "Contextual Time Slices",
+    default_source_quality: "self_reported",
+    entries: [
+      {
+        construct: "Openness to Experience",
+        output_type: "continuous_score",
+        output_value: "0.74",
+      },
+      {
+        construct: "Agreeableness",
+        output_type: "continuous_score",
+        output_value: "0.51",
+      },
+    ],
+  },
+});
+expect(!resultAtomBundle.isError, "Expected normalize_result_atom_bundle tool to succeed.");
+expect(
+  resultAtomBundle.structuredContent?.readiness_status === "ready",
+  "Expected result atom normalization readiness to be ready.",
+);
+expect(
+  resultAtomBundle.structuredContent?.bundle?.comparison_shape_id === "cmp_contextual_time_slices",
+  "Expected comparison shape metadata on the normalized bundle.",
+);
+expect(
+  resultAtomBundle.structuredContent?.bundle?.atoms?.[0]?.mapped_motif_ids?.includes("mtf_exploratory_openness"),
+  "Expected normalized bundle to include mapped motifs for openness.",
+);
+expect(
+  Array.isArray(resultAtomBundle.structuredContent?.warnings) &&
+    resultAtomBundle.structuredContent.warnings.some((item) => item.includes("Agreeableness")),
+  "Expected result atom normalization warnings for unmapped constructs.",
 );
 
 const artifactRealizationPlan = await client.callTool({

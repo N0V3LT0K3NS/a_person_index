@@ -63,6 +63,7 @@ As of the current branch state, the repo includes:
 - Contribution models for mapping votes, relation judgments, result-atom bundles, distilled observations, and protocol feedback
 - A typed promotion registry that governs how research can move from intake to reviewed house synthesis or protocol revision
 - A normalized result atom schema for downstream runtimes such as `GNOMY`
+- A result atom normalization helper for turning construct-level outputs into schema-shaped bundles with provenance defaults and optional motif trace
 
 ### Operational layer
 
@@ -77,6 +78,7 @@ As of the current branch state, the repo includes:
 - first-class comparison-shape records for contextual and pairwise setup
 - first-class artifact realization surface for turning workflow recipes into concrete artifact scaffolds
 - first-class artifact template surface for turning workflow recipes into starter markdown or JSON structures
+- first-class result atom normalization surface for downstream return traffic and atom-level transport
 - Deterministic generated outputs
 - Static documentation site
 - Three generated landing-page directions for the public site

@@ -42,6 +42,7 @@ from personality_registry.query import (
     prepare_comparison_run,
     prepare_artifact_realization,
     prepare_artifact_template,
+    normalize_result_atom_bundle,
     query_results,
     promotion_pathway_record,
     recommend_next_path,
@@ -747,6 +748,70 @@ def test_result_atom_schema_record_is_available(repo_root):
     assert payload["result_atom_schema"]["id"] == "ras_result_atom_v0_1"
     required_fields = {field["name"] for field in payload["result_atom_schema"]["required_fields"]}
     assert {"framework_id", "construct_id", "output_type", "output_value"} <= required_fields
+
+
+def test_normalize_result_atom_bundle_resolves_constructs_and_motif_trace(repo_root):
+    repository = load_repository_strict(repo_root)
+    extensions = load_extensions_strict(repo_root)
+    payload = normalize_result_atom_bundle(
+        repository,
+        extensions,
+        framework="Big Five",
+        bundle_label="baseline trait slice",
+        default_source_quality="self_reported",
+        default_timestamp="2026-04-14",
+        entries=[
+            {
+                "construct": "Openness to Experience",
+                "output_type": "continuous_score",
+                "output_value": "0.74",
+                "confidence": "high",
+            },
+            {
+                "construct": "Agreeableness",
+                "output_type": "continuous_score",
+                "output_value": "0.51",
+            },
+        ],
+    )
+    assert payload["readiness_status"] == "ready"
+    assert payload["preferred_contribution_model"]["id"] == "rcm_result_atom_bundle"
+    assert payload["bundle"]["framework_id"] == "instr_big_five"
+    assert payload["bundle"]["bundle_label"] == "baseline trait slice"
+    assert payload["bundle"]["atom_count"] == 2
+    first_atom = payload["bundle"]["atoms"][0]
+    second_atom = payload["bundle"]["atoms"][1]
+    assert first_atom["construct_id"] == "con_big_five_openness"
+    assert first_atom["mapped_motif_ids"] == ["mtf_exploratory_openness"]
+    assert first_atom["source_quality"] == "self_reported"
+    assert first_atom["timestamp"] == "2026-04-14"
+    assert second_atom["construct_id"] == "con_big_five_agreeableness"
+    assert "mapped_motif_ids" not in second_atom
+    assert any("Agreeableness" in warning for warning in payload["warnings"])
+
+
+def test_normalize_result_atom_bundle_surfaces_invalid_entries_and_comparison_shape(repo_root):
+    repository = load_repository_strict(repo_root)
+    extensions = load_extensions_strict(repo_root)
+    payload = normalize_result_atom_bundle(
+        repository,
+        extensions,
+        framework="Big Five",
+        comparison_shape="Contextual Time Slices",
+        entries=[
+            {
+                "construct": "Missing Construct",
+                "output_type": "continuous_score",
+                "output_value": "0.10",
+            }
+        ],
+    )
+    assert payload["readiness_status"] == "invalid"
+    assert payload["comparison_shape"]["id"] == "cmp_contextual_time_slices"
+    assert payload["bundle"]["comparison_shape_id"] == "cmp_contextual_time_slices"
+    assert payload["bundle"]["atom_count"] == 0
+    assert payload["invalid_entries"]
+    assert "registry://comparison-shapes" in payload["recommended_resources"]
 
 
 def test_query_cli_returns_concise_error_for_unknown_program(repo_root):

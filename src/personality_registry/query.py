@@ -1347,6 +1347,306 @@ def result_atom_schema_record(extensions: ExtensionRegistryData) -> dict[str, An
     return {"result_atom_schema": extensions.result_atom_schema.model_dump(mode="json")}
 
 
+def _resolve_construct_within_bundle(bundle: InstrumentBundle, ref: str):
+    normalized = _normalize(ref)
+    candidates = []
+    candidate_names: list[str] = []
+    for construct in bundle.constructs:
+        names = {
+            construct.id,
+            construct.name,
+            construct.short_name or "",
+        }
+        candidate_names.extend(name for name in names if name)
+        if normalized in {_normalize(name) for name in names if name}:
+            candidates.append(construct)
+    if not candidates:
+        suggestions = _format_suggestions(ref, candidate_names)
+        raise KeyError(
+            f"No construct in framework '{bundle.instrument.canonical_name}' matched '{ref}'{suggestions}"
+        )
+    if len(candidates) > 1:
+        raise KeyError(
+            f"Construct reference '{ref}' is ambiguous within '{bundle.instrument.canonical_name}' "
+            f"across {[construct.id for construct in candidates]}"
+        )
+    return candidates[0]
+
+
+def _normalize_result_atom_value(value: Any) -> tuple[str | None, str | None]:
+    if value is None:
+        return None, "Missing required output value."
+    if isinstance(value, str):
+        normalized = value.strip()
+        if not normalized:
+            return None, "Expected a non-empty output value."
+        return normalized, None
+    if isinstance(value, (int, float, bool)):
+        return str(value), None
+    if isinstance(value, (list, dict)):
+        return json.dumps(value, ensure_ascii=False, sort_keys=True), None
+    return str(value), None
+
+
+def _normalize_optional_text_field(value: Any, *, field_label: str) -> tuple[str | None, str | None]:
+    if value is None:
+        return None, None
+    if not isinstance(value, str):
+        return None, f"Expected {field_label} to be a string."
+    normalized = value.strip()
+    if not normalized:
+        return None, f"Expected {field_label} to be a non-empty string."
+    return normalized, None
+
+
+def _construct_motif_ids(
+    extensions: ExtensionRegistryData,
+    construct_id: str,
+) -> list[str]:
+    motif_ids = {
+        mapping.target_entity_id
+        for mapping in extensions.mappings
+        if mapping.source_entity_type == "construct" and mapping.source_entity_id == construct_id
+    }
+    return sorted(motif_ids)
+
+
+def normalize_result_atom_bundle(
+    repository: RepositoryData,
+    extensions: ExtensionRegistryData,
+    *,
+    framework: str,
+    entries: Iterable[dict[str, Any]] | None = None,
+    comparison_shape: str | None = None,
+    bundle_label: str | None = None,
+    default_source_quality: str | None = None,
+    default_timestamp: str | None = None,
+    include_motif_trace: bool = True,
+) -> dict[str, Any]:
+    bundle = resolve_instrument(repository, framework)
+    comparison_shape_item = resolve_comparison_shape(extensions, comparison_shape) if comparison_shape else None
+    contribution_model = resolve_contribution_model(extensions, "rcm_result_atom_bundle")
+    entries = list(entries or [])
+
+    normalized_bundle_label, bundle_label_error = _normalize_optional_text_field(
+        bundle_label,
+        field_label="bundle label",
+    )
+    normalized_default_source_quality, source_quality_error = _normalize_optional_text_field(
+        default_source_quality,
+        field_label="default source quality",
+    )
+    normalized_default_timestamp, timestamp_error = _normalize_optional_text_field(
+        default_timestamp,
+        field_label="default timestamp",
+    )
+
+    bundle_level_errors = [
+        error
+        for error in [bundle_label_error, source_quality_error, timestamp_error]
+        if error
+    ]
+
+    invalid_entries: list[dict[str, Any]] = []
+    warnings: list[str] = []
+    normalization_records: list[dict[str, Any]] = []
+    normalized_atoms: list[dict[str, Any]] = []
+
+    for index, entry in enumerate(entries):
+        if not isinstance(entry, dict):
+            invalid_entries.append(
+                {
+                    "entry_index": index,
+                    "reason": "Each result atom entry must be an object.",
+                }
+            )
+            continue
+
+        construct_ref = entry.get("construct")
+        output_type = entry.get("output_type")
+        output_value = entry.get("output_value")
+
+        if not isinstance(construct_ref, str) or not construct_ref.strip():
+            invalid_entries.append(
+                {
+                    "entry_index": index,
+                    "reason": "Each entry must include a non-empty 'construct' reference.",
+                }
+            )
+            continue
+
+        if not isinstance(output_type, str) or not output_type.strip():
+            invalid_entries.append(
+                {
+                    "entry_index": index,
+                    "construct": construct_ref,
+                    "reason": "Each entry must include a non-empty 'output_type'.",
+                }
+            )
+            continue
+
+        normalized_output_value, output_value_error = _normalize_result_atom_value(output_value)
+        if output_value_error:
+            invalid_entries.append(
+                {
+                    "entry_index": index,
+                    "construct": construct_ref,
+                    "reason": output_value_error,
+                }
+            )
+            continue
+
+        try:
+            construct = _resolve_construct_within_bundle(bundle, construct_ref)
+        except KeyError as error:
+            invalid_entries.append(
+                {
+                    "entry_index": index,
+                    "construct": construct_ref,
+                    "reason": str(error),
+                }
+            )
+            continue
+
+        confidence, confidence_error = _normalize_optional_text_field(
+            entry.get("confidence"),
+            field_label="confidence",
+        )
+        source_quality, entry_source_quality_error = _normalize_optional_text_field(
+            entry.get("source_quality"),
+            field_label="source quality",
+        )
+        timestamp, entry_timestamp_error = _normalize_optional_text_field(
+            entry.get("timestamp"),
+            field_label="timestamp",
+        )
+        notes, notes_error = _normalize_optional_text_field(
+            entry.get("notes"),
+            field_label="notes",
+        )
+
+        optional_errors = [
+            error
+            for error in [confidence_error, entry_source_quality_error, entry_timestamp_error, notes_error]
+            if error
+        ]
+        if optional_errors:
+            invalid_entries.append(
+                {
+                    "entry_index": index,
+                    "construct": construct_ref,
+                    "reason": "; ".join(optional_errors),
+                }
+            )
+            continue
+
+        motif_ids = _construct_motif_ids(extensions, construct.id) if include_motif_trace else []
+        if include_motif_trace and not motif_ids:
+            warnings.append(
+                f"{construct.name} ({construct.id}) has no current construct-to-motif mapping."
+            )
+
+        atom: dict[str, Any] = {
+            "framework_id": bundle.instrument.id,
+            "construct_id": construct.id,
+            "output_type": output_type.strip(),
+            "output_value": normalized_output_value,
+        }
+        if confidence:
+            atom["confidence"] = confidence
+        if source_quality or normalized_default_source_quality:
+            atom["source_quality"] = source_quality or normalized_default_source_quality
+        if timestamp or normalized_default_timestamp:
+            atom["timestamp"] = timestamp or normalized_default_timestamp
+        if include_motif_trace and motif_ids:
+            atom["mapped_motif_ids"] = motif_ids
+        if notes:
+            atom["notes"] = notes
+
+        normalized_atoms.append(atom)
+        normalization_records.append(
+            {
+                "entry_index": index,
+                "input_construct_ref": construct_ref,
+                "resolved_construct": {
+                    "id": construct.id,
+                    "name": construct.name,
+                    "short_name": construct.short_name,
+                    "scoring_type": construct.scoring_type,
+                },
+                "mapped_motif_ids": motif_ids,
+                "atom": atom,
+            }
+        )
+
+    if bundle_level_errors or invalid_entries:
+        readiness_status = "invalid"
+    elif not entries:
+        readiness_status = "needs_entries"
+    else:
+        readiness_status = "ready"
+
+    next_steps: list[str] = []
+    if readiness_status == "needs_entries":
+        next_steps.append(
+            "Provide at least one construct-level result entry with construct, output_type, and output_value."
+        )
+    if bundle_level_errors:
+        next_steps.extend(bundle_level_errors)
+    if invalid_entries:
+        next_steps.append("Fix invalid result atom entries before using the bundle downstream.")
+    if readiness_status == "ready":
+        next_steps.append(
+            "Use the normalized bundle as downstream runtime input or as research-safe return traffic, while keeping person-level synthesis outside this repo."
+        )
+        next_steps.append(
+            "If returning this bundle to the research stream, keep framework provenance and source quality attached."
+        )
+
+    return {
+        "framework": _framework_reference_payload(bundle),
+        "comparison_shape": (
+            comparison_shape_item.model_dump(mode="json") if comparison_shape_item else None
+        ),
+        "readiness_status": readiness_status,
+        "entry_count": len(entries),
+        "normalized_atom_count": len(normalized_atoms),
+        "bundle_level_defaults": {
+            "bundle_label": normalized_bundle_label,
+            "source_quality": normalized_default_source_quality,
+            "timestamp": normalized_default_timestamp,
+            "include_motif_trace": include_motif_trace,
+        },
+        "result_atom_schema": extensions.result_atom_schema.model_dump(mode="json"),
+        "preferred_contribution_model": contribution_model.model_dump(mode="json"),
+        "normalization_records": normalization_records,
+        "invalid_entries": invalid_entries,
+        "warnings": sorted(set(warnings)),
+        "bundle": {
+            "contribution_model_id": contribution_model.id,
+            "result_atom_schema_id": extensions.result_atom_schema.id,
+            "framework_id": bundle.instrument.id,
+            "framework_name": bundle.instrument.canonical_name,
+            "comparison_shape_id": comparison_shape_item.id if comparison_shape_item else None,
+            "comparison_shape_name": comparison_shape_item.name if comparison_shape_item else None,
+            "bundle_label": normalized_bundle_label,
+            "atom_count": len(normalized_atoms),
+            "atoms": normalized_atoms,
+        },
+        "recommended_tools": [
+            "fetch_result_atom_schema",
+            "fetch_research_models",
+            "fetch_research_promotion_policy",
+        ],
+        "recommended_resources": [
+            "registry://result-atom-normalization",
+            "registry://research-promotion",
+        ]
+        + (["registry://comparison-shapes"] if comparison_shape_item else []),
+        "next_steps": next_steps,
+    }
+
+
 def find_analysis_modes(
     extensions: ExtensionRegistryData,
     *,

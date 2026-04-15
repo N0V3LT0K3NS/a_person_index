@@ -164,6 +164,16 @@ python3 scripts/query_registry.py artifact-template "Structured Result Bundle Te
   --format json
 ```
 
+If the host already has construct-level framework outputs and the need is
+transport or research-safe return rather than a rendered artifact, normalize a
+result atom bundle directly:
+
+```bash
+python3 scripts/query_registry.py result-atom-bundle \
+  --framework "Big Five" \
+  --entries-json '[{"construct":"Openness to Experience","output_type":"continuous_score","output_value":"0.74","source_quality":"self_reported"}]'
+```
+
 ### 7. Preserve provenance and expression fit
 
 Always preserve the difference between:
