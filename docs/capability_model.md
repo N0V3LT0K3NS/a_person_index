@@ -77,6 +77,37 @@ The recommended order is:
 8. choose the workflow recipe that operationalizes the path
 9. use the host's actual tools only after the semantic path is clear
 
+## MCP
+
+Use `recommend_next_path` when capabilities are already declared and the next
+disciplined step is the real question.
+
+Example call:
+
+```json
+{
+  "mode": "mode_bounded_single_subject",
+  "hosts": ["host_claude_code"],
+  "capabilities": ["cap_markdown_write", "cap_structured_text_render"]
+}
+```
+
+All parameters are optional. If nothing is provided, the tool defaults to
+`mode_run_planning` and returns a conservative recommendation.
+
+Optional parameters:
+
+- `mode` (string) — analysis mode ID or name (note: `mode`, not `run_mode`)
+- `comparison_shape` (string) — comparison shape ID or name when contextual or
+  pairwise work is already declared
+- `hosts` (array of strings) — declared host profile IDs or names; expands
+  into a conservative capability set
+- `capabilities` (array of strings) — declared capability IDs or names
+- `artifact` (string) — bias the recommendation toward a specific artifact
+  class ID or name
+- `text` (string) — free-text hint used to infer mode and comparison shape
+  when none is declared explicitly
+
 ## Important caution
 
 A stronger host environment does not authorize a stronger claim.

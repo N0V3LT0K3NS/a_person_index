@@ -67,3 +67,14 @@ python3 scripts/query_registry.py result-shape "Big Five"
 Use `fetch_framework_result_shape` when a runtime needs the construct IDs,
 scoring types, motif trace availability, and starter atom slots for a framework
 before it normalizes anything.
+
+Example call:
+
+```json
+{
+  "framework": "big-five"
+}
+```
+
+The required parameter is `framework` (framework slug, short name, or alias).
+The tool accepts any value that resolves via `find_framework_records`.

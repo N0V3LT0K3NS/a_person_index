@@ -52,6 +52,31 @@ For artifact work, the clean order is:
 8. use artifact templates if the host needs a first-draft structure to fill
 9. render the finished output with host tools
 
+## MCP
+
+Use `prepare_artifact_realization` when the workflow recipe is chosen and the
+host needs the concrete artifact scaffold.
+
+Example call:
+
+```json
+{
+  "workflow_recipe": "wfr_human_model_card_mixed",
+  "hosts": ["host_claude_code"],
+  "capabilities": ["cap_markdown_write", "cap_structured_text_render"]
+}
+```
+
+Required parameter:
+
+- `workflow_recipe` (string) — workflow recipe ID or name
+  (for example `wfr_human_model_card_mixed` or `"Human Model Card Mixed"`)
+
+Optional parameters:
+
+- `hosts` (array of strings) — declared host profile IDs or names
+- `capabilities` (array of strings) — declared capability IDs or names
+
 ## Boundary rule
 
 Artifact realization does not make A Person Index a renderer.

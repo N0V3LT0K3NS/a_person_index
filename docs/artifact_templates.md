@@ -61,6 +61,24 @@ python3 scripts/query_registry.py artifact-template "Structured Result Bundle Te
   --format json
 ```
 
+Equivalent MCP call via `prepare_artifact_template`:
+
+```json
+{
+  "workflow_recipe": "wfr_human_model_card_mixed",
+  "hosts": ["host_codex_desktop"]
+}
+```
+
+Required parameter:
+
+- `workflow_recipe` (string) — workflow recipe ID or name
+
+Optional parameters:
+
+- `hosts` (array of strings) — declared host profile IDs or names
+- `capabilities` (array of strings) — declared capability IDs or names
+
 ## What kinds of templates exist
 
 The current surface produces two broad template kinds:
