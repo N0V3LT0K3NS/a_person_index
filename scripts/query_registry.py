@@ -44,6 +44,7 @@ from personality_registry.query import (
     prepare_artifact_realization,
     prepare_artifact_template,
     prepare_comparison_run,
+    framework_result_shape,
     normalize_result_atom_bundle,
     promotion_pathway_record,
     protocol_pack,
@@ -615,6 +616,33 @@ def _render_result_atom_bundle_text(payload):
         lines.extend(["", "Next steps:"])
         for step in payload["next_steps"]:
             lines.append(f"  - {step}")
+    return "\n".join(lines)
+
+
+def _render_result_shape_text(payload):
+    framework = payload["framework"]
+    lines = [
+        f"Framework: {framework['canonical_name']} ({framework['instrument_id']})",
+        f"Constructs: {payload['construct_count']}",
+        f"Scoring types: {', '.join(payload['scoring_types']) if payload['scoring_types'] else '(none)'}",
+        f"Normalization hints: {', '.join(payload['normalization_hints']) if payload['normalization_hints'] else '(none)'}",
+        "",
+        "Constructs:",
+    ]
+    for item in payload["constructs"]:
+        lines.append(
+            f"  - {item['name']} ({item['id']}) [{item['scoring_type']} / {item['normalization_hint']}]"
+        )
+        if item["mapped_motif_ids"]:
+            lines.append(f"    motifs: {', '.join(item['mapped_motif_ids'])}")
+        lines.append(
+            "    starter atom: "
+            f"{item['result_atom_entry_template']['output_type']} -> {item['result_atom_entry_template']['output_value']}"
+        )
+    if payload["cautions"]:
+        lines.extend(["", "Cautions:"])
+        for item in payload["cautions"]:
+            lines.append(f"  - {item}")
     return "\n".join(lines)
 
 
@@ -1470,6 +1498,13 @@ def main() -> int:
     )
     result_atom_bundle_parser.add_argument("--format", choices=("text", "json"), default="text")
 
+    result_shape_parser = subparsers.add_parser(
+        "result-shape",
+        help="Show the construct-level result shape and starter atom slots for a framework.",
+    )
+    result_shape_parser.add_argument("framework", help="Framework or instrument reference.")
+    result_shape_parser.add_argument("--format", choices=("text", "json"), default="text")
+
     orient_parser = subparsers.add_parser(
         "orient", help="Return a compact onboarding payload for agents arriving cold."
     )
@@ -1920,6 +1955,14 @@ def main() -> int:
             print(dumps_json(payload))
         else:
             print(_render_result_atom_bundle_text(payload))
+        return 0
+
+    if args.command == "result-shape":
+        payload = framework_result_shape(repository, extensions, args.framework)
+        if args.format == "json":
+            print(dumps_json(payload))
+        else:
+            print(_render_result_shape_text(payload))
         return 0
 
     if args.command == "orient":

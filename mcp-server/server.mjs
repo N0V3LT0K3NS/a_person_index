@@ -108,7 +108,7 @@ async function buildServer() {
     name: "a-person-index",
     version: "0.1.0",
     instructions:
-      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, comparison preflight guidance, host profiles, capability records, expression profiles, artifact classes, actualization protocols, workflow recipes, artifact realization guidance, artifact template guidance, and result-atom normalization support from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, contextual comparison, or downstream return traffic, inspect the advanced mode, comparison-shape, comparison-preflight, host-profile, capability, expression, actualization, workflow, artifact-realization, artifact-template, and result-atom-normalization surfaces before improvising. Use prepare_comparison_run once a contextual or pairwise shape is chosen and you need to check whether the run is actually declared well enough to proceed. Use recommend_next_path when you already know either the host profile or the host capabilities and need the smallest disciplined next step. Use prepare_artifact_realization once a workflow recipe is chosen and you need a concrete scaffold for the finished artifact. Use prepare_artifact_template when the host needs a concrete starter markdown or JSON structure to fill rather than only a list of required blocks. Use normalize_result_atom_bundle when a downstream runtime already has construct-level outputs and needs a schema-shaped result atom bundle with provenance and motif trace. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
+      "Use this server to retrieve canonical framework records, motif traces, interaction hypotheses, program packs, result atom schema, research contribution models, advanced run modes, comparison shapes, comparison preflight guidance, host profiles, capability records, expression profiles, artifact classes, actualization protocols, workflow recipes, artifact realization guidance, artifact template guidance, result-atom normalization support, and framework result-shape discovery from A Person Index. Start with registry://quickstart when arriving cold. For pasted user assessment results, match frameworks first, then inspect featured program packs, then trace motifs. When the task becomes planning, artifact generation, contextual comparison, or downstream return traffic, inspect the advanced mode, comparison-shape, comparison-preflight, host-profile, capability, expression, actualization, workflow, artifact-realization, artifact-template, result-shape-discovery, and result-atom-normalization surfaces before improvising. Use prepare_comparison_run once a contextual or pairwise shape is chosen and you need to check whether the run is actually declared well enough to proceed. Use recommend_next_path when you already know either the host profile or the host capabilities and need the smallest disciplined next step. Use prepare_artifact_realization once a workflow recipe is chosen and you need a concrete scaffold for the finished artifact. Use prepare_artifact_template when the host needs a concrete starter markdown or JSON structure to fill rather than only a list of required blocks. Use fetch_framework_result_shape when a runtime needs to see the construct IDs, scoring types, and starter atom slots for a framework before normalization. Use normalize_result_atom_bundle when a downstream runtime already has construct-level outputs and needs a schema-shaped result atom bundle with provenance and motif trace. Keep canonical data, house synthesis, index programs, downstream artifacts, and research evidence clearly separated.",
   });
 
   server.registerResource(
@@ -304,6 +304,24 @@ async function buildServer() {
         {
           uri: uri.href,
           text: await readRepoText("docs/artifact_templates.md"),
+        },
+      ],
+    }),
+  );
+
+  server.registerResource(
+    "result-shape-discovery",
+    "registry://result-shape-discovery",
+    {
+      title: "Result Shape Discovery",
+      description: "How to inspect a framework's construct-level result shape and starter atom slots before normalization.",
+      mimeType: "text/markdown",
+    },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          text: await readRepoText("docs/result_shape_discovery.md"),
         },
       ],
     }),
@@ -973,6 +991,24 @@ async function buildServer() {
         for (const host of hosts ?? []) args.push("--host", host);
         for (const capability of capabilities ?? []) args.push("--capability", capability);
         return jsonResult(await runRegistryQuery(args, pythonBin));
+      } catch (error) {
+        return errorResult(error instanceof Error ? error.message : String(error));
+      }
+    },
+  );
+
+  server.registerTool(
+    "fetch_framework_result_shape",
+    {
+      title: "Fetch Framework Result Shape",
+      description: "Return the construct-level result shape, scoring types, motif trace, and starter atom slots for a framework.",
+      inputSchema: {
+        framework: z.string(),
+      },
+    },
+    async ({ framework }) => {
+      try {
+        return jsonResult(await runRegistryQuery(["result-shape", framework], pythonBin));
       } catch (error) {
         return errorResult(error instanceof Error ? error.message : String(error));
       }

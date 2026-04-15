@@ -136,12 +136,14 @@ CLI fallback:
 
 ```bash
 python3 scripts/query_registry.py result-atom-schema
+python3 scripts/query_registry.py result-shape "Big Five"
 python3 scripts/query_registry.py result-atom-bundle --framework "Big Five" --entries-json '[{"construct":"Openness to Experience","output_type":"continuous_score","output_value":"0.74"}]'
 python3 scripts/query_registry.py research-models
 python3 scripts/query_registry.py research-promotion
 ```
 
 Return rule:
+- if the runtime still needs construct IDs or starter atom slots, inspect the framework result-shape surface first
 - prefer `mapping_vote`, `pairwise_relation_judgment`, `result_atom_bundle`, `distilled_observation`, or `protocol_feedback`
 - if the framework is known and the outputs are already construct-level, use the result-atom helper instead of hand-building IDs and provenance
 - do not send raw chats, diaries, or broad narrative corpora as canonical input

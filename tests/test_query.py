@@ -39,6 +39,7 @@ from personality_registry.query import (
     protocol_pack_summary,
     protocol_pack_grammar,
     protocol_record,
+    framework_result_shape,
     prepare_comparison_run,
     prepare_artifact_realization,
     prepare_artifact_template,
@@ -748,6 +749,29 @@ def test_result_atom_schema_record_is_available(repo_root):
     assert payload["result_atom_schema"]["id"] == "ras_result_atom_v0_1"
     required_fields = {field["name"] for field in payload["result_atom_schema"]["required_fields"]}
     assert {"framework_id", "construct_id", "output_type", "output_value"} <= required_fields
+
+
+def test_framework_result_shape_surfaces_construct_slots_and_templates(repo_root):
+    repository = load_repository_strict(repo_root)
+    extensions = load_extensions_strict(repo_root)
+    payload = framework_result_shape(repository, extensions, "Big Five")
+    assert payload["framework"]["instrument_id"] == "instr_big_five"
+    assert payload["construct_count"] == 5
+    assert "continuous" in payload["scoring_types"]
+    openness = next(item for item in payload["constructs"] if item["id"] == "con_big_five_openness")
+    assert openness["normalization_hint"] == "direct_numeric"
+    assert openness["mapped_motif_ids"] == ["mtf_exploratory_openness"]
+    assert openness["result_atom_entry_template"]["output_type"] == "continuous_score"
+    assert payload["normalization_surface"]["tool"] == "normalize_result_atom_bundle"
+
+
+def test_framework_result_shape_surfaces_interpretive_constructs(repo_root):
+    repository = load_repository_strict(repo_root)
+    extensions = load_extensions_strict(repo_root)
+    payload = framework_result_shape(repository, extensions, "Natal Astrology")
+    assert payload["framework"]["instrument_id"] == "instr_natal_astrology"
+    assert "interpretive_judgment" in payload["normalization_hints"]
+    assert payload["cautions"]
 
 
 def test_normalize_result_atom_bundle_resolves_constructs_and_motif_trace(repo_root):

@@ -53,6 +53,10 @@ output shape.
 If the host needs a starter markdown or JSON structure rather than only the
 block list, use `prepare_artifact_template` next.
 
+If a runtime still needs to see a framework's construct IDs, scoring types, and
+starter atom slots before normalization, use `fetch_framework_result_shape`
+next.
+
 If a downstream runtime already has construct-level outputs and needs
 schema-shaped atom transport or research-safe return traffic, use
 `normalize_result_atom_bundle` rather than improvising IDs, provenance fields,
@@ -171,6 +175,7 @@ npm run mcp:test
 - `registry://capability-model`
 - `registry://artifact-realization`
 - `registry://artifact-templates`
+- `registry://result-shape-discovery`
 - `registry://result-atom-normalization`
 - `registry://expression-model`
 - `registry://actualization-protocols`
@@ -201,6 +206,7 @@ npm run mcp:test
 - `fetch_workflow_recipe`
 - `prepare_artifact_realization`
 - `prepare_artifact_template`
+- `fetch_framework_result_shape`
 - `normalize_result_atom_bundle`
 - `recommend_next_path`
 - `list_artifact_classes`

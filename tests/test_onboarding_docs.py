@@ -31,6 +31,7 @@ def test_onboarding_docs_exist(repo_root):
         repo_root / "docs" / "capability_model.md",
         repo_root / "docs" / "artifact_realization.md",
         repo_root / "docs" / "artifact_templates.md",
+        repo_root / "docs" / "result_shape_discovery.md",
         repo_root / "docs" / "result_atom_normalization.md",
         repo_root / "docs" / "expression_model.md",
         repo_root / "docs" / "actualization_protocols.md",
@@ -84,6 +85,7 @@ def test_readme_links_to_onboarding_surface(repo_root):
     assert "docs/capability_model.md" in readme
     assert "docs/artifact_realization.md" in readme
     assert "docs/artifact_templates.md" in readme
+    assert "docs/result_shape_discovery.md" in readme
     assert "docs/result_atom_normalization.md" in readme
     assert "docs/expression_model.md" in readme
     assert "docs/actualization_protocols.md" in readme

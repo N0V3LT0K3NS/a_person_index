@@ -1647,6 +1647,105 @@ def normalize_result_atom_bundle(
     }
 
 
+def _default_result_atom_output_type(scoring_type: str) -> str:
+    if scoring_type == "continuous":
+        return "continuous_score"
+    if scoring_type == "rank_order_grouping":
+        return "ranked_preference"
+    return "type_assignment"
+
+
+def _normalization_hint_for_scoring_type(scoring_type: str) -> str:
+    if scoring_type == "continuous":
+        return "direct_numeric"
+    if scoring_type == "rank_order_grouping":
+        return "ranked_preference"
+    if scoring_type in {"type_assignment", "categorical_or_best_fit", "bipolar_preference"}:
+        return "typed_label"
+    return "interpretive_judgment"
+
+
+def framework_result_shape(
+    repository: RepositoryData,
+    extensions: ExtensionRegistryData,
+    framework: str,
+) -> dict[str, Any]:
+    bundle = resolve_instrument(repository, framework)
+    construct_payloads: list[dict[str, Any]] = []
+    scoring_types: set[str] = set()
+    normalization_hints: set[str] = set()
+    caution_set: set[str] = set()
+
+    for construct in bundle.constructs:
+        motif_ids = _construct_motif_ids(extensions, construct.id)
+        scoring_types.add(construct.scoring_type)
+        normalization_hint = _normalization_hint_for_scoring_type(construct.scoring_type)
+        normalization_hints.add(normalization_hint)
+
+        if normalization_hint == "interpretive_judgment":
+            caution_set.add(
+                "Some constructs use interpretive or heuristic scoring and still need runtime judgment before normalization."
+            )
+        if not motif_ids:
+            caution_set.add(
+                "Some constructs do not yet have house motif mappings, so motif trace will be partial."
+            )
+
+        construct_payloads.append(
+            {
+                "id": construct.id,
+                "name": construct.name,
+                "short_name": construct.short_name,
+                "construct_kind": construct.construct_kind,
+                "scoring_type": construct.scoring_type,
+                "normalization_hint": normalization_hint,
+                "official_definition": construct.official_definition,
+                "value_range": construct.value_range.model_dump(mode="json") if construct.value_range else None,
+                "polarity": construct.polarity.model_dump(mode="json") if construct.polarity else None,
+                "mapped_motif_ids": motif_ids,
+                "result_atom_entry_template": {
+                    "construct": construct.name,
+                    "output_type": _default_result_atom_output_type(construct.scoring_type),
+                    "output_value": "<fill>",
+                },
+            }
+        )
+
+    construct_payloads.sort(key=lambda item: item["name"].lower())
+
+    return {
+        "framework": _framework_reference_payload(bundle),
+        "construct_count": len(construct_payloads),
+        "scoring_types": sorted(scoring_types),
+        "normalization_hints": sorted(normalization_hints),
+        "constructs": construct_payloads,
+        "bundle_template": {
+            "framework": bundle.instrument.canonical_name,
+            "entries": [item["result_atom_entry_template"] for item in construct_payloads],
+        },
+        "normalization_surface": {
+            "tool": "normalize_result_atom_bundle",
+            "schema_id": extensions.result_atom_schema.id,
+            "preferred_contribution_model_id": "rcm_result_atom_bundle",
+            "doc": "docs/result_shape_discovery.md",
+        },
+        "recommended_tools": [
+            "fetch_result_atom_schema",
+            "normalize_result_atom_bundle",
+            "trace_to_motifs",
+        ],
+        "recommended_resources": [
+            "registry://result-shape-discovery",
+            "registry://result-atom-normalization",
+        ],
+        "cautions": sorted(caution_set),
+        "next_steps": [
+            "Pick the constructs you actually have outputs for, then fill the starter entry templates.",
+            "Use normalize_result_atom_bundle once the construct-level values are ready.",
+        ],
+    }
+
+
 def find_analysis_modes(
     extensions: ExtensionRegistryData,
     *,

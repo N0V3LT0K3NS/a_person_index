@@ -59,6 +59,7 @@ for (const requiredTool of [
   "fetch_protocol_pack_summary",
   "fetch_protocol_pack",
   "fetch_result_atom_schema",
+  "fetch_framework_result_shape",
   "normalize_result_atom_bundle",
   "fetch_research_models",
 ]) {
@@ -128,6 +129,12 @@ const artifactTemplates = await client.readResource({ uri: "registry://artifact-
 expect(
   artifactTemplates.contents?.[0]?.text?.includes("Artifact Templates"),
   "Expected artifact templates resource content.",
+);
+
+const resultShapeDiscovery = await client.readResource({ uri: "registry://result-shape-discovery" });
+expect(
+  resultShapeDiscovery.contents?.[0]?.text?.includes("Result Shape Discovery"),
+  "Expected result shape discovery resource content.",
 );
 
 const resultAtomNormalization = await client.readResource({ uri: "registry://result-atom-normalization" });
@@ -301,6 +308,27 @@ expect(
   Array.isArray(resultAtomBundle.structuredContent?.warnings) &&
     resultAtomBundle.structuredContent.warnings.some((item) => item.includes("Agreeableness")),
   "Expected result atom normalization warnings for unmapped constructs.",
+);
+
+const resultShape = await client.callTool({
+  name: "fetch_framework_result_shape",
+  arguments: {
+    framework: "MBTI",
+  },
+});
+expect(!resultShape.isError, "Expected fetch_framework_result_shape tool to succeed.");
+expect(
+  resultShape.structuredContent?.framework?.instrument_id === "instr_mbti",
+  "Expected MBTI framework identity in result shape payload.",
+);
+expect(
+  Array.isArray(resultShape.structuredContent?.constructs) &&
+    resultShape.structuredContent.constructs.some(
+      (item) =>
+        item.id === "con_mbti_extraversion_introversion" &&
+        item.result_atom_entry_template.output_type === "type_assignment",
+    ),
+  "Expected MBTI result shape to include starter atom slots.",
 );
 
 const artifactRealizationPlan = await client.callTool({

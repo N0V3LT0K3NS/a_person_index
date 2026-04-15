@@ -62,6 +62,9 @@ if (!tools.tools.some((tool) => tool.name === "prepare_artifact_realization")) {
 if (!tools.tools.some((tool) => tool.name === "prepare_artifact_template")) {
   throw new Error("Expected prepare_artifact_template tool in MCP surface.");
 }
+if (!tools.tools.some((tool) => tool.name === "fetch_framework_result_shape")) {
+  throw new Error("Expected fetch_framework_result_shape tool in MCP surface.");
+}
 if (!tools.tools.some((tool) => tool.name === "normalize_result_atom_bundle")) {
   throw new Error("Expected normalize_result_atom_bundle tool in MCP surface.");
 }
@@ -123,6 +126,11 @@ if (!artifactRealizationResource.contents?.[0]?.text?.includes("Artifact Realiza
 const artifactTemplateResource = await client.readResource({ uri: "registry://artifact-templates" });
 if (!artifactTemplateResource.contents?.[0]?.text?.includes("Artifact Templates")) {
   throw new Error("Expected artifact template resource content.");
+}
+
+const resultShapeDiscoveryResource = await client.readResource({ uri: "registry://result-shape-discovery" });
+if (!resultShapeDiscoveryResource.contents?.[0]?.text?.includes("Result Shape Discovery")) {
+  throw new Error("Expected result shape discovery resource content.");
 }
 
 const resultAtomNormalizationResource = await client.readResource({ uri: "registry://result-atom-normalization" });
@@ -194,6 +202,23 @@ if (artifactTemplate.isError) {
 
 if (artifactTemplate.structuredContent?.template_kind !== "markdown_document") {
   throw new Error("Expected artifact template to return a markdown document template.");
+}
+
+const resultShape = await client.callTool({
+  name: "fetch_framework_result_shape",
+  arguments: {
+    framework: "Big Five",
+  },
+});
+
+if (resultShape.isError) {
+  throw new Error(
+    `Result shape tool returned error: ${resultShape.content?.[0]?.text ?? "unknown error"}`,
+  );
+}
+
+if (resultShape.structuredContent?.construct_count !== 5) {
+  throw new Error("Expected Big Five result shape to return five constructs.");
 }
 
 const resultAtomBundle = await client.callTool({

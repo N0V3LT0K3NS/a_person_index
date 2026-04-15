@@ -52,6 +52,10 @@ downstream runtimes can turn construct-level outputs into schema-shaped bundles
 without improvising framework IDs, construct IDs, provenance defaults, or motif
 trace.
 
+Result shape discovery now sits just before that normalization layer, so a
+runtime can inspect a framework's construct IDs, scoring types, motif trace
+availability, and starter atom slots before it tries to normalize anything.
+
 The repository began as an instrument registry in milestone 1. It now explicitly carries five product layers:
 
 1. Canonical registry
@@ -97,6 +101,7 @@ If you need the deeper map after that:
   [docs/capability_model.md](/Users/noveltokens/a_person_index/docs/capability_model.md),
   [docs/artifact_realization.md](/Users/noveltokens/a_person_index/docs/artifact_realization.md),
   [docs/artifact_templates.md](/Users/noveltokens/a_person_index/docs/artifact_templates.md),
+  [docs/result_shape_discovery.md](/Users/noveltokens/a_person_index/docs/result_shape_discovery.md),
   [docs/result_atom_normalization.md](/Users/noveltokens/a_person_index/docs/result_atom_normalization.md),
   [docs/expression_model.md](/Users/noveltokens/a_person_index/docs/expression_model.md),
   [docs/actualization_protocols.md](/Users/noveltokens/a_person_index/docs/actualization_protocols.md),
@@ -206,6 +211,7 @@ Key conventions:
 - `hosts/registry.yaml` stores known host profiles that expand into conservative capability sets for planning and actualization.
 - `docs/artifact_realization.md` explains how a chosen workflow recipe becomes a concrete artifact scaffold before host rendering begins.
 - `docs/artifact_templates.md` explains how a chosen workflow recipe becomes a starter markdown or JSON structure a host can fill.
+- `docs/result_shape_discovery.md` explains how to inspect a framework's construct-level result shape before normalization.
 - `docs/result_atom_normalization.md` explains how known construct-level outputs become schema-shaped result atom bundles for downstream transport or research return.
 - `capabilities/registry.yaml` stores the abstract host capability model used by the meta-skill and actualization layer.
 - `artifacts/registry.yaml` stores artifact classes and their evidence and capability expectations.

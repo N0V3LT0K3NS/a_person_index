@@ -212,6 +212,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "docs/capability_model.md",
             "docs/artifact_realization.md",
             "docs/artifact_templates.md",
+            "docs/result_shape_discovery.md",
             "docs/result_atom_normalization.md",
             "docs/actualization_protocols.md",
             "docs/expression_and_artifacts.md",
@@ -348,6 +349,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
             "capability_model_doc": "docs/capability_model.md",
             "artifact_realization_doc": "docs/artifact_realization.md",
             "artifact_templates_doc": "docs/artifact_templates.md",
+            "result_shape_discovery_doc": "docs/result_shape_discovery.md",
             "result_atom_normalization_doc": "docs/result_atom_normalization.md",
             "expression_model_doc": "docs/expression_model.md",
             "actualization_protocols_doc": "docs/actualization_protocols.md",
@@ -444,6 +446,11 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                 "purpose": "Return the normalized downstream result-atom contract.",
             },
             {
+                "id": "fetch_framework_result_shape",
+                "command": "python3 scripts/query_registry.py result-shape \"Big Five\"",
+                "purpose": "Return the construct-level result shape, scoring types, motif trace, and starter atom slots for a framework.",
+            },
+            {
                 "id": "normalize_result_atom_bundle",
                 "command": (
                     "python3 scripts/query_registry.py result-atom-bundle --framework \"Big Five\" "
@@ -526,6 +533,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                     "fetch_workflow_recipe",
                     "prepare_artifact_realization",
                     "prepare_artifact_template",
+                    "fetch_framework_result_shape",
                     "find_framework_records",
                     "compare_frameworks",
                     "trace_to_motifs",
@@ -538,6 +546,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                     "fetch_protocol_pack",
                     "fetch_protocol_pack_grammar",
                     "fetch_result_atom_schema",
+                    "fetch_framework_result_shape",
                     "normalize_result_atom_bundle",
                     "fetch_research_models",
                     "fetch_research_promotion_policy",
@@ -556,6 +565,7 @@ def _manifest_payload(repository, extensions: ExtensionRegistryData) -> dict:
                     "registry://capability-model",
                     "registry://artifact-realization",
                     "registry://artifact-templates",
+                    "registry://result-shape-discovery",
                     "registry://result-atom-normalization",
                     "registry://expression-model",
                     "registry://actualization-protocols",
