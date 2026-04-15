@@ -57,6 +57,37 @@ For `Pairwise Relational Question`, useful declarations include:
 - `comparison_question`
 - `scope_limits`
 
+## MCP
+
+Use `prepare_comparison_run` to run preflight through the MCP surface.
+
+Example call:
+
+```json
+{
+  "comparison_shape": "cmp_contextual_time_slices",
+  "declarations": {
+    "slice_labels": ["2013", "2020"],
+    "comparison_question": "What stayed stable versus what changed?"
+  },
+  "hosts": ["host_claude_desktop"],
+  "capabilities": ["cap_markdown_write"]
+}
+```
+
+Required parameter:
+
+- `comparison_shape` (string) — comparison shape ID or name
+  (for example `cmp_contextual_time_slices` or `"Contextual Time Slices"`)
+
+Optional parameters:
+
+- `declarations` (object) — keyed by declaration field ID, with each value
+  either a string or an array of strings depending on the field's `value_kind`
+- `hosts` (array of strings) — declared host profile IDs or names, used to
+  expand a conservative capability set for readiness checks
+- `capabilities` (array of strings) — declared capability IDs or names
+
 ## Boundary rule
 
 Comparison preflight does not produce compatibility truth, developmental truth,

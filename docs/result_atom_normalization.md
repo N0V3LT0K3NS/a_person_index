@@ -99,6 +99,39 @@ Use `normalize_result_atom_bundle` when the host already has construct-level
 outputs and needs a clean, schema-shaped bundle with provenance defaults and
 optional motif trace.
 
+Example call:
+
+```json
+{
+  "framework": "big-five",
+  "entries": [
+    {
+      "construct": "Openness to Experience",
+      "output_type": "continuous_score",
+      "output_value": "0.74",
+      "source_quality": "self_reported"
+    }
+  ]
+}
+```
+
+Required parameters:
+
+- `framework` (string) — framework slug, short name, or alias
+- `entries` (array of objects) — each entry must include `construct`,
+  `output_type`, and `output_value`; may also include `confidence`,
+  `source_quality`, `timestamp`, and `notes`
+
+Optional bundle-level parameters:
+
+- `comparison_shape` (string) — attach comparison shape metadata when the
+  bundle is part of a contextual or pairwise run
+- `bundle_label` (string)
+- `default_source_quality` (string) — applied when an entry has no
+  `source_quality`
+- `default_timestamp` (string) — applied when an entry has no `timestamp`
+- `include_motif_trace` (boolean, default `true`)
+
 ## Boundary caution
 
 Result atom normalization is a contract helper.
